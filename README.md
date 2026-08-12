@@ -35,3 +35,8 @@ uv run python scripts/dev.py run-mcp    # 미구현 안내 후 exit 2 (= make ru
 ## License
 
 [MIT License](LICENSE.md) — Copyright (c) 2026 Korean Register (KR)
+
+## Notices
+
+Project funding acknowledgements and third-party rights notices are
+provided in [NOTICE.md](NOTICE.md).

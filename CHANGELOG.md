@@ -6,6 +6,7 @@
 
 ### Added
 
+- `NOTICE.md`: 과제 사사(RS-2024-00454634), IMO Compendium 권리 고지, 제3자 명칭·상표 고지 및 MIT License 적용범위 명시 (2026-08-12)
 - `LICENSE.md`: MIT License, Copyright (c) 2026 Korean Register (KR) (2026-08-12)
 - Cross-platform 검증 인터페이스 `scripts/dev.py` (setup/build/validate/test/run-mcp) — Makefile, VSCode Task, CI 공용 단일 진입점 (2026-08-12)
   - `.github/workflows/ci.yml`: Python 3.11 + uv, `uv sync --locked` 후 dev.py build/validate 실행
