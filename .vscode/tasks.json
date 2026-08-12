@@ -1,0 +1,42 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "k-mds: Setup",
+      "type": "shell",
+      "command": "uv sync",
+      "problemMatcher": []
+    },
+    {
+      "label": "k-mds: Build All",
+      "type": "shell",
+      "command": "uv run python scripts/dev.py build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "k-mds: Validate All",
+      "type": "shell",
+      "command": "uv run python scripts/dev.py validate",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "k-mds: Test All",
+      "type": "shell",
+      "command": "uv run python scripts/dev.py test",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "k-mds: Run MCP Server",
+      "type": "shell",
+      "command": "uv run python scripts/dev.py run-mcp",
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}

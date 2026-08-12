@@ -1,0 +1,21 @@
+# IMO Compendium FAL50 원본 Snapshot Manifest (AGENTS.md §7)
+#
+# 공식 원본이 아직 배치되지 않았다 (status: pending_source).
+# 원본 배치 후 files 목록에 파일명과 실제 계산한 sha256을 기재하고
+# ingestion.status를 갱신한다. Placeholder Hash를 미리 기재하지 않는다.
+
+standard:
+  name: IMO Compendium on Facilitation and Electronic Business
+  fal_version: FAL50
+  status: pending_source
+
+source:
+  website: "https://imocompendium.imo.org/public/IMO-Compendium/Current/index.htm"
+
+# 공식 원본 미확보 — 배치 전까지 빈 목록을 유지한다.
+files: []
+
+ingestion:
+  parser_version: null
+  imported_at: null
+  status: pending_source
