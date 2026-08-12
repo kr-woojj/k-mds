@@ -1,0 +1,366 @@
+{
+  "$defs": {
+    "BusinessRule": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "profile": {
+          "minLength": 1,
+          "title": "Profile",
+          "type": "string"
+        },
+        "rule_id": {
+          "minLength": 1,
+          "title": "Rule Id",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/GovernanceStatus",
+          "default": "draft"
+        },
+        "version": {
+          "minLength": 1,
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "rule_id",
+        "profile",
+        "version",
+        "description"
+      ],
+      "title": "BusinessRule",
+      "type": "object"
+    },
+    "CodeList": {
+      "additionalProperties": false,
+      "properties": {
+        "code_list_id": {
+          "minLength": 1,
+          "title": "Code List Id",
+          "type": "string"
+        },
+        "codes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Codes",
+          "type": "array"
+        },
+        "fal_version": {
+          "minLength": 1,
+          "title": "Fal Version",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/GovernanceStatus",
+          "default": "draft"
+        }
+      },
+      "required": [
+        "code_list_id",
+        "fal_version",
+        "name"
+      ],
+      "title": "CodeList",
+      "type": "object"
+    },
+    "Component": {
+      "additionalProperties": false,
+      "properties": {
+        "component_id": {
+          "minLength": 1,
+          "title": "Component Id",
+          "type": "string"
+        },
+        "dataset_id": {
+          "minLength": 1,
+          "title": "Dataset Id",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "parent_component_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parent Component Id"
+        },
+        "sequence": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sequence"
+        },
+        "status": {
+          "$ref": "#/$defs/GovernanceStatus",
+          "default": "draft"
+        }
+      },
+      "required": [
+        "component_id",
+        "dataset_id",
+        "name"
+      ],
+      "title": "Component",
+      "type": "object"
+    },
+    "DataElement": {
+      "additionalProperties": false,
+      "description": "IMO ID로 식별되는 데이터 요소의 개념 정의.",
+      "properties": {
+        "data_format": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Data Format"
+        },
+        "definition": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Definition"
+        },
+        "imo_id": {
+          "minLength": 1,
+          "title": "Imo Id",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "representation_term": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Representation Term"
+        },
+        "status": {
+          "$ref": "#/$defs/GovernanceStatus",
+          "default": "draft"
+        }
+      },
+      "required": [
+        "imo_id",
+        "name"
+      ],
+      "title": "DataElement",
+      "type": "object"
+    },
+    "Dataset": {
+      "additionalProperties": false,
+      "properties": {
+        "dataset_id": {
+          "minLength": 1,
+          "title": "Dataset Id",
+          "type": "string"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "fal_version": {
+          "minLength": 1,
+          "title": "Fal Version",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/GovernanceStatus",
+          "default": "draft"
+        }
+      },
+      "required": [
+        "dataset_id",
+        "fal_version",
+        "name"
+      ],
+      "title": "Dataset",
+      "type": "object"
+    },
+    "ElementOccurrence": {
+      "additionalProperties": false,
+      "description": "특정 Dataset과 Technical Position에서의 DataElement 사용 문맥.",
+      "properties": {
+        "cardinality": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cardinality"
+        },
+        "dataset_id": {
+          "minLength": 1,
+          "title": "Dataset Id",
+          "type": "string"
+        },
+        "element_imo_id": {
+          "minLength": 1,
+          "title": "Element Imo Id",
+          "type": "string"
+        },
+        "occurrence_id": {
+          "minLength": 1,
+          "title": "Occurrence Id",
+          "type": "string"
+        },
+        "parent_component_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parent Component Id"
+        },
+        "sequence": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sequence"
+        },
+        "status": {
+          "$ref": "#/$defs/GovernanceStatus",
+          "default": "draft"
+        },
+        "technical_position": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Technical Position"
+        },
+        "usage": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Usage"
+        }
+      },
+      "required": [
+        "occurrence_id",
+        "dataset_id",
+        "element_imo_id"
+      ],
+      "title": "ElementOccurrence",
+      "type": "object"
+    },
+    "GovernanceStatus": {
+      "enum": [
+        "draft",
+        "approved",
+        "review_required",
+        "unresolved",
+        "deprecated"
+      ],
+      "title": "GovernanceStatus",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "anyOf": [
+    {
+      "$ref": "#/$defs/Dataset"
+    },
+    {
+      "$ref": "#/$defs/Component"
+    },
+    {
+      "$ref": "#/$defs/DataElement"
+    },
+    {
+      "$ref": "#/$defs/ElementOccurrence"
+    },
+    {
+      "$ref": "#/$defs/CodeList"
+    },
+    {
+      "$ref": "#/$defs/BusinessRule"
+    }
+  ],
+  "title": "k-mds Core Ontology Models"
+}

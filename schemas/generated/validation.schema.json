@@ -1,0 +1,228 @@
+{
+  "$defs": {
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "evidenceId": {
+          "minLength": 1,
+          "title": "Evidenceid",
+          "type": "string"
+        },
+        "falVersion": {
+          "minLength": 1,
+          "title": "Falversion",
+          "type": "string"
+        },
+        "ontologyVersion": {
+          "minLength": 1,
+          "title": "Ontologyversion",
+          "type": "string"
+        },
+        "profileVersion": {
+          "minLength": 1,
+          "title": "Profileversion",
+          "type": "string"
+        },
+        "resourceUri": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Resourceuri"
+        },
+        "sourceFile": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sourcefile"
+        },
+        "sourceHash": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sourcehash"
+        }
+      },
+      "required": [
+        "evidenceId",
+        "falVersion",
+        "ontologyVersion",
+        "profileVersion"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "FindingSeverity": {
+      "enum": [
+        "ERROR",
+        "WARNING"
+      ],
+      "title": "FindingSeverity",
+      "type": "string"
+    },
+    "ResultStatus": {
+      "enum": [
+        "PASS",
+        "WARNING",
+        "FAIL"
+      ],
+      "title": "ResultStatus",
+      "type": "string"
+    },
+    "SkillResult": {
+      "additionalProperties": false,
+      "properties": {
+        "data": {
+          "additionalProperties": true,
+          "title": "Data",
+          "type": "object"
+        },
+        "errors": {
+          "items": {
+            "$ref": "#/$defs/ValidationFinding"
+          },
+          "title": "Errors",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "humanReviewRequired": {
+          "title": "Humanreviewrequired",
+          "type": "boolean"
+        },
+        "status": {
+          "$ref": "#/$defs/ResultStatus"
+        },
+        "warnings": {
+          "items": {
+            "$ref": "#/$defs/ValidationFinding"
+          },
+          "title": "Warnings",
+          "type": "array"
+        }
+      },
+      "required": [
+        "status",
+        "humanReviewRequired"
+      ],
+      "title": "SkillResult",
+      "type": "object"
+    },
+    "ValidationFinding": {
+      "additionalProperties": false,
+      "properties": {
+        "actualValue": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Actualvalue"
+        },
+        "code": {
+          "minLength": 1,
+          "title": "Code",
+          "type": "string"
+        },
+        "evidenceRefs": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidencerefs",
+          "type": "array"
+        },
+        "expected": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Expected"
+        },
+        "message": {
+          "minLength": 1,
+          "title": "Message",
+          "type": "string"
+        },
+        "path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Path"
+        },
+        "relatedRuleIds": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Relatedruleids",
+          "type": "array"
+        },
+        "ruleId": {
+          "minLength": 1,
+          "title": "Ruleid",
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/$defs/FindingSeverity"
+        }
+      },
+      "required": [
+        "severity",
+        "code",
+        "message",
+        "ruleId"
+      ],
+      "title": "ValidationFinding",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "anyOf": [
+    {
+      "$ref": "#/$defs/SkillResult"
+    },
+    {
+      "$ref": "#/$defs/ValidationFinding"
+    },
+    {
+      "$ref": "#/$defs/Evidence"
+    }
+  ],
+  "title": "k-mds Validation Contract Models"
+}

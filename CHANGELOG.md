@@ -6,6 +6,7 @@
 
 ### Added
 
+- Schema Generator `scripts/generate_schemas.py` — `src/k_mds/models`에서 `schemas/generated/{ontology,validation}.schema.json` 결정론적 생성 (UTF-8, sort_keys, timestamp 없음), ADR-0001로 Pydantic SSOT를 `src/k_mds/models`로 확정, Contract Test 11건 (2026-08-12)
 - Pydantic Core Contract `src/k_mds/models` (Single Source of Truth) (2026-08-12)
   - Ontology 모델: `Dataset`, `Component`, `DataElement`, `ElementOccurrence`(분리 관리), `CodeList`, `BusinessRule`, `GovernanceStatus`
   - 검증 Contract: `Evidence`, `ValidationFinding`, `SkillResult`, `ResultStatus`, `FindingSeverity`, `DataClassification`, `FINDING_VALUE_POLICY`(정책 선언만, 마스킹 미구현)
