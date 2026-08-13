@@ -33,6 +33,10 @@
   - `.vscode/tasks.json`, `.github/copilot-instructions.md`
   - Bootstrap 범위 Smoke Test
 
+### Fixed
+
+- `evidence_build` Runtime 입력 경계 보강 — str·None·list·int·임의 객체 입력에서 예외를 전파하지 않고 `SOURCE_ENTRY_NOT_OBJECT` Finding의 SkillResult FAIL 반환, 입력값 비노출 (2026-08-13)
+
 ### Changed
 
 - `tests/AGENTS.md`: `data/raw/` 파싱 금지 규칙을 공식 원본(Excel, HTML, PDF)으로 명확화 — Repository 관리 Metadata(`source-manifest.yaml`) 구조 검증은 허용 (2026-08-12)

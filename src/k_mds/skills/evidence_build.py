@@ -54,7 +54,9 @@ def evidence_build(entry: SourceManifestEntry | dict[str, object]) -> SkillResul
 
     evidence_id는 "evidence:" + source_id로 결정론적으로 구성한다.
     """
-    if isinstance(entry, dict):
+    if isinstance(entry, SourceManifestEntry):
+        validated = entry
+    elif isinstance(entry, dict):
         try:
             validated = SourceManifestEntry.model_validate(entry)
         except ValidationError as exc:
@@ -70,7 +72,17 @@ def evidence_build(entry: SourceManifestEntry | dict[str, object]) -> SkillResul
             ]
             return _fail(errors)
     else:
-        validated = entry
+        # 그 외 Runtime 타입은 예외 전파 없이 즉시 FAIL로 변환한다.
+        # 입력값, repr, 타입 모듈 경로는 Finding에 포함하지 않는다.
+        return _fail(
+            [
+                _finding(
+                    "SOURCE_ENTRY_NOT_OBJECT",
+                    "entry는 SourceManifestEntry 또는 JSON Object여야 한다",
+                    path="$",
+                )
+            ]
+        )
 
     if not validated.verified:
         return _fail(

@@ -135,6 +135,66 @@ def test_finding_actual_value_is_none() -> None:
             assert finding.actual_value is None
 
 
+# --- Runtime 입력 경계: 잘못된 타입 (예외 비전파) ---
+
+INVALID_TYPE_INPUTS: list[object] = ["TEST-NOT-AN-ENTRY", None, [], 42, object()]
+
+
+def _invalid_type_results() -> list[SkillResult]:
+    return [evidence_build(item) for item in INVALID_TYPE_INPUTS]  # type: ignore[arg-type]
+
+
+def test_string_input_fails() -> None:
+    result = evidence_build("TEST-NOT-AN-ENTRY")  # type: ignore[arg-type]
+    assert result.status is ResultStatus.FAIL
+
+
+def test_none_input_fails() -> None:
+    result = evidence_build(None)  # type: ignore[arg-type]
+    assert result.status is ResultStatus.FAIL
+
+
+def test_list_input_fails() -> None:
+    result = evidence_build([])  # type: ignore[arg-type]
+    assert result.status is ResultStatus.FAIL
+
+
+def test_int_input_fails() -> None:
+    result = evidence_build(42)  # type: ignore[arg-type]
+    assert result.status is ResultStatus.FAIL
+
+
+def test_invalid_type_does_not_raise() -> None:
+    # 어떤 잘못된 타입에서도 예외가 외부로 전파되면 안 된다.
+    for item in INVALID_TYPE_INPUTS:
+        result = evidence_build(item)  # type: ignore[arg-type]
+        assert isinstance(result, SkillResult)
+
+
+def test_invalid_type_results_satisfy_fail_contract() -> None:
+    for result in _invalid_type_results():
+        assert result.status is ResultStatus.FAIL
+        assert result.human_review_required is True
+        assert len(result.errors) >= 1
+        assert result.evidence == []
+
+
+def test_invalid_type_first_finding_contract() -> None:
+    for result in _invalid_type_results():
+        finding = result.errors[0]
+        assert finding.code == "SOURCE_ENTRY_NOT_OBJECT"
+        assert finding.path == "$"
+        assert finding.actual_value is None
+
+
+def test_invalid_type_input_marker_not_exposed() -> None:
+    marker = "TEST-DO-NOT-LEAK-ENTRY-INPUT"
+    result = evidence_build(marker)  # type: ignore[arg-type]
+    dumped = result.model_dump_json(by_alias=True)
+    assert marker not in dumped
+    assert "builtins." not in dumped  # 타입의 전체 모듈 경로 비노출
+
+
 # --- Skill 실행 Contract (지시 Test 14~15) ---
 
 
