@@ -6,6 +6,7 @@
 
 ### Added
 
+- Skill 책임 분리(ADR-0002) — 기존 구조 검사를 `schema_contract_check`로 이동하고, `schema_validate`는 Pydantic SSOT 기반 실제 Payload 검증(`normalizedPayload` 반환, 원본 값 비노출)으로 변경, Contract Test 37건 (2026-08-13)
 - Cross-platform Schema Drift EOL 정책 — `.gitattributes`에 `schemas/generated/*.schema.json text eol=lf`를 추가하여 Windows fresh clone에서도 byte 단위 Drift 검사가 동일하게 동작 (2026-08-13)
 - Schema Drift Gate `scripts/check_schema_drift.py` + `dev.py check-schemas` — Pydantic 모델과 committed generated Schema의 byte 단위 불일치를 Local·CI validate에서 차단, Drift Test 10건 (2026-08-13)
 - 첫 결정론적 Skill `schema_validate` (`src/k_mds/skills`) — 생성된 JSON Schema의 최소 Contract(camelCase/snake_case alias 정책 포함)를 검증하고 항상 `SkillResult` 반환, 예외 미전파·LLM 미사용, Contract Test 16건 (2026-08-12)

@@ -1,32 +1,40 @@
-"""schema_validate Skill (AGENTS.md §10).
+"""schema_validate Skill — Pydantic 원천 모델 기반 Payload 검증 (ADR-0002).
 
-생성된 JSON Schema(schemas/generated)의 최소 Contract를 결정론적으로 검증하고
-항상 SkillResult를 반환한다. 예외를 외부로 던지지 않으며, LLM과 외부 API를
-사용하지 않는다. 이번 단계에서는 full JSON Schema validation library를
-도입하지 않고 최소 Contract 검증만 수행한다.
+지정된 model_name의 Pydantic 모델로 payload를 model_validate하고 항상
+SkillResult를 반환한다. 예외를 외부로 던지지 않으며 LLM과 외부 API를
+사용하지 않는다. Finding에는 원본 Payload 값을 포함하지 않는다.
 """
 
 from __future__ import annotations
 
-import json
-from pathlib import Path
-from typing import Any
+from pydantic import BaseModel, ValidationError
 
-from k_mds.models import FindingSeverity, ResultStatus, SkillResult, ValidationFinding
+from k_mds.models import (
+    BusinessRule,
+    CodeList,
+    Component,
+    DataElement,
+    Dataset,
+    ElementOccurrence,
+    Evidence,
+    FindingSeverity,
+    ResultStatus,
+    SkillResult,
+    ValidationFinding,
+)
 
-RULE_ID = "urn:k-mds:rule:schema_validate:0.1"
+RULE_ID = "urn:k-mds:rule:payload-validation:0.1"
 
-_DEFAULT_SCHEMA_DIR = Path(__file__).resolve().parents[3] / "schemas" / "generated"
-
-#: schema_name별 최소 Contract: (정의 이름, 필수 property, 금지 property)
-_CONTRACTS: dict[str, tuple[tuple[str, tuple[str, ...], tuple[str, ...]], ...]] = {
-    "validation": (
-        ("SkillResult", ("humanReviewRequired",), ("human_review_required",)),
-    ),
-    "ontology": (
-        ("DataElement", (), ()),
-        ("ElementOccurrence", ("element_imo_id",), ("elementImoId",)),
-    ),
+_SUPPORTED_MODELS: dict[str, type[BaseModel]] = {
+    "Dataset": Dataset,
+    "Component": Component,
+    "DataElement": DataElement,
+    "ElementOccurrence": ElementOccurrence,
+    "CodeList": CodeList,
+    "BusinessRule": BusinessRule,
+    "Evidence": Evidence,
+    "ValidationFinding": ValidationFinding,
+    "SkillResult": SkillResult,
 }
 
 
@@ -37,117 +45,71 @@ def _finding(code: str, message: str, path: str | None = None) -> ValidationFind
         message=message,
         rule_id=RULE_ID,
         path=path,
+        actual_value=None,
     )
 
 
-def _fail(schema_name: str, errors: list[ValidationFinding]) -> SkillResult:
+def _loc_to_path(loc: tuple[int | str, ...]) -> str:
+    if not loc:
+        return "$"
+    return "$." + ".".join(str(part) for part in loc)
+
+
+def _fail(model_name: str, errors: list[ValidationFinding]) -> SkillResult:
     return SkillResult(
         status=ResultStatus.FAIL,
         human_review_required=True,
-        data={"schemaName": schema_name, "checkedDefinitions": []},
+        data={"modelName": model_name, "valid": False},
         errors=errors,
     )
 
 
-def schema_validate(
-    payload: dict[str, object],
-    schema_name: str,
-    schema_dir: Path | None = None,
-) -> SkillResult:
-    """생성된 JSON Schema의 최소 Contract를 검증한다.
+def schema_validate(payload: dict[str, object], model_name: str) -> SkillResult:
+    """payload를 model_name의 Pydantic 모델로 검증한다.
 
-    schema_dir은 Test에서 의도적으로 다른 경로를 주입하기 위한 선택 파라미터다.
+    유효하면 PASS와 함께 normalizedPayload(model_dump(by_alias=True, mode="json"))를
+    반환한다. 바깥쪽 SkillResult는 항상 Skill 실행 Contract를 유지하며,
+    model_name == "SkillResult"인 경우에도 검증 대상 Payload는 normalizedPayload에만
+    들어간다.
     """
     if not isinstance(payload, dict):
         return _fail(
-            schema_name,
-            [_finding("SCH_001", "payload는 dict(JSON Object)여야 한다", path="$")],
+            model_name,
+            [_finding("PAYLOAD_NOT_OBJECT", "payload는 dict(JSON Object)여야 한다", path="$")],
         )
 
-    if schema_name not in _CONTRACTS:
-        supported = ", ".join(sorted(_CONTRACTS))
+    model_cls = _SUPPORTED_MODELS.get(model_name)
+    if model_cls is None:
+        supported = ", ".join(sorted(_SUPPORTED_MODELS))
         return _fail(
-            schema_name,
-            [_finding("SCH_002", f"지원하지 않는 schema_name이다 (지원: {supported})")],
-        )
-
-    directory = schema_dir if schema_dir is not None else _DEFAULT_SCHEMA_DIR
-    schema_file = f"{schema_name}.schema.json"
-    schema_path = directory / schema_file
-
-    if not schema_path.is_file():
-        return _fail(
-            schema_name,
-            [_finding("SCH_003", f"생성된 Schema 파일이 존재하지 않는다: {schema_file}")],
-        )
-
-    try:
-        schema: Any = json.loads(schema_path.read_text(encoding="utf-8"))
-    except (json.JSONDecodeError, UnicodeDecodeError):
-        return _fail(
-            schema_name,
-            [_finding("SCH_004", f"Schema 파일이 유효한 JSON이 아니다: {schema_file}")],
-        )
-
-    if not isinstance(schema, dict):
-        return _fail(
-            schema_name,
-            [_finding("SCH_004", f"Schema는 단일 JSON Object여야 한다: {schema_file}")],
-        )
-
-    defs = schema.get("$defs")
-    if not isinstance(defs, dict):
-        return _fail(
-            schema_name,
+            model_name,
             [
                 _finding(
-                    "SCH_005",
-                    f"Schema에 $defs가 존재하지 않는다: {schema_file}",
-                    path="$.$defs",
+                    "UNSUPPORTED_MODEL_NAME",
+                    f"지원하지 않는 model_name이다 (지원: {supported})",
                 )
             ],
         )
 
-    errors: list[ValidationFinding] = []
-    checked: list[str] = []
-    for definition, required_props, forbidden_props in _CONTRACTS[schema_name]:
-        definition_obj = defs.get(definition)
-        if not isinstance(definition_obj, dict):
-            errors.append(
-                _finding(
-                    "SCH_006",
-                    f"$defs에 {definition} 정의가 존재하지 않는다",
-                    path=f"$.$defs.{definition}",
-                )
+    try:
+        instance = model_cls.model_validate(payload)
+    except ValidationError as exc:
+        errors = [
+            _finding(
+                "PAYLOAD_VALIDATION_ERROR",
+                str(item["msg"]),
+                path=_loc_to_path(item["loc"]),
             )
-            continue
-        properties = definition_obj.get("properties")
-        properties = properties if isinstance(properties, dict) else {}
-        for prop in required_props:
-            if prop not in properties:
-                errors.append(
-                    _finding(
-                        "SCH_007",
-                        f"{definition}에 필수 property가 없다: {prop}",
-                        path=f"$.$defs.{definition}.properties.{prop}",
-                    )
-                )
-        for prop in forbidden_props:
-            if prop in properties:
-                errors.append(
-                    _finding(
-                        "SCH_008",
-                        f"{definition}에 금지된 property가 존재한다: {prop}",
-                        path=f"$.$defs.{definition}.properties.{prop}",
-                    )
-                )
-        checked.append(definition)
-
-    if errors:
-        return _fail(schema_name, errors)
+            for item in exc.errors(include_url=False, include_input=False, include_context=False)
+        ]
+        return _fail(model_name, errors)
 
     return SkillResult(
         status=ResultStatus.PASS,
         human_review_required=False,
-        data={"schemaName": schema_name, "checkedDefinitions": checked},
+        data={
+            "modelName": model_name,
+            "valid": True,
+            "normalizedPayload": instance.model_dump(by_alias=True, mode="json"),
+        },
     )
