@@ -102,6 +102,17 @@ def test_validation_schema_contains_governance_result() -> None:
     assert "sourceResults" in props
 
 
+def test_validation_schema_contains_normalization_authorization() -> None:
+    # ADR-0010: NormalizationAuthorization은 validation Schema 대상에 포함된다.
+    run_generator()
+    defs = load_defs(VALIDATION_SCHEMA)
+    assert "NormalizationAuthorization" in defs
+    assert "SheetAuthorization" in defs
+    props = properties_of(defs, "SheetAuthorization")
+    assert "sheetOrdinal" in props
+    assert "sheet_ordinal" not in props
+
+
 def test_ontology_schema_contains_source_manifest_entry() -> None:
     # ADR-0003: SourceManifestEntry는 Ontology Schema 대상에 포함된다.
     run_generator()

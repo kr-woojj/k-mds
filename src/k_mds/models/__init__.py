@@ -8,6 +8,14 @@ from k_mds.models.governance import (
     GovernanceDecisionType,
     GovernanceResult,
 )
+from k_mds.models.normalization_authorization import (
+    FindingAuthorization,
+    FindingDisposition,
+    HeaderConfidence,
+    NormalizationAuthorization,
+    SheetAuthorization,
+    SheetClassification,
+)
 from k_mds.models.ontology import (
     BusinessRule,
     CodeList,
@@ -38,12 +46,18 @@ __all__ = [
     "Dataset",
     "ElementOccurrence",
     "Evidence",
+    "FindingAuthorization",
+    "FindingDisposition",
     "FindingSeverity",
     "GovernanceDecisionStatus",
     "GovernanceDecisionType",
     "GovernanceResult",
     "GovernanceStatus",
+    "HeaderConfidence",
+    "NormalizationAuthorization",
     "ResultStatus",
+    "SheetAuthorization",
+    "SheetClassification",
     "SkillResult",
     "SourceManifest",
     "SourceManifestEntry",

@@ -6,6 +6,7 @@
 
 ### Added
 
+- Normalization Authorization Contract(ADR-0010) — Sheet별 Classification·Header 승인·Finding 처분(blocking/reviewable, Unknown은 기본 blocking)·Logical Output Root를 명시하는 `NormalizationAuthorization` Public Model과 결정론적 Validator, validation.schema.json 재생성, Synthetic Test 47건 (Actual Authorization은 Restricted Artifact로 별도 관리) (2026-08-13)
 - Restricted Normalizer(ADR-0009) — `scripts/normalize_compendium.py`: verified Manifest·Inspection Gate(normalizationReady 필수, Override 없음), Generic Mapping Spec Contract, Type Normalization(문자열·수·정수·불리언·날짜), Restricted 출력경로 Boundary와 Atomic Write, Synthetic Test 48건 (실제 FAL50 변환은 별도 승인 작업) (2026-08-13)
 - Derived Data 공개 정책(ADR-0008) — IMO 파생 Normalize 산출물을 internal-restricted로 분류(공개 권한 미확인에 따른 Default Deny), `data/normalized` 생성물을 Git에서 기본 제외, 공개는 별도 승인과 별도 ADR 필요, Ignore 정책 Regression Test 5건 (2026-08-13)
 - Fail-closed Workbook Inspector(ADR-0007) — `scripts/inspect_excel.py`: Manifest Gate(verified/pending/invalid), ZIP Container Preflight(Macro·External Link·Embedded·ActiveX 기본 Fatal), read-only Structure/Header Digest Inventory, 결정론적 JSON Report(원문·이름·경로·Hash 비저장), Synthetic Fixture Test 50건 (runtime 의존성 openpyxl) (2026-08-13)

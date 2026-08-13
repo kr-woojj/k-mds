@@ -27,6 +27,7 @@ from k_mds.models import (
     ElementOccurrence,
     Evidence,
     GovernanceResult,
+    NormalizationAuthorization,
     SkillResult,
     SourceManifest,
     SourceManifestEntry,
@@ -46,7 +47,13 @@ OntologyModels = (
     | SourceManifestEntry
     | SourceManifest
 )
-ValidationModels = SkillResult | ValidationFinding | Evidence | GovernanceResult
+ValidationModels = (
+    SkillResult
+    | ValidationFinding
+    | Evidence
+    | GovernanceResult
+    | NormalizationAuthorization
+)
 
 
 def build_schema(adapter: TypeAdapter[Any], title: str) -> dict[str, Any]:

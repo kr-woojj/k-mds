@@ -69,6 +69,53 @@
       "title": "Evidence",
       "type": "object"
     },
+    "FindingAuthorization": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "minLength": 1,
+          "title": "Code",
+          "type": "string"
+        },
+        "disposition": {
+          "$ref": "#/$defs/FindingDisposition"
+        },
+        "reasonCode": {
+          "minLength": 1,
+          "title": "Reasoncode",
+          "type": "string"
+        },
+        "sheetOrdinal": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sheetordinal"
+        }
+      },
+      "required": [
+        "code",
+        "disposition",
+        "reasonCode"
+      ],
+      "title": "FindingAuthorization",
+      "type": "object"
+    },
+    "FindingDisposition": {
+      "enum": [
+        "resolved",
+        "accepted_for_reviewed_scope",
+        "remains_blocking"
+      ],
+      "title": "FindingDisposition",
+      "type": "string"
+    },
     "FindingSeverity": {
       "enum": [
         "ERROR",
@@ -169,6 +216,77 @@
       "title": "GovernanceResult",
       "type": "object"
     },
+    "HeaderConfidence": {
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "none"
+      ],
+      "title": "HeaderConfidence",
+      "type": "string"
+    },
+    "NormalizationAuthorization": {
+      "additionalProperties": false,
+      "description": "sourceId와 Inspection Report Identity에 결합된 Normalize 승인.",
+      "properties": {
+        "acknowledgedFindings": {
+          "items": {
+            "$ref": "#/$defs/FindingAuthorization"
+          },
+          "title": "Acknowledgedfindings",
+          "type": "array"
+        },
+        "approvedOutputRootId": {
+          "minLength": 1,
+          "title": "Approvedoutputrootid",
+          "type": "string"
+        },
+        "humanReviewCompleted": {
+          "title": "Humanreviewcompleted",
+          "type": "boolean"
+        },
+        "inspectionReportId": {
+          "minLength": 1,
+          "title": "Inspectionreportid",
+          "type": "string"
+        },
+        "outputStorageClass": {
+          "const": "internal-restricted",
+          "title": "Outputstorageclass",
+          "type": "string"
+        },
+        "sheets": {
+          "items": {
+            "$ref": "#/$defs/SheetAuthorization"
+          },
+          "minItems": 1,
+          "title": "Sheets",
+          "type": "array"
+        },
+        "sourceId": {
+          "minLength": 1,
+          "title": "Sourceid",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "version",
+        "sourceId",
+        "inspectionReportId",
+        "outputStorageClass",
+        "approvedOutputRootId",
+        "sheets",
+        "humanReviewCompleted"
+      ],
+      "title": "NormalizationAuthorization",
+      "type": "object"
+    },
     "ResultStatus": {
       "enum": [
         "PASS",
@@ -176,6 +294,75 @@
         "FAIL"
       ],
       "title": "ResultStatus",
+      "type": "string"
+    },
+    "SheetAuthorization": {
+      "additionalProperties": false,
+      "description": "sheetOrdinal로 식별하는 Sheet별 승인 — Sheet 이름은 저장하지 않는다.",
+      "properties": {
+        "classification": {
+          "$ref": "#/$defs/SheetClassification"
+        },
+        "exclusionReasonCode": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Exclusionreasoncode"
+        },
+        "headerConfidence": {
+          "$ref": "#/$defs/HeaderConfidence"
+        },
+        "headerRow": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Headerrow"
+        },
+        "mediumConfidenceApproved": {
+          "default": false,
+          "title": "Mediumconfidenceapproved",
+          "type": "boolean"
+        },
+        "normalize": {
+          "title": "Normalize",
+          "type": "boolean"
+        },
+        "sheetOrdinal": {
+          "minimum": 0,
+          "title": "Sheetordinal",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "sheetOrdinal",
+        "classification",
+        "normalize",
+        "headerConfidence"
+      ],
+      "title": "SheetAuthorization",
+      "type": "object"
+    },
+    "SheetClassification": {
+      "enum": [
+        "data_table",
+        "code_list",
+        "metadata_or_readme",
+        "excluded_non_data"
+      ],
+      "title": "SheetClassification",
       "type": "string"
     },
     "SkillResult": {
@@ -317,6 +504,9 @@
     },
     {
       "$ref": "#/$defs/GovernanceResult"
+    },
+    {
+      "$ref": "#/$defs/NormalizationAuthorization"
     }
   ],
   "title": "k-mds Validation Contract Models"
