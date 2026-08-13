@@ -42,3 +42,24 @@
 - Remote URL 다운로드 없음
 - Excel 분석 없음
 - Final Governance Decision 자동 생성 없음
+
+## Amendment (2026-08-13)
+
+- YAML Duplicate Key: 동일 Mapping 내 중복 Key는 SafeLoader 기반 Custom
+  Loader의 Constructor 단계에서 `MANIFEST_DUPLICATE_KEY`로 거부한다.
+  오류에는 중복 Key 이름과 값을 포함하지 않는다.
+- 파일 접근 전 검증: Entry의 구조, Hash Format, 금지 필드(verified/status)는
+  입력 전용 Private Model(`_ManifestSourceInput`, extra="forbid")로
+  파일 I/O 전에 검증한다. 구조적으로 잘못된 Entry에 대해서는 파일을 열거나
+  Hash를 계산하지 않는다.
+- 오류 분류 분리: Hash Format 오류는 `SOURCE_HASH_FORMAT_INVALID`,
+  실제 파일 Hash 불일치는 `SOURCE_HASH_MISMATCH`로 구분한다.
+- Safe Type 정책: `yaml.SafeLoader` 수준의 Safe Type 정책을 유지하며
+  Unsafe Loader를 사용하지 않는다.
+- 실제 원본 배치 정책은 본 ADR의 범위가 아니다.
+
+### 후속 Risk (운영정책 대상)
+
+- Manifest 크기 제한값은 이번 단계에서 도입하지 않았다 — 대용량 Manifest에
+  대한 크기·항목 수 제한은 후속 운영정책으로 결정한다.
+- YAML Alias Resource Limit(별칭 폭발 방어)도 후속 운영정책 대상으로 기록한다.

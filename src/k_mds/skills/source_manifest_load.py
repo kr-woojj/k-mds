@@ -6,6 +6,10 @@ SourceManifestEntry를 구성한다.
 
 핵심 원칙:
 - Manifest의 verified/status 입력은 신뢰하지 않으며 존재 자체를 금지한다.
+- YAML 중복 Mapping Key는 Constructor 단계에서 거부한다 (Amendment).
+- Entry의 구조·Hash Format·금지 필드는 파일 접근 전에 검증한다 (Amendment).
+- Hash Format 오류(SOURCE_HASH_FORMAT_INVALID)와 실제 Hash 불일치
+  (SOURCE_HASH_MISMATCH)를 분리한다 (Amendment).
 - Hash 불일치, 파일 누락, 경로 이탈, Manifest 오류는 예외 없이 FAIL이다.
 - 부분 성공을 허용하지 않는다.
 - Finding에는 Hash 값, 파일 경로, 입력값을 포함하지 않는다.
@@ -19,7 +23,7 @@ from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Any
 
 import yaml
-from pydantic import ValidationError
+from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
 
 from k_mds.models import (
     FindingSeverity,
@@ -36,6 +40,57 @@ _CHUNK_SIZE = 1024 * 1024
 
 #: Loader가 결정하는 필드 — Manifest 입력에서 금지한다.
 _FORBIDDEN_INPUT_FIELDS = ("verified", "status")
+
+
+class _DuplicateKeyError(yaml.YAMLError):
+    """동일 Mapping 내 중복 Key를 나타내는 내부 예외."""
+
+
+class _StrictSafeLoader(yaml.SafeLoader):
+    """중복 Mapping Key를 거부하는 SafeLoader (Unsafe Object 생성 없음)."""
+
+    def construct_mapping(
+        self, node: yaml.MappingNode, deep: bool = False
+    ) -> dict[Any, Any]:
+        seen: set[Any] = set()
+        for key_node, _value_node in node.value:
+            key = self.construct_object(key_node, deep=deep)
+            try:
+                duplicated = key in seen
+            except TypeError:
+                # Unhashable Key는 기본 SafeLoader 검증에 위임한다.
+                continue
+            if duplicated:
+                raise _DuplicateKeyError("duplicate mapping key")
+            seen.add(key)
+        return super().construct_mapping(node, deep=deep)
+
+
+class _ManifestSourceInput(BaseModel):
+    """Manifest source 항목의 입력 전용 Contract (파일 I/O 전에 검증).
+
+    verified·status는 필드에 없으므로 extra="forbid"로 차단된다.
+    Generator 대상에 포함하지 않는 Private Model이다.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    source_id: str = Field(min_length=1)
+    fal_version: str = Field(min_length=1)
+    ontology_version: str = Field(min_length=1)
+    profile_version: str = Field(min_length=1)
+    source_file: str = Field(min_length=1)
+    source_hash: str = Field(pattern="^[0-9a-f]{64}$")
+    resource_uri: str | None = None
+
+    @field_validator("source_file")
+    @classmethod
+    def _enforce_relative_path(cls, value: str) -> str:
+        if PureWindowsPath(value).is_absolute() or PurePosixPath(value).is_absolute():
+            raise ValueError("source_file은 상대경로여야 한다 (절대경로 금지)")
+        if ".." in value.replace("\\", "/").split("/"):
+            raise ValueError("source_file에 '..' 경로 Segment를 사용할 수 없다")
+        return value
 
 
 def _finding(code: str, message: str, path: str | None = None) -> ValidationFinding:
@@ -75,10 +130,14 @@ def _sha256_of(path: Path) -> str:
     return digest.hexdigest()
 
 
-def _is_escaping_relative_path(source_file: str) -> bool:
-    if PureWindowsPath(source_file).is_absolute() or PurePosixPath(source_file).is_absolute():
-        return True
-    return ".." in source_file.replace("\\", "/").split("/")
+def _classify_input_error(error: dict[str, Any]) -> str:
+    loc = error.get("loc", ())
+    error_type = error.get("type", "")
+    if loc and loc[-1] == "source_hash" and error_type == "string_pattern_mismatch":
+        return "SOURCE_HASH_FORMAT_INVALID"
+    if loc and loc[-1] == "source_file" and error_type == "value_error":
+        return "SOURCE_PATH_OUTSIDE_BASE"
+    return "MANIFEST_ENTRY_INVALID"
 
 
 def source_manifest_load(
@@ -117,7 +176,12 @@ def source_manifest_load(
         )
 
     try:
-        raw: Any = yaml.safe_load(text)
+        raw: Any = yaml.load(text, Loader=_StrictSafeLoader)  # noqa: S506 — SafeLoader 기반
+    except _DuplicateKeyError:
+        # 중복 Key 이름과 값은 노출하지 않는다.
+        return _fail(
+            [_finding("MANIFEST_DUPLICATE_KEY", "Manifest에 중복 Mapping Key가 존재한다", "$")]
+        )
     except yaml.YAMLError:
         return _fail(
             [_finding("MANIFEST_YAML_INVALID", "Manifest가 유효한 YAML이 아니다", "$.manifestPath")]
@@ -149,6 +213,7 @@ def source_manifest_load(
     errors: list[ValidationFinding] = []
     entries: list[SourceManifestEntry] = []
     for index, item in enumerate(sources_raw):
+        # 1) 구조·금지 필드·Hash Format을 파일 접근 전에 검증한다.
         if not isinstance(item, dict):
             errors.append(
                 _finding(
@@ -171,29 +236,23 @@ def source_manifest_load(
             )
             continue
 
-        source_file = item.get("source_file")
-        if not isinstance(source_file, str) or not source_file:
-            errors.append(
+        try:
+            source_input = _ManifestSourceInput.model_validate(item)
+        except ValidationError as exc:
+            errors.extend(
                 _finding(
-                    "MANIFEST_CONTRACT_INVALID",
-                    f"sources[{index}].source_file은 비어 있지 않은 문자열이어야 한다",
-                    f"$.sources.{index}.source_file",
+                    _classify_input_error(dict(error)),
+                    str(error["msg"]),
+                    path=_loc_to_path(("sources", index, *error["loc"])),
+                )
+                for error in exc.errors(
+                    include_url=False, include_input=False, include_context=False
                 )
             )
             continue
 
-        if _is_escaping_relative_path(source_file):
-            errors.append(
-                _finding(
-                    "SOURCE_PATH_OUTSIDE_BASE",
-                    f"sources[{index}]의 source_file이 base 디렉터리 정책을 위반한다 "
-                    "(절대경로 또는 '..' Segment)",
-                    f"$.sources.{index}.source_file",
-                )
-            )
-            continue
-
-        resolved = (effective_base / source_file).resolve()
+        # 2) Contract가 유효한 경우에만 경로 확인과 파일 I/O를 수행한다.
+        resolved = (effective_base / source_input.source_file).resolve()
         if not resolved.is_relative_to(effective_base):
             errors.append(
                 _finding(
@@ -226,7 +285,7 @@ def source_manifest_load(
             )
             continue
 
-        if item.get("source_hash") != calculated:
+        if source_input.source_hash != calculated:
             # 선언 Hash와 계산 Hash 값은 노출하지 않는다.
             errors.append(
                 _finding(
@@ -239,7 +298,7 @@ def source_manifest_load(
 
         try:
             entry = SourceManifestEntry.model_validate(
-                {**item, "verified": True, "status": "approved"}
+                {**source_input.model_dump(), "verified": True, "status": "approved"}
             )
         except ValidationError as exc:
             errors.extend(
