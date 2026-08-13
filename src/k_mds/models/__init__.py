@@ -3,6 +3,11 @@
 schemas/generated의 JSON Schema와 OpenAPI는 이 모델에서 생성한다 (AGENTS.md §4.6).
 """
 
+from k_mds.models.governance import (
+    GovernanceDecisionStatus,
+    GovernanceDecisionType,
+    GovernanceResult,
+)
 from k_mds.models.ontology import (
     BusinessRule,
     CodeList,
@@ -34,6 +39,9 @@ __all__ = [
     "ElementOccurrence",
     "Evidence",
     "FindingSeverity",
+    "GovernanceDecisionStatus",
+    "GovernanceDecisionType",
+    "GovernanceResult",
     "GovernanceStatus",
     "ResultStatus",
     "SkillResult",

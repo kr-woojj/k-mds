@@ -88,6 +88,20 @@ def test_ontology_schema_contains_element_and_occurrence() -> None:
         assert model in defs
 
 
+def test_validation_schema_contains_governance_result() -> None:
+    # ADR-0004: GovernanceResult와 관련 Enum은 validation Schema 대상에 포함된다.
+    run_generator()
+    defs = load_defs(VALIDATION_SCHEMA)
+    assert "GovernanceResult" in defs
+    assert "GovernanceDecisionStatus" in defs
+    assert "GovernanceDecisionType" in defs
+    props = properties_of(defs, "GovernanceResult")
+    assert "decisionId" in props
+    assert "decision_id" not in props
+    assert "humanReviewRequired" in props
+    assert "sourceResults" in props
+
+
 def test_ontology_schema_contains_source_manifest_entry() -> None:
     # ADR-0003: SourceManifestEntry는 Ontology Schema 대상에 포함된다.
     run_generator()

@@ -6,6 +6,7 @@
 
 ### Added
 
+- Result Classification Contract(ADR-0004) — Evidence 최소 1개가 필수인 `GovernanceResult`(APPROVED/REVIEW_REQUIRED/REJECTED 불변조건, camelCase Contract)를 SkillResult와 분리 정의, validation.schema.json 재생성, Test 21건 (2026-08-13)
 - Evidence Provenance Contract(ADR-0003) — `SourceManifestEntry` 모델(verified·approved 불변조건, 상대경로 강제)과 결정론적 `evidence_build` Skill(`evidence:<source_id>`, Hash 미계산·원본 값 비노출), ontology.schema.json 재생성, Test 23건 (2026-08-13)
 - Skill 책임 분리(ADR-0002) — 기존 구조 검사를 `schema_contract_check`로 이동하고, `schema_validate`는 Pydantic SSOT 기반 실제 Payload 검증(`normalizedPayload` 반환, 원본 값 비노출)으로 변경, Contract Test 37건 (2026-08-13)
 - Cross-platform Schema Drift EOL 정책 — `.gitattributes`에 `schemas/generated/*.schema.json text eol=lf`를 추가하여 Windows fresh clone에서도 byte 단위 Drift 검사가 동일하게 동작 (2026-08-13)

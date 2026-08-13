@@ -77,6 +77,98 @@
       "title": "FindingSeverity",
       "type": "string"
     },
+    "GovernanceDecisionStatus": {
+      "description": "Governance Decision 상태 — Execution PASS/FAIL(ResultStatus)과 의미가 다르다.",
+      "enum": [
+        "APPROVED",
+        "REVIEW_REQUIRED",
+        "REJECTED"
+      ],
+      "title": "GovernanceDecisionStatus",
+      "type": "string"
+    },
+    "GovernanceDecisionType": {
+      "enum": [
+        "DATASET",
+        "DATA_ELEMENT",
+        "ELEMENT_OCCURRENCE",
+        "MAPPING",
+        "BUSINESS_RULE",
+        "DATA_QUALITY"
+      ],
+      "title": "GovernanceDecisionType",
+      "type": "string"
+    },
+    "GovernanceResult": {
+      "additionalProperties": false,
+      "description": "Evidence가 필수인 최종 Governance Decision Contract.",
+      "properties": {
+        "decisionId": {
+          "minLength": 1,
+          "title": "Decisionid",
+          "type": "string"
+        },
+        "decisionType": {
+          "$ref": "#/$defs/GovernanceDecisionType"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "minItems": 1,
+          "title": "Evidence",
+          "type": "array"
+        },
+        "findings": {
+          "items": {
+            "$ref": "#/$defs/ValidationFinding"
+          },
+          "title": "Findings",
+          "type": "array"
+        },
+        "humanReviewRequired": {
+          "title": "Humanreviewrequired",
+          "type": "boolean"
+        },
+        "rationale": {
+          "minLength": 1,
+          "title": "Rationale",
+          "type": "string"
+        },
+        "sourceResults": {
+          "items": {
+            "$ref": "#/$defs/SkillResult"
+          },
+          "title": "Sourceresults",
+          "type": "array"
+        },
+        "status": {
+          "$ref": "#/$defs/GovernanceDecisionStatus"
+        },
+        "subjectId": {
+          "minLength": 1,
+          "title": "Subjectid",
+          "type": "string"
+        },
+        "summary": {
+          "minLength": 1,
+          "title": "Summary",
+          "type": "string"
+        }
+      },
+      "required": [
+        "decisionId",
+        "decisionType",
+        "status",
+        "subjectId",
+        "summary",
+        "rationale",
+        "evidence",
+        "humanReviewRequired"
+      ],
+      "title": "GovernanceResult",
+      "type": "object"
+    },
     "ResultStatus": {
       "enum": [
         "PASS",
@@ -222,6 +314,9 @@
     },
     {
       "$ref": "#/$defs/Evidence"
+    },
+    {
+      "$ref": "#/$defs/GovernanceResult"
     }
   ],
   "title": "k-mds Validation Contract Models"
