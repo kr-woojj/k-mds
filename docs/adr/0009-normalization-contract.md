@@ -51,3 +51,24 @@
 - 자동 Header 의미 추론 없음
 - IMO Semantic Validation 없음
 - Public Derived Data 생성 없음
+
+## Amendment (2026-08-13): Reviewed Authorization Gate
+
+- Authorization과 OutputRootBinding은 Normalizer의 **필수 Runtime 입력**이다
+  (`authorization_path`, `output_root_binding_path`).
+- Normalizer는 ADR-0010 Validator Result의 필수 Flag(valid,
+  reportIdentityMatched, sheetCoverageComplete, findingCoverageComplete,
+  outputRootAuthorized, humanReviewCompleted)가 모두 승인된 경우에만 실행한다.
+- Mapping Spec의 Sheet는 `authorizedSheetOrdinals`에 포함되어야 하며
+  (`MAPPING_SHEET_NOT_AUTHORIZED`), 해당 Authorization Sheet는 data_table이고
+  headerRow가 Mapping Spec과 일치해야 한다(`AUTHORIZATION_HEADER_MISMATCH`).
+- `allow_medium_header_confidence` Option은 폐기한다. 실제 Header Confidence
+  승인 책임은 ADR-0010 Authorization(Sheet별 `medium_confidence_approved`)에
+  있다. Normalizer는 medium 여부를 자체 추론하지 않는다.
+- Validator 실패 시 source_manifest_load, Workbook File I/O, Output Write를
+  수행하지 않는다.
+- Repository Root는 호출자 입력이 아니라 Script 위치에서 결정론적으로 탐지하며
+  `.git`·`pyproject.toml` 존재를 확인한다(`REPOSITORY_ROOT_NOT_FOUND`).
+- 기존 Normalizer 자체 Output Boundary는 Validator Binding 검증과 함께
+  Defense-in-Depth로 유지된다 — 둘 다 통과해야 실행된다.
+- Authorization 및 Binding은 Restricted Artifact다.

@@ -1,14 +1,20 @@
-"""Restricted Normalizer — Normalization Contract (ADR-0009).
+"""Restricted Normalizer — Reviewed Authorization Gate 통합 (ADR-0009/0010).
 
-verified Manifest·verified Inspection Report·명시적 Mapping Specification을
-요구하는 결정론적 Normalizer다.
+verified Manifest·verified Inspection Report·Reviewed Authorization Bundle
+(Authorization + OutputRootBinding)·명시적 Mapping Specification을 요구하는
+결정론적 Normalizer다.
 
+- Authorization Validator의 필수 Flag(valid, reportIdentityMatched,
+  sheetCoverageComplete, findingCoverageComplete, outputRootAuthorized,
+  humanReviewCompleted)가 전부 true인 경우에만 Workbook을 연다.
+- Mapping Spec의 Sheet는 authorizedSheetOrdinals에 포함되어야 한다.
+- Medium Header Confidence의 자체 판단·우회 Option은 제공하지 않는다 —
+  Header 승인 책임은 ADR-0010 Authorization에 있다.
+- Authorization 실패 시 source_manifest_load, Workbook Open, Output Write를
+  수행하지 않는다.
 - 실제 산출물은 Internal Restricted Derived Data다 (ADR-0008).
-- normalizationReady=false 입력은 거부하며 Override Option을 제공하지 않는다.
-- Header 이름·Sheet 이름을 하드코딩하거나 Report에 복사하지 않는다.
-- 출력은 data/normalized(ignored) 또는 Repository 외부 Directory에만 Atomic하게
-  작성하며 실패 시 Partial Output을 남기지 않는다.
-- Console에 실제 Record, Cell, Header, Hash, Path를 출력하지 않는다.
+- Console과 결과에 실제 Record, Cell, Header, Hash, Digest, Path를 출력하지
+  않는다. 예외를 외부로 던지지 않는다.
 """
 
 from __future__ import annotations
@@ -17,15 +23,19 @@ import argparse
 import datetime
 import json
 import subprocess
-from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Literal
 
 import openpyxl  # type: ignore[import-untyped]
 import yaml
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator
+from validate_normalization_authorization import validate_authorization
 
-from k_mds.models import ResultStatus
+from k_mds.models import (
+    NormalizationAuthorization,
+    ResultStatus,
+    SheetClassification,
+)
 from k_mds.skills import source_manifest_load
 from k_mds.skills.source_manifest_load import _StrictSafeLoader
 
@@ -38,13 +48,15 @@ ARTIFACT_EVIDENCE = "mapping-evidence.local.json"
 ARTIFACT_SUMMARY = "normalization-summary.local.json"
 ARTIFACT_NAMES = (ARTIFACT_RECORDS, ARTIFACT_FINDINGS, ARTIFACT_EVIDENCE, ARTIFACT_SUMMARY)
 
-_FORBIDDEN_REPO_SUBDIRS = ("data/raw", "src", "scripts", "tests", "docs", "schemas",
-                           ".github", "ontology")
-
-
-@dataclass(frozen=True)
-class NormalizationOptions:
-    allow_medium_header_confidence: bool = False
+#: Authorization Validator가 전부 true를 반환해야 하는 필수 Flag (ADR-0010)
+REQUIRED_AUTHORIZATION_FLAGS = (
+    "valid",
+    "reportIdentityMatched",
+    "sheetCoverageComplete",
+    "findingCoverageComplete",
+    "outputRootAuthorized",
+    "humanReviewCompleted",
+)
 
 
 class _MappingColumn(BaseModel):
@@ -146,6 +158,18 @@ def _find_git_root(path: Path) -> Path | None:
     return None
 
 
+def _repository_root_candidate() -> Path:
+    return Path(__file__).resolve().parents[1]
+
+
+def _detect_repository_root() -> Path | None:
+    """Normalizer Script 위치에서 Repository Root를 결정론적으로 탐지한다."""
+    root = _repository_root_candidate()
+    if (root / ".git").exists() and (root / "pyproject.toml").exists():
+        return root
+    return None
+
+
 def _git_check(repo_root: Path, args: list[str]) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
         ["git", *args], capture_output=True, text=True, cwd=str(repo_root)
@@ -155,7 +179,7 @@ def _git_check(repo_root: Path, args: list[str]) -> subprocess.CompletedProcess[
 def _validate_output_dir(
     output_dir: Path, input_dirs: list[Path]
 ) -> tuple[list[dict[str, Any]], Path | None]:
-    """출력 Directory Boundary를 검증한다 (ADR-0008/0009)."""
+    """출력 Directory Boundary를 검증한다 (ADR-0008/0009, Defense-in-Depth)."""
     if not isinstance(output_dir, Path):
         return [_finding("ERROR", "OUTPUT_DIR_NOT_PATH", "output_dir는 Path여야 한다")], None
     lexical = output_dir if output_dir.is_absolute() else Path.cwd() / output_dir
@@ -248,9 +272,7 @@ def _classify_cell(cell: Any) -> str:
     return "unknown"
 
 
-def _normalize_value(
-    cell: Any, value_type: str
-) -> tuple[bool, Any, str | None]:
+def _normalize_value(cell: Any, value_type: str) -> tuple[bool, Any, str | None]:
     """(성공 여부, 정규화 값, 오류 코드). 실제 Cell 값은 반환 코드에 포함하지 않는다."""
     category = _classify_cell(cell)
     if category == "formula":
@@ -284,7 +306,6 @@ def _normalize_value(
         if not isinstance(value, bool):
             return False, None, "VALUE_TYPE_MISMATCH"
         return True, value, None
-    # date
     if isinstance(value, datetime.datetime):
         return True, value.date().isoformat(), None
     if isinstance(value, datetime.date):
@@ -301,9 +322,9 @@ def _load_json_object(path: Path) -> dict[str, Any] | None:
 
 
 def _check_inspection_gate(
-    report: dict[str, Any], spec: _MappingSpec, options: NormalizationOptions
+    report: dict[str, Any], spec: _MappingSpec
 ) -> list[dict[str, Any]]:
-    findings: list[dict[str, Any]] = []
+    """Authorization Gate 이후의 호환성 방어 검사 (Confidence 자체 판단 없음)."""
     if report.get("reportVersion") != SUPPORTED_REPORT_VERSION:
         return [
             _finding(
@@ -315,60 +336,15 @@ def _check_inspection_gate(
         return [
             _finding("ERROR", "INSPECTION_REPORT_INVALID", "Inspection Report summary가 없다")
         ]
-    if (
-        report.get("provenanceVerified") is not True
-        or report.get("manifestStatus") != "verified"
-        or report.get("inspectionMode") != "verified-source"
-        or summary.get("inspectionCompleted") is not True
-    ):
-        findings.append(
-            _finding(
-                "ERROR",
-                "INSPECTION_NOT_VERIFIED",
-                "Inspection Report가 verified 상태가 아니다",
-                "$.inspectionReport",
-            )
-        )
-        return findings
     if summary.get("normalizationReady") is not True:
-        findings.append(
+        return [
             _finding(
                 "ERROR",
                 "INSPECTION_NOT_NORMALIZATION_READY",
                 "Inspection Report가 normalizationReady 상태가 아니다",
                 "$.inspectionReport.summary",
             )
-        )
-        return findings
-    source_id = report.get("sourceId")
-    if not isinstance(source_id, str) or not source_id:
-        return [
-            _finding("ERROR", "INSPECTION_REPORT_INVALID", "Inspection Report sourceId가 비어 있다")
         ]
-
-    report_findings = report.get("findings")
-    report_findings = report_findings if isinstance(report_findings, list) else []
-    codes = {str(item.get("code")) for item in report_findings if isinstance(item, dict)}
-    if any(
-        isinstance(item, dict) and item.get("severity") == "ERROR"
-        for item in report_findings
-    ):
-        findings.append(
-            _finding(
-                "ERROR", "INSPECTION_FATAL_FINDING", "Inspection Report에 Fatal Finding이 있다"
-            )
-        )
-    if "WORKBOOK_SCAN_LIMIT_REACHED" in codes:
-        findings.append(
-            _finding(
-                "ERROR",
-                "INSPECTION_SCAN_INCOMPLETE",
-                "Inspection이 Scan Limit로 인해 불완전하다",
-            )
-        )
-    if findings:
-        return findings
-
     sheets = report.get("sheets")
     sheets = sheets if isinstance(sheets, list) else []
     if spec.source_sheet_ordinal >= len(sheets):
@@ -390,17 +366,91 @@ def _check_inspection_gate(
                 "$.mappingSpec.header_row",
             )
         ]
-    confidence = sheet.get("headerConfidence")
-    allowed = ("high", "medium") if options.allow_medium_header_confidence else ("high",)
-    if confidence not in allowed:
-        return [
+    return []
+
+
+def _check_authorization_gate(
+    *,
+    inspection_report: dict[str, Any],
+    inspection_report_bytes: bytes,
+    authorization: dict[str, Any],
+    output_root_binding: dict[str, Any],
+    output_dir: Path,
+    repository_root: Path,
+) -> tuple[list[dict[str, Any]], list[int]]:
+    """Authorization Validator를 호출하고 필수 Flag를 전부 확인한다.
+
+    Validator의 실제 Finding Message는 복사하지 않고 Code Category와 Count만
+    Normalizer Finding에 요약한다.
+    """
+    try:
+        result = validate_authorization(
+            inspection_report=inspection_report,
+            inspection_report_bytes=inspection_report_bytes,
+            authorization=authorization,
+            output_root_binding=output_root_binding,
+            output_dir=output_dir,
+            repository_root=repository_root,
+        )
+    except Exception:  # noqa: BLE001 — 예외를 정규화한다
+        return (
+            [
+                _finding(
+                    "ERROR",
+                    "AUTHORIZATION_VALIDATION_FAILED",
+                    "Authorization Validator 실행이 실패했다",
+                    "$.authorization",
+                )
+            ],
+            [],
+        )
+
+    findings: list[dict[str, Any]] = []
+    for flag in REQUIRED_AUTHORIZATION_FLAGS:
+        if flag not in result:
+            findings.append(
+                _finding(
+                    "ERROR",
+                    "AUTHORIZATION_FLAG_MISSING",
+                    f"Authorization Validator 결과에 {flag} Flag가 없다",
+                    "$.authorization",
+                )
+            )
+        elif result[flag] is not True:
+            findings.append(
+                _finding(
+                    "ERROR",
+                    "AUTHORIZATION_VALIDATION_FAILED",
+                    f"Authorization 필수 Flag {flag}가 승인되지 않았다",
+                    "$.authorization",
+                )
+            )
+
+    validator_findings = result.get("findings")
+    validator_findings = (
+        validator_findings if isinstance(validator_findings, list) else []
+    )
+    code_counts: dict[str, int] = {}
+    for item in validator_findings:
+        code = str(item.get("code")) if isinstance(item, dict) else "UNKNOWN"
+        code_counts[code] = code_counts.get(code, 0) + 1
+    for code in sorted(code_counts):
+        findings.append(
             _finding(
                 "ERROR",
-                "INSPECTION_HEADER_CONFIDENCE_INSUFFICIENT",
-                "Header Confidence가 Normalize 요건을 충족하지 않는다",
+                "AUTHORIZATION_VALIDATION_FAILED",
+                f"Authorization 검증 실패 Category: {code} (count={code_counts[code]})",
+                "$.authorization",
             )
-        ]
-    return []
+        )
+
+    ordinals_raw = result.get("authorizedSheetOrdinals")
+    ordinals = [
+        item
+        for item in (ordinals_raw if isinstance(ordinals_raw, list) else [])
+        if isinstance(item, int)
+    ]
+    return findings, sorted(ordinals)
 
 
 def normalize_compendium(
@@ -409,16 +459,19 @@ def normalize_compendium(
     manifest_path: Path,
     source_base_dir: Path,
     inspection_report_path: Path,
+    authorization_path: Path,
+    output_root_binding_path: Path,
     mapping_spec_path: Path,
     output_dir: Path,
-    options: NormalizationOptions,
 ) -> dict[str, object]:
-    """Synthetic 또는 승인된 입력을 Restricted Artifact 4종으로 정규화한다."""
+    """Reviewed Authorization Bundle이 승인된 입력만 Restricted Artifact로 정규화한다."""
     for label, candidate in (
         ("workbookPath", workbook_path),
         ("manifestPath", manifest_path),
         ("sourceBaseDir", source_base_dir),
         ("inspectionReportPath", inspection_report_path),
+        ("authorizationPath", authorization_path),
+        ("outputRootBindingPath", output_root_binding_path),
         ("mappingSpecPath", mapping_spec_path),
     ):
         if not isinstance(candidate, Path):
@@ -429,29 +482,53 @@ def normalize_compendium(
                     )
                 ]
             )
-    for label, candidate in (
-        ("workbookPath", workbook_path),
-        ("manifestPath", manifest_path),
-        ("inspectionReportPath", inspection_report_path),
-        ("mappingSpecPath", mapping_spec_path),
+    for label, candidate, missing_code in (
+        ("workbookPath", workbook_path, "INPUT_FILE_NOT_FOUND"),
+        ("manifestPath", manifest_path, "INPUT_FILE_NOT_FOUND"),
+        ("inspectionReportPath", inspection_report_path, "INPUT_FILE_NOT_FOUND"),
+        ("authorizationPath", authorization_path, "AUTHORIZATION_FILE_NOT_FOUND"),
+        (
+            "outputRootBindingPath",
+            output_root_binding_path,
+            "OUTPUT_ROOT_BINDING_FILE_NOT_FOUND",
+        ),
+        ("mappingSpecPath", mapping_spec_path, "INPUT_FILE_NOT_FOUND"),
     ):
         if not candidate.is_file():
             return _failure(
-                [
-                    _finding(
-                        "ERROR", "INPUT_FILE_NOT_FOUND", "입력 파일이 존재하지 않는다", f"$.{label}"
-                    )
-                ]
+                [_finding("ERROR", missing_code, "필수 입력 파일이 존재하지 않는다", f"$.{label}")]
             )
 
     output_findings, resolved_output = _validate_output_dir(
         output_dir,
-        [workbook_path.parent, manifest_path.parent, inspection_report_path.parent,
-         mapping_spec_path.parent],
+        [
+            workbook_path.parent,
+            manifest_path.parent,
+            inspection_report_path.parent,
+            mapping_spec_path.parent,
+        ],
     )
     if output_findings or resolved_output is None:
         return _failure(output_findings)
 
+    repository_root = _detect_repository_root()
+    if repository_root is None:
+        return _failure(
+            [
+                _finding(
+                    "ERROR",
+                    "REPOSITORY_ROOT_NOT_FOUND",
+                    "Repository Root를 결정론적으로 탐지할 수 없다",
+                )
+            ]
+        )
+
+    try:
+        inspection_report_bytes = inspection_report_path.read_bytes()
+    except OSError:
+        return _failure(
+            [_finding("ERROR", "INSPECTION_REPORT_INVALID", "Inspection Report를 읽을 수 없다")]
+        )
     report = _load_json_object(inspection_report_path)
     if report is None:
         return _failure(
@@ -463,6 +540,40 @@ def normalize_compendium(
                 )
             ]
         )
+    authorization = _load_json_object(authorization_path)
+    if authorization is None:
+        return _failure(
+            [
+                _finding(
+                    "ERROR",
+                    "AUTHORIZATION_JSON_INVALID",
+                    "Authorization이 유효한 JSON Object가 아니다",
+                )
+            ]
+        )
+    output_root_binding = _load_json_object(output_root_binding_path)
+    if output_root_binding is None:
+        return _failure(
+            [
+                _finding(
+                    "ERROR",
+                    "OUTPUT_ROOT_BINDING_JSON_INVALID",
+                    "Output Root Binding이 유효한 JSON Object가 아니다",
+                )
+            ]
+        )
+
+    # --- Authorization Gate: 실패 시 Manifest·Workbook·Output I/O를 수행하지 않는다 ---
+    gate_findings, authorized_ordinals = _check_authorization_gate(
+        inspection_report=report,
+        inspection_report_bytes=inspection_report_bytes,
+        authorization=authorization,
+        output_root_binding=output_root_binding,
+        output_dir=resolved_output,
+        repository_root=repository_root,
+    )
+    if gate_findings:
+        return _failure(gate_findings)
 
     try:
         raw_spec: Any = yaml.load(  # noqa: S506 — SafeLoader 기반
@@ -477,22 +588,64 @@ def normalize_compendium(
     except ValidationError as exc:
         return _failure(
             [
-                _finding(
-                    "ERROR",
-                    "MAPPING_SPEC_INVALID",
-                    str(error["msg"]),
-                    "$.mappingSpec",
-                )
+                _finding("ERROR", "MAPPING_SPEC_INVALID", str(error["msg"]), "$.mappingSpec")
                 for error in exc.errors(
                     include_url=False, include_input=False, include_context=False
                 )
             ]
         )
 
-    gate_findings = _check_inspection_gate(report, spec, options)
-    if gate_findings:
-        return _failure(gate_findings)
-    report_source_id = str(report["sourceId"])
+    # --- Mapping Sheet Authorization ---
+    if spec.source_sheet_ordinal not in authorized_ordinals:
+        return _failure(
+            [
+                _finding(
+                    "ERROR",
+                    "MAPPING_SHEET_NOT_AUTHORIZED",
+                    "Mapping Spec의 Sheet가 authorizedSheetOrdinals에 포함되지 않는다",
+                    "$.mappingSpec.source_sheet_ordinal",
+                )
+            ]
+        )
+    auth_model = NormalizationAuthorization.model_validate(authorization)
+    auth_sheet = next(
+        (
+            sheet
+            for sheet in auth_model.sheets
+            if sheet.sheet_ordinal == spec.source_sheet_ordinal
+        ),
+        None,
+    )
+    if (
+        auth_sheet is None
+        or auth_sheet.classification is not SheetClassification.DATA_TABLE
+    ):
+        return _failure(
+            [
+                _finding(
+                    "ERROR",
+                    "MAPPING_SHEET_NOT_AUTHORIZED",
+                    "Mapping Sheet는 data_table로 승인되어야 한다",
+                    "$.mappingSpec.source_sheet_ordinal",
+                )
+            ]
+        )
+    if auth_sheet.header_row != spec.header_row:
+        return _failure(
+            [
+                _finding(
+                    "ERROR",
+                    "AUTHORIZATION_HEADER_MISMATCH",
+                    "Mapping Spec header_row가 Authorization 승인값과 일치하지 않는다",
+                    "$.mappingSpec.header_row",
+                )
+            ]
+        )
+
+    inspection_findings = _check_inspection_gate(report, spec)
+    if inspection_findings:
+        return _failure(inspection_findings)
+    report_source_id = str(report.get("sourceId"))
 
     manifest_result = source_manifest_load(manifest_path, base_dir=source_base_dir)
     if manifest_result.status is not ResultStatus.PASS:
@@ -545,12 +698,8 @@ def normalize_compendium(
 
     records: list[dict[str, Any]] = []
     row_findings: list[dict[str, Any]] = []
-    mapped_counts = dict.fromkeys(
-        (column.target_field for column in spec.columns), 0
-    )
-    rejected_counts = dict.fromkeys(
-        (column.target_field for column in spec.columns), 0
-    )
+    mapped_counts = dict.fromkeys((column.target_field for column in spec.columns), 0)
+    rejected_counts = dict.fromkeys((column.target_field for column in spec.columns), 0)
     source_record_count = 0
     rejected_record_count = 0
     try:
@@ -566,9 +715,7 @@ def normalize_compendium(
                 for column in spec.columns
                 if column.source_column_ordinal <= len(row)
             }
-            if all(
-                cell is None or cell.value is None for cell in cells.values()
-            ):
+            if all(cell is None or cell.value is None for cell in cells.values()):
                 continue
             source_record_count += 1
 
@@ -661,11 +808,7 @@ def normalize_compendium(
     try:
         write_artifacts_atomic(resolved_output, artifacts)
     except FileExistsError as exc:
-        code = (
-            "OUTPUT_ALREADY_EXISTS"
-            if "existing" in str(exc)
-            else "OUTPUT_WRITE_FAILED"
-        )
+        code = "OUTPUT_ALREADY_EXISTS" if "existing" in str(exc) else "OUTPUT_WRITE_FAILED"
         return _failure(
             [_finding("ERROR", code, "Output Artifact를 작성할 수 없다", "$.outputDir")]
         )
@@ -688,17 +831,16 @@ def normalize_compendium(
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         prog="normalize_compendium.py",
-        description="deterministic restricted normalizer (ADR-0009)",
+        description="deterministic restricted normalizer with reviewed authorization",
     )
     parser.add_argument("workbook", type=Path)
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--source-base-dir", type=Path, required=True)
     parser.add_argument("--inspection-report", type=Path, required=True)
+    parser.add_argument("--authorization", type=Path, required=True)
+    parser.add_argument("--output-root-binding", type=Path, required=True)
     parser.add_argument("--mapping-spec", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
-    parser.add_argument(
-        "--allow-medium-header-confidence", action="store_true", default=False
-    )
     args = parser.parse_args(argv)
 
     result = normalize_compendium(
@@ -706,20 +848,21 @@ def main(argv: list[str] | None = None) -> int:
         manifest_path=args.manifest,
         source_base_dir=args.source_base_dir,
         inspection_report_path=args.inspection_report,
+        authorization_path=args.authorization,
+        output_root_binding_path=args.output_root_binding,
         mapping_spec_path=args.mapping_spec,
         output_dir=args.output_dir,
-        options=NormalizationOptions(
-            allow_medium_header_confidence=args.allow_medium_header_confidence
-        ),
     )
     summary = result.get("summary")
     summary = summary if isinstance(summary, dict) else {}
+    findings_list = result.get("findings")
+    findings_list = findings_list if isinstance(findings_list, list) else []
     print(
         "[normalize] "
         f"completed={result.get('completed')} "
         f"normalizedRecordCount={summary.get('normalizedRecordCount', 0)} "
         f"rejectedRecordCount={summary.get('rejectedRecordCount', 0)} "
-        f"findingCount={len(result.get('findings', []))} "  # type: ignore[arg-type]
+        f"findingCount={len(findings_list)} "
         f"classification={result.get('classification')}"
     )
     return 0 if result.get("completed") else 1

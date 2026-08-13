@@ -6,6 +6,7 @@
 
 ### Added
 
+- Normalizer Authorization Gate 통합(ADR-0009/0010 Amendment) — `normalize_compendium`이 Authorization·OutputRootBinding을 필수 입력으로 요구하고 Validator 필수 Flag 6종 전부 승인 시에만 Workbook을 열며, Mapping Sheet의 authorizedSheetOrdinals 포함·headerRow 일치를 강제, medium Confidence Boolean 우회 Option 폐기, Repository Root 결정론 탐지, Synthetic Test 46건으로 재구성 (2026-08-13)
 - Normalization Authorization Contract(ADR-0010) — Sheet별 Classification·Header 승인·Finding 처분(blocking/reviewable, Unknown은 기본 blocking)·Logical Output Root를 명시하는 `NormalizationAuthorization` Public Model과 결정론적 Validator, validation.schema.json 재생성, Synthetic Test 47건 (Actual Authorization은 Restricted Artifact로 별도 관리) (2026-08-13)
 - Restricted Normalizer(ADR-0009) — `scripts/normalize_compendium.py`: verified Manifest·Inspection Gate(normalizationReady 필수, Override 없음), Generic Mapping Spec Contract, Type Normalization(문자열·수·정수·불리언·날짜), Restricted 출력경로 Boundary와 Atomic Write, Synthetic Test 48건 (실제 FAL50 변환은 별도 승인 작업) (2026-08-13)
 - Derived Data 공개 정책(ADR-0008) — IMO 파생 Normalize 산출물을 internal-restricted로 분류(공개 권한 미확인에 따른 Default Deny), `data/normalized` 생성물을 Git에서 기본 제외, 공개는 별도 승인과 별도 ADR 필요, Ignore 정책 Regression Test 5건 (2026-08-13)

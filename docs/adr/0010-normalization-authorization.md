@@ -109,3 +109,16 @@ Unknown Finding:
 - `authorizedSheetOrdinals`에 Mapping Spec의 Sheet가 포함됨
 
 Actual Normalize는 Integration 완료 전 실행할 수 없다.
+
+### Integration Amendment (2026-08-13)
+
+- Validator 단독 `valid=true`만으로는 Actual Normalize 승인에 불충분하다 —
+  `outputRootAuthorized=true`를 포함한 필수 Flag 전체(valid,
+  reportIdentityMatched, sheetCoverageComplete, findingCoverageComplete,
+  outputRootAuthorized, humanReviewCompleted)가 모두 true여야 한다.
+- Normalizer CLI와 Library API 어느 경로로도 이 Gate를 우회할 수 없다
+  (우회 Option 미제공, medium Boolean Override 폐기).
+- Authorization·OutputRootBinding·Inspection Report(원 Byte)는 하나의
+  **Runtime Authorization Bundle**로 취급한다.
+- Binding 없이 실행한 Validator 결과(`outputRootAuthorized=false`)는 Analysis
+  용도로만 사용할 수 있으며 실행 승인용이 아니다.

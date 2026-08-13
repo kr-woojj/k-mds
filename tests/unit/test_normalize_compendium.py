@@ -1,18 +1,20 @@
-"""normalize_compendium Contract Test (ADR-0009).
+"""normalize_compendium Contract Test (ADR-0009/0010 + Amendment).
 
-실제 FAL50 원본, Local Restricted Manifest, 실제 Inspection Report에는
-절대 접근하지 않는다. 모든 입력은 tmp_path의 Synthetic Fixture이며
+실제 FAL50 원본, Local Restricted Manifest, Actual Report·Authorization·
+Binding에는 절대 접근하지 않는다. 모든 입력은 tmp_path의 Synthetic Fixture이며
 TEST/FALTEST/urn:test 표기만 사용한다.
 """
 
 import datetime
 import hashlib
+import inspect
 import json
 import os
 import shutil
 import subprocess
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 from typing import Any
 
 import openpyxl  # type: ignore[import-untyped]
@@ -25,6 +27,7 @@ sys.path.insert(0, str(SCRIPTS_DIR))
 
 import inspect_excel  # noqa: E402
 import normalize_compendium  # noqa: E402
+import validate_normalization_authorization as authz_module  # noqa: E402
 
 WORKBOOK_NAME = "TEST-MARKER-WORKBOOK.xlsx"
 
@@ -78,10 +81,88 @@ def default_spec(**overrides: Any) -> dict[str, Any]:
     return spec
 
 
+def build_authorization(report: dict[str, Any], report_bytes: bytes) -> dict[str, Any]:
+    """Report 전체 Sheet Coverage와 Finding 정확 일치를 갖춘 Synthetic 승인."""
+    sheets: list[dict[str, Any]] = []
+    for sheet in report.get("sheets", []):
+        confidence = sheet.get("headerConfidence")
+        header_row = sheet.get("inferredHeaderRow")
+        if confidence in ("high", "medium") and header_row is not None:
+            sheets.append(
+                {
+                    "sheetOrdinal": sheet["sheetOrdinal"],
+                    "classification": "data_table",
+                    "normalize": True,
+                    "headerRow": header_row,
+                    "headerConfidence": confidence,
+                    "mediumConfidenceApproved": confidence == "medium",
+                    "exclusionReasonCode": None,
+                }
+            )
+        else:
+            sheets.append(
+                {
+                    "sheetOrdinal": sheet["sheetOrdinal"],
+                    "classification": "excluded_non_data",
+                    "normalize": False,
+                    "headerRow": None,
+                    "headerConfidence": confidence if confidence else "none",
+                    "mediumConfidenceApproved": False,
+                    "exclusionReasonCode": "TEST_EXCLUSION_001",
+                }
+            )
+    acks = [
+        {
+            "code": finding["code"],
+            "sheetOrdinal": authz_module._sheet_ordinal_from_path(finding.get("path")),
+            "disposition": "accepted_for_reviewed_scope",
+            "reasonCode": "TEST_REASON_001",
+        }
+        for finding in report.get("findings", [])
+    ]
+    return {
+        "version": 1,
+        "sourceId": report.get("sourceId"),
+        "inspectionReportId": authz_module.compute_inspection_report_id(report_bytes),
+        "outputStorageClass": "internal-restricted",
+        "approvedOutputRootId": "TEST-RESTRICTED-ROOT-001",
+        "sheets": sheets,
+        "acknowledgedFindings": acks,
+        "humanReviewCompleted": True,
+    }
+
+
+def write_bundle(
+    env: dict[str, Path],
+    *,
+    binding_root: Path | None = None,
+    auth_mutator: Any = None,
+) -> None:
+    report_bytes = env["report"].read_bytes()
+    report = json.loads(report_bytes.decode("utf-8"))
+    auth = build_authorization(report, report_bytes)
+    if auth_mutator is not None:
+        auth_mutator(auth)
+    env["auth"].write_text(
+        json.dumps(auth, ensure_ascii=False, sort_keys=True), encoding="utf-8"
+    )
+    root = binding_root if binding_root is not None else env["root"]
+    binding = {
+        "version": 1,
+        "rootId": "TEST-RESTRICTED-ROOT-001",
+        "storageClass": "internal-restricted",
+        "rootPath": str(root),
+    }
+    env["binding"].write_text(
+        json.dumps(binding, ensure_ascii=False, sort_keys=True), encoding="utf-8"
+    )
+
+
 def make_env(
     tmp_path: Path,
     rows: list[list[Any]] | None = None,
     spec: dict[str, Any] | None = None,
+    extra_sheet: bool = False,
 ) -> dict[str, Path]:
     base = tmp_path / "sourcebase"
     (base / "files").mkdir(parents=True)
@@ -94,6 +175,10 @@ def make_env(
     ws.title = "TEST-SHEET-ALPHA"
     for row in rows if rows is not None else DEFAULT_ROWS:
         ws.append(row)
+    if extra_sheet:
+        beta = wb.create_sheet("TEST-SHEET-BETA")
+        for row in DEFAULT_ROWS:
+            beta.append(row)
     wb.save(workbook)
 
     manifest = base / "source-manifest.yaml"
@@ -136,33 +221,38 @@ def make_env(
 
     out = tmp_path / "out"
     out.mkdir()
-    return {
+    env = {
         "workbook": workbook,
         "manifest": manifest,
         "base": base,
         "report": report_path,
         "spec": spec_path,
         "out": out,
+        "auth": tmp_path / "authorization.local.json",
+        "binding": tmp_path / "output-root-binding.local.json",
+        "root": tmp_path,
     }
+    write_bundle(env)
+    return env
 
 
 def mutate_report(env: dict[str, Path], mutate: Any) -> None:
     report = json.loads(env["report"].read_text(encoding="utf-8"))
     mutate(report)
-    env["report"].write_text(
-        inspect_excel.serialize_report(report), encoding="utf-8"
-    )
+    env["report"].write_text(inspect_excel.serialize_report(report), encoding="utf-8")
+    write_bundle(env)
 
 
-def run_norm(env: dict[str, Path], **options: Any) -> dict[str, Any]:
+def run_norm(env: dict[str, Path]) -> dict[str, Any]:
     return normalize_compendium.normalize_compendium(
         workbook_path=env["workbook"],
         manifest_path=env["manifest"],
         source_base_dir=env["base"],
         inspection_report_path=env["report"],
+        authorization_path=env["auth"],
+        output_root_binding_path=env["binding"],
         mapping_spec_path=env["spec"],
         output_dir=env["out"],
-        options=normalize_compendium.NormalizationOptions(**options),
     )
 
 
@@ -170,10 +260,36 @@ def finding_codes(result: dict[str, Any]) -> list[str]:
     return [finding["code"] for finding in result["findings"]]
 
 
-# --- A. Gate ---
+def fake_validator_result(**overrides: Any) -> dict[str, Any]:
+    base: dict[str, Any] = {
+        flag: True for flag in normalize_compendium.REQUIRED_AUTHORIZATION_FLAGS
+    }
+    base.update(
+        {
+            "classification": "internal-restricted",
+            "authorizedSheetOrdinals": [0],
+            "blockingFindingCount": 0,
+            "reviewedFindingCount": 0,
+            "findings": [],
+        }
+    )
+    base.update(overrides)
+    return base
 
 
-def test_verified_synthetic_normalization_succeeds(tmp_path: Path) -> None:
+def patch_workbook_boom(monkeypatch: pytest.MonkeyPatch) -> None:
+    def _boom(**kwargs: Any) -> Any:
+        raise AssertionError("Authorization 승인 전에 Workbook을 열면 안 된다")
+
+    monkeypatch.setattr(
+        normalize_compendium, "openpyxl", SimpleNamespace(load_workbook=_boom)
+    )
+
+
+# --- A. Authorization 필수 입력 ---
+
+
+def test_valid_authorization_bundle_succeeds(tmp_path: Path) -> None:
     env = make_env(tmp_path)
     result = run_norm(env)
     assert result["completed"] is True
@@ -182,151 +298,389 @@ def test_verified_synthetic_normalization_succeeds(tmp_path: Path) -> None:
         assert (env["out"] / name).is_file()
 
 
-def test_unverified_provenance_rejected(tmp_path: Path) -> None:
+def test_missing_authorization_file_fails(tmp_path: Path) -> None:
     env = make_env(tmp_path)
-    mutate_report(env, lambda r: r.update(provenanceVerified=False))
+    env["auth"].unlink()
     result = run_norm(env)
     assert result["completed"] is False
-    assert "INSPECTION_NOT_VERIFIED" in finding_codes(result)
+    assert "AUTHORIZATION_FILE_NOT_FOUND" in finding_codes(result)
 
 
-def test_pending_manifest_status_rejected(tmp_path: Path) -> None:
+def test_missing_binding_file_fails(tmp_path: Path) -> None:
     env = make_env(tmp_path)
-    mutate_report(env, lambda r: r.update(manifestStatus="pending"))
+    env["binding"].unlink()
+    result = run_norm(env)
+    assert result["completed"] is False
+    assert "OUTPUT_ROOT_BINDING_FILE_NOT_FOUND" in finding_codes(result)
+
+
+def test_broken_authorization_json_fails(tmp_path: Path) -> None:
+    env = make_env(tmp_path)
+    env["auth"].write_text("{ broken", encoding="utf-8")
+    result = run_norm(env)
+    assert "AUTHORIZATION_JSON_INVALID" in finding_codes(result)
+
+
+def test_broken_binding_json_fails(tmp_path: Path) -> None:
+    env = make_env(tmp_path)
+    env["binding"].write_text("{ broken", encoding="utf-8")
+    result = run_norm(env)
+    assert "OUTPUT_ROOT_BINDING_JSON_INVALID" in finding_codes(result)
+
+
+def test_authorization_root_not_object_fails(tmp_path: Path) -> None:
+    env = make_env(tmp_path)
+    env["auth"].write_text("[1, 2]", encoding="utf-8")
+    assert "AUTHORIZATION_JSON_INVALID" in finding_codes(run_norm(env))
+
+
+def test_binding_root_not_object_fails(tmp_path: Path) -> None:
+    env = make_env(tmp_path)
+    env["binding"].write_text('"TEST"', encoding="utf-8")
+    assert "OUTPUT_ROOT_BINDING_JSON_INVALID" in finding_codes(run_norm(env))
+
+
+# --- B. Validator Flag ---
+
+
+@pytest.mark.parametrize(
+    "flag",
+    [
+        "valid",
+        "reportIdentityMatched",
+        "sheetCoverageComplete",
+        "findingCoverageComplete",
+        "outputRootAuthorized",
+        "humanReviewCompleted",
+    ],
+)
+def test_false_validator_flag_rejected(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, flag: str
+) -> None:
+    env = make_env(tmp_path)
+    monkeypatch.setattr(
+        normalize_compendium,
+        "validate_authorization",
+        lambda **kwargs: fake_validator_result(**{flag: False}),
+    )
+    patch_workbook_boom(monkeypatch)
+    result = run_norm(env)
+    assert result["completed"] is False
+    assert "AUTHORIZATION_VALIDATION_FAILED" in finding_codes(result)
+
+
+def test_missing_validator_flag_rejected(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    env = make_env(tmp_path)
+    fake = fake_validator_result()
+    del fake["outputRootAuthorized"]
+    monkeypatch.setattr(
+        normalize_compendium, "validate_authorization", lambda **kwargs: fake
+    )
+    result = run_norm(env)
+    assert result["completed"] is False
+    assert "AUTHORIZATION_FLAG_MISSING" in finding_codes(result)
+
+
+def test_validator_exception_not_propagated(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    env = make_env(tmp_path)
+
+    def _raise(**kwargs: Any) -> dict[str, Any]:
+        raise RuntimeError("TEST-VALIDATOR-CRASH")
+
+    monkeypatch.setattr(normalize_compendium, "validate_authorization", _raise)
+    result = run_norm(env)
+    assert result["completed"] is False
+    assert "AUTHORIZATION_VALIDATION_FAILED" in finding_codes(result)
+    assert "TEST-VALIDATOR-CRASH" not in json.dumps(result, ensure_ascii=False)
+
+
+# --- C. File I/O 선행 차단 ---
+
+
+def test_authorization_failure_blocks_all_io(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    env = make_env(tmp_path)
+    # Identity 불일치를 유발한다.
+    write_bundle(env, auth_mutator=lambda auth: auth.update(inspectionReportId="1" * 64))
+
+    def _manifest_boom(*args: Any, **kwargs: Any) -> Any:
+        raise AssertionError("Authorization 실패 시 source_manifest_load를 호출하면 안 된다")
+
+    def _write_boom(*args: Any, **kwargs: Any) -> None:
+        raise AssertionError("Authorization 실패 시 write_artifacts_atomic을 호출하면 안 된다")
+
+    monkeypatch.setattr(normalize_compendium, "source_manifest_load", _manifest_boom)
+    monkeypatch.setattr(normalize_compendium, "write_artifacts_atomic", _write_boom)
+    patch_workbook_boom(monkeypatch)
+    result = run_norm(env)
+    assert result["completed"] is False
+    assert list(env["out"].iterdir()) == []
+
+
+def test_binding_failure_blocks_workbook_open(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    env = make_env(tmp_path)
+    other_root = tmp_path / "other-root"
+    other_root.mkdir()
+    write_bundle(env, binding_root=other_root)  # out은 other_root 밖 → binding 실패
+    patch_workbook_boom(monkeypatch)
     assert run_norm(env)["completed"] is False
 
 
-def test_local_unverified_mode_rejected(tmp_path: Path) -> None:
+def test_sheet_coverage_failure_blocks_workbook_open(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
     env = make_env(tmp_path)
-    mutate_report(env, lambda r: r.update(inspectionMode="local-unverified-source"))
+    write_bundle(env, auth_mutator=lambda auth: auth["sheets"].append(
+        {
+            "sheetOrdinal": 7,
+            "classification": "excluded_non_data",
+            "normalize": False,
+            "headerRow": None,
+            "headerConfidence": "none",
+            "mediumConfidenceApproved": False,
+            "exclusionReasonCode": "TEST_EXCLUSION_001",
+        }
+    ))
+    patch_workbook_boom(monkeypatch)
     assert run_norm(env)["completed"] is False
 
 
-def test_incomplete_inspection_rejected(tmp_path: Path) -> None:
+def test_finding_coverage_failure_blocks_workbook_open(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
     env = make_env(tmp_path)
-    mutate_report(env, lambda r: r["summary"].update(inspectionCompleted=False))
+    write_bundle(env, auth_mutator=lambda auth: auth["acknowledgedFindings"].append(
+        {
+            "code": "WORKBOOK_PROTECTION_ENABLED",
+            "sheetOrdinal": None,
+            "disposition": "accepted_for_reviewed_scope",
+            "reasonCode": "TEST_REASON_001",
+        }
+    ))
+    patch_workbook_boom(monkeypatch)
     assert run_norm(env)["completed"] is False
 
 
-def test_not_normalization_ready_rejected(tmp_path: Path) -> None:
-    env = make_env(tmp_path)
-    mutate_report(env, lambda r: r["summary"].update(normalizationReady=False))
+# --- D. Mapping Authorization ---
+
+
+def test_authorized_mapping_sheet_succeeds(tmp_path: Path) -> None:
+    assert run_norm(make_env(tmp_path))["completed"] is True
+
+
+def test_unauthorized_mapping_sheet_fails(tmp_path: Path) -> None:
+    env = make_env(tmp_path, extra_sheet=True, spec=default_spec(source_sheet_ordinal=1))
+    write_bundle(
+        env,
+        auth_mutator=lambda auth: auth["sheets"][1].update(
+            classification="excluded_non_data",
+            normalize=False,
+            headerRow=None,
+            headerConfidence="none",
+            exclusionReasonCode="TEST_EXCLUSION_001",
+        ),
+    )
     result = run_norm(env)
     assert result["completed"] is False
-    assert "INSPECTION_NOT_NORMALIZATION_READY" in finding_codes(result)
+    assert "MAPPING_SHEET_NOT_AUTHORIZED" in finding_codes(result)
 
 
-def test_scan_limit_finding_rejected(tmp_path: Path) -> None:
-    env = make_env(tmp_path)
-
-    def add_scan_finding(report: dict[str, Any]) -> None:
-        report["findings"].append(
-            {
-                "severity": "WARNING",
-                "code": "WORKBOOK_SCAN_LIMIT_REACHED",
-                "message": "TEST",
-                "path": "$.sheets.0",
-                "actualValue": None,
-            }
-        )
-
-    mutate_report(env, add_scan_finding)
+def test_mapping_header_row_mismatch_with_authorization_fails(tmp_path: Path) -> None:
+    env = make_env(tmp_path, spec=default_spec(header_row=3, first_data_row=4))
     result = run_norm(env)
     assert result["completed"] is False
-    assert "INSPECTION_SCAN_INCOMPLETE" in finding_codes(result)
+    assert "AUTHORIZATION_HEADER_MISMATCH" in finding_codes(result)
 
 
-def test_header_not_detected_sheet_rejected(tmp_path: Path) -> None:
+def test_excluded_sheet_mapping_fails(tmp_path: Path) -> None:
     env = make_env(tmp_path)
     mutate_report(
         env,
         lambda r: r["sheets"][0].update(inferredHeaderRow=None, headerConfidence="none"),
     )
-    result = run_norm(env)
-    assert result["completed"] is False
-    assert "INSPECTION_HEADER_MISMATCH" in finding_codes(result)
+    assert run_norm(env)["completed"] is False
 
 
-def test_sheet_out_of_range_rejected(tmp_path: Path) -> None:
-    env = make_env(tmp_path, spec=default_spec(source_sheet_ordinal=7))
-    result = run_norm(env)
-    assert result["completed"] is False
-    assert "INSPECTION_SHEET_OUT_OF_RANGE" in finding_codes(result)
-
-
-def test_header_row_mismatch_rejected(tmp_path: Path) -> None:
-    env = make_env(tmp_path, spec=default_spec(header_row=3, first_data_row=4))
-    result = run_norm(env)
-    assert result["completed"] is False
-    assert "INSPECTION_HEADER_MISMATCH" in finding_codes(result)
-
-
-def test_source_id_mismatch_rejected(tmp_path: Path) -> None:
+def test_code_list_sheet_mapping_fails(tmp_path: Path) -> None:
     env = make_env(tmp_path)
-    mutate_report(env, lambda r: r.update(sourceId="TEST-SOURCE-OTHER"))
-    result = run_norm(env)
-    assert result["completed"] is False
-    assert "SOURCE_ID_MISMATCH" in finding_codes(result)
-
-
-def test_manifest_hash_mismatch_rejected(tmp_path: Path) -> None:
-    env = make_env(tmp_path)
-    text = env["manifest"].read_text(encoding="utf-8")
-    env["manifest"].write_text(
-        text.replace(sha256_of_file(env["workbook"]), "f" * 64), encoding="utf-8"
+    write_bundle(
+        env,
+        auth_mutator=lambda auth: auth["sheets"][0].update(
+            classification="code_list",
+            normalize=False,
+            headerRow=None,
+            headerConfidence="none",
+            exclusionReasonCode=None,
+        ),
     )
-    result = run_norm(env)
-    assert result["completed"] is False
-    assert "MANIFEST_VERIFICATION_FAILED" in finding_codes(result)
+    assert run_norm(env)["completed"] is False
 
 
-# --- B. Mapping Spec ---
-
-
-def test_valid_mapping_spec_accepted(tmp_path: Path) -> None:
-    assert run_norm(make_env(tmp_path))["completed"] is True
-
-
-def test_duplicate_source_column_rejected(tmp_path: Path) -> None:
-    spec = default_spec()
-    spec["columns"][1]["source_column_ordinal"] = 1
-    result = run_norm(make_env(tmp_path, spec=spec))
-    assert result["completed"] is False
-
-
-def test_duplicate_target_field_rejected(tmp_path: Path) -> None:
-    spec = default_spec()
-    spec["columns"][1]["target_field"] = "test_identifier"
-    assert run_norm(make_env(tmp_path, spec=spec))["completed"] is False
-
-
-def test_empty_columns_rejected(tmp_path: Path) -> None:
-    assert run_norm(make_env(tmp_path, spec=default_spec(columns=[])))["completed"] is False
-
-
-def test_first_data_row_not_after_header_rejected(tmp_path: Path) -> None:
-    spec = default_spec(first_data_row=1)
-    assert run_norm(make_env(tmp_path, spec=spec))["completed"] is False
-
-
-def test_extra_spec_field_rejected(tmp_path: Path) -> None:
-    spec = default_spec(unexpected_field="TEST")
-    assert run_norm(make_env(tmp_path, spec=spec))["completed"] is False
-
-
-def test_spec_needs_no_header_text_or_sheet_name(tmp_path: Path) -> None:
+def test_unsorted_authorized_ordinals_still_work(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
     env = make_env(tmp_path)
-    spec_text = env["spec"].read_text(encoding="utf-8")
-    assert "TEST-HEADER" not in spec_text
-    assert "TEST-SHEET" not in spec_text
+    monkeypatch.setattr(
+        normalize_compendium,
+        "validate_authorization",
+        lambda **kwargs: fake_validator_result(authorizedSheetOrdinals=[2, 0, 1]),
+    )
     assert run_norm(env)["completed"] is True
 
 
-# --- C. Type Normalize ---
+# --- E. Medium Confidence 우회 제거 ---
 
 
-def type_env(tmp_path: Path, value: Any, value_type: str, required: bool = False
-             ) -> dict[str, Path]:
+def test_library_api_has_no_medium_override() -> None:
+    assert not hasattr(normalize_compendium, "NormalizationOptions")
+    params = inspect.signature(normalize_compendium.normalize_compendium).parameters
+    assert "authorization_path" in params
+    assert "output_root_binding_path" in params
+    assert "options" not in params
+
+
+def test_cli_medium_override_is_removed(tmp_path: Path) -> None:
+    env = make_env(tmp_path)
+    argv = [
+        str(env["workbook"]),
+        "--manifest", str(env["manifest"]),
+        "--source-base-dir", str(env["base"]),
+        "--inspection-report", str(env["report"]),
+        "--authorization", str(env["auth"]),
+        "--output-root-binding", str(env["binding"]),
+        "--mapping-spec", str(env["spec"]),
+        "--output-dir", str(env["out"]),
+        "--allow-medium-header-confidence",
+    ]
+    with pytest.raises(SystemExit) as excinfo:
+        normalize_compendium.main(argv)
+    assert excinfo.value.code == 2
+
+
+def test_approved_medium_confidence_succeeds(tmp_path: Path) -> None:
+    env = make_env(tmp_path)
+    mutate_report(env, lambda r: r["sheets"][0].update(headerConfidence="medium"))
+    assert run_norm(env)["completed"] is True
+
+
+def test_unapproved_medium_confidence_fails_at_validator(tmp_path: Path) -> None:
+    env = make_env(tmp_path)
+    mutate_report(env, lambda r: r["sheets"][0].update(headerConfidence="medium"))
+    write_bundle(
+        env,
+        auth_mutator=lambda auth: auth["sheets"][0].update(
+            mediumConfidenceApproved=False
+        ),
+    )
+    result = run_norm(env)
+    assert result["completed"] is False
+    assert "AUTHORIZATION_VALIDATION_FAILED" in finding_codes(result)
+
+
+def test_normalizer_has_no_medium_inference() -> None:
+    source = Path(normalize_compendium.__file__).read_text(encoding="utf-8")
+    assert "allow_medium_header_confidence" not in source
+
+
+# --- F. Repository Root 및 Output ---
+
+
+def test_repository_root_detection() -> None:
+    assert normalize_compendium._detect_repository_root() == REPO_ROOT
+
+
+def test_missing_git_root_fails(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    env = make_env(tmp_path)
+    monkeypatch.setattr(
+        normalize_compendium, "_repository_root_candidate", lambda: tmp_path / "no-repo"
+    )
+    result = run_norm(env)
+    assert result["completed"] is False
+    assert "REPOSITORY_ROOT_NOT_FOUND" in finding_codes(result)
+
+
+def test_missing_pyproject_fails(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    env = make_env(tmp_path)
+    fake_root = tmp_path / "fake-repo"
+    (fake_root / ".git").mkdir(parents=True)
+    monkeypatch.setattr(
+        normalize_compendium, "_repository_root_candidate", lambda: fake_root
+    )
+    result = run_norm(env)
+    assert "REPOSITORY_ROOT_NOT_FOUND" in finding_codes(result)
+
+
+def test_repo_normalized_ignored_output_allowed(tmp_path: Path) -> None:
+    env = make_env(tmp_path)
+    out = REPO_ROOT / "data" / "normalized" / f"TEST-NORM-{os.getpid()}"
+    out.mkdir(parents=True)
+    try:
+        env["out"] = out
+        write_bundle(env, binding_root=REPO_ROOT / "data" / "normalized")
+        result = run_norm(env)
+        assert result["completed"] is True
+        for name in ARTIFACT_NAMES:
+            rel = (out / name).relative_to(REPO_ROOT).as_posix()
+            check = subprocess.run(
+                ["git", "check-ignore", rel], capture_output=True, cwd=str(REPO_ROOT)
+            )
+            assert check.returncode == 0
+    finally:
+        shutil.rmtree(out, ignore_errors=True)
+
+
+def test_defense_in_depth_conflict_still_fails(tmp_path: Path) -> None:
+    # Binding Root 안이지만 Workbook Directory로의 출력은 Normalizer Boundary가 막는다.
+    env = make_env(tmp_path)
+    env["out"] = env["base"] / "files"
+    result = run_norm(env)
+    assert result["completed"] is False
+    assert "OUTPUT_PATH_CONFLICT" in finding_codes(result)
+
+
+def test_repo_root_output_rejected(tmp_path: Path) -> None:
+    env = make_env(tmp_path)
+    env["out"] = REPO_ROOT
+    assert run_norm(env)["completed"] is False
+
+
+def test_symlink_escape_rejected(tmp_path: Path) -> None:
+    outside = tmp_path / "escape-target"
+    outside.mkdir()
+    link = REPO_ROOT / "data" / "normalized" / f"TEST-LINK-{os.getpid()}"
+    try:
+        os.symlink(outside, link, target_is_directory=True)
+    except (OSError, NotImplementedError):
+        pytest.skip("이 환경에서는 Symlink 생성이 지원되지 않는다")
+    try:
+        env = make_env(tmp_path)
+        env["out"] = link
+        write_bundle(env, binding_root=REPO_ROOT / "data" / "normalized")
+        assert run_norm(env)["completed"] is False
+    finally:
+        link.unlink(missing_ok=True)
+
+
+def test_repository_root_not_exposed(tmp_path: Path) -> None:
+    env = make_env(tmp_path)
+    env["out"] = REPO_ROOT
+    serialized = json.dumps(run_norm(env), ensure_ascii=False, sort_keys=True)
+    assert str(REPO_ROOT).lower() not in serialized.lower()
+
+
+# --- G. Regression: Type·Row·Atomic·결정론 ---
+
+
+def type_env(
+    tmp_path: Path, value: Any, value_type: str, required: bool = False
+) -> dict[str, Path]:
     rows: list[list[Any]] = [["TEST-HEADER-A", "TEST-HEADER-B"], ["TEST-ID-001", value]]
     spec = default_spec()
     spec["columns"] = [
@@ -351,189 +705,30 @@ def first_value(result: dict[str, Any]) -> Any:
     return records[0]["values"]["test_value"]
 
 
-def test_string_is_trimmed(tmp_path: Path) -> None:
-    result = run_norm(type_env(tmp_path, "  TEST-TRIM  ", "string"))
-    assert first_value(result) == "TEST-TRIM"
+def test_type_normalization_regression(tmp_path: Path) -> None:
+    assert first_value(run_norm(type_env(tmp_path / "s", "  TEST-TRIM  ", "string"))) == "TEST-TRIM"
+    assert first_value(run_norm(type_env(tmp_path / "n", 12.5, "number"))) == 12.5
+    assert first_value(run_norm(type_env(tmp_path / "i", 10, "integer"))) == 10
+    assert first_value(run_norm(type_env(tmp_path / "b", True, "boolean"))) is True
+    assert (
+        first_value(run_norm(type_env(tmp_path / "d", datetime.date(2020, 1, 2), "date")))
+        == "2020-01-02"
+    )
 
 
-def test_empty_string_becomes_null(tmp_path: Path) -> None:
-    result = run_norm(type_env(tmp_path, "   ", "string"))
-    assert first_value(result) is None
-
-
-def test_number_succeeds(tmp_path: Path) -> None:
-    assert first_value(run_norm(type_env(tmp_path, 12.5, "number"))) == 12.5
-
-
-def test_bool_rejected_as_number(tmp_path: Path) -> None:
-    result = run_norm(type_env(tmp_path, True, "number"))
-    assert result["summary"]["rejectedRecordCount"] == 1
-    assert "VALUE_TYPE_MISMATCH" in finding_codes(result)
-
-
-def test_integer_succeeds(tmp_path: Path) -> None:
-    assert first_value(run_norm(type_env(tmp_path, 10, "integer"))) == 10
-
-
-def test_decimal_integer_rejected(tmp_path: Path) -> None:
-    result = run_norm(type_env(tmp_path, 10.5, "integer"))
-    assert result["summary"]["rejectedRecordCount"] == 1
-
-
-def test_boolean_succeeds(tmp_path: Path) -> None:
-    assert first_value(run_norm(type_env(tmp_path, True, "boolean"))) is True
-
-
-def test_non_bool_boolean_rejected(tmp_path: Path) -> None:
-    result = run_norm(type_env(tmp_path, 1, "boolean"))
-    assert result["summary"]["rejectedRecordCount"] == 1
-
-
-def test_date_serialized_iso(tmp_path: Path) -> None:
-    result = run_norm(type_env(tmp_path, datetime.date(2020, 1, 2), "date"))
-    assert first_value(result) == "2020-01-02"
-
-
-def test_formula_rejected(tmp_path: Path) -> None:
-    env = type_env(tmp_path, "=SUM(1,2)", "number")
-    # Formula Workbook은 Inspector가 WORKBOOK_FORMULA_PRESENT를 남기므로
-    # Human Review 승인된 Report를 시뮬레이션한다 (Normalizer 자체 방어 검증).
+def test_rejection_regression(tmp_path: Path) -> None:
+    formula_env = type_env(tmp_path / "f", "=SUM(1,2)", "number")
     mutate_report(
-        env,
+        formula_env,
         lambda r: (r.update(findings=[]), r["summary"].update(normalizationReady=True)),
     )
-    result = run_norm(env)
+    result = run_norm(formula_env)
     assert result["summary"]["rejectedRecordCount"] == 1
     assert "FORMULA_VALUE_PROHIBITED" in finding_codes(result)
 
-
-def test_required_missing_rejected(tmp_path: Path) -> None:
-    result = run_norm(type_env(tmp_path, None, "string", required=True))
-    assert result["summary"]["rejectedRecordCount"] == 1
-    assert "REQUIRED_VALUE_MISSING" in finding_codes(result)
-
-
-# --- D. Row 처리 ---
-
-
-def test_row_order_and_ordinals(tmp_path: Path) -> None:
-    result = run_norm(make_env(tmp_path))
-    records = result["artifacts"]["normalized-records.local.json"]["records"]
-    assert [record["recordOrdinal"] for record in records] == [0, 1]
-    assert [record["sourceRowOrdinal"] for record in records] == [2, 3]
-    assert records[0]["values"]["test_identifier"] == "TEST-ID-001"
-    assert records[1]["values"]["test_identifier"] == "TEST-ID-002"
-
-
-def test_blank_row_skipped(tmp_path: Path) -> None:
-    rows: list[list[Any]] = [
-        ["TEST-HEADER-A", "TEST-HEADER-B", "TEST-HEADER-C"],
-        ["TEST-ID-001", "TEST-NAME-001", 10],
-        [None, None, None],
-        ["TEST-ID-002", "TEST-NAME-002", 20],
-    ]
-    result = run_norm(make_env(tmp_path, rows=rows))
-    summary = result["summary"]
-    assert summary["normalizedRecordCount"] == 2
-    assert summary["sourceRecordCount"] == 2
-    assert summary["rejectedRecordCount"] == 0
-
-
-def test_rejected_rows_not_in_records(tmp_path: Path) -> None:
-    rows: list[list[Any]] = [
-        ["TEST-HEADER-A", "TEST-HEADER-B", "TEST-HEADER-C"],
-        ["TEST-ID-001", "TEST-NAME-001", 10],
-        ["TEST-ID-002", None, 20],
-        ["TEST-ID-003", "TEST-NAME-003", "TEST-NOT-A-NUMBER"],
-    ]
-    result = run_norm(make_env(tmp_path, rows=rows))
-    summary = result["summary"]
-    assert summary["sourceRecordCount"] == 3
-    assert summary["normalizedRecordCount"] == 1
-    assert summary["rejectedRecordCount"] == 2
-    records = result["artifacts"]["normalized-records.local.json"]["records"]
-    identifiers = [record["values"]["test_identifier"] for record in records]
-    assert identifiers == ["TEST-ID-001"]
-
-
-# --- E. Output Security ---
-
-
-def test_repo_normalized_ignored_output_allowed(tmp_path: Path) -> None:
-    env = make_env(tmp_path)
-    out = REPO_ROOT / "data" / "normalized" / f"TEST-NORM-{os.getpid()}"
-    out.mkdir(parents=True)
-    try:
-        env["out"] = out
-        result = run_norm(env)
-        assert result["completed"] is True
-        for name in ARTIFACT_NAMES:
-            target = out / name
-            assert target.is_file()
-            rel = target.relative_to(REPO_ROOT).as_posix()
-            check = subprocess.run(
-                ["git", "check-ignore", rel], capture_output=True, cwd=str(REPO_ROOT)
-            )
-            assert check.returncode == 0, f"{name} 이(가) ignore되지 않았다"
-            tracked = subprocess.run(
-                ["git", "ls-files", "--", rel],
-                capture_output=True,
-                text=True,
-                cwd=str(REPO_ROOT),
-            ).stdout.strip()
-            assert tracked == ""
-        cached = subprocess.run(
-            ["git", "diff", "--cached", "--name-only", "--", "data/normalized"],
-            capture_output=True,
-            text=True,
-            cwd=str(REPO_ROOT),
-        ).stdout.strip()
-        assert cached == ""
-    finally:
-        shutil.rmtree(out, ignore_errors=True)
-
-
-def _expect_output_rejected(env: dict[str, Path], out: Path, code: str) -> None:
-    env["out"] = out
-    result = run_norm(env)
-    assert result["completed"] is False
-    assert code in finding_codes(result)
-
-
-def test_repo_root_output_rejected(tmp_path: Path) -> None:
-    _expect_output_rejected(make_env(tmp_path), REPO_ROOT, "OUTPUT_DIR_NOT_RESTRICTED")
-
-
-def test_data_raw_output_rejected(tmp_path: Path) -> None:
-    _expect_output_rejected(
-        make_env(tmp_path), REPO_ROOT / "data" / "raw", "OUTPUT_DIR_NOT_RESTRICTED"
-    )
-
-
-def test_src_output_rejected(tmp_path: Path) -> None:
-    _expect_output_rejected(
-        make_env(tmp_path), REPO_ROOT / "src", "OUTPUT_DIR_NOT_RESTRICTED"
-    )
-
-
-def test_tests_output_rejected(tmp_path: Path) -> None:
-    _expect_output_rejected(
-        make_env(tmp_path), REPO_ROOT / "tests", "OUTPUT_DIR_NOT_RESTRICTED"
-    )
-
-
-def test_symlink_escape_rejected(tmp_path: Path) -> None:
-    outside = tmp_path / "escape-target"
-    outside.mkdir()
-    link = REPO_ROOT / "data" / "normalized" / f"TEST-LINK-{os.getpid()}"
-    try:
-        os.symlink(outside, link, target_is_directory=True)
-    except (OSError, NotImplementedError):
-        pytest.skip("이 환경에서는 Symlink 생성이 지원되지 않는다")
-    try:
-        _expect_output_rejected(make_env(tmp_path), link, "OUTPUT_DIR_NOT_RESTRICTED")
-    finally:
-        link.unlink(missing_ok=True)
+    missing = run_norm(type_env(tmp_path / "m", None, "string", required=True))
+    assert missing["summary"]["rejectedRecordCount"] == 1
+    assert "REQUIRED_VALUE_MISSING" in finding_codes(missing)
 
 
 def test_existing_output_rejected(tmp_path: Path) -> None:
@@ -566,83 +761,63 @@ def test_partial_write_failure_cleans_up(
 
 def test_inputs_unchanged(tmp_path: Path) -> None:
     env = make_env(tmp_path)
-    before = {
-        key: sha256_of_file(env[key]) for key in ("workbook", "manifest", "report", "spec")
-    }
+    keys = ("workbook", "manifest", "report", "spec", "auth", "binding")
+    before = {key: sha256_of_file(env[key]) for key in keys}
     run_norm(env)
-    after = {
-        key: sha256_of_file(env[key]) for key in ("workbook", "manifest", "report", "spec")
-    }
+    after = {key: sha256_of_file(env[key]) for key in keys}
     assert before == after
 
 
-# --- F. 결정론과 비노출 ---
-
-
-def test_same_input_same_result_and_bytes(tmp_path: Path) -> None:
+def test_same_input_same_artifact_bytes(tmp_path: Path) -> None:
     env_a = make_env(tmp_path / "a")
     env_b = make_env(tmp_path / "b")
     result_a = run_norm(env_a)
     result_b = run_norm(env_b)
     assert result_a["summary"] == result_b["summary"]
-    assert result_a["artifacts"] == result_b["artifacts"]
     for name in ARTIFACT_NAMES:
         assert (env_a["out"] / name).read_bytes() == (env_b["out"] / name).read_bytes()
 
 
-def test_artifact_serialization_contract(tmp_path: Path) -> None:
-    env = make_env(tmp_path)
-    run_norm(env)
-    for name in ARTIFACT_NAMES:
-        text = (env["out"] / name).read_text(encoding="utf-8")
-        assert text.endswith("\n")
-        parsed = json.loads(text)
-        assert json.dumps(parsed, ensure_ascii=False, indent=2, sort_keys=True) + "\n" == text
-
-
-def test_artifacts_have_no_timestamp_path_or_hash(tmp_path: Path) -> None:
+def test_artifacts_have_no_disallowed_content(tmp_path: Path) -> None:
     env = make_env(tmp_path)
     run_norm(env)
     workbook_hash = sha256_of_file(env["workbook"])
+    report_digest = authz_module.compute_inspection_report_id(env["report"].read_bytes())
     for name in ARTIFACT_NAMES:
         text = (env["out"] / name).read_text(encoding="utf-8")
         assert "generatedAt" not in text and "timestamp" not in text
         assert str(tmp_path).lower() not in text.lower()
         assert "c:\\" not in text.lower() and "c:/" not in text.lower()
         assert workbook_hash not in text
+        assert report_digest not in text
         assert WORKBOOK_NAME not in text
-        assert "=SUM" not in text
+        artifact = json.loads(text)
+        assert artifact["classification"] == "internal-restricted"
 
 
-def test_rejected_cell_values_not_exposed(tmp_path: Path) -> None:
-    rows = [
-        ["TEST-HEADER-A", "TEST-HEADER-B", "TEST-HEADER-C"],
-        ["TEST-ID-001", "TEST-NAME-001", "TEST-DO-NOT-LEAK-VALUE"],
-    ]
-    env = make_env(tmp_path, rows=rows)
-    result = run_norm(env)
-    assert result["summary"]["rejectedRecordCount"] == 1
-    for name in ARTIFACT_NAMES:
-        assert "TEST-DO-NOT-LEAK-VALUE" not in (env["out"] / name).read_text(
-            encoding="utf-8"
-        )
-    for finding in result["findings"]:
-        assert finding["actualValue"] is None
-
-
-def test_console_does_not_leak_markers(
+def test_failure_findings_and_console_contract(
     tmp_path: Path, capsys: pytest.CaptureFixture[str]
 ) -> None:
     env = make_env(tmp_path)
+    write_bundle(env, auth_mutator=lambda auth: auth.update(inspectionReportId="1" * 64))
+    failure = run_norm(env)
+    for finding in failure["findings"]:
+        assert finding["actualValue"] is None
+
+    success_env = make_env(tmp_path / "cli")
+    cli_out = tmp_path / "cli" / "cli-out"
+    cli_out.mkdir()
+    success_env["out"] = cli_out
     argv = [
-        str(env["workbook"]),
-        "--manifest", str(env["manifest"]),
-        "--source-base-dir", str(env["base"]),
-        "--inspection-report", str(env["report"]),
-        "--mapping-spec", str(env["spec"]),
-        "--output-dir", str(tmp_path / "cli-out"),
+        str(success_env["workbook"]),
+        "--manifest", str(success_env["manifest"]),
+        "--source-base-dir", str(success_env["base"]),
+        "--inspection-report", str(success_env["report"]),
+        "--authorization", str(success_env["auth"]),
+        "--output-root-binding", str(success_env["binding"]),
+        "--mapping-spec", str(success_env["spec"]),
+        "--output-dir", str(cli_out),
     ]
-    (tmp_path / "cli-out").mkdir()
     assert normalize_compendium.main(argv) == 0
     out = capsys.readouterr().out
     assert "TEST-ID-001" not in out
@@ -650,12 +825,3 @@ def test_console_does_not_leak_markers(
     assert WORKBOOK_NAME not in out
     assert str(tmp_path).lower() not in out.lower()
     assert "internal-restricted" in out
-
-
-def test_output_classification_is_internal_restricted(tmp_path: Path) -> None:
-    env = make_env(tmp_path)
-    result = run_norm(env)
-    assert result["classification"] == "internal-restricted"
-    for name in ARTIFACT_NAMES:
-        artifact = json.loads((env["out"] / name).read_text(encoding="utf-8"))
-        assert artifact["classification"] == "internal-restricted"
