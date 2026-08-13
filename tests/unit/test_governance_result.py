@@ -28,7 +28,8 @@ def make_evidence(evidence_id: str = EVIDENCE_ID) -> Evidence:
         ontology_version="0.0.0-test",
         profile_version="kr-profile-0.0.0-test",
         source_file="data/raw/FALTEST/test-source.xlsx",
-        source_hash="TEST-SHA256-NOT-A-REAL-HASH",
+        # synthetic hash — 실제 파일 Hash가 아닌 테스트 전용 상수다.
+        source_hash="0" * 64,
         resource_uri="urn:test:source:001",
     )
 

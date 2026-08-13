@@ -7,7 +7,8 @@
 from k_mds.models import ResultStatus, SkillResult, SourceManifestEntry
 from k_mds.skills import evidence_build
 
-SOURCE_HASH = "TEST-SHA256-NOT-A-REAL-HASH"
+# synthetic hash — 실제 파일 Hash가 아닌 테스트 전용 상수다.
+SOURCE_HASH = "0" * 64
 SOURCE_FILE = "data/raw/FALTEST/test-source.xlsx"
 
 

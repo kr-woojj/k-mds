@@ -28,6 +28,7 @@ from k_mds.models import (
     Evidence,
     GovernanceResult,
     SkillResult,
+    SourceManifest,
     SourceManifestEntry,
     ValidationFinding,
 )
@@ -43,6 +44,7 @@ OntologyModels = (
     | CodeList
     | BusinessRule
     | SourceManifestEntry
+    | SourceManifest
 )
 ValidationModels = SkillResult | ValidationFinding | Evidence | GovernanceResult
 

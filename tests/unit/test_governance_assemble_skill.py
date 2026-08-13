@@ -20,7 +20,8 @@ EVIDENCE_ID = "evidence:TEST-SOURCE-001"
 
 def make_evidence(
     evidence_id: str = EVIDENCE_ID,
-    source_hash: str = "TEST-SHA256-NOT-A-REAL-HASH",
+    # synthetic hash — 실제 파일 Hash가 아닌 테스트 전용 상수다.
+    source_hash: str = "0" * 64,
     ontology_version: str = "0.0.0-test",
 ) -> Evidence:
     return Evidence(
@@ -191,7 +192,7 @@ def test_same_id_different_hash_fails() -> None:
     result = assemble(
         evidence_results=[
             make_evidence_result(make_evidence()),
-            make_evidence_result(make_evidence(source_hash="TEST-SHA256-DIFFERENT")),
+            make_evidence_result(make_evidence(source_hash="1" * 64)),
         ]
     )
     assert result.status is ResultStatus.FAIL

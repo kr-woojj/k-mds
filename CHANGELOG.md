@@ -6,6 +6,7 @@
 
 ### Added
 
+- Source Manifest Loader(ADR-0006) — `source_manifest_load` Skill: Manifest 선언 SHA-256과 실제 파일 Hash의 Chunk 단위 검증, verified/status 입력 금지(Loader가 결정), 경로 이탈·Symlink 차단, `SourceManifest` 모델과 `source_hash` 64자 lowercase hex pattern 강제(runtime 의존성 PyYAML), Test 42건 (2026-08-13)
 - Final Governance Result Assembler(ADR-0005) — `governance_assemble` Skill: 명시된 Decision 정보와 evidence_build 결과만으로 GovernanceResult 조립(상태 비추론, Evidence dedup·충돌 검출, 실행 성공과 Decision 분리), Contract Test 41건 (2026-08-13)
 - Result Classification Contract(ADR-0004) — Evidence 최소 1개가 필수인 `GovernanceResult`(APPROVED/REVIEW_REQUIRED/REJECTED 불변조건, camelCase Contract)를 SkillResult와 분리 정의, validation.schema.json 재생성, Test 21건 (2026-08-13)
 - Evidence Provenance Contract(ADR-0003) — `SourceManifestEntry` 모델(verified·approved 불변조건, 상대경로 강제)과 결정론적 `evidence_build` Skill(`evidence:<source_id>`, Hash 미계산·원본 값 비노출), ontology.schema.json 재생성, Test 23건 (2026-08-13)

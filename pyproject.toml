@@ -8,6 +8,7 @@ license-files = ["LICENSE.md"]
 requires-python = ">=3.11,<3.14"
 dependencies = [
     "pydantic>=2.7",
+    "pyyaml>=6.0",
 ]
 
 [dependency-groups]
@@ -15,7 +16,6 @@ dev = [
     "pytest>=8.0",
     "ruff>=0.6",
     "mypy>=1.11",
-    "pyyaml>=6.0",
     "types-pyyaml>=6.0",
 ]
 

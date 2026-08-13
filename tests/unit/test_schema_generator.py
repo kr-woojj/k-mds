@@ -111,6 +111,15 @@ def test_ontology_schema_contains_source_manifest_entry() -> None:
     assert "source_hash" in props and "verified" in props
 
 
+def test_ontology_schema_contains_source_manifest() -> None:
+    # ADR-0006: SourceManifest와 source_hash pattern은 Ontology Schema에 반영된다.
+    run_generator()
+    defs = load_defs(ONTOLOGY_SCHEMA)
+    assert "SourceManifest" in defs
+    entry_props = properties_of(defs, "SourceManifestEntry")
+    assert entry_props["source_hash"].get("pattern") == "^[0-9a-f]{64}$"
+
+
 def test_occurrence_uses_snake_case_policy() -> None:
     # 고정 정책: Ontology 모델은 snake_case를 사용한다.
     run_generator()

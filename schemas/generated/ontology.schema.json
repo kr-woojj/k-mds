@@ -340,6 +340,31 @@
       "title": "GovernanceStatus",
       "type": "string"
     },
+    "SourceManifest": {
+      "additionalProperties": false,
+      "description": "검증된 SourceManifestEntry의 조립 결과 (ADR-0006).\n\nLoader가 파일 Hash를 검증한 뒤 구성한 최종 목록이며,\n입력 YAML을 이 모델로 직접 검증하지 않는다.",
+      "properties": {
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/SourceManifestEntry"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "version",
+        "sources"
+      ],
+      "title": "SourceManifest",
+      "type": "object"
+    },
     "SourceManifestEntry": {
       "additionalProperties": false,
       "description": "source-manifest.yaml의 검증된 단일 항목.",
@@ -377,7 +402,7 @@
           "type": "string"
         },
         "source_hash": {
-          "minLength": 1,
+          "pattern": "^[0-9a-f]{64}$",
           "title": "Source Hash",
           "type": "string"
         },
@@ -430,6 +455,9 @@
     },
     {
       "$ref": "#/$defs/SourceManifestEntry"
+    },
+    {
+      "$ref": "#/$defs/SourceManifest"
     }
   ],
   "title": "k-mds Core Ontology Models"

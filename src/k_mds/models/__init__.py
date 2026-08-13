@@ -17,7 +17,7 @@ from k_mds.models.ontology import (
     ElementOccurrence,
     GovernanceStatus,
 )
-from k_mds.models.provenance import SourceManifestEntry
+from k_mds.models.provenance import SourceManifest, SourceManifestEntry
 from k_mds.models.validation import (
     FINDING_VALUE_POLICY,
     DataClassification,
@@ -45,6 +45,7 @@ __all__ = [
     "GovernanceStatus",
     "ResultStatus",
     "SkillResult",
+    "SourceManifest",
     "SourceManifestEntry",
     "ValidationFinding",
 ]
