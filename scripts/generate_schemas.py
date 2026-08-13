@@ -27,6 +27,7 @@ from k_mds.models import (
     ElementOccurrence,
     Evidence,
     SkillResult,
+    SourceManifestEntry,
     ValidationFinding,
 )
 
@@ -34,7 +35,13 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 OUTPUT_DIR = REPO_ROOT / "schemas" / "generated"
 
 OntologyModels = (
-    Dataset | Component | DataElement | ElementOccurrence | CodeList | BusinessRule
+    Dataset
+    | Component
+    | DataElement
+    | ElementOccurrence
+    | CodeList
+    | BusinessRule
+    | SourceManifestEntry
 )
 ValidationModels = SkillResult | ValidationFinding | Evidence
 

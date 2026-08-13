@@ -88,6 +88,15 @@ def test_ontology_schema_contains_element_and_occurrence() -> None:
         assert model in defs
 
 
+def test_ontology_schema_contains_source_manifest_entry() -> None:
+    # ADR-0003: SourceManifestEntry는 Ontology Schema 대상에 포함된다.
+    run_generator()
+    defs = load_defs(ONTOLOGY_SCHEMA)
+    assert "SourceManifestEntry" in defs
+    props = properties_of(defs, "SourceManifestEntry")
+    assert "source_hash" in props and "verified" in props
+
+
 def test_occurrence_uses_snake_case_policy() -> None:
     # 고정 정책: Ontology 모델은 snake_case를 사용한다.
     run_generator()

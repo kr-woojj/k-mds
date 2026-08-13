@@ -339,6 +339,73 @@
       ],
       "title": "GovernanceStatus",
       "type": "string"
+    },
+    "SourceManifestEntry": {
+      "additionalProperties": false,
+      "description": "source-manifest.yaml의 검증된 단일 항목.",
+      "properties": {
+        "fal_version": {
+          "minLength": 1,
+          "title": "Fal Version",
+          "type": "string"
+        },
+        "ontology_version": {
+          "minLength": 1,
+          "title": "Ontology Version",
+          "type": "string"
+        },
+        "profile_version": {
+          "minLength": 1,
+          "title": "Profile Version",
+          "type": "string"
+        },
+        "resource_uri": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Resource Uri"
+        },
+        "source_file": {
+          "minLength": 1,
+          "title": "Source File",
+          "type": "string"
+        },
+        "source_hash": {
+          "minLength": 1,
+          "title": "Source Hash",
+          "type": "string"
+        },
+        "source_id": {
+          "minLength": 1,
+          "title": "Source Id",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/GovernanceStatus"
+        },
+        "verified": {
+          "title": "Verified",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "source_id",
+        "fal_version",
+        "ontology_version",
+        "profile_version",
+        "source_file",
+        "source_hash",
+        "verified",
+        "status"
+      ],
+      "title": "SourceManifestEntry",
+      "type": "object"
     }
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -360,6 +427,9 @@
     },
     {
       "$ref": "#/$defs/BusinessRule"
+    },
+    {
+      "$ref": "#/$defs/SourceManifestEntry"
     }
   ],
   "title": "k-mds Core Ontology Models"
