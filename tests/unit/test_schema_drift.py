@@ -104,6 +104,21 @@ def test_check_does_not_modify_committed_schemas() -> None:
     assert before == after
 
 
+# --- Git EOL 정책 Regression (파일을 수정하지 않는 읽기 전용 검사) ---
+
+
+def test_generated_schemas_are_git_attributed_lf() -> None:
+    for filename in SCHEMA_FILES:
+        result = subprocess.run(
+            ["git", "check-attr", "eol", "--", f"schemas/generated/{filename}"],
+            capture_output=True,
+            text=True,
+            cwd=str(REPO_ROOT),
+        )
+        assert result.returncode == 0, result.stderr
+        assert result.stdout.strip().endswith("eol: lf"), result.stdout
+
+
 # --- 지시 Test 11~12: dev.py CLI (subprocess 허용 범위) ---
 
 

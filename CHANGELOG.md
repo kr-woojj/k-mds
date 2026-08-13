@@ -6,6 +6,7 @@
 
 ### Added
 
+- Cross-platform Schema Drift EOL 정책 — `.gitattributes`에 `schemas/generated/*.schema.json text eol=lf`를 추가하여 Windows fresh clone에서도 byte 단위 Drift 검사가 동일하게 동작 (2026-08-13)
 - Schema Drift Gate `scripts/check_schema_drift.py` + `dev.py check-schemas` — Pydantic 모델과 committed generated Schema의 byte 단위 불일치를 Local·CI validate에서 차단, Drift Test 10건 (2026-08-13)
 - 첫 결정론적 Skill `schema_validate` (`src/k_mds/skills`) — 생성된 JSON Schema의 최소 Contract(camelCase/snake_case alias 정책 포함)를 검증하고 항상 `SkillResult` 반환, 예외 미전파·LLM 미사용, Contract Test 16건 (2026-08-12)
 - Schema Generator `scripts/generate_schemas.py` — `src/k_mds/models`에서 `schemas/generated/{ontology,validation}.schema.json` 결정론적 생성 (UTF-8, sort_keys, timestamp 없음), ADR-0001로 Pydantic SSOT를 `src/k_mds/models`로 확정, Contract Test 11건 (2026-08-12)
