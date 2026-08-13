@@ -658,27 +658,29 @@ def _inspect_sheet(
         or declared_columns > options.max_columns_per_sheet
     )
 
-    # Empty 판정은 Full Scan Coverage가 확보된 경우에만 가능하다.
-    structural_zero = all(
-        int(structure[key]) == 0
-        for key in (
-            "mergedRangeCount",
-            "hyperlinkCount",
-            "dataValidationCount",
-            "tableCount",
-            "drawingCount",
-            "commentCount",
-        )
-    )
-    is_empty_sheet = (
+    # Empty·Drawing-only 판정은 Full Scan Coverage가 확보된 경우에만 가능하다.
+    record_free = (
         not scan_budget_truncated
         and non_empty_total == 0
         and formula_count == 0
         and error_count == 0
-        and structural_zero
+        and all(
+            int(structure[key]) == 0
+            for key in (
+                "mergedRangeCount",
+                "hyperlinkCount",
+                "dataValidationCount",
+                "tableCount",
+                "commentCount",
+            )
+        )
     )
+    drawing_count = int(structure["drawingCount"])
+    is_empty_sheet = record_free and drawing_count == 0
+    # Drawing-only는 Empty가 아니라 Non-tabular Sheet Candidate다 (ADR-0007 Amendment).
+    is_drawing_only_sheet = record_free and drawing_count >= 1
 
-    if is_empty_sheet:
+    if is_empty_sheet or is_drawing_only_sheet:
         inferred_row = None
         confidence = "none"
         candidates: list[dict[str, Any]] = []
@@ -688,6 +690,13 @@ def _inspect_sheet(
                 "WARNING",
                 "WORKBOOK_EMPTY_SHEET",
                 "Sheet에 정규화 가능한 Cell Record가 존재하지 않는다",
+                f"$.sheets.{sheet_ordinal}",
+            )
+            if is_empty_sheet
+            else _build_finding(
+                "WARNING",
+                "WORKBOOK_DRAWING_ONLY_SHEET",
+                "Sheet에 정규화 가능한 Cell Record 없이 Drawing Content가 존재한다",
                 f"$.sheets.{sheet_ordinal}",
             )
         )

@@ -701,6 +701,115 @@ def test_empty_validator_result_deterministic() -> None:
     )
 
 
+# --- Drawing-only Sheet Reviewable 정책 (ADR-0010 Amendment) ---
+
+
+def make_drawing_only_report(**overrides: Any) -> dict[str, Any]:
+    report = make_report()
+    report["sheets"].append(
+        {"sheetOrdinal": 3, "inferredHeaderRow": None, "headerConfidence": "none"}
+    )
+    report["findings"].append(make_finding("WORKBOOK_DRAWING_ONLY_SHEET", 3))
+    report.update(overrides)
+    return report
+
+
+def make_drawing_only_auth(
+    classification: str = "excluded_non_data", **overrides: Any
+) -> dict[str, Any]:
+    auth = make_auth()
+    auth["sheets"].append(make_excluded_sheet(3, classification))
+    auth["acknowledgedFindings"] = [
+        make_ack("WORKBOOK_DRAWING_ONLY_SHEET", "accepted_for_reviewed_scope", 3)
+    ]
+    auth.update(overrides)
+    return auth
+
+
+def test_drawing_only_excluded_accepted_succeeds() -> None:
+    result = run(make_drawing_only_report(), make_drawing_only_auth())
+    assert result["valid"] is True
+    assert result["reviewedFindingCount"] == 1
+    assert result["authorizedSheetOrdinals"] == [0]
+    assert result["reportIdentityMatched"] is True
+    assert result["sheetCoverageComplete"] is True
+    assert result["findingCoverageComplete"] is True
+
+
+def test_drawing_only_metadata_accepted_succeeds() -> None:
+    result = run(make_drawing_only_report(), make_drawing_only_auth("metadata_or_readme"))
+    assert result["valid"] is True
+
+
+def test_drawing_only_as_data_table_fails() -> None:
+    auth = make_drawing_only_auth()
+    auth["sheets"][-1] = make_sheet(sheetOrdinal=3, headerRow=1, headerConfidence="high")
+    result = run(make_drawing_only_report(), auth)
+    assert result["valid"] is False
+    assert "DRAWING_ONLY_SHEET_CLASSIFICATION_INVALID" in codes(result)
+
+
+def test_drawing_only_as_code_list_fails() -> None:
+    auth = make_drawing_only_auth()
+    auth["sheets"][-1] = {
+        "sheetOrdinal": 3,
+        "classification": "code_list",
+        "normalize": False,
+        "headerRow": None,
+        "headerConfidence": "none",
+        "mediumConfidenceApproved": False,
+        "exclusionReasonCode": None,
+    }
+    result = run(make_drawing_only_report(), auth)
+    assert result["valid"] is False
+    assert "DRAWING_ONLY_SHEET_CLASSIFICATION_INVALID" in codes(result)
+
+
+def test_drawing_only_authorization_missing_fails() -> None:
+    result = run(make_drawing_only_report(), make_drawing_only_auth(acknowledgedFindings=[]))
+    assert result["valid"] is False
+    assert "FINDING_AUTHORIZATION_MISSING" in codes(result)
+
+
+def test_drawing_only_stale_authorization_fails() -> None:
+    auth = make_drawing_only_auth()
+    auth["acknowledgedFindings"].append(
+        make_ack("WORKBOOK_DRAWING_ONLY_SHEET", "accepted_for_reviewed_scope", 9)
+    )
+    result = run(make_drawing_only_report(), auth)
+    assert result["valid"] is False
+    assert "FINDING_AUTHORIZATION_STALE" in codes(result)
+
+
+@pytest.mark.parametrize("disposition", ["remains_blocking", "resolved"])
+def test_drawing_only_non_accepted_disposition_fails(disposition: str) -> None:
+    auth = make_drawing_only_auth()
+    auth["acknowledgedFindings"][0]["disposition"] = disposition
+    result = run(make_drawing_only_report(), auth)
+    assert result["valid"] is False
+    assert "BLOCKING_FINDING_UNRESOLVED" in codes(result)
+
+
+def test_only_drawing_only_without_data_table_fails() -> None:
+    auth = make_drawing_only_auth(
+        sheets=[
+            make_excluded_sheet(0, "excluded_non_data"),
+            make_excluded_sheet(1, "excluded_non_data"),
+            make_excluded_sheet(2, "metadata_or_readme"),
+            make_excluded_sheet(3, "excluded_non_data"),
+        ]
+    )
+    result = run(make_drawing_only_report(), auth)
+    assert result["valid"] is False
+    assert "NO_NORMALIZE_TARGET_SHEET" in codes(result)
+
+
+def test_drawing_only_validator_result_deterministic() -> None:
+    assert run(make_drawing_only_report(), make_drawing_only_auth()) == run(
+        make_drawing_only_report(), make_drawing_only_auth()
+    )
+
+
 # --- 비노출·결정론·Runtime Boundary ---
 
 

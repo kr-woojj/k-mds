@@ -144,3 +144,19 @@ Actual Normalize는 Integration 완료 전 실행할 수 없다.
   `EMPTY_SHEET_EXCLUDED_FROM_SCOPE`.
 - Empty Sheet가 존재해도 다른 data_table Sheet가 하나 이상 있으면
   Actual Normalize Authorization은 가능하다.
+
+### Drawing-only Sheet Amendment (2026-08-13)
+
+- `WORKBOOK_DRAWING_ONLY_SHEET`를 REVIEWABLE_CODES에 추가한다.
+  `accepted_for_reviewed_scope` 처분만 허용하며 resolved·remains_blocking은
+  실패한다.
+- Drawing-only Sheet의 Classification은 `metadata_or_readme` 또는
+  `excluded_non_data`만 허용하고 `normalize=false`와 exclusionReasonCode가
+  필수다. `data_table`·`code_list`로 승인하면
+  `DRAWING_ONLY_SHEET_CLASSIFICATION_INVALID`로 실패한다.
+- 권고 reasonCode: `DRAWING_ONLY_DOCUMENTATION`,
+  `DRAWING_ONLY_EXCLUDED_FROM_SCOPE`, `NON_TABULAR_VISUAL_CONTENT`.
+- Drawing-only Sheet 외에 data_table Sheet가 하나 이상 있으면 Authorization이
+  가능하다.
+- Drawing의 실제 의미 확인은 Restricted Human Review의 책임이며 Validator는
+  구조 정합성만 강제한다.

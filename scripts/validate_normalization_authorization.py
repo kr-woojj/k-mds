@@ -46,13 +46,20 @@ REVIEWABLE_CODES = {
     "WORKBOOK_CUSTOM_XML_PRESENT",
     "WORKBOOK_DIGITAL_SIGNATURE_PRESENT",
     "WORKBOOK_EMPTY_SHEET",
+    "WORKBOOK_DRAWING_ONLY_SHEET",
 }
 
-#: Empty Sheet에 허용되는 Authorization Classification (ADR-0010 Amendment)
-_EMPTY_SHEET_ALLOWED_CLASSIFICATIONS = (
+#: Non-tabular Sheet에 허용되는 Authorization Classification (ADR-0010 Amendment)
+_NON_TABULAR_ALLOWED_CLASSIFICATIONS = (
     SheetClassification.METADATA_OR_README,
     SheetClassification.EXCLUDED_NON_DATA,
 )
+
+#: Non-tabular Finding Code -> Classification 위반 Error Code
+_NON_TABULAR_SHEET_CODES = {
+    "WORKBOOK_EMPTY_SHEET": "EMPTY_SHEET_CLASSIFICATION_INVALID",
+    "WORKBOOK_DRAWING_ONLY_SHEET": "DRAWING_ONLY_SHEET_CLASSIFICATION_INVALID",
+}
 
 _ARTIFACT_PROBE = "normalization-summary.local.json"
 
@@ -485,26 +492,28 @@ def validate_authorization(
             )
         )
 
-    # Empty Sheet는 metadata_or_readme 또는 excluded_non_data로만 분류할 수 있다.
+    # Non-tabular Sheet(Empty·Drawing-only)는 metadata_or_readme 또는
+    # excluded_non_data로만 분류할 수 있다.
     auth_sheet_by_ordinal = {sheet.sheet_ordinal: sheet for sheet in auth.sheets}
-    empty_ordinals = sorted(
-        ordinal
-        for code, ordinal in report_keys
-        if code == "WORKBOOK_EMPTY_SHEET" and ordinal is not None
-    )
-    for ordinal in empty_ordinals:
-        empty_sheet = auth_sheet_by_ordinal.get(ordinal)
-        if empty_sheet is not None and (
-            empty_sheet.classification not in _EMPTY_SHEET_ALLOWED_CLASSIFICATIONS
+    for code, error_code in sorted(_NON_TABULAR_SHEET_CODES.items()):
+        for ordinal in sorted(
+            item_ordinal
+            for item_code, item_ordinal in report_keys
+            if item_code == code and item_ordinal is not None
         ):
-            findings.append(
-                _finding(
-                    "EMPTY_SHEET_CLASSIFICATION_INVALID",
-                    f"Empty Sheet(sheetOrdinal {ordinal})는 metadata_or_readme 또는 "
-                    "excluded_non_data로만 분류할 수 있다",
-                    f"$.authorization.sheets.{ordinal}",
+            non_tabular_sheet = auth_sheet_by_ordinal.get(ordinal)
+            if non_tabular_sheet is not None and (
+                non_tabular_sheet.classification
+                not in _NON_TABULAR_ALLOWED_CLASSIFICATIONS
+            ):
+                findings.append(
+                    _finding(
+                        error_code,
+                        f"Non-tabular Sheet(sheetOrdinal {ordinal})는 metadata_or_readme "
+                        "또는 excluded_non_data로만 분류할 수 있다",
+                        f"$.authorization.sheets.{ordinal}",
+                    )
                 )
-            )
 
     report_key_set = set(report_keys)
     for _stale_key in sorted(

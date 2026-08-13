@@ -869,6 +869,137 @@ def test_empty_report_bytes_deterministic(tmp_path: Path) -> None:
     assert first.encode("utf-8") == second.encode("utf-8")
 
 
+# --- L. Drawing-only Sheet Semantics (ADR-0007 Amendment) ---
+
+
+def with_injected_drawing(builder: Any, dimension_ref: str | None = None) -> Any:
+    """Cell Record를 바꾸지 않고 Sheet XML에 Drawing Node만 주입한다."""
+
+    def _build(path: Path) -> None:
+        plain = path.parent / f"TEST-PLAIN-{path.stem}.xlsx"
+        builder(plain)
+
+        def _transform(text: str) -> str:
+            text = text.replace("</worksheet>", "<drawing/></worksheet>")
+            if dimension_ref is not None:
+                text = text.replace(
+                    '<dimension ref="A1:A1" />', f'<dimension ref="{dimension_ref}" />'
+                )
+            return text
+
+        rewrite_sheet_xml(plain, path, _transform)
+        plain.unlink()
+
+    return _build
+
+
+def drawing_only_report(tmp_path: Path) -> dict[str, Any]:
+    workbook, manifest = make_fixture(
+        tmp_path, with_injected_drawing(build_empty_sheet_workbook)
+    )
+    return run_inspect(workbook, manifest)
+
+
+def test_drawing_only_sheet_detected(tmp_path: Path) -> None:
+    report = drawing_only_report(tmp_path)
+    assert report["summary"]["inspectionCompleted"] is True
+    assert "WORKBOOK_DRAWING_ONLY_SHEET" in finding_codes(report)
+    assert report["sheets"][0]["drawingCount"] >= 1
+    assert report["sheets"][0]["nonEmptyCellCount"] == 0
+
+
+def test_drawing_only_suppresses_header_and_scan_findings(tmp_path: Path) -> None:
+    codes = finding_codes(drawing_only_report(tmp_path))
+    assert "WORKBOOK_HEADER_NOT_DETECTED" not in codes
+    assert "WORKBOOK_SCAN_LIMIT_REACHED" not in codes
+
+
+def test_drawing_only_is_not_empty_sheet(tmp_path: Path) -> None:
+    assert "WORKBOOK_EMPTY_SHEET" not in finding_codes(drawing_only_report(tmp_path))
+
+
+def test_drawing_only_header_metadata(tmp_path: Path) -> None:
+    sheet = drawing_only_report(tmp_path)["sheets"][0]
+    assert sheet["inferredHeaderRow"] is None
+    assert sheet["headerConfidence"] == "none"
+    assert sheet["headerCandidates"] == []
+
+
+def test_drawing_only_finding_contract_and_non_disclosure(tmp_path: Path) -> None:
+    report = drawing_only_report(tmp_path)
+    findings = [
+        finding
+        for finding in report["findings"]
+        if finding["code"] == "WORKBOOK_DRAWING_ONLY_SHEET"
+    ]
+    assert findings and findings[0]["severity"] == "WARNING"
+    assert findings[0]["actualValue"] is None
+    serialized = inspect_excel.serialize_report(report)
+    # Drawing Target·Image Name·Relationship URI·Sheet Name 비노출
+    assert "drawing" not in serialized.lower() or "drawingCount" in serialized
+    assert "xl/drawings" not in serialized
+    assert ".png" not in serialized and ".emf" not in serialized
+    assert "rId" not in serialized
+    assert "TEST-SHEET-EMPTY" not in serialized
+    assert WORKBOOK_NAME not in serialized
+    assert "c:\\" not in serialized.lower() and "c:/" not in serialized.lower()
+
+
+@pytest.mark.parametrize(
+    "builder_name",
+    ["cell", "formula", "comment", "hyperlink", "validation", "merged"],
+)
+def test_records_with_drawing_are_not_drawing_only(
+    tmp_path: Path, builder_name: str
+) -> None:
+    builders: dict[str, Any] = {
+        "cell": build_normal_workbook,
+        "formula": build_formula_workbook,
+        "comment": _structural_empty_builder("comment"),
+        "hyperlink": _structural_empty_builder("hyperlink"),
+        "validation": _structural_empty_builder("validation"),
+        "merged": _structural_empty_builder("merged"),
+    }
+    workbook, manifest = make_fixture(
+        tmp_path, with_injected_drawing(builders[builder_name])
+    )
+    codes = finding_codes(run_inspect(workbook, manifest))
+    assert "WORKBOOK_DRAWING_ONLY_SHEET" not in codes
+    assert "WORKBOOK_EMPTY_SHEET" not in codes
+
+
+def test_table_with_drawing_is_not_drawing_only(tmp_path: Path) -> None:
+    workbook, manifest = make_fixture(
+        tmp_path, with_injected_drawing(_structural_empty_builder("table"))
+    )
+    report = run_inspect(workbook, manifest)
+    assert report["sheets"][0]["tableCount"] == 1
+    assert "WORKBOOK_DRAWING_ONLY_SHEET" not in finding_codes(report)
+
+
+def test_truncated_budget_prevents_drawing_only_verdict(tmp_path: Path) -> None:
+    workbook, manifest = make_fixture(
+        tmp_path,
+        with_injected_drawing(build_empty_sheet_workbook, dimension_ref="A1:Z1000"),
+    )
+    report = run_inspect(
+        workbook, manifest, max_rows_per_sheet=10, max_columns_per_sheet=3
+    )
+    codes = finding_codes(report)
+    assert "WORKBOOK_DRAWING_ONLY_SHEET" not in codes
+    assert "WORKBOOK_EMPTY_SHEET" not in codes
+    assert "WORKBOOK_SCAN_LIMIT_REACHED" in codes
+
+
+def test_drawing_only_report_bytes_deterministic(tmp_path: Path) -> None:
+    workbook, manifest = make_fixture(
+        tmp_path, with_injected_drawing(build_empty_sheet_workbook)
+    )
+    first = inspect_excel.serialize_report(run_inspect(workbook, manifest))
+    second = inspect_excel.serialize_report(run_inspect(workbook, manifest))
+    assert first.encode("utf-8") == second.encode("utf-8")
+
+
 # --- G. Local Source Base (ADR-0007 Amendment) ---
 
 

@@ -13,6 +13,7 @@ import os
 import shutil
 import subprocess
 import sys
+import zipfile
 from pathlib import Path
 from types import SimpleNamespace
 from typing import Any
@@ -750,6 +751,99 @@ def test_empty_sheet_ready_false_still_executes_after_approval(tmp_path: Path) -
     report = json.loads(env["report"].read_text(encoding="utf-8"))
     assert report["summary"]["normalizationReady"] is False
     assert run_norm(env)["completed"] is True
+
+
+def make_drawing_only_env(tmp_path: Path, **kwargs: Any) -> dict[str, Path]:
+    """데이터 Sheet(0) + Cell Record 없이 Drawing만 있는 Sheet(1) Bundle Fixture."""
+    env = make_empty_sheet_env(tmp_path, **kwargs)
+    source = env["workbook"]
+    staged = source.parent / "TEST-STAGED.xlsx"
+    with zipfile.ZipFile(source) as zin, zipfile.ZipFile(staged, "w") as zout:
+        for info in zin.infolist():
+            data = zin.read(info.filename)
+            if info.filename == "xl/worksheets/sheet2.xml":
+                data = data.decode("utf-8").replace(
+                    "</worksheet>", "<drawing/></worksheet>"
+                ).encode("utf-8")
+            zout.writestr(info, data)
+    source.write_bytes(staged.read_bytes())
+    staged.unlink()
+    env["manifest"].write_text(
+        yaml.safe_dump(
+            {
+                "version": 1,
+                "sources": [
+                    {
+                        "source_id": "TEST-SOURCE-001",
+                        "fal_version": "FALTEST",
+                        "ontology_version": "0.0.0-test",
+                        "profile_version": "kr-profile-0.0.0-test",
+                        "source_file": f"files/{WORKBOOK_NAME}",
+                        "source_hash": sha256_of_file(env["workbook"]),
+                        "resource_uri": "urn:test:source:001",
+                    }
+                ],
+            },
+            allow_unicode=True,
+        ),
+        encoding="utf-8",
+    )
+    report = inspect_excel.inspect_workbook(
+        env["workbook"],
+        manifest_path=env["manifest"],
+        options=inspect_excel.InspectionOptions(
+            max_rows_per_sheet=5000, max_columns_per_sheet=200
+        ),
+    )
+    env["report"].write_text(inspect_excel.serialize_report(report), encoding="utf-8")
+    write_bundle(env)
+    return env
+
+
+def test_drawing_only_bundle_normalizes_data_table(tmp_path: Path) -> None:
+    env = make_drawing_only_env(tmp_path)
+    report = json.loads(env["report"].read_text(encoding="utf-8"))
+    assert "WORKBOOK_DRAWING_ONLY_SHEET" in [f["code"] for f in report["findings"]]
+    result = run_norm(env)
+    assert result["completed"] is True
+    assert result["summary"]["normalizedRecordCount"] == 2
+    assert result["classification"] == "internal-restricted"
+    for name in ARTIFACT_NAMES:
+        text = (env["out"] / name).read_text(encoding="utf-8")
+        assert "WORKBOOK_DRAWING_ONLY_SHEET" not in text
+        assert json.loads(text)["classification"] == "internal-restricted"
+
+
+def test_drawing_only_sheet_as_mapping_target_fails(tmp_path: Path) -> None:
+    env = make_drawing_only_env(tmp_path, spec=default_spec(source_sheet_ordinal=1))
+    result = run_norm(env)
+    assert result["completed"] is False
+    assert "MAPPING_SHEET_NOT_AUTHORIZED" in finding_codes(result)
+
+
+def test_drawing_only_authorization_failure_blocks_workbook(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    env = make_drawing_only_env(tmp_path)
+    write_bundle(env, auth_mutator=lambda auth: auth.update(acknowledgedFindings=[]))
+    patch_workbook_boom(monkeypatch)
+    assert run_norm(env)["completed"] is False
+
+
+def test_drawing_only_ready_false_still_executes_after_approval(tmp_path: Path) -> None:
+    env = make_drawing_only_env(tmp_path)
+    report = json.loads(env["report"].read_text(encoding="utf-8"))
+    assert report["summary"]["normalizationReady"] is False
+    assert run_norm(env)["completed"] is True
+
+
+def test_drawing_only_artifact_bytes_deterministic(tmp_path: Path) -> None:
+    env_a = make_drawing_only_env(tmp_path / "a")
+    env_b = make_drawing_only_env(tmp_path / "b")
+    run_norm(env_a)
+    run_norm(env_b)
+    for name in ARTIFACT_NAMES:
+        assert (env_a["out"] / name).read_bytes() == (env_b["out"] / name).read_bytes()
 
 
 def mutate_report_only(env: dict[str, Path], mutate: Any) -> None:

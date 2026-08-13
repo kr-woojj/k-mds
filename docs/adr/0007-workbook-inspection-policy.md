@@ -83,6 +83,27 @@
 - Empty Sheet에서는 `WORKBOOK_HEADER_NOT_DETECTED`를 발생시키지 않는다.
   Non-empty Sheet의 Header 미탐지는 기존 Blocking Policy를 유지한다.
 
+## Drawing-only Sheet Semantics (Amendment 2026-08-13)
+
+- Drawing-only Sheet는 Empty Sheet가 아니다 — Cell Record 없이 Drawing Content가
+  존재하는 구조상 Non-tabular Sheet Candidate다.
+- Drawing-only Sheet는 Header Detection Failure가 아니며
+  `WORKBOOK_HEADER_NOT_DETECTED`를 발생시키지 않는다.
+- `WORKBOOK_DRAWING_ONLY_SHEET` Warning으로 Inventory하며 Reviewable이다.
+- 실제 Drawing의 의미는 Inspector가 판단하지 않는다 — Restricted Human Review의
+  책임이다.
+- Drawing Content, Relationship Target, Image, Text는 Report에 저장하지 않는다.
+  Report에는 drawingCount(정수)만 남는다.
+- Full Scan Coverage가 확보된 경우에만 Drawing-only 판정이 가능하다.
+- 판정 조건: 비어있지 않은 Cell·Formula·Error Cell·Comment·Hyperlink·
+  Data Validation·Table·Merged Range가 전부 0이고 drawingCount ≥ 1.
+  Hidden·VeryHidden State, Protection, Hidden Row·Column, Declared Dimension,
+  Document Properties는 판정을 막지 않고 별도 Metadata·Finding으로 유지한다.
+- Drawing과 위 Feature가 함께 있는 Sheet에서 Header를 찾지 못하면 기존
+  `WORKBOOK_HEADER_NOT_DETECTED` Policy를 유지한다.
+- Drawing-only Sheet는 자동 Normalize 대상이 아니다.
+- 판정 순서: Scan Coverage → Empty → Drawing-only → 기존 Header Detection.
+
 ## Risk Register
 
 - ZIP Bomb Hard Limit는 별도 운영정책으로 결정한다 (현재 Compression Ratio
@@ -90,4 +111,7 @@
 - Workbook 최대 File Size는 별도 운영정책이다.
 - 최대 Sheet Count는 별도 운영정책이다.
 - openpyxl이 모든 Excel Feature를 완전하게 해석하지 못할 수 있다.
+- drawingCount는 Sheet XML의 Drawing Node 수만 집계하며 Chart·Image·Shape·
+  SmartArt 등 세부 유형을 구분하지 못한다. Drawing-only Sheet의 실제 내용
+  판단은 Restricted Human Review에서 수행해야 한다.
 - 실제 Header 의미 검증은 Normalize 단계의 책임이다.
