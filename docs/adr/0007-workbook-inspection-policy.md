@@ -64,6 +64,25 @@
   `externalLinkPartCount`, `externalLinkRelationshipCount`. 이 값들은 ZIP
   Container에서 파생된 Detection Count이며 Logical Link 수를 의미하지 않는다.
 
+## Empty Sheet Semantics (Amendment 2026-08-13)
+
+- Empty Sheet는 Scan Limit Failure가 아니고 Header Detection Failure도 아니다 —
+  명시적인 Structural Inventory 상태다.
+- Empty Sheet는 `WORKBOOK_EMPTY_SHEET` Warning으로 표현하며 Reviewable이다.
+- Empty Sheet는 자동 Normalize 대상이 아니다.
+- Empty 판정은 Full Scan Coverage가 확보된 경우에만 가능하다 —
+  Scan Budget이 실제 Declared Dimension보다 작으면 Empty 판정을 내리지 않는다.
+- Empty 판정 조건: 비어있지 않은 Cell·Formula·Error Cell·Comment·Hyperlink·
+  Data Validation·Table·Drawing·Merged Range가 전부 0.
+  Sheet State, Protection, Hidden Dimension, Declared Dimension,
+  Document Properties는 Empty 판정을 막지 않으며 별도 Metadata·Finding으로
+  유지한다.
+- Scan Limit 판정 변경: `WORKBOOK_SCAN_LIMIT_REACHED`는 실제 iterated row 수가
+  아니라 **Declared Dimension이 명시적 Scan Budget을 초과한 경우에만** 발생한다.
+  실제 iterated row 수는 scannedRowCount Metadata로만 기록한다.
+- Empty Sheet에서는 `WORKBOOK_HEADER_NOT_DETECTED`를 발생시키지 않는다.
+  Non-empty Sheet의 Header 미탐지는 기존 Blocking Policy를 유지한다.
+
 ## Risk Register
 
 - ZIP Bomb Hard Limit는 별도 운영정책으로 결정한다 (현재 Compression Ratio

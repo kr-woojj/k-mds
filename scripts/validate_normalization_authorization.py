@@ -45,7 +45,14 @@ REVIEWABLE_CODES = {
     "WORKBOOK_PROTECTION_ENABLED",
     "WORKBOOK_CUSTOM_XML_PRESENT",
     "WORKBOOK_DIGITAL_SIGNATURE_PRESENT",
+    "WORKBOOK_EMPTY_SHEET",
 }
+
+#: Empty Sheet에 허용되는 Authorization Classification (ADR-0010 Amendment)
+_EMPTY_SHEET_ALLOWED_CLASSIFICATIONS = (
+    SheetClassification.METADATA_OR_README,
+    SheetClassification.EXCLUDED_NON_DATA,
+)
 
 _ARTIFACT_PROBE = "normalization-summary.local.json"
 
@@ -477,6 +484,27 @@ def validate_authorization(
                 "$.authorization.acknowledgedFindings",
             )
         )
+
+    # Empty Sheet는 metadata_or_readme 또는 excluded_non_data로만 분류할 수 있다.
+    auth_sheet_by_ordinal = {sheet.sheet_ordinal: sheet for sheet in auth.sheets}
+    empty_ordinals = sorted(
+        ordinal
+        for code, ordinal in report_keys
+        if code == "WORKBOOK_EMPTY_SHEET" and ordinal is not None
+    )
+    for ordinal in empty_ordinals:
+        empty_sheet = auth_sheet_by_ordinal.get(ordinal)
+        if empty_sheet is not None and (
+            empty_sheet.classification not in _EMPTY_SHEET_ALLOWED_CLASSIFICATIONS
+        ):
+            findings.append(
+                _finding(
+                    "EMPTY_SHEET_CLASSIFICATION_INVALID",
+                    f"Empty Sheet(sheetOrdinal {ordinal})는 metadata_or_readme 또는 "
+                    "excluded_non_data로만 분류할 수 있다",
+                    f"$.authorization.sheets.{ordinal}",
+                )
+            )
 
     report_key_set = set(report_keys)
     for _stale_key in sorted(

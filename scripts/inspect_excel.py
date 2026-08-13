@@ -651,12 +651,55 @@ def _inspect_sheet(
         1 for count in column_non_empty[:scan_columns] if count == 0
     ) if scan_columns else 0
 
-    inferred_row, confidence, candidates, duplicate_count, header_findings = _infer_header(
-        top_rows, int(structure["mergedTopRows"]), sheet_ordinal, scanned_rows
+    # Scan Limit은 실제 iterated row 수가 아니라 선언 Dimension이
+    # 명시적 Scan Budget을 초과한 경우에만 발생한다 (ADR-0007 Amendment).
+    scan_budget_truncated = (
+        declared_rows > options.max_rows_per_sheet
+        or declared_columns > options.max_columns_per_sheet
     )
-    findings.extend(header_findings)
 
-    if declared_rows > scanned_rows or declared_columns > scan_columns:
+    # Empty 판정은 Full Scan Coverage가 확보된 경우에만 가능하다.
+    structural_zero = all(
+        int(structure[key]) == 0
+        for key in (
+            "mergedRangeCount",
+            "hyperlinkCount",
+            "dataValidationCount",
+            "tableCount",
+            "drawingCount",
+            "commentCount",
+        )
+    )
+    is_empty_sheet = (
+        not scan_budget_truncated
+        and non_empty_total == 0
+        and formula_count == 0
+        and error_count == 0
+        and structural_zero
+    )
+
+    if is_empty_sheet:
+        inferred_row = None
+        confidence = "none"
+        candidates: list[dict[str, Any]] = []
+        duplicate_count = 0
+        findings.append(
+            _build_finding(
+                "WARNING",
+                "WORKBOOK_EMPTY_SHEET",
+                "Sheet에 정규화 가능한 Cell Record가 존재하지 않는다",
+                f"$.sheets.{sheet_ordinal}",
+            )
+        )
+    else:
+        inferred_row, confidence, candidates, duplicate_count, header_findings = (
+            _infer_header(
+                top_rows, int(structure["mergedTopRows"]), sheet_ordinal, scanned_rows
+            )
+        )
+        findings.extend(header_findings)
+
+    if scan_budget_truncated:
         findings.append(
             _build_finding(
                 "WARNING",

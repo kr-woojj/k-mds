@@ -675,6 +675,83 @@ def test_repository_root_not_exposed(tmp_path: Path) -> None:
     assert str(REPO_ROOT).lower() not in serialized.lower()
 
 
+# --- Empty Sheet Regression (ADR-0007/0010 Amendment) ---
+
+
+def make_empty_sheet_env(tmp_path: Path, **kwargs: Any) -> dict[str, Path]:
+    """데이터 Sheet(0) + 완전 빈 Sheet(1)를 가진 Bundle Fixture."""
+    env = make_env(tmp_path, **kwargs)
+    wb = openpyxl.load_workbook(env["workbook"])
+    wb.security = None
+    wb.create_sheet("TEST-SHEET-EMPTY")
+    wb.save(env["workbook"])
+    env["manifest"].write_text(
+        yaml.safe_dump(
+            {
+                "version": 1,
+                "sources": [
+                    {
+                        "source_id": "TEST-SOURCE-001",
+                        "fal_version": "FALTEST",
+                        "ontology_version": "0.0.0-test",
+                        "profile_version": "kr-profile-0.0.0-test",
+                        "source_file": f"files/{WORKBOOK_NAME}",
+                        "source_hash": sha256_of_file(env["workbook"]),
+                        "resource_uri": "urn:test:source:001",
+                    }
+                ],
+            },
+            allow_unicode=True,
+        ),
+        encoding="utf-8",
+    )
+    report = inspect_excel.inspect_workbook(
+        env["workbook"],
+        manifest_path=env["manifest"],
+        options=inspect_excel.InspectionOptions(
+            max_rows_per_sheet=5000, max_columns_per_sheet=200
+        ),
+    )
+    env["report"].write_text(inspect_excel.serialize_report(report), encoding="utf-8")
+    write_bundle(env)
+    return env
+
+
+def test_empty_sheet_bundle_normalizes_data_table(tmp_path: Path) -> None:
+    env = make_empty_sheet_env(tmp_path)
+    result = run_norm(env)
+    assert result["completed"] is True
+    assert result["summary"]["normalizedRecordCount"] == 2
+    # Empty Finding Message는 Artifact에 복사되지 않는다.
+    for name in ARTIFACT_NAMES:
+        assert "WORKBOOK_EMPTY_SHEET" not in (env["out"] / name).read_text(
+            encoding="utf-8"
+        )
+
+
+def test_empty_sheet_as_mapping_target_fails(tmp_path: Path) -> None:
+    env = make_empty_sheet_env(tmp_path, spec=default_spec(source_sheet_ordinal=1))
+    result = run_norm(env)
+    assert result["completed"] is False
+    assert "MAPPING_SHEET_NOT_AUTHORIZED" in finding_codes(result)
+
+
+def test_empty_sheet_authorization_failure_blocks_workbook(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    env = make_empty_sheet_env(tmp_path)
+    write_bundle(env, auth_mutator=lambda auth: auth.update(acknowledgedFindings=[]))
+    patch_workbook_boom(monkeypatch)
+    assert run_norm(env)["completed"] is False
+
+
+def test_empty_sheet_ready_false_still_executes_after_approval(tmp_path: Path) -> None:
+    env = make_empty_sheet_env(tmp_path)
+    report = json.loads(env["report"].read_text(encoding="utf-8"))
+    assert report["summary"]["normalizationReady"] is False
+    assert run_norm(env)["completed"] is True
+
+
 def mutate_report_only(env: dict[str, Path], mutate: Any) -> None:
     """Bundle 재생성 없이 Report만 변경한다 (fake Validator와 함께 Compatibility 검사용)."""
     report = json.loads(env["report"].read_text(encoding="utf-8"))

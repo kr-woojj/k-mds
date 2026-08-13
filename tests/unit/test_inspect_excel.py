@@ -694,6 +694,181 @@ def test_failure_keeps_workbook_unchanged(tmp_path: Path) -> None:
     assert sha256_of_file(workbook) == before
 
 
+# --- K. Empty Sheet Semantics (ADR-0007 Amendment) ---
+
+
+def build_empty_sheet_workbook(path: Path) -> None:
+    wb = openpyxl.Workbook()
+    wb.security = None
+    ws = wb.active
+    ws.title = "TEST-SHEET-EMPTY"
+    wb.save(path)
+
+
+def make_empty_fixture(tmp_path: Path, builder: Any = build_empty_sheet_workbook
+                       ) -> tuple[Path, Path]:
+    return make_fixture(tmp_path, builder)
+
+
+def rewrite_sheet_xml(src: Path, dest: Path, transform: Any) -> None:
+    with zipfile.ZipFile(src) as zin, zipfile.ZipFile(dest, "w") as zout:
+        for info in zin.infolist():
+            data = zin.read(info.filename)
+            if info.filename == "xl/worksheets/sheet1.xml":
+                data = transform(data.decode("utf-8")).encode("utf-8")
+            zout.writestr(info, data)
+
+
+def empty_sheet_report(tmp_path: Path) -> dict[str, Any]:
+    workbook, manifest = make_empty_fixture(tmp_path)
+    return run_inspect(workbook, manifest)
+
+
+def test_empty_sheet_detected_with_empty_finding(tmp_path: Path) -> None:
+    report = empty_sheet_report(tmp_path)
+    assert report["summary"]["inspectionCompleted"] is True
+    assert "WORKBOOK_EMPTY_SHEET" in finding_codes(report)
+    sheet = report["sheets"][0]
+    assert sheet["nonEmptyCellCount"] == 0
+    assert sheet["formulaCellCount"] == 0
+
+
+def test_empty_sheet_has_no_scan_or_header_findings(tmp_path: Path) -> None:
+    codes = finding_codes(empty_sheet_report(tmp_path))
+    assert "WORKBOOK_SCAN_LIMIT_REACHED" not in codes
+    assert "WORKBOOK_HEADER_NOT_DETECTED" not in codes
+
+
+def test_empty_sheet_header_metadata(tmp_path: Path) -> None:
+    sheet = empty_sheet_report(tmp_path)["sheets"][0]
+    assert sheet["inferredHeaderRow"] is None
+    assert sheet["headerConfidence"] == "none"
+    assert sheet["headerCandidates"] == []
+    assert sheet["duplicateHeaderDigestCount"] == 0
+
+
+def test_empty_finding_contract_and_non_disclosure(tmp_path: Path) -> None:
+    report = empty_sheet_report(tmp_path)
+    empty_findings = [
+        finding for finding in report["findings"]
+        if finding["code"] == "WORKBOOK_EMPTY_SHEET"
+    ]
+    assert empty_findings and empty_findings[0]["severity"] == "WARNING"
+    assert empty_findings[0]["actualValue"] is None
+    serialized = inspect_excel.serialize_report(report)
+    assert "TEST-SHEET-EMPTY" not in serialized
+    assert WORKBOOK_NAME not in serialized
+    assert "c:\\" not in serialized.lower() and "c:/" not in serialized.lower()
+
+
+def _structural_empty_builder(feature: str) -> Any:
+    def _build(path: Path) -> None:
+        wb = openpyxl.Workbook()
+        wb.security = None
+        ws = wb.active
+        ws.title = "TEST-SHEET-EMPTY"
+        if feature == "comment":
+            ws["A1"].comment = Comment("TEST-COMMENT", "TEST-AUTHOR")
+        elif feature == "hyperlink":
+            ws["A1"].hyperlink = "urn:test:hyperlink-target"
+        elif feature == "validation":
+            validation = DataValidation(type="list", formula1='"TESTX"')
+            ws.add_data_validation(validation)
+            validation.add("A1")
+        elif feature == "table":
+            ws["A1"] = "TEST-T1"
+            ws["A2"] = None
+            ws.add_table(Table(displayName="TESTTABLE9", ref="A1:A2"))
+            ws["A1"] = None
+        elif feature == "merged":
+            ws.merge_cells("A1:B2")
+        wb.save(path)
+
+    return _build
+
+
+@pytest.mark.parametrize("feature", ["comment", "hyperlink", "validation", "merged"])
+def test_structural_feature_prevents_empty(tmp_path: Path, feature: str) -> None:
+    workbook, manifest = make_fixture(tmp_path, _structural_empty_builder(feature))
+    codes = finding_codes(run_inspect(workbook, manifest))
+    assert "WORKBOOK_EMPTY_SHEET" not in codes
+
+
+def test_table_prevents_empty(tmp_path: Path) -> None:
+    workbook, manifest = make_fixture(tmp_path, _structural_empty_builder("table"))
+    report = run_inspect(workbook, manifest)
+    assert report["sheets"][0]["tableCount"] == 1
+    assert "WORKBOOK_EMPTY_SHEET" not in finding_codes(report)
+
+
+def test_drawing_prevents_empty(tmp_path: Path) -> None:
+    base = tmp_path / "base"
+    (base / "files").mkdir(parents=True)
+    plain = base / "files" / "TEST-PLAIN.xlsx"
+    build_empty_sheet_workbook(plain)
+    workbook = base / "files" / WORKBOOK_NAME
+    rewrite_sheet_xml(
+        plain,
+        workbook,
+        lambda text: text.replace("</worksheet>", "<drawing/></worksheet>"),
+    )
+    manifest = write_valid_manifest(base, workbook)
+    report = run_inspect(workbook, manifest)
+    assert report["sheets"][0]["drawingCount"] == 1
+    assert "WORKBOOK_EMPTY_SHEET" not in finding_codes(report)
+
+
+def build_far_value_workbook(path: Path) -> None:
+    wb = openpyxl.Workbook()
+    wb.security = None
+    ws = wb.active
+    ws.title = "TEST-SHEET-FAR"
+    ws["E50"] = "TEST-FAR-VALUE"
+    wb.save(path)
+
+
+def test_truncated_budget_prevents_empty_verdict(tmp_path: Path) -> None:
+    workbook, manifest = make_fixture(tmp_path, build_far_value_workbook)
+    report = run_inspect(
+        workbook, manifest, max_rows_per_sheet=10, max_columns_per_sheet=3
+    )
+    codes = finding_codes(report)
+    assert "WORKBOOK_EMPTY_SHEET" not in codes
+    assert "WORKBOOK_SCAN_LIMIT_REACHED" in codes
+
+
+def build_sparse_row_workbook(path: Path) -> None:
+    wb = openpyxl.Workbook()
+    wb.security = None
+    ws = wb.active
+    ws.title = "TEST-SHEET-SPARSE-ROW"
+    ws["A3"] = "TEST-LONE-VALUE"
+    wb.save(path)
+
+
+def test_sparse_iterated_rows_do_not_trigger_scan_limit(tmp_path: Path) -> None:
+    # 실제 iterated row 수가 declared보다 작아도 Budget이 충분하면 Scan Limit이 없다.
+    workbook, manifest = make_fixture(tmp_path, build_sparse_row_workbook)
+    report = run_inspect(workbook, manifest)
+    codes = finding_codes(report)
+    assert "WORKBOOK_SCAN_LIMIT_REACHED" not in codes
+    assert "WORKBOOK_EMPTY_SHEET" not in codes
+
+
+def test_nonempty_header_not_detected_finding_kept(tmp_path: Path) -> None:
+    workbook, manifest = make_fixture(tmp_path, build_sparse_workbook)
+    codes = finding_codes(run_inspect(workbook, manifest))
+    assert "WORKBOOK_HEADER_NOT_DETECTED" in codes
+    assert "WORKBOOK_EMPTY_SHEET" not in codes
+
+
+def test_empty_report_bytes_deterministic(tmp_path: Path) -> None:
+    workbook, manifest = make_empty_fixture(tmp_path)
+    first = inspect_excel.serialize_report(run_inspect(workbook, manifest))
+    second = inspect_excel.serialize_report(run_inspect(workbook, manifest))
+    assert first.encode("utf-8") == second.encode("utf-8")
+
+
 # --- G. Local Source Base (ADR-0007 Amendment) ---
 
 

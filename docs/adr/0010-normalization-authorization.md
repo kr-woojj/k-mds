@@ -132,3 +132,15 @@ Actual Normalize는 Integration 완료 전 실행할 수 없다.
   `normalizationReady` Field를 수동 변경하지 않는다 — 수동 변경 시 Report
   Identity가 변경되므로 해당 Authorization은 무효가 된다.
 - Current Blocking Finding은 계속 새 Inspection Report로만 해소한다.
+
+### Empty Sheet Amendment (2026-08-13)
+
+- `WORKBOOK_EMPTY_SHEET`를 REVIEWABLE_CODES에 추가한다. Current Report에서
+  `accepted_for_reviewed_scope` 처분을 허용한다.
+- Empty Sheet의 Authorization Classification은 `metadata_or_readme` 또는
+  `excluded_non_data`만 허용한다. `data_table`·`code_list`·`normalize=true`로
+  승인하면 `EMPTY_SHEET_CLASSIFICATION_INVALID`로 실패한다.
+- 권고 reasonCode: `NO_NORMALIZABLE_RECORD_STRUCTURE`,
+  `EMPTY_SHEET_EXCLUDED_FROM_SCOPE`.
+- Empty Sheet가 존재해도 다른 data_table Sheet가 하나 이상 있으면
+  Actual Normalize Authorization은 가능하다.
