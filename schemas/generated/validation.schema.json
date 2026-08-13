@@ -81,7 +81,7 @@
           "$ref": "#/$defs/FindingDisposition"
         },
         "reasonCode": {
-          "minLength": 1,
+          "pattern": "^[A-Z][A-Z0-9_]{2,63}$",
           "title": "Reasoncode",
           "type": "string"
         },
@@ -238,7 +238,7 @@
           "type": "array"
         },
         "approvedOutputRootId": {
-          "minLength": 1,
+          "pattern": "^[A-Z][A-Z0-9_-]{2,63}$",
           "title": "Approvedoutputrootid",
           "type": "string"
         },
@@ -247,7 +247,7 @@
           "type": "boolean"
         },
         "inspectionReportId": {
-          "minLength": 1,
+          "pattern": "^[0-9a-f]{64}$",
           "title": "Inspectionreportid",
           "type": "string"
         },
@@ -287,6 +287,40 @@
       "title": "NormalizationAuthorization",
       "type": "object"
     },
+    "OutputRootBinding": {
+      "additionalProperties": false,
+      "description": "Logical Root ID를 실제 Restricted Path에 결합하는 Local Binding.\n\nActual Runtime에서는 Restricted Artifact이며 Public Repository에는\nModel과 Synthetic Fixture만 존재한다. root_path는 Validator 결과에\n복사하지 않는다.",
+      "properties": {
+        "rootId": {
+          "pattern": "^[A-Z][A-Z0-9_-]{2,63}$",
+          "title": "Rootid",
+          "type": "string"
+        },
+        "rootPath": {
+          "minLength": 1,
+          "title": "Rootpath",
+          "type": "string"
+        },
+        "storageClass": {
+          "const": "internal-restricted",
+          "title": "Storageclass",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "version",
+        "rootId",
+        "storageClass",
+        "rootPath"
+      ],
+      "title": "OutputRootBinding",
+      "type": "object"
+    },
     "ResultStatus": {
       "enum": [
         "PASS",
@@ -306,6 +340,7 @@
         "exclusionReasonCode": {
           "anyOf": [
             {
+              "pattern": "^[A-Z][A-Z0-9_]{2,63}$",
               "type": "string"
             },
             {
@@ -507,6 +542,9 @@
     },
     {
       "$ref": "#/$defs/NormalizationAuthorization"
+    },
+    {
+      "$ref": "#/$defs/OutputRootBinding"
     }
   ],
   "title": "k-mds Validation Contract Models"

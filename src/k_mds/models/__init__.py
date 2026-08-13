@@ -13,6 +13,7 @@ from k_mds.models.normalization_authorization import (
     FindingDisposition,
     HeaderConfidence,
     NormalizationAuthorization,
+    OutputRootBinding,
     SheetAuthorization,
     SheetClassification,
 )
@@ -55,6 +56,7 @@ __all__ = [
     "GovernanceStatus",
     "HeaderConfidence",
     "NormalizationAuthorization",
+    "OutputRootBinding",
     "ResultStatus",
     "SheetAuthorization",
     "SheetClassification",

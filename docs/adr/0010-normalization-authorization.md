@@ -68,3 +68,44 @@ Unknown Finding:
 - 법적 승인 Workflow 없음
 - 실제 Mapping 작성 없음
 - 실제 Normalize 실행 없음
+
+## Amendment (2026-08-13): Reviewed Input Binding
+
+- **Report Identity Binding**: `inspection_report_id`는 Inspection Report 원
+  Byte의 SHA-256 lowercase hex 64자다(`sha256:` Prefix 금지, Model Pattern 강제).
+  Validator는 `compute_inspection_report_id(report_bytes)`로 계산해 상수시간
+  비교하며(`INSPECTION_REPORT_ID_MISMATCH`), Dict 재직렬화 Digest를 사용하지
+  않는다. 실제 Digest는 Restricted이며 결과·Console에 복사하지 않는다.
+- **전체 Sheet Coverage**: Report Sheet Ordinal 집합과 Authorization Sheet
+  Ordinal 집합이 정확히 일치해야 한다(`SHEET_AUTHORIZATION_MISSING`/`_EXTRA`,
+  `REPORT_SHEET_ORDINAL_DUPLICATE`). 모든 Sheet(제외 Sheet 포함)가 반드시
+  분류된다.
+- **Finding 집합의 정확한 일치**: (code, sheetOrdinal) Key 기준으로 Report와
+  acknowledgedFindings가 정확히 일치해야 한다(`FINDING_AUTHORIZATION_MISSING`/
+  `_STALE`, `REPORT_FINDING_DUPLICATE`).
+- **Current Blocking Finding 정책 변경**: 현재 Report에 Blocking Finding이
+  존재하면 처분과 무관하게 실패한다(`CURRENT_REPORT_BLOCKING_FINDING`).
+  해소 절차는 Inspector 재실행 → 새 Report → 새 Identity → 새 Authorization이다.
+  `resolved` disposition은 Historical/외부 Workflow 기록용으로만 유지한다.
+- **Reviewable Finding**: 현재 Report에서는 `accepted_for_reviewed_scope`만
+  허용한다 (Stale Approval 방지).
+- **Controlled Reason Code**: reason_code·exclusion_reason_code는
+  `^[A-Z][A-Z0-9_]{2,63}$`, Logical Root ID는 `^[A-Z][A-Z0-9_-]{2,63}$` Pattern을
+  강제한다 (자유서술 Text·Path Separator 금지).
+- **OutputRootBinding**: Logical Root ID를 실제 Restricted Absolute Path에
+  결합하는 Local Binding Model(Public에는 Model·Synthetic Fixture만). Validator는
+  rootId 일치, resolve 후 Root 포함(Symlink 포함), Repository 내부는
+  data/normalized+Ignored만 허용, Tracked/Staged 출력 거부를 검증하며 실제
+  Path를 결과에 포함하지 않는다.
+
+### Normalizer Integration 요구사항 (후속 작업)
+
+향후 `normalize_compendium.py`는 Actual Normalize 전에 다음을 요구해야 한다.
+
+- Authorization File과 Output Root Binding File
+- Validator `valid=true`, `reportIdentityMatched=true`,
+  `sheetCoverageComplete=true`, `findingCoverageComplete=true`,
+  `outputRootAuthorized=true`
+- `authorizedSheetOrdinals`에 Mapping Spec의 Sheet가 포함됨
+
+Actual Normalize는 Integration 완료 전 실행할 수 없다.

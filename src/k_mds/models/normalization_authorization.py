@@ -9,10 +9,16 @@ Fixture만 포함한다. 실제 Sheet 이름, Header Text, Hash, Path 필드는 
 from __future__ import annotations
 
 from enum import StrEnum
+from pathlib import PurePosixPath, PureWindowsPath
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 from pydantic.alias_generators import to_camel
+
+#: Controlled Reason Code Pattern (자유서술 Text 금지, ADR-0010 Amendment)
+REASON_CODE_PATTERN = "^[A-Z][A-Z0-9_]{2,63}$"
+#: Logical Root ID Pattern (Path Separator 불허)
+ROOT_ID_PATTERN = "^[A-Z][A-Z0-9_-]{2,63}$"
 
 
 class SheetClassification(StrEnum):
@@ -52,7 +58,7 @@ class SheetAuthorization(_AuthorizationModel):
     header_row: int | None = Field(default=None, ge=1)
     header_confidence: HeaderConfidence
     medium_confidence_approved: bool = False
-    exclusion_reason_code: str | None = None
+    exclusion_reason_code: str | None = Field(default=None, pattern=REASON_CODE_PATTERN)
 
     @model_validator(mode="after")
     def _enforce_sheet_invariants(self) -> SheetAuthorization:
@@ -93,11 +99,34 @@ class SheetAuthorization(_AuthorizationModel):
         return self
 
 
+class OutputRootBinding(_AuthorizationModel):
+    """Logical Root ID를 실제 Restricted Path에 결합하는 Local Binding.
+
+    Actual Runtime에서는 Restricted Artifact이며 Public Repository에는
+    Model과 Synthetic Fixture만 존재한다. root_path는 Validator 결과에
+    복사하지 않는다.
+    """
+
+    version: int = Field(ge=1)
+    root_id: str = Field(pattern=ROOT_ID_PATTERN)
+    storage_class: Literal["internal-restricted"]
+    root_path: str = Field(min_length=1)
+
+    @field_validator("root_path")
+    @classmethod
+    def _require_absolute_path(cls, value: str) -> str:
+        if not (
+            PureWindowsPath(value).is_absolute() or PurePosixPath(value).is_absolute()
+        ):
+            raise ValueError("root_path는 Absolute Path여야 한다")
+        return value
+
+
 class FindingAuthorization(_AuthorizationModel):
     code: str = Field(min_length=1)
     sheet_ordinal: int | None = Field(default=None, ge=0)
     disposition: FindingDisposition
-    reason_code: str = Field(min_length=1)
+    reason_code: str = Field(pattern=REASON_CODE_PATTERN)
 
 
 class NormalizationAuthorization(_AuthorizationModel):
@@ -105,19 +134,17 @@ class NormalizationAuthorization(_AuthorizationModel):
 
     version: int = Field(ge=1)
     source_id: str = Field(min_length=1)
-    inspection_report_id: str = Field(min_length=1)
+    # Inspection Report 원 Byte의 SHA-256 lowercase hex (sha256: Prefix 금지)
+    inspection_report_id: str = Field(pattern="^[0-9a-f]{64}$")
     output_storage_class: Literal["internal-restricted"]
     # Logical ID만 허용한다 — 실제 Path는 별도 Local Runtime Binding으로 주입한다.
-    approved_output_root_id: str = Field(min_length=1)
+    approved_output_root_id: str = Field(pattern=ROOT_ID_PATTERN)
     sheets: list[SheetAuthorization] = Field(min_length=1)
     acknowledged_findings: list[FindingAuthorization] = Field(default_factory=list)
     human_review_completed: bool
 
     @model_validator(mode="after")
     def _enforce_authorization_invariants(self) -> NormalizationAuthorization:
-        if any(sep in self.approved_output_root_id for sep in ("/", "\\")):
-            raise ValueError("approved_output_root_id는 Path가 아닌 Logical ID여야 한다")
-
         ordinals = [sheet.sheet_ordinal for sheet in self.sheets]
         if len(ordinals) != len(set(ordinals)):
             raise ValueError("중복 sheet_ordinal은 허용되지 않는다")

@@ -111,6 +111,9 @@ def test_validation_schema_contains_normalization_authorization() -> None:
     props = properties_of(defs, "SheetAuthorization")
     assert "sheetOrdinal" in props
     assert "sheet_ordinal" not in props
+    assert "OutputRootBinding" in defs
+    binding_props = properties_of(defs, "OutputRootBinding")
+    assert "rootId" in binding_props and "root_id" not in binding_props
 
 
 def test_ontology_schema_contains_source_manifest_entry() -> None:

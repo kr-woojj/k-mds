@@ -42,6 +42,7 @@
 
 ### Fixed
 
+- Normalization Authorization Binding 보강(ADR-0010 Amendment) — Report 원 Byte SHA-256 Identity 결합, 전체 Sheet Coverage·Finding 집합 정확 일치, 현재 Report의 Blocking Finding 자기선언(resolved) 금지, Controlled Reason Code Pattern, `OutputRootBinding` Model과 Restricted 출력 경로 검증, Test 72건으로 확장 (2026-08-13)
 - Workbook Inspector Hardening(ADR-0007 Amendment) — `data/.gitignore`로 raw Restricted Artifact 차단, `--source-base-dir` 지원(Repository 외부 Local Restricted Manifest 검증), Strict pending Placeholder Contract 판별, XML Read Limit Skip Finding, External Link Metric 분리, Test 18건 추가 (2026-08-13)
 - `source_manifest_load` Manifest Parsing 보강(ADR-0006 Amendment) — YAML 중복 Key 거부(`MANIFEST_DUPLICATE_KEY`), Entry Contract·Hash Format을 파일 I/O 전에 검증, `SOURCE_HASH_FORMAT_INVALID`와 `SOURCE_HASH_MISMATCH` 분리, Test 23건 추가 (2026-08-13)
 - `schema_validate`·`schema_contract_check` Runtime 입력 경계 보강 — 비문자열 model_name/schema_name(None·list·dict·int)에서 예외를 전파하지 않고 `MODEL_NAME_NOT_STRING`/`SCHEMA_NAME_NOT_STRING` Finding의 SkillResult FAIL 반환, 입력값 비노출 (2026-08-13)

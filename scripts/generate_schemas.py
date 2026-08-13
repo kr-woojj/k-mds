@@ -28,6 +28,7 @@ from k_mds.models import (
     Evidence,
     GovernanceResult,
     NormalizationAuthorization,
+    OutputRootBinding,
     SkillResult,
     SourceManifest,
     SourceManifestEntry,
@@ -53,6 +54,7 @@ ValidationModels = (
     | Evidence
     | GovernanceResult
     | NormalizationAuthorization
+    | OutputRootBinding
 )
 
 
