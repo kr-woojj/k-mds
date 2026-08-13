@@ -5,7 +5,13 @@
 """
 
 from k_mds.skills.evidence_build import evidence_build
+from k_mds.skills.governance_assemble import governance_assemble
 from k_mds.skills.schema_contract_check import schema_contract_check
 from k_mds.skills.schema_validate import schema_validate
 
-__all__ = ["evidence_build", "schema_contract_check", "schema_validate"]
+__all__ = [
+    "evidence_build",
+    "governance_assemble",
+    "schema_contract_check",
+    "schema_validate",
+]
