@@ -12,3 +12,39 @@ raw/**/inspection-report*.json
 raw/**/*.local.json
 raw/**/source-manifest.local.yaml
 raw/**/source-manifest.*.local.yaml
+
+# Restricted normalized and derived artifacts (ADR-0008, Default Deny)
+normalized/**/*
+
+# Keep directories and explicit repository-controlled markers visible
+!normalized/**/
+!normalized/**/.gitkeep
+!normalized/**/DO_NOT_EDIT.md
+
+# Explicitly keep all local normalized outputs restricted (defense-in-depth)
+normalized/**/*.json
+normalized/**/*.jsonl
+normalized/**/*.csv
+normalized/**/*.tsv
+normalized/**/*.parquet
+normalized/**/*.arrow
+normalized/**/*.feather
+normalized/**/*.sqlite
+normalized/**/*.db
+normalized/**/*.xlsx
+normalized/**/*.xls
+normalized/**/*.xml
+normalized/**/*.yaml
+normalized/**/*.yml
+normalized/**/*.zip
+normalized/**/*.gz
+normalized/**/*.log
+normalized/**/*.txt
+
+# Restricted normalization reports and evidence
+normalized/**/normalization-report*
+normalized/**/normalization-findings*
+normalized/**/normalization-summary*
+normalized/**/mapping-evidence*
+normalized/**/rejected-records*
+normalized/**/*.local.*

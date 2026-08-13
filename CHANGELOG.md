@@ -6,6 +6,7 @@
 
 ### Added
 
+- Derived Data 공개 정책(ADR-0008) — IMO 파생 Normalize 산출물을 internal-restricted로 분류(공개 권한 미확인에 따른 Default Deny), `data/normalized` 생성물을 Git에서 기본 제외, 공개는 별도 승인과 별도 ADR 필요, Ignore 정책 Regression Test 5건 (2026-08-13)
 - Fail-closed Workbook Inspector(ADR-0007) — `scripts/inspect_excel.py`: Manifest Gate(verified/pending/invalid), ZIP Container Preflight(Macro·External Link·Embedded·ActiveX 기본 Fatal), read-only Structure/Header Digest Inventory, 결정론적 JSON Report(원문·이름·경로·Hash 비저장), Synthetic Fixture Test 50건 (runtime 의존성 openpyxl) (2026-08-13)
 - Source Manifest Loader(ADR-0006) — `source_manifest_load` Skill: Manifest 선언 SHA-256과 실제 파일 Hash의 Chunk 단위 검증, verified/status 입력 금지(Loader가 결정), 경로 이탈·Symlink 차단, `SourceManifest` 모델과 `source_hash` 64자 lowercase hex pattern 강제(runtime 의존성 PyYAML), Test 42건 (2026-08-13)
 - Final Governance Result Assembler(ADR-0005) — `governance_assemble` Skill: 명시된 Decision 정보와 evidence_build 결과만으로 GovernanceResult 조립(상태 비추론, Evidence dedup·충돌 검출, 실행 성공과 Decision 분리), Contract Test 41건 (2026-08-13)
