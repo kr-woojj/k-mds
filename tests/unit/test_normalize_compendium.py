@@ -675,6 +675,348 @@ def test_repository_root_not_exposed(tmp_path: Path) -> None:
     assert str(REPO_ROOT).lower() not in serialized.lower()
 
 
+def mutate_report_only(env: dict[str, Path], mutate: Any) -> None:
+    """Bundle 재생성 없이 Report만 변경한다 (fake Validator와 함께 Compatibility 검사용)."""
+    report = json.loads(env["report"].read_text(encoding="utf-8"))
+    mutate(report)
+    env["report"].write_text(inspect_excel.serialize_report(report), encoding="utf-8")
+
+
+def add_report_finding(code: str, path: str = "$.workbook") -> Any:
+    def _mutate(report: dict[str, Any]) -> None:
+        report["findings"].append(
+            {
+                "severity": "WARNING",
+                "code": code,
+                "message": "TEST",
+                "path": path,
+                "actualValue": None,
+            }
+        )
+        report["summary"]["normalizationReady"] = False
+
+    return _mutate
+
+
+# --- H. Authorization-aware Readiness ---
+
+
+def test_reviewable_finding_with_ready_false_succeeds(tmp_path: Path) -> None:
+    env = make_env(tmp_path)
+    mutate_report(env, add_report_finding("WORKBOOK_DECLARED_DIMENSION_EXCESSIVE"))
+    result = run_norm(env)
+    assert result["completed"] is True
+    # 실제 Inspection Finding Message·Count는 Artifact에 복사되지 않는다.
+    for name in ARTIFACT_NAMES:
+        text = (env["out"] / name).read_text(encoding="utf-8")
+        assert "WORKBOOK_DECLARED_DIMENSION_EXCESSIVE" not in text
+
+
+def test_reviewable_finding_with_ready_true_succeeds(tmp_path: Path) -> None:
+    env = make_env(tmp_path)
+
+    def _mutate(report: dict[str, Any]) -> None:
+        add_report_finding("WORKBOOK_DECLARED_DIMENSION_EXCESSIVE")(report)
+        report["summary"]["normalizationReady"] = True
+
+    mutate_report(env, _mutate)
+    assert run_norm(env)["completed"] is True
+
+
+def test_reviewable_remains_blocking_fails(tmp_path: Path) -> None:
+    env = make_env(tmp_path)
+    mutate_report(env, add_report_finding("WORKBOOK_DECLARED_DIMENSION_EXCESSIVE"))
+    write_bundle(
+        env,
+        auth_mutator=lambda auth: auth["acknowledgedFindings"][0].update(
+            disposition="remains_blocking"
+        ),
+    )
+    assert run_norm(env)["completed"] is False
+
+
+def test_reviewable_missing_authorization_fails(tmp_path: Path) -> None:
+    env = make_env(tmp_path)
+    mutate_report(env, add_report_finding("WORKBOOK_DECLARED_DIMENSION_EXCESSIVE"))
+    write_bundle(env, auth_mutator=lambda auth: auth.update(acknowledgedFindings=[]))
+    assert run_norm(env)["completed"] is False
+
+
+@pytest.mark.parametrize(
+    "disposition", ["resolved", "accepted_for_reviewed_scope", "remains_blocking"]
+)
+def test_blocking_finding_fails_for_any_disposition(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, disposition: str
+) -> None:
+    env = make_env(tmp_path)
+    mutate_report(env, add_report_finding("WORKBOOK_SCAN_LIMIT_REACHED"))
+    write_bundle(
+        env,
+        auth_mutator=lambda auth: auth["acknowledgedFindings"][0].update(
+            disposition=disposition
+        ),
+    )
+
+    def _manifest_boom(*args: Any, **kwargs: Any) -> Any:
+        raise AssertionError("Blocking 실패 시 source_manifest_load를 호출하면 안 된다")
+
+    def _write_boom(*args: Any, **kwargs: Any) -> None:
+        raise AssertionError("Blocking 실패 시 write_artifacts_atomic을 호출하면 안 된다")
+
+    monkeypatch.setattr(normalize_compendium, "source_manifest_load", _manifest_boom)
+    monkeypatch.setattr(normalize_compendium, "write_artifacts_atomic", _write_boom)
+    patch_workbook_boom(monkeypatch)
+    result = run_norm(env)
+    assert result["completed"] is False
+    assert list(env["out"].iterdir()) == []
+
+
+def test_ready_false_alone_does_not_block(tmp_path: Path) -> None:
+    env = make_env(tmp_path)
+    mutate_report(env, lambda r: r["summary"].update(normalizationReady=False))
+    assert run_norm(env)["completed"] is True
+
+
+def test_ready_true_does_not_override_validator(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    env = make_env(tmp_path)
+    mutate_report(env, lambda r: r["summary"].update(normalizationReady=True))
+    monkeypatch.setattr(
+        normalize_compendium,
+        "validate_authorization",
+        lambda **kwargs: fake_validator_result(valid=False),
+    )
+    assert run_norm(env)["completed"] is False
+
+
+def test_missing_ready_field_is_not_a_failure(tmp_path: Path) -> None:
+    env = make_env(tmp_path)
+    mutate_report(env, lambda r: r["summary"].pop("normalizationReady", None))
+    assert run_norm(env)["completed"] is True
+
+
+def test_wrong_type_ready_field_is_ignored(tmp_path: Path) -> None:
+    env = make_env(tmp_path)
+    mutate_report(env, lambda r: r["summary"].update(normalizationReady="TEST"))
+    assert run_norm(env)["completed"] is True
+
+
+# --- I. Sheet Ordinal Compatibility ---
+
+
+def test_non_contiguous_ordinals_succeed(tmp_path: Path) -> None:
+    env = make_env(tmp_path, extra_sheet=True)
+    mutate_report(env, lambda r: r["sheets"][1].update(sheetOrdinal=5))
+    assert run_norm(env)["completed"] is True
+
+
+def test_shuffled_sheet_list_order_succeeds(tmp_path: Path) -> None:
+    env = make_env(tmp_path, extra_sheet=True)
+
+    def _mutate(report: dict[str, Any]) -> None:
+        report["sheets"][1]["sheetOrdinal"] = 5
+        report["sheets"].reverse()
+
+    mutate_report(env, _mutate)
+    assert run_norm(env)["completed"] is True
+
+
+def test_ordinal_is_not_treated_as_list_index(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    env = make_env(tmp_path, extra_sheet=True)
+
+    def _mutate(report: dict[str, Any]) -> None:
+        # List 첫 항목은 ordinal 5·headerRow 3, ordinal 0은 List 뒤쪽에 있다.
+        report["sheets"][0]["sheetOrdinal"] = 5
+        report["sheets"][0]["inferredHeaderRow"] = 3
+        report["sheets"][1]["sheetOrdinal"] = 0
+
+    mutate_report_only(env, _mutate)
+    monkeypatch.setattr(
+        normalize_compendium,
+        "validate_authorization",
+        lambda **kwargs: fake_validator_result(authorizedSheetOrdinals=[0, 5]),
+    )
+    # ordinal 0의 headerRow는 1 — Index로 조회하면 ordinal 5(row 3)를 잘못 얻는다.
+    assert run_norm(env)["completed"] is True
+
+
+def test_mapping_ordinal_missing_in_report_fails(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    env = make_env(tmp_path, spec=default_spec(source_sheet_ordinal=7))
+    write_bundle(
+        env,
+        auth_mutator=lambda auth: auth["sheets"].append(
+            {
+                "sheetOrdinal": 7,
+                "classification": "data_table",
+                "normalize": True,
+                "headerRow": 1,
+                "headerConfidence": "high",
+                "mediumConfidenceApproved": False,
+                "exclusionReasonCode": None,
+            }
+        ),
+    )
+    monkeypatch.setattr(
+        normalize_compendium,
+        "validate_authorization",
+        lambda **kwargs: fake_validator_result(authorizedSheetOrdinals=[0, 7]),
+    )
+    result = run_norm(env)
+    assert result["completed"] is False
+    assert "INSPECTION_SHEET_OUT_OF_RANGE" in finding_codes(result)
+
+
+def _compat_env(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, mutate: Any
+) -> dict[str, Path]:
+    env = make_env(tmp_path)
+    mutate_report_only(env, mutate)
+    monkeypatch.setattr(
+        normalize_compendium,
+        "validate_authorization",
+        lambda **kwargs: fake_validator_result(),
+    )
+    return env
+
+
+def test_report_duplicate_ordinal_fails(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    env = _compat_env(
+        tmp_path,
+        monkeypatch,
+        lambda r: r["sheets"].append(dict(r["sheets"][0])),
+    )
+    result = run_norm(env)
+    assert result["completed"] is False
+    assert "INSPECTION_SHEET_ORDINAL_DUPLICATE" in finding_codes(result)
+
+
+def test_report_bool_ordinal_fails(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    env = _compat_env(
+        tmp_path, monkeypatch, lambda r: r["sheets"][0].update(sheetOrdinal=True)
+    )
+    result = run_norm(env)
+    assert "INSPECTION_SHEET_ORDINAL_INVALID" in finding_codes(result)
+
+
+def test_report_string_ordinal_fails(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    env = _compat_env(
+        tmp_path, monkeypatch, lambda r: r["sheets"][0].update(sheetOrdinal="TEST")
+    )
+    assert "INSPECTION_SHEET_ORDINAL_INVALID" in finding_codes(run_norm(env))
+
+
+def test_report_negative_ordinal_fails(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    env = _compat_env(
+        tmp_path, monkeypatch, lambda r: r["sheets"][0].update(sheetOrdinal=-1)
+    )
+    assert "INSPECTION_SHEET_ORDINAL_INVALID" in finding_codes(run_norm(env))
+
+
+def test_report_non_object_sheet_item_fails(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    env = _compat_env(
+        tmp_path, monkeypatch, lambda r: r["sheets"].append("TEST-NOT-A-SHEET")
+    )
+    result = run_norm(env)
+    assert result["completed"] is False
+    assert "INSPECTION_REPORT_INVALID" in finding_codes(result)
+
+
+def test_compat_header_mismatch_fails_and_blocks_workbook(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    env = make_env(tmp_path, spec=default_spec(header_row=3, first_data_row=4))
+    write_bundle(
+        env, auth_mutator=lambda auth: auth["sheets"][0].update(headerRow=3)
+    )
+    monkeypatch.setattr(
+        normalize_compendium,
+        "validate_authorization",
+        lambda **kwargs: fake_validator_result(),
+    )
+    patch_workbook_boom(monkeypatch)
+    result = run_norm(env)
+    assert result["completed"] is False
+    assert "INSPECTION_HEADER_MISMATCH" in finding_codes(result)
+
+
+# --- J. Console Count 비노출 ---
+
+
+FORBIDDEN_CONSOLE_TOKENS = (
+    "normalizedRecordCount",
+    "rejectedRecordCount",
+    "findingCount",
+    "sheetOrdinal",
+    "TEST-DATASET",
+    "TEST-SOURCE",
+    WORKBOOK_NAME,
+)
+
+
+def cli_argv(env: dict[str, Path]) -> list[str]:
+    return [
+        str(env["workbook"]),
+        "--manifest", str(env["manifest"]),
+        "--source-base-dir", str(env["base"]),
+        "--inspection-report", str(env["report"]),
+        "--authorization", str(env["auth"]),
+        "--output-root-binding", str(env["binding"]),
+        "--mapping-spec", str(env["spec"]),
+        "--output-dir", str(env["out"]),
+    ]
+
+
+def test_success_console_contract(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    env = make_env(tmp_path)
+    assert normalize_compendium.main(cli_argv(env)) == 0
+    out = capsys.readouterr().out
+    for token in FORBIDDEN_CONSOLE_TOKENS:
+        assert token not in out
+    assert "artifactSetCreated=True" in out
+    assert "humanReviewRequired=False" in out
+    assert str(tmp_path).lower() not in out.lower()
+
+
+def test_failure_console_contract(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    env = make_env(tmp_path)
+    env["auth"].unlink()
+    assert normalize_compendium.main(cli_argv(env)) == 1
+    out = capsys.readouterr().out
+    for token in FORBIDDEN_CONSOLE_TOKENS:
+        assert token not in out
+    assert "artifactSetCreated=False" in out
+    assert "humanReviewRequired=True" in out
+
+
+def test_rejected_rows_console_review_flag(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    env = type_env(tmp_path, None, "string", required=True)
+    assert normalize_compendium.main(cli_argv(env)) == 0
+    out = capsys.readouterr().out
+    assert "humanReviewRequired=True" in out
+    assert "rejectedRecordCount" not in out
+
+
 # --- G. Regression: Type·Row·Atomic·결정론 ---
 
 

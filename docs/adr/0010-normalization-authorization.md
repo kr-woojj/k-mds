@@ -122,3 +122,13 @@ Actual Normalize는 Integration 완료 전 실행할 수 없다.
   **Runtime Authorization Bundle**로 취급한다.
 - Binding 없이 실행한 Validator 결과(`outputRootAuthorized=false`)는 Analysis
   용도로만 사용할 수 있으며 실행 승인용이 아니다.
+
+### Readiness Amendment (2026-08-13)
+
+- `valid=true`와 필수 Flag 전체 true는 **authorizedNormalizationReady**를
+  의미한다 — Inspector의 기존 `normalizationReady`를 대체하는 Runtime
+  Execution Decision이다.
+- Inspector Report Byte는 수정하지 않는다. Reviewable Finding 승인 후에도
+  `normalizationReady` Field를 수동 변경하지 않는다 — 수동 변경 시 Report
+  Identity가 변경되므로 해당 Authorization은 무효가 된다.
+- Current Blocking Finding은 계속 새 Inspection Report로만 해소한다.

@@ -72,3 +72,21 @@
 - 기존 Normalizer 자체 Output Boundary는 Validator Binding 검증과 함께
   Defense-in-Depth로 유지된다 — 둘 다 통과해야 실행된다.
 - Authorization 및 Binding은 Restricted Artifact다.
+
+## Amendment (2026-08-13): Authorization-aware Readiness
+
+- Inspector의 `summary.normalizationReady`는 Authorization 통합 이전의
+  **Technical Hint**다. Authorization Integration 이후 최종 실행 승인값은
+  ADR-0010 Validator Result다.
+- Normalizer는 `summary.normalizationReady`를 독립 Gate로 재검사하지 않는다.
+  해당 Field가 없거나 bool이 아니어도 Compatibility Error가 아니며, Audit
+  Metadata로 Report에 보존될 뿐 Normalizer Output에 복사하지 않는다.
+- Current Blocking Finding은 Validator가 차단한다. Reviewable Finding은
+  `accepted_for_reviewed_scope` 승인 후 실행 가능하다.
+- Normalizer의 후속 Inspection 검사는 구조 Compatibility만 수행한다:
+  Report Version, summary·sheets 구조, sheetOrdinal(비-bool 정수·중복 금지),
+  Mapping Sheet 존재, Header Row 일치.
+- Sheet 조회는 List Index가 아니라 **sheetOrdinal Key** 기반이다.
+- 실제 Record Count는 internal-restricted Summary Artifact에만 저장하며
+  Console에 출력하지 않는다 (Console은 completed·classification·
+  artifactSetCreated·humanReviewRequired만 출력).

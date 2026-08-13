@@ -321,10 +321,17 @@ def _load_json_object(path: Path) -> dict[str, Any] | None:
     return raw if isinstance(raw, dict) else None
 
 
-def _check_inspection_gate(
+def _check_inspection_compatibility(
     report: dict[str, Any], spec: _MappingSpec
 ) -> list[dict[str, Any]]:
-    """Authorization Gate 이후의 호환성 방어 검사 (Confidence 자체 판단 없음)."""
+    """구조 Compatibility만 검사한다 (ADR-0009 Amendment).
+
+    normalizationReady·Header Confidence·Finding Severity·Scan Limit·Human
+    Review의 실행 승인 판단은 ADR-0010 Authorization Validator의 책임이다.
+    Inspector의 summary.normalizationReady는 Technical Hint(Audit Metadata)로만
+    보존하며 실행 조건으로 사용하지 않는다. Sheet는 List Index가 아니라
+    sheetOrdinal Key로 조회한다.
+    """
     if report.get("reportVersion") != SUPPORTED_REPORT_VERSION:
         return [
             _finding(
@@ -336,28 +343,61 @@ def _check_inspection_gate(
         return [
             _finding("ERROR", "INSPECTION_REPORT_INVALID", "Inspection Report summary가 없다")
         ]
-    if summary.get("normalizationReady") is not True:
-        return [
-            _finding(
-                "ERROR",
-                "INSPECTION_NOT_NORMALIZATION_READY",
-                "Inspection Report가 normalizationReady 상태가 아니다",
-                "$.inspectionReport.summary",
-            )
-        ]
     sheets = report.get("sheets")
-    sheets = sheets if isinstance(sheets, list) else []
-    if spec.source_sheet_ordinal >= len(sheets):
+    if not isinstance(sheets, list):
+        return [
+            _finding("ERROR", "INSPECTION_REPORT_INVALID", "Inspection Report sheets가 없다")
+        ]
+
+    findings: list[dict[str, Any]] = []
+    sheet_by_ordinal: dict[int, dict[str, Any]] = {}
+    for item in sheets:
+        if not isinstance(item, dict):
+            findings.append(
+                _finding(
+                    "ERROR",
+                    "INSPECTION_REPORT_INVALID",
+                    "Report Sheet Item은 Object여야 한다",
+                    "$.report.sheets",
+                )
+            )
+            continue
+        ordinal = item.get("sheetOrdinal")
+        if isinstance(ordinal, bool) or not isinstance(ordinal, int) or ordinal < 0:
+            findings.append(
+                _finding(
+                    "ERROR",
+                    "INSPECTION_SHEET_ORDINAL_INVALID",
+                    "Report sheetOrdinal은 0 이상의 정수여야 한다",
+                    "$.report.sheets",
+                )
+            )
+            continue
+        if ordinal in sheet_by_ordinal:
+            findings.append(
+                _finding(
+                    "ERROR",
+                    "INSPECTION_SHEET_ORDINAL_DUPLICATE",
+                    "Report sheetOrdinal이 중복된다",
+                    "$.report.sheets",
+                )
+            )
+            continue
+        sheet_by_ordinal[ordinal] = item
+    if findings:
+        return findings
+
+    sheet = sheet_by_ordinal.get(spec.source_sheet_ordinal)
+    if sheet is None:
         return [
             _finding(
                 "ERROR",
                 "INSPECTION_SHEET_OUT_OF_RANGE",
-                "Mapping Spec의 source_sheet_ordinal이 Report Sheet 범위를 벗어난다",
+                "Mapping Spec의 source_sheet_ordinal이 Report에 존재하지 않는다",
                 "$.mappingSpec.source_sheet_ordinal",
             )
         ]
-    sheet = sheets[spec.source_sheet_ordinal]
-    if not isinstance(sheet, dict) or sheet.get("inferredHeaderRow") != spec.header_row:
+    if sheet.get("inferredHeaderRow") != spec.header_row:
         return [
             _finding(
                 "ERROR",
@@ -607,7 +647,19 @@ def normalize_compendium(
                 )
             ]
         )
-    auth_model = NormalizationAuthorization.model_validate(authorization)
+    try:
+        auth_model = NormalizationAuthorization.model_validate(authorization)
+    except ValidationError:
+        return _failure(
+            [
+                _finding(
+                    "ERROR",
+                    "AUTHORIZATION_VALIDATION_FAILED",
+                    "Authorization 구조가 유효하지 않다",
+                    "$.authorization",
+                )
+            ]
+        )
     auth_sheet = next(
         (
             sheet
@@ -642,7 +694,7 @@ def normalize_compendium(
             ]
         )
 
-    inspection_findings = _check_inspection_gate(report, spec)
+    inspection_findings = _check_inspection_compatibility(report, spec)
     if inspection_findings:
         return _failure(inspection_findings)
     report_source_id = str(report.get("sourceId"))
@@ -853,19 +905,22 @@ def main(argv: list[str] | None = None) -> int:
         mapping_spec_path=args.mapping_spec,
         output_dir=args.output_dir,
     )
+    # Console에는 Count·ID·Path·Hash를 출력하지 않는다 (ADR-0009 Amendment).
+    # 실제 Count는 internal-restricted Summary Artifact에만 존재한다.
+    completed = result.get("completed") is True
     summary = result.get("summary")
     summary = summary if isinstance(summary, dict) else {}
-    findings_list = result.get("findings")
-    findings_list = findings_list if isinstance(findings_list, list) else []
+    human_review = (
+        bool(summary.get("humanReviewRequired", True)) if completed else True
+    )
     print(
         "[normalize] "
-        f"completed={result.get('completed')} "
-        f"normalizedRecordCount={summary.get('normalizedRecordCount', 0)} "
-        f"rejectedRecordCount={summary.get('rejectedRecordCount', 0)} "
-        f"findingCount={len(findings_list)} "
-        f"classification={result.get('classification')}"
+        f"completed={completed} "
+        f"classification={result.get('classification')} "
+        f"artifactSetCreated={completed} "
+        f"humanReviewRequired={human_review}"
     )
-    return 0 if result.get("completed") else 1
+    return 0 if completed else 1
 
 
 if __name__ == "__main__":
