@@ -44,12 +44,18 @@ def cmd_build() -> int:
     )
 
 
+def cmd_check_schemas() -> int:
+    """Pydantic 모델과 generated Schema 간 Drift 검사."""
+    return _run(["uv", "run", "python", str(REPO_ROOT / "scripts" / "check_schema_drift.py")])
+
+
 def cmd_validate() -> int:
-    """최종 Quality Gate: Ruff -> MyPy -> Pytest 순서로 실행, 최초 실패 Exit Code 반환."""
+    """최종 Quality Gate: Ruff -> MyPy -> Pytest -> Schema Drift, 최초 실패 Exit Code 반환."""
     steps: list[Callable[[], int]] = [
         lambda: _run(["uv", "run", "ruff", "check", "src", "tests", "scripts"]),
         lambda: _run(["uv", "run", "mypy"]),
         _run_pytest,
+        cmd_check_schemas,
     ]
     for step in steps:
         code = step()
@@ -75,6 +81,7 @@ COMMANDS: dict[str, Callable[[], int]] = {
     "build": cmd_build,
     "validate": cmd_validate,
     "test": cmd_test,
+    "check-schemas": cmd_check_schemas,
     "run-mcp": cmd_run_mcp,
 }
 

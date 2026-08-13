@@ -5,6 +5,8 @@
 - Alias 정책: validation은 camelCase(AGENTS.md §10), ontology는 snake_case
 - 결정성: timestamp·random 미사용, sort_keys=True, 항상 동일 출력
 
+Public Helper(generate_schema_documents, serialize_schema, generate_to)는
+check_schema_drift.py가 동일 생성 규칙을 재사용하기 위해 제공한다.
 출력 파일은 직접 수정하지 않는다 (schemas/generated/DO_NOT_EDIT.md 참조).
 """
 
@@ -44,15 +46,9 @@ def build_schema(adapter: TypeAdapter[Any], title: str) -> dict[str, Any]:
     return schema
 
 
-def write_schema(path: Path, schema: dict[str, Any]) -> None:
-    text = json.dumps(schema, ensure_ascii=False, indent=2, sort_keys=True)
-    with path.open("w", encoding="utf-8", newline="\n") as handle:
-        handle.write(text + "\n")
-
-
-def main() -> int:
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    targets: dict[str, dict[str, Any]] = {
+def generate_schema_documents() -> dict[str, dict[str, Any]]:
+    """파일명 -> JSON Schema 객체. 생성 규칙의 단일 정의다."""
+    return {
         "ontology.schema.json": build_schema(
             TypeAdapter(OntologyModels), "k-mds Core Ontology Models"
         ),
@@ -60,8 +56,30 @@ def main() -> int:
             TypeAdapter(ValidationModels), "k-mds Validation Contract Models"
         ),
     }
-    for filename, schema in targets.items():
-        write_schema(OUTPUT_DIR / filename, schema)
+
+
+def serialize_schema(schema: dict[str, Any]) -> str:
+    """결정론적 직렬화: UTF-8, indent=2, sort_keys, 마지막 newline 포함."""
+    return json.dumps(schema, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+
+
+def write_schema(path: Path, schema: dict[str, Any]) -> None:
+    with path.open("w", encoding="utf-8", newline="\n") as handle:
+        handle.write(serialize_schema(schema))
+
+
+def generate_to(output_dir: Path) -> list[str]:
+    """output_dir에 전체 Schema를 생성하고 파일명 목록을 반환한다."""
+    output_dir.mkdir(parents=True, exist_ok=True)
+    filenames: list[str] = []
+    for filename, schema in generate_schema_documents().items():
+        write_schema(output_dir / filename, schema)
+        filenames.append(filename)
+    return filenames
+
+
+def main() -> int:
+    for filename in generate_to(OUTPUT_DIR):
         print(f"[generate-schemas] schemas/generated/{filename}")
     return 0
 
