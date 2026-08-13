@@ -96,6 +96,84 @@ def test_ontology_forbidden_camel_property_returns_fail(tmp_path: Path) -> None:
     assert schema_contract_check("ontology", schema_dir=tmp_path).status is ResultStatus.FAIL
 
 
+# --- Runtime 입력 경계: schema_name 타입 (예외 비전파) ---
+
+INVALID_NAME_INPUTS: list[object] = [
+    None,
+    ["TEST-MARKER-LIST"],
+    {"key": "TEST-MARKER-DICT"},
+    42,
+]
+
+
+def _invalid_name_results() -> list[SkillResult]:
+    return [
+        schema_contract_check(item)  # type: ignore[arg-type]
+        for item in INVALID_NAME_INPUTS
+    ]
+
+
+def test_schema_name_none_fails() -> None:
+    result = schema_contract_check(None)  # type: ignore[arg-type]
+    assert result.status is ResultStatus.FAIL
+
+
+def test_schema_name_list_fails() -> None:
+    result = schema_contract_check([])  # type: ignore[arg-type]
+    assert result.status is ResultStatus.FAIL
+
+
+def test_schema_name_dict_fails() -> None:
+    result = schema_contract_check({})  # type: ignore[arg-type]
+    assert result.status is ResultStatus.FAIL
+
+
+def test_schema_name_int_fails() -> None:
+    result = schema_contract_check(42)  # type: ignore[arg-type]
+    assert result.status is ResultStatus.FAIL
+
+
+def test_invalid_schema_name_type_does_not_raise() -> None:
+    for item in INVALID_NAME_INPUTS:
+        result = schema_contract_check(item)  # type: ignore[arg-type]
+        assert isinstance(result, SkillResult)
+
+
+def test_invalid_schema_name_results_satisfy_fail_contract() -> None:
+    for result in _invalid_name_results():
+        assert result.status is ResultStatus.FAIL
+        assert result.human_review_required is True
+        assert len(result.errors) >= 1
+        assert result.evidence == []
+
+
+def test_invalid_schema_name_first_finding_contract() -> None:
+    for result in _invalid_name_results():
+        finding = result.errors[0]
+        assert finding.code == "SCHEMA_NAME_NOT_STRING"
+        assert finding.path == "$.schemaName"
+        assert finding.actual_value is None
+
+
+def test_invalid_schema_name_marker_not_exposed() -> None:
+    for result in _invalid_name_results():
+        dumped = result.model_dump_json(by_alias=True)
+        assert "TEST-MARKER-LIST" not in dumped
+        assert "TEST-MARKER-DICT" not in dumped
+        assert "builtins." not in dumped
+
+
+def test_supported_schemas_still_pass() -> None:
+    for name in ("validation", "ontology"):
+        assert schema_contract_check(name).status is ResultStatus.PASS
+
+
+def test_unsupported_string_schema_keeps_existing_code() -> None:
+    result = schema_contract_check("unknown-schema")
+    assert result.status is ResultStatus.FAIL
+    assert result.errors[0].code == "SCH_002"
+
+
 # --- 불변조건과 직렬화 ---
 
 

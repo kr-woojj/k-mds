@@ -35,6 +35,7 @@
 
 ### Fixed
 
+- `schema_validate`·`schema_contract_check` Runtime 입력 경계 보강 — 비문자열 model_name/schema_name(None·list·dict·int)에서 예외를 전파하지 않고 `MODEL_NAME_NOT_STRING`/`SCHEMA_NAME_NOT_STRING` Finding의 SkillResult FAIL 반환, 입력값 비노출 (2026-08-13)
 - `evidence_build` Runtime 입력 경계 보강 — str·None·list·int·임의 객체 입력에서 예외를 전파하지 않고 `SOURCE_ENTRY_NOT_OBJECT` Finding의 SkillResult FAIL 반환, 입력값 비노출 (2026-08-13)
 
 ### Changed

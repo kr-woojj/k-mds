@@ -41,7 +41,7 @@ def _finding(code: str, message: str, path: str | None = None) -> ValidationFind
     )
 
 
-def _data(schema_name: str, checked: list[str]) -> dict[str, Any]:
+def _data(schema_name: str | None, checked: list[str]) -> dict[str, Any]:
     return {
         "schemaName": schema_name,
         "validationLevel": VALIDATION_LEVEL,
@@ -49,7 +49,7 @@ def _data(schema_name: str, checked: list[str]) -> dict[str, Any]:
     }
 
 
-def _fail(schema_name: str, errors: list[ValidationFinding]) -> SkillResult:
+def _fail(schema_name: str | None, errors: list[ValidationFinding]) -> SkillResult:
     return SkillResult(
         status=ResultStatus.FAIL,
         human_review_required=True,
@@ -66,6 +66,20 @@ def schema_contract_check(
 
     schema_dir은 Test에서 의도적으로 다른 경로를 주입하기 위한 선택 파라미터다.
     """
+    if not isinstance(schema_name, str):
+        # 잘못된 Runtime 타입은 예외 전파 없이 FAIL로 변환한다.
+        # 입력값, repr, 타입 모듈 경로는 결과에 포함하지 않는다.
+        return _fail(
+            None,
+            [
+                _finding(
+                    "SCHEMA_NAME_NOT_STRING",
+                    "schema_name은 문자열이어야 한다",
+                    path="$.schemaName",
+                )
+            ],
+        )
+
     if schema_name not in _CONTRACTS:
         supported = ", ".join(sorted(_CONTRACTS))
         return _fail(

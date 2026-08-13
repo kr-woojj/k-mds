@@ -55,7 +55,7 @@ def _loc_to_path(loc: tuple[int | str, ...]) -> str:
     return "$." + ".".join(str(part) for part in loc)
 
 
-def _fail(model_name: str, errors: list[ValidationFinding]) -> SkillResult:
+def _fail(model_name: str | None, errors: list[ValidationFinding]) -> SkillResult:
     return SkillResult(
         status=ResultStatus.FAIL,
         human_review_required=True,
@@ -76,6 +76,20 @@ def schema_validate(payload: dict[str, object], model_name: str) -> SkillResult:
         return _fail(
             model_name,
             [_finding("PAYLOAD_NOT_OBJECT", "payload는 dict(JSON Object)여야 한다", path="$")],
+        )
+
+    if not isinstance(model_name, str):
+        # 잘못된 Runtime 타입은 예외 전파 없이 FAIL로 변환한다.
+        # 입력값, repr, 타입 모듈 경로는 결과에 포함하지 않는다.
+        return _fail(
+            None,
+            [
+                _finding(
+                    "MODEL_NAME_NOT_STRING",
+                    "model_name은 문자열이어야 한다",
+                    path="$.modelName",
+                )
+            ],
         )
 
     model_cls = _SUPPORTED_MODELS.get(model_name)

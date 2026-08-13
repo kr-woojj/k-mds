@@ -127,6 +127,83 @@ def test_non_dict_payload_fails() -> None:
     assert result.status is ResultStatus.FAIL
 
 
+# --- Runtime 입력 경계: model_name 타입 (예외 비전파) ---
+
+INVALID_NAME_INPUTS: list[object] = [
+    None,
+    ["TEST-MARKER-LIST"],
+    {"key": "TEST-MARKER-DICT"},
+    42,
+]
+
+
+def _invalid_name_results() -> list[SkillResult]:
+    return [
+        schema_validate(VALID_PAYLOADS["Dataset"], item)  # type: ignore[arg-type]
+        for item in INVALID_NAME_INPUTS
+    ]
+
+
+def test_model_name_none_fails() -> None:
+    result = schema_validate(VALID_PAYLOADS["Dataset"], None)  # type: ignore[arg-type]
+    assert result.status is ResultStatus.FAIL
+
+
+def test_model_name_list_fails() -> None:
+    result = schema_validate(VALID_PAYLOADS["Dataset"], [])  # type: ignore[arg-type]
+    assert result.status is ResultStatus.FAIL
+
+
+def test_model_name_dict_fails() -> None:
+    result = schema_validate(VALID_PAYLOADS["Dataset"], {})  # type: ignore[arg-type]
+    assert result.status is ResultStatus.FAIL
+
+
+def test_model_name_int_fails() -> None:
+    result = schema_validate(VALID_PAYLOADS["Dataset"], 42)  # type: ignore[arg-type]
+    assert result.status is ResultStatus.FAIL
+
+
+def test_invalid_model_name_type_does_not_raise() -> None:
+    for item in INVALID_NAME_INPUTS:
+        result = schema_validate(VALID_PAYLOADS["Dataset"], item)  # type: ignore[arg-type]
+        assert isinstance(result, SkillResult)
+
+
+def test_invalid_model_name_results_satisfy_fail_contract() -> None:
+    for result in _invalid_name_results():
+        assert result.status is ResultStatus.FAIL
+        assert result.human_review_required is True
+        assert len(result.errors) >= 1
+        assert result.evidence == []
+
+
+def test_invalid_model_name_first_finding_contract() -> None:
+    for result in _invalid_name_results():
+        finding = result.errors[0]
+        assert finding.code == "MODEL_NAME_NOT_STRING"
+        assert finding.path == "$.modelName"
+        assert finding.actual_value is None
+
+
+def test_invalid_model_name_marker_not_exposed() -> None:
+    for result in _invalid_name_results():
+        dumped = result.model_dump_json(by_alias=True)
+        assert "TEST-MARKER-LIST" not in dumped
+        assert "TEST-MARKER-DICT" not in dumped
+        assert "builtins." not in dumped
+
+
+def test_supported_model_still_passes() -> None:
+    assert schema_validate(VALID_PAYLOADS["Dataset"], "Dataset").status is ResultStatus.PASS
+
+
+def test_unsupported_string_model_keeps_existing_code() -> None:
+    result = schema_validate({}, "UnknownModel")
+    assert result.status is ResultStatus.FAIL
+    assert result.errors[0].code == "UNSUPPORTED_MODEL_NAME"
+
+
 # --- 불변조건 (지시 Test 16~17) ---
 
 
