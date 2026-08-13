@@ -1,0 +1,14 @@
+# Restricted raw source artifacts (실제 원본은 Git에 포함하지 않는다)
+raw/**/*
+
+# Keep repository-controlled manifest and directory markers visible
+!raw/**/
+!raw/**/source-manifest.yaml
+!raw/**/.gitkeep
+
+# Local inspection reports are restricted derived metadata
+raw/**/inspection-result*.json
+raw/**/inspection-report*.json
+raw/**/*.local.json
+raw/**/source-manifest.local.yaml
+raw/**/source-manifest.*.local.yaml

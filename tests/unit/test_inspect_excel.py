@@ -665,13 +665,14 @@ def test_cli_output_write_succeeds(tmp_path: Path) -> None:
 
 def test_output_conflict_with_workbook_rejected(tmp_path: Path) -> None:
     workbook, manifest = make_fixture(tmp_path)
+    before = sha256_of_file(workbook)
     argv = [
         str(workbook), "--manifest", str(manifest),
         "--max-rows-per-sheet", "50", "--max-columns-per-sheet", "20",
         "--output", str(workbook),
     ]
     assert inspect_excel.main(argv) == 1
-    assert sha256_of_file(workbook) == sha256_of_file(workbook)
+    assert sha256_of_file(workbook) == before
 
 
 def test_output_conflict_with_manifest_rejected(tmp_path: Path) -> None:
@@ -691,6 +692,259 @@ def test_failure_keeps_workbook_unchanged(tmp_path: Path) -> None:
     before = sha256_of_file(workbook)
     run_inspect(workbook, manifest, max_rows_per_sheet=0)
     assert sha256_of_file(workbook) == before
+
+
+# --- G. Local Source Base (ADR-0007 Amendment) ---
+
+
+def make_external_fixture(tmp_path: Path) -> tuple[Path, Path, Path]:
+    """Repository 외부(다른 폴더)의 Manifest + 별도 Source Base 구조."""
+    base = tmp_path / "sourcebase"
+    (base / "files").mkdir(parents=True)
+    workbook = base / "files" / WORKBOOK_NAME
+    build_normal_workbook(workbook)
+    external = tmp_path / "external"
+    external.mkdir()
+    manifest = external / "source-manifest.local.yaml"
+    manifest.write_text(
+        yaml.safe_dump(
+            {
+                "version": 1,
+                "sources": [
+                    {
+                        "source_id": "TEST-SOURCE-001",
+                        "fal_version": "FALTEST",
+                        "ontology_version": "0.0.0-test",
+                        "profile_version": "kr-profile-0.0.0-test",
+                        "source_file": f"files/{WORKBOOK_NAME}",
+                        "source_hash": sha256_of_file(workbook),
+                        "resource_uri": "urn:test:source:001",
+                    }
+                ],
+            },
+            allow_unicode=True,
+        ),
+        encoding="utf-8",
+    )
+    return workbook, manifest, base
+
+
+def test_external_manifest_with_source_base_dir_passes(tmp_path: Path) -> None:
+    workbook, manifest, base = make_external_fixture(tmp_path)
+    report = inspect_excel.inspect_workbook(
+        workbook, manifest_path=manifest, source_base_dir=base, options=make_options()
+    )
+    assert report["summary"]["inspectionCompleted"] is True
+    assert report["provenanceVerified"] is True
+    assert report["manifestStatus"] == "verified"
+    assert report["sourceId"] == "TEST-SOURCE-001"
+
+
+def test_source_base_defaults_to_manifest_parent(tmp_path: Path) -> None:
+    workbook, manifest = make_fixture(tmp_path)
+    report = inspect_excel.inspect_workbook(
+        workbook, manifest_path=manifest, source_base_dir=None, options=make_options()
+    )
+    assert report["manifestStatus"] == "verified"
+
+
+def test_source_base_dir_not_path_fails(tmp_path: Path) -> None:
+    workbook, manifest = make_fixture(tmp_path)
+    report = inspect_excel.inspect_workbook(
+        workbook,
+        manifest_path=manifest,
+        source_base_dir="TEST-MARKER-BASE",  # type: ignore[arg-type]
+        options=make_options(),
+    )
+    assert report["summary"]["inspectionCompleted"] is False
+    assert "SOURCE_BASE_DIR_NOT_PATH" in finding_codes(report)
+
+
+def test_source_base_dir_missing_fails(tmp_path: Path) -> None:
+    workbook, manifest = make_fixture(tmp_path)
+    report = inspect_excel.inspect_workbook(
+        workbook,
+        manifest_path=manifest,
+        source_base_dir=tmp_path / "TEST-MISSING-BASE",
+        options=make_options(),
+    )
+    assert report["summary"]["inspectionCompleted"] is False
+    assert "SOURCE_BASE_DIR_NOT_FOUND" in finding_codes(report)
+
+
+def test_workbook_outside_source_base_fails(tmp_path: Path) -> None:
+    workbook, manifest, base = make_external_fixture(tmp_path)
+    outside = tmp_path / "outside" / WORKBOOK_NAME
+    outside.parent.mkdir()
+    outside.write_bytes(workbook.read_bytes())
+    report = inspect_excel.inspect_workbook(
+        outside, manifest_path=manifest, source_base_dir=base, options=make_options()
+    )
+    assert report["summary"]["inspectionCompleted"] is False
+    assert "WORKBOOK_OUTSIDE_SOURCE_BASE" in finding_codes(report)
+
+
+def test_source_base_failures_do_not_expose_paths(tmp_path: Path) -> None:
+    workbook, manifest = make_fixture(tmp_path)
+    failures = [
+        inspect_excel.inspect_workbook(
+            workbook,
+            manifest_path=manifest,
+            source_base_dir="TEST-MARKER-BASE",  # type: ignore[arg-type]
+            options=make_options(),
+        ),
+        inspect_excel.inspect_workbook(
+            workbook,
+            manifest_path=manifest,
+            source_base_dir=tmp_path / "TEST-MISSING-BASE",
+            options=make_options(),
+        ),
+    ]
+    for report in failures:
+        serialized = inspect_excel.serialize_report(report)
+        assert "TEST-MARKER-BASE" not in serialized
+        assert "TEST-MISSING-BASE" not in serialized
+        assert str(tmp_path).lower() not in serialized.lower()
+        for finding in report["findings"]:
+            assert finding["actualValue"] is None
+
+
+def test_local_manifest_values_not_exposed_in_verified_report(tmp_path: Path) -> None:
+    workbook, manifest, base = make_external_fixture(tmp_path)
+    report = inspect_excel.inspect_workbook(
+        workbook, manifest_path=manifest, source_base_dir=base, options=make_options()
+    )
+    serialized = inspect_excel.serialize_report(report)
+    assert sha256_of_file(workbook) not in serialized
+    assert WORKBOOK_NAME not in serialized
+
+
+# --- H. Strict Pending Detection (ADR-0007 Amendment) ---
+
+
+PENDING_PLACEHOLDER = (
+    "standard:\n  fal_version: FALTEST\n  status: pending_source\n"
+    "files: []\ningestion:\n  status: pending_source\n"
+)
+
+
+def _pending_fixture(tmp_path: Path, manifest_text: str) -> tuple[Path, Path]:
+    base = tmp_path / "base"
+    (base / "files").mkdir(parents=True)
+    workbook = base / "files" / WORKBOOK_NAME
+    build_normal_workbook(workbook)
+    manifest = base / "source-manifest.yaml"
+    manifest.write_text(manifest_text, encoding="utf-8")
+    return workbook, manifest
+
+
+def test_exact_placeholder_is_pending(tmp_path: Path) -> None:
+    workbook, manifest = _pending_fixture(tmp_path, PENDING_PLACEHOLDER)
+    report = run_inspect(workbook, manifest, allow_pending_manifest=True)
+    assert report["manifestStatus"] == "pending"
+    assert report["summary"]["inspectionCompleted"] is True
+
+
+def test_placeholder_with_duplicate_key_is_invalid(tmp_path: Path) -> None:
+    workbook, manifest = _pending_fixture(tmp_path, PENDING_PLACEHOLDER + "files: []\n")
+    report = run_inspect(workbook, manifest, allow_pending_manifest=True)
+    assert report["manifestStatus"] == "invalid"
+    assert report["summary"]["inspectionCompleted"] is False
+
+
+def test_placeholder_with_extra_root_field_is_invalid(tmp_path: Path) -> None:
+    workbook, manifest = _pending_fixture(
+        tmp_path, PENDING_PLACEHOLDER + "unexpected_field: TEST\n"
+    )
+    report = run_inspect(workbook, manifest, allow_pending_manifest=True)
+    assert report["manifestStatus"] == "invalid"
+
+
+def test_placeholder_with_nonempty_files_is_invalid(tmp_path: Path) -> None:
+    text = PENDING_PLACEHOLDER.replace("files: []", 'files: ["TEST-FILE"]')
+    workbook, manifest = _pending_fixture(tmp_path, text)
+    report = run_inspect(workbook, manifest, allow_pending_manifest=True)
+    assert report["manifestStatus"] == "invalid"
+
+
+def test_comment_only_pending_marker_is_invalid(tmp_path: Path) -> None:
+    workbook, manifest = _pending_fixture(
+        tmp_path, "version: 1\nsources: []\n# pending_source\n"
+    )
+    report = run_inspect(workbook, manifest, allow_pending_manifest=True)
+    assert report["manifestStatus"] == "invalid"
+
+
+def test_string_only_pending_marker_is_invalid(tmp_path: Path) -> None:
+    workbook, manifest = _pending_fixture(
+        tmp_path, "standard:\n  status: TEST\nnote: pending_source\n"
+    )
+    report = run_inspect(workbook, manifest, allow_pending_manifest=True)
+    assert report["manifestStatus"] == "invalid"
+
+
+def test_invalid_pending_skips_zip_preflight(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    workbook, manifest = _pending_fixture(tmp_path, PENDING_PLACEHOLDER + "files: []\n")
+
+    def _must_not_run(path: Path, options: object) -> tuple[dict[str, Any], list[Any], bool]:
+        raise AssertionError("invalid Manifest에서 ZIP Preflight를 호출하면 안 된다")
+
+    monkeypatch.setattr(inspect_excel, "_inspect_zip_container", _must_not_run)
+    report = run_inspect(workbook, manifest, allow_pending_manifest=True)
+    assert report["summary"]["inspectionCompleted"] is False
+
+
+# --- I. XML Skip 및 External Link Metric (ADR-0007 Amendment) ---
+
+
+def test_xml_read_limit_skip_finding(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    workbook, manifest = make_fixture(tmp_path)
+    monkeypatch.setattr(inspect_excel, "_SHEET_XML_READ_LIMIT", 1)
+    report = run_inspect(workbook, manifest)
+    assert report["summary"]["inspectionCompleted"] is True
+    assert "WORKBOOK_XML_PART_SCAN_SKIPPED" in finding_codes(report)
+    assert report["workbook"]["unsupportedFeatureCount"] > 0
+    assert report["summary"]["humanReviewRequired"] is True
+
+
+def test_fail_on_unsupported_feature_exit(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    workbook, manifest = make_fixture(tmp_path)
+    monkeypatch.setattr(inspect_excel, "_SHEET_XML_READ_LIMIT", 1)
+    output = tmp_path / "report.local.json"
+    argv = [
+        str(workbook), "--manifest", str(manifest),
+        "--max-rows-per-sheet", "50", "--max-columns-per-sheet", "20",
+        "--output", str(output), "--fail-on-unsupported-feature",
+    ]
+    assert inspect_excel.main(argv) == 1
+
+
+def test_external_link_metrics_are_separated(tmp_path: Path) -> None:
+    workbook, manifest = _tampered_fixture(
+        tmp_path, "xl/externalLinks/externalLink1.xml", b"<externalLink/>"
+    )
+    report = run_inspect(workbook, manifest, fail_on_external_links=False)
+    container = report["zipContainer"]
+    assert container["externalLinkDetected"] is True
+    assert container["externalLinkPartCount"] == 1
+    assert container["externalLinkRelationshipCount"] == 0
+    assert report["summary"]["inspectionCompleted"] is True
+    assert report["workbook"]["externalLinkPartCount"] == 1
+
+
+def test_smoke_option_synthetic_determinism(tmp_path: Path) -> None:
+    workbook, manifest = make_fixture(tmp_path)
+    first = inspect_excel.serialize_report(
+        run_inspect(workbook, manifest, max_rows_per_sheet=5000, max_columns_per_sheet=200)
+    )
+    second = inspect_excel.serialize_report(
+        run_inspect(workbook, manifest, max_rows_per_sheet=5000, max_columns_per_sheet=200)
+    )
+    assert first.encode("utf-8") == second.encode("utf-8")
 
 
 def test_failure_findings_contract(tmp_path: Path) -> None:

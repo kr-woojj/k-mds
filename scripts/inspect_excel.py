@@ -28,6 +28,9 @@ import yaml
 from k_mds.models import ResultStatus
 from k_mds.skills import source_manifest_load
 
+# 중복 Key를 거부하는 Strict SafeLoader를 Loader 구현과 공유한다 (ADR-0006).
+from k_mds.skills.source_manifest_load import _StrictSafeLoader
+
 REPORT_VERSION = 1
 _HEADER_SCAN_DEPTH = 10
 _SHEET_XML_READ_LIMIT = 100 * 1024 * 1024
@@ -103,15 +106,44 @@ def _error_report(
 
 # --- Manifest Gate ---
 
+_PENDING_REQUIRED_ROOT_KEYS = {"standard", "files", "ingestion"}
+_PENDING_ALLOWED_ROOT_KEYS = {"standard", "source", "files", "ingestion"}
+
+
+def _is_pending_placeholder(text: str) -> bool:
+    """정확한 pending_source Placeholder Contract만 pending으로 인정한다.
+
+    Comment나 임의 문자열의 pending_source Marker는 pending이 아니다.
+    Duplicate Key와 Root Extra Field는 invalid로 처리된다.
+    """
+    try:
+        raw = yaml.load(text, Loader=_StrictSafeLoader)  # noqa: S506 — SafeLoader 기반
+    except yaml.YAMLError:
+        return False
+    if not isinstance(raw, dict):
+        return False
+    keys = set(raw)
+    if not _PENDING_REQUIRED_ROOT_KEYS <= keys or not keys <= _PENDING_ALLOWED_ROOT_KEYS:
+        return False
+    if raw.get("files") != []:
+        return False
+    standard = raw.get("standard")
+    ingestion = raw.get("ingestion")
+    if not isinstance(standard, dict) or standard.get("status") != "pending_source":
+        return False
+    if not isinstance(ingestion, dict) or ingestion.get("status") != "pending_source":
+        return False
+    return True
+
 
 def _detect_manifest_state(
-    manifest_path: Path, workbook_path: Path
+    manifest_path: Path, workbook_path: Path, base_dir: Path | None
 ) -> tuple[str, str | None, list[dict[str, Any]]]:
     """Manifest 상태를 verified / pending / invalid로 분류한다."""
-    result = source_manifest_load(manifest_path)
+    result = source_manifest_load(manifest_path, base_dir=base_dir)
     if result.status is ResultStatus.PASS:
         target = workbook_path.resolve()
-        base = manifest_path.resolve().parent
+        base = (base_dir if base_dir is not None else manifest_path.parent).resolve()
         for source in result.data["sources"]:
             if (base / str(source["source_file"])).resolve() == target:
                 return "verified", str(source["source_id"]), []
@@ -130,11 +162,9 @@ def _detect_manifest_state(
 
     try:
         text = manifest_path.read_text(encoding="utf-8")
-        raw = yaml.safe_load(text)
-    except (OSError, UnicodeDecodeError, yaml.YAMLError):
-        raw = None
+    except (OSError, UnicodeDecodeError):
         text = ""
-    if isinstance(raw, dict) and "sources" not in raw and "pending_source" in text:
+    if text and _is_pending_placeholder(text):
         return "pending", None, []
 
     findings = [
@@ -204,9 +234,11 @@ def _inspect_zip_container(
             or "macroEnabled" in content_types
             or "vbaProject" in workbook_rels
         )
-        external_link_count = _count_prefix(names, "xl/externalLinks/") + (
-            1 if "externalLink" in workbook_rels else 0
+        external_link_part_count = _count_prefix(names, "xl/externalLinks/")
+        external_link_rel_count = len(
+            re.findall(r'Type="[^"]*/externalLink"', workbook_rels)
         )
+        external_link_detected = bool(external_link_part_count or external_link_rel_count)
         embedded_count = _count_prefix(names, "xl/embeddings/") + sum(
             1 for name in names if "oleObject" in name
         )
@@ -232,7 +264,9 @@ def _inspect_zip_container(
         "compressionRatio": round(total_uncompressed / max(total_compressed, 1), 4),
         "encryptedEntryCount": encrypted_count,
         "macroDetected": macro_detected,
-        "externalLinkPartCount": external_link_count,
+        "externalLinkDetected": external_link_detected,
+        "externalLinkPartCount": external_link_part_count,
+        "externalLinkRelationshipCount": external_link_rel_count,
         "embeddedObjectPartCount": embedded_count,
         "activeXPartCount": activex_count,
         "customXmlPartCount": custom_xml_count,
@@ -290,7 +324,7 @@ def _inspect_zip_container(
             )
         )
         fatal = fatal or options.fail_on_macros
-    if external_link_count:
+    if external_link_detected:
         severity = "ERROR" if options.fail_on_external_links else "WARNING"
         findings.append(
             _build_finding(
@@ -348,23 +382,38 @@ def _inspect_zip_container(
 # --- Sheet 구조 보조 Metadata (ZIP XML Token Count) ---
 
 
-def _read_zip_text(archive: zipfile.ZipFile, name: str) -> str:
+def _read_zip_text(archive: zipfile.ZipFile, name: str) -> str | None:
+    """Part 내용을 읽는다. 부재는 ""(정상), Read Limit 초과는 None(Skip)으로 구분한다."""
     try:
         info = archive.getinfo(name)
     except KeyError:
         return ""
     if info.file_size > _SHEET_XML_READ_LIMIT:
-        return ""
+        return None
     return archive.read(name).decode("utf-8", "ignore")
 
 
 def _collect_structure(path: Path) -> dict[str, Any]:
-    """workbook.xml과 Sheet XML에서 구조 Count만 추출한다 (값·이름 미저장)."""
+    """workbook.xml과 Sheet XML에서 구조 Count만 추출한다 (값·이름 미저장).
+
+    Read Limit를 초과한 Part는 빈 값으로 위장하지 않고 skippedPartCount로
+    집계한다 (Silent Undercount 방지).
+    """
+    skipped_parts = 0
+
+    def _read_or_skip(archive: zipfile.ZipFile, name: str) -> str:
+        nonlocal skipped_parts
+        text = _read_zip_text(archive, name)
+        if text is None:
+            skipped_parts += 1
+            return ""
+        return text
+
     with zipfile.ZipFile(path) as archive:
-        workbook_xml = _read_zip_text(archive, "xl/workbook.xml")
-        rels_xml = _read_zip_text(archive, "xl/_rels/workbook.xml.rels")
-        core_xml = _read_zip_text(archive, "docProps/core.xml")
-        app_xml = _read_zip_text(archive, "docProps/app.xml")
+        workbook_xml = _read_or_skip(archive, "xl/workbook.xml")
+        rels_xml = _read_or_skip(archive, "xl/_rels/workbook.xml.rels")
+        core_xml = _read_or_skip(archive, "docProps/core.xml")
+        app_xml = _read_or_skip(archive, "docProps/app.xml")
 
         rel_targets: dict[str, str] = {}
         for rel_tag_match in re.finditer(r"<Relationship\b[^>]*>", rels_xml):
@@ -391,12 +440,12 @@ def _collect_structure(path: Path) -> dict[str, Any]:
 
         per_sheet: list[dict[str, int | bool]] = []
         for part in sheet_parts:
-            sheet_xml = _read_zip_text(archive, part) if part else ""
+            sheet_xml = _read_or_skip(archive, part) if part else ""
             rels_name = ""
             if part:
                 parent, _, base_name = part.rpartition("/")
                 rels_name = f"{parent}/_rels/{base_name}.rels"
-            sheet_rels = _read_zip_text(archive, rels_name) if rels_name else ""
+            sheet_rels = _read_or_skip(archive, rels_name) if rels_name else ""
             per_sheet.append(
                 {
                     "mergedRangeCount": len(re.findall(r"<mergeCell\b", sheet_xml)),
@@ -431,6 +480,7 @@ def _collect_structure(path: Path) -> dict[str, Any]:
     return {
         "sheetStates": sheet_states,
         "perSheet": per_sheet,
+        "skippedPartCount": skipped_parts,
         "definedNameCount": len(re.findall(r"<definedName\b", workbook_xml)),
         "hasWorkbookProtection": "<workbookProtection" in workbook_xml,
         "dateSystem": "1904" if 'date1904="1"' in workbook_xml else "1900",
@@ -677,9 +727,14 @@ def inspect_workbook(
     path: Path,
     *,
     manifest_path: Path,
+    source_base_dir: Path | None = None,
     options: InspectionOptions,
 ) -> dict[str, Any]:
-    """Workbook을 read-only로 검사하고 결정론적 Report Dict를 반환한다."""
+    """Workbook을 read-only로 검사하고 결정론적 Report Dict를 반환한다.
+
+    source_base_dir가 None이면 manifest_path.parent를 Source Base로 사용한다.
+    지정된 경우 Loader의 base_dir로 전달되며 Report에는 포함하지 않는다.
+    """
     if not isinstance(path, Path):
         return _error_report(
             [_build_finding("ERROR", "WORKBOOK_PATH_NOT_PATH", "workbook path는 Path여야 한다")]
@@ -687,6 +742,17 @@ def inspect_workbook(
     if not isinstance(manifest_path, Path):
         return _error_report(
             [_build_finding("ERROR", "MANIFEST_PATH_NOT_PATH", "manifest path는 Path여야 한다")]
+        )
+    if source_base_dir is not None and not isinstance(source_base_dir, Path):
+        return _error_report(
+            [
+                _build_finding(
+                    "ERROR",
+                    "SOURCE_BASE_DIR_NOT_PATH",
+                    "source_base_dir는 Path여야 한다",
+                    "$.sourceBaseDir",
+                )
+            ]
         )
     if options.max_rows_per_sheet <= 0 or options.max_columns_per_sheet <= 0:
         return _error_report(
@@ -711,8 +777,33 @@ def inspect_workbook(
         return _error_report(
             [_build_finding("ERROR", "MANIFEST_FILE_NOT_FOUND", "Manifest 파일이 존재하지 않는다")]
         )
+    if source_base_dir is not None:
+        if not source_base_dir.is_dir():
+            return _error_report(
+                [
+                    _build_finding(
+                        "ERROR",
+                        "SOURCE_BASE_DIR_NOT_FOUND",
+                        "source_base_dir가 존재하는 Directory가 아니다",
+                        "$.sourceBaseDir",
+                    )
+                ]
+            )
+        if not path.resolve().is_relative_to(source_base_dir.resolve()):
+            return _error_report(
+                [
+                    _build_finding(
+                        "ERROR",
+                        "WORKBOOK_OUTSIDE_SOURCE_BASE",
+                        "Workbook이 source_base_dir 아래에 있지 않다",
+                        "$.sourceBaseDir",
+                    )
+                ]
+            )
 
-    manifest_status, source_id, gate_findings = _detect_manifest_state(manifest_path, path)
+    manifest_status, source_id, gate_findings = _detect_manifest_state(
+        manifest_path, path, source_base_dir
+    )
     if manifest_status == "invalid":
         return _error_report(gate_findings, manifest_status="invalid")
     if manifest_status == "pending" and not options.allow_pending_manifest:
@@ -744,6 +835,16 @@ def inspect_workbook(
         return report
 
     structure = _collect_structure(path)
+    skipped_part_count = int(structure["skippedPartCount"])
+    if skipped_part_count:
+        findings.append(
+            _build_finding(
+                "WARNING",
+                "WORKBOOK_XML_PART_SCAN_SKIPPED",
+                "Read Limit를 초과한 XML Part의 구조 Count를 생략했다",
+                "$.workbook",
+            )
+        )
 
     try:
         workbook = openpyxl.load_workbook(
@@ -830,7 +931,11 @@ def inspect_workbook(
         "hiddenSheetCount": hidden_count,
         "veryHiddenSheetCount": very_hidden_count,
         "definedNameCount": structure["definedNameCount"],
-        "externalLinkCount": zip_metadata.get("externalLinkPartCount", 0),
+        "externalLinkDetected": zip_metadata.get("externalLinkDetected", False),
+        "externalLinkPartCount": zip_metadata.get("externalLinkPartCount", 0),
+        "externalLinkRelationshipCount": zip_metadata.get(
+            "externalLinkRelationshipCount", 0
+        ),
         "formulaCellCount": formula_total,
         "mergedRangeCount": sum(int(item["mergedRangeCount"]) for item in per_sheet),
         "hiddenRowCount": sum(int(item["hiddenRowCount"]) for item in per_sheet),
@@ -847,7 +952,7 @@ def inspect_workbook(
         "macroDetected": zip_metadata.get("macroDetected", False),
         "hasWorkbookProtection": structure["hasWorkbookProtection"],
         "hasSheetProtection": has_sheet_protection,
-        "unsupportedFeatureCount": 0,
+        "unsupportedFeatureCount": skipped_part_count,
         "documentPropertiesPresent": structure["documentPropertiesPresent"],
         "dateSystem": structure["dateSystem"],
         "calculationMode": structure["calculationMode"],
@@ -912,6 +1017,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("workbook", type=Path)
     parser.add_argument("--manifest", type=Path, required=True)
+    parser.add_argument("--source-base-dir", type=Path, default=None)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--allow-pending-manifest", action="store_true", default=False)
     parser.add_argument("--max-rows-per-sheet", type=int, required=True)
@@ -948,7 +1054,12 @@ def main(argv: list[str] | None = None) -> int:
         print("[inspect] output path에 쓸 수 없다 (OUTPUT_WRITE_FAILED)")
         return 1
 
-    report = inspect_workbook(args.workbook, manifest_path=args.manifest, options=options)
+    report = inspect_workbook(
+        args.workbook,
+        manifest_path=args.manifest,
+        source_base_dir=args.source_base_dir,
+        options=options,
+    )
 
     try:
         write_report(args.output, report)

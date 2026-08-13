@@ -43,6 +43,27 @@
 - Macro Analysis 또는 실행 없음
 - External Link Content Retrieval 없음
 
+## Amendment (2026-08-13): Local Restricted Manifest 분리와 Inspector Hardening
+
+- Public Placeholder(`data/raw/FAL50/source-manifest.yaml`, pending_source)와
+  Local Restricted Manifest(Repository 외부, 실제 filename·SHA-256 포함)를
+  분리한다. Local Manifest는 Git에 추적·Stage·Commit·Push하지 않으며 CI에서
+  사용하지 않는다. `data/.gitignore`가 raw 하위 Restricted Artifact를 차단한다.
+- Inspector에 `--source-base-dir`(Library: `source_base_dir`)를 추가했다.
+  미지정 시 manifest parent를 사용하고, 지정 시 Loader의 base_dir로 전달한다.
+  Workbook은 resolved source_base_dir 아래에 있어야 하며
+  (`WORKBOOK_OUTSIDE_SOURCE_BASE`), base 경로는 Report에 포함하지 않는다.
+- Pending 판별을 문자열 포함 방식에서 정확한 Placeholder Contract 검증으로
+  강화했다: Strict SafeLoader(중복 Key 거부), Root Extra Field 거부,
+  `files == []`, `standard.status`·`ingestion.status`가 정확히
+  `pending_source`인 경우에만 pending이다. invalid는 Override로 우회할 수 없다.
+- XML Part가 Read Limit를 초과하면 빈 값으로 위장하지 않고
+  `WORKBOOK_XML_PART_SCAN_SKIPPED` Finding과 `unsupportedFeatureCount`로
+  집계한다 (`--fail-on-unsupported-feature`로 Fatal 전환 가능).
+- External Link Metric을 분리했다: `externalLinkDetected`(bool),
+  `externalLinkPartCount`, `externalLinkRelationshipCount`. 이 값들은 ZIP
+  Container에서 파생된 Detection Count이며 Logical Link 수를 의미하지 않는다.
+
 ## Risk Register
 
 - ZIP Bomb Hard Limit는 별도 운영정책으로 결정한다 (현재 Compression Ratio
