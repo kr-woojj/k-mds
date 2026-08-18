@@ -25,6 +25,7 @@ from typing import Any
 from pydantic import ValidationError
 
 from k_mds.models import (
+    DrawingReviewCategory,
     FindingDisposition,
     NormalizationAuthorization,
     OutputRootBinding,
@@ -49,16 +50,30 @@ REVIEWABLE_CODES = {
     "WORKBOOK_DRAWING_ONLY_SHEET",
 }
 
-#: Non-tabular Sheet에 허용되는 Authorization Classification (ADR-0010 Amendment)
-_NON_TABULAR_ALLOWED_CLASSIFICATIONS = (
-    SheetClassification.METADATA_OR_README,
-    SheetClassification.EXCLUDED_NON_DATA,
-)
+#: Non-tabular Finding Code -> (허용 Classification, 위반 Error Code)
+#: Drawing-only Sheet는 model_reference 분류를 추가로 허용한다 (ADR-0010 Amendment).
+_NON_TABULAR_SHEET_POLICY: dict[str, tuple[tuple[SheetClassification, ...], str]] = {
+    "WORKBOOK_EMPTY_SHEET": (
+        (
+            SheetClassification.METADATA_OR_README,
+            SheetClassification.EXCLUDED_NON_DATA,
+        ),
+        "EMPTY_SHEET_CLASSIFICATION_INVALID",
+    ),
+    "WORKBOOK_DRAWING_ONLY_SHEET": (
+        (
+            SheetClassification.METADATA_OR_README,
+            SheetClassification.EXCLUDED_NON_DATA,
+            SheetClassification.MODEL_REFERENCE,
+        ),
+        "DRAWING_ONLY_SHEET_CLASSIFICATION_INVALID",
+    ),
+}
 
-#: Non-tabular Finding Code -> Classification 위반 Error Code
-_NON_TABULAR_SHEET_CODES = {
-    "WORKBOOK_EMPTY_SHEET": "EMPTY_SHEET_CLASSIFICATION_INVALID",
-    "WORKBOOK_DRAWING_ONLY_SHEET": "DRAWING_ONLY_SHEET_CLASSIFICATION_INVALID",
+#: 비-Model Drawing 해소 Category -> 허용 Sheet Classification (Category Matrix)
+_NON_MODEL_RESOLUTION_CLASSIFICATIONS = {
+    DrawingReviewCategory.DOCUMENTATION: SheetClassification.METADATA_OR_README,
+    DrawingReviewCategory.OUT_OF_SCOPE_VISUAL: SheetClassification.EXCLUDED_NON_DATA,
 }
 
 _ARTIFACT_PROBE = "normalization-summary.local.json"
@@ -492,10 +507,10 @@ def validate_authorization(
             )
         )
 
-    # Non-tabular Sheet(Empty·Drawing-only)는 metadata_or_readme 또는
-    # excluded_non_data로만 분류할 수 있다.
+    # Non-tabular Sheet(Empty·Drawing-only)는 허용된 Classification으로만
+    # 분류할 수 있다 (Drawing-only는 model_reference 추가 허용).
     auth_sheet_by_ordinal = {sheet.sheet_ordinal: sheet for sheet in auth.sheets}
-    for code, error_code in sorted(_NON_TABULAR_SHEET_CODES.items()):
+    for code, (allowed, error_code) in sorted(_NON_TABULAR_SHEET_POLICY.items()):
         for ordinal in sorted(
             item_ordinal
             for item_code, item_ordinal in report_keys
@@ -503,17 +518,151 @@ def validate_authorization(
         ):
             non_tabular_sheet = auth_sheet_by_ordinal.get(ordinal)
             if non_tabular_sheet is not None and (
-                non_tabular_sheet.classification
-                not in _NON_TABULAR_ALLOWED_CLASSIFICATIONS
+                non_tabular_sheet.classification not in allowed
             ):
                 findings.append(
                     _finding(
                         error_code,
-                        f"Non-tabular Sheet(sheetOrdinal {ordinal})는 metadata_or_readme "
-                        "또는 excluded_non_data로만 분류할 수 있다",
+                        f"Non-tabular Sheet(sheetOrdinal {ordinal})는 허용된 "
+                        "Classification으로만 분류할 수 있다",
                         f"$.authorization.sheets.{ordinal}",
                     )
                 )
+
+    # --- Model Reference Authorization (ADR-0010 Amendment) ---
+    # Drawing-only Sheet의 Drawing 의미는 Restricted Review가 결정하며, 그 결과를
+    # model_reference_reviews로 선언해야 한다. 단순 Drawing-only Sheet를 자동으로
+    # model_reference 또는 excluded로 닫지 않는다 (fail-closed).
+    drawing_only_ordinals = sorted(
+        {
+            item_ordinal
+            for item_code, item_ordinal in report_keys
+            if item_code == "WORKBOOK_DRAWING_ONLY_SHEET" and item_ordinal is not None
+        }
+    )
+    review_by_ordinal = {
+        review.sheet_ordinal: review for review in auth.model_reference_reviews
+    }
+    for stale_ordinal in sorted(set(review_by_ordinal) - set(drawing_only_ordinals)):
+        findings.append(
+            _finding(
+                "MODEL_REFERENCE_CLASSIFICATION_INVALID",
+                f"sheetOrdinal {stale_ordinal}의 Model Reference Review가 현재 "
+                "Report의 Drawing-only Finding과 결합되지 않는다",
+                "$.authorization.modelReferenceReviews",
+            )
+        )
+    for sheet in auth.sheets:
+        if sheet.classification is not SheetClassification.MODEL_REFERENCE:
+            continue
+        ordinal = sheet.sheet_ordinal
+        sheet_path = f"$.authorization.sheets.{ordinal}"
+        if ordinal not in drawing_only_ordinals:
+            findings.append(
+                _finding(
+                    "MODEL_REFERENCE_CLASSIFICATION_INVALID",
+                    "WORKBOOK_DRAWING_ONLY_SHEET Finding이 있는 Sheet만 "
+                    "model_reference로 분류할 수 있다",
+                    sheet_path,
+                )
+            )
+            continue
+        review = review_by_ordinal.get(ordinal)
+        if review is None:
+            findings.append(
+                _finding(
+                    "MODEL_REFERENCE_REVIEW_REQUIRED",
+                    "model_reference Sheet는 완료된 Model Reference Review가 필요하다",
+                    sheet_path,
+                )
+            )
+            continue
+        if (
+            review.drawing_review_category
+            is not DrawingReviewCategory.IMO_COMPENDIUM_MODEL_REFERENCE
+        ):
+            findings.append(
+                _finding(
+                    "MODEL_REFERENCE_CLASSIFICATION_INVALID",
+                    "Drawing Review Category가 imo_compendium_model_reference인 "
+                    "경우에만 model_reference로 승인할 수 있다",
+                    sheet_path,
+                )
+            )
+            continue
+        if not review.completed:
+            findings.append(
+                _finding(
+                    "MODEL_REFERENCE_REVIEW_REQUIRED",
+                    "Model Reference Review가 완료되지 않았다",
+                    sheet_path,
+                )
+            )
+        if not review.reference_model_alignment_approved:
+            findings.append(
+                _finding(
+                    "REFERENCE_MODEL_ALIGNMENT_NOT_APPROVED",
+                    "Reference Model Alignment가 승인되지 않았다",
+                    sheet_path,
+                )
+            )
+        if not review.model_reference_scope_approved:
+            findings.append(
+                _finding(
+                    "MODEL_REFERENCE_SCOPE_NOT_APPROVED",
+                    "Model Reference 활용 범위가 승인되지 않았다",
+                    sheet_path,
+                )
+            )
+        if not review.model_reference_reviewer_recorded:
+            findings.append(
+                _finding(
+                    "MODEL_REFERENCE_REVIEWER_NOT_RECORDED",
+                    "Model Reference Reviewer 역할이 기록되지 않았다",
+                    sheet_path,
+                )
+            )
+        # Evidence Reference와 외부 검증 Assertion을 분리한다. Public Validator는
+        # 외부 Audit System Connector가 없으므로 기술적 확인 주장(true)을
+        # 표현할 수 없다.
+        if (
+            review.evidence_reference_id is None
+            or not review.external_verification_asserted
+            or review.external_verification_technically_confirmed
+        ):
+            findings.append(
+                _finding(
+                    "MODEL_REFERENCE_REVIEW_EVIDENCE_NOT_VERIFIED",
+                    "Model Reference Review Evidence Reference와 외부 검증 "
+                    "Assertion이 유효하지 않다",
+                    sheet_path,
+                )
+            )
+    for ordinal in drawing_only_ordinals:
+        drawing_sheet = auth_sheet_by_ordinal.get(ordinal)
+        if drawing_sheet is None or drawing_sheet.classification not in (
+            SheetClassification.METADATA_OR_README,
+            SheetClassification.EXCLUDED_NON_DATA,
+        ):
+            continue
+        review = review_by_ordinal.get(ordinal)
+        resolved_non_model = (
+            review is not None
+            and review.completed
+            and _NON_MODEL_RESOLUTION_CLASSIFICATIONS.get(
+                review.drawing_review_category
+            )
+            is drawing_sheet.classification
+        )
+        if not resolved_non_model:
+            findings.append(
+                _finding(
+                    "MODEL_REFERENCE_AUTHORIZATION_CLASSIFICATION_UNRESOLVED",
+                    f"sheetOrdinal {ordinal}의 Drawing-only Sheet는 Model Reference "
+                    "여부가 해소되지 않았다 — 완료된 Drawing Review 해소가 필요하다",
+                    f"$.authorization.sheets.{ordinal}",
+                )
+            )
 
     report_key_set = set(report_keys)
     for _stale_key in sorted(

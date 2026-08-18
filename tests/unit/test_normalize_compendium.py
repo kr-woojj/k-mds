@@ -121,6 +121,30 @@ def build_authorization(report: dict[str, Any], report_bytes: bytes) -> dict[str
         }
         for finding in report.get("findings", [])
     ]
+    # ADR-0010 Amendment: Drawing-only Sheet는 완료된 Drawing Review 해소
+    # 선언이 있어야 excluded_non_data로 닫을 수 있다.
+    reviews = [
+        {
+            "sheetOrdinal": ordinal,
+            "drawingReviewCategory": "out_of_scope_visual",
+            "completed": True,
+            "referenceModelAlignmentApproved": False,
+            "modelReferenceScopeApproved": False,
+            "modelReferenceReviewerRecorded": False,
+            "evidenceReferenceId": None,
+            "externalVerificationAsserted": False,
+            "externalVerificationTechnicallyConfirmed": False,
+        }
+        for ordinal in sorted(
+            ordinal
+            for ordinal in {
+                authz_module._sheet_ordinal_from_path(finding.get("path"))
+                for finding in report.get("findings", [])
+                if finding.get("code") == "WORKBOOK_DRAWING_ONLY_SHEET"
+            }
+            if ordinal is not None
+        )
+    ]
     return {
         "version": 1,
         "sourceId": report.get("sourceId"),
@@ -129,6 +153,7 @@ def build_authorization(report: dict[str, Any], report_bytes: bytes) -> dict[str
         "approvedOutputRootId": "TEST-RESTRICTED-ROOT-001",
         "sheets": sheets,
         "acknowledgedFindings": acks,
+        "modelReferenceReviews": reviews,
         "humanReviewCompleted": True,
     }
 
@@ -1338,3 +1363,99 @@ def test_failure_findings_and_console_contract(
     assert WORKBOOK_NAME not in out
     assert str(tmp_path).lower() not in out.lower()
     assert "internal-restricted" in out
+
+
+# --- H. Model Reference Authorization Regression (ADR-0010 Amendment) ---
+# 실제 UML 내용·Class·Attribute·Association·Drawing Target·Image 이름은
+# 사용하지 않는다. Drawing은 빈 <drawing/> Node뿐인 Synthetic Fixture다.
+
+
+def upgrade_to_model_reference(auth: dict[str, Any], gates: bool = True) -> None:
+    for sheet in auth["sheets"]:
+        if sheet["sheetOrdinal"] == 1:
+            sheet["classification"] = "model_reference"
+            sheet["exclusionReasonCode"] = None
+    auth["modelReferenceReviews"] = [
+        {
+            "sheetOrdinal": 1,
+            "drawingReviewCategory": "imo_compendium_model_reference",
+            "completed": gates,
+            "referenceModelAlignmentApproved": gates,
+            "modelReferenceScopeApproved": gates,
+            "modelReferenceReviewerRecorded": gates,
+            "evidenceReferenceId": (
+                "TEST-MODEL-REVIEW-EVIDENCE-001" if gates else None
+            ),
+            "externalVerificationAsserted": gates,
+            "externalVerificationTechnicallyConfirmed": False,
+        }
+    ]
+
+
+def make_model_reference_env(tmp_path: Path, **kwargs: Any) -> dict[str, Path]:
+    env = make_drawing_only_env(tmp_path, **kwargs)
+    write_bundle(env, auth_mutator=upgrade_to_model_reference)
+    return env
+
+
+def test_model_reference_bundle_normalizes_data_table(tmp_path: Path) -> None:
+    env = make_model_reference_env(tmp_path)
+    result = run_norm(env)
+    assert result["completed"] is True
+    # Output Record는 Mapping Spec의 data_table Sheet(0)에서만 생성된다.
+    assert result["summary"]["normalizedRecordCount"] == 2
+
+
+def test_model_reference_sheet_as_mapping_target_fails(tmp_path: Path) -> None:
+    env = make_model_reference_env(
+        tmp_path, spec=default_spec(source_sheet_ordinal=1)
+    )
+    result = run_norm(env)
+    assert result["completed"] is False
+    assert "MAPPING_SHEET_NOT_AUTHORIZED" in finding_codes(result)
+
+
+def test_model_reference_review_incomplete_blocks_workbook(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    env = make_drawing_only_env(tmp_path)
+    write_bundle(
+        env, auth_mutator=lambda auth: upgrade_to_model_reference(auth, gates=False)
+    )
+    patch_workbook_boom(monkeypatch)
+    assert run_norm(env)["completed"] is False
+
+
+def test_model_reference_artifacts_have_no_review_metadata(tmp_path: Path) -> None:
+    env = make_model_reference_env(tmp_path)
+    run_norm(env)
+    for name in ARTIFACT_NAMES:
+        text = (env["out"] / name).read_text(encoding="utf-8")
+        assert "WORKBOOK_DRAWING_ONLY_SHEET" not in text
+        assert "model_reference" not in text
+        assert "modelReferenceReviews" not in text
+        assert "imo_compendium_model_reference" not in text
+        assert "drawingReviewCategory" not in text
+        assert "TEST-MODEL-REVIEW-EVIDENCE" not in text
+
+
+def test_model_reference_artifact_bytes_deterministic(tmp_path: Path) -> None:
+    env_a = make_model_reference_env(tmp_path / "a")
+    env_b = make_model_reference_env(tmp_path / "b")
+    run_norm(env_a)
+    run_norm(env_b)
+    for name in ARTIFACT_NAMES:
+        assert (env_a["out"] / name).read_bytes() == (env_b["out"] / name).read_bytes()
+
+
+def test_model_reference_console_contract(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    env = make_model_reference_env(tmp_path)
+    assert normalize_compendium.main(cli_argv(env)) == 0
+    out = capsys.readouterr().out
+    for token in FORBIDDEN_CONSOLE_TOKENS:
+        assert token not in out
+    assert "imo_compendium_model_reference" not in out
+    assert "TEST-MODEL-REVIEW-EVIDENCE" not in out
+    assert str(tmp_path).lower() not in out.lower()

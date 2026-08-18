@@ -160,3 +160,68 @@ Actual Normalize는 Integration 완료 전 실행할 수 없다.
   가능하다.
 - Drawing의 실제 의미 확인은 Restricted Human Review의 책임이며 Validator는
   구조 정합성만 강제한다.
+
+## Model Reference Authorization (Amendment 2026-08-18)
+
+Restricted Review에서 Drawing-only Sheet의 Drawing이 IMO Compendium Reference
+Model의 UML 구조로 확인되었다. 기존 Classification(metadata_or_readme,
+excluded_non_data)은 이 자산을 잘못 축소할 위험이 있어 신규 Classification을
+추가한다.
+
+- 신규 Classification: **model_reference** — Mapping·Semantic Review의 참조
+  자산이며 직접 Record Mapping 대상이 아니다.
+- Model 불변조건: `normalize=false`, `headerRow=null`, `headerConfidence=none`,
+  `mediumConfidenceApproved=false`, `exclusionReasonCode=null` 필수.
+- model_reference Sheet는 data_table 또는 code_list Mapping 대상이 아니며
+  Validator 결과의 `authorizedSheetOrdinals`에서 제외된다.
+- WORKBOOK_DRAWING_ONLY_SHEET Finding Exact Match는 유지된다 — 해당 Finding이
+  있는 Sheet만 model_reference로 분류할 수 있다.
+- Authorization은 `modelReferenceReviews`(sheetOrdinal 결합)로 Restricted
+  Drawing Review 결과를 선언한다. model_reference 승인 조건:
+  - `drawingReviewCategory=imo_compendium_model_reference` (documentation·
+    out_of_scope_visual·separate_visual_review_required·undecided로는 승인 불가)
+  - `completed=true`, `referenceModelAlignmentApproved=true`,
+    `modelReferenceScopeApproved=true`, `modelReferenceReviewerRecorded=true`
+  - Evidence Reference(Logical ID)와 외부 검증 Assertion 필요
+- Model Reference Review 미완료 시 Final Authorization(Validator `valid=true`)은
+  실패한다.
+- Drawing-only Sheet를 metadata_or_readme 또는 excluded_non_data로 닫으려면
+  완료된 비-Model 해소 선언(documentation→metadata_or_readme,
+  out_of_scope_visual→excluded_non_data)이 필요하다. 해소 선언이 없거나
+  Category가 imo_compendium_model_reference인데 다른 Classification이면
+  `MODEL_REFERENCE_AUTHORIZATION_CLASSIFICATION_UNRESOLVED`로 실패한다
+  (자동 model_reference 승인 금지, 자동 강등 금지 — fail-closed).
+- Mapping Reference Sheet가 있어도 승인된 data_table Sheet가 하나 이상 있으면
+  Final Authorization이 가능하다. model_reference만 있고 data_table이 없으면
+  Normalize Authorization은 실패한다(`NO_NORMALIZE_TARGET_SHEET`).
+- UML Content·Sheet 이름·Drawing Target·Image 이름은 Authorization·Validator
+  결과·Finding Message에 복사하지 않는다. 모든 신규 실패 Finding은
+  `actualValue=null`이다.
+- 실패 Code: `MODEL_REFERENCE_CLASSIFICATION_INVALID`,
+  `MODEL_REFERENCE_REVIEW_REQUIRED`, `REFERENCE_MODEL_ALIGNMENT_NOT_APPROVED`,
+  `MODEL_REFERENCE_SCOPE_NOT_APPROVED`, `MODEL_REFERENCE_REVIEWER_NOT_RECORDED`,
+  `MODEL_REFERENCE_REVIEW_EVIDENCE_NOT_VERIFIED`,
+  `MODEL_REFERENCE_AUTHORIZATION_CLASSIFICATION_UNRESOLVED`.
+
+### External Evidence 경계
+
+- Public Authorization Validator는 외부 Audit System을 조회하지 않는다.
+  따라서 `externallyVerified=true`를 실제 기술 검증으로 표현하지 않는다.
+- Evidence 상태를 세 가지로 분리한다: Evidence Reference 유효성
+  (`evidenceReferenceId` Logical ID), 외부 검증 Assertion
+  (`externalVerificationAsserted` — 승인 주체의 선언), 기술적 확인
+  (`externalVerificationTechnicallyConfirmed` — 외부 Connector의 실제 확인).
+- 외부 Connector가 없는 현재 Contract에서는
+  `externalVerificationTechnicallyConfirmed=false`만 유효하다 — true로
+  선언하면 Validator가 거부하며, 어떤 경로로도 자동으로 true를 만들지 않는다.
+- 기관 정책상 Human Assertion(`externalVerificationAsserted=true` + Logical
+  Evidence ID)을 Gate 통과 조건으로 허용한다. Assertion의 실재 확인은 내부
+  Audit Workflow의 책임이며, 기술적 확인은 외부 Connector 도입 시 별도
+  Amendment로 전환한다.
+
+### Non-goals (Model Reference Amendment)
+
+- 실제 Mapping Spec 작성 없음 — UML Class→target_field, Attribute→Column,
+  Association→Foreign Key, Cardinality→required 자동 변환 금지
+- Actual Normalize 실행 없음
+- UML Content 접근·Export·OCR 없음

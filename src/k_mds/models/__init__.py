@@ -9,9 +9,11 @@ from k_mds.models.governance import (
     GovernanceResult,
 )
 from k_mds.models.normalization_authorization import (
+    DrawingReviewCategory,
     FindingAuthorization,
     FindingDisposition,
     HeaderConfidence,
+    ModelReferenceReview,
     NormalizationAuthorization,
     OutputRootBinding,
     SheetAuthorization,
@@ -45,6 +47,7 @@ __all__ = [
     "DataClassification",
     "DataElement",
     "Dataset",
+    "DrawingReviewCategory",
     "ElementOccurrence",
     "Evidence",
     "FindingAuthorization",
@@ -55,6 +58,7 @@ __all__ = [
     "GovernanceResult",
     "GovernanceStatus",
     "HeaderConfidence",
+    "ModelReferenceReview",
     "NormalizationAuthorization",
     "OutputRootBinding",
     "ResultStatus",

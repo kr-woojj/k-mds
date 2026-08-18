@@ -26,6 +26,18 @@ class SheetClassification(StrEnum):
     CODE_LIST = "code_list"
     METADATA_OR_README = "metadata_or_readme"
     EXCLUDED_NON_DATA = "excluded_non_data"
+    #: Mapping·Semantic Review의 참조 자산 — 직접 Record Mapping 대상이 아니다.
+    MODEL_REFERENCE = "model_reference"
+
+
+class DrawingReviewCategory(StrEnum):
+    """Restricted Drawing Review가 결정한 Drawing 의미 Category."""
+
+    IMO_COMPENDIUM_MODEL_REFERENCE = "imo_compendium_model_reference"
+    DOCUMENTATION = "documentation"
+    OUT_OF_SCOPE_VISUAL = "out_of_scope_visual"
+    SEPARATE_VISUAL_REVIEW_REQUIRED = "separate_visual_review_required"
+    UNDECIDED = "undecided"
 
 
 class HeaderConfidence(StrEnum):
@@ -91,6 +103,21 @@ class SheetAuthorization(_AuthorizationModel):
                 SheetClassification.EXCLUDED_NON_DATA,
             ) and not self.exclusion_reason_code:
                 raise ValueError("제외 Sheet는 exclusion_reason_code가 필요하다")
+            if self.classification is SheetClassification.MODEL_REFERENCE:
+                if self.header_row is not None:
+                    raise ValueError("model_reference Sheet는 header_row=null이어야 한다")
+                if self.header_confidence is not HeaderConfidence.NONE:
+                    raise ValueError(
+                        "model_reference Sheet는 header_confidence=none이어야 한다"
+                    )
+                if self.medium_confidence_approved:
+                    raise ValueError(
+                        "model_reference Sheet는 medium_confidence_approved=false여야 한다"
+                    )
+                if self.exclusion_reason_code is not None:
+                    raise ValueError(
+                        "model_reference Sheet는 exclusion_reason_code를 가질 수 없다"
+                    )
         if (
             self.header_confidence in (HeaderConfidence.LOW, HeaderConfidence.NONE)
             and self.normalize
@@ -129,6 +156,27 @@ class FindingAuthorization(_AuthorizationModel):
     reason_code: str = Field(pattern=REASON_CODE_PATTERN)
 
 
+class ModelReferenceReview(_AuthorizationModel):
+    """Drawing-only Sheet의 Drawing 의미에 대한 Restricted Review 결과 선언.
+
+    UML 내용, Class·Attribute·Association 이름, Drawing Target, Image 이름은
+    저장하지 않는다 — Controlled Boolean·Enum·Logical Evidence ID만 허용한다.
+    `external_verification_technically_confirmed`는 외부 Audit System Connector가
+    실제 Evidence 실재를 확인한 경우에만 true가 될 수 있다. Public Validator에는
+    Connector가 없으므로 Assertion(`external_verification_asserted`)과 분리한다.
+    """
+
+    sheet_ordinal: int = Field(ge=0)
+    drawing_review_category: DrawingReviewCategory
+    completed: bool
+    reference_model_alignment_approved: bool = False
+    model_reference_scope_approved: bool = False
+    model_reference_reviewer_recorded: bool = False
+    evidence_reference_id: str | None = Field(default=None, pattern=ROOT_ID_PATTERN)
+    external_verification_asserted: bool = False
+    external_verification_technically_confirmed: bool = False
+
+
 class NormalizationAuthorization(_AuthorizationModel):
     """sourceId와 Inspection Report Identity에 결합된 Normalize 승인."""
 
@@ -141,6 +189,7 @@ class NormalizationAuthorization(_AuthorizationModel):
     approved_output_root_id: str = Field(pattern=ROOT_ID_PATTERN)
     sheets: list[SheetAuthorization] = Field(min_length=1)
     acknowledged_findings: list[FindingAuthorization] = Field(default_factory=list)
+    model_reference_reviews: list[ModelReferenceReview] = Field(default_factory=list)
     human_review_completed: bool
 
     @model_validator(mode="after")
@@ -154,4 +203,10 @@ class NormalizationAuthorization(_AuthorizationModel):
         ]
         if len(keys) != len(set(keys)):
             raise ValueError("동일 code와 sheet_ordinal의 중복 Finding 승인은 허용되지 않는다")
+
+        review_ordinals = [
+            review.sheet_ordinal for review in self.model_reference_reviews
+        ]
+        if len(review_ordinals) != len(set(review_ordinals)):
+            raise ValueError("중복 sheet_ordinal의 Model Reference Review는 허용되지 않는다")
         return self

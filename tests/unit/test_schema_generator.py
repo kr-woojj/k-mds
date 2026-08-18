@@ -116,6 +116,20 @@ def test_validation_schema_contains_normalization_authorization() -> None:
     assert "rootId" in binding_props and "root_id" not in binding_props
 
 
+def test_validation_schema_contains_model_reference() -> None:
+    # ADR-0010 Amendment: model_reference Classification과 ModelReferenceReview가
+    # validation Schema에 반영된다.
+    run_generator()
+    defs = load_defs(VALIDATION_SCHEMA)
+    assert "model_reference" in json.dumps(defs.get("SheetClassification", {}))
+    assert "ModelReferenceReview" in defs
+    props = properties_of(defs, "ModelReferenceReview")
+    assert "drawingReviewCategory" in props
+    assert "externalVerificationAsserted" in props
+    assert "externalVerificationTechnicallyConfirmed" in props
+    assert "drawing_review_category" not in props
+
+
 def test_ontology_schema_contains_source_manifest_entry() -> None:
     # ADR-0003: SourceManifestEntry는 Ontology Schema 대상에 포함된다.
     run_generator()

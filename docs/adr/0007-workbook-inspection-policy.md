@@ -104,6 +104,24 @@
 - Drawing-only Sheet는 자동 Normalize 대상이 아니다.
 - 판정 순서: Scan Coverage → Empty → Drawing-only → 기존 Header Detection.
 
+## Model Reference Sheet Semantics (Amendment 2026-08-18)
+
+- Drawing-only는 구조적 Inspector Finding이다 — Inspector는 Drawing의 의미를
+  판단하지 않는다.
+- 실제 Drawing 의미는 Restricted Human Review에서 결정한다.
+- Restricted Review에서 Drawing이 IMO Compendium Reference Model의 UML 구조로
+  확인된 경우 해당 Sheet는 **Model Reference Asset**으로 취급한다.
+- Model Reference Asset은 Empty Sheet, Documentation, Out-of-scope Visual과
+  구분되는 별도 자산 유형이다 — 단순 metadata 또는 excluded로 축소하지 않는다.
+- Model Reference Asset은 직접 Normalize 대상이 아니다 (Record 추출 금지).
+- UML Content(Class·Attribute·Association·Cardinality·Diagram Text·Image·
+  Relationship Target)는 Inspector Report에 저장하지 않는다 — Report에는
+  drawingCount(정수)만 남는다.
+- UML은 Mapping Scope, Entity Relationship, Code List Relationship,
+  Business Semantic 및 Dataset Boundary Review에 참조 자산으로 사용할 수 있다.
+- UML 참조가 승인되어도 실제 Field Mapping은 별도 Mapping Spec Review를
+  요구한다 — UML에서 Target Field·Mapping Spec을 자동 생성하지 않는다.
+
 ## Risk Register
 
 - ZIP Bomb Hard Limit는 별도 운영정책으로 결정한다 (현재 Compression Ratio
