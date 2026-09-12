@@ -1,0 +1,48 @@
+steps: 4-13
+step_names: [정오보고 REST 수신, 동정보고 REST 수신, Profile·정규화, IMO Compendium 매핑, Validator 결정론 검증, KR GEARs 변환, Governance Delivery Gate, CII 입력 완전성, IMO DCS 입력 검증, Evidence 무결성]
+execution_date: 2026-09-12
+repository_commit: kr-ghg-ai-agent e1a2295 (clean) / validator ad34c47 / k-mds 36be0af
+integration_matrix: LLM=mock, Skill=real(validator), MCP=off, KR GEARs delivery=mock
+
+# ── A. 합성 fixture 경로 (확정 기준 R1~R6 의 판정 대상) ─────────────────────────────
+fixture_path:
+  runs: [evidence/C02/run_01 (judge v1), evidence/C02/run_02 (judge v2, 재현성)]
+  step_4_5_receipt: 9 fixture 전부 ingress RAW_JSON_BODY, raw-input.sha256 생성, profile NOON/EVENT/VESSEL_PERFORMANCE 확정 (PASS)
+  step_6_8_mapping_validation:
+    valid_5: 입력 51 필드 전부 확정 매핑(ALIAS 25 / NORMALIZED_EXACT 26), unmapped 0, llm_invocations 0, IMO_ID_NOT_FOUND 0, validation 57/57 PASS
+    ambiguous: /distance UNMAPPED + COMPETING_CANDIDATES, candidate_list 보존, 자동 확정 없음 (R3 ✓)
+    negative: /reference_hint IMO_ID_NOT_FOUND: IMO9999 (warnings), /speed_through_water DATATYPE_HARD_CONFLICT, NOT_TRANSFORMED (R3 ✓)
+    bunkering: IMO0597 CODE_VALUE_INVALID (FAL50 Event type 에 BUNKERING 없음), 코드 미발명, NOT_TRANSFORMED (R3 ✓)
+    mandatory_missing: REQUIRED_FIELD_MISSING, NOT_TRANSFORMED (R3 4항 ✓, run_02 부터 실행)
+  step_9_10_gears: valid 5 건 kr-gears-output.json contract_status=PROVISIONAL, delivery-result mode=mock real_call=false, 최종 REVIEW_REQUIRED, 실제 HTTP 전송 0 (R4 ✓)
+  step_11_12_cii_dcs: PoC 는 CII/DCS 입력 완전성 검사를 별도 산출하지 않음 — kr-gears-output.payload 항목으로 간접 확인만 가능. MEPC 문서 기준 필수 입력(연료별 소비량·거리·시간·선박정보·기간) 대조는 미수행 → NOT_TESTED
+  step_13_evidence: run_02 verify_evidence 8/8 ok, manifest code_commit e1a2295, dirty=false; run_01↔run_02 correlation_id 별 IMO ID 집합 8/8 동일 (R5 ✓)
+  R6_data_consistency: validation PASS·WARNING 57 / 57 = 100% (분모 기본안) ; 입력 필드 51 전부 매핑
+  R2_literal_conflict: |
+    정상 fixture 5건의 summary error = KR_GEARS_CONTRACT_PROVISIONAL. 이는 R4 가 기대하는 PROVISIONAL 상태를 에이전트가 error 필드에 기록한 것.
+    확정 R2 문구 "error 코드 없음" 을 문자 그대로 적용하면 FAIL, PROVISIONAL 마커를 허용하면 9/9 PASS (result.json 의 verdict_if_provisional_marker_allowed).
+    판정 기준을 사후 조정하지 않고 사람 결정으로 올림.
+  verdict_fixture_path: PARTIAL (R1·R3·R4·R5·R6 충족, R2 는 문구 해석 대기)
+
+# ── B. 실 Provider(랩오투원 LAB021) payload 경로 (시나리오 본래 대상) ──────────────────
+real_payload_path:
+  input: step-04/payloads/Noon_Report_API__e5e3be7e7a31.json (Consumer Connector Artifact f508740a, sha256 fb23ffbd…, 12 events × 58 fields + general 10)
+  step_4_receipt: PASS — IDS ArtifactRequest 경유 HTTP 200, 원본 해시 기록
+  trial_1_raw: 6 변형 전부 REVIEW_REQUIRED / PROFILE_UNKNOWN (agent-trial/) — 프로파일러가 코드북 externalKey(camelCase) 를 인식하지 못함 (F-9)
+  trial_2_adapted: verification/adapters/lab021_noon_adapter.py 로 코드북(156 items, 243 externalKey) 적용 후 12 레코드 투입 (agent-trial-adapted/)
+    profile: EVENT_REPORT 12/12 (report_type 마커로 해결)
+    mapping: 레코드당 EXPLICIT_IDENTIFIER_VALIDATED 2~3 (IMO0140, IMO0191[, IMO0109]) / UNMAPPED 20~65
+    metrics_record0: total 60, candidate_scope_rejected 22, unmapped 58, llm_invocations 34(mock), skill_invocations 60
+    validation: NOT_APPLICABLE 641 / PASS 25 / FAIL 12 (REQUIRED_FIELD_MISSING IMO0597 ×12)
+    kr_gears_output: 없음(변환 차단)
+  verdict_real_payload_path: FAIL (핵심 규칙 R2 미충족 — 매핑 불가) → 원인 분석 완료, 사람 확인 요청
+  root_causes:
+    - F-10 CANDIDATE_SCOPE_TOO_NARROW (에이전트 거버넌스): 승인 후보 집합 18 요소(합성 fixture 유래). 코드북 IMO ID 43개 중 39개가 IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE. 확장은 F-STEP7-2 승인 절차(사람) 필요.
+    - F-11 CODEBOOK_ONE_TO_MANY (랩오투원 코드북/표준 매핑): 레코드 68 필드 중 42 필드가 IMO ID 2개 이상에 걸림. 예 consumption{Me,Ge,Blr,Other}{Hfo,Lsfo,Mgo,…} → IMO0673/IMO0914 또는 IMO0893/IMO0916, draftFore → IMO0357/IMO0621, eventKey → IMO0597/IMO0598, masterName → IMO0580/IMO0760. IMO Compendium 의 연료소비는 (연료종류 IMO0654 + 소비량) 반복 그룹 구조이므로 평면 키 1개→IMO ID 1개 대응이 불가. 코드북에 occurrence/컨텍스트(장비·연료종류·이벤트) 규칙이 필요.
+    - F-12 EVENT_CODE_NOT_STANDARD (랩오투원): eventKey 값 DEPARTURE_SBY / NOON_AT_SEA / RUP / CARGO_WORK / ARRIVAL / BUNKERING 은 FAL50 Event type(EV01~EV29) 코드가 아님. IMO0597 매핑 후에도 CODE_VALUE_INVALID 예상.
+    - F-13 SENTINEL_VALUES (데이터 품질): -9999, "" , 0 이 결측 표기로 혼용 (IMO0139 grossTonnage=-9999, IMO0138 flag="").
+    - F-9 PROFILER_MARKERS (에이전트): 프로파일러가 Provider 필드명을 인식하지 못함 — 어댑터로 우회 가능, 에이전트 ingress 에 코드북 어댑터 내장 여부 결정 필요.
+  daq_logger_api: ISO 19848 컬럼 데이터(KSDX ids, localId ISO 19848 naming). 에이전트 registry 는 IMO Compendium 만 → 매핑 NOT_TESTED. ISO 19848 naming rule 형식 검증은 별도 규칙(사람 확정) 필요.
+
+overall_step_verdict: PARTIAL
+next_step_allowed: false (사람 결정 5건 — progress.md 참조)

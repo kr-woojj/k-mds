@@ -8,7 +8,8 @@
     "모든 pass_criteria.confirmed=false. 사람 확정 전 실행 금지.",
     "standards[].clauses 는 standard_lookup 부재로 미확인. 조항은 사람이 기입.",
     "범위 추가 제안(별도): RIMS 포트콜 서비스 KPI(정시도착률 등)는 상호운용 검증이 아닌 서비스 성능 지표이므로 CASE_LIST 제외.",
-    "S02(2026-09-12): 사용자 결정으로 GHG Lane(C02) 우선. C06 은 C02 에 병합. 실행은 여전히 pass_criteria 확정 후."
+    "S02(2026-09-12): 사용자 결정으로 GHG Lane(C02) 우선. C06 은 C02 에 병합. 실행은 여전히 pass_criteria 확정 후.",
+    "S03(2026-09-12): C02 partial. fixture 경로는 R2 해석만 남음, 실 LAB021 payload 는 후보 집합·코드북 1:N 으로 매핑 불가."
   ],
   "cases": [
     {
@@ -193,8 +194,36 @@
         "draft_notes": "R1~R5 는 kr-ghg-ai-agent UserManual §4-5 Step 통과 기준·§10 TC-01~15 를 그대로 옮긴 것(DOCS_DIR 외 참고 문서). R6 정합율 산식은 과제 문서에 없음(문서 근거 없음). PoC 설계상 정상 흐름도 DELIVERED 가 아닌 REVIEW_REQUIRED 로 끝나므로 '최종 PASS' 를 DELIVERED 로 정의하면 안 됨.",
         "confirmed_note": "2026-09-12 사용자(연구책임자) 답변 'R7 확정' → R1~R7 전체 확정으로 해석. R6 분모 = 정상 fixture 전체 입력 필드(기본안). 상이 시 정정 요청."
       },
-      "status": "designed",
-      "runs": [],
+      "status": "partial",
+      "runs": [
+        {
+          "run_no": 1,
+          "timestamp": "2026-09-12",
+          "evidence_paths": [
+            "verification/evidence/C02/run_01/"
+          ],
+          "result": "PARTIAL(judge v1)",
+          "notes": "fixture 8종. judge v1 의 R3 구현 결함(IMO_ID_NOT_FOUND 를 error 문자열에서만 탐색). R2 문구 충돌."
+        },
+        {
+          "run_no": 2,
+          "timestamp": "2026-09-12",
+          "evidence_paths": [
+            "verification/evidence/C02/run_02/"
+          ],
+          "result": "PARTIAL(judge v2): R1 PASS, R3 4/4 PASS, R4 PASS, R5 PASS(run_01 과 IMO 집합 동일), R6 100%, R2 문구 해석 대기(허용 시 9/9 PASS)",
+          "notes": "fixture 9종(mandatory_missing 추가)."
+        },
+        {
+          "run_no": "manual_S03",
+          "timestamp": "2026-09-12",
+          "evidence_paths": [
+            "verification/evidence/C02/manual_S03/"
+          ],
+          "result": "Step2 CONDITIONAL_PASS, Step3 CONDITIONAL_PASS, Step4 수신 PASS, 실 payload 매핑 FAIL(F-9~F-13)",
+          "notes": "외부 K-MDS API 경유. 어댑터 시험 포함."
+        }
+      ],
       "owner_confirmed_by": "우정재(연구책임자, 2026-09-12)",
       "last_updated": "2026-09-12",
       "blockers": [
@@ -299,7 +328,50 @@
           "verdict": "PASS",
           "basis": "R1: pytest 122 passed/1 skipped(불포함), ruff 0, mypy 0, /ready READY, governance flags 기대값 일치",
           "evidence": "evidence/C02/setup_S03/step1-*"
+        },
+        {
+          "step": 2,
+          "verdict": "CONDITIONAL_PASS",
+          "evidence": "manual_S03/step-02/step-result.yaml",
+          "findings": [
+            "F-4",
+            "F-5",
+            "F-6"
+          ]
+        },
+        {
+          "step": 3,
+          "verdict": "CONDITIONAL_PASS",
+          "evidence": "manual_S03/step-03/step-result.yaml",
+          "findings": [
+            "F-7",
+            "F-8"
+          ]
+        },
+        {
+          "step": "4-13(fixture)",
+          "verdict": "PARTIAL",
+          "evidence": "manual_S03/steps-04-13-result.yaml §A, run_02/result.json"
+        },
+        {
+          "step": "4-13(real LAB021)",
+          "verdict": "FAIL",
+          "evidence": "manual_S03/steps-04-13-result.yaml §B",
+          "findings": [
+            "F-9",
+            "F-10",
+            "F-11",
+            "F-12",
+            "F-13"
+          ]
         }
+      ],
+      "human_decisions_pending": [
+        "D1 R2 문구: 'error 코드 없음' 에 KR_GEARS_CONTRACT_PROVISIONAL(에이전트의 정상 흐름 마커) 허용 여부 → 허용 시 fixture 경로 9/9 PASS",
+        "D2 에이전트 승인 후보 집합(F-STEP7-2) 을 랩오투원 코드북 IMO ID 43개로 확장 승인 여부 (거버넌스 결정)",
+        "D3 랩오투원에 코드북 1:N 매핑(42/68 필드) 해소 규칙·표준 이벤트 코드(FAL50 EV) 대응 요청 여부",
+        "D4 코드북 어댑터(verification/adapters/lab021_noon_adapter.py) 를 에이전트 ingress 에 내장할지, ROC(랩오투원) 측 변환으로 둘지",
+        "D5 DAQ Logger(ISO 19848) 검증 규칙 정의 여부 — 현재 NOT_TESTED"
       ]
     },
     {

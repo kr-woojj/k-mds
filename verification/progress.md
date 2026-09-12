@@ -167,3 +167,13 @@
 - Connector 관리 API 는 demo 계정으로 401 → UI 경로만 사용(자격증명 미공개).
 - 브라우저로 Provider UI 기동. 사용자 UI 조작 대기.
 - 예상 실패 지점: 현재 K-MDS 에 등록된 Offering 은 유엔젤 샘플(MDS Test/Guide Provider Data, provider-api:8086)일 가능성 — GHG(정오·동정보고) Dataset 미등록이면 Step 2 는 BLOCKED(매뉴얼 판정 기준) 또는 샘플 Dataset 으로 CONDITIONAL_PASS 결정 필요.
+
+### S03 실행 결과 (Step 2~13)
+- Step 2 CONDITIONAL_PASS: LAB021(랩오투원) 카탈로그의 "Noon Report API"·"DAQ Logger API" 식별(Provider Description 요청). Broker 검색 500/SPARQL 417 (F-4, 유엔젤 확인 요청).
+- Step 3 CONDITIONAL_PASS: Agreement confirmed(87e0134a, e6913ae9), USE 2026-08-03~2030-12-31, Consumer Route "GHG Agent"(host.docker.internal:8001) 존재. 토큰·mTLS 는 간접 증빙(F-7).
+- Step 4 수신 PASS: 실 payload Noon 14,101B / DAQ 29,640B (sha256 기록).
+- run_01/run_02(fixture 9종): R1·R3·R4·R5·R6 충족. R2 는 문구 충돌(D1). 판정기 v1→v2 교체(R3 구현 결함 수정, 규칙 자체는 불변).
+- 실 payload: 원본 → PROFILE_UNKNOWN(F-9); 코드북 어댑터 적용 → 프로파일 OK, 매핑 2~3/60 (F-10 후보집합 18개 제한, F-11 코드북 1:N 42/68, F-12 비표준 이벤트 코드, F-13 -9999 결측).
+- C02 status: **partial**. 사람 결정 D1~D5 (verification_cases.json human_decisions_pending).
+
+세션 S03 종료 상태: NEEDS_INPUT
