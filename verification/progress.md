@@ -177,3 +177,9 @@
 - C02 status: **partial**. 사람 결정 D1~D5 (verification_cases.json human_decisions_pending).
 
 세션 S03 종료 상태: NEEDS_INPUT
+
+### S03 추가 (사용자 결정·확인, 2026-09-12)
+- 사용자 확인: Provider Backend Connection "TRIMSSIM Provider API" = vessellink loggers URL. 랩오투원(LAB021) 플랫폼 = **vessellink**. API 로 확인한 Backend Connection 6건 중 vessellink 2건(noon, loggers)이 LAB021 Offering 의 원천.
+- 사용자 결정: Step 3 은 RIMS 서울사무소 IDS 서버에서 점검 예정 → CONDITIONAL_PASS 유지.
+- Step 4 PASS: Consumer 수신본 ≡ vessellink 원본 (sha256 동일, Noon fb23ffbd… / DAQ 04317770…). 새 finding F-14(백엔드 무인증 공개), F-15(정적 스냅샷).
+- 사용자 UI 재현 가이드: evidence/C02/manual_S03/step-04/BROWSER_TEST_GUIDE.md (Consumer UI 브라우저 기동 완료).

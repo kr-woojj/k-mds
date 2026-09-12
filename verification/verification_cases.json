@@ -84,7 +84,7 @@
     {
       "case_id": "C02",
       "title": "GHG 환경규제 의무보고 데이터 상호운용성: 랩오투원 Provider→IDS→GHG AI Agent 표준 매핑→KR GEARs(PROVISIONAL)",
-      "value_chain_link": "랩오투원 선박 플랫폼(IDS Provider, GHG Lane)→K-MDS Broker/DAPS(유엔젤)→KR IDS Consumer→GHG AI Agent(kr-ghg-ai-agent)→imo-compendium-mapping-validator→KR GEARs Adapter(mock delivery)",
+      "value_chain_link": "랩오투원 선박 플랫폼 vessellink(IDS Provider, GHG Lane, 카탈로그 LAB021)→K-MDS Broker/DAPS(유엔젤)→KR IDS Consumer→GHG AI Agent(kr-ghg-ai-agent)→imo-compendium-mapping-validator→KR GEARs Adapter(mock delivery)",
       "plan_ref": {
         "성능목표": "#6 환경규제 데이터 표준기반 서비스(IMO MEPC, 수요기업평가) / #4 정합율 95% / #1 표준 모델(ISO 18131)",
         "3차년도 KR 과업": "시뮬레이션 기반 선박 환경규제 보고 데이터 표준 모델/스키마 검증",
@@ -364,6 +364,16 @@
             "F-12",
             "F-13"
           ]
+        },
+        {
+          "step": 4,
+          "verdict": "PASS",
+          "evidence": "manual_S03/step-04/step-result.yaml",
+          "findings": [
+            "F-14",
+            "F-15"
+          ],
+          "note": "Consumer 수신본 ≡ vessellink 원본(sha256)"
         }
       ],
       "human_decisions_pending": [
