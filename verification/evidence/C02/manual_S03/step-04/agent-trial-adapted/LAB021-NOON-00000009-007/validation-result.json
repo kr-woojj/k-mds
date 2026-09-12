@@ -1,0 +1,194 @@
+{
+  "correlation_id": "LAB021-NOON-00000009-007",
+  "fail_count": 1,
+  "items": [
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/IMO0136",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/IMO0138",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/IMO0139",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0140",
+      "message": null,
+      "source_path": "/IMO0140",
+      "verdict": "PASS"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/IMO0142",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/IMO0143",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/IMO0148",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/IMO0160",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/IMO0326",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/masterName",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/eventKey",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/dateEventUtc",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/IMO0605",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/IMO0191",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/IMO0600",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/draftFore",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/draftAft",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/IMO0357",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/positionLat",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/positionLon",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0674",
+      "message": null,
+      "source_path": "/IMO0674",
+      "verdict": "PASS"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/IMO0676",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "required_elements_policy",
+      "code": "REQUIRED_FIELD_MISSING",
+      "imo_data_number": "IMO0597",
+      "message": "정책 P-REQ-1: EVENT_REPORT 필수 요소 미매핑",
+      "source_path": "$",
+      "verdict": "FAIL"
+    }
+  ],
+  "not_verified_count": 0,
+  "overall": "FAIL",
+  "pass_count": 2,
+  "warning_count": 0
+}

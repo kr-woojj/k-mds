@@ -1,0 +1,98 @@
+{
+  "correlation_id": "SYN-EV-DEP-0001",
+  "fail_count": 0,
+  "items": [
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0140",
+      "message": null,
+      "source_path": "/vessel_imo_number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0191",
+      "message": null,
+      "source_path": "/voyage_no",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0597",
+      "message": null,
+      "source_path": "/event_type_code",
+      "verdict": "PASS"
+    },
+    {
+      "check": "code_list_value",
+      "code": null,
+      "imo_data_number": "IMO0597",
+      "message": null,
+      "source_path": "/event_type_code",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0603",
+      "message": null,
+      "source_path": "/event_timestamp",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0601",
+      "message": null,
+      "source_path": "/latitude",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0602",
+      "message": null,
+      "source_path": "/longitude",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0598",
+      "message": null,
+      "source_path": "/operation_mode",
+      "verdict": "PASS"
+    },
+    {
+      "check": "code_list_value",
+      "code": null,
+      "imo_data_number": "IMO0598",
+      "message": null,
+      "source_path": "/operation_mode",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0669",
+      "message": null,
+      "source_path": "/total_fuel_quantity_consumed",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0674",
+      "message": null,
+      "source_path": "/fuel_quantity_remaining_onboard",
+      "verdict": "PASS"
+    }
+  ],
+  "not_verified_count": 0,
+  "overall": "PASS",
+  "pass_count": 11,
+  "warning_count": 0
+}

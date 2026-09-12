@@ -1,0 +1,58 @@
+[
+  {
+    "data_type": "string",
+    "description": null,
+    "equipment_context": null,
+    "normalized_name": "vessel imo number",
+    "report_context": "NOON_REPORT",
+    "source_name": "vessel_imo_number",
+    "source_path": "/vessel_imo_number",
+    "timestamp": "2026-08-03T12:00:00+00:00",
+    "unit": null,
+    "value": "9990001",
+    "vessel_context": "9990001",
+    "voyage_context": "SYN-VOY-002"
+  },
+  {
+    "data_type": "string",
+    "description": null,
+    "equipment_context": null,
+    "normalized_name": "voyage no",
+    "report_context": "NOON_REPORT",
+    "source_name": "voyage_no",
+    "source_path": "/voyage_no",
+    "timestamp": "2026-08-03T12:00:00+00:00",
+    "unit": null,
+    "value": "SYN-VOY-002",
+    "vessel_context": "9990001",
+    "voyage_context": "SYN-VOY-002"
+  },
+  {
+    "data_type": "string",
+    "description": null,
+    "equipment_context": null,
+    "normalized_name": "report datetime",
+    "report_context": "NOON_REPORT",
+    "source_name": "report_datetime",
+    "source_path": "/report_datetime",
+    "timestamp": "2026-08-03T12:00:00+00:00",
+    "unit": null,
+    "value": "2026-08-03T12:00:00+00:00",
+    "vessel_context": "9990001",
+    "voyage_context": "SYN-VOY-002"
+  },
+  {
+    "data_type": "numeric",
+    "description": "distance figure reported by the crew",
+    "equipment_context": null,
+    "normalized_name": "distance",
+    "report_context": "NOON_REPORT",
+    "source_name": "distance",
+    "source_path": "/distance",
+    "timestamp": "2026-08-03T12:00:00+00:00",
+    "unit": "nautical mile",
+    "value": 288.1,
+    "vessel_context": "9990001",
+    "voyage_context": "SYN-VOY-002"
+  }
+]

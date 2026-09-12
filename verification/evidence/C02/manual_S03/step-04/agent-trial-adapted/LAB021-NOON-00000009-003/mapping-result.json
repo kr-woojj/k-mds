@@ -1,0 +1,2537 @@
+{
+  "correlation_id": "LAB021-NOON-00000009-003",
+  "fields": [
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0136",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0136",
+      "reference_model_version": null,
+      "source_name": "IMO0136",
+      "source_path": "/IMO0136",
+      "source_unit": null,
+      "source_value_type": "string",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0136"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0138",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0138",
+      "reference_model_version": null,
+      "source_name": "IMO0138",
+      "source_path": "/IMO0138",
+      "source_unit": null,
+      "source_value_type": "string",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0138"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0139",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0139",
+      "reference_model_version": null,
+      "source_name": "IMO0139",
+      "source_path": "/IMO0139",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0139"
+      ]
+    },
+    {
+      "candidate_list": [],
+      "confidence": 1.0,
+      "evidence_refs": [],
+      "imo_data_element_name": "Ship IMO number",
+      "imo_data_number": "IMO0140",
+      "mapping_method": "EXPLICIT_IDENTIFIER_VALIDATED",
+      "normalized_name": "imo0140",
+      "reference_model_version": "FAL50",
+      "source_name": "IMO0140",
+      "source_path": "/IMO0140",
+      "source_unit": null,
+      "source_value_type": "string",
+      "validator_status": "PASS",
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0142",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0142",
+      "reference_model_version": null,
+      "source_name": "IMO0142",
+      "source_path": "/IMO0142",
+      "source_unit": null,
+      "source_value_type": "string",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0142"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0143",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0143",
+      "reference_model_version": null,
+      "source_name": "IMO0143",
+      "source_path": "/IMO0143",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0143"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0148",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0148",
+      "reference_model_version": null,
+      "source_name": "IMO0148",
+      "source_path": "/IMO0148",
+      "source_unit": null,
+      "source_value_type": "string",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0148"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0160",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0160",
+      "reference_model_version": null,
+      "source_name": "IMO0160",
+      "source_path": "/IMO0160",
+      "source_unit": null,
+      "source_value_type": "string",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0160"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0326",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0326",
+      "reference_model_version": null,
+      "source_name": "IMO0326",
+      "source_path": "/IMO0326",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0326"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.60651,
+          "imo_data_number": "IMO0580",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.605056,
+          "imo_data_number": "IMO0083",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.447917,
+          "imo_data_number": "IMO0285",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.446181,
+          "imo_data_number": "IMO0375",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.438393,
+          "imo_data_number": "IMO1144",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "mastername",
+      "reference_model_version": null,
+      "source_name": "masterName",
+      "source_path": "/masterName",
+      "source_unit": null,
+      "source_value_type": "string",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.378739,
+          "imo_data_number": "IMO0597",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.225379,
+          "imo_data_number": "IMO0603",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.041096,
+          "imo_data_number": "IMO0600",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "eventkey",
+      "reference_model_version": null,
+      "source_name": "eventKey",
+      "source_path": "/eventKey",
+      "source_unit": null,
+      "source_value_type": "string",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.39125,
+          "imo_data_number": "IMO0078",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.379327,
+          "imo_data_number": "IMO0014",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.377164,
+          "imo_data_number": "IMO0221",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.373512,
+          "imo_data_number": "IMO0571",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.372917,
+          "imo_data_number": "IMO0426",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "dateeventutc",
+      "reference_model_version": null,
+      "source_name": "dateEventUtc",
+      "source_path": "/dateEventUtc",
+      "source_unit": null,
+      "source_value_type": "string",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0605",
+          "reason": "explicit 후보 값 검증 실패",
+          "source": "input",
+          "validator_status": "FAIL"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0605",
+      "reference_model_version": null,
+      "source_name": "IMO0605",
+      "source_path": "/IMO0605",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "FAIL",
+      "warnings": [
+        "EXPLICIT_VALIDATION_FAILED: IMO0605 status=FAIL"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0191",
+          "reason": "explicit 후보 값 검증 실패",
+          "source": "input",
+          "validator_status": "FAIL"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0191",
+      "reference_model_version": null,
+      "source_name": "IMO0191",
+      "source_path": "/IMO0191",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "FAIL",
+      "warnings": [
+        "EXPLICIT_VALIDATION_FAILED: IMO0191 status=FAIL"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0600",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0600",
+      "reference_model_version": null,
+      "source_name": "IMO0600",
+      "source_path": "/IMO0600",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0600"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0639",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0639",
+      "reference_model_version": null,
+      "source_name": "IMO0639",
+      "source_path": "/IMO0639",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0639"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0640",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0640",
+      "reference_model_version": null,
+      "source_name": "IMO0640",
+      "source_path": "/IMO0640",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0640"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0641",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0641",
+      "reference_model_version": null,
+      "source_name": "IMO0641",
+      "source_path": "/IMO0641",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0641"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0645",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0645",
+      "reference_model_version": null,
+      "source_name": "IMO0645",
+      "source_path": "/IMO0645",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0645"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.21875,
+          "imo_data_number": "IMO0377",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "draftfore",
+      "reference_model_version": null,
+      "source_name": "draftFore",
+      "source_path": "/draftFore",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.416425,
+          "imo_data_number": "IMO0622",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.203629,
+          "imo_data_number": "IMO0377",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "draftaft",
+      "reference_model_version": null,
+      "source_name": "draftAft",
+      "source_path": "/draftAft",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0357",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0357",
+      "reference_model_version": null,
+      "source_name": "IMO0357",
+      "source_path": "/IMO0357",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0357"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0452",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0452",
+      "reference_model_version": null,
+      "source_name": "IMO0452",
+      "source_path": "/IMO0452",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0452"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.456701,
+          "imo_data_number": "IMO0332",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.291597,
+          "imo_data_number": "IMO1156",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.283493,
+          "imo_data_number": "IMO0160",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.282143,
+          "imo_data_number": "IMO0032",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.261596,
+          "imo_data_number": "IMO0241",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "shipcourse",
+      "reference_model_version": null,
+      "source_name": "shipCourse",
+      "source_path": "/shipCourse",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0333",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0333",
+      "reference_model_version": null,
+      "source_name": "IMO0333",
+      "source_path": "/IMO0333",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0333"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0613",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0613",
+      "reference_model_version": null,
+      "source_name": "IMO0613",
+      "source_path": "/IMO0613",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0613"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0617",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0617",
+      "reference_model_version": null,
+      "source_name": "IMO0617",
+      "source_path": "/IMO0617",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0617"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.385606,
+          "imo_data_number": "IMO0646",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.361954,
+          "imo_data_number": "IMO0648",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.356362,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.342076,
+          "imo_data_number": "IMO0649",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.31034,
+          "imo_data_number": "IMO0877",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptionblrdo",
+      "reference_model_version": null,
+      "source_name": "consumptionBlrDo",
+      "source_path": "/consumptionBlrDo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.467837,
+          "imo_data_number": "IMO0876",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.467026,
+          "imo_data_number": "IMO0877",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.46573,
+          "imo_data_number": "IMO0878",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.435606,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.385415,
+          "imo_data_number": "IMO0895",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptionblrhfo",
+      "reference_model_version": null,
+      "source_name": "consumptionBlrHfo",
+      "source_path": "/consumptionBlrHfo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.384406,
+          "imo_data_number": "IMO0646",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.361486,
+          "imo_data_number": "IMO0648",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.35964,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.341618,
+          "imo_data_number": "IMO0649",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.307692,
+          "imo_data_number": "IMO0876",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptionblrlsfo",
+      "reference_model_version": null,
+      "source_name": "consumptionBlrLsfo",
+      "source_path": "/consumptionBlrLsfo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.443182,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.381578,
+          "imo_data_number": "IMO0878",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.380664,
+          "imo_data_number": "IMO0876",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.380024,
+          "imo_data_number": "IMO0877",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.350838,
+          "imo_data_number": "IMO0646",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptionblrmgo",
+      "reference_model_version": null,
+      "source_name": "consumptionBlrMgo",
+      "source_path": "/consumptionBlrMgo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.383823,
+          "imo_data_number": "IMO0646",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.361256,
+          "imo_data_number": "IMO0648",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.359207,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.344578,
+          "imo_data_number": "IMO0649",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.307516,
+          "imo_data_number": "IMO0876",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptionblrulsfo",
+      "reference_model_version": null,
+      "source_name": "consumptionBlrUlsfo",
+      "source_path": "/consumptionBlrUlsfo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.383252,
+          "imo_data_number": "IMO0646",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.361028,
+          "imo_data_number": "IMO0648",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.358781,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.347501,
+          "imo_data_number": "IMO0649",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.31015,
+          "imo_data_number": "IMO0876",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptionblrulsmgo",
+      "reference_model_version": null,
+      "source_name": "consumptionBlrUlsmgo",
+      "source_path": "/consumptionBlrUlsmgo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.381122,
+          "imo_data_number": "IMO0646",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.360983,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.359029,
+          "imo_data_number": "IMO0648",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.345577,
+          "imo_data_number": "IMO0649",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.319056,
+          "imo_data_number": "IMO0877",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptiongedo",
+      "reference_model_version": null,
+      "source_name": "consumptionGeDo",
+      "source_path": "/consumptionGeDo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.475272,
+          "imo_data_number": "IMO0877",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.473518,
+          "imo_data_number": "IMO0876",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.471166,
+          "imo_data_number": "IMO0878",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.436069,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.385949,
+          "imo_data_number": "IMO0895",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptiongehfo",
+      "reference_model_version": null,
+      "source_name": "consumptionGeHfo",
+      "source_path": "/consumptionGeHfo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.385,
+          "imo_data_number": "IMO0646",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.360081,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.358594,
+          "imo_data_number": "IMO0648",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.348297,
+          "imo_data_number": "IMO0649",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.315768,
+          "imo_data_number": "IMO0877",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptiongelsfo",
+      "reference_model_version": null,
+      "source_name": "consumptionGeLsfo",
+      "source_path": "/consumptionGeLsfo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.447519,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.388213,
+          "imo_data_number": "IMO0877",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.386973,
+          "imo_data_number": "IMO0878",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.386287,
+          "imo_data_number": "IMO0876",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.346825,
+          "imo_data_number": "IMO0646",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptiongemgo",
+      "reference_model_version": null,
+      "source_name": "consumptionGeMgo",
+      "source_path": "/consumptionGeMgo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.379455,
+          "imo_data_number": "IMO0646",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.361486,
+          "imo_data_number": "IMO0648",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.35964,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.344823,
+          "imo_data_number": "IMO0649",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.315548,
+          "imo_data_number": "IMO0877",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptiongeulsfo",
+      "reference_model_version": null,
+      "source_name": "consumptionGeUlsfo",
+      "source_path": "/consumptionGeUlsfo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.378921,
+          "imo_data_number": "IMO0646",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.361256,
+          "imo_data_number": "IMO0648",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.359207,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.347763,
+          "imo_data_number": "IMO0649",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.31599,
+          "imo_data_number": "IMO0876",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptiongeulsmgo",
+      "reference_model_version": null,
+      "source_name": "consumptionGeUlsmgo",
+      "source_path": "/consumptionGeUlsmgo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.391326,
+          "imo_data_number": "IMO0646",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.362193,
+          "imo_data_number": "IMO0648",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.360983,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.345577,
+          "imo_data_number": "IMO0649",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.313374,
+          "imo_data_number": "IMO0877",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptionmedo",
+      "reference_model_version": null,
+      "source_name": "consumptionMeDo",
+      "source_path": "/consumptionMeDo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.470815,
+          "imo_data_number": "IMO0876",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.469953,
+          "imo_data_number": "IMO0877",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.468575,
+          "imo_data_number": "IMO0878",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.436069,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.39585,
+          "imo_data_number": "IMO0895",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptionmehfo",
+      "reference_model_version": null,
+      "source_name": "consumptionMeHfo",
+      "source_path": "/consumptionMeHfo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.395,
+          "imo_data_number": "IMO0646",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.361719,
+          "imo_data_number": "IMO0648",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.360081,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.348297,
+          "imo_data_number": "IMO0649",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.310728,
+          "imo_data_number": "IMO0876",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptionmelsfo",
+      "reference_model_version": null,
+      "source_name": "consumptionMeLsfo",
+      "source_path": "/consumptionMeLsfo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.447519,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.384383,
+          "imo_data_number": "IMO0878",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.383584,
+          "imo_data_number": "IMO0876",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.382894,
+          "imo_data_number": "IMO0877",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.355916,
+          "imo_data_number": "IMO0646",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptionmemgo",
+      "reference_model_version": null,
+      "source_name": "consumptionMeMgo",
+      "source_path": "/consumptionMeMgo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.389356,
+          "imo_data_number": "IMO0646",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.364591,
+          "imo_data_number": "IMO0648",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.35964,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.344823,
+          "imo_data_number": "IMO0649",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.310533,
+          "imo_data_number": "IMO0876",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptionmeulsfo",
+      "reference_model_version": null,
+      "source_name": "consumptionMeUlsfo",
+      "source_path": "/consumptionMeUlsfo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.388725,
+          "imo_data_number": "IMO0646",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.364342,
+          "imo_data_number": "IMO0648",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.359207,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.347763,
+          "imo_data_number": "IMO0649",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.313165,
+          "imo_data_number": "IMO0876",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptionmeulsmgo",
+      "reference_model_version": null,
+      "source_name": "consumptionMeUlsmgo",
+      "source_path": "/consumptionMeUlsmgo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0678",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0678",
+      "reference_model_version": null,
+      "source_name": "IMO0678",
+      "source_path": "/IMO0678",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0678"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.384406,
+          "imo_data_number": "IMO0646",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.363739,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.36369,
+          "imo_data_number": "IMO0935",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.228241,
+          "imo_data_number": "IMO0143",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.227646,
+          "imo_data_number": "IMO0139",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptionotherdo",
+      "reference_model_version": null,
+      "source_name": "consumptionOtherDo",
+      "source_path": "/consumptionOtherDo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.475272,
+          "imo_data_number": "IMO0876",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.474353,
+          "imo_data_number": "IMO0877",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.472884,
+          "imo_data_number": "IMO0878",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.464204,
+          "imo_data_number": "IMO0903",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.461369,
+          "imo_data_number": "IMO0935",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptionotherhfo",
+      "reference_model_version": null,
+      "source_name": "consumptionOtherHfo",
+      "source_path": "/consumptionOtherHfo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.383252,
+          "imo_data_number": "IMO0646",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.366845,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.362511,
+          "imo_data_number": "IMO0935",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.220347,
+          "imo_data_number": "IMO0143",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.219874,
+          "imo_data_number": "IMO0139",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptionotherlsfo",
+      "reference_model_version": null,
+      "source_name": "consumptionOtherLsfo",
+      "source_path": "/consumptionOtherLsfo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.449627,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.38881,
+          "imo_data_number": "IMO0878",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.388213,
+          "imo_data_number": "IMO0876",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.387462,
+          "imo_data_number": "IMO0877",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.35643,
+          "imo_data_number": "IMO0935",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptionothermgo",
+      "reference_model_version": null,
+      "source_name": "consumptionOtherMgo",
+      "source_path": "/consumptionOtherMgo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.382692,
+          "imo_data_number": "IMO0646",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.366362,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.361938,
+          "imo_data_number": "IMO0935",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.220109,
+          "imo_data_number": "IMO0143",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.219643,
+          "imo_data_number": "IMO0139",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptionotherulsfo",
+      "reference_model_version": null,
+      "source_name": "consumptionOtherUlsfo",
+      "source_path": "/consumptionOtherUlsfo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.382143,
+          "imo_data_number": "IMO0646",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.365885,
+          "imo_data_number": "IMO0678",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.361376,
+          "imo_data_number": "IMO0935",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.219874,
+          "imo_data_number": "IMO0143",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.219415,
+          "imo_data_number": "IMO0139",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "consumptionotherulsmgo",
+      "reference_model_version": null,
+      "source_name": "consumptionOtherUlsmgo",
+      "source_path": "/consumptionOtherUlsmgo",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.364087,
+          "imo_data_number": "IMO0329",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.362911,
+          "imo_data_number": "IMO0608",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.343862,
+          "imo_data_number": "IMO0441",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.320055,
+          "imo_data_number": "IMO0601",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.234375,
+          "imo_data_number": "IMO0337",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "positionlat",
+      "reference_model_version": null,
+      "source_name": "positionLat",
+      "source_path": "/positionLat",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.366221,
+          "imo_data_number": "IMO0609",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.356927,
+          "imo_data_number": "IMO0329",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.346992,
+          "imo_data_number": "IMO0442",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.323321,
+          "imo_data_number": "IMO0602",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.232692,
+          "imo_data_number": "IMO0353",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "positionlon",
+      "reference_model_version": null,
+      "source_name": "positionLon",
+      "source_path": "/positionLon",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [],
+      "confidence": 1.0,
+      "evidence_refs": [],
+      "imo_data_element_name": "Fuel quantity remaining onboard",
+      "imo_data_number": "IMO0674",
+      "mapping_method": "EXPLICIT_IDENTIFIER_VALIDATED",
+      "normalized_name": "imo0674",
+      "reference_model_version": "FAL50",
+      "source_name": "IMO0674",
+      "source_path": "/IMO0674",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "PASS",
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0676",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0676",
+      "reference_model_version": null,
+      "source_name": "IMO0676",
+      "source_path": "/IMO0676",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0676"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0064",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0064",
+      "reference_model_version": null,
+      "source_name": "IMO0064",
+      "source_path": "/IMO0064",
+      "source_unit": null,
+      "source_value_type": "string",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0064"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0084",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0084",
+      "reference_model_version": null,
+      "source_name": "IMO0084",
+      "source_path": "/IMO0084",
+      "source_unit": null,
+      "source_value_type": "string",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0084"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0085",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0085",
+      "reference_model_version": null,
+      "source_name": "IMO0085",
+      "source_path": "/IMO0085",
+      "source_unit": null,
+      "source_value_type": "string",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0085"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0537",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0537",
+      "reference_model_version": null,
+      "source_name": "IMO0537",
+      "source_path": "/IMO0537",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0537"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0543",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0543",
+      "reference_model_version": null,
+      "source_name": "IMO0543",
+      "source_path": "/IMO0543",
+      "source_unit": null,
+      "source_value_type": "string",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0543"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0632",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0632",
+      "reference_model_version": null,
+      "source_name": "IMO0632",
+      "source_path": "/IMO0632",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0632"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0631",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0631",
+      "reference_model_version": null,
+      "source_name": "IMO0631",
+      "source_path": "/IMO0631",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0631"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.629395,
+          "imo_data_number": "IMO0360",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.623098,
+          "imo_data_number": "IMO0627",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.527948,
+          "imo_data_number": "IMO0631",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.525294,
+          "imo_data_number": "IMO0634",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.484856,
+          "imo_data_number": "IMO0637",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "truewinddirection",
+      "reference_model_version": null,
+      "source_name": "trueWindDirection",
+      "source_path": "/trueWindDirection",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0626",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0626",
+      "reference_model_version": null,
+      "source_name": "IMO0626",
+      "source_path": "/IMO0626",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0626"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0625",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0625",
+      "reference_model_version": null,
+      "source_name": "IMO0625",
+      "source_path": "/IMO0625",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0625"
+      ]
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO0628",
+          "reason": "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE",
+          "source": "reference",
+          "validator_status": "OUT_OF_SCOPE"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "imo0628",
+      "reference_model_version": null,
+      "source_name": "IMO0628",
+      "source_path": "/IMO0628",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": "OUT_OF_SCOPE",
+      "warnings": [
+        "IMO_ELEMENT_OUTSIDE_APPROVED_CANDIDATE_SCOPE: IMO0628"
+      ]
+    }
+  ],
+  "metrics": {
+    "alias_mapped": 0,
+    "candidate_scope_rejected": 30,
+    "exact_mapped": 2,
+    "fabricated_candidate_rejections": 0,
+    "llm_invocations": 33,
+    "llm_suggested": 0,
+    "llm_suggested_and_validated": 0,
+    "skill_invocations": 67,
+    "skill_rule_mapped": 0,
+    "total_source_fields": 67,
+    "unmapped": 65
+  },
+  "profile": "EVENT_REPORT",
+  "reference_model_version": "FAL50"
+}

@@ -1,0 +1,40 @@
+{
+  "code_commit": "e1a2295e49349508bb0a42274c344d56f57ee773",
+  "completed_at": "2026-09-12T05:54:58.227393+00:00",
+  "correlation_id": "LAB021-NOON-00000009-004",
+  "created_at": "2026-09-12T05:54:56.704913+00:00",
+  "dirty_worktree": false,
+  "file_hashes": {
+    "agent-trace.json": "59ff406e267ccdda6b7c39c199d2d778e7ea1f33403a0fc65292629e0bb0f76e",
+    "governance-context.json": "1a92ed1c66026737b0bec4764081fcfb9e926221f8fbf3e353b72f6dd0af603c",
+    "ingress-result.json": "29f9ed3cafbd6213fb9db38742a21fb03dc77713c8ea806fec3f1b47a34cc30a",
+    "llm-calls.json": "dfb311ce69b22638edb5a6348cd640d2f920f37b6d34c942ffaba001038c77b1",
+    "mapping-result.json": "9de52a04ffd8ba571b4fab35fe2189b8e274419017951eacb92af18fe48a4c13",
+    "mcp-calls.json": "ccac1e7eaca2d17b6a7f3ca001e230964a81987874891b2cf1ee520ed392bf5a",
+    "normalized-input.json": "8fa4a127154b8f7669d52551a2f27c9eb728395b76cbd5f79fb8ba566e62c70c",
+    "profile-result.json": "565878996436f958e1ac190b0b05559a8a975daa3b796cd839500a2f68217c61",
+    "raw-input.json": "12c0139277566084d822c8cad29695c56363a076d0daa9c692cc33e9690c07f0",
+    "raw-input.sha256": "823e7a00f0c7da294b9d1d1f700735254a5e70cbe88ecaeedeaf34fbd7bab78a",
+    "skill-calls.json": "2ca4d3fe42264a4f8eb46c6df033705f1948bf75b23eb9ce810e143355f63f0b",
+    "summary.md": "ff2b0bf5f9a2c91b247e76d7d11bc89430503df0afc483f6830ab98bdbc5adf1",
+    "validation-result.json": "3f04bcd6e218b5e95f3b5b2e18013e63b9b1e6c816bf373e1fcb4ab56949a402"
+  },
+  "final_status": "REVIEW_REQUIRED",
+  "governance_flags": {
+    "actual_normalization_eligible": false,
+    "candidate_mapping_eligible": true,
+    "executable_mapping_eligible": false,
+    "kr_gears_actual_delivery_allowed": false,
+    "requiredness_profile_approved": false
+  },
+  "kr_gears_contract_status": "NOT_TRANSFORMED",
+  "llm_model": "mock-structured",
+  "llm_provider": "mock",
+  "mcp_real_or_mock": "off",
+  "reference_model_version": "FAL50",
+  "run_id": "run-5fd59058",
+  "skill_real_or_mock": "real",
+  "source_type": "synthetic_fixture",
+  "synthetic_data": true,
+  "validator_version": "0.1.0"
+}

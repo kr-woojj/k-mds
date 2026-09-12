@@ -1,0 +1,22 @@
+[
+  {
+    "called_at": "2026-09-12T05:54:37.816558+00:00",
+    "candidate_count": -1,
+    "correlation_id": "SYN-NOON-AMB-0001",
+    "error": null,
+    "latency_ms": 0.05,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": "nautical mile",
+      "description": "distance figure reported by the crew",
+      "field_name": "distance",
+      "reference_candidate_count": 5,
+      "report_context": "NOON_REPORT"
+    },
+    "token_usage": null
+  }
+]

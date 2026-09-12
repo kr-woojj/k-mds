@@ -1,0 +1,682 @@
+[
+  {
+    "called_at": "2026-09-12T05:54:51.319893+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.06,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "string",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "masterName",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:51.349647+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.06,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "string",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "eventKey",
+      "reference_candidate_count": 3,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:51.474248+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.03,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "draftFore",
+      "reference_candidate_count": 1,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:51.507996+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.03,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "draftAft",
+      "reference_candidate_count": 2,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:51.603304+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.06,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionBlrDo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:51.639391+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.07,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionBlrHfo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:51.676223+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.04,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionBlrLsfo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:51.703114+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.04,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionBlrMgo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:51.741647+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.06,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionBlrUlsfo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:51.787220+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.05,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionBlrUlsmgo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:51.819891+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.03,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionGeDo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:51.853386+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.04,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionGeHfo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:51.888292+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.04,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionGeLsfo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:51.923752+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.04,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionGeMgo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:51.950528+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.04,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionGeUlsfo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:51.985740+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.04,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionGeUlsmgo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:52.026598+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.04,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionMeDo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:52.062471+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.04,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionMeHfo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:52.089361+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.04,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionMeLsfo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:52.122335+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.04,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionMeMgo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:52.149732+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.04,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionMeUlsfo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:52.189547+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.04,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionMeUlsmgo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:52.218798+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.03,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionOtherDo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:52.263309+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.05,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionOtherHfo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:52.301889+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.06,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionOtherLsfo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:52.340751+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.07,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionOtherMgo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:52.376739+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.04,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionOtherUlsfo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:52.415547+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.06,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "consumptionOtherUlsmgo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:52.456168+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.06,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "string",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "portCode",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:52.493995+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.04,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "string",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "portName",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:52.535701+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.07,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "positionLat",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:52.575660+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.06,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "positionLon",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:52.608084+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.04,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "boolean",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "isEuPort",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:52.694108+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 0.04,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "distanceToGo",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  }
+]

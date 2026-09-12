@@ -1,0 +1,58 @@
+{
+  "correlation_id": "SYN-VP-NEG-0001",
+  "fail_count": 1,
+  "items": [
+    {
+      "check": "skill_registry_validation",
+      "code": "DATATYPE_HARD_CONFLICT",
+      "imo_data_number": "IMO0616",
+      "message": "필드 타입과 Registry format 타입 범주가 충돌한다",
+      "source_path": "/speed_through_water",
+      "verdict": "FAIL"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0191",
+      "message": null,
+      "source_path": "/voyage_no",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0603",
+      "message": null,
+      "source_path": "/report_datetime",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0669",
+      "message": null,
+      "source_path": "/foc",
+      "verdict": "PASS"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/frobnicator_index",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/reference_hint",
+      "verdict": "NOT_APPLICABLE"
+    }
+  ],
+  "not_verified_count": 0,
+  "overall": "FAIL",
+  "pass_count": 3,
+  "warning_count": 0
+}

@@ -1,0 +1,9 @@
+{
+  "correlation_id": "SYN-NOON-AMB-0001",
+  "dataset_id": "SYN-DATASET-NOON",
+  "report_type": "noon",
+  "vessel_imo_number": "9990001",
+  "voyage_no": "SYN-VOY-002",
+  "report_datetime": "2026-08-03T12:00:00+00:00",
+  "distance": {"value": 288.1, "unit": "nautical mile", "description": "distance figure reported by the crew"}
+}

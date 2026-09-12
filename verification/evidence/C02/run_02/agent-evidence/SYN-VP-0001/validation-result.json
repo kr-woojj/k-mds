@@ -1,0 +1,82 @@
+{
+  "correlation_id": "SYN-VP-0001",
+  "fail_count": 0,
+  "items": [
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0140",
+      "message": null,
+      "source_path": "/vessel_imo_number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0191",
+      "message": null,
+      "source_path": "/voyage_no",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0603",
+      "message": null,
+      "source_path": "/report_datetime",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0616",
+      "message": null,
+      "source_path": "/speed_through_water",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0612",
+      "message": null,
+      "source_path": "/distance_through_water",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0669",
+      "message": null,
+      "source_path": "/total_fuel_quantity_consumed",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0674",
+      "message": null,
+      "source_path": "/fuel_quantity_remaining_onboard",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0024",
+      "message": null,
+      "source_path": "/cargo_item_gross_weight",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0668",
+      "message": null,
+      "source_path": "/fuel_carbon_dioxide_emission",
+      "verdict": "PASS"
+    }
+  ],
+  "not_verified_count": 0,
+  "overall": "PASS",
+  "pass_count": 9,
+  "warning_count": 0
+}

@@ -1,0 +1,9 @@
+{
+  "correlation_id": "SYN-NOON-NEG-0001",
+  "dataset_id": "SYN-DATASET-NOON",
+  "report_type": "noon",
+  "vessel_imo_number": "9990001",
+  "voyage_no": "SYN-VOY-002",
+  "distance_through_water": {"value": 288.1, "unit": "nautical mile"},
+  "speed_through_water": {"value": 12.0, "unit": "knot"}
+}

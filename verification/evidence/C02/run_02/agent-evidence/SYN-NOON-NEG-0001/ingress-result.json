@@ -1,0 +1,15 @@
+{
+  "body_type": "RAW_JSON_BODY",
+  "content_type": "application/json",
+  "correlation_id": "SYN-NOON-NEG-0001",
+  "dataset_metadata": {
+    "dataset_id": "SYN-DATASET-NOON"
+  },
+  "payload_bytes": 307,
+  "raw_sha256": "77b34b9495c9fdbc48b2d1fed150cc7735a583303f08c6f20fab24f24d777063",
+  "transport_metadata": {
+    "correlation_id": "SYN-NOON-NEG-0001",
+    "dataset_id": "SYN-DATASET-NOON"
+  },
+  "validation_errors": []
+}

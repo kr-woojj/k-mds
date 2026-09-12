@@ -1,0 +1,50 @@
+{
+  "correlation_id": "SYN-NOON-NEG-0001",
+  "fail_count": 1,
+  "items": [
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0140",
+      "message": null,
+      "source_path": "/vessel_imo_number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0191",
+      "message": null,
+      "source_path": "/voyage_no",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0612",
+      "message": null,
+      "source_path": "/distance_through_water",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0616",
+      "message": null,
+      "source_path": "/speed_through_water",
+      "verdict": "PASS"
+    },
+    {
+      "check": "required_elements_policy",
+      "code": "REQUIRED_FIELD_MISSING",
+      "imo_data_number": "IMO0603",
+      "message": "정책 P-REQ-1: NOON_REPORT 필수 요소 미매핑",
+      "source_path": "$",
+      "verdict": "FAIL"
+    }
+  ],
+  "not_verified_count": 0,
+  "overall": "FAIL",
+  "pass_count": 4,
+  "warning_count": 0
+}

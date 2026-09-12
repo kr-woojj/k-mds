@@ -1,0 +1,162 @@
+{
+  "correlation_id": "SYN-VP-NEG-0001",
+  "fields": [
+    {
+      "candidate_list": [],
+      "confidence": 0.93,
+      "evidence_refs": [],
+      "imo_data_element_name": "Voyage number",
+      "imo_data_number": "IMO0191",
+      "mapping_method": "ALIAS_REFERENCE",
+      "normalized_name": "voyage no",
+      "reference_model_version": "FAL50",
+      "source_name": "voyage_no",
+      "source_path": "/voyage_no",
+      "source_unit": null,
+      "source_value_type": "string",
+      "validator_status": "PASS",
+      "warnings": []
+    },
+    {
+      "candidate_list": [],
+      "confidence": 0.93,
+      "evidence_refs": [],
+      "imo_data_element_name": "Ship reporting date time",
+      "imo_data_number": "IMO0603",
+      "mapping_method": "ALIAS_REFERENCE",
+      "normalized_name": "report datetime",
+      "reference_model_version": "FAL50",
+      "source_name": "report_datetime",
+      "source_path": "/report_datetime",
+      "source_unit": null,
+      "source_value_type": "string",
+      "validator_status": "PASS",
+      "warnings": []
+    },
+    {
+      "candidate_list": [],
+      "confidence": 0.93,
+      "evidence_refs": [],
+      "imo_data_element_name": "Total fuel quantity consumed",
+      "imo_data_number": "IMO0669",
+      "mapping_method": "ALIAS_REFERENCE",
+      "normalized_name": "foc",
+      "reference_model_version": "FAL50",
+      "source_name": "foc",
+      "source_path": "/foc",
+      "source_unit": "tonne",
+      "source_value_type": "numeric",
+      "validator_status": "PASS",
+      "warnings": []
+    },
+    {
+      "candidate_list": [],
+      "confidence": 0.95,
+      "evidence_refs": [],
+      "imo_data_element_name": "Speed through water",
+      "imo_data_number": "IMO0616",
+      "mapping_method": "NORMALIZED_EXACT_REFERENCE",
+      "normalized_name": "speed through water",
+      "reference_model_version": "FAL50",
+      "source_name": "speed_through_water",
+      "source_path": "/speed_through_water",
+      "source_unit": "psi",
+      "source_value_type": "string",
+      "validator_status": "PASS",
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.241554,
+          "imo_data_number": "IMO0438",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.240833,
+          "imo_data_number": "IMO0202",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.240833,
+          "imo_data_number": "IMO0439",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.240132,
+          "imo_data_number": "IMO0428",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.235119,
+          "imo_data_number": "IMO0218",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "frobnicator index",
+      "reference_model_version": null,
+      "source_name": "frobnicator_index",
+      "source_path": "/frobnicator_index",
+      "source_unit": null,
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": null,
+          "imo_data_number": "IMO9999",
+          "reason": "registry에 존재하지 않는 식별자",
+          "source": "input",
+          "validator_status": "FAIL"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "reference hint",
+      "reference_model_version": null,
+      "source_name": "reference_hint",
+      "source_path": "/reference_hint",
+      "source_unit": null,
+      "source_value_type": "string",
+      "validator_status": "FAIL",
+      "warnings": [
+        "IMO_ID_NOT_FOUND: IMO9999"
+      ]
+    }
+  ],
+  "metrics": {
+    "alias_mapped": 3,
+    "candidate_scope_rejected": 0,
+    "exact_mapped": 1,
+    "fabricated_candidate_rejections": 1,
+    "llm_invocations": 1,
+    "llm_suggested": 0,
+    "llm_suggested_and_validated": 0,
+    "skill_invocations": 1,
+    "skill_rule_mapped": 0,
+    "total_source_fields": 6,
+    "unmapped": 2
+  },
+  "profile": "VESSEL_PERFORMANCE",
+  "reference_model_version": "FAL50"
+}

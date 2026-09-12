@@ -1,0 +1,58 @@
+[
+  {
+    "data_type": "string",
+    "description": null,
+    "equipment_context": null,
+    "normalized_name": "vessel imo number",
+    "report_context": "NOON_REPORT",
+    "source_name": "vessel_imo_number",
+    "source_path": "/vessel_imo_number",
+    "timestamp": null,
+    "unit": null,
+    "value": "9990001",
+    "vessel_context": "9990001",
+    "voyage_context": "SYN-VOY-002"
+  },
+  {
+    "data_type": "string",
+    "description": null,
+    "equipment_context": null,
+    "normalized_name": "voyage no",
+    "report_context": "NOON_REPORT",
+    "source_name": "voyage_no",
+    "source_path": "/voyage_no",
+    "timestamp": null,
+    "unit": null,
+    "value": "SYN-VOY-002",
+    "vessel_context": "9990001",
+    "voyage_context": "SYN-VOY-002"
+  },
+  {
+    "data_type": "numeric",
+    "description": null,
+    "equipment_context": null,
+    "normalized_name": "distance through water",
+    "report_context": "NOON_REPORT",
+    "source_name": "distance_through_water",
+    "source_path": "/distance_through_water",
+    "timestamp": null,
+    "unit": "nautical mile",
+    "value": 288.1,
+    "vessel_context": "9990001",
+    "voyage_context": "SYN-VOY-002"
+  },
+  {
+    "data_type": "numeric",
+    "description": null,
+    "equipment_context": null,
+    "normalized_name": "speed through water",
+    "report_context": "NOON_REPORT",
+    "source_name": "speed_through_water",
+    "source_path": "/speed_through_water",
+    "timestamp": null,
+    "unit": "knot",
+    "value": 12.0,
+    "vessel_context": "9990001",
+    "voyage_context": "SYN-VOY-002"
+  }
+]

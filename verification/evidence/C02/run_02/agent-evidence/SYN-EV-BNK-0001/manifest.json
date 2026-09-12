@@ -1,0 +1,40 @@
+{
+  "code_commit": "e1a2295e49349508bb0a42274c344d56f57ee773",
+  "completed_at": "2026-09-12T05:54:37.159496+00:00",
+  "correlation_id": "SYN-EV-BNK-0001",
+  "created_at": "2026-09-12T05:54:36.922609+00:00",
+  "dirty_worktree": false,
+  "file_hashes": {
+    "agent-trace.json": "6d6d1437b42e32f14958244bbf52185fc54b217c114a353e9a270654f2fb8b0d",
+    "governance-context.json": "1a92ed1c66026737b0bec4764081fcfb9e926221f8fbf3e353b72f6dd0af603c",
+    "ingress-result.json": "f5db6d7033b61254e262d67a1c0ca3df5ba4d874ade4eb7aaf3dc2e01d27a359",
+    "llm-calls.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "mapping-result.json": "24531b0c14d9a6a63e925317366b974e4ae6e0d646d76eefa0a9c9c9f311a237",
+    "mcp-calls.json": "ccac1e7eaca2d17b6a7f3ca001e230964a81987874891b2cf1ee520ed392bf5a",
+    "normalized-input.json": "0db55c5b0974059d0b209eec8744305d18e7a2f8db7b5c36c5771776b21d2c21",
+    "profile-result.json": "565878996436f958e1ac190b0b05559a8a975daa3b796cd839500a2f68217c61",
+    "raw-input.json": "f17c612ceaa6e7ce2092e056e670594fadd78005c046a6bef6f09e1ebe9fa62f",
+    "raw-input.sha256": "03bcbdbacfa63b428b6bab7654d4fedca1236567cc30b9214a057e5f6d5b2182",
+    "skill-calls.json": "11e28c551bc5814b3aa078d17ea60e274803e4dd1d6936c9b4e18ce44735f71d",
+    "summary.md": "4af514e9bb013bb0d2437c961e5db45e29cf3635ad16068526a643cc79a64265",
+    "validation-result.json": "506cce3d784ae20a186634ae506095f0ef35482420ef90f7f38804d2ce134660"
+  },
+  "final_status": "REVIEW_REQUIRED",
+  "governance_flags": {
+    "actual_normalization_eligible": false,
+    "candidate_mapping_eligible": true,
+    "executable_mapping_eligible": false,
+    "kr_gears_actual_delivery_allowed": false,
+    "requiredness_profile_approved": false
+  },
+  "kr_gears_contract_status": "NOT_TRANSFORMED",
+  "llm_model": "mock-structured",
+  "llm_provider": "mock",
+  "mcp_real_or_mock": "off",
+  "reference_model_version": "FAL50",
+  "run_id": "run-10ff85a5",
+  "skill_real_or_mock": "real",
+  "source_type": "synthetic_fixture",
+  "synthetic_data": true,
+  "validator_version": "0.1.0"
+}

@@ -1,0 +1,21 @@
+$ uv run --project C:\kr-dev\kr-ghg-ai-agent python -c 
+import sys, json
+from dataclasses import replace
+from pathlib import Path
+sys.path.insert(0, r"C:\kr-dev\kr-ghg-ai-agent\src")
+from ghg_agent.config import load_settings
+from ghg_agent.agents.orchestrator import build_pipeline, DuplicateRunError
+s = replace(load_settings(), audit_log_dir=Path(r"C:\kr-dev\k-mds\verification\evidence\C02\run_02\agent-evidence"))
+p = build_pipeline(s)
+for name in ['noon_report_mandatory_missing.json']:
+    raw = (Path(r"C:\kr-dev\kr-ghg-ai-agent\tests\fixtures") / name).read_bytes()
+    try:
+        st = p.run(raw, "application/json"); print(f"fixture={name} correlation_id={st.correlation_id} status={st.status.value} error={st.error}")
+    except DuplicateRunError as e:
+        print(f"skip fixture={name} duplicate {e.correlation_id}")
+
+fixture=noon_report_mandatory_missing.json correlation_id=SYN-NOON-NEG-0001 status=REVIEW_REQUIRED error=VALIDATION_FAIL
+
+[stderr]
+
+exit=0

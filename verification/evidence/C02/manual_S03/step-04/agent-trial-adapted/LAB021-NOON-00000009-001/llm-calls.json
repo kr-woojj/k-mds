@@ -1,0 +1,102 @@
+[
+  {
+    "called_at": "2026-09-12T05:54:53.295757+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-001",
+    "error": null,
+    "latency_ms": 0.03,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "string",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "eventKey",
+      "reference_candidate_count": 3,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:53.334050+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-001",
+    "error": null,
+    "latency_ms": 0.05,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "string",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "dateEventUtc",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:53.422386+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-001",
+    "error": null,
+    "latency_ms": 0.03,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "positionLat",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:53.456173+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-001",
+    "error": null,
+    "latency_ms": 0.06,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "positionLon",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  },
+  {
+    "called_at": "2026-09-12T05:54:53.490707+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-001",
+    "error": null,
+    "latency_ms": 0.04,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "boolean",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "isEuPort",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  }
+]

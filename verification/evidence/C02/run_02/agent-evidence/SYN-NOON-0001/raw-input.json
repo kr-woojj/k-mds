@@ -1,0 +1,20 @@
+{
+  "correlation_id": "SYN-NOON-0001",
+  "dataset_id": "SYN-DATASET-NOON",
+  "report_type": "noon",
+  "vessel_imo_number": "9990001",
+  "voyage_no": "SYN-VOY-002",
+  "report_datetime": "2026-08-02T12:00:00+00:00",
+  "latitude": "3730.5N",
+  "longitude": "12645.2E",
+  "distance_through_water": {"value": 288.1, "unit": "nautical mile"},
+  "speed_through_water": {"value": 12.0, "unit": "knot"},
+  "wind_speed": 14,
+  "state_of_the_sea": 3,
+  "fuel_consumed_by_main_engine": {"value": 24.1, "unit": "tonne"},
+  "total_fuel_quantity_consumed": {"value": 27.9, "unit": "tonne"},
+  "fuel_quantity_remaining_onboard": {"value": 387.1, "unit": "tonne"},
+  "cargo_item_gross_weight": {"value": 45000, "unit": "tonne"},
+  "port_of_departure_name": "SYN PORT ALPHA",
+  "port_of_arrival_name": "SYN PORT BRAVO"
+}

@@ -1,0 +1,7 @@
+{
+  "correlation_id": "SYN-EV-ANC-0001",
+  "detail": "mock delivery — 외부 전송 없음",
+  "mode": "mock",
+  "real_call": false,
+  "status": "DELIVERED"
+}

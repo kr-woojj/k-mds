@@ -1,0 +1,319 @@
+{
+  "contract_status": "PROVISIONAL",
+  "correlation_id": "SYN-VP-0001",
+  "payload": {
+    "contract_status": "PROVISIONAL",
+    "data_elements": [
+      {
+        "imo_data_element_name": "Cargo item gross weight",
+        "imo_data_number": "IMO0024",
+        "source_field": "cargo_item_gross_weight",
+        "unit": "tonne",
+        "value": 45000
+      },
+      {
+        "imo_data_element_name": "Ship IMO number",
+        "imo_data_number": "IMO0140",
+        "source_field": "vessel_imo_number",
+        "unit": null,
+        "value": "9990001"
+      },
+      {
+        "imo_data_element_name": "Voyage number",
+        "imo_data_number": "IMO0191",
+        "source_field": "voyage_no",
+        "unit": null,
+        "value": "SYN-VOY-001"
+      },
+      {
+        "imo_data_element_name": "Ship reporting date time",
+        "imo_data_number": "IMO0603",
+        "source_field": "report_datetime",
+        "unit": null,
+        "value": "2026-08-01T12:00:00+00:00"
+      },
+      {
+        "imo_data_element_name": "Distance through water",
+        "imo_data_number": "IMO0612",
+        "source_field": "distance_through_water",
+        "unit": "nautical mile",
+        "value": 285.0
+      },
+      {
+        "imo_data_element_name": "Speed through water",
+        "imo_data_number": "IMO0616",
+        "source_field": "speed_through_water",
+        "unit": "knot",
+        "value": 12.5
+      },
+      {
+        "imo_data_element_name": "Fuel Carbon Dioxide emission",
+        "imo_data_number": "IMO0668",
+        "source_field": "fuel_carbon_dioxide_emission",
+        "unit": "g",
+        "value": 3.1
+      },
+      {
+        "imo_data_element_name": "Total fuel quantity consumed",
+        "imo_data_number": "IMO0669",
+        "source_field": "total_fuel_quantity_consumed",
+        "unit": "tonne",
+        "value": 28.4
+      },
+      {
+        "imo_data_element_name": "Fuel quantity remaining onboard",
+        "imo_data_number": "IMO0674",
+        "source_field": "fuel_quantity_remaining_onboard",
+        "unit": "tonne",
+        "value": 415.0
+      }
+    ],
+    "profile": "VESSEL_PERFORMANCE",
+    "reference_model_version": "FAL50",
+    "voyage": "SYN-VOY-001"
+  },
+  "profile": "VESSEL_PERFORMANCE",
+  "provenance": [
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0140",
+      "original_unit": null,
+      "source_path": "/vessel_imo_number",
+      "source_value_hash": "e2ef0166961b196a",
+      "target_path": "/data_elements/IMO0140",
+      "target_unit": null,
+      "transformation_rule_id": "TR-PERF-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0191",
+      "original_unit": null,
+      "source_path": "/voyage_no",
+      "source_value_hash": "d38b9ed8e3a9c6dd",
+      "target_path": "/data_elements/IMO0191",
+      "target_unit": null,
+      "transformation_rule_id": "TR-PERF-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0603",
+      "original_unit": null,
+      "source_path": "/report_datetime",
+      "source_value_hash": "f355d61bc0159e24",
+      "target_path": "/data_elements/IMO0603",
+      "target_unit": null,
+      "transformation_rule_id": "TR-PERF-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0616",
+      "original_unit": "knot",
+      "source_path": "/speed_through_water",
+      "source_value_hash": "b902cc4550838229",
+      "target_path": "/data_elements/IMO0616",
+      "target_unit": "knot",
+      "transformation_rule_id": "TR-PERF-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0612",
+      "original_unit": "nautical mile",
+      "source_path": "/distance_through_water",
+      "source_value_hash": "b4ff48331689fde2",
+      "target_path": "/data_elements/IMO0612",
+      "target_unit": "nautical mile",
+      "transformation_rule_id": "TR-PERF-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0669",
+      "original_unit": "tonne",
+      "source_path": "/total_fuel_quantity_consumed",
+      "source_value_hash": "ff5ae173867c8730",
+      "target_path": "/data_elements/IMO0669",
+      "target_unit": "tonne",
+      "transformation_rule_id": "TR-PERF-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0674",
+      "original_unit": "tonne",
+      "source_path": "/fuel_quantity_remaining_onboard",
+      "source_value_hash": "9af8e9e674306155",
+      "target_path": "/data_elements/IMO0674",
+      "target_unit": "tonne",
+      "transformation_rule_id": "TR-PERF-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0024",
+      "original_unit": "tonne",
+      "source_path": "/cargo_item_gross_weight",
+      "source_value_hash": "5872238ba9244bfd",
+      "target_path": "/data_elements/IMO0024",
+      "target_unit": "tonne",
+      "transformation_rule_id": "TR-PERF-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0668",
+      "original_unit": "g",
+      "source_path": "/fuel_carbon_dioxide_emission",
+      "source_value_hash": "35efc6ded4e13f29",
+      "target_path": "/data_elements/IMO0668",
+      "target_unit": "g",
+      "transformation_rule_id": "TR-PERF-1",
+      "transformation_rule_version": "0.1.0"
+    }
+  ],
+  "verdict_report": {
+    "compendium_version": "FAL50",
+    "error_code": null,
+    "error_detail": null,
+    "errors": [],
+    "mapping_job_id": "GHGPOC-SYN-VP-0001",
+    "payload_hash": "47b7f8555283c216e498d7cf59557dc3872511c6aee9d88b510d35167edf22e4",
+    "selected_mappings": [
+      {
+        "field_id": "f0001",
+        "field_name": "vessel_imo_number",
+        "final_score": 0.93,
+        "imo_data_number": "IMO0140",
+        "origin": "auto",
+        "path": "/vessel_imo_number",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0140",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0002",
+        "field_name": "voyage_no",
+        "final_score": 0.93,
+        "imo_data_number": "IMO0191",
+        "origin": "auto",
+        "path": "/voyage_no",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0191",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0003",
+        "field_name": "report_datetime",
+        "final_score": 0.93,
+        "imo_data_number": "IMO0603",
+        "origin": "auto",
+        "path": "/report_datetime",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0603",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0004",
+        "field_name": "speed_through_water",
+        "final_score": 0.95,
+        "imo_data_number": "IMO0616",
+        "origin": "auto",
+        "path": "/speed_through_water",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0616",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0005",
+        "field_name": "distance_through_water",
+        "final_score": 0.95,
+        "imo_data_number": "IMO0612",
+        "origin": "auto",
+        "path": "/distance_through_water",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0612",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0006",
+        "field_name": "total_fuel_quantity_consumed",
+        "final_score": 0.95,
+        "imo_data_number": "IMO0669",
+        "origin": "auto",
+        "path": "/total_fuel_quantity_consumed",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0669",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0007",
+        "field_name": "fuel_quantity_remaining_onboard",
+        "final_score": 0.95,
+        "imo_data_number": "IMO0674",
+        "origin": "auto",
+        "path": "/fuel_quantity_remaining_onboard",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0674",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0008",
+        "field_name": "cargo_item_gross_weight",
+        "final_score": 0.95,
+        "imo_data_number": "IMO0024",
+        "origin": "auto",
+        "path": "/cargo_item_gross_weight",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0024",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0009",
+        "field_name": "fuel_carbon_dioxide_emission",
+        "final_score": 0.95,
+        "imo_data_number": "IMO0668",
+        "origin": "auto",
+        "path": "/fuel_carbon_dioxide_emission",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0668",
+          "recordType": "data_element"
+        }
+      }
+    ],
+    "source_dataset_id": "SYN-VP-0001",
+    "timestamp": "2026-09-12T05:54:35.974887+00:00",
+    "validation_status": "PASS"
+  },
+  "warnings": [
+    "KR GEARs 제출 스키마 미확인 — payload 는 PROVISIONAL, 실제 delivery 차단"
+  ]
+}

@@ -1,0 +1,11 @@
+[
+  {
+    "called_at": "2026-09-12T05:54:36.634265+00:00",
+    "correlation_id": "SYN-EV-DEP-0001",
+    "error_code": null,
+    "latency_ms": 7.44,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  }
+]

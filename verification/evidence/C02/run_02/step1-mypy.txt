@@ -1,0 +1,6 @@
+$ uv run --project C:\kr-dev\kr-ghg-ai-agent mypy src
+Success: no issues found in 25 source files
+
+[stderr]
+
+exit=0

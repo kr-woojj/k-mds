@@ -1,0 +1,22 @@
+[
+  {
+    "called_at": "2026-09-12T05:54:38.199449+00:00",
+    "candidate_count": -1,
+    "correlation_id": "SYN-VP-NEG-0001",
+    "error": null,
+    "latency_ms": 0.03,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "numeric",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "frobnicator_index",
+      "reference_candidate_count": 5,
+      "report_context": "VESSEL_PERFORMANCE"
+    },
+    "token_usage": null
+  }
+]

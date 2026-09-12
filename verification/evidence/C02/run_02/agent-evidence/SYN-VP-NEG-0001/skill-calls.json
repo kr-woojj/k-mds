@@ -1,0 +1,20 @@
+[
+  {
+    "called_at": "2026-09-12T05:54:38.174557+00:00",
+    "correlation_id": "SYN-VP-NEG-0001",
+    "error_code": null,
+    "latency_ms": 27.31,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "list_candidates"
+  },
+  {
+    "called_at": "2026-09-12T05:54:38.199449+00:00",
+    "correlation_id": "SYN-VP-NEG-0001",
+    "error_code": null,
+    "latency_ms": 6.04,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  }
+]

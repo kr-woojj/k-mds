@@ -1,0 +1,337 @@
+{
+  "contract_status": "PROVISIONAL",
+  "correlation_id": "SYN-EV-ARR-0001",
+  "payload": {
+    "contract_status": "PROVISIONAL",
+    "data_elements": [
+      {
+        "event_timestamp": "2026-08-04T09:30:00+00:00",
+        "imo_data_element_name": "Ship IMO number",
+        "imo_data_number": "IMO0140",
+        "source_field": "vessel_imo_number",
+        "unit": null,
+        "value": "9990001",
+        "voyage": "SYN-VOY-002"
+      },
+      {
+        "event_timestamp": "2026-08-04T09:30:00+00:00",
+        "imo_data_element_name": "Voyage number",
+        "imo_data_number": "IMO0191",
+        "source_field": "voyage_no",
+        "unit": null,
+        "value": "SYN-VOY-002",
+        "voyage": "SYN-VOY-002"
+      },
+      {
+        "event_timestamp": "2026-08-04T09:30:00+00:00",
+        "imo_data_element_name": "Event type, coded",
+        "imo_data_number": "IMO0597",
+        "source_field": "event_type_code",
+        "unit": null,
+        "value": "EV01",
+        "voyage": "SYN-VOY-002"
+      },
+      {
+        "event_timestamp": "2026-08-04T09:30:00+00:00",
+        "imo_data_element_name": "Operation type, coded",
+        "imo_data_number": "IMO0598",
+        "source_field": "operation_mode",
+        "unit": null,
+        "value": "OP05",
+        "voyage": "SYN-VOY-002"
+      },
+      {
+        "event_timestamp": "2026-08-04T09:30:00+00:00",
+        "imo_data_element_name": "Ship position when reporting, latitude",
+        "imo_data_number": "IMO0601",
+        "source_field": "latitude",
+        "unit": null,
+        "value": "3730.5N",
+        "voyage": "SYN-VOY-002"
+      },
+      {
+        "event_timestamp": "2026-08-04T09:30:00+00:00",
+        "imo_data_element_name": "Ship position when reporting, longitude",
+        "imo_data_number": "IMO0602",
+        "source_field": "longitude",
+        "unit": null,
+        "value": "12645.2E",
+        "voyage": "SYN-VOY-002"
+      },
+      {
+        "event_timestamp": "2026-08-04T09:30:00+00:00",
+        "imo_data_element_name": "Ship reporting date time",
+        "imo_data_number": "IMO0603",
+        "source_field": "event_timestamp",
+        "unit": null,
+        "value": "2026-08-04T09:30:00+00:00",
+        "voyage": "SYN-VOY-002"
+      },
+      {
+        "event_timestamp": "2026-08-04T09:30:00+00:00",
+        "imo_data_element_name": "Total fuel quantity consumed",
+        "imo_data_number": "IMO0669",
+        "source_field": "total_fuel_quantity_consumed",
+        "unit": "tonne",
+        "value": 0.9,
+        "voyage": "SYN-VOY-002"
+      },
+      {
+        "event_timestamp": "2026-08-04T09:30:00+00:00",
+        "imo_data_element_name": "Fuel quantity remaining onboard",
+        "imo_data_number": "IMO0674",
+        "source_field": "fuel_quantity_remaining_onboard",
+        "unit": "tonne",
+        "value": 360.2,
+        "voyage": "SYN-VOY-002"
+      }
+    ],
+    "profile": "EVENT_REPORT",
+    "reference_model_version": "FAL50",
+    "voyage": "SYN-VOY-002"
+  },
+  "profile": "EVENT_REPORT",
+  "provenance": [
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0140",
+      "original_unit": null,
+      "source_path": "/vessel_imo_number",
+      "source_value_hash": "e2ef0166961b196a",
+      "target_path": "/data_elements/IMO0140",
+      "target_unit": null,
+      "transformation_rule_id": "TR-EVENT-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0191",
+      "original_unit": null,
+      "source_path": "/voyage_no",
+      "source_value_hash": "ceeb3ca8695b07db",
+      "target_path": "/data_elements/IMO0191",
+      "target_unit": null,
+      "transformation_rule_id": "TR-EVENT-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0597",
+      "original_unit": null,
+      "source_path": "/event_type_code",
+      "source_value_hash": "d55d42fb2684d8e5",
+      "target_path": "/data_elements/IMO0597",
+      "target_unit": null,
+      "transformation_rule_id": "TR-EVENT-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0603",
+      "original_unit": null,
+      "source_path": "/event_timestamp",
+      "source_value_hash": "aa5640b8dcc851e5",
+      "target_path": "/data_elements/IMO0603",
+      "target_unit": null,
+      "transformation_rule_id": "TR-EVENT-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0601",
+      "original_unit": null,
+      "source_path": "/latitude",
+      "source_value_hash": "286dd5278cfd9d9a",
+      "target_path": "/data_elements/IMO0601",
+      "target_unit": null,
+      "transformation_rule_id": "TR-EVENT-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0602",
+      "original_unit": null,
+      "source_path": "/longitude",
+      "source_value_hash": "7a9d88fb697024fe",
+      "target_path": "/data_elements/IMO0602",
+      "target_unit": null,
+      "transformation_rule_id": "TR-EVENT-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0598",
+      "original_unit": null,
+      "source_path": "/operation_mode",
+      "source_value_hash": "66d061ee37d3f105",
+      "target_path": "/data_elements/IMO0598",
+      "target_unit": null,
+      "transformation_rule_id": "TR-EVENT-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0669",
+      "original_unit": "tonne",
+      "source_path": "/total_fuel_quantity_consumed",
+      "source_value_hash": "8139b33952401b3e",
+      "target_path": "/data_elements/IMO0669",
+      "target_unit": "tonne",
+      "transformation_rule_id": "TR-EVENT-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0674",
+      "original_unit": "tonne",
+      "source_path": "/fuel_quantity_remaining_onboard",
+      "source_value_hash": "e654e403f48db138",
+      "target_path": "/data_elements/IMO0674",
+      "target_unit": "tonne",
+      "transformation_rule_id": "TR-EVENT-1",
+      "transformation_rule_version": "0.1.0"
+    }
+  ],
+  "verdict_report": {
+    "compendium_version": "FAL50",
+    "error_code": null,
+    "error_detail": null,
+    "errors": [],
+    "mapping_job_id": "GHGPOC-SYN-EV-ARR-0001",
+    "payload_hash": "5909cf6a9968cad0418228c1201802d215858cdde07049af1cac71f7eefb5d55",
+    "selected_mappings": [
+      {
+        "field_id": "f0001",
+        "field_name": "vessel_imo_number",
+        "final_score": 0.93,
+        "imo_data_number": "IMO0140",
+        "origin": "auto",
+        "path": "/vessel_imo_number",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0140",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0002",
+        "field_name": "voyage_no",
+        "final_score": 0.93,
+        "imo_data_number": "IMO0191",
+        "origin": "auto",
+        "path": "/voyage_no",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0191",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0003",
+        "field_name": "event_type_code",
+        "final_score": 0.93,
+        "imo_data_number": "IMO0597",
+        "origin": "auto",
+        "path": "/event_type_code",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0597",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0004",
+        "field_name": "event_timestamp",
+        "final_score": 0.93,
+        "imo_data_number": "IMO0603",
+        "origin": "auto",
+        "path": "/event_timestamp",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0603",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0005",
+        "field_name": "latitude",
+        "final_score": 0.93,
+        "imo_data_number": "IMO0601",
+        "origin": "auto",
+        "path": "/latitude",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0601",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0006",
+        "field_name": "longitude",
+        "final_score": 0.93,
+        "imo_data_number": "IMO0602",
+        "origin": "auto",
+        "path": "/longitude",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0602",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0007",
+        "field_name": "operation_mode",
+        "final_score": 0.93,
+        "imo_data_number": "IMO0598",
+        "origin": "auto",
+        "path": "/operation_mode",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0598",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0008",
+        "field_name": "total_fuel_quantity_consumed",
+        "final_score": 0.95,
+        "imo_data_number": "IMO0669",
+        "origin": "auto",
+        "path": "/total_fuel_quantity_consumed",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0669",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0009",
+        "field_name": "fuel_quantity_remaining_onboard",
+        "final_score": 0.95,
+        "imo_data_number": "IMO0674",
+        "origin": "auto",
+        "path": "/fuel_quantity_remaining_onboard",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0674",
+          "recordType": "data_element"
+        }
+      }
+    ],
+    "source_dataset_id": "SYN-EV-ARR-0001",
+    "timestamp": "2026-09-12T05:54:37.499991+00:00",
+    "validation_status": "PASS"
+  },
+  "warnings": [
+    "KR GEARs 제출 스키마 미확인 — payload 는 PROVISIONAL, 실제 delivery 차단"
+  ]
+}

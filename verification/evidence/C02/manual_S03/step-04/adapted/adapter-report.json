@@ -1,0 +1,5172 @@
+{
+ "payload": "Noon_Report_API__e5e3be7e7a31.json",
+ "codebook_items": 571,
+ "codebook_external_keys": 243,
+ "records": 12,
+ "per_record": [
+  {
+   "cid": "LAB021-NOON-00000009-000",
+   "event_key": "DEPARTURE_SBY",
+   "fields_in": 68,
+   "mapped_by_codebook": 26,
+   "ambiguous": 42,
+   "not_in_codebook": 0,
+   "detail": {
+    "mapped": [
+     {
+      "key": "callsign",
+      "imo": "IMO0136",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "flag",
+      "imo": "IMO0138",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "grossTonnage",
+      "imo": "IMO0139",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "imoNo",
+      "imo": "IMO0140",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "shipName",
+      "imo": "IMO0142",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "netTonnage",
+      "imo": "IMO0143",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "portOfRegistry",
+      "imo": "IMO0148",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "subShipType",
+      "imo": "IMO0160",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "mmsi",
+      "imo": "IMO0326",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "dateEventUtc",
+      "imo": "IMO0065",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "legNo",
+      "imo": "IMO0605",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "voyNo",
+      "imo": "IMO0191",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "hourSlr",
+      "imo": "IMO0600",
+      "unit": "h",
+      "required": false
+     },
+     {
+      "key": "freshWaterSupplied",
+      "imo": "IMO0639",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "freshWaterProduced",
+      "imo": "IMO0640",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "freshWaterConsumed",
+      "imo": "IMO0641",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robFreshWater",
+      "imo": "IMO0645",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "draftMid",
+      "imo": "IMO0357",
+      "unit": "meter",
+      "required": false
+     },
+     {
+      "key": "ballastQuantity",
+      "imo": "IMO0452",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "consumptionMecylOil",
+      "imo": "IMO0678",
+      "unit": "l",
+      "required": false
+     },
+     {
+      "key": "robHfo",
+      "imo": "IMO0674",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robMecylOil",
+      "imo": "IMO0676",
+      "unit": "l",
+      "required": false
+     },
+     {
+      "key": "nextPortEtaUtc",
+      "imo": "IMO0064",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "nextPortCode",
+      "imo": "IMO0084",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "nextPortName",
+      "imo": "IMO0085",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "nextPortEtaLtc",
+      "imo": "IMO0543",
+      "unit": "-",
+      "required": false
+     }
+    ],
+    "ambiguous": [
+     {
+      "key": "masterName",
+      "candidates": [
+       "IMO0580",
+       "IMO0760"
+      ]
+     },
+     {
+      "key": "eventKey",
+      "candidates": [
+       "IMO0597",
+       "IMO0598"
+      ]
+     },
+     {
+      "key": "draftFore",
+      "candidates": [
+       "IMO0357",
+       "IMO0621"
+      ]
+     },
+     {
+      "key": "draftAft",
+      "candidates": [
+       "IMO0357",
+       "IMO0622"
+      ]
+     },
+     {
+      "key": "consumptionBlrDo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrHfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrLsfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrMgo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrUlsfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrUlsmgo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionGeDo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeHfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeLsfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeMgo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeUlsfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeUlsmgo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionMeDo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeHfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeLsfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeMgo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeUlsfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeUlsmgo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMelscylOil",
+      "imo": "IMO0678",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "consumptionOtherDo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherHfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherLsfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherMgo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherUlsfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherUlsmgo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "portCode",
+      "candidates": [
+       "IMO0013",
+       "IMO0075",
+       "IMO0111",
+       "IMO0126"
+      ]
+     },
+     {
+      "key": "portName",
+      "candidates": [
+       "IMO0076",
+       "IMO0112",
+       "IMO0127"
+      ]
+     },
+     {
+      "key": "positionLat",
+      "candidates": [
+       "IMO0233",
+       "IMO0544",
+       "IMO0601"
+      ]
+     },
+     {
+      "key": "positionLon",
+      "candidates": [
+       "IMO0233",
+       "IMO0545",
+       "IMO0602"
+      ]
+     },
+     {
+      "key": "isEuPort",
+      "candidates": [
+       "IMO0856",
+       "IMO0857"
+      ]
+     },
+     {
+      "key": "robLsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robDo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsmgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMelscylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robGecylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "distanceToGo",
+      "candidates": [
+       "IMO0537",
+       "IMO0615"
+      ]
+     }
+    ],
+    "not_in_codebook": [],
+    "event_key": "DEPARTURE_SBY"
+   }
+  },
+  {
+   "cid": "LAB021-NOON-00000009-001",
+   "event_key": "BUNKERING",
+   "fields_in": 29,
+   "mapped_by_codebook": 17,
+   "ambiguous": 12,
+   "not_in_codebook": 0,
+   "detail": {
+    "mapped": [
+     {
+      "key": "callsign",
+      "imo": "IMO0136",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "flag",
+      "imo": "IMO0138",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "grossTonnage",
+      "imo": "IMO0139",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "imoNo",
+      "imo": "IMO0140",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "shipName",
+      "imo": "IMO0142",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "netTonnage",
+      "imo": "IMO0143",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "portOfRegistry",
+      "imo": "IMO0148",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "subShipType",
+      "imo": "IMO0160",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "mmsi",
+      "imo": "IMO0326",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "masterName",
+      "imo": "IMO0760",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "legNo",
+      "imo": "IMO0605",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "voyNo",
+      "imo": "IMO0191",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "hourSlr",
+      "imo": "IMO0600",
+      "unit": "h",
+      "required": false
+     },
+     {
+      "key": "portCode",
+      "imo": "IMO0666",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "portName",
+      "imo": "IMO0667",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "robHfo",
+      "imo": "IMO0674",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robMecylOil",
+      "imo": "IMO0676",
+      "unit": "l",
+      "required": false
+     }
+    ],
+    "ambiguous": [
+     {
+      "key": "eventKey",
+      "candidates": [
+       "IMO0597",
+       "IMO0598"
+      ]
+     },
+     {
+      "key": "dateEventUtc",
+      "candidates": [
+       "IMO0063",
+       "IMO0065",
+       "IMO0603"
+      ]
+     },
+     {
+      "key": "positionLat",
+      "candidates": [
+       "IMO0233",
+       "IMO0544",
+       "IMO0601"
+      ]
+     },
+     {
+      "key": "positionLon",
+      "candidates": [
+       "IMO0233",
+       "IMO0545",
+       "IMO0602"
+      ]
+     },
+     {
+      "key": "isEuPort",
+      "candidates": [
+       "IMO0856",
+       "IMO0857"
+      ]
+     },
+     {
+      "key": "robLsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robDo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsmgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMelscylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robGecylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     }
+    ],
+    "not_in_codebook": [],
+    "event_key": "BUNKERING"
+   }
+  },
+  {
+   "cid": "LAB021-NOON-00000009-002",
+   "event_key": "RUP",
+   "fields_in": 60,
+   "mapped_by_codebook": 22,
+   "ambiguous": 38,
+   "not_in_codebook": 0,
+   "detail": {
+    "mapped": [
+     {
+      "key": "callsign",
+      "imo": "IMO0136",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "flag",
+      "imo": "IMO0138",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "grossTonnage",
+      "imo": "IMO0139",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "imoNo",
+      "imo": "IMO0140",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "shipName",
+      "imo": "IMO0142",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "netTonnage",
+      "imo": "IMO0143",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "portOfRegistry",
+      "imo": "IMO0148",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "subShipType",
+      "imo": "IMO0160",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "mmsi",
+      "imo": "IMO0326",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "legNo",
+      "imo": "IMO0605",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "voyNo",
+      "imo": "IMO0191",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "hourSlr",
+      "imo": "IMO0600",
+      "unit": "h",
+      "required": false
+     },
+     {
+      "key": "freshWaterSupplied",
+      "imo": "IMO0639",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "freshWaterProduced",
+      "imo": "IMO0640",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "freshWaterConsumed",
+      "imo": "IMO0641",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robFreshWater",
+      "imo": "IMO0645",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "avgShipSpeedSlr",
+      "imo": "IMO0333",
+      "unit": "knots",
+      "required": false
+     },
+     {
+      "key": "steamingDistanceSlr",
+      "imo": "IMO0613",
+      "unit": "nm",
+      "required": false
+     },
+     {
+      "key": "avgShaftRevSlr",
+      "imo": "IMO0617",
+      "unit": "RPM",
+      "required": false
+     },
+     {
+      "key": "consumptionMecylOil",
+      "imo": "IMO0678",
+      "unit": "l",
+      "required": false
+     },
+     {
+      "key": "robHfo",
+      "imo": "IMO0674",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robMecylOil",
+      "imo": "IMO0676",
+      "unit": "l",
+      "required": false
+     }
+    ],
+    "ambiguous": [
+     {
+      "key": "masterName",
+      "candidates": [
+       "IMO0580",
+       "IMO0760"
+      ]
+     },
+     {
+      "key": "eventKey",
+      "candidates": [
+       "IMO0597",
+       "IMO0598"
+      ]
+     },
+     {
+      "key": "dateEventUtc",
+      "candidates": [
+       "IMO0063",
+       "IMO0065",
+       "IMO0603"
+      ]
+     },
+     {
+      "key": "shipCourse",
+      "candidates": [
+       "IMO0332",
+       "IMO0620"
+      ]
+     },
+     {
+      "key": "consumptionBlrDo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrHfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrLsfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrMgo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrUlsfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrUlsmgo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionGeDo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeHfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeLsfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeMgo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeUlsfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeUlsmgo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionMeDo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeHfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeLsfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeMgo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeUlsfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeUlsmgo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMelscylOil",
+      "imo": "IMO0678",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "consumptionOtherDo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherHfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherLsfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherMgo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherUlsfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherUlsmgo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "positionLat",
+      "candidates": [
+       "IMO0233",
+       "IMO0544",
+       "IMO0601"
+      ]
+     },
+     {
+      "key": "positionLon",
+      "candidates": [
+       "IMO0233",
+       "IMO0545",
+       "IMO0602"
+      ]
+     },
+     {
+      "key": "robLsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robDo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsmgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMelscylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robGecylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     }
+    ],
+    "not_in_codebook": [],
+    "event_key": "RUP"
+   }
+  },
+  {
+   "cid": "LAB021-NOON-00000009-003",
+   "event_key": "NOON_AT_SEA",
+   "fields_in": 75,
+   "mapped_by_codebook": 34,
+   "ambiguous": 41,
+   "not_in_codebook": 0,
+   "detail": {
+    "mapped": [
+     {
+      "key": "callsign",
+      "imo": "IMO0136",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "flag",
+      "imo": "IMO0138",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "grossTonnage",
+      "imo": "IMO0139",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "imoNo",
+      "imo": "IMO0140",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "shipName",
+      "imo": "IMO0142",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "netTonnage",
+      "imo": "IMO0143",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "portOfRegistry",
+      "imo": "IMO0148",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "subShipType",
+      "imo": "IMO0160",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "mmsi",
+      "imo": "IMO0326",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "legNo",
+      "imo": "IMO0605",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "voyNo",
+      "imo": "IMO0191",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "hourSlr",
+      "imo": "IMO0600",
+      "unit": "h",
+      "required": false
+     },
+     {
+      "key": "freshWaterSupplied",
+      "imo": "IMO0639",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "freshWaterProduced",
+      "imo": "IMO0640",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "freshWaterConsumed",
+      "imo": "IMO0641",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robFreshWater",
+      "imo": "IMO0645",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "draftMid",
+      "imo": "IMO0357",
+      "unit": "meter",
+      "required": false
+     },
+     {
+      "key": "ballastQuantity",
+      "imo": "IMO0452",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "avgShipSpeedSlr",
+      "imo": "IMO0333",
+      "unit": "knots",
+      "required": false
+     },
+     {
+      "key": "steamingDistanceSlr",
+      "imo": "IMO0613",
+      "unit": "nm",
+      "required": false
+     },
+     {
+      "key": "avgShaftRevSlr",
+      "imo": "IMO0617",
+      "unit": "RPM",
+      "required": false
+     },
+     {
+      "key": "consumptionMecylOil",
+      "imo": "IMO0678",
+      "unit": "l",
+      "required": false
+     },
+     {
+      "key": "robHfo",
+      "imo": "IMO0674",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robMecylOil",
+      "imo": "IMO0676",
+      "unit": "l",
+      "required": false
+     },
+     {
+      "key": "nextPortEtaUtc",
+      "imo": "IMO0064",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "nextPortCode",
+      "imo": "IMO0084",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "nextPortName",
+      "imo": "IMO0085",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "distanceToGo",
+      "imo": "IMO0537",
+      "unit": "nm",
+      "required": false
+     },
+     {
+      "key": "nextPortEtaLtc",
+      "imo": "IMO0543",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "waveHeight",
+      "imo": "IMO0632",
+      "unit": "meter",
+      "required": false
+     },
+     {
+      "key": "waveDirection",
+      "imo": "IMO0631",
+      "unit": "degree",
+      "required": false
+     },
+     {
+      "key": "relWindDirection",
+      "imo": "IMO0626",
+      "unit": "degree",
+      "required": false
+     },
+     {
+      "key": "beaufortScale",
+      "imo": "IMO0625",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "airTemp",
+      "imo": "IMO0628",
+      "unit": "degreeC",
+      "required": false
+     }
+    ],
+    "ambiguous": [
+     {
+      "key": "masterName",
+      "candidates": [
+       "IMO0580",
+       "IMO0760"
+      ]
+     },
+     {
+      "key": "eventKey",
+      "candidates": [
+       "IMO0597",
+       "IMO0598"
+      ]
+     },
+     {
+      "key": "dateEventUtc",
+      "candidates": [
+       "IMO0063",
+       "IMO0065",
+       "IMO0603"
+      ]
+     },
+     {
+      "key": "draftFore",
+      "candidates": [
+       "IMO0357",
+       "IMO0621"
+      ]
+     },
+     {
+      "key": "draftAft",
+      "candidates": [
+       "IMO0357",
+       "IMO0622"
+      ]
+     },
+     {
+      "key": "shipCourse",
+      "candidates": [
+       "IMO0332",
+       "IMO0620"
+      ]
+     },
+     {
+      "key": "consumptionBlrDo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrHfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrLsfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrMgo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrUlsfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrUlsmgo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionGeDo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeHfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeLsfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeMgo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeUlsfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeUlsmgo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionMeDo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeHfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeLsfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeMgo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeUlsfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeUlsmgo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMelscylOil",
+      "imo": "IMO0678",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "consumptionOtherDo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherHfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherLsfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherMgo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherUlsfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherUlsmgo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "positionLat",
+      "candidates": [
+       "IMO0233",
+       "IMO0544",
+       "IMO0601"
+      ]
+     },
+     {
+      "key": "positionLon",
+      "candidates": [
+       "IMO0233",
+       "IMO0545",
+       "IMO0602"
+      ]
+     },
+     {
+      "key": "robLsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robDo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsmgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMelscylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robGecylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "trueWindDirection",
+      "candidates": [
+       "IMO0360",
+       "IMO0627"
+      ]
+     }
+    ],
+    "not_in_codebook": [],
+    "event_key": "NOON_AT_SEA"
+   }
+  },
+  {
+   "cid": "LAB021-NOON-00000009-004",
+   "event_key": "NOON_AT_SEA",
+   "fields_in": 75,
+   "mapped_by_codebook": 34,
+   "ambiguous": 41,
+   "not_in_codebook": 0,
+   "detail": {
+    "mapped": [
+     {
+      "key": "callsign",
+      "imo": "IMO0136",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "flag",
+      "imo": "IMO0138",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "grossTonnage",
+      "imo": "IMO0139",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "imoNo",
+      "imo": "IMO0140",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "shipName",
+      "imo": "IMO0142",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "netTonnage",
+      "imo": "IMO0143",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "portOfRegistry",
+      "imo": "IMO0148",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "subShipType",
+      "imo": "IMO0160",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "mmsi",
+      "imo": "IMO0326",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "legNo",
+      "imo": "IMO0605",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "voyNo",
+      "imo": "IMO0191",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "hourSlr",
+      "imo": "IMO0600",
+      "unit": "h",
+      "required": false
+     },
+     {
+      "key": "freshWaterSupplied",
+      "imo": "IMO0639",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "freshWaterProduced",
+      "imo": "IMO0640",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "freshWaterConsumed",
+      "imo": "IMO0641",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robFreshWater",
+      "imo": "IMO0645",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "draftMid",
+      "imo": "IMO0357",
+      "unit": "meter",
+      "required": false
+     },
+     {
+      "key": "ballastQuantity",
+      "imo": "IMO0452",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "avgShipSpeedSlr",
+      "imo": "IMO0333",
+      "unit": "knots",
+      "required": false
+     },
+     {
+      "key": "steamingDistanceSlr",
+      "imo": "IMO0613",
+      "unit": "nm",
+      "required": false
+     },
+     {
+      "key": "avgShaftRevSlr",
+      "imo": "IMO0617",
+      "unit": "RPM",
+      "required": false
+     },
+     {
+      "key": "consumptionMecylOil",
+      "imo": "IMO0678",
+      "unit": "l",
+      "required": false
+     },
+     {
+      "key": "robHfo",
+      "imo": "IMO0674",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robMecylOil",
+      "imo": "IMO0676",
+      "unit": "l",
+      "required": false
+     },
+     {
+      "key": "nextPortEtaUtc",
+      "imo": "IMO0064",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "nextPortCode",
+      "imo": "IMO0084",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "nextPortName",
+      "imo": "IMO0085",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "distanceToGo",
+      "imo": "IMO0537",
+      "unit": "nm",
+      "required": false
+     },
+     {
+      "key": "nextPortEtaLtc",
+      "imo": "IMO0543",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "waveHeight",
+      "imo": "IMO0632",
+      "unit": "meter",
+      "required": false
+     },
+     {
+      "key": "waveDirection",
+      "imo": "IMO0631",
+      "unit": "degree",
+      "required": false
+     },
+     {
+      "key": "relWindDirection",
+      "imo": "IMO0626",
+      "unit": "degree",
+      "required": false
+     },
+     {
+      "key": "beaufortScale",
+      "imo": "IMO0625",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "airTemp",
+      "imo": "IMO0628",
+      "unit": "degreeC",
+      "required": false
+     }
+    ],
+    "ambiguous": [
+     {
+      "key": "masterName",
+      "candidates": [
+       "IMO0580",
+       "IMO0760"
+      ]
+     },
+     {
+      "key": "eventKey",
+      "candidates": [
+       "IMO0597",
+       "IMO0598"
+      ]
+     },
+     {
+      "key": "dateEventUtc",
+      "candidates": [
+       "IMO0063",
+       "IMO0065",
+       "IMO0603"
+      ]
+     },
+     {
+      "key": "draftFore",
+      "candidates": [
+       "IMO0357",
+       "IMO0621"
+      ]
+     },
+     {
+      "key": "draftAft",
+      "candidates": [
+       "IMO0357",
+       "IMO0622"
+      ]
+     },
+     {
+      "key": "shipCourse",
+      "candidates": [
+       "IMO0332",
+       "IMO0620"
+      ]
+     },
+     {
+      "key": "consumptionBlrDo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrHfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrLsfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrMgo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrUlsfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrUlsmgo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionGeDo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeHfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeLsfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeMgo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeUlsfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeUlsmgo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionMeDo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeHfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeLsfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeMgo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeUlsfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeUlsmgo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMelscylOil",
+      "imo": "IMO0678",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "consumptionOtherDo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherHfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherLsfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherMgo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherUlsfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherUlsmgo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "positionLat",
+      "candidates": [
+       "IMO0233",
+       "IMO0544",
+       "IMO0601"
+      ]
+     },
+     {
+      "key": "positionLon",
+      "candidates": [
+       "IMO0233",
+       "IMO0545",
+       "IMO0602"
+      ]
+     },
+     {
+      "key": "robLsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robDo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsmgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMelscylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robGecylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "trueWindDirection",
+      "candidates": [
+       "IMO0360",
+       "IMO0627"
+      ]
+     }
+    ],
+    "not_in_codebook": [],
+    "event_key": "NOON_AT_SEA"
+   }
+  },
+  {
+   "cid": "LAB021-NOON-00000009-005",
+   "event_key": "NOON_AT_SEA",
+   "fields_in": 75,
+   "mapped_by_codebook": 34,
+   "ambiguous": 41,
+   "not_in_codebook": 0,
+   "detail": {
+    "mapped": [
+     {
+      "key": "callsign",
+      "imo": "IMO0136",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "flag",
+      "imo": "IMO0138",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "grossTonnage",
+      "imo": "IMO0139",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "imoNo",
+      "imo": "IMO0140",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "shipName",
+      "imo": "IMO0142",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "netTonnage",
+      "imo": "IMO0143",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "portOfRegistry",
+      "imo": "IMO0148",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "subShipType",
+      "imo": "IMO0160",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "mmsi",
+      "imo": "IMO0326",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "legNo",
+      "imo": "IMO0605",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "voyNo",
+      "imo": "IMO0191",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "hourSlr",
+      "imo": "IMO0600",
+      "unit": "h",
+      "required": false
+     },
+     {
+      "key": "freshWaterSupplied",
+      "imo": "IMO0639",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "freshWaterProduced",
+      "imo": "IMO0640",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "freshWaterConsumed",
+      "imo": "IMO0641",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robFreshWater",
+      "imo": "IMO0645",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "draftMid",
+      "imo": "IMO0357",
+      "unit": "meter",
+      "required": false
+     },
+     {
+      "key": "ballastQuantity",
+      "imo": "IMO0452",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "avgShipSpeedSlr",
+      "imo": "IMO0333",
+      "unit": "knots",
+      "required": false
+     },
+     {
+      "key": "steamingDistanceSlr",
+      "imo": "IMO0613",
+      "unit": "nm",
+      "required": false
+     },
+     {
+      "key": "avgShaftRevSlr",
+      "imo": "IMO0617",
+      "unit": "RPM",
+      "required": false
+     },
+     {
+      "key": "consumptionMecylOil",
+      "imo": "IMO0678",
+      "unit": "l",
+      "required": false
+     },
+     {
+      "key": "robHfo",
+      "imo": "IMO0674",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robMecylOil",
+      "imo": "IMO0676",
+      "unit": "l",
+      "required": false
+     },
+     {
+      "key": "nextPortEtaUtc",
+      "imo": "IMO0064",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "nextPortCode",
+      "imo": "IMO0084",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "nextPortName",
+      "imo": "IMO0085",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "distanceToGo",
+      "imo": "IMO0537",
+      "unit": "nm",
+      "required": false
+     },
+     {
+      "key": "nextPortEtaLtc",
+      "imo": "IMO0543",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "waveHeight",
+      "imo": "IMO0632",
+      "unit": "meter",
+      "required": false
+     },
+     {
+      "key": "waveDirection",
+      "imo": "IMO0631",
+      "unit": "degree",
+      "required": false
+     },
+     {
+      "key": "relWindDirection",
+      "imo": "IMO0626",
+      "unit": "degree",
+      "required": false
+     },
+     {
+      "key": "beaufortScale",
+      "imo": "IMO0625",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "airTemp",
+      "imo": "IMO0628",
+      "unit": "degreeC",
+      "required": false
+     }
+    ],
+    "ambiguous": [
+     {
+      "key": "masterName",
+      "candidates": [
+       "IMO0580",
+       "IMO0760"
+      ]
+     },
+     {
+      "key": "eventKey",
+      "candidates": [
+       "IMO0597",
+       "IMO0598"
+      ]
+     },
+     {
+      "key": "dateEventUtc",
+      "candidates": [
+       "IMO0063",
+       "IMO0065",
+       "IMO0603"
+      ]
+     },
+     {
+      "key": "draftFore",
+      "candidates": [
+       "IMO0357",
+       "IMO0621"
+      ]
+     },
+     {
+      "key": "draftAft",
+      "candidates": [
+       "IMO0357",
+       "IMO0622"
+      ]
+     },
+     {
+      "key": "shipCourse",
+      "candidates": [
+       "IMO0332",
+       "IMO0620"
+      ]
+     },
+     {
+      "key": "consumptionBlrDo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrHfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrLsfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrMgo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrUlsfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrUlsmgo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionGeDo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeHfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeLsfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeMgo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeUlsfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeUlsmgo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionMeDo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeHfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeLsfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeMgo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeUlsfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeUlsmgo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMelscylOil",
+      "imo": "IMO0678",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "consumptionOtherDo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherHfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherLsfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherMgo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherUlsfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherUlsmgo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "positionLat",
+      "candidates": [
+       "IMO0233",
+       "IMO0544",
+       "IMO0601"
+      ]
+     },
+     {
+      "key": "positionLon",
+      "candidates": [
+       "IMO0233",
+       "IMO0545",
+       "IMO0602"
+      ]
+     },
+     {
+      "key": "robLsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robDo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsmgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMelscylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robGecylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "trueWindDirection",
+      "candidates": [
+       "IMO0360",
+       "IMO0627"
+      ]
+     }
+    ],
+    "not_in_codebook": [],
+    "event_key": "NOON_AT_SEA"
+   }
+  },
+  {
+   "cid": "LAB021-NOON-00000009-006",
+   "event_key": "ARRIVAL",
+   "fields_in": 71,
+   "mapped_by_codebook": 29,
+   "ambiguous": 42,
+   "not_in_codebook": 0,
+   "detail": {
+    "mapped": [
+     {
+      "key": "callsign",
+      "imo": "IMO0136",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "flag",
+      "imo": "IMO0138",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "grossTonnage",
+      "imo": "IMO0139",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "imoNo",
+      "imo": "IMO0140",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "shipName",
+      "imo": "IMO0142",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "netTonnage",
+      "imo": "IMO0143",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "portOfRegistry",
+      "imo": "IMO0148",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "subShipType",
+      "imo": "IMO0160",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "mmsi",
+      "imo": "IMO0326",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "dateEventUtc",
+      "imo": "IMO0063",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "legNo",
+      "imo": "IMO0605",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "voyNo",
+      "imo": "IMO0191",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "hourSlr",
+      "imo": "IMO0600",
+      "unit": "h",
+      "required": false
+     },
+     {
+      "key": "freshWaterSupplied",
+      "imo": "IMO0639",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "freshWaterProduced",
+      "imo": "IMO0640",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "freshWaterConsumed",
+      "imo": "IMO0641",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robFreshWater",
+      "imo": "IMO0645",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "draftMid",
+      "imo": "IMO0357",
+      "unit": "meter",
+      "required": false
+     },
+     {
+      "key": "ballastQuantity",
+      "imo": "IMO0452",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "avgShipSpeedSlr",
+      "imo": "IMO0333",
+      "unit": "knots",
+      "required": false
+     },
+     {
+      "key": "steamingDistanceSlr",
+      "imo": "IMO0613",
+      "unit": "nm",
+      "required": false
+     },
+     {
+      "key": "avgShaftRevSlr",
+      "imo": "IMO0617",
+      "unit": "RPM",
+      "required": false
+     },
+     {
+      "key": "consumptionMecylOil",
+      "imo": "IMO0678",
+      "unit": "l",
+      "required": false
+     },
+     {
+      "key": "portName",
+      "imo": "IMO0109",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "berthName",
+      "imo": "IMO0548",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "robHfo",
+      "imo": "IMO0674",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robMecylOil",
+      "imo": "IMO0676",
+      "unit": "l",
+      "required": false
+     },
+     {
+      "key": "etd",
+      "imo": "IMO0066",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "etb",
+      "imo": "IMO0541",
+      "unit": "-",
+      "required": false
+     }
+    ],
+    "ambiguous": [
+     {
+      "key": "masterName",
+      "candidates": [
+       "IMO0580",
+       "IMO0760"
+      ]
+     },
+     {
+      "key": "eventKey",
+      "candidates": [
+       "IMO0597",
+       "IMO0598"
+      ]
+     },
+     {
+      "key": "draftFore",
+      "candidates": [
+       "IMO0357",
+       "IMO0621"
+      ]
+     },
+     {
+      "key": "draftAft",
+      "candidates": [
+       "IMO0357",
+       "IMO0622"
+      ]
+     },
+     {
+      "key": "shipCourse",
+      "candidates": [
+       "IMO0332",
+       "IMO0620"
+      ]
+     },
+     {
+      "key": "consumptionBlrDo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrHfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrLsfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrMgo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrUlsfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrUlsmgo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionGeDo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeHfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeLsfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeMgo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeUlsfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeUlsmgo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionMeDo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeHfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeLsfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeMgo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeUlsfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeUlsmgo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMelscylOil",
+      "imo": "IMO0678",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "consumptionOtherDo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherHfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherLsfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherMgo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherUlsfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherUlsmgo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "portCode",
+      "candidates": [
+       "IMO0013",
+       "IMO0108"
+      ]
+     },
+     {
+      "key": "positionLat",
+      "candidates": [
+       "IMO0233",
+       "IMO0544"
+      ]
+     },
+     {
+      "key": "positionLon",
+      "candidates": [
+       "IMO0233",
+       "IMO0545"
+      ]
+     },
+     {
+      "key": "isEuPort",
+      "candidates": [
+       "IMO0856",
+       "IMO0857"
+      ]
+     },
+     {
+      "key": "robLsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robDo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsmgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMelscylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robGecylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "distanceToGo",
+      "candidates": [
+       "IMO0537",
+       "IMO0615"
+      ]
+     }
+    ],
+    "not_in_codebook": [],
+    "event_key": "ARRIVAL"
+   }
+  },
+  {
+   "cid": "LAB021-NOON-00000009-007",
+   "event_key": "CARGO_WORK",
+   "fields_in": 29,
+   "mapped_by_codebook": 15,
+   "ambiguous": 14,
+   "not_in_codebook": 0,
+   "detail": {
+    "mapped": [
+     {
+      "key": "callsign",
+      "imo": "IMO0136",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "flag",
+      "imo": "IMO0138",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "grossTonnage",
+      "imo": "IMO0139",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "imoNo",
+      "imo": "IMO0140",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "shipName",
+      "imo": "IMO0142",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "netTonnage",
+      "imo": "IMO0143",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "portOfRegistry",
+      "imo": "IMO0148",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "subShipType",
+      "imo": "IMO0160",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "mmsi",
+      "imo": "IMO0326",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "legNo",
+      "imo": "IMO0605",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "voyNo",
+      "imo": "IMO0191",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "hourSlr",
+      "imo": "IMO0600",
+      "unit": "h",
+      "required": false
+     },
+     {
+      "key": "draftMid",
+      "imo": "IMO0357",
+      "unit": "meter",
+      "required": false
+     },
+     {
+      "key": "robHfo",
+      "imo": "IMO0674",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robMecylOil",
+      "imo": "IMO0676",
+      "unit": "l",
+      "required": false
+     }
+    ],
+    "ambiguous": [
+     {
+      "key": "masterName",
+      "candidates": [
+       "IMO0580",
+       "IMO0760"
+      ]
+     },
+     {
+      "key": "eventKey",
+      "candidates": [
+       "IMO0597",
+       "IMO0598"
+      ]
+     },
+     {
+      "key": "dateEventUtc",
+      "candidates": [
+       "IMO0063",
+       "IMO0065",
+       "IMO0603"
+      ]
+     },
+     {
+      "key": "draftFore",
+      "candidates": [
+       "IMO0357",
+       "IMO0621"
+      ]
+     },
+     {
+      "key": "draftAft",
+      "candidates": [
+       "IMO0357",
+       "IMO0622"
+      ]
+     },
+     {
+      "key": "positionLat",
+      "candidates": [
+       "IMO0233",
+       "IMO0544",
+       "IMO0601"
+      ]
+     },
+     {
+      "key": "positionLon",
+      "candidates": [
+       "IMO0233",
+       "IMO0545",
+       "IMO0602"
+      ]
+     },
+     {
+      "key": "robLsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robDo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsmgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMelscylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robGecylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     }
+    ],
+    "not_in_codebook": [],
+    "event_key": "CARGO_WORK"
+   }
+  },
+  {
+   "cid": "LAB021-NOON-00000009-008",
+   "event_key": "DEPARTURE_SBY",
+   "fields_in": 68,
+   "mapped_by_codebook": 26,
+   "ambiguous": 42,
+   "not_in_codebook": 0,
+   "detail": {
+    "mapped": [
+     {
+      "key": "callsign",
+      "imo": "IMO0136",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "flag",
+      "imo": "IMO0138",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "grossTonnage",
+      "imo": "IMO0139",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "imoNo",
+      "imo": "IMO0140",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "shipName",
+      "imo": "IMO0142",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "netTonnage",
+      "imo": "IMO0143",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "portOfRegistry",
+      "imo": "IMO0148",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "subShipType",
+      "imo": "IMO0160",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "mmsi",
+      "imo": "IMO0326",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "dateEventUtc",
+      "imo": "IMO0065",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "legNo",
+      "imo": "IMO0605",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "voyNo",
+      "imo": "IMO0191",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "hourSlr",
+      "imo": "IMO0600",
+      "unit": "h",
+      "required": false
+     },
+     {
+      "key": "freshWaterSupplied",
+      "imo": "IMO0639",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "freshWaterProduced",
+      "imo": "IMO0640",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "freshWaterConsumed",
+      "imo": "IMO0641",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robFreshWater",
+      "imo": "IMO0645",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "draftMid",
+      "imo": "IMO0357",
+      "unit": "meter",
+      "required": false
+     },
+     {
+      "key": "ballastQuantity",
+      "imo": "IMO0452",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "consumptionMecylOil",
+      "imo": "IMO0678",
+      "unit": "l",
+      "required": false
+     },
+     {
+      "key": "robHfo",
+      "imo": "IMO0674",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robMecylOil",
+      "imo": "IMO0676",
+      "unit": "l",
+      "required": false
+     },
+     {
+      "key": "nextPortEtaUtc",
+      "imo": "IMO0064",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "nextPortCode",
+      "imo": "IMO0084",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "nextPortName",
+      "imo": "IMO0085",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "nextPortEtaLtc",
+      "imo": "IMO0543",
+      "unit": "-",
+      "required": false
+     }
+    ],
+    "ambiguous": [
+     {
+      "key": "masterName",
+      "candidates": [
+       "IMO0580",
+       "IMO0760"
+      ]
+     },
+     {
+      "key": "eventKey",
+      "candidates": [
+       "IMO0597",
+       "IMO0598"
+      ]
+     },
+     {
+      "key": "draftFore",
+      "candidates": [
+       "IMO0357",
+       "IMO0621"
+      ]
+     },
+     {
+      "key": "draftAft",
+      "candidates": [
+       "IMO0357",
+       "IMO0622"
+      ]
+     },
+     {
+      "key": "consumptionBlrDo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrHfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrLsfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrMgo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrUlsfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrUlsmgo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionGeDo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeHfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeLsfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeMgo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeUlsfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeUlsmgo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionMeDo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeHfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeLsfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeMgo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeUlsfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeUlsmgo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMelscylOil",
+      "imo": "IMO0678",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "consumptionOtherDo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherHfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherLsfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherMgo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherUlsfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherUlsmgo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "portCode",
+      "candidates": [
+       "IMO0013",
+       "IMO0075",
+       "IMO0111",
+       "IMO0126"
+      ]
+     },
+     {
+      "key": "portName",
+      "candidates": [
+       "IMO0076",
+       "IMO0112",
+       "IMO0127"
+      ]
+     },
+     {
+      "key": "positionLat",
+      "candidates": [
+       "IMO0233",
+       "IMO0544",
+       "IMO0601"
+      ]
+     },
+     {
+      "key": "positionLon",
+      "candidates": [
+       "IMO0233",
+       "IMO0545",
+       "IMO0602"
+      ]
+     },
+     {
+      "key": "isEuPort",
+      "candidates": [
+       "IMO0856",
+       "IMO0857"
+      ]
+     },
+     {
+      "key": "robLsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robDo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsmgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMelscylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robGecylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "distanceToGo",
+      "candidates": [
+       "IMO0537",
+       "IMO0615"
+      ]
+     }
+    ],
+    "not_in_codebook": [],
+    "event_key": "DEPARTURE_SBY"
+   }
+  },
+  {
+   "cid": "LAB021-NOON-00000009-009",
+   "event_key": "RUP",
+   "fields_in": 60,
+   "mapped_by_codebook": 22,
+   "ambiguous": 38,
+   "not_in_codebook": 0,
+   "detail": {
+    "mapped": [
+     {
+      "key": "callsign",
+      "imo": "IMO0136",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "flag",
+      "imo": "IMO0138",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "grossTonnage",
+      "imo": "IMO0139",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "imoNo",
+      "imo": "IMO0140",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "shipName",
+      "imo": "IMO0142",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "netTonnage",
+      "imo": "IMO0143",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "portOfRegistry",
+      "imo": "IMO0148",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "subShipType",
+      "imo": "IMO0160",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "mmsi",
+      "imo": "IMO0326",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "legNo",
+      "imo": "IMO0605",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "voyNo",
+      "imo": "IMO0191",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "hourSlr",
+      "imo": "IMO0600",
+      "unit": "h",
+      "required": false
+     },
+     {
+      "key": "freshWaterSupplied",
+      "imo": "IMO0639",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "freshWaterProduced",
+      "imo": "IMO0640",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "freshWaterConsumed",
+      "imo": "IMO0641",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robFreshWater",
+      "imo": "IMO0645",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "avgShipSpeedSlr",
+      "imo": "IMO0333",
+      "unit": "knots",
+      "required": false
+     },
+     {
+      "key": "steamingDistanceSlr",
+      "imo": "IMO0613",
+      "unit": "nm",
+      "required": false
+     },
+     {
+      "key": "avgShaftRevSlr",
+      "imo": "IMO0617",
+      "unit": "RPM",
+      "required": false
+     },
+     {
+      "key": "consumptionMecylOil",
+      "imo": "IMO0678",
+      "unit": "l",
+      "required": false
+     },
+     {
+      "key": "robHfo",
+      "imo": "IMO0674",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robMecylOil",
+      "imo": "IMO0676",
+      "unit": "l",
+      "required": false
+     }
+    ],
+    "ambiguous": [
+     {
+      "key": "masterName",
+      "candidates": [
+       "IMO0580",
+       "IMO0760"
+      ]
+     },
+     {
+      "key": "eventKey",
+      "candidates": [
+       "IMO0597",
+       "IMO0598"
+      ]
+     },
+     {
+      "key": "dateEventUtc",
+      "candidates": [
+       "IMO0063",
+       "IMO0065",
+       "IMO0603"
+      ]
+     },
+     {
+      "key": "shipCourse",
+      "candidates": [
+       "IMO0332",
+       "IMO0620"
+      ]
+     },
+     {
+      "key": "consumptionBlrDo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrHfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrLsfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrMgo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrUlsfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrUlsmgo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionGeDo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeHfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeLsfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeMgo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeUlsfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeUlsmgo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionMeDo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeHfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeLsfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeMgo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeUlsfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeUlsmgo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMelscylOil",
+      "imo": "IMO0678",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "consumptionOtherDo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherHfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherLsfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherMgo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherUlsfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherUlsmgo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "positionLat",
+      "candidates": [
+       "IMO0233",
+       "IMO0544",
+       "IMO0601"
+      ]
+     },
+     {
+      "key": "positionLon",
+      "candidates": [
+       "IMO0233",
+       "IMO0545",
+       "IMO0602"
+      ]
+     },
+     {
+      "key": "robLsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robDo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsmgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMelscylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robGecylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     }
+    ],
+    "not_in_codebook": [],
+    "event_key": "RUP"
+   }
+  },
+  {
+   "cid": "LAB021-NOON-00000009-010",
+   "event_key": "NOON_AT_SEA",
+   "fields_in": 75,
+   "mapped_by_codebook": 34,
+   "ambiguous": 41,
+   "not_in_codebook": 0,
+   "detail": {
+    "mapped": [
+     {
+      "key": "callsign",
+      "imo": "IMO0136",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "flag",
+      "imo": "IMO0138",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "grossTonnage",
+      "imo": "IMO0139",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "imoNo",
+      "imo": "IMO0140",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "shipName",
+      "imo": "IMO0142",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "netTonnage",
+      "imo": "IMO0143",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "portOfRegistry",
+      "imo": "IMO0148",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "subShipType",
+      "imo": "IMO0160",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "mmsi",
+      "imo": "IMO0326",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "legNo",
+      "imo": "IMO0605",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "voyNo",
+      "imo": "IMO0191",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "hourSlr",
+      "imo": "IMO0600",
+      "unit": "h",
+      "required": false
+     },
+     {
+      "key": "freshWaterSupplied",
+      "imo": "IMO0639",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "freshWaterProduced",
+      "imo": "IMO0640",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "freshWaterConsumed",
+      "imo": "IMO0641",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robFreshWater",
+      "imo": "IMO0645",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "draftMid",
+      "imo": "IMO0357",
+      "unit": "meter",
+      "required": false
+     },
+     {
+      "key": "ballastQuantity",
+      "imo": "IMO0452",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "avgShipSpeedSlr",
+      "imo": "IMO0333",
+      "unit": "knots",
+      "required": false
+     },
+     {
+      "key": "steamingDistanceSlr",
+      "imo": "IMO0613",
+      "unit": "nm",
+      "required": false
+     },
+     {
+      "key": "avgShaftRevSlr",
+      "imo": "IMO0617",
+      "unit": "RPM",
+      "required": false
+     },
+     {
+      "key": "consumptionMecylOil",
+      "imo": "IMO0678",
+      "unit": "l",
+      "required": false
+     },
+     {
+      "key": "robHfo",
+      "imo": "IMO0674",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robMecylOil",
+      "imo": "IMO0676",
+      "unit": "l",
+      "required": false
+     },
+     {
+      "key": "nextPortEtaUtc",
+      "imo": "IMO0064",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "nextPortCode",
+      "imo": "IMO0084",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "nextPortName",
+      "imo": "IMO0085",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "distanceToGo",
+      "imo": "IMO0537",
+      "unit": "nm",
+      "required": false
+     },
+     {
+      "key": "nextPortEtaLtc",
+      "imo": "IMO0543",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "waveHeight",
+      "imo": "IMO0632",
+      "unit": "meter",
+      "required": false
+     },
+     {
+      "key": "waveDirection",
+      "imo": "IMO0631",
+      "unit": "degree",
+      "required": false
+     },
+     {
+      "key": "relWindDirection",
+      "imo": "IMO0626",
+      "unit": "degree",
+      "required": false
+     },
+     {
+      "key": "beaufortScale",
+      "imo": "IMO0625",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "airTemp",
+      "imo": "IMO0628",
+      "unit": "degreeC",
+      "required": false
+     }
+    ],
+    "ambiguous": [
+     {
+      "key": "masterName",
+      "candidates": [
+       "IMO0580",
+       "IMO0760"
+      ]
+     },
+     {
+      "key": "eventKey",
+      "candidates": [
+       "IMO0597",
+       "IMO0598"
+      ]
+     },
+     {
+      "key": "dateEventUtc",
+      "candidates": [
+       "IMO0063",
+       "IMO0065",
+       "IMO0603"
+      ]
+     },
+     {
+      "key": "draftFore",
+      "candidates": [
+       "IMO0357",
+       "IMO0621"
+      ]
+     },
+     {
+      "key": "draftAft",
+      "candidates": [
+       "IMO0357",
+       "IMO0622"
+      ]
+     },
+     {
+      "key": "shipCourse",
+      "candidates": [
+       "IMO0332",
+       "IMO0620"
+      ]
+     },
+     {
+      "key": "consumptionBlrDo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrHfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrLsfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrMgo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrUlsfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrUlsmgo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionGeDo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeHfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeLsfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeMgo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeUlsfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeUlsmgo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionMeDo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeHfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeLsfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeMgo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeUlsfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeUlsmgo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMelscylOil",
+      "imo": "IMO0678",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "consumptionOtherDo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherHfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherLsfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherMgo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherUlsfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherUlsmgo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "positionLat",
+      "candidates": [
+       "IMO0233",
+       "IMO0544",
+       "IMO0601"
+      ]
+     },
+     {
+      "key": "positionLon",
+      "candidates": [
+       "IMO0233",
+       "IMO0545",
+       "IMO0602"
+      ]
+     },
+     {
+      "key": "robLsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robDo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsmgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMelscylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robGecylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "trueWindDirection",
+      "candidates": [
+       "IMO0360",
+       "IMO0627"
+      ]
+     }
+    ],
+    "not_in_codebook": [],
+    "event_key": "NOON_AT_SEA"
+   }
+  },
+  {
+   "cid": "LAB021-NOON-00000009-011",
+   "event_key": "NOON_AT_SEA",
+   "fields_in": 75,
+   "mapped_by_codebook": 34,
+   "ambiguous": 41,
+   "not_in_codebook": 0,
+   "detail": {
+    "mapped": [
+     {
+      "key": "callsign",
+      "imo": "IMO0136",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "flag",
+      "imo": "IMO0138",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "grossTonnage",
+      "imo": "IMO0139",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "imoNo",
+      "imo": "IMO0140",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "shipName",
+      "imo": "IMO0142",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "netTonnage",
+      "imo": "IMO0143",
+      "unit": "mt",
+      "required": true
+     },
+     {
+      "key": "portOfRegistry",
+      "imo": "IMO0148",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "subShipType",
+      "imo": "IMO0160",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "mmsi",
+      "imo": "IMO0326",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "legNo",
+      "imo": "IMO0605",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "voyNo",
+      "imo": "IMO0191",
+      "unit": "-",
+      "required": true
+     },
+     {
+      "key": "hourSlr",
+      "imo": "IMO0600",
+      "unit": "h",
+      "required": false
+     },
+     {
+      "key": "freshWaterSupplied",
+      "imo": "IMO0639",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "freshWaterProduced",
+      "imo": "IMO0640",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "freshWaterConsumed",
+      "imo": "IMO0641",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robFreshWater",
+      "imo": "IMO0645",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "draftMid",
+      "imo": "IMO0357",
+      "unit": "meter",
+      "required": false
+     },
+     {
+      "key": "ballastQuantity",
+      "imo": "IMO0452",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "avgShipSpeedSlr",
+      "imo": "IMO0333",
+      "unit": "knots",
+      "required": false
+     },
+     {
+      "key": "steamingDistanceSlr",
+      "imo": "IMO0613",
+      "unit": "nm",
+      "required": false
+     },
+     {
+      "key": "avgShaftRevSlr",
+      "imo": "IMO0617",
+      "unit": "RPM",
+      "required": false
+     },
+     {
+      "key": "consumptionMecylOil",
+      "imo": "IMO0678",
+      "unit": "l",
+      "required": false
+     },
+     {
+      "key": "robHfo",
+      "imo": "IMO0674",
+      "unit": "mt",
+      "required": false
+     },
+     {
+      "key": "robMecylOil",
+      "imo": "IMO0676",
+      "unit": "l",
+      "required": false
+     },
+     {
+      "key": "nextPortEtaUtc",
+      "imo": "IMO0064",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "nextPortCode",
+      "imo": "IMO0084",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "nextPortName",
+      "imo": "IMO0085",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "distanceToGo",
+      "imo": "IMO0537",
+      "unit": "nm",
+      "required": false
+     },
+     {
+      "key": "nextPortEtaLtc",
+      "imo": "IMO0543",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "waveHeight",
+      "imo": "IMO0632",
+      "unit": "meter",
+      "required": false
+     },
+     {
+      "key": "waveDirection",
+      "imo": "IMO0631",
+      "unit": "degree",
+      "required": false
+     },
+     {
+      "key": "relWindDirection",
+      "imo": "IMO0626",
+      "unit": "degree",
+      "required": false
+     },
+     {
+      "key": "beaufortScale",
+      "imo": "IMO0625",
+      "unit": "-",
+      "required": false
+     },
+     {
+      "key": "airTemp",
+      "imo": "IMO0628",
+      "unit": "degreeC",
+      "required": false
+     }
+    ],
+    "ambiguous": [
+     {
+      "key": "masterName",
+      "candidates": [
+       "IMO0580",
+       "IMO0760"
+      ]
+     },
+     {
+      "key": "eventKey",
+      "candidates": [
+       "IMO0597",
+       "IMO0598"
+      ]
+     },
+     {
+      "key": "dateEventUtc",
+      "candidates": [
+       "IMO0063",
+       "IMO0065",
+       "IMO0603"
+      ]
+     },
+     {
+      "key": "draftFore",
+      "candidates": [
+       "IMO0357",
+       "IMO0621"
+      ]
+     },
+     {
+      "key": "draftAft",
+      "candidates": [
+       "IMO0357",
+       "IMO0622"
+      ]
+     },
+     {
+      "key": "shipCourse",
+      "candidates": [
+       "IMO0332",
+       "IMO0620"
+      ]
+     },
+     {
+      "key": "consumptionBlrDo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrHfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrLsfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrMgo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrUlsfo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionBlrUlsmgo",
+      "candidates": [
+       "IMO0673",
+       "IMO0914"
+      ]
+     },
+     {
+      "key": "consumptionGeDo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeHfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeLsfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeMgo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeUlsfo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionGeUlsmgo",
+      "candidates": [
+       "IMO0893",
+       "IMO0916"
+      ]
+     },
+     {
+      "key": "consumptionMeDo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeHfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeLsfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeMgo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeUlsfo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMeUlsmgo",
+      "candidates": [
+       "IMO0670",
+       "IMO0908"
+      ]
+     },
+     {
+      "key": "consumptionMelscylOil",
+      "imo": "IMO0678",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "consumptionOtherDo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherHfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherLsfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherMgo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherUlsfo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "consumptionOtherUlsmgo",
+      "candidates": [
+       "IMO0901",
+       "IMO0903",
+       "IMO0932",
+       "IMO0936"
+      ]
+     },
+     {
+      "key": "positionLat",
+      "candidates": [
+       "IMO0233",
+       "IMO0544",
+       "IMO0601"
+      ]
+     },
+     {
+      "key": "positionLon",
+      "candidates": [
+       "IMO0233",
+       "IMO0545",
+       "IMO0602"
+      ]
+     },
+     {
+      "key": "robLsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsfo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robDo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robUlsmgo",
+      "imo": "IMO0674",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robMelscylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "robGecylOil",
+      "imo": "IMO0676",
+      "reason": "duplicate target"
+     },
+     {
+      "key": "trueWindDirection",
+      "candidates": [
+       "IMO0360",
+       "IMO0627"
+      ]
+     }
+    ],
+    "not_in_codebook": [],
+    "event_key": "NOON_AT_SEA"
+   }
+  }
+ ],
+ "coverage_by_codebook_pct": 43.0,
+ "distinct_event_keys": [
+  "ARRIVAL",
+  "BUNKERING",
+  "CARGO_WORK",
+  "DEPARTURE_SBY",
+  "NOON_AT_SEA",
+  "RUP"
+ ],
+ "not_in_codebook_keys": []
+}

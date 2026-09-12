@@ -1,0 +1,146 @@
+{
+  "R1_step1_exit_codes": [
+    0,
+    0,
+    0
+  ],
+  "R1": true,
+  "judge_version": "v2",
+  "overall": "PARTIAL",
+  "fixtures": {
+    "noon_report_valid.json": {
+      "status": "REVIEW_REQUIRED",
+      "error": "KR_GEARS_CONTRACT_PROVISIONAL",
+      "mapped": true,
+      "codes": [
+        "KR_GEARS_CONTRACT_PROVISIONAL"
+      ],
+      "llm_invocations": 0,
+      "unmapped": 0,
+      "transformed": true,
+      "contract": "PROVISIONAL",
+      "r2_error_is_provisional_marker": true,
+      "verdict_if_provisional_marker_allowed": "PASS",
+      "verdict": "FAIL"
+    },
+    "vessel_performance_valid.json": {
+      "status": "REVIEW_REQUIRED",
+      "error": "KR_GEARS_CONTRACT_PROVISIONAL",
+      "mapped": true,
+      "codes": [
+        "KR_GEARS_CONTRACT_PROVISIONAL"
+      ],
+      "llm_invocations": 0,
+      "unmapped": 0,
+      "transformed": true,
+      "contract": "PROVISIONAL",
+      "r2_error_is_provisional_marker": true,
+      "verdict_if_provisional_marker_allowed": "PASS",
+      "verdict": "FAIL"
+    },
+    "event_departure.json": {
+      "status": "REVIEW_REQUIRED",
+      "error": "KR_GEARS_CONTRACT_PROVISIONAL",
+      "mapped": true,
+      "codes": [
+        "KR_GEARS_CONTRACT_PROVISIONAL"
+      ],
+      "llm_invocations": 0,
+      "unmapped": 0,
+      "transformed": true,
+      "contract": "PROVISIONAL",
+      "r2_error_is_provisional_marker": true,
+      "verdict_if_provisional_marker_allowed": "PASS",
+      "verdict": "FAIL"
+    },
+    "event_arrival.json": {
+      "status": "REVIEW_REQUIRED",
+      "error": "KR_GEARS_CONTRACT_PROVISIONAL",
+      "mapped": true,
+      "codes": [
+        "KR_GEARS_CONTRACT_PROVISIONAL"
+      ],
+      "llm_invocations": 0,
+      "unmapped": 0,
+      "transformed": true,
+      "contract": "PROVISIONAL",
+      "r2_error_is_provisional_marker": true,
+      "verdict_if_provisional_marker_allowed": "PASS",
+      "verdict": "FAIL"
+    },
+    "event_anchoring.json": {
+      "status": "REVIEW_REQUIRED",
+      "error": "KR_GEARS_CONTRACT_PROVISIONAL",
+      "mapped": true,
+      "codes": [
+        "KR_GEARS_CONTRACT_PROVISIONAL"
+      ],
+      "llm_invocations": 0,
+      "unmapped": 0,
+      "transformed": true,
+      "contract": "PROVISIONAL",
+      "r2_error_is_provisional_marker": true,
+      "verdict_if_provisional_marker_allowed": "PASS",
+      "verdict": "FAIL"
+    },
+    "noon_report_ambiguous.json": {
+      "status": "REVIEW_REQUIRED",
+      "error": "VALIDATION_PASS; unmapped=1",
+      "mapped": true,
+      "codes": [
+        "COMPETING_CANDIDATES",
+        "UNMAPPED",
+        "VALIDATION_PASS"
+      ],
+      "llm_invocations": 1,
+      "unmapped": 1,
+      "transformed": false,
+      "contract": "NOT_TRANSFORMED",
+      "verdict": "PASS"
+    },
+    "vessel_performance_negative.json": {
+      "status": "REVIEW_REQUIRED",
+      "error": "VALIDATION_FAIL; unmapped=2",
+      "mapped": true,
+      "codes": [
+        "DATATYPE_HARD_CONFLICT",
+        "IMO_ID_NOT_FOUND",
+        "UNMAPPED",
+        "VALIDATION_FAIL"
+      ],
+      "llm_invocations": 1,
+      "unmapped": 2,
+      "transformed": false,
+      "contract": "NOT_TRANSFORMED",
+      "verdict": "PASS"
+    },
+    "event_bunkering.json": {
+      "status": "REVIEW_REQUIRED",
+      "error": "VALIDATION_FAIL",
+      "mapped": true,
+      "codes": [
+        "CODE_VALUE_INVALID",
+        "VALIDATION_FAIL"
+      ],
+      "llm_invocations": 0,
+      "unmapped": 0,
+      "transformed": false,
+      "contract": "NOT_TRANSFORMED",
+      "verdict": "PASS"
+    },
+    "noon_report_mandatory_missing.json": {
+      "status": "REVIEW_REQUIRED",
+      "error": "VALIDATION_FAIL",
+      "mapped": true,
+      "codes": [
+        "REQUIRED_FIELD_MISSING",
+        "VALIDATION_FAIL"
+      ],
+      "llm_invocations": 0,
+      "unmapped": 0,
+      "transformed": false,
+      "contract": "NOT_TRANSFORMED",
+      "verdict": "PASS"
+    }
+  }
+}

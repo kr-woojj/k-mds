@@ -1,0 +1,42 @@
+{
+  "code_commit": "e1a2295e49349508bb0a42274c344d56f57ee773",
+  "completed_at": "2026-09-12T05:54:36.289596+00:00",
+  "correlation_id": "SYN-VP-0001",
+  "created_at": "2026-09-12T05:54:35.343267+00:00",
+  "dirty_worktree": false,
+  "file_hashes": {
+    "agent-trace.json": "42440b8e06e8f60d94c8cea9ab4623ff3594575ab3c305ef44120c552d245d6d",
+    "delivery-result.json": "05f485600616aab09ce73d512aaf895008fc53affee7836fa697dd35405bfb3c",
+    "governance-context.json": "1a92ed1c66026737b0bec4764081fcfb9e926221f8fbf3e353b72f6dd0af603c",
+    "ingress-result.json": "4c9ed089202801423301a66719b85b36e2b11b5b53008999691ad8341763bc3c",
+    "kr-gears-output.json": "d582bb3277ae28fa0eae097c47a6409eea0848a840054b9edda1f8b40aa93ae3",
+    "llm-calls.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "mapping-result.json": "be786091958b98108f4a1cbbce7932499b5e09cf027e28789a21f8bc09856330",
+    "mcp-calls.json": "ccac1e7eaca2d17b6a7f3ca001e230964a81987874891b2cf1ee520ed392bf5a",
+    "normalized-input.json": "406dd8d06140a7beb5b6bc83ab0d534a99d659bb61a35364f19f05acb074931d",
+    "profile-result.json": "012a85d5cc4ee957dd5039b9e837ccab3e9f051634d1a57cb2f741a6e44710a1",
+    "raw-input.json": "3d698fc24d723c0d93efafa2342d0b00e2c4da3fbd4bd6cd834dfdb33df8e184",
+    "raw-input.sha256": "39b77127361c598239e85019d077e18a829ba6ef4086423058b9d1b6085e030f",
+    "skill-calls.json": "1ed82e6a68258028f7ee04d8523ce987ed5f5e014d63189ea94be3a72092ff96",
+    "summary.md": "7b441ca22d5e86b4c37cf31c0958b3ba42597b25876c04f78179b1865e20a640",
+    "validation-result.json": "f627ba854a40e86c919331ce3d3a50d385ce9e1f274e894a0259da52219ec455"
+  },
+  "final_status": "REVIEW_REQUIRED",
+  "governance_flags": {
+    "actual_normalization_eligible": false,
+    "candidate_mapping_eligible": true,
+    "executable_mapping_eligible": false,
+    "kr_gears_actual_delivery_allowed": false,
+    "requiredness_profile_approved": false
+  },
+  "kr_gears_contract_status": "PROVISIONAL",
+  "llm_model": "mock-structured",
+  "llm_provider": "mock",
+  "mcp_real_or_mock": "off",
+  "reference_model_version": "FAL50",
+  "run_id": "run-dae1bc7d",
+  "skill_real_or_mock": "real",
+  "source_type": "synthetic_fixture",
+  "synthetic_data": true,
+  "validator_version": "0.1.0"
+}
