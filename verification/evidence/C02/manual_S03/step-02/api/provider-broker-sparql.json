@@ -1,0 +1,5 @@
+{
+ "query": "PREFIX ids: <https://w3id.org/idsa/core/>\nSELECT ?res ?title ?connector WHERE { ?res a ids:Resource . OPTIONAL { ?res ids:title ?title } OPTIONAL { ?connector ids:resourceCatalog/ids:offeredResource ?res } } LIMIT 200",
+ "status": 417,
+ "body": "{\"details\":{\"reason\":{\"properties\":null,\"@id\":\"https://w3id.org/idsa/code/INTERNAL_RECIPIENT_ERROR\"},\"payload\":\"An unknown error has occurred\",\"type\":\"de.fraunhofer.iais.eis.RejectionMessageImpl\"},\"message\":\"Received unexpected response message.\"}"
+}

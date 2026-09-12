@@ -1,0 +1,42 @@
+{
+  "correlation_id": "SYN-NOON-AMB-0001",
+  "fail_count": 0,
+  "items": [
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0140",
+      "message": null,
+      "source_path": "/vessel_imo_number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0191",
+      "message": null,
+      "source_path": "/voyage_no",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0603",
+      "message": null,
+      "source_path": "/report_datetime",
+      "verdict": "PASS"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/distance",
+      "verdict": "NOT_APPLICABLE"
+    }
+  ],
+  "not_verified_count": 0,
+  "overall": "PASS",
+  "pass_count": 3,
+  "warning_count": 0
+}

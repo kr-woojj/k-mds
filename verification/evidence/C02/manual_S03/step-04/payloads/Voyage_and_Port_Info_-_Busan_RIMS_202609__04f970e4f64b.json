@@ -1,0 +1,469 @@
+{
+  "dataType": "VoyagePortInfo",
+  "voyageId": "MSCBARBARA-2025-1224",
+  "source": "Datalastic (AIS archive, 2025) + PNIT (terminal schedule, 2025)",
+  "generatedAt": "2026-09-10T15:47:34Z",
+  "documentation": "demo/README.md",
+  "provenance": {
+    "measured": [
+      "vessel.*",
+      "track.*",
+      "portStatus.*"
+    ],
+    "derived": [
+      "voyagePlan.*",
+      "portCall.*",
+      "derived.*"
+    ],
+    "unknown": [],
+    "uncertainty": [],
+    "sources": {
+      "vessel/track": "Datalastic",
+      "portStatus": "PNIT"
+    }
+  },
+  "vessel": {
+    "name": "MSC BARBARA",
+    "imo": "9226932",
+    "mmsi": "353775000",
+    "type": "Container Ship",
+    "teu": 6730,
+    "loa_m": 303.94,
+    "draft_m": 12.3
+  },
+  "voyagePlan": {
+    "departurePort": "AUSYD",
+    "destinationPort": "KRBNP",
+    "actualDeparture": "2025-12-11T07:10:29Z"
+  },
+  "portCall": {
+    "port": "KRBNP",
+    "terminal": "T2",
+    "purpose": "CONTAINER_DISCHARGE_LOAD"
+  },
+  "portStatus": {
+    "terminal": "T2",
+    "berth": "T2(P)",
+    "mooringPosition": "20 (33) 39",
+    "plannedWorkStart": "2025-12-24T22:23:00Z",
+    "plannedWorkEnd": "2025-12-26T06:10:00Z",
+    "turnaroundTime_h": 31.78,
+    "discharge_teu": 2690,
+    "load_teu": 700,
+    "source": "PNIT"
+  },
+  "track": [
+    {
+      "timestamp": "2025-12-21T23:50:00Z",
+      "lat": 27.41,
+      "lon": 131.6858,
+      "sog_kn": 10.8,
+      "cog_deg": 331.0,
+      "heading_deg": 335.0
+    },
+    {
+      "timestamp": "2025-12-22T00:48:00Z",
+      "lat": 27.5703,
+      "lon": 131.5953,
+      "sog_kn": 10.8,
+      "cog_deg": 333.0,
+      "heading_deg": 337.0
+    },
+    {
+      "timestamp": "2025-12-22T01:50:00Z",
+      "lat": 27.7243,
+      "lon": 131.5145,
+      "sog_kn": 11.3,
+      "cog_deg": 336.0,
+      "heading_deg": 339.0
+    },
+    {
+      "timestamp": "2025-12-22T02:51:00Z",
+      "lat": 27.8907,
+      "lon": 131.4274,
+      "sog_kn": 10.0,
+      "cog_deg": 337.0,
+      "heading_deg": 341.0
+    },
+    {
+      "timestamp": "2025-12-22T03:50:00Z",
+      "lat": 28.0473,
+      "lon": 131.3484,
+      "sog_kn": 9.8,
+      "cog_deg": 335.0,
+      "heading_deg": 343.0
+    },
+    {
+      "timestamp": "2025-12-22T04:49:00Z",
+      "lat": 28.2074,
+      "lon": 131.2635,
+      "sog_kn": 10.8,
+      "cog_deg": 334.0,
+      "heading_deg": 342.0
+    },
+    {
+      "timestamp": "2025-12-22T05:51:00Z",
+      "lat": 28.3504,
+      "lon": 131.192,
+      "sog_kn": 10.6,
+      "cog_deg": 338.0,
+      "heading_deg": 343.0
+    },
+    {
+      "timestamp": "2025-12-22T06:50:00Z",
+      "lat": 28.5228,
+      "lon": 131.113,
+      "sog_kn": 10.8,
+      "cog_deg": 332.0,
+      "heading_deg": 337.0
+    },
+    {
+      "timestamp": "2025-12-22T07:49:00Z",
+      "lat": 28.6885,
+      "lon": 131.0223,
+      "sog_kn": 10.5,
+      "cog_deg": 334.0,
+      "heading_deg": 339.0
+    },
+    {
+      "timestamp": "2025-12-22T08:50:00Z",
+      "lat": 28.8499,
+      "lon": 130.9389,
+      "sog_kn": 9.8,
+      "cog_deg": 337.0,
+      "heading_deg": 340.0
+    },
+    {
+      "timestamp": "2025-12-22T09:48:00Z",
+      "lat": 29.0043,
+      "lon": 130.8635,
+      "sog_kn": 9.6,
+      "cog_deg": 333.0,
+      "heading_deg": 335.0
+    },
+    {
+      "timestamp": "2025-12-22T10:51:00Z",
+      "lat": 29.1332,
+      "lon": 130.7928,
+      "sog_kn": 10.1,
+      "cog_deg": 336.0,
+      "heading_deg": 343.0
+    },
+    {
+      "timestamp": "2025-12-22T11:49:00Z",
+      "lat": 29.2957,
+      "lon": 130.7104,
+      "sog_kn": 10.6,
+      "cog_deg": 335.0,
+      "heading_deg": 337.0
+    },
+    {
+      "timestamp": "2025-12-22T12:49:00Z",
+      "lat": 29.4689,
+      "lon": 130.6186,
+      "sog_kn": 11.1,
+      "cog_deg": 335.0,
+      "heading_deg": 339.0
+    },
+    {
+      "timestamp": "2025-12-22T13:51:00Z",
+      "lat": 29.6123,
+      "lon": 130.5425,
+      "sog_kn": 10.0,
+      "cog_deg": 338.0,
+      "heading_deg": 341.0
+    },
+    {
+      "timestamp": "2025-12-22T14:49:00Z",
+      "lat": 29.7665,
+      "lon": 130.4637,
+      "sog_kn": 9.3,
+      "cog_deg": 333.0,
+      "heading_deg": 338.0
+    },
+    {
+      "timestamp": "2025-12-22T15:51:00Z",
+      "lat": 29.906,
+      "lon": 130.3919,
+      "sog_kn": 8.1,
+      "cog_deg": 336.0,
+      "heading_deg": 337.0
+    },
+    {
+      "timestamp": "2025-12-22T16:51:00Z",
+      "lat": 30.0489,
+      "lon": 130.3234,
+      "sog_kn": 9.3,
+      "cog_deg": 341.0,
+      "heading_deg": 337.0
+    },
+    {
+      "timestamp": "2025-12-22T17:50:00Z",
+      "lat": 30.1572,
+      "lon": 130.1873,
+      "sog_kn": 9.5,
+      "cog_deg": 309.0,
+      "heading_deg": 313.0
+    },
+    {
+      "timestamp": "2025-12-22T18:49:00Z",
+      "lat": 30.2455,
+      "lon": 130.0608,
+      "sog_kn": 9.6,
+      "cog_deg": 311.0,
+      "heading_deg": 313.0
+    },
+    {
+      "timestamp": "2025-12-22T19:51:00Z",
+      "lat": 30.3642,
+      "lon": 129.909,
+      "sog_kn": 10.0,
+      "cog_deg": 311.0,
+      "heading_deg": 312.0
+    },
+    {
+      "timestamp": "2025-12-22T20:48:00Z",
+      "lat": 30.483,
+      "lon": 129.7506,
+      "sog_kn": 10.3,
+      "cog_deg": 306.0,
+      "heading_deg": 305.0
+    },
+    {
+      "timestamp": "2025-12-22T21:50:00Z",
+      "lat": 30.5791,
+      "lon": 129.6043,
+      "sog_kn": 10.8,
+      "cog_deg": 310.0,
+      "heading_deg": 310.0
+    },
+    {
+      "timestamp": "2025-12-22T22:49:00Z",
+      "lat": 30.7017,
+      "lon": 129.4339,
+      "sog_kn": 11.1,
+      "cog_deg": 307.0,
+      "heading_deg": 307.0
+    },
+    {
+      "timestamp": "2025-12-22T23:21:00Z",
+      "lat": 30.7667,
+      "lon": 129.339,
+      "sog_kn": 11.3,
+      "cog_deg": 308.0,
+      "heading_deg": 309.0
+    },
+    {
+      "timestamp": "2025-12-22T23:50:00Z",
+      "lat": 30.84,
+      "lon": 129.2703,
+      "sog_kn": 11.6,
+      "cog_deg": 335.0,
+      "heading_deg": 341.0
+    },
+    {
+      "timestamp": "2025-12-23T00:51:00Z",
+      "lat": 30.9892,
+      "lon": 129.1848,
+      "sog_kn": 11.3,
+      "cog_deg": 332.0,
+      "heading_deg": 338.0
+    },
+    {
+      "timestamp": "2025-12-23T01:51:00Z",
+      "lat": 31.1653,
+      "lon": 129.0769,
+      "sog_kn": 11.1,
+      "cog_deg": 334.0,
+      "heading_deg": 339.0
+    },
+    {
+      "timestamp": "2025-12-23T02:51:00Z",
+      "lat": 31.3319,
+      "lon": 128.9827,
+      "sog_kn": 10.6,
+      "cog_deg": 331.0,
+      "heading_deg": 338.0
+    },
+    {
+      "timestamp": "2025-12-23T03:52:00Z",
+      "lat": 31.5,
+      "lon": 128.8846,
+      "sog_kn": 10.8,
+      "cog_deg": 334.0,
+      "heading_deg": 338.0
+    },
+    {
+      "timestamp": "2025-12-23T04:51:00Z",
+      "lat": 31.6792,
+      "lon": 128.7786,
+      "sog_kn": 11.3,
+      "cog_deg": 330.0,
+      "heading_deg": 331.0
+    },
+    {
+      "timestamp": "2025-12-23T06:17:00Z",
+      "lat": 31.9118,
+      "lon": 128.636,
+      "sog_kn": 11.1,
+      "cog_deg": 334.0,
+      "heading_deg": 331.0
+    },
+    {
+      "timestamp": "2025-12-23T07:20:00Z",
+      "lat": 32.0671,
+      "lon": 128.543,
+      "sog_kn": 11.0,
+      "cog_deg": 331.0,
+      "heading_deg": 330.0
+    },
+    {
+      "timestamp": "2025-12-23T07:51:00Z",
+      "lat": 32.1532,
+      "lon": 128.4871,
+      "sog_kn": 10.8,
+      "cog_deg": 337.0,
+      "heading_deg": 337.0
+    },
+    {
+      "timestamp": "2025-12-23T09:21:00Z",
+      "lat": 32.4428,
+      "lon": 128.3768,
+      "sog_kn": 11.5,
+      "cog_deg": 357.0,
+      "heading_deg": 354.0
+    },
+    {
+      "timestamp": "2025-12-23T09:50:00Z",
+      "lat": 32.5262,
+      "lon": 128.372,
+      "sog_kn": 11.0,
+      "cog_deg": 356.0,
+      "heading_deg": 356.0
+    },
+    {
+      "timestamp": "2025-12-23T10:50:00Z",
+      "lat": 32.7345,
+      "lon": 128.3856,
+      "sog_kn": 12.6,
+      "cog_deg": 12.0,
+      "heading_deg": 13.0
+    },
+    {
+      "timestamp": "2025-12-23T11:51:00Z",
+      "lat": 32.9484,
+      "lon": 128.4068,
+      "sog_kn": 12.5,
+      "cog_deg": 6.0,
+      "heading_deg": 5.0
+    },
+    {
+      "timestamp": "2025-12-23T12:50:00Z",
+      "lat": 33.1288,
+      "lon": 128.4606,
+      "sog_kn": 12.3,
+      "cog_deg": 20.0,
+      "heading_deg": 23.0
+    },
+    {
+      "timestamp": "2025-12-23T13:50:00Z",
+      "lat": 33.3212,
+      "lon": 128.561,
+      "sog_kn": 12.1,
+      "cog_deg": 19.0,
+      "heading_deg": 19.0
+    },
+    {
+      "timestamp": "2025-12-23T14:52:00Z",
+      "lat": 33.5134,
+      "lon": 128.6447,
+      "sog_kn": 11.8,
+      "cog_deg": 20.0,
+      "heading_deg": 19.0
+    },
+    {
+      "timestamp": "2025-12-23T15:51:00Z",
+      "lat": 33.6771,
+      "lon": 128.7239,
+      "sog_kn": 11.6,
+      "cog_deg": 21.0,
+      "heading_deg": 20.0
+    },
+    {
+      "timestamp": "2025-12-23T16:52:00Z",
+      "lat": 33.8704,
+      "lon": 128.8085,
+      "sog_kn": 11.6,
+      "cog_deg": 20.0,
+      "heading_deg": 19.0
+    },
+    {
+      "timestamp": "2025-12-23T17:51:00Z",
+      "lat": 34.0618,
+      "lon": 128.9016,
+      "sog_kn": 11.8,
+      "cog_deg": 22.0,
+      "heading_deg": 20.0
+    },
+    {
+      "timestamp": "2025-12-23T18:51:00Z",
+      "lat": 34.2501,
+      "lon": 128.997,
+      "sog_kn": 11.6,
+      "cog_deg": 14.0,
+      "heading_deg": 17.0
+    },
+    {
+      "timestamp": "2025-12-23T19:49:00Z",
+      "lat": 34.4221,
+      "lon": 129.0577,
+      "sog_kn": 11.8,
+      "cog_deg": 17.0,
+      "heading_deg": 19.0
+    },
+    {
+      "timestamp": "2025-12-23T20:50:00Z",
+      "lat": 34.6277,
+      "lon": 129.1377,
+      "sog_kn": 12.1,
+      "cog_deg": 18.0,
+      "heading_deg": 20.0
+    },
+    {
+      "timestamp": "2025-12-23T22:03:58Z",
+      "lat": 34.7162,
+      "lon": 129.1451,
+      "sog_kn": 0.9,
+      "cog_deg": 283.6,
+      "heading_deg": 287.0
+    },
+    {
+      "timestamp": "2025-12-23T23:04:07Z",
+      "lat": 34.7124,
+      "lon": 129.1305,
+      "sog_kn": 0.8,
+      "cog_deg": 219.8,
+      "heading_deg": 268.0
+    }
+  ],
+  "shipStateRef": "2025-12-22T23:21:00Z",
+  "derived": {
+    "navStatus": {
+      "value": "under way using engine",
+      "rule": "ê¸°ì¤ ìì ì sog_kn >= 8"
+    },
+    "remainingDistance_km": {
+      "value": 481.7,
+      "rule": "ê¸°ì¤ ìì ì ë¨ì ê±°ë¦¬ (ì ì ìì¹ê¹ì§ ëê¶ê±°ë¦¬)"
+    },
+    "snapshotSelection": {
+      "referenceArrival": "2025-12-23T23:20:00Z",
+      "targetOffset_h": -24,
+      "offsetFromTarget_h": 0.02,
+      "observedBerthing": "2025-12-24T22:25:37Z",
+      "hoursBeforeBerthing": 47.1,
+      "rule": "referenceArrival ê¸°ì¤ -24h ìµê·¼ì  ìí­ ê´ì¸¡",
+      "selected": "2025-12-22T23:21:00Z"
+    }
+  }
+}

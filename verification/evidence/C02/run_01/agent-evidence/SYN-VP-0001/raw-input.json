@@ -1,0 +1,14 @@
+{
+  "correlation_id": "SYN-VP-0001",
+  "dataset_id": "SYN-DATASET-VP",
+  "report_type": "vessel_performance",
+  "vessel_imo_number": "9990001",
+  "voyage_no": "SYN-VOY-001",
+  "report_datetime": "2026-08-01T12:00:00+00:00",
+  "speed_through_water": {"value": 12.5, "unit": "knot"},
+  "distance_through_water": {"value": 285.0, "unit": "nautical mile"},
+  "total_fuel_quantity_consumed": {"value": 28.4, "unit": "tonne"},
+  "fuel_quantity_remaining_onboard": {"value": 415.0, "unit": "tonne"},
+  "cargo_item_gross_weight": {"value": 45000, "unit": "tonne"},
+  "fuel_carbon_dioxide_emission": {"value": 3.1, "unit": "g"}
+}

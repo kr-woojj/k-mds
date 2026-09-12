@@ -1,0 +1,11 @@
+[
+  {
+    "called_at": "2026-09-12T05:49:37.095365+00:00",
+    "correlation_id": "SYN-VP-0001",
+    "error_code": null,
+    "latency_ms": 151.19,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  }
+]

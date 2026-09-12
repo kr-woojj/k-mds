@@ -1,0 +1,10 @@
+{
+  "started_at": "2026-09-12T05:48:53.062737+00:00",
+  "agent_commit": "e1a2295e49349508bb0a42274c344d56f57ee773",
+  "agent_dirty": false,
+  "python": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+  "llm": "mock",
+  "skill": "real",
+  "mcp": "off",
+  "kr_gears_delivery": "mock"
+}

@@ -1,0 +1,511 @@
+{
+  "contract_status": "PROVISIONAL",
+  "correlation_id": "SYN-NOON-0001",
+  "payload": {
+    "contract_status": "PROVISIONAL",
+    "data_elements": [
+      {
+        "imo_data_element_name": "Cargo item gross weight",
+        "imo_data_number": "IMO0024",
+        "source_field": "cargo_item_gross_weight",
+        "unit": "tonne",
+        "value": 45000
+      },
+      {
+        "imo_data_element_name": "Port of arrival name",
+        "imo_data_number": "IMO0109",
+        "source_field": "port_of_arrival_name",
+        "unit": null,
+        "value": "SYN PORT BRAVO"
+      },
+      {
+        "imo_data_element_name": "Port of departure name",
+        "imo_data_number": "IMO0112",
+        "source_field": "port_of_departure_name",
+        "unit": null,
+        "value": "SYN PORT ALPHA"
+      },
+      {
+        "imo_data_element_name": "Ship IMO number",
+        "imo_data_number": "IMO0140",
+        "source_field": "vessel_imo_number",
+        "unit": null,
+        "value": "9990001"
+      },
+      {
+        "imo_data_element_name": "Voyage number",
+        "imo_data_number": "IMO0191",
+        "source_field": "voyage_no",
+        "unit": null,
+        "value": "SYN-VOY-002"
+      },
+      {
+        "imo_data_element_name": "Wind speed",
+        "imo_data_number": "IMO0359",
+        "source_field": "wind_speed",
+        "unit": null,
+        "value": 14
+      },
+      {
+        "imo_data_element_name": "State of the sea",
+        "imo_data_number": "IMO0363",
+        "source_field": "state_of_the_sea",
+        "unit": null,
+        "value": 3
+      },
+      {
+        "imo_data_element_name": "Ship position when reporting, latitude",
+        "imo_data_number": "IMO0601",
+        "source_field": "latitude",
+        "unit": null,
+        "value": "3730.5N"
+      },
+      {
+        "imo_data_element_name": "Ship position when reporting, longitude",
+        "imo_data_number": "IMO0602",
+        "source_field": "longitude",
+        "unit": null,
+        "value": "12645.2E"
+      },
+      {
+        "imo_data_element_name": "Ship reporting date time",
+        "imo_data_number": "IMO0603",
+        "source_field": "report_datetime",
+        "unit": null,
+        "value": "2026-08-02T12:00:00+00:00"
+      },
+      {
+        "imo_data_element_name": "Distance through water",
+        "imo_data_number": "IMO0612",
+        "source_field": "distance_through_water",
+        "unit": "nautical mile",
+        "value": 288.1
+      },
+      {
+        "imo_data_element_name": "Speed through water",
+        "imo_data_number": "IMO0616",
+        "source_field": "speed_through_water",
+        "unit": "knot",
+        "value": 12.0
+      },
+      {
+        "imo_data_element_name": "Total fuel quantity consumed",
+        "imo_data_number": "IMO0669",
+        "source_field": "total_fuel_quantity_consumed",
+        "unit": "tonne",
+        "value": 27.9
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Main Engine",
+        "imo_data_number": "IMO0670",
+        "source_field": "fuel_consumed_by_main_engine",
+        "unit": "tonne",
+        "value": 24.1
+      },
+      {
+        "imo_data_element_name": "Fuel quantity remaining onboard",
+        "imo_data_number": "IMO0674",
+        "source_field": "fuel_quantity_remaining_onboard",
+        "unit": "tonne",
+        "value": 387.1
+      }
+    ],
+    "profile": "NOON_REPORT",
+    "reference_model_version": "FAL50",
+    "voyage": "SYN-VOY-002"
+  },
+  "profile": "NOON_REPORT",
+  "provenance": [
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0140",
+      "original_unit": null,
+      "source_path": "/vessel_imo_number",
+      "source_value_hash": "e2ef0166961b196a",
+      "target_path": "/data_elements/IMO0140",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0191",
+      "original_unit": null,
+      "source_path": "/voyage_no",
+      "source_value_hash": "ceeb3ca8695b07db",
+      "target_path": "/data_elements/IMO0191",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0603",
+      "original_unit": null,
+      "source_path": "/report_datetime",
+      "source_value_hash": "0c7a7fe8aebc4acb",
+      "target_path": "/data_elements/IMO0603",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0601",
+      "original_unit": null,
+      "source_path": "/latitude",
+      "source_value_hash": "286dd5278cfd9d9a",
+      "target_path": "/data_elements/IMO0601",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0602",
+      "original_unit": null,
+      "source_path": "/longitude",
+      "source_value_hash": "7a9d88fb697024fe",
+      "target_path": "/data_elements/IMO0602",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0612",
+      "original_unit": "nautical mile",
+      "source_path": "/distance_through_water",
+      "source_value_hash": "b1421dcf4fb29f47",
+      "target_path": "/data_elements/IMO0612",
+      "target_unit": "nautical mile",
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0616",
+      "original_unit": "knot",
+      "source_path": "/speed_through_water",
+      "source_value_hash": "77c52f3feed5acdd",
+      "target_path": "/data_elements/IMO0616",
+      "target_unit": "knot",
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0359",
+      "original_unit": null,
+      "source_path": "/wind_speed",
+      "source_value_hash": "8527a891e2241369",
+      "target_path": "/data_elements/IMO0359",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0363",
+      "original_unit": null,
+      "source_path": "/state_of_the_sea",
+      "source_value_hash": "4e07408562bedb8b",
+      "target_path": "/data_elements/IMO0363",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0670",
+      "original_unit": "tonne",
+      "source_path": "/fuel_consumed_by_main_engine",
+      "source_value_hash": "f19e213ffd2e15c9",
+      "target_path": "/data_elements/IMO0670",
+      "target_unit": "tonne",
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0669",
+      "original_unit": "tonne",
+      "source_path": "/total_fuel_quantity_consumed",
+      "source_value_hash": "a4e9fe51e0357c83",
+      "target_path": "/data_elements/IMO0669",
+      "target_unit": "tonne",
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0674",
+      "original_unit": "tonne",
+      "source_path": "/fuel_quantity_remaining_onboard",
+      "source_value_hash": "8829dbd455148f09",
+      "target_path": "/data_elements/IMO0674",
+      "target_unit": "tonne",
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0024",
+      "original_unit": "tonne",
+      "source_path": "/cargo_item_gross_weight",
+      "source_value_hash": "5872238ba9244bfd",
+      "target_path": "/data_elements/IMO0024",
+      "target_unit": "tonne",
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0112",
+      "original_unit": null,
+      "source_path": "/port_of_departure_name",
+      "source_value_hash": "2fe9ed4acef77511",
+      "target_path": "/data_elements/IMO0112",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0109",
+      "original_unit": null,
+      "source_path": "/port_of_arrival_name",
+      "source_value_hash": "bc77cdfe147f261f",
+      "target_path": "/data_elements/IMO0109",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    }
+  ],
+  "verdict_report": {
+    "compendium_version": "FAL50",
+    "error_code": null,
+    "error_detail": null,
+    "errors": [],
+    "mapping_job_id": "GHGPOC-SYN-NOON-0001",
+    "payload_hash": "dd24eadb367b491c3c0e46c337a19001ddbbb1cb558fba983fb5a8c572b6775d",
+    "selected_mappings": [
+      {
+        "field_id": "f0001",
+        "field_name": "vessel_imo_number",
+        "final_score": 0.93,
+        "imo_data_number": "IMO0140",
+        "origin": "auto",
+        "path": "/vessel_imo_number",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0140",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0002",
+        "field_name": "voyage_no",
+        "final_score": 0.93,
+        "imo_data_number": "IMO0191",
+        "origin": "auto",
+        "path": "/voyage_no",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0191",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0003",
+        "field_name": "report_datetime",
+        "final_score": 0.93,
+        "imo_data_number": "IMO0603",
+        "origin": "auto",
+        "path": "/report_datetime",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0603",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0004",
+        "field_name": "latitude",
+        "final_score": 0.93,
+        "imo_data_number": "IMO0601",
+        "origin": "auto",
+        "path": "/latitude",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0601",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0005",
+        "field_name": "longitude",
+        "final_score": 0.93,
+        "imo_data_number": "IMO0602",
+        "origin": "auto",
+        "path": "/longitude",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0602",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0006",
+        "field_name": "distance_through_water",
+        "final_score": 0.95,
+        "imo_data_number": "IMO0612",
+        "origin": "auto",
+        "path": "/distance_through_water",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0612",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0007",
+        "field_name": "speed_through_water",
+        "final_score": 0.95,
+        "imo_data_number": "IMO0616",
+        "origin": "auto",
+        "path": "/speed_through_water",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0616",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0008",
+        "field_name": "wind_speed",
+        "final_score": 0.95,
+        "imo_data_number": "IMO0359",
+        "origin": "auto",
+        "path": "/wind_speed",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0359",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0009",
+        "field_name": "state_of_the_sea",
+        "final_score": 0.95,
+        "imo_data_number": "IMO0363",
+        "origin": "auto",
+        "path": "/state_of_the_sea",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0363",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0010",
+        "field_name": "fuel_consumed_by_main_engine",
+        "final_score": 0.95,
+        "imo_data_number": "IMO0670",
+        "origin": "auto",
+        "path": "/fuel_consumed_by_main_engine",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0670",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0011",
+        "field_name": "total_fuel_quantity_consumed",
+        "final_score": 0.95,
+        "imo_data_number": "IMO0669",
+        "origin": "auto",
+        "path": "/total_fuel_quantity_consumed",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0669",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0012",
+        "field_name": "fuel_quantity_remaining_onboard",
+        "final_score": 0.95,
+        "imo_data_number": "IMO0674",
+        "origin": "auto",
+        "path": "/fuel_quantity_remaining_onboard",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0674",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0013",
+        "field_name": "cargo_item_gross_weight",
+        "final_score": 0.95,
+        "imo_data_number": "IMO0024",
+        "origin": "auto",
+        "path": "/cargo_item_gross_weight",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0024",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0014",
+        "field_name": "port_of_departure_name",
+        "final_score": 0.95,
+        "imo_data_number": "IMO0112",
+        "origin": "auto",
+        "path": "/port_of_departure_name",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0112",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0015",
+        "field_name": "port_of_arrival_name",
+        "final_score": 0.95,
+        "imo_data_number": "IMO0109",
+        "origin": "auto",
+        "path": "/port_of_arrival_name",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0109",
+          "recordType": "data_element"
+        }
+      }
+    ],
+    "source_dataset_id": "SYN-NOON-0001",
+    "timestamp": "2026-09-12T05:49:37.806949+00:00",
+    "validation_status": "PASS"
+  },
+  "warnings": [
+    "KR GEARs 제출 스키마 미확인 — payload 는 PROVISIONAL, 실제 delivery 차단"
+  ]
+}

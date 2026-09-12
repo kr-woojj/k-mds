@@ -1,0 +1,14 @@
+$ uv run --project C:\kr-dev\kr-ghg-ai-agent python tools/run_mock_e2e.py --evidence-dir C:\kr-dev\k-mds\verification\evidence\C02\run_01\agent-evidence
+fixture=vessel_performance_valid.json correlation_id=SYN-VP-0001 status=REVIEW_REQUIRED expected=REVIEW_REQUIRED integrity=ok
+fixture=noon_report_valid.json correlation_id=SYN-NOON-0001 status=REVIEW_REQUIRED expected=REVIEW_REQUIRED integrity=ok
+fixture=event_departure.json correlation_id=SYN-EV-DEP-0001 status=REVIEW_REQUIRED expected=REVIEW_REQUIRED integrity=ok
+fixture=event_bunkering.json correlation_id=SYN-EV-BNK-0001 status=REVIEW_REQUIRED expected=REVIEW_REQUIRED integrity=ok
+fixture=event_anchoring.json correlation_id=SYN-EV-ANC-0001 status=REVIEW_REQUIRED expected=REVIEW_REQUIRED integrity=ok
+fixture=event_arrival.json correlation_id=SYN-EV-ARR-0001 status=REVIEW_REQUIRED expected=REVIEW_REQUIRED integrity=ok
+fixture=noon_report_ambiguous.json correlation_id=SYN-NOON-AMB-0001 status=REVIEW_REQUIRED expected=REVIEW_REQUIRED integrity=ok
+fixture=vessel_performance_negative.json correlation_id=SYN-VP-NEG-0001 status=REVIEW_REQUIRED expected=REVIEW_REQUIRED integrity=ok
+overall=PASS report=C:\kr-dev\kr-ghg-ai-agent\reports\mock-e2e-results.json
+
+[stderr]
+
+exit=0

@@ -1,0 +1,59 @@
+{
+  "R1_step1_exit_codes": [
+    0,
+    0,
+    0
+  ],
+  "R1": true,
+  "overall": "PARTIAL",
+  "fixtures": {
+    "noon_report_valid.json": {
+      "verdict": "FAIL",
+      "status": "REVIEW_REQUIRED",
+      "error": "KR_GEARS_CONTRACT_PROVISIONAL",
+      "mapped": true
+    },
+    "vessel_performance_valid.json": {
+      "verdict": "FAIL",
+      "status": "REVIEW_REQUIRED",
+      "error": "KR_GEARS_CONTRACT_PROVISIONAL",
+      "mapped": true
+    },
+    "event_departure.json": {
+      "verdict": "FAIL",
+      "status": "REVIEW_REQUIRED",
+      "error": "KR_GEARS_CONTRACT_PROVISIONAL",
+      "mapped": true
+    },
+    "event_arrival.json": {
+      "verdict": "FAIL",
+      "status": "REVIEW_REQUIRED",
+      "error": "KR_GEARS_CONTRACT_PROVISIONAL",
+      "mapped": true
+    },
+    "event_anchoring.json": {
+      "verdict": "FAIL",
+      "status": "REVIEW_REQUIRED",
+      "error": "KR_GEARS_CONTRACT_PROVISIONAL",
+      "mapped": true
+    },
+    "noon_report_ambiguous.json": {
+      "verdict": "PASS",
+      "status": "REVIEW_REQUIRED",
+      "error": "VALIDATION_PASS; unmapped=1",
+      "mapped": true
+    },
+    "vessel_performance_negative.json": {
+      "verdict": "FAIL",
+      "status": "REVIEW_REQUIRED",
+      "error": "VALIDATION_FAIL; unmapped=2",
+      "mapped": true
+    },
+    "event_bunkering.json": {
+      "verdict": "PASS",
+      "status": "REVIEW_REQUIRED",
+      "error": "VALIDATION_FAIL",
+      "mapped": true
+    }
+  }
+}

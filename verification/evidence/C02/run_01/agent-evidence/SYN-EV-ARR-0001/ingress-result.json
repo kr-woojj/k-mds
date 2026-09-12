@@ -1,0 +1,15 @@
+{
+  "body_type": "RAW_JSON_BODY",
+  "content_type": "application/json",
+  "correlation_id": "SYN-EV-ARR-0001",
+  "dataset_metadata": {
+    "dataset_id": "SYN-DATASET-EVENT"
+  },
+  "payload_bytes": 481,
+  "raw_sha256": "053ac0cd6cb9be123b5ace8933d455f386701cfbc6e729f1d4b2afcd49d22513",
+  "transport_metadata": {
+    "correlation_id": "SYN-EV-ARR-0001",
+    "dataset_id": "SYN-DATASET-EVENT"
+  },
+  "validation_errors": []
+}

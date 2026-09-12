@@ -1,0 +1,9 @@
+{
+  "classification_method": "structural_marker",
+  "competing_profiles": [],
+  "confidence": 0.0,
+  "deterministic_evidence": [
+    "no deterministic marker"
+  ],
+  "selected_profile": "UNKNOWN"
+}

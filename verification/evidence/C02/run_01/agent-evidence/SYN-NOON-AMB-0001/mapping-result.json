@@ -1,0 +1,143 @@
+{
+  "correlation_id": "SYN-NOON-AMB-0001",
+  "fields": [
+    {
+      "candidate_list": [],
+      "confidence": 0.93,
+      "evidence_refs": [],
+      "imo_data_element_name": "Ship IMO number",
+      "imo_data_number": "IMO0140",
+      "mapping_method": "ALIAS_REFERENCE",
+      "normalized_name": "vessel imo number",
+      "reference_model_version": "FAL50",
+      "source_name": "vessel_imo_number",
+      "source_path": "/vessel_imo_number",
+      "source_unit": null,
+      "source_value_type": "string",
+      "validator_status": "PASS",
+      "warnings": []
+    },
+    {
+      "candidate_list": [],
+      "confidence": 0.93,
+      "evidence_refs": [],
+      "imo_data_element_name": "Voyage number",
+      "imo_data_number": "IMO0191",
+      "mapping_method": "ALIAS_REFERENCE",
+      "normalized_name": "voyage no",
+      "reference_model_version": "FAL50",
+      "source_name": "voyage_no",
+      "source_path": "/voyage_no",
+      "source_unit": null,
+      "source_value_type": "string",
+      "validator_status": "PASS",
+      "warnings": []
+    },
+    {
+      "candidate_list": [],
+      "confidence": 0.93,
+      "evidence_refs": [],
+      "imo_data_element_name": "Ship reporting date time",
+      "imo_data_number": "IMO0603",
+      "mapping_method": "ALIAS_REFERENCE",
+      "normalized_name": "report datetime",
+      "reference_model_version": "FAL50",
+      "source_name": "report_datetime",
+      "source_path": "/report_datetime",
+      "source_unit": null,
+      "source_value_type": "string",
+      "validator_status": "PASS",
+      "warnings": []
+    },
+    {
+      "candidate_list": [
+        {
+          "confidence": 0.526488,
+          "imo_data_number": "IMO0861",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.492045,
+          "imo_data_number": "IMO0537",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.425412,
+          "imo_data_number": "IMO0615",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.262325,
+          "imo_data_number": "IMO0039",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.246059,
+          "imo_data_number": "IMO0028",
+          "reason": "skill list_candidates",
+          "source": "skill",
+          "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.6,
+          "imo_data_number": "IMO0537",
+          "reason": "token overlap 1 with 'Distance to destination'",
+          "source": "llm",
+          "validator_status": "PASS"
+        },
+        {
+          "confidence": 0.6,
+          "imo_data_number": "IMO0615",
+          "reason": "token overlap 1 with 'Distance to next port'",
+          "source": "llm",
+          "validator_status": "PASS"
+        },
+        {
+          "confidence": 0.6,
+          "imo_data_number": "IMO0861",
+          "reason": "token overlap 1 with 'Distance excluded'",
+          "source": "llm",
+          "validator_status": "PASS"
+        }
+      ],
+      "confidence": null,
+      "evidence_refs": [],
+      "imo_data_element_name": null,
+      "imo_data_number": null,
+      "mapping_method": "UNMAPPED",
+      "normalized_name": "distance",
+      "reference_model_version": null,
+      "source_name": "distance",
+      "source_path": "/distance",
+      "source_unit": "nautical mile",
+      "source_value_type": "numeric",
+      "validator_status": null,
+      "warnings": [
+        "COMPETING_CANDIDATES: 임계값/격차 미달 — 확정하지 않음"
+      ]
+    }
+  ],
+  "metrics": {
+    "alias_mapped": 3,
+    "candidate_scope_rejected": 0,
+    "exact_mapped": 0,
+    "fabricated_candidate_rejections": 0,
+    "llm_invocations": 1,
+    "llm_suggested": 3,
+    "llm_suggested_and_validated": 0,
+    "skill_invocations": 4,
+    "skill_rule_mapped": 0,
+    "total_source_fields": 4,
+    "unmapped": 1
+  },
+  "profile": "NOON_REPORT",
+  "reference_model_version": "FAL50"
+}

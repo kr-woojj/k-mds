@@ -1,0 +1,10 @@
+{
+  "body_type": "RAW_JSON_BODY",
+  "content_type": "application/json",
+  "correlation_id": "run-d1151310f824",
+  "dataset_metadata": {},
+  "payload_bytes": 14101,
+  "raw_sha256": "fb23ffbdcb00e11d7378ea390728bf895025196713413db5758f0e674bb998b0",
+  "transport_metadata": {},
+  "validation_errors": []
+}

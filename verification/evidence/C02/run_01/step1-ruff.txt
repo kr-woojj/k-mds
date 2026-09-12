@@ -1,0 +1,6 @@
+$ uv run --project C:\kr-dev\kr-ghg-ai-agent ruff check src tools tests
+All checks passed!
+
+[stderr]
+
+exit=0

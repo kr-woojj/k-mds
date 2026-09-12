@@ -1,0 +1,15 @@
+{
+  "body_type": "RAW_JSON_BODY",
+  "content_type": "application/json",
+  "correlation_id": "SYN-VP-NEG-0001",
+  "dataset_metadata": {
+    "dataset_id": "SYN-DATASET-VP"
+  },
+  "payload_bytes": 379,
+  "raw_sha256": "82e66b766fad89bb4e78be62c446e2dfbfca2445c86a9b347eddf497e5b83878",
+  "transport_metadata": {
+    "correlation_id": "SYN-VP-NEG-0001",
+    "dataset_id": "SYN-DATASET-VP"
+  },
+  "validation_errors": []
+}
