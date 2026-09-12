@@ -1,0 +1,41 @@
+# IMO MEPC 참조 문서 인벤토리 (2026-09-12 연구책임자 배치, sha256 실측)
+#
+# 용도: C02 Step 11(CII 입력 완전성)·Step 12(IMO DCS 입력 검증) 근거. 조항 인용은 이 파일들에서만 한다.
+# KR 지침(2022-ETC-03, 2021-ETC-04)은 사용자 결정으로 제외.
+
+standard:
+  name: IMO MEPC resolutions / MARPOL Annex VI (GHG, DCS, CII, SEEMP)
+  status: approved
+
+files:
+  - name: "MEPC-ES.2-2 - Draft Revised MARPOL Annex VI 2025.pdf"
+    sha256: "f35c92efa0ad78d8876a6b3268447362d911352b2aa382cc30153eacad1946ed"
+    title: "MEPC/ES.2/2 (2025-06-16) Draft revised MARPOL Annex VI — 초안 문서(채택본 아님). Reg.27 DCS / Reg.28 CII 조문 참조용"
+  - name: "MEPC.308(73).pdf"
+    sha256: "e10b8b1eed7747def9e9d9f587ab6116d6aa9599982166e050b6fefe5bb21bae"
+    title: "2018 Guidelines on the method of calculation of the attained EEDI for new ships (CF 연료 탄소계수 표 포함)"
+  - name: "MEPC.336(76).pdf"
+    sha256: "00f928d31e12aa6c1bd81247a6fdf99333d1c90977a2f47b65ee9c6b36c97c69"
+    title: "2021 Guidelines on operational carbon intensity indicators and the calculation methods (CII Guidelines, G1)"
+    note: "텍스트 추출 불가(이미지 PDF 추정) — 조항 인용 시 수동 판독 필요"
+  - name: "MEPC.337(76).pdf"
+    sha256: "7b266291237a06b77dd4afbc742686d1384313cf7a98641e8a85725db1efed76"
+    title: "2021 Guidelines on the reference lines for use with operational carbon intensity indicators (G2)"
+    note: "텍스트 추출 불가(이미지 PDF 추정)"
+  - name: "MEPC.338(76).pdf"
+    sha256: "60eb3aa2ee8e934b00e02f9c25449f7c6ac55e84f5242290c5126760290cab70"
+    title: "2021 Guidelines on the operational carbon intensity reduction factors relative to reference lines (G3)"
+    note: "텍스트 추출 불가(이미지 PDF 추정)"
+  - name: "MEPC.339(76).pdf"
+    sha256: "75a68e8b795b45b1c02fee54fb87380ed2bc1e15b70cfb2c767e3e55ae9a83dd"
+    title: "2021 Guidelines on the operational carbon intensity rating of ships (G4)"
+    note: "텍스트 추출 불가(이미지 PDF 추정)"
+  - name: "MEPC.346(78).pdf"
+    sha256: "72014c9493a26885353305f3c5d3e8e019eabf64eb270a34c4e0882a46410c2c"
+    title: "2022 Guidelines for the development of a Ship Energy Efficiency Management Plan (SEEMP), Part III 포함"
+  - name: "MEPC.348(78).pdf"
+    sha256: "4c950fd42621797afe43833c7670ace7c0a707af4d41eb273cc76266b614ba23"
+    title: "2022 Guidelines for Administration verification of ship fuel oil consumption data and operational carbon intensity"
+  - name: "MEPC.355(78).pdf"
+    sha256: "936c2cf2fda39a83cee4f22e32e97f7290f92d97b659fbce0a5221dda2381e0e"
+    title: "2022 Interim guidelines on correction factors and voyage adjustments for CII calculations (G5)"
