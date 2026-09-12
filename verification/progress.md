@@ -146,3 +146,12 @@
 ### 체크포인트 (사람 확인 대기)
 - C02 pass_criteria R1~R7 확정 요청(특히 R6 정합율 산식). 확정 전에는 Step 1 이후 판정을 기록하지 않는다.
 - Step 1 진입 승인.
+
+### S03 추가 입력: MEPC 문서 배치 (data/raw/MEPC/, source-manifest.yaml 에 sha256·제목 기록)
+- MEPC.308(73), 336(76), 337(76), 338(76), 339(76), 346(78), 348(78), 355(78), MEPC/ES.2/2 Draft revised MARPOL Annex VI(2025, 초안).
+- 336~339(76) 4건은 텍스트 추출 불가(이미지 PDF 추정) → 조항 인용 시 수동 판독. KR 지침은 사용자 결정으로 제외.
+
+### Step 1 사전 확인 (판정 보류 — pass_criteria 미확정) setup_S03/step1-*.txt, step1-{health,ready,api_v1_governance}.json
+- pytest 122 passed / 1 skipped(live_llm 자격증명 없음, PASS 불포함) / ruff 0 / mypy 0.
+- /health ok; /ready READY(reference_model FAL50 1205, skill READY real_call, mcp OFF, llm mock, kr_gears_contract PARTIAL, delivery mock, governance BOUND); /api/v1/governance authorities BOUND/BOUND/PROVISIONAL/PROVISIONAL/UNBOUND.
+- R1 초안 기준으로는 전 항목 충족. 기준 확정 시 Step 1 = PASS 로 기록 예정.
