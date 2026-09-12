@@ -155,3 +155,15 @@
 - pytest 122 passed / 1 skipped(live_llm 자격증명 없음, PASS 불포함) / ruff 0 / mypy 0.
 - /health ok; /ready READY(reference_model FAL50 1205, skill READY real_call, mcp OFF, llm mock, kr_gears_contract PARTIAL, delivery mock, governance BOUND); /api/v1/governance authorities BOUND/BOUND/PROVISIONAL/PROVISIONAL/UNBOUND.
 - R1 초안 기준으로는 전 항목 충족. 기준 확정 시 Step 1 = PASS 로 기록 예정.
+
+### 사용자 결정 (S03, 체크포인트 2 답변)
+- "R7 확정" → R1~R7 전체 확정으로 해석·기록(R6 분모 기본안). owner_confirmed_by 우정재. C02 status designed.
+- Step 2 진행을 위해 외부 K-MDS(유엔젤) IDS Provider 브라우저 접속 허용.
+- Step 1 = PASS 확정 기록.
+
+### Step 2 준비 (S03) evidence/C02/manual_S03/step-02/
+- 유엔젤 문서(data/raw/유엔젤) 판독: 외부접속 가이드(접속정보·성공기준 8항), Provider 매뉴얼(Share Data→Meta→Policy→Representation→Catalogs→Brokers→Save), Consumer 매뉴얼(Data Consumption→Requests→REQUEST RESOURCE→BROKER 탭→Broker 선택→검색→Artifact→ACCEPT→Download/Dispatch), 시스템 구성(RIMS 수도권 서버, DAPS·Broker·Provider/Consumer Connector), 실증 시연 v0.93(샘플 메타데이터 기반, "향후 랩오투원 표준 모델과 연계").
+- 도달성: Provider/Consumer UI 401(인증 요구), Connector API 200, Broker 405 → 서버 가동 중.
+- Connector 관리 API 는 demo 계정으로 401 → UI 경로만 사용(자격증명 미공개).
+- 브라우저로 Provider UI 기동. 사용자 UI 조작 대기.
+- 예상 실패 지점: 현재 K-MDS 에 등록된 Offering 은 유엔젤 샘플(MDS Test/Guide Provider Data, provider-api:8086)일 가능성 — GHG(정오·동정보고) Dataset 미등록이면 Step 2 는 BLOCKED(매뉴얼 판정 기준) 또는 샘플 Dataset 으로 CONDITIONAL_PASS 결정 필요.

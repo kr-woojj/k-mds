@@ -150,7 +150,7 @@
       "environment": {
         "type": "로컬 시뮬레이션(kr-ghg-ai-agent, LLM=mock, Skill=real validator, MCP=off, KR GEARs delivery=mock). Step 2·3(Broker 검색·Consumer 구독)만 외부 K-MDS 필요",
         "runner": "C:\\kr-dev\\k-mds\\verification\\run_c02.py",
-        "external_connection_required": false,
+        "external_connection_required": true,
         "external_optional_steps": [
           "Step 2 Broker Dataset 검색",
           "Step 3 Consumer Subscription/정책"
@@ -176,10 +176,11 @@
             "item": "랩오투원 실 Provider 샘플 JSON(정오·동정보고) 및 IDS envelope 형식",
             "status": "MISSING — 합성 fixture로 1차 run, 실 샘플 확보 시 run 추가"
           }
-        ]
+        ],
+        "external_authorized": "2026-09-12 사용자 지시: Step 2 위해 브라우저로 IDS Provider 접속"
       },
       "pass_criteria": {
-        "confirmed": false,
+        "confirmed": true,
         "rules": [
           "R1 [Step1] pytest failed=0, ruff=0, mypy=0; skipped·blocked 는 PASS 에 불포함. /ready READY, governance flags == {candidate_mapping_eligible:true, requiredness_profile_approved:false, executable_mapping_eligible:false, actual_normalization_eligible:false, kr_gears_actual_delivery_allowed:false}",
           "R2 [Step4-8] 정상 fixture(noon_report_valid, vessel_performance_valid, event_departure/arrival/anchoring): mapping-result.json 존재, error 코드 없음(특히 GOVERNANCE_* 아님), 매핑된 IMO Data Number 전부 registry 존재(IMO_ID_NOT_FOUND 0건), LLM 호출 0회(결정론 필드)",
@@ -189,11 +190,12 @@
           "R6 [정합율, 성능목표 #4] 데이터 정합율 = (Validator PASS 또는 WARNING 인 매핑 필드 수) / (정상 fixture 의 전체 입력 필드 수) ×100 ≥ 95% — 산식·분모 초안, 사람 확정 필요",
           "R7 [Step2-3] 외부 K-MDS 미접속 시 NOT_TESTED 로 기록하고 R1~R6 만으로 PARTIAL 상한"
         ],
-        "draft_notes": "R1~R5 는 kr-ghg-ai-agent UserManual §4-5 Step 통과 기준·§10 TC-01~15 를 그대로 옮긴 것(DOCS_DIR 외 참고 문서). R6 정합율 산식은 과제 문서에 없음(문서 근거 없음). PoC 설계상 정상 흐름도 DELIVERED 가 아닌 REVIEW_REQUIRED 로 끝나므로 '최종 PASS' 를 DELIVERED 로 정의하면 안 됨."
+        "draft_notes": "R1~R5 는 kr-ghg-ai-agent UserManual §4-5 Step 통과 기준·§10 TC-01~15 를 그대로 옮긴 것(DOCS_DIR 외 참고 문서). R6 정합율 산식은 과제 문서에 없음(문서 근거 없음). PoC 설계상 정상 흐름도 DELIVERED 가 아닌 REVIEW_REQUIRED 로 끝나므로 '최종 PASS' 를 DELIVERED 로 정의하면 안 됨.",
+        "confirmed_note": "2026-09-12 사용자(연구책임자) 답변 'R7 확정' → R1~R7 전체 확정으로 해석. R6 분모 = 정상 fixture 전체 입력 필드(기본안). 상이 시 정정 요청."
       },
-      "status": "pending",
+      "status": "designed",
       "runs": [],
-      "owner_confirmed_by": null,
+      "owner_confirmed_by": "우정재(연구책임자, 2026-09-12)",
       "last_updated": "2026-09-12",
       "blockers": [
         "P1 검증기 저장소 부재(치명)",
@@ -284,6 +286,19 @@
           "date": "2026-09-12",
           "path": "verification/evidence/C02/precheck_S02/",
           "result": "pytest 1 failed/32 passed/90 skipped, ruff 0, mypy 0, mock E2E 'PASS' 는 오라클 약점으로 무효(FINDING F-1)"
+        }
+      ],
+      "step_results": [
+        {
+          "step": 0,
+          "verdict": "PASS",
+          "evidence": "evidence/C02/setup_S03/step0-baseline.yaml"
+        },
+        {
+          "step": 1,
+          "verdict": "PASS",
+          "basis": "R1: pytest 122 passed/1 skipped(불포함), ruff 0, mypy 0, /ready READY, governance flags 기대값 일치",
+          "evidence": "evidence/C02/setup_S03/step1-*"
         }
       ]
     },
