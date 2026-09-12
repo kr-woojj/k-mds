@@ -1,0 +1,4 @@
+candidate_set_id=kr-ghg-candidate-inventory version=0.1.0-provisional
+element_count=18 sha256=22a01cdca45e665d0a419ec7190c175cf89be486a7469b2a432b34f4c03ae810
+source_artifacts=['noon_report_valid.json', 'vessel_performance_valid.json', 'event_departure.json', 'event_anchoring.json', 'event_arrival.json']
+exit=0

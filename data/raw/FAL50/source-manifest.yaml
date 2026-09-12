@@ -1,21 +1,29 @@
 # IMO Compendium FAL50 원본 Snapshot Manifest (AGENTS.md §7)
 #
-# 공식 원본이 아직 배치되지 않았다 (status: pending_source).
-# 원본 배치 후 files 목록에 파일명과 실제 계산한 sha256을 기재하고
-# ingestion.status를 갱신한다. Placeholder Hash를 미리 기재하지 않는다.
+# 2026-09-12 배치(연구책임자). sha256 은 배치된 파일에서 실제 계산한 값.
+# 버전 근거: Changes.pdf "Versions approved by the FAL Committee" 에 FAL 50 / FAL.5/Circ.56 까지 기재,
+#            IMO Compendium.xlsx 'Changes' 시트 최종 변경일 2025-12-03 (출처 EGDH 13/8, 13/15).
 
 standard:
   name: IMO Compendium on Facilitation and Electronic Business
   fal_version: FAL50
-  status: pending_source
+  status: approved
 
 source:
   website: "https://imocompendium.imo.org/public/IMO-Compendium/Current/index.htm"
+  download_url: "https://imocompendium.imo.org/public/IMO-Compendium/Current/IMO%20Compendium.xlsx"
+  circular: "FAL.5/Circ.56"
 
-# 공식 원본 미확보 — 배치 전까지 빈 목록을 유지한다.
-files: []
+files:
+  - name: IMO Compendium.xlsx
+    sha256: "5d2ed626057062ab5be3082a4b13c9c38fb0c95a6d5588d4abf38508f6e688a5"
+  - name: Readme.pdf
+    sha256: "f7f62b0899db37371b8818733360c82751f9615fa1735ea868ede4ed65007dea"
+  - name: Changes.pdf
+    sha256: "6b7a4fdf91a14e7db5757d1b3d66c01c717b4cb4055ab96fe63ad3028e08fade"
 
 ingestion:
   parser_version: null
   imported_at: null
-  status: pending_source
+  status: pending
+  note: "k-mds 자체 정규화 파이프라인 미실행. kr-ghg-ai-agent 는 이 xlsx 를 validator registry(FAL50, elementCount 1205)로 적재함 (2026-09-12)."

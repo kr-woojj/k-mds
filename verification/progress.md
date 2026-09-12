@@ -118,3 +118,31 @@
 - 다음 세션: P1~P3 충족 + 기준 확정 시 `python run_c02.py --dry-run` → `--run` (run_01).
 
 세션 S02 종료 상태: NEEDS_INPUT
+
+---
+
+## 세션 S03 — 2026-09-12 (진행 중, Step 0 체크포인트)
+
+### 사용자 입력 반영
+1. 검증기: github.com/kr-woojj/imo-compendium-mapping-validator → C:/kr-dev/imo-compendium-mapping-validator 클론(commit ad34c47), uv sync, 자체 테스트 71 passed.
+2. FAL50 원본: k-mds/data/raw/FAL50/{IMO Compendium.xlsx, Readme.pdf, Changes.pdf} 배치 확인. xlsx sha256 5d2ed626…(S02 다운로드본과 동일). 스크래치 사본 삭제. source-manifest.yaml 갱신(files sha256, FAL.5/Circ.56, standard approved / ingestion pending).
+3. IMO MEPC(SEEMP III·CII·DCS) 참조 — 필요 문서 목록을 사용자에게 제시(아래).
+4. raw 배치: ISO19848(ISO 19848:2024 ed.2 PDF), 랩오투원(동정보고 코드북 336행, ISO19848 센서 코드북 TAG LIST 1,370행 등 7시트), 유엔젤(Provider/Consumer 매뉴얼, 외부접속 가이드, 시스템 구성·기본 시나리오, 실증 시연 v0.93).
+5. 이후 Step 단위 확인 방식으로 진행.
+
+### 시작 루틴
+- smoke: P1~P3 충족 후 run_c02.py --dry-run → pass_criteria.confirmed 만 MISSING(exit 2, 의도된 동작).
+- 선택 항목: C02 (계속).
+
+### P3 구축 (evidence/C02/setup_S03/)
+- prepare_registry: FAL50 import ok, elementCount 1205, occurrenceCount 2024, codeLists 57/codeValues 964, issueCount 0.
+- build_candidate_inventory: 18 elements, sha256 22a01cdc…, source 5 fixtures.
+
+### Step 0 실증 기준선 고정 — PASS (setup_S03/step0-baseline.yaml)
+- agent commit e1a2295 clean / validator ad34c47 / Python 3.12.12 / uv 0.9.26
+- governance flags = 매뉴얼 기대값과 일치(candidate_mapping_eligible true, 나머지 false); authority BOUND/BOUND/PROVISIONAL/PROVISIONAL/UNBOUND.
+- 참고: 매뉴얼은 Git Root 를 D:/ 로 표기, 실제 C:/ — 드라이브만 상이.
+
+### 체크포인트 (사람 확인 대기)
+- C02 pass_criteria R1~R7 확정 요청(특히 R6 정합율 산식). 확정 전에는 Step 1 이후 판정을 기록하지 않는다.
+- Step 1 진입 승인.

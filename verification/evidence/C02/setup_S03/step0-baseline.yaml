@@ -1,0 +1,42 @@
+step_id: 0
+step_name: 실증 기준선 고정
+execution_date: 2026-09-12
+verdict: PASS
+verdict_basis: UserManual Step 0 통과 기준 — Git Root 기록(C:/kr-dev, 매뉴얼의 D:/ 표기와 드라이브만 다름), Python 3.12>=3.11, commit hash 기록, working tree clean, reference model·governance 상태 존재
+poc_repository:
+  root: C:/kr-dev/kr-ghg-ai-agent
+  branch: main
+  commit: e1a2295e49349508bb0a42274c344d56f57ee773
+  working_tree_clean: True
+runtime:
+  python_version: 3.12.12
+  uv_version: uv 0.9.26 (ee4f00362 2026-01-15)
+validator:
+  repository: C:/kr-dev/imo-compendium-mapping-validator (github.com/kr-woojj/imo-compendium-mapping-validator)
+  version_or_commit: ad34c472db07cef0df404a6c7038e071bab7cde6
+  self_test: 71 passed (setup_S03/validator_pytest.txt)
+reference_model:
+  version: FAL50 (Changes.pdf 기재 FAL 50 / FAL.5/Circ.56, xlsx Changes 시트 최종 변경일 2025-12-03)
+  source_file: C:/kr-dev/k-mds/data/raw/FAL50/IMO Compendium.xlsx
+  source_sha256: 5d2ed626057062ab5be3082a4b13c9c38fb0c95a6d5588d4abf38508f6e688a5
+  registry_db: C:\kr-dev\kr-ghg-ai-agent\var\registry.sqlite3
+  registry_tables: {"schema_migrations": 2, "compendium_version": 1, "data_element": 1205, "sqlite_sequence": 3, "refmodel_occurrence": 2024, "audit_event": 1, "mapping_job": 0}
+  registry_element_count: 1205
+  registry_derivation: setup_S03/prepare_registry.txt (sourceHash c8419fde…, harmonizedElements IMO0629)
+  candidate_set_count: 18
+  candidate_set_status: BOUND/PROVISIONAL
+  source_manifest_status: k-mds/data/raw/FAL50/source-manifest.yaml standard.status=approved, ingestion.status=pending
+governance:
+  candidate_mapping_eligible: true
+  requiredness_profile_approved: false
+  executable_mapping_eligible: false
+  actual_normalization_eligible: false
+  kr_gears_actual_delivery_allowed: false
+authority:
+  reference: BOUND
+  candidate_set: BOUND
+  requiredness: PROVISIONAL
+  authoring: PROVISIONAL
+  delivery: UNBOUND
+next_step_allowed: Step 1 — pass_criteria(R1~R7) 확정 후
+

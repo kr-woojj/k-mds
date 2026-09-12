@@ -1,0 +1,17 @@
+sourceHash=5d2ed626057062ab5be3082a4b13c9c38fb0c95a6d5588d4abf38508f6e688a5
+derivedRecords=2024
+harmonizedElements=IMO0629
+codeLists=57 codeValues=964
+command=import
+version=FAL50
+sourceFormat=csv
+sourceHash=c8419fde50124f54cb73255513a4bc9ddbdb45b0711e14789752ca0c360c38ec
+dryRun=false
+ok=true
+committed=true
+elementCount=1205
+occurrenceCount=2024
+issueCount=0
+importExitCode=0
+registryDb=C:\kr-dev\kr-ghg-ai-agent\var\registry.sqlite3
+exit=0
