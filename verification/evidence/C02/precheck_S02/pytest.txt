@@ -1,0 +1,116 @@
+........ssssssssssssssss....ssssss.sssssssF...sssssssssssssss.......ssss [ 58%]
+ssssssssssssssssssssssssss.........ssssssssssssssss                      [100%]
+================================== FAILURES ===================================
+______________ TestFlagDerivation.test_current_state_flags_exact ______________
+
+self = <tests.integration.test_governance.TestFlagDerivation object at 0x0000026565376030>
+settings = Settings(llm_provider='mock', llm_model='', llm_deployment='', llm_endpoint='', llm_api_version='', llm_timeout_second....9, synthetic_data=True, max_node_count=3000, max_array_length=1000, max_field_count=2000, max_scalar_text_length=8192)
+
+    def test_current_state_flags_exact(self, settings):
+        # F-STEP7-2: candidate_set BOUND 은 승인 후보 집합(inventory) BOUND 를 요구.
+        from ghg_agent.governance.candidate_scope import load_candidate_inventory
+        inv = load_candidate_inventory(settings.candidate_inventory_path)
+        ctx = build_context(settings, reference_ready=True, candidate_set_ready=True,
+                            candidate_inventory=inv)
+>       assert ctx.flags() == REQUIRED_CURRENT_FLAGS
+E       AssertionError: assert {'candidate_m...': False, ...} == {'candidate_m...': False, ...}
+E         
+E         Omitting 4 identical items, use -vv to show
+E         Differing items:
+E         {'candidate_mapping_eligible': False} != {'candidate_mapping_eligible': True}
+E         Use -v to get more diff
+
+tests\integration\test_governance.py:65: AssertionError
+=========================== short test summary info ===========================
+SKIPPED [1] tests\contract\test_skill_contract.py:19: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\contract\test_skill_contract.py:26: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\contract\test_skill_contract.py:33: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\contract\test_skill_contract.py:38: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\contract\test_skill_contract.py:43: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\contract\test_skill_contract.py:62: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\contract\test_skill_contract.py:77: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\contract\test_skill_contract.py:85: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_api.py:21: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_api.py:26: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_api.py:36: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_api.py:56: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_api.py:70: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_api.py:81: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_api.py:111: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_api.py:130: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_baseline_fixes.py:71: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_baseline_fixes.py:78: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_baseline_fixes.py:102: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_baseline_fixes.py:112: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_baseline_fixes.py:125: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_baseline_fixes.py:139: FAL50 registry 미적재 (tools/prepare_registry.py 필요)
+SKIPPED [1] tests\integration\test_e2e_pipeline.py:37: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_e2e_pipeline.py:56: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_e2e_pipeline.py:79: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_e2e_pipeline.py:119: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_e2e_pipeline.py:132: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_e2e_pipeline.py:145: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_e2e_pipeline.py:150: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_governance.py:92: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_governance.py:101: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_governance.py:119: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_governance.py:140: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_governance.py:150: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_live_llm.py:59: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_mcp_real.py:37: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_mcp_real.py:45: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_negative.py:20: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_negative.py:43: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_negative.py:57: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_negative.py:68: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_negative.py:91: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_negative.py:100: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_negative.py:111: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step6_remediation.py:75: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step6_remediation.py:88: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step6_remediation.py:110: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step6_remediation.py:136: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step6_remediation.py:158: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step6_remediation.py:187: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step6_remediation.py:192: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step7_remediation.py:35: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step7_remediation.py:41: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step7_remediation.py:47: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step7_remediation.py:55: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step7_remediation.py:61: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step7_remediation.py:74: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step7_remediation.py:79: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step7_remediation.py:86: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step7_remediation.py:95: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step7_remediation.py:101: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step7_remediation.py:113: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step7_remediation.py:122: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step7_remediation.py:135: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step7_remediation.py:143: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step7_remediation.py:158: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step7_remediation.py:164: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\integration\test_step7_remediation.py:173: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\unit\test_mapper.py:27: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\unit\test_mapper.py:46: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\unit\test_mapper.py:59: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\unit\test_mapper.py:75: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\unit\test_mapper.py:93: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\unit\test_mapper.py:119: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\unit\test_state_and_lookup.py:27: FAL50 registry 미적재 (tools/prepare_registry.py 필요)
+SKIPPED [1] tests\unit\test_state_and_lookup.py:33: FAL50 registry 미적재 (tools/prepare_registry.py 필요)
+SKIPPED [1] tests\unit\test_state_and_lookup.py:37: FAL50 registry 미적재 (tools/prepare_registry.py 필요)
+SKIPPED [1] tests\unit\test_state_and_lookup.py:41: FAL50 registry 미적재 (tools/prepare_registry.py 필요)
+SKIPPED [1] tests\unit\test_state_and_lookup.py:45: FAL50 registry 미적재 (tools/prepare_registry.py 필요)
+SKIPPED [1] tests\unit\test_state_and_lookup.py:59: FAL50 registry 미적재 (tools/prepare_registry.py 필요)
+SKIPPED [1] tests\unit\test_state_and_lookup.py:65: FAL50 registry 미적재 (tools/prepare_registry.py 필요)
+SKIPPED [1] tests\unit\test_validation_transform.py:37: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\unit\test_validation_transform.py:43: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\unit\test_validation_transform.py:58: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\unit\test_validation_transform.py:78: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\unit\test_validation_transform.py:91: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\unit\test_validation_transform.py:110: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\unit\test_validation_transform.py:129: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\unit\test_validation_transform.py:135: imo-compendium-mapping-validator 미존재
+SKIPPED [1] tests\unit\test_validation_transform.py:142: imo-compendium-mapping-validator 미존재
+1 failed, 32 passed, 90 skipped in 3.60s
+pytest exit=1

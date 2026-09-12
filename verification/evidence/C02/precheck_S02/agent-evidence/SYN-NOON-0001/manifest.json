@@ -1,0 +1,36 @@
+{
+  "code_commit": "e1a2295e49349508bb0a42274c344d56f57ee773",
+  "completed_at": "2026-09-12T04:50:51.422199+00:00",
+  "correlation_id": "SYN-NOON-0001",
+  "created_at": "2026-09-12T04:50:51.162179+00:00",
+  "dirty_worktree": false,
+  "file_hashes": {
+    "agent-trace.json": "ecfdd1b6ef0ac6783053a6b7eeac1f40df8fcbb289ac5316e25a766a60697909",
+    "governance-context.json": "19bc3f1edea7b0b1e05c17312c55ce554806d4248acb7f1f50d727182f1b9d2c",
+    "ingress-result.json": "379f580e66c72a14b545ef5ef02991ab5ea7d9f3cf3400f92cedf780e3163755",
+    "llm-calls.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "mcp-calls.json": "ccac1e7eaca2d17b6a7f3ca001e230964a81987874891b2cf1ee520ed392bf5a",
+    "raw-input.json": "c88992a1d07978a854741ccf544cb167e0f71adba75d85163e68a100fa4ddd04",
+    "raw-input.sha256": "884a646ebe12c150f944d8f848c2b933b0dba36239a5df96752276ba187d187c",
+    "skill-calls.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "summary.md": "4c4b4297e97eaa489ce131f9e88280285599e9aeb9054253083731c2617bbae8"
+  },
+  "final_status": "REVIEW_REQUIRED",
+  "governance_flags": {
+    "actual_normalization_eligible": false,
+    "candidate_mapping_eligible": false,
+    "executable_mapping_eligible": false,
+    "kr_gears_actual_delivery_allowed": false,
+    "requiredness_profile_approved": false
+  },
+  "kr_gears_contract_status": "NOT_TRANSFORMED",
+  "llm_model": "mock-structured",
+  "llm_provider": "mock",
+  "mcp_real_or_mock": "off",
+  "reference_model_version": null,
+  "run_id": "run-9a637308",
+  "skill_real_or_mock": "real",
+  "source_type": "synthetic_fixture",
+  "synthetic_data": true,
+  "validator_version": "UNKNOWN"
+}

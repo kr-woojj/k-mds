@@ -1,0 +1,5 @@
+# Run SYN-VP-0001
+
+- final_status: **REVIEW_REQUIRED**
+- error: GOVERNANCE_CANDIDATE_MAPPING_BLOCKED
+- profile: -

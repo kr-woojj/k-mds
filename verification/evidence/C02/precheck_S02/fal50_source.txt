@@ -1,0 +1,30 @@
+source_url: https://imocompendium.imo.org/public/IMO-Compendium/Current/IMO%20Compendium.xlsx
+downloaded: 2026-09-12  size: 1832090  sha256: 5d2ed626057062ab5be3082a4b13c9c38fb0c95a6d5588d4abf38508f6e688a5
+placed_in_k_mds: NO (scratchpad only; version confirmation pending)
+sheets: ['IMO Data Set', 'Structure', 'Business Rules', 'Changes', 'UML diagram', 'Code list']
+--- IMO Data Set max_row= 1207
+   ['Path', 'Level', 'Kind of object', 'Change Indicator', 'Data Number', 'Data Element', 'Definition', 'General Declaration']
+   ['FAL. Details/FAL. Transport Movement. FA', '5', 'BBIE', '*', 'IMO0001', 'Agent city', 'The city of the referenced agent at port', 'X']
+   ['FAL. Details/FAL. Transport Movement. FA', '4', 'BBIE', '*', 'IMO0002', 'Agent contact family name', "The agent's employee contact family name", 'X']
+   ['FAL. Details/FAL. Transport Movement. FA', '5', 'BBIE', '*', 'IMO0003', 'Agent country code', 'A code representing the country address ', 'X']
+--- Structure max_row= 4000
+   ['IMO Class and Attribute', 'IMO Definition', 'IMO Reference No.', 'Format', 'Code Lists', 'Business\nRules', 'Occurrence', 'General Declaration']
+   ['FAL. Details', '0', 'ABIE', 'IMO Reference Model']
+   ['FAL. Details/FAL. Document Metadata. FAL', '1', 'ASBIE', 'Message Header', '0..1']
+   ['FAL. Details/FAL. Document Metadata. FAL', '2', 'BBIE', 'Message type, coded', 'Code specifying the name of a message ty', 'IMO0192', 'an..3', 'UN/EDIFACT codes 1001']
+--- Business Rules max_row= 101
+   ['Business Rule id', 'Description', 'IMO ID', 'Additional Remarks']
+   ['BR 00', '0', 'Class', 'BR 00', 'In general, free text should not be used']
+   ['BR 01', '0', 'Class', 'BR 01', 'Date time values are always provided wit', 'IMO0014\nIMO0063\nIMO0064\nIMO0065\nIMO0066\n']
+   ['BR 02', '0', 'Class', 'BR 02', 'The recommended unit to be used is KGM.', 'IMO0024\nIMO0506']
+--- Changes max_row= 416
+   ['Change\nindicator', 'IMO ID', 'Data element name', 'Change', 'Source', 'Change date']
+   ['FAL. Details/FAL. Document Metadata. FAL', '2', 'BBIE', '*', 'IMO0192', 'Message type, coded', 'Added Meteorological and Oceanographic O', 'EGDH 13/15']
+   ['FAL. Details/FAL. Document Metadata. FAL', '2', 'BBIE', '*', 'IMO0305', 'Message function code', 'Added Delivery Bill for Mail Consignment', 'EGDH 13/15']
+   ['FAL. Details/FAL. Document Metadata. FAL', '2', 'BBIE', '*', 'IMO0078', 'Message date time', 'Added Meteorological and Oceanographic O', 'EGDH 13/15']
+--- UML diagram max_row= 1
+--- Code list max_row= 965
+   ['Code list', 'Code', 'Code Name', 'Code Description']
+   ['Crewmember rank or rating', '10100', 'Captain / Master', 'All ships']
+   ['Crewmember rank or rating', '10101', 'Captain / Master on ships above 3000 GT', 'All ships> 3000 GT']
+   ['Crewmember rank or rating', '10102', 'Captain / Master on ships up to 3000 GT', 'All ships< 3000 GT']

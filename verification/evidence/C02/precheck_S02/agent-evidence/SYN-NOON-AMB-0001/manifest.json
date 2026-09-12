@@ -1,0 +1,36 @@
+{
+  "code_commit": "e1a2295e49349508bb0a42274c344d56f57ee773",
+  "completed_at": "2026-09-12T04:50:52.885646+00:00",
+  "correlation_id": "SYN-NOON-AMB-0001",
+  "created_at": "2026-09-12T04:50:52.634998+00:00",
+  "dirty_worktree": false,
+  "file_hashes": {
+    "agent-trace.json": "3c2bb114b39f6f5f630642de8f5707385a0f0f33de813f5ccd11f83d3b2ff4ea",
+    "governance-context.json": "19bc3f1edea7b0b1e05c17312c55ce554806d4248acb7f1f50d727182f1b9d2c",
+    "ingress-result.json": "9b826b13711f1a541fc233203a9bdfa7af707db8dfdcdc8bed197577b7d9b920",
+    "llm-calls.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "mcp-calls.json": "ccac1e7eaca2d17b6a7f3ca001e230964a81987874891b2cf1ee520ed392bf5a",
+    "raw-input.json": "8c9730de60582947d72f9345e0a15e592c059412a5fb9708deff1d6c6b9a5ed3",
+    "raw-input.sha256": "78dabb7221b2c19c8d041c8459f5219e0ea70af2efcbfdbb2ca2803a0a3ae0db",
+    "skill-calls.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "summary.md": "088b43aec89725c00f84ed2e6a0ee78e35182665a3b9cae3cfc18b0df26ad934"
+  },
+  "final_status": "REVIEW_REQUIRED",
+  "governance_flags": {
+    "actual_normalization_eligible": false,
+    "candidate_mapping_eligible": false,
+    "executable_mapping_eligible": false,
+    "kr_gears_actual_delivery_allowed": false,
+    "requiredness_profile_approved": false
+  },
+  "kr_gears_contract_status": "NOT_TRANSFORMED",
+  "llm_model": "mock-structured",
+  "llm_provider": "mock",
+  "mcp_real_or_mock": "off",
+  "reference_model_version": null,
+  "run_id": "run-05324e9e",
+  "skill_real_or_mock": "real",
+  "source_type": "synthetic_fixture",
+  "synthetic_data": true,
+  "validator_version": "UNKNOWN"
+}

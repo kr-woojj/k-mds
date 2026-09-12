@@ -1,0 +1,59 @@
+{
+  "authorities": {
+    "AuthoringAuthority": {
+      "approved": false,
+      "detail": "실제 authoring/정규화 권한 미승인 — actual_normalization_eligible=false 강제",
+      "identifier": null,
+      "status": "PROVISIONAL"
+    },
+    "CandidateSetAuthority": {
+      "approved": false,
+      "detail": "KR GHG candidate inventory  (0 elements) load_status=UNBOUND",
+      "identifier": null,
+      "status": "UNBOUND"
+    },
+    "DeliveryAuthority": {
+      "approved": false,
+      "detail": "KR GEARs 실제 delivery 계약 미확인 — kr_gears_actual_delivery_allowed=false 강제",
+      "identifier": null,
+      "status": "UNBOUND"
+    },
+    "ReferenceAuthority": {
+      "approved": false,
+      "detail": "IMO Compendium FAL50 registry snapshot",
+      "identifier": "FAL50",
+      "status": "UNBOUND"
+    },
+    "RequirednessAuthority": {
+      "approved": false,
+      "detail": "필수성 프로파일 미승인 — requiredness_profile_approved=false 강제",
+      "identifier": "P-REQ-1",
+      "status": "PROVISIONAL"
+    }
+  },
+  "candidate_inventory": {
+    "approved": false,
+    "candidate_scope_enforcement": false,
+    "candidate_set_id": "",
+    "element_count": 0,
+    "load_status": "UNBOUND",
+    "sha256": "",
+    "status": "FILE_NOT_FOUND",
+    "version": ""
+  },
+  "candidate_scope_enforcement": false,
+  "enforced_flags": {
+    "actual_normalization_eligible": false,
+    "candidate_mapping_eligible": false,
+    "executable_mapping_eligible": false,
+    "kr_gears_actual_delivery_allowed": false,
+    "requiredness_profile_approved": false
+  },
+  "runtime_binding": {
+    "code_lists_path": "C:\\kr-dev\\kr-ghg-ai-agent\\var\\reference\\code_lists.json",
+    "imo_mapping_skill_path": "C:\\kr-dev\\imo-compendium-mapping-validator",
+    "kr_gears_api_url": null,
+    "kr_gears_delivery_mode": "mock",
+    "registry_db_path": "C:\\kr-dev\\kr-ghg-ai-agent\\var\\registry.sqlite3"
+  }
+}

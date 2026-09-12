@@ -72,3 +72,49 @@
 - 미해결(과제 측): 128개 필수 데이터 목록·매핑표, 코드북·샘플 IDS 셋팅, 서비스별 메타 등록, 보안/정책 합의서, 인터페이스 기준서 — 2차 회의록에 완료 표시 없음.
 
 세션 S01 종료 상태: NEEDS_INPUT
+
+---
+
+## 세션 S02 — 2026-09-12
+
+### 사용자 결정 (지시)
+- 첫 대상: 국제표준(ISO 19848, IMO Compendium) 기반 **GHG 환경규제 의무보고 데이터**.
+- 흐름: 랩오투원 선박 플랫폼(IDS Provider) → IDS 서버 → GHG AI Agent(C:\kr-dev\kr-ghg-ai-agent) 매핑 → 표준 데이터 → KR-GEARs.
+- 요청: 시나리오 검증 + 순차 시뮬레이션 준비(실행 아님).
+
+### 시작 루틴
+1. PROGRESS_FILE·CASE_LIST: S01 산출물 확인.
+2. 시뮬레이터 smoke: kr-ghg-ai-agent(=이 시나리오의 시뮬레이터) `uv run pytest -q` → **1 failed / 32 passed / 90 skipped**; ruff 0; mypy 0. 증적 evidence/C02/precheck_S02/.
+3. 선택 항목: **C02** (재정의). C06 은 C02 에 병합(merged).
+
+### 시나리오 검증 결과
+- 과제 문서 정합: KR pptx s.2 BLOCK A(시뮬레이터→ROC→IDS Provider)/BLOCK B(Consumer→KR MCP 검증→GEARs), 2차 회의록 Lane #3 GHG(Provider 랩오투원, Consumer KR), 착수 KR p.28 과 일치. **범위 추가 아님**(RFP4-3 KR 과업).
+- PoC(kr-ghg-ai-agent UserManual "K-MDS Use Case #3") 와 사용자 시나리오 일치. Step 0~13, TC-01~15 정의됨.
+- 차이/주의:
+  a. ISO 19848 은 PoC 코드에 없음(grep 0건). PoC 매핑 기준은 IMO Compendium(FAL50)만. ISO 19848↔Compendium 매핑은 랩오투원 코드북 산출물.
+  b. KR GEARs 제출 계약 PROVISIONAL(known-limitation L-2) → 정상 흐름도 최종 REVIEW_REQUIRED. "PASS"를 DELIVERED 로 정의하면 안 됨.
+  c. 실 Provider(랩오투원) payload 형식·IDS envelope 미확보(L-1) → 합성 fixture 9종으로 1차 run.
+- **Finding F-1**: tools/run_mock_e2e.py 는 최종 상태만 비교 → 검증기 부재로 전 fixture 가 GOVERNANCE_CANDIDATE_MAPPING_BLOCKED 인데 "overall=PASS" 출력. 판정 오라클로 부적합. run_c02.py 의 judge() 는 error 코드·mapping-result 존재·PROVISIONAL 변환을 함께 확인(selftest 로 검증).
+
+### 전제 조사
+- P1 imo-compendium-mapping-validator: C:\kr-dev, D:\kr-dev(없음), mcp.zip, GitHub kr-woojj 전부 **부재**. README 는 형제 디렉터리 전제. → 치명 블로커, 사람 제공 필요.
+- P2 FAL50 xlsx: k-mds/data/raw/FAL50 에 없음(manifest pending_source). 공식 사이트 현재본 다운로드(scratchpad, sha256 5d2ed626…88a5, 시트 6개, Changes 소스 "EGDH 13/15"). **k-mds 에 배치하지 않음** — PoC registry 가 전제한 FAL50 본과 동일한지 미확인. 사람 확정 후 배치+manifest 갱신.
+- P3 var/registry.sqlite3, candidate-inventory.json: P1·P2 선행.
+- 실패 테스트 1건(test_governance)·skip 90건의 단일 원인 = P1~P3 부재. 코드 결함 아님.
+
+### 산출물
+- verification_cases.json: C02 재정의(stages 0~13, prerequisites P1~P4, rules R1~R7 초안, confirmed=false), C06 merged.
+- run_c02.py: --dry-run(전제·기준 점검, exit 2) / --run(run_NN 자동 증가, step1 + mock E2E + judge) / --selftest(통과).
+- evidence/C02/precheck_S02/: env, pytest, ruff, mypy, mock_e2e 로그, agent-evidence 8건(이관), FINDING.md, fal50_source.txt.
+- kr-ghg-ai-agent 저장소: 변경 없음(reports/mock-e2e-results.json 원복, evidence/ 이관).
+
+### 결정 및 미해결 (S02)
+- 결정: C02 = 이번 실증의 1순위. 외부 Step 2·3 은 NOT_TESTED 허용(PARTIAL 상한, R7).
+- 사람 확인 필요:
+  1. **P1 검증기 저장소 제공**(경로 C:\kr-dev\imo-compendium-mapping-validator, uv 환경 포함). 없으면 C02 는 blocked.
+  2. P2: 다운로드한 xlsx(sha256 5d2ed626…)를 FAL50 원본으로 인정할지, 또는 PoC 당시 원본 파일 제공.
+  3. C02 pass_criteria R1~R7 확정(특히 R6 정합율 산식·분모 95%).
+  4. 실 Provider 샘플(랩오투원 정오·동정보고 JSON) 제공 여부 — 없으면 합성 fixture 로 1차 run.
+- 다음 세션: P1~P3 충족 + 기준 확정 시 `python run_c02.py --dry-run` → `--run` (run_01).
+
+세션 S02 종료 상태: NEEDS_INPUT

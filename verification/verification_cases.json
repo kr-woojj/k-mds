@@ -7,7 +7,8 @@
   "notes": [
     "모든 pass_criteria.confirmed=false. 사람 확정 전 실행 금지.",
     "standards[].clauses 는 standard_lookup 부재로 미확인. 조항은 사람이 기입.",
-    "범위 추가 제안(별도): RIMS 포트콜 서비스 KPI(정시도착률 등)는 상호운용 검증이 아닌 서비스 성능 지표이므로 CASE_LIST 제외."
+    "범위 추가 제안(별도): RIMS 포트콜 서비스 KPI(정시도착률 등)는 상호운용 검증이 아닌 서비스 성능 지표이므로 CASE_LIST 제외.",
+    "S02(2026-09-12): 사용자 결정으로 GHG Lane(C02) 우선. C06 은 C02 에 병합. 실행은 여전히 pass_criteria 확정 후."
   ],
   "cases": [
     {
@@ -81,8 +82,8 @@
     },
     {
       "case_id": "C02",
-      "title": "선박 환경규제 보고(GHG) 데이터 표준 스키마(JSON) 검증 및 데이터 정합율 측정",
-      "value_chain_link": "선박 시뮬레이터 AMS/VDR(RIMS)→ROC 표준변환(랩오투원 코드북)→IDS Provider Dataset→IDS Consumer(KR)",
+      "title": "GHG 환경규제 의무보고 데이터 상호운용성: 랩오투원 Provider→IDS→GHG AI Agent 표준 매핑→KR GEARs(PROVISIONAL)",
+      "value_chain_link": "랩오투원 선박 플랫폼(IDS Provider, GHG Lane)→K-MDS Broker/DAPS(유엔젤)→KR IDS Consumer→GHG AI Agent(kr-ghg-ai-agent)→imo-compendium-mapping-validator→KR GEARs Adapter(mock delivery)",
       "plan_ref": {
         "성능목표": "#6 환경규제 데이터 표준기반 서비스(IMO MEPC, 수요기업평가) / #4 정합율 95% / #1 표준 모델(ISO 18131)",
         "3차년도 KR 과업": "시뮬레이션 기반 선박 환경규제 보고 데이터 표준 모델/스키마 검증",
@@ -92,81 +93,198 @@
       "standards": [
         {
           "name": "IMO Compendium on Facilitation and Electronic Business",
-          "version": "FAL.5/Circ.53 (2024) — 랩오투원 코드북 기준; FAL 49차 반영 여부 미확인",
+          "version": "FAL50 (PoC registry 기준; 공식 사이트 현재본은 FAL.5/Circ.56 preamble — 동일 여부 미확인)",
           "clauses": [
+            "Data Set: Noon Data Report",
+            "Data Set: Fuel Oil Consumption & CII Reporting",
+            "Data Set: Electronic Bunker Delivery Note",
+            "Event type code list EV01~EV29",
             "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
           ],
-          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\04 연구개발 2차년도(2025)\\06 260320 2차년도 연차보고서\\[산업기술혁신사업 연차보고서](RS-2024-00454634)스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계_260320.pdf p.83"
+          "cited_in": "C:\\kr-dev\\kr-ghg-ai-agent\\README.md §1, §19; 2차년도 연차보고서 p.83"
         },
         {
           "name": "ISO 19848",
-          "version": "2024 (계획서 ISO TC8 현황표)",
+          "version": "2024",
           "clauses": [
-            "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
+            "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)",
+            "PoC(kr-ghg-ai-agent)에는 ISO 19848 참조 없음(grep 0건) — 코드북(랩오투원) 측 매핑으로만 다룸"
           ],
-          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\01 260520 3차년도 협약변경신청\\(RS-2024-00454634)3차년도 수정사업계획서_260515.pdf p.37, p.124"
+          "cited_in": "3차년도 수정사업계획서 p.37; 2차년도 연차보고서 p.83-84"
         },
         {
-          "name": "IMO DCS (MARPOL Annex VI)",
+          "name": "IMO DCS (MARPOL Annex VI) / CII",
           "version": "미확인",
           "clauses": [
             "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
           ],
-          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\01 260520 3차년도 협약변경신청\\(RS-2024-00454634)3차년도 수정사업계획서_260515.pdf p.37"
+          "cited_in": "3차년도 수정사업계획서 p.37; UserManual §8"
         },
         {
-          "name": "EU MRV",
+          "name": "IDS RAM / DCAT 3.0",
           "version": "미확인",
           "clauses": [
             "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
           ],
-          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\01 260520 3차년도 협약변경신청\\(RS-2024-00454634)3차년도 수정사업계획서_260515.pdf p.37"
-        },
-        {
-          "name": "ISO 18131",
-          "version": "DIS (2024)",
-          "clauses": [
-            "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
-          ],
-          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\01 260520 3차년도 협약변경신청\\(RS-2024-00454634)3차년도 수정사업계획서_260515.pdf p.118"
+          "cited_in": "착수회의 유엔젤 p.11"
         }
       ],
       "data_objects": [
-        "KR 환경규제 보고 표준 모델 8그룹 184항목(Ship Information, Voyage, Weather, Cargo, ROB, Fuel Consumption, Power Consumption, Emissions)",
-        "랩오투원 코드북 선사 필수 128항목(RIMS 시뮬레이터 505→128)",
-        "IMO ID 예: IMO0140, IMO0885"
+        "Provider payload: 정오보고(Noon Report), 동정보고(Event Report: Departure/Arrival/Anchoring/Bunkering), 선박성능(Vessel Performance) — 실 Provider(랩오투원) 형식 미확보, PoC 합성 fixture 9종으로 대체",
+        "CanonicalField[] → MappingResult(IMO Data Number, method, confidence) → ValidationResult(PASS/WARNING/FAIL/NOT_VERIFIED)",
+        "KR GEARs Voyage Template payload(contract_status=PROVISIONAL) + KrGearsReport verdict envelope",
+        "Evidence 패키지: manifest.json(sha256, code_commit, governance_flags), raw-input, mapping-result, validation-result, kr-gears-output, summary.md"
       ],
       "scenario_ref": {
         "docs": [
-          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\02 260527 3차년 착수회의\\발표자료\\01 3차년도_착수회의_한국선급_260526.pdf p.17-18, p.28",
-          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\04 연구개발 2차년도(2025)\\06 260320 2차년도 연차보고서\\[산업기술혁신사업 연차보고서](RS-2024-00454634)스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계_260320.pdf p.16-23",
-          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\02 260527 3차년 착수회의\\발표자료\\05 3차년도_착수회의_(랩오투원)_최종_수정.pdf p.6",
-          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\04 260806 실증사항 협의 2차\\3차년도_IDS_실증_데이터흐름_검토용(KR).pptx slide2 BLOCK A"
+          "3차년도_IDS_실증_데이터흐름_검토용(KR).pptx slide2 BLOCK A/B",
+          "착수회의 한국선급 p.25-28",
+          "2차 회의록 p.3 Lane #3 GHG(Provider 랩오투원, Consumer KR)"
         ],
-        "analysis": "verification/analysis/S01_W3_착수회의_2차년도보고서.md §2, §4"
+        "reference_outside_docs_dir": [
+          "C:\\kr-dev\\kr-ghg-ai-agent\\UserManual.md (K-MDS Use Case #3 실증 매뉴얼, Step 0~13, TC-01~15)",
+          "C:\\kr-dev\\kr-ghg-ai-agent\\README.md"
+        ],
+        "analysis": "verification/analysis/S01_W2_실증협의_1_2차.md §3; verification/evidence/C02/precheck_S02/FINDING.md"
       },
       "environment": {
-        "type": "로컬 실행 가능(k-mds 저장소 schema_validate 스킬) — 단 KR JSON Schema·샘플 데이터 미배치",
-        "external_connection_required": false
+        "type": "로컬 시뮬레이션(kr-ghg-ai-agent, LLM=mock, Skill=real validator, MCP=off, KR GEARs delivery=mock). Step 2·3(Broker 검색·Consumer 구독)만 외부 K-MDS 필요",
+        "runner": "C:\\kr-dev\\k-mds\\verification\\run_c02.py",
+        "external_connection_required": false,
+        "external_optional_steps": [
+          "Step 2 Broker Dataset 검색",
+          "Step 3 Consumer Subscription/정책"
+        ],
+        "prerequisites": [
+          {
+            "id": "P1",
+            "item": "형제 저장소 C:\\kr-dev\\imo-compendium-mapping-validator (uv 환경 포함)",
+            "status": "MISSING — 로컬·mcp.zip·GitHub(kr-woojj) 모두 부재"
+          },
+          {
+            "id": "P2",
+            "item": "C:\\kr-dev\\k-mds\\data\\raw\\FAL50\\IMO Compendium.xlsx + source-manifest sha256",
+            "status": "MISSING — 공식 사이트 현재본을 scratchpad에 다운로드(sha256 5d2ed626…88a5), 버전 확인·배치는 사람 결정"
+          },
+          {
+            "id": "P3",
+            "item": "var/registry.sqlite3, var/candidate-inventory.json (tools/prepare_registry.py, tools/build_candidate_inventory.py)",
+            "status": "MISSING — P1·P2 선행"
+          },
+          {
+            "id": "P4",
+            "item": "랩오투원 실 Provider 샘플 JSON(정오·동정보고) 및 IDS envelope 형식",
+            "status": "MISSING — 합성 fixture로 1차 run, 실 샘플 확보 시 run 추가"
+          }
+        ]
       },
       "pass_criteria": {
         "confirmed": false,
         "rules": [
-          "R1 KR 표준 스키마(JSON Schema)가 존재하고 Draft 버전·스키마 버전이 증적에 기록됨",
-          "R2 시뮬레이터 유래 샘플 N건(N은 사람 확정) 전부가 스키마 검증 PASS (필수필드·타입·코드리스트)",
-          "R3 데이터 정합율 ≥ 95% — 산식(초안): 정합 항목 수 / 대상 항목 수 ×100, 항목 단위는 코드북 128항목 또는 KR 184항목 중 사람 확정",
-          "R4 IMO Compendium ID·ISO 19848 Universal ID 매핑이 코드북과 1:1 또는 1:N으로 일치(불일치 항목은 review_required로 기록)",
-          "R5 재실행 1회 동일 결과, 시드·스키마 해시·샘플 해시 증적"
+          "R1 [Step1] pytest failed=0, ruff=0, mypy=0; skipped·blocked 는 PASS 에 불포함. /ready READY, governance flags == {candidate_mapping_eligible:true, requiredness_profile_approved:false, executable_mapping_eligible:false, actual_normalization_eligible:false, kr_gears_actual_delivery_allowed:false}",
+          "R2 [Step4-8] 정상 fixture(noon_report_valid, vessel_performance_valid, event_departure/arrival/anchoring): mapping-result.json 존재, error 코드 없음(특히 GOVERNANCE_* 아님), 매핑된 IMO Data Number 전부 registry 존재(IMO_ID_NOT_FOUND 0건), LLM 호출 0회(결정론 필드)",
+          "R3 [Step5,7,8 부정] noon_report_ambiguous→REVIEW_REQUIRED(자동확정 없음, candidate_list 보존); vessel_performance_negative→IMO_ID_NOT_FOUND 로 변환 차단; event_bunkering→REVIEW_REQUIRED(코드 미발명, fabricated_code=false); noon_report_mandatory_missing→Transformation 차단",
+          "R4 [Step9-10] 정상 fixture 의 kr-gears-output.json 존재, contract_status=PROVISIONAL, delivery-result 가 mock, 실제 HTTP 전송 0건, 최종 상태 REVIEW_REQUIRED(성공 위장 금지)",
+          "R5 [Step13] 모든 run 의 evidence manifest sha256 검증 ok(verify_evidence), code_commit 기록, 동일 fixture 재실행(run+1) 시 mapping-result 의 IMO Data Number 집합 동일",
+          "R6 [정합율, 성능목표 #4] 데이터 정합율 = (Validator PASS 또는 WARNING 인 매핑 필드 수) / (정상 fixture 의 전체 입력 필드 수) ×100 ≥ 95% — 산식·분모 초안, 사람 확정 필요",
+          "R7 [Step2-3] 외부 K-MDS 미접속 시 NOT_TESTED 로 기록하고 R1~R6 만으로 PARTIAL 상한"
         ],
-        "draft_notes": "정합율 산식·분모·샘플 수는 과제 문서에 없음(문서 근거 없음). 2차년도는 '단위 프로세스별 성공률'로 자체평가(연차보고서 p.97). 3차년도는 전문가평가."
+        "draft_notes": "R1~R5 는 kr-ghg-ai-agent UserManual §4-5 Step 통과 기준·§10 TC-01~15 를 그대로 옮긴 것(DOCS_DIR 외 참고 문서). R6 정합율 산식은 과제 문서에 없음(문서 근거 없음). PoC 설계상 정상 흐름도 DELIVERED 가 아닌 REVIEW_REQUIRED 로 끝나므로 '최종 PASS' 를 DELIVERED 로 정의하면 안 됨."
       },
       "status": "pending",
       "runs": [],
       "owner_confirmed_by": null,
       "last_updated": "2026-09-12",
       "blockers": [
-        "KR JSON Schema 파일 미확보(2차년도 별첨 '환경규제 보고 관련 데이터 표준기반 신개념 서비스 설계(KR).pdf' DOCS_DIR 내 존재 미확인)",
-        "랩오투원 코드북 JSON 및 RIMS 시뮬레이터 샘플 데이터 미확보"
+        "P1 검증기 저장소 부재(치명)",
+        "P2 FAL50 xlsx 배치·버전 확정",
+        "pass_criteria 확정",
+        "P4 실 Provider 샘플(선택)"
+      ],
+      "scope_decision": {
+        "by": "사용자(연구책임자)",
+        "date": "2026-09-12",
+        "text": "데이터 호환성 검증은 우선 국제표준기반(ISO 19848, IMO Compendium) GHG 환경규제 의무 보고 데이터를 대상으로 진행. IDS 서버를 활용하여 GHG AI Agent 매핑 에이전트로 랩오투원 선박 플랫폼 데이터를 KR-GEARs 전달용 표준 데이터로 매핑하는 상호운용성 검증."
+      },
+      "stages": [
+        {
+          "step": 0,
+          "name": "실증 기준선 고정(repo commit, runtime, validator, registry, governance flags)",
+          "local": true
+        },
+        {
+          "step": 1,
+          "name": "환경 기동: pytest/ruff/mypy/mock E2E, /health /ready /governance",
+          "local": true
+        },
+        {
+          "step": 2,
+          "name": "K-MDS Broker Dataset 검색(DCAT)",
+          "local": false
+        },
+        {
+          "step": 3,
+          "name": "KR Consumer Subscription·정책·토큰",
+          "local": false
+        },
+        {
+          "step": 4,
+          "name": "정오보고 REST 수신(POST /api/v1/ids/events) → Profile NOON_REPORT, raw hash",
+          "local": true
+        },
+        {
+          "step": 5,
+          "name": "동정보고 4종 수신 → EVENT_REPORT, 시간정렬, 미지원 코드 미발명",
+          "local": true
+        },
+        {
+          "step": 6,
+          "name": "Profile·정규화 검증",
+          "local": true
+        },
+        {
+          "step": 7,
+          "name": "IMO Compendium 매핑(결정론 우선, LLM 후보는 검증 후 승격)",
+          "local": true
+        },
+        {
+          "step": 8,
+          "name": "Validator Skill 결정론 검증(타입·단위·코드리스트·context)",
+          "local": true
+        },
+        {
+          "step": 9,
+          "name": "KR GEARs Voyage Template 변환(PROVISIONAL)",
+          "local": true
+        },
+        {
+          "step": 10,
+          "name": "Governance Delivery Gate: 실제 전송 차단 확인",
+          "local": true
+        },
+        {
+          "step": 11,
+          "name": "CII 계산 입력 완전성",
+          "local": true
+        },
+        {
+          "step": 12,
+          "name": "IMO DCS 보고 데이터 입력 검증",
+          "local": true
+        },
+        {
+          "step": 13,
+          "name": "Evidence manifest·sha256 무결성",
+          "local": true
+        }
+      ],
+      "precheck": [
+        {
+          "session": "S02",
+          "date": "2026-09-12",
+          "path": "verification/evidence/C02/precheck_S02/",
+          "result": "pytest 1 failed/32 passed/90 skipped, ruff 0, mypy 0, mock E2E 'PASS' 는 오라클 약점으로 무효(FINDING F-1)"
+        }
       ]
     },
     {
@@ -471,7 +589,7 @@
         ],
         "draft_notes": "KR pptx s.2 '회의 결정 필요 ④ KR Gears API 필드명' 미결. k-mds MCP·파이프라인 미구현."
       },
-      "status": "pending",
+      "status": "merged",
       "runs": [],
       "owner_confirmed_by": null,
       "last_updated": "2026-09-12",
@@ -479,7 +597,9 @@
         "k-mds MCP 서버·정규화 파이프라인 미구현",
         "KR GEARs API 필드명 미확정",
         "GEARs 연결 승인"
-      ]
+      ],
+      "merged_into": "C02",
+      "notes": "S02: 사용자 시나리오가 매핑→KR GEARs 전달까지 한 흐름이므로 C02 Step 9-12 로 흡수. GEARs 실계약 확보 시 분리 재개."
     },
     {
       "case_id": "C07",

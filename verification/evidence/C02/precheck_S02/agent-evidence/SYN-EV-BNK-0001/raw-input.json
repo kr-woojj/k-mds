@@ -1,0 +1,15 @@
+{
+  "_comment": "BUNKERING: FAL50 Event type code list에 해당 코드 미확인 — symbolic 값 사용, 기대 결과 REVIEW_REQUIRED (T-3)",
+  "correlation_id": "SYN-EV-BNK-0001",
+  "dataset_id": "SYN-DATASET-EVENT",
+  "report_type": "event",
+  "vessel_imo_number": "9990001",
+  "voyage_no": "SYN-VOY-002",
+  "event_type_code": "BUNKERING",
+  "event_timestamp": "2026-08-02T14:00:00+00:00",
+  "latitude": "3510.0N",
+  "longitude": "12915.0E",
+  "operation_mode": "OP14",
+  "total_fuel_quantity_consumed": {"value": 0.2, "unit": "tonne"},
+  "fuel_quantity_remaining_onboard": {"value": 480.5, "unit": "tonne"}
+}

@@ -1,0 +1,36 @@
+{
+  "code_commit": "e1a2295e49349508bb0a42274c344d56f57ee773",
+  "completed_at": "2026-09-12T04:50:52.607644+00:00",
+  "correlation_id": "SYN-EV-ARR-0001",
+  "created_at": "2026-09-12T04:50:52.367742+00:00",
+  "dirty_worktree": false,
+  "file_hashes": {
+    "agent-trace.json": "610966c6a0310532b1e23f05df3204458a75ef4c58b76e4d10fc823c1e30d618",
+    "governance-context.json": "19bc3f1edea7b0b1e05c17312c55ce554806d4248acb7f1f50d727182f1b9d2c",
+    "ingress-result.json": "272e3574342c9daa00b7fb03d8f21dd279aeda3648ca2b386beafe53b5dc653b",
+    "llm-calls.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "mcp-calls.json": "ccac1e7eaca2d17b6a7f3ca001e230964a81987874891b2cf1ee520ed392bf5a",
+    "raw-input.json": "053ac0cd6cb9be123b5ace8933d455f386701cfbc6e729f1d4b2afcd49d22513",
+    "raw-input.sha256": "dcd3807f80be7695f015d070561c56433beae327f6bf807cd4aaa7d31d055304",
+    "skill-calls.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "summary.md": "87c28ff531a629a6145e726183034b6c37f813ef0a13a27d9a523146674327b8"
+  },
+  "final_status": "REVIEW_REQUIRED",
+  "governance_flags": {
+    "actual_normalization_eligible": false,
+    "candidate_mapping_eligible": false,
+    "executable_mapping_eligible": false,
+    "kr_gears_actual_delivery_allowed": false,
+    "requiredness_profile_approved": false
+  },
+  "kr_gears_contract_status": "NOT_TRANSFORMED",
+  "llm_model": "mock-structured",
+  "llm_provider": "mock",
+  "mcp_real_or_mock": "off",
+  "reference_model_version": null,
+  "run_id": "run-bc4aeab0",
+  "skill_real_or_mock": "real",
+  "source_type": "synthetic_fixture",
+  "synthetic_data": true,
+  "validator_version": "UNKNOWN"
+}

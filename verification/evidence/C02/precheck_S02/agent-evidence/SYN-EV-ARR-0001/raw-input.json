@@ -1,0 +1,14 @@
+{
+  "correlation_id": "SYN-EV-ARR-0001",
+  "dataset_id": "SYN-DATASET-EVENT",
+  "report_type": "event",
+  "vessel_imo_number": "9990001",
+  "voyage_no": "SYN-VOY-002",
+  "event_type_code": "EV01",
+  "event_timestamp": "2026-08-04T09:30:00+00:00",
+  "latitude": "3730.5N",
+  "longitude": "12645.2E",
+  "operation_mode": "OP05",
+  "total_fuel_quantity_consumed": {"value": 0.9, "unit": "tonne"},
+  "fuel_quantity_remaining_onboard": {"value": 360.2, "unit": "tonne"}
+}
