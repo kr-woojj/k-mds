@@ -1,0 +1,74 @@
+# K-MDS 3차년도 실증 검증 진행 기록 (PROGRESS_FILE)
+
+과제: (RS-2024-00454634) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계
+주관: 한국선급 / 역할: K-MDS Orchestrator (3차년도 실증 총괄)
+
+## 불변 상수
+- PROJECT_ROOT: C:\kr-dev\k-mds
+- DOCS_DIR: C:\kr-dev\k-mds\docs\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계
+- WORK_DIR: C:\kr-dev\k-mds\verification
+- CASE_LIST: WORK_DIR\verification_cases.json
+- EVIDENCE_DIR: WORK_DIR\evidence\{case_id}\
+
+---
+
+## 세션 S01 — 2026-09-12
+
+### 시작 루틴
+1. PROGRESS_FILE: 부재 → 본 파일 신규 생성.
+2. CASE_LIST: 부재 → 과제 문서에서 초안 도출 예정(pass_criteria.confirmed=false).
+3. 시뮬레이터 smoke: `simulator_run` 도구 **부재**. `standard_lookup` 도구 **부재**.
+   - 대체 환경 점검: `uv run python scripts/dev.py build` → exit 0, k_mds 0.1.0 (evidence/_env/S01_env_smoke.log)
+   - 저장소 상태: README "Repository Bootstrap 단계". 데이터 파이프라인·MCP·LangGraph 미구현. 시뮬레이터 코드 없음(grep "simulat" 0건).
+4. pending 항목 선택: CASE_LIST 부재로 불가.
+5. 이번 세션 목표: **부트스트랩** — DOCS_DIR 3차년도 문서(수정사업계획서, 실증협의 1·2차, 착수회의, 2차년도 연차보고서)에서 검증 항목 초안(CASE_LIST)을 도출하고 사람 확인 요청.
+
+### 참고: 문서 판독 환경
+- DOCS_DIR는 k-mds git에서 untracked(2026-09-12 배치). 커밋 대상 아님(대용량 PDF).
+- 3차 실증협의(260916) 폴더는 비어 있음(회의 예정).
+- hwpx/pptx는 zip+xml, pdf는 Read 도구(pages) 또는 시스템 python pypdf 6.18.1로 판독 가능.
+
+### 워커 위임 (S01)
+- W1: 3차년도 수정사업계획서_260515.pdf → 목표·지표·실증범위·표준·역할
+- W2: 실증협의 1·2차 발표/회의록/RIMS/KR pptx/유엔젤 매뉴얼 → 시나리오·주체·데이터·결정사항·합격기준 언급
+- W3: 착수회의 기관별 발표 7건 + 2차년도 연차보고서 → 기존 산출물·표준·시뮬레이터 존재 여부
+
+(결과는 아래 "결정 및 미해결"에 이어서 기록)
+
+### 워커 결과 (S01)
+- W1 채택: analysis/S01_W1_3차년도_수정사업계획서.md (251p 전수, 페이지 근거 있음)
+- W2 채택: analysis/S01_W2_실증협의_1_2차.md (7파일, 이미지 페이지 렌더링 판독 포함)
+- W3 채택: analysis/S01_W3_착수회의_2차년도보고서.md (8파일)
+- 반려 없음. 워커 간 불일치 3건 기록(코드북 건수, 예산, 표준 모델 그룹 수) → 사람 확인 항목.
+
+### CASE_LIST 초안 작성 (verification_cases.json, 7건, 전부 confirmed=false)
+| case_id | 대응 성능목표 | 발신→수신 | 실행 환경 |
+|---|---|---|---|
+| C01 IDS 기본 공유 절차 | #4 정합율 | 유엔젤 Provider→Broker/DAPS→Consumer 3사 | 외부(K-MDS 220.76.220.247) |
+| C02 GHG 표준 스키마·정합율 | #6, #4, #1 | RIMS 시뮬레이터→ROC(코드북)→Provider→KR | 로컬 가능(스키마·샘플 미확보) |
+| C03 포트콜 JIT 이벤트 메시지 | #7 | RIMS SIM→ROC→Provider→RIMS 해운 Consumer | 외부 |
+| C04 MSW 의무보고 메시지 | #8 | 선사/대리점→Broker→KLNET | 외부 |
+| C05 보안·정책 예외 처리 | #4 | Consumer↔DAPS/Broker↔Provider | 외부 |
+| C06 KR 검증 블록→GEARs | #6 | Consumer→KR MCP→GEARs | k-mds MCP 미구현 + 외부 |
+| C07 시뮬레이터 E2E(TTA) | #9 | 전체 | 외부 + TTA 입회 |
+
+### 착수 전 정리 — 다음 세션 착수 후보 C02 (KR 주관 항목, 유일하게 로컬 실행 가능)
+1) 대응 목표·지표: 3차년도 KR 과업 "시뮬레이션 기반 선박 환경규제 보고 데이터 표준 모델/스키마 검증"(수정사업계획서 p.58); 성능목표 #6(IMO MEPC, 수요기업평가), #4 정합율 95%(IDSA Guide, 전문가평가), #1(ISO 18131).
+2) 적용 표준·조항: IMO Compendium FAL.5/Circ.53(2024), ISO 19848:2024, IMO DCS/EU MRV, ISO 18131 DIS — 조항은 표준 근거 미확인(standard_lookup 부재).
+3) 주체·데이터: RIMS 시뮬레이터(AMS/VDR) → ROC 표준변환(랩오투원 코드북 128항목) → IDS Provider → KR Consumer. 객체: KR 표준 모델 8그룹 184항목(JSON).
+4) 측정 방법: JSON Schema 검증 PASS 건수/전체; 정합율 = 정합 항목/대상 항목 ×100 (초안, 분모 미정).
+5) 예상 실패 지점: KR 스키마 파일 부재(2차년도 별첨 PDF만 존재 가능), 코드북↔KR 모델 항목 수 불일치(128 vs 184), 착수자료(8그룹) vs 연차보고서(7그룹) 불일치, 코드리스트(UN/LOCODE 등) 검증 데이터 부재.
+
+### 결정 및 미해결 (S01)
+- 결정: WORK_DIR 부트스트랩 완료. CASE_LIST 7건 초안. 실행 항목 없음(전부 기준 미확정).
+- 결정: RIMS 포트콜 서비스 KPI(정시도착률≥80% 등, "예시" 표기)는 서비스 성능 지표로 판단, CASE_LIST 제외 → "범위 추가 제안"으로 분리.
+- 사람 확인 필요:
+  1. 7건 pass_criteria 확정(특히 정합율 산식·분모·목표, 전송 성공률·필수필드 충족률 산식).
+  2. 외부 K-MDS(220.76.220.247) 접속 허용 여부 및 9.16 데모와의 관계.
+  3. C02 입력물 확보: KR JSON Schema(설계서 별첨), 랩오투원 코드북 JSON, RIMS 시뮬레이터 샘플 → DOCS_DIR 또는 data/ 배치.
+  4. 표준 조항 기입(standard_lookup 도구 부재) 또는 표준 원문 파일 배치.
+  5. 문서 불일치 3건 해소(코드북 161/1,369 vs 330/1,100; 표준 모델 7 vs 8그룹; 3차년도 예산).
+  6. 다음 세션 착수 항목: C02 권고(입력물 확보 시) / 그 외 C01(접속 승인 시).
+- 미해결(과제 측): 128개 필수 데이터 목록·매핑표, 코드북·샘플 IDS 셋팅, 서비스별 메타 등록, 보안/정책 합의서, 인터페이스 기준서 — 2차 회의록에 완료 표시 없음.
+
+세션 S01 종료 상태: NEEDS_INPUT

@@ -1,0 +1,547 @@
+{
+  "schema_version": "1.0",
+  "project": "RS-2024-00454634",
+  "year": "3차년도(2026)",
+  "created": "2026-09-12",
+  "created_by": "K-MDS Orchestrator S01",
+  "notes": [
+    "모든 pass_criteria.confirmed=false. 사람 확정 전 실행 금지.",
+    "standards[].clauses 는 standard_lookup 부재로 미확인. 조항은 사람이 기입.",
+    "범위 추가 제안(별도): RIMS 포트콜 서비스 KPI(정시도착률 등)는 상호운용 검증이 아닌 서비스 성능 지표이므로 CASE_LIST 제외."
+  ],
+  "cases": [
+    {
+      "case_id": "C01",
+      "title": "K-MDS IDS 기본 데이터 공유 절차(등록→게시→검색→계약→전송) 재현",
+      "value_chain_link": "IDS Provider(유엔젤/ROC 모사)→Metadata Broker/DAPS(유엔젤)→IDS Consumer(KR·RIMS·KLNET)",
+      "plan_ref": {
+        "성능목표": "#4 데이터 공유 개념 설계(데이터정합율 95%, IDSA Guide)",
+        "3차년도 목표": "안전한 데이터 상호운용을 위한 공유 기술 및 보안 검증",
+        "doc": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\01 260520 3차년도 협약변경신청\\(RS-2024-00454634)3차년도 수정사업계획서_260515.pdf",
+        "pages": "p.32, p.34, p.57, p.64"
+      },
+      "standards": [
+        {
+          "name": "IDS Reference Architecture Model (IDS RAM)",
+          "version": "미확인",
+          "clauses": [
+            "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
+          ],
+          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\02 260527 3차년 착수회의\\발표자료\\04 3차년도_착수회의_유엔젤_v1.0.pdf p.11"
+        },
+        {
+          "name": "W3C DCAT",
+          "version": "3.0 (유엔젤 채택, 2차년도 연구노트 인용)",
+          "clauses": [
+            "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
+          ],
+          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\03 260629 실증사항 협의 1차\\3차년도_실증회의1차_회의록_260701.pdf p.2"
+        }
+      ],
+      "data_objects": [
+        "Dataset(Offering) 메타(Title/Description/Publisher/Keywords/License)",
+        "Usage Policy(Provide Access, 유효기간)",
+        "Representation(REST, json)",
+        "Distribution/Artifact",
+        "Contract Agreement",
+        "DAPS 토큰"
+      ],
+      "scenario_ref": {
+        "docs": [
+          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\04 260806 실증사항 협의 2차\\(유엔젤) K-MDS 사용자 매뉴얼(안)_260806.pdf p.1-25",
+          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\03 260629 실증사항 협의 1차\\3차년도_실증회의1차_회의록_260701.pdf p.2-3(세션4 요건)",
+          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\04 260806 실증사항 협의 2차\\3차년도_실증회의2차_회의록_260807.pdf p.5(그림2)"
+        ],
+        "analysis": "verification/analysis/S01_W2_실증협의_1_2차.md §4-5"
+      },
+      "environment": {
+        "type": "외부 시스템(유엔젤 구축 K-MDS, RIMS 수도권 서버)",
+        "endpoints_doc": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\04 260806 실증사항 협의 2차\\(유엔젤) K-MDS 사용자 매뉴얼(안)_260806.pdf p.1-2",
+        "external_connection_required": true
+      },
+      "pass_criteria": {
+        "confirmed": false,
+        "rules": [
+          "R1 Provider UI 접속·Offering 생성·Broker 게시 성공 (매뉴얼 p.4 성공기준 1~3)",
+          "R2 Consumer UI에서 Title 검색으로 해당 Offering이 Broker 검색 결과에 표시 (성공기준 4~6)",
+          "R3 계약(Contract) 수락 후 Artifact 다운로드 또는 Route Dispatch로 payload 수신, 수신 payload가 Provider 원본과 바이트 동일 (성공기준 7~8 + 정합 확인)",
+          "R4 Dataset/Distribution/DataService/Usage Policy 4개 메타가 Broker에서 실제 조회 가능 (1차 회의록 세션4 요건)",
+          "R5 각 단계 API 응답 코드·로그를 증적으로 보존하고 재실행 1회 동일 결과"
+        ],
+        "draft_notes": "매뉴얼 p.4 성공기준 8항 + 1차 회의록 세션4 요건을 그대로 규칙화. 정합율 산식은 C02와 공통으로 사람 확정 필요."
+      },
+      "status": "pending",
+      "runs": [],
+      "owner_confirmed_by": null,
+      "last_updated": "2026-09-12",
+      "blockers": [
+        "외부 시스템 접속 승인 필요(220.76.220.247, demo 계정)",
+        "9.16 3차 실증회의 'K-MDS 데이터 공유 데모'와 중복/연계 여부 결정"
+      ]
+    },
+    {
+      "case_id": "C02",
+      "title": "선박 환경규제 보고(GHG) 데이터 표준 스키마(JSON) 검증 및 데이터 정합율 측정",
+      "value_chain_link": "선박 시뮬레이터 AMS/VDR(RIMS)→ROC 표준변환(랩오투원 코드북)→IDS Provider Dataset→IDS Consumer(KR)",
+      "plan_ref": {
+        "성능목표": "#6 환경규제 데이터 표준기반 서비스(IMO MEPC, 수요기업평가) / #4 정합율 95% / #1 표준 모델(ISO 18131)",
+        "3차년도 KR 과업": "시뮬레이션 기반 선박 환경규제 보고 데이터 표준 모델/스키마 검증",
+        "doc": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\01 260520 3차년도 협약변경신청\\(RS-2024-00454634)3차년도 수정사업계획서_260515.pdf",
+        "pages": "p.32, p.48, p.58, p.71"
+      },
+      "standards": [
+        {
+          "name": "IMO Compendium on Facilitation and Electronic Business",
+          "version": "FAL.5/Circ.53 (2024) — 랩오투원 코드북 기준; FAL 49차 반영 여부 미확인",
+          "clauses": [
+            "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
+          ],
+          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\04 연구개발 2차년도(2025)\\06 260320 2차년도 연차보고서\\[산업기술혁신사업 연차보고서](RS-2024-00454634)스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계_260320.pdf p.83"
+        },
+        {
+          "name": "ISO 19848",
+          "version": "2024 (계획서 ISO TC8 현황표)",
+          "clauses": [
+            "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
+          ],
+          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\01 260520 3차년도 협약변경신청\\(RS-2024-00454634)3차년도 수정사업계획서_260515.pdf p.37, p.124"
+        },
+        {
+          "name": "IMO DCS (MARPOL Annex VI)",
+          "version": "미확인",
+          "clauses": [
+            "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
+          ],
+          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\01 260520 3차년도 협약변경신청\\(RS-2024-00454634)3차년도 수정사업계획서_260515.pdf p.37"
+        },
+        {
+          "name": "EU MRV",
+          "version": "미확인",
+          "clauses": [
+            "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
+          ],
+          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\01 260520 3차년도 협약변경신청\\(RS-2024-00454634)3차년도 수정사업계획서_260515.pdf p.37"
+        },
+        {
+          "name": "ISO 18131",
+          "version": "DIS (2024)",
+          "clauses": [
+            "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
+          ],
+          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\01 260520 3차년도 협약변경신청\\(RS-2024-00454634)3차년도 수정사업계획서_260515.pdf p.118"
+        }
+      ],
+      "data_objects": [
+        "KR 환경규제 보고 표준 모델 8그룹 184항목(Ship Information, Voyage, Weather, Cargo, ROB, Fuel Consumption, Power Consumption, Emissions)",
+        "랩오투원 코드북 선사 필수 128항목(RIMS 시뮬레이터 505→128)",
+        "IMO ID 예: IMO0140, IMO0885"
+      ],
+      "scenario_ref": {
+        "docs": [
+          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\02 260527 3차년 착수회의\\발표자료\\01 3차년도_착수회의_한국선급_260526.pdf p.17-18, p.28",
+          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\04 연구개발 2차년도(2025)\\06 260320 2차년도 연차보고서\\[산업기술혁신사업 연차보고서](RS-2024-00454634)스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계_260320.pdf p.16-23",
+          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\02 260527 3차년 착수회의\\발표자료\\05 3차년도_착수회의_(랩오투원)_최종_수정.pdf p.6",
+          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\04 260806 실증사항 협의 2차\\3차년도_IDS_실증_데이터흐름_검토용(KR).pptx slide2 BLOCK A"
+        ],
+        "analysis": "verification/analysis/S01_W3_착수회의_2차년도보고서.md §2, §4"
+      },
+      "environment": {
+        "type": "로컬 실행 가능(k-mds 저장소 schema_validate 스킬) — 단 KR JSON Schema·샘플 데이터 미배치",
+        "external_connection_required": false
+      },
+      "pass_criteria": {
+        "confirmed": false,
+        "rules": [
+          "R1 KR 표준 스키마(JSON Schema)가 존재하고 Draft 버전·스키마 버전이 증적에 기록됨",
+          "R2 시뮬레이터 유래 샘플 N건(N은 사람 확정) 전부가 스키마 검증 PASS (필수필드·타입·코드리스트)",
+          "R3 데이터 정합율 ≥ 95% — 산식(초안): 정합 항목 수 / 대상 항목 수 ×100, 항목 단위는 코드북 128항목 또는 KR 184항목 중 사람 확정",
+          "R4 IMO Compendium ID·ISO 19848 Universal ID 매핑이 코드북과 1:1 또는 1:N으로 일치(불일치 항목은 review_required로 기록)",
+          "R5 재실행 1회 동일 결과, 시드·스키마 해시·샘플 해시 증적"
+        ],
+        "draft_notes": "정합율 산식·분모·샘플 수는 과제 문서에 없음(문서 근거 없음). 2차년도는 '단위 프로세스별 성공률'로 자체평가(연차보고서 p.97). 3차년도는 전문가평가."
+      },
+      "status": "pending",
+      "runs": [],
+      "owner_confirmed_by": null,
+      "last_updated": "2026-09-12",
+      "blockers": [
+        "KR JSON Schema 파일 미확보(2차년도 별첨 '환경규제 보고 관련 데이터 표준기반 신개념 서비스 설계(KR).pdf' DOCS_DIR 내 존재 미확인)",
+        "랩오투원 코드북 JSON 및 RIMS 시뮬레이터 샘플 데이터 미확보"
+      ]
+    },
+    {
+      "case_id": "C03",
+      "title": "포트콜 JIT 이벤트 메시지(ETA/RTA/PTA/ATA/ETC/ATD 등) 선박↔육상 교환 검증",
+      "value_chain_link": "선박 시뮬레이터(RIMS)→ROC→IDS Provider(유엔젤)→IDS Consumer RIMS(해운)/TOS·VTS 모사",
+      "plan_ref": {
+        "성능목표": "#7 포트콜 최적화 서비스(IALA S-211 또는 ISO 28005, 수요기업평가)",
+        "3차년도 RIMS 과업": "포트콜 서비스 API 개발·유즈케이스별 데이터 공유/연계 API 검증·KPI 기반 평가",
+        "doc": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\01 260520 3차년도 협약변경신청\\(RS-2024-00454634)3차년도 수정사업계획서_260515.pdf",
+        "pages": "p.32, p.60, p.127"
+      },
+      "standards": [
+        {
+          "name": "IMO Compendium (Data Element IDs)",
+          "version": "미확인",
+          "clauses": [
+            "IMO0136",
+            "IMO0140",
+            "IMO0234",
+            "IMO0236",
+            "IMO0332",
+            "IMO0333",
+            "IMO0334",
+            "IMO0335",
+            "IMO0235",
+            "IMO0063",
+            "IMO0301",
+            "IMO0297",
+            "IMO0304",
+            "IMO0300",
+            "IMO0518",
+            "IMO0065",
+            "(ID는 RIMS 발표자료 p.6 인용; 정의는 표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입))"
+          ],
+          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\04 260806 실증사항 협의 2차\\[RIMS] (RS-2024-00454634) 3차년도 2차 실증회의 발표자료.pdf p.6"
+        },
+        {
+          "name": "IALA S-211",
+          "version": "미확인",
+          "clauses": [
+            "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
+          ],
+          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\01 260520 3차년도 협약변경신청\\(RS-2024-00454634)3차년도 수정사업계획서_260515.pdf p.32, p.127"
+        },
+        {
+          "name": "ISO 28005-3",
+          "version": "DIS/FDIS (계획서 기재 상충)",
+          "clauses": [
+            "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
+          ],
+          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\01 260520 3차년도 협약변경신청\\(RS-2024-00454634)3차년도 수정사업계획서_260515.pdf p.119, p.123"
+        }
+      ],
+      "data_objects": [
+        "0 vessel_key",
+        "1 출항명령",
+        "2 ETA·항해정보",
+        "3 RTA",
+        "4 PTA",
+        "5 ATA",
+        "6 ETC/ETS",
+        "7 ATC/ATS",
+        "8 출항명령",
+        "9 ATD"
+      ],
+      "scenario_ref": {
+        "docs": [
+          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\04 260806 실증사항 협의 2차\\[RIMS] (RS-2024-00454634) 3차년도 2차 실증회의 발표자료.pdf p.6-8, p.23",
+          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\04 260806 실증사항 협의 2차\\3차년도_실증회의2차_회의록_260807.pdf p.3(Lane #1 Portcall)"
+        ],
+        "analysis": "verification/analysis/S01_W2_실증협의_1_2차.md §2"
+      },
+      "environment": {
+        "type": "RIMS 시뮬레이터 + K-MDS 외부 시스템",
+        "external_connection_required": true
+      },
+      "pass_criteria": {
+        "confirmed": false,
+        "rules": [
+          "R1 10개 이벤트 메시지 각각이 정의된 방향(선박→육상/육상→선박)으로 1회 이상 전송·수신됨 (전송 성공률 산식·목표 사람 확정)",
+          "R2 각 메시지의 IMO Compendium ID 항목이 존재하고 값 형식이 코드북과 일치",
+          "R3 시간 순서(0→9) 무결성: 수신 타임스탬프가 단조 증가",
+          "R4 응답/로그 정합성: Provider 송신 로그와 Consumer 수신 로그 건수·해시 일치",
+          "R5 재실행 1회 동일 결과"
+        ],
+        "draft_notes": "KR pptx s.1 KPI '전송 성공률 / 응답·로그 정합성' 수치 없음. RIMS 포트콜 KPI(정시도착률≥80% 등)는 '예시' 표기이며 서비스 성능 지표라 상호운용 검증 규칙에서 제외(범위 추가 제안으로 분리)."
+      },
+      "status": "pending",
+      "runs": [],
+      "owner_confirmed_by": null,
+      "last_updated": "2026-09-12",
+      "blockers": [
+        "RIMS 시뮬레이터 접근 방법 문서 근거 없음",
+        "메시지 JSON 스키마(인터페이스 기준서, 유엔젤/RIMS 담당) 미확보"
+      ]
+    },
+    {
+      "case_id": "C04",
+      "title": "선박 의무보고(MSW) 메시지 필수필드 충족 및 JSON Schema 검증",
+      "value_chain_link": "선사/대리점(Provider RIMS·KLNET)→IDS Broker→IDS Consumer KLNET(항만/MSW 모사)",
+      "plan_ref": {
+        "성능목표": "#8 선박 의무보고 서비스(IMO FAL, 수요기업평가)",
+        "3차년도 KLNET 과업": "표준 기반 데이터 형식 설계(검증 규칙 설정)·메시지 교환 패턴",
+        "doc": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\01 260520 3차년도 협약변경신청\\(RS-2024-00454634)3차년도 수정사업계획서_260515.pdf",
+        "pages": "p.32, p.62-63"
+      },
+      "standards": [
+        {
+          "name": "IMO FAL Convention (FAL Forms 1-7)",
+          "version": "미확인",
+          "clauses": [
+            "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
+          ],
+          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\02 260527 3차년 착수회의\\발표자료\\02 3차년도_착수회의_RIMS초안_0527_VER.pdf p.8"
+        },
+        {
+          "name": "IMO Compendium",
+          "version": "FAL.5/Circ.53 (2024)",
+          "clauses": [
+            "IMO0140",
+            "IMO0142",
+            "IMO0064",
+            "IMO0108",
+            "IMO0086",
+            "IMO0087",
+            "IMO0019",
+            "IMO0046",
+            "(KLNET 착수자료 p.40 인용)"
+          ],
+          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\02 260527 3차년 착수회의\\발표자료\\03 3차년도_착수회의_KLNET.pdf p.40"
+        },
+        {
+          "name": "FAL.5/Circ.46 (MSW Guidelines)",
+          "version": "미확인",
+          "clauses": [
+            "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
+          ],
+          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\01 260520 3차년도 협약변경신청\\(RS-2024-00454634)3차년도 수정사업계획서_260515.pdf p.16"
+        },
+        {
+          "name": "UN/CEFACT CCTS (ABIE/BBIE/ASBIE)",
+          "version": "미확인",
+          "clauses": [
+            "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
+          ],
+          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\02 260527 3차년 착수회의\\발표자료\\03 3차년도_착수회의_KLNET.pdf p.25"
+        }
+      ],
+      "data_objects": [
+        "의무보고 10종 중 1차 대상(사람 확정): 입출항신고(General Declaration, 랩오투원 코드북 55항목)",
+        "공통 데이터 모델 Header/Vessel/Voyage",
+        "서비스별 JSON Schema S1~S4"
+      ],
+      "scenario_ref": {
+        "docs": [
+          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\02 260527 3차년 착수회의\\발표자료\\03 3차년도_착수회의_KLNET.pdf p.46-49",
+          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\04 260806 실증사항 협의 2차\\3차년도_실증회의2차_회의록_260807.pdf p.3(Lane #2 MSW)",
+          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\04 연구개발 2차년도(2025)\\06 260320 2차년도 연차보고서\\[산업기술혁신사업 연차보고서](RS-2024-00454634)스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계_260320.pdf p.83, p.85-93"
+        ],
+        "analysis": "verification/analysis/S01_W3_착수회의_2차년도보고서.md §5"
+      },
+      "environment": {
+        "type": "KLNET n8n 실증 허브(계획) + K-MDS 외부 시스템",
+        "external_connection_required": true
+      },
+      "pass_criteria": {
+        "confirmed": false,
+        "rules": [
+          "R1 대상 신고 메시지가 KLNET JSON Schema 검증 PASS (필수필드 충족률 산식·목표 사람 확정)",
+          "R2 IMO Compendium ID 매핑 항목이 코드북과 일치",
+          "R3 예외 케이스(필수필드 누락 1건 이상)가 Consumer에서 거부되고 오류코드가 로그에 기록됨",
+          "R4 이벤트 기반(입·출항 신고 시점) 전송 1회 이상, Provider/Consumer 로그 정합",
+          "R5 재실행 1회 동일 결과"
+        ],
+        "draft_notes": "KR pptx s.1 KPI '필수필드 충족 / 토큰·정책 검증' 수치 없음. KLNET 검증 규칙(BR-001~010)은 2차년도 설계서 기준."
+      },
+      "status": "pending",
+      "runs": [],
+      "owner_confirmed_by": null,
+      "last_updated": "2026-09-12",
+      "blockers": [
+        "KLNET JSON Schema S1~S4 및 검증 규칙 파일 미확보",
+        "1차 대상 신고 종류 미확정"
+      ]
+    },
+    {
+      "case_id": "C05",
+      "title": "보안·정책 검증: DAPS 토큰·mTLS·Usage Policy 예외 처리(토큰 오류·정책 불일치)",
+      "value_chain_link": "IDS Consumer(KR/RIMS/KLNET)↔DAPS·Broker(유엔젤)↔IDS Provider",
+      "plan_ref": {
+        "성능목표": "#4 (IDSA Guide) / 3차년도 목표 '공유 기술 및 보안 검증'",
+        "doc": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\01 260520 3차년도 협약변경신청\\(RS-2024-00454634)3차년도 수정사업계획서_260515.pdf",
+        "pages": "p.3, p.32, p.57"
+      },
+      "standards": [
+        {
+          "name": "IDS RAM (Identity/DAPS, Usage Control)",
+          "version": "미확인",
+          "clauses": [
+            "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
+          ],
+          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\02 260527 3차년 착수회의\\발표자료\\04 3차년도_착수회의_유엔젤_v1.0.pdf p.11"
+        },
+        {
+          "name": "mTLS / X.509 (Root·Intermediate CA 체계)",
+          "version": "미확인",
+          "clauses": [
+            "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
+          ],
+          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\04 연구개발 2차년도(2025)\\06 260320 2차년도 연차보고서\\[산업기술혁신사업 연차보고서](RS-2024-00454634)스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계_260320.pdf p.97"
+        }
+      ],
+      "data_objects": [
+        "DAPS 토큰(정상/만료/위조)",
+        "Usage Policy(Provide Access, 유효기간)",
+        "Contract Agreement",
+        "커넥터 인증서"
+      ],
+      "scenario_ref": {
+        "docs": [
+          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\02 260527 3차년 착수회의\\발표자료\\04 3차년도_착수회의_유엔젤_v1.0.pdf p.11-12",
+          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\04 260806 실증사항 협의 2차\\3차년도_IDS_실증_데이터흐름_검토용(KR).pptx slide1 검토관점 ③, slide2 예외 처리",
+          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\03 260629 실증사항 협의 1차\\3차년도_실증회의1차_회의록_260701.pdf p.4(보안/정책 합의서)"
+        ],
+        "analysis": "verification/analysis/S01_W2_실증협의_1_2차.md §3, §6"
+      },
+      "environment": {
+        "type": "K-MDS 외부 시스템",
+        "external_connection_required": true
+      },
+      "pass_criteria": {
+        "confirmed": false,
+        "rules": [
+          "R1 유효 토큰+유효 계약: 데이터 전송 성공",
+          "R2 만료/위조 토큰: 전송 거부, 거부 사유 로그",
+          "R3 계약 없음 또는 정책 유효기간 외: 전송 거부, 거부 사유 로그",
+          "R4 mTLS 핸드셰이크 실패(미등록 인증서): 연결 거부",
+          "R5 각 케이스 재실행 1회 동일 결과"
+        ],
+        "draft_notes": "'보안/정책 합의서(RIMS/유엔젤)'가 2차 회의록에 완료 표시 없음 → 정책 조건 확정 전 실행 불가."
+      },
+      "status": "pending",
+      "runs": [],
+      "owner_confirmed_by": null,
+      "last_updated": "2026-09-12",
+      "blockers": [
+        "보안/정책 합의서 미완료(토큰 발급·mTLS·접근 정책)",
+        "외부 시스템 접속 승인"
+      ]
+    },
+    {
+      "case_id": "C06",
+      "title": "KR 검증 블록(BLOCK B): IDS Consumer 구독→KR MCP 검증 스킬→KR GEARs API 전달",
+      "value_chain_link": "IDS Consumer Subscription(KR)→KR MCP 서버(k-mds Validation Skill)→KR GEARs API",
+      "plan_ref": {
+        "성능목표": "#6 환경규제 서비스 / KR 3차년도 'AI 기반 데이터 표준연계 엔진 PoC'",
+        "doc": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\02 260527 3차년 착수회의\\발표자료\\01 3차년도_착수회의_한국선급_260526.pdf",
+        "pages": "p.25-28, p.30"
+      },
+      "standards": [
+        {
+          "name": "IMO Compendium",
+          "version": "FAL.5/Circ.53 (2024)",
+          "clauses": [
+            "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
+          ],
+          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\04 연구개발 2차년도(2025)\\06 260320 2차년도 연차보고서\\[산업기술혁신사업 연차보고서](RS-2024-00454634)스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계_260320.pdf p.83"
+        },
+        {
+          "name": "KR GEARs API 규격",
+          "version": "미확인(내부 규격, 문서 근거 없음)",
+          "clauses": [
+            "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
+          ],
+          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\02 260527 3차년 착수회의\\발표자료\\01 3차년도_착수회의_한국선급_260526.pdf p.9, p.16"
+        }
+      ],
+      "data_objects": [
+        "KR GHG Canonical Payload(k-mds AGENTS.md 정의)",
+        "Validation 리포트(PASS/WARNING/FAIL, Rule ID, Evidence)",
+        "KR GEARs 수신 로그"
+      ],
+      "scenario_ref": {
+        "docs": [
+          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\04 260806 실증사항 협의 2차\\3차년도_IDS_실증_데이터흐름_검토용(KR).pptx slide2 BLOCK B",
+          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\02 260527 3차년 착수회의\\발표자료\\01 3차년도_착수회의_한국선급_260526.pdf p.25-26"
+        ],
+        "repo": "C:\\kr-dev\\k-mds\\AGENTS.md §1, §2.1; src/k_mds/skills/schema_validate.py"
+      },
+      "environment": {
+        "type": "k-mds MCP 미구현(README: Bootstrap 단계) + KR GEARs 외부 시스템",
+        "external_connection_required": true
+      },
+      "pass_criteria": {
+        "confirmed": false,
+        "rules": [
+          "R1 구독 수신 payload가 schema_validate 스킬로 검증되고 결과에 FAL Version·Ontology Version·Rule ID·Evidence·Human Review 여부 포함(AGENTS.md §1.3)",
+          "R2 FAIL 시 GEARs 전달 차단, PASS 시 GEARs API 호출 성공 응답",
+          "R3 예외 4종(필드 누락·토큰 오류·정책 불일치·매핑 오류) 각각 분류 코드로 로그",
+          "R4 재실행 1회 동일 결과"
+        ],
+        "draft_notes": "KR pptx s.2 '회의 결정 필요 ④ KR Gears API 필드명' 미결. k-mds MCP·파이프라인 미구현."
+      },
+      "status": "pending",
+      "runs": [],
+      "owner_confirmed_by": null,
+      "last_updated": "2026-09-12",
+      "blockers": [
+        "k-mds MCP 서버·정규화 파이프라인 미구현",
+        "KR GEARs API 필드명 미확정",
+        "GEARs 연결 승인"
+      ]
+    },
+    {
+      "case_id": "C07",
+      "title": "시뮬레이터 기반 End-to-End 데이터 상호운용 검증(성능목표 #9, 전문기관 시험용 증빙 패키지)",
+      "value_chain_link": "RIMS 선박 시뮬레이터→ROC→IDS Provider→Broker/DAPS→IDS Consumer ×3(해운·항만·선급)→서비스 API",
+      "plan_ref": {
+        "성능목표": "#9 데이터 상호운용 시뮬레이터 기반 검증 1건(ISO 25023, IMO MSC.1/Circ.1512 기반 전문기관 시험보고서)",
+        "doc": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\01 260520 3차년도 협약변경신청\\(RS-2024-00454634)3차년도 수정사업계획서_260515.pdf",
+        "pages": "p.31, p.32, p.35, p.60, p.221"
+      },
+      "standards": [
+        {
+          "name": "ISO/IEC 25023",
+          "version": "미확인",
+          "clauses": [
+            "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
+          ],
+          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\01 260520 3차년도 협약변경신청\\(RS-2024-00454634)3차년도 수정사업계획서_260515.pdf p.32"
+        },
+        {
+          "name": "IMO MSC.1/Circ.1512",
+          "version": "미확인",
+          "clauses": [
+            "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
+          ],
+          "cited_in": "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\01 260520 3차년도 협약변경신청\\(RS-2024-00454634)3차년도 수정사업계획서_260515.pdf p.35"
+        }
+      ],
+      "data_objects": [
+        "C02·C03·C04 데이터 객체 전체",
+        "TTA 제출 증빙 패키지(로그, API 응답, 메타 등록 캡처, 계약/토큰 검증 결과)"
+      ],
+      "scenario_ref": {
+        "docs": [
+          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\03 260629 실증사항 협의 1차\\3차년도_실증회의1차_회의록_260701.pdf p.5(세션5 시험 범위·판정·증빙 형식)",
+          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\04 260806 실증사항 협의 2차\\3차년도_실증회의2차_회의록_260807.pdf p.4 그림1",
+          "C:\\kr-dev\\k-mds\\docs\\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계\\05 연구개발 3차년도(2026)\\02 260527 3차년 착수회의\\발표자료\\01 3차년도_착수회의_한국선급_260526.pdf p.3"
+        ],
+        "analysis": "verification/analysis/S01_W1_3차년도_수정사업계획서.md §2"
+      },
+      "environment": {
+        "type": "RIMS 시뮬레이터 + K-MDS + TTA 입회",
+        "external_connection_required": true
+      },
+      "pass_criteria": {
+        "confirmed": false,
+        "rules": [
+          "R1 C01~C05 모두 PASS",
+          "R2 3개 서비스 Lane 각각 시나리오 1회 이상 E2E 완주(전송 성공률 산식·목표 사람 확정)",
+          "R3 증빙 패키지 형식이 TTA 합의 형식과 일치(형식 미확정)",
+          "R4 제3자(전문기관) 재실행 가능한 시나리오 파일·설정·버전 동봉"
+        ],
+        "draft_notes": "ISO 25023 품질 측정 항목 선택·MSC.1/Circ.1512 적용 방식은 TTA 컨설팅 계약(협의완료 '26.8.6) 결과에 따름. 실행 시점 9월초~10월말(착수 KR p.3)."
+      },
+      "status": "pending",
+      "runs": [],
+      "owner_confirmed_by": null,
+      "last_updated": "2026-09-12",
+      "blockers": [
+        "C01~C05 선행",
+        "TTA 시험 항목·증빙 형식·수수료(9.16 안건) 미확정"
+      ]
+    }
+  ]
+}
