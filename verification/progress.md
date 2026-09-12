@@ -183,3 +183,4 @@
 - 사용자 결정: Step 3 은 RIMS 서울사무소 IDS 서버에서 점검 예정 → CONDITIONAL_PASS 유지.
 - Step 4 PASS: Consumer 수신본 ≡ vessellink 원본 (sha256 동일, Noon fb23ffbd… / DAQ 04317770…). 새 finding F-14(백엔드 무인증 공개), F-15(정적 스냅샷).
 - 사용자 UI 재현 가이드: evidence/C02/manual_S03/step-04/BROWSER_TEST_GUIDE.md (Consumer UI 브라우저 기동 완료).
+- Step 4 사용자 재현 완료: Consumer UI(CONNECTOR 탭) 다운로드본 2건 sha256 = API 수신본 = vessellink 원본 (browser-hash.txt). 캡처 2건 보존. Step 4 PASS 확정(재현 1회).

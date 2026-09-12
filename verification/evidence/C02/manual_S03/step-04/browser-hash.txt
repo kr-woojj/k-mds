@@ -1,0 +1,28 @@
+# step-04 browser reproduction hashes (2026-09-12, 사용자 UI 다운로드본)
+# 비교 대상: payloads/ (Consumer Connector API 수신본), vessellink-direct/ (Provider backend 원본)
+
+## browser-downloads
+fb23ffbdcb00e11d7378ea390728bf895025196713413db5758f0e674bb998b0 *browser-downloads/noon.json
+043177704f17f8a0fef844dd88b4fab4a3198138ceba051f31cbda9fd3730275 *browser-downloads/daq.json
+
+## api-received (payloads/)
+fb23ffbdcb00e11d7378ea390728bf895025196713413db5758f0e674bb998b0 *payloads/Noon_Report_API__e5e3be7e7a31.json
+043177704f17f8a0fef844dd88b4fab4a3198138ceba051f31cbda9fd3730275 *payloads/DAQ_Logger_API__7679054100f6.json
+
+## vessellink-direct
+fb23ffbdcb00e11d7378ea390728bf895025196713413db5758f0e674bb998b0 *vessellink-direct/83abb949.json
+043177704f17f8a0fef844dd88b4fab4a3198138ceba051f31cbda9fd3730275 *vessellink-direct/a96d4757.json
+
+## sizes (bytes)
+14101  browser-downloads/noon.json
+29640  browser-downloads/daq.json
+14101  payloads/Noon_Report_API__e5e3be7e7a31.json
+29640  payloads/DAQ_Logger_API__7679054100f6.json
+
+## screenshots
+042404b65ed3960724f73b217d949bd0d910107f23e713e833744e87ca88de8a *screenshots/noon.png
+e7cb4ae58b6d20cee4822026a384a4112bb30a4ec062527f743a35868827e108 *screenshots/daq.png
+
+## verdict
+noon: browser == api == vessellink  → IDENTICAL
+daq:  browser == api == vessellink  → IDENTICAL
