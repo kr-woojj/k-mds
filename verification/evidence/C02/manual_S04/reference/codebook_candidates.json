@@ -1,0 +1,3023 @@
+{
+ "airTemp": [
+  {
+   "id": "IMO0628",
+   "unit": "degreeC",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "The measure of air temperature in degrees Celsius at ship location.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "airTemp"
+   ]
+  }
+ ],
+ "avgShaftRevSlr": [
+  {
+   "id": "IMO0617",
+   "unit": "RPM",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "The average of each propeller(s) speed measured in Revolutions Per Minute (RPM).",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "avgShaftRevSlr"
+   ]
+  }
+ ],
+ "avgShipSpeedSlr": [
+  {
+   "id": "IMO0333",
+   "unit": "knots",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "The ship current speed over ground in decimal knots.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "avgShipSpeedSlr"
+   ]
+  }
+ ],
+ "ballastQuantity": [
+  {
+   "id": "IMO0452",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Total physical measurement of ballast water on board including sediments in cubic metres (m3).",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "ballastQuantity"
+   ]
+  }
+ ],
+ "beaufortScale": [
+  {
+   "id": "IMO0625",
+   "unit": "-",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "Force of wind on Beaufort Scale as measured by onboard ship weather station, over the time of reporting (scale from 0-12).",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "beaufortScale"
+   ]
+  }
+ ],
+ "berthName": [
+  {
+   "id": "IMO0548",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "50",
+   "format": "-",
+   "required": false,
+   "description": "A code used to identify a berth. A berth is defined as a place, generally named or numbered, where a vessel may moor or anchor. (IHO Concept register).",
+   "eventName": [
+    "Arrival"
+   ],
+   "externalKey": [
+    "berthName"
+   ]
+  },
+  {
+   "id": "IMO0758",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "50",
+   "format": "-",
+   "required": false,
+   "description": "The name of the exact location of delivery within the port mentioned in the Delivery field (i.e. Anchorages or berths of operations).",
+   "eventName": [
+    "Bunkering"
+   ],
+   "externalKey": [
+    "berthName"
+   ]
+  }
+ ],
+ "consumptionBlrDo": [
+  {
+   "id": "IMO0673",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Boiler, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionBlrBog",
+    "consumptionBlrButane",
+    "consumptionBlrDo",
+    "consumptionBlrEthanol",
+    "consumptionBlrHfo",
+    "consumptionBlrLng",
+    "consumptionBlrLsfo",
+    "consumptionBlrMethanol",
+    "consumptionBlrMgo",
+    "consumptionBlrPropane",
+    "consumptionBlrUlsfo",
+    "consumptionBlrUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0914",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Boiler, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionBlrBog",
+    "consumptionBlrButane",
+    "consumptionBlrDo",
+    "consumptionBlrEthanol",
+    "consumptionBlrHfo",
+    "consumptionBlrLng",
+    "consumptionBlrLsfo",
+    "consumptionBlrMethanol",
+    "consumptionBlrMgo",
+    "consumptionBlrPropane",
+    "consumptionBlrUlsfo",
+    "consumptionBlrUlsmgo"
+   ]
+  }
+ ],
+ "consumptionBlrHfo": [
+  {
+   "id": "IMO0673",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Boiler, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionBlrBog",
+    "consumptionBlrButane",
+    "consumptionBlrDo",
+    "consumptionBlrEthanol",
+    "consumptionBlrHfo",
+    "consumptionBlrLng",
+    "consumptionBlrLsfo",
+    "consumptionBlrMethanol",
+    "consumptionBlrMgo",
+    "consumptionBlrPropane",
+    "consumptionBlrUlsfo",
+    "consumptionBlrUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0914",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Boiler, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionBlrBog",
+    "consumptionBlrButane",
+    "consumptionBlrDo",
+    "consumptionBlrEthanol",
+    "consumptionBlrHfo",
+    "consumptionBlrLng",
+    "consumptionBlrLsfo",
+    "consumptionBlrMethanol",
+    "consumptionBlrMgo",
+    "consumptionBlrPropane",
+    "consumptionBlrUlsfo",
+    "consumptionBlrUlsmgo"
+   ]
+  }
+ ],
+ "consumptionBlrLsfo": [
+  {
+   "id": "IMO0673",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Boiler, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionBlrBog",
+    "consumptionBlrButane",
+    "consumptionBlrDo",
+    "consumptionBlrEthanol",
+    "consumptionBlrHfo",
+    "consumptionBlrLng",
+    "consumptionBlrLsfo",
+    "consumptionBlrMethanol",
+    "consumptionBlrMgo",
+    "consumptionBlrPropane",
+    "consumptionBlrUlsfo",
+    "consumptionBlrUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0914",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Boiler, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionBlrBog",
+    "consumptionBlrButane",
+    "consumptionBlrDo",
+    "consumptionBlrEthanol",
+    "consumptionBlrHfo",
+    "consumptionBlrLng",
+    "consumptionBlrLsfo",
+    "consumptionBlrMethanol",
+    "consumptionBlrMgo",
+    "consumptionBlrPropane",
+    "consumptionBlrUlsfo",
+    "consumptionBlrUlsmgo"
+   ]
+  }
+ ],
+ "consumptionBlrMgo": [
+  {
+   "id": "IMO0673",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Boiler, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionBlrBog",
+    "consumptionBlrButane",
+    "consumptionBlrDo",
+    "consumptionBlrEthanol",
+    "consumptionBlrHfo",
+    "consumptionBlrLng",
+    "consumptionBlrLsfo",
+    "consumptionBlrMethanol",
+    "consumptionBlrMgo",
+    "consumptionBlrPropane",
+    "consumptionBlrUlsfo",
+    "consumptionBlrUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0914",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Boiler, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionBlrBog",
+    "consumptionBlrButane",
+    "consumptionBlrDo",
+    "consumptionBlrEthanol",
+    "consumptionBlrHfo",
+    "consumptionBlrLng",
+    "consumptionBlrLsfo",
+    "consumptionBlrMethanol",
+    "consumptionBlrMgo",
+    "consumptionBlrPropane",
+    "consumptionBlrUlsfo",
+    "consumptionBlrUlsmgo"
+   ]
+  }
+ ],
+ "consumptionBlrUlsfo": [
+  {
+   "id": "IMO0673",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Boiler, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionBlrBog",
+    "consumptionBlrButane",
+    "consumptionBlrDo",
+    "consumptionBlrEthanol",
+    "consumptionBlrHfo",
+    "consumptionBlrLng",
+    "consumptionBlrLsfo",
+    "consumptionBlrMethanol",
+    "consumptionBlrMgo",
+    "consumptionBlrPropane",
+    "consumptionBlrUlsfo",
+    "consumptionBlrUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0914",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Boiler, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionBlrBog",
+    "consumptionBlrButane",
+    "consumptionBlrDo",
+    "consumptionBlrEthanol",
+    "consumptionBlrHfo",
+    "consumptionBlrLng",
+    "consumptionBlrLsfo",
+    "consumptionBlrMethanol",
+    "consumptionBlrMgo",
+    "consumptionBlrPropane",
+    "consumptionBlrUlsfo",
+    "consumptionBlrUlsmgo"
+   ]
+  }
+ ],
+ "consumptionBlrUlsmgo": [
+  {
+   "id": "IMO0673",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Boiler, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionBlrBog",
+    "consumptionBlrButane",
+    "consumptionBlrDo",
+    "consumptionBlrEthanol",
+    "consumptionBlrHfo",
+    "consumptionBlrLng",
+    "consumptionBlrLsfo",
+    "consumptionBlrMethanol",
+    "consumptionBlrMgo",
+    "consumptionBlrPropane",
+    "consumptionBlrUlsfo",
+    "consumptionBlrUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0914",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Boiler, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionBlrBog",
+    "consumptionBlrButane",
+    "consumptionBlrDo",
+    "consumptionBlrEthanol",
+    "consumptionBlrHfo",
+    "consumptionBlrLng",
+    "consumptionBlrLsfo",
+    "consumptionBlrMethanol",
+    "consumptionBlrMgo",
+    "consumptionBlrPropane",
+    "consumptionBlrUlsfo",
+    "consumptionBlrUlsmgo"
+   ]
+  }
+ ],
+ "consumptionGeDo": [
+  {
+   "id": "IMO0893",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionGeBog",
+    "consumptionGeButane",
+    "consumptionGeDo",
+    "consumptionGeEthanol",
+    "consumptionGeHfo",
+    "consumptionGeLng",
+    "consumptionGeLsfo",
+    "consumptionGeMethanol",
+    "consumptionGeMgo",
+    "consumptionGePropane",
+    "consumptionGeUlsfo",
+    "consumptionGeUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0916",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionGeBog",
+    "consumptionGeButane",
+    "consumptionGeDo",
+    "consumptionGeEthanol",
+    "consumptionGeHfo",
+    "consumptionGeLng",
+    "consumptionGeLsfo",
+    "consumptionGeMethanol",
+    "consumptionGeMgo",
+    "consumptionGePropane",
+    "consumptionGeUlsfo",
+    "consumptionGeUlsmgo"
+   ]
+  }
+ ],
+ "consumptionGeHfo": [
+  {
+   "id": "IMO0893",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionGeBog",
+    "consumptionGeButane",
+    "consumptionGeDo",
+    "consumptionGeEthanol",
+    "consumptionGeHfo",
+    "consumptionGeLng",
+    "consumptionGeLsfo",
+    "consumptionGeMethanol",
+    "consumptionGeMgo",
+    "consumptionGePropane",
+    "consumptionGeUlsfo",
+    "consumptionGeUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0916",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionGeBog",
+    "consumptionGeButane",
+    "consumptionGeDo",
+    "consumptionGeEthanol",
+    "consumptionGeHfo",
+    "consumptionGeLng",
+    "consumptionGeLsfo",
+    "consumptionGeMethanol",
+    "consumptionGeMgo",
+    "consumptionGePropane",
+    "consumptionGeUlsfo",
+    "consumptionGeUlsmgo"
+   ]
+  }
+ ],
+ "consumptionGeLsfo": [
+  {
+   "id": "IMO0893",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionGeBog",
+    "consumptionGeButane",
+    "consumptionGeDo",
+    "consumptionGeEthanol",
+    "consumptionGeHfo",
+    "consumptionGeLng",
+    "consumptionGeLsfo",
+    "consumptionGeMethanol",
+    "consumptionGeMgo",
+    "consumptionGePropane",
+    "consumptionGeUlsfo",
+    "consumptionGeUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0916",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionGeBog",
+    "consumptionGeButane",
+    "consumptionGeDo",
+    "consumptionGeEthanol",
+    "consumptionGeHfo",
+    "consumptionGeLng",
+    "consumptionGeLsfo",
+    "consumptionGeMethanol",
+    "consumptionGeMgo",
+    "consumptionGePropane",
+    "consumptionGeUlsfo",
+    "consumptionGeUlsmgo"
+   ]
+  }
+ ],
+ "consumptionGeMgo": [
+  {
+   "id": "IMO0893",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionGeBog",
+    "consumptionGeButane",
+    "consumptionGeDo",
+    "consumptionGeEthanol",
+    "consumptionGeHfo",
+    "consumptionGeLng",
+    "consumptionGeLsfo",
+    "consumptionGeMethanol",
+    "consumptionGeMgo",
+    "consumptionGePropane",
+    "consumptionGeUlsfo",
+    "consumptionGeUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0916",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionGeBog",
+    "consumptionGeButane",
+    "consumptionGeDo",
+    "consumptionGeEthanol",
+    "consumptionGeHfo",
+    "consumptionGeLng",
+    "consumptionGeLsfo",
+    "consumptionGeMethanol",
+    "consumptionGeMgo",
+    "consumptionGePropane",
+    "consumptionGeUlsfo",
+    "consumptionGeUlsmgo"
+   ]
+  }
+ ],
+ "consumptionGeUlsfo": [
+  {
+   "id": "IMO0893",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionGeBog",
+    "consumptionGeButane",
+    "consumptionGeDo",
+    "consumptionGeEthanol",
+    "consumptionGeHfo",
+    "consumptionGeLng",
+    "consumptionGeLsfo",
+    "consumptionGeMethanol",
+    "consumptionGeMgo",
+    "consumptionGePropane",
+    "consumptionGeUlsfo",
+    "consumptionGeUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0916",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionGeBog",
+    "consumptionGeButane",
+    "consumptionGeDo",
+    "consumptionGeEthanol",
+    "consumptionGeHfo",
+    "consumptionGeLng",
+    "consumptionGeLsfo",
+    "consumptionGeMethanol",
+    "consumptionGeMgo",
+    "consumptionGePropane",
+    "consumptionGeUlsfo",
+    "consumptionGeUlsmgo"
+   ]
+  }
+ ],
+ "consumptionGeUlsmgo": [
+  {
+   "id": "IMO0893",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionGeBog",
+    "consumptionGeButane",
+    "consumptionGeDo",
+    "consumptionGeEthanol",
+    "consumptionGeHfo",
+    "consumptionGeLng",
+    "consumptionGeLsfo",
+    "consumptionGeMethanol",
+    "consumptionGeMgo",
+    "consumptionGePropane",
+    "consumptionGeUlsfo",
+    "consumptionGeUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0916",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Auxiliary Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionGeBog",
+    "consumptionGeButane",
+    "consumptionGeDo",
+    "consumptionGeEthanol",
+    "consumptionGeHfo",
+    "consumptionGeLng",
+    "consumptionGeLsfo",
+    "consumptionGeMethanol",
+    "consumptionGeMgo",
+    "consumptionGePropane",
+    "consumptionGeUlsfo",
+    "consumptionGeUlsmgo"
+   ]
+  }
+ ],
+ "consumptionMeDo": [
+  {
+   "id": "IMO0670",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Main Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionMeBog",
+    "consumptionMeButane",
+    "consumptionMeDo",
+    "consumptionMeEthanol",
+    "consumptionMeHfo",
+    "consumptionMeLng",
+    "consumptionMeLsfo",
+    "consumptionMeMethanol",
+    "consumptionMeMgo",
+    "consumptionMePropane",
+    "consumptionMeUlsfo",
+    "consumptionMeUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0908",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Main Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionMeBog",
+    "consumptionMeButane",
+    "consumptionMeDo",
+    "consumptionMeEthanol",
+    "consumptionMeHfo",
+    "consumptionMeLng",
+    "consumptionMeLsfo",
+    "consumptionMeMethanol",
+    "consumptionMeMgo",
+    "consumptionMePropane",
+    "consumptionMeUlsfo",
+    "consumptionMeUlsmgo"
+   ]
+  }
+ ],
+ "consumptionMeHfo": [
+  {
+   "id": "IMO0670",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Main Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionMeBog",
+    "consumptionMeButane",
+    "consumptionMeDo",
+    "consumptionMeEthanol",
+    "consumptionMeHfo",
+    "consumptionMeLng",
+    "consumptionMeLsfo",
+    "consumptionMeMethanol",
+    "consumptionMeMgo",
+    "consumptionMePropane",
+    "consumptionMeUlsfo",
+    "consumptionMeUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0908",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Main Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionMeBog",
+    "consumptionMeButane",
+    "consumptionMeDo",
+    "consumptionMeEthanol",
+    "consumptionMeHfo",
+    "consumptionMeLng",
+    "consumptionMeLsfo",
+    "consumptionMeMethanol",
+    "consumptionMeMgo",
+    "consumptionMePropane",
+    "consumptionMeUlsfo",
+    "consumptionMeUlsmgo"
+   ]
+  }
+ ],
+ "consumptionMeLsfo": [
+  {
+   "id": "IMO0670",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Main Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionMeBog",
+    "consumptionMeButane",
+    "consumptionMeDo",
+    "consumptionMeEthanol",
+    "consumptionMeHfo",
+    "consumptionMeLng",
+    "consumptionMeLsfo",
+    "consumptionMeMethanol",
+    "consumptionMeMgo",
+    "consumptionMePropane",
+    "consumptionMeUlsfo",
+    "consumptionMeUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0908",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Main Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionMeBog",
+    "consumptionMeButane",
+    "consumptionMeDo",
+    "consumptionMeEthanol",
+    "consumptionMeHfo",
+    "consumptionMeLng",
+    "consumptionMeLsfo",
+    "consumptionMeMethanol",
+    "consumptionMeMgo",
+    "consumptionMePropane",
+    "consumptionMeUlsfo",
+    "consumptionMeUlsmgo"
+   ]
+  }
+ ],
+ "consumptionMeMgo": [
+  {
+   "id": "IMO0670",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Main Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionMeBog",
+    "consumptionMeButane",
+    "consumptionMeDo",
+    "consumptionMeEthanol",
+    "consumptionMeHfo",
+    "consumptionMeLng",
+    "consumptionMeLsfo",
+    "consumptionMeMethanol",
+    "consumptionMeMgo",
+    "consumptionMePropane",
+    "consumptionMeUlsfo",
+    "consumptionMeUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0908",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Main Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionMeBog",
+    "consumptionMeButane",
+    "consumptionMeDo",
+    "consumptionMeEthanol",
+    "consumptionMeHfo",
+    "consumptionMeLng",
+    "consumptionMeLsfo",
+    "consumptionMeMethanol",
+    "consumptionMeMgo",
+    "consumptionMePropane",
+    "consumptionMeUlsfo",
+    "consumptionMeUlsmgo"
+   ]
+  }
+ ],
+ "consumptionMeUlsfo": [
+  {
+   "id": "IMO0670",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Main Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionMeBog",
+    "consumptionMeButane",
+    "consumptionMeDo",
+    "consumptionMeEthanol",
+    "consumptionMeHfo",
+    "consumptionMeLng",
+    "consumptionMeLsfo",
+    "consumptionMeMethanol",
+    "consumptionMeMgo",
+    "consumptionMePropane",
+    "consumptionMeUlsfo",
+    "consumptionMeUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0908",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Main Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionMeBog",
+    "consumptionMeButane",
+    "consumptionMeDo",
+    "consumptionMeEthanol",
+    "consumptionMeHfo",
+    "consumptionMeLng",
+    "consumptionMeLsfo",
+    "consumptionMeMethanol",
+    "consumptionMeMgo",
+    "consumptionMePropane",
+    "consumptionMeUlsfo",
+    "consumptionMeUlsmgo"
+   ]
+  }
+ ],
+ "consumptionMeUlsmgo": [
+  {
+   "id": "IMO0670",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Main Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionMeBog",
+    "consumptionMeButane",
+    "consumptionMeDo",
+    "consumptionMeEthanol",
+    "consumptionMeHfo",
+    "consumptionMeLng",
+    "consumptionMeLsfo",
+    "consumptionMeMethanol",
+    "consumptionMeMgo",
+    "consumptionMePropane",
+    "consumptionMeUlsfo",
+    "consumptionMeUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0908",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Main Engine, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionMeBog",
+    "consumptionMeButane",
+    "consumptionMeDo",
+    "consumptionMeEthanol",
+    "consumptionMeHfo",
+    "consumptionMeLng",
+    "consumptionMeLsfo",
+    "consumptionMeMethanol",
+    "consumptionMeMgo",
+    "consumptionMePropane",
+    "consumptionMeUlsfo",
+    "consumptionMeUlsmgo"
+   ]
+  }
+ ],
+ "consumptionMecylOil": [
+  {
+   "id": "IMO0678",
+   "unit": "l",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Lube oil consumption in grams per hour per unit of output measured in kilowatt of the engine (g/kWh).",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionMecylOil",
+    "consumptionMelscylOil"
+   ]
+  }
+ ],
+ "consumptionMelscylOil": [
+  {
+   "id": "IMO0678",
+   "unit": "l",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Lube oil consumption in grams per hour per unit of output measured in kilowatt of the engine (g/kWh).",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionMecylOil",
+    "consumptionMelscylOil"
+   ]
+  }
+ ],
+ "consumptionOtherDo": [
+  {
+   "id": "IMO0901",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Incinerator, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo",
+    "consumptionOtherUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0903",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Other Fuel Consuming Devices, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherUlsmgo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo"
+   ]
+  },
+  {
+   "id": "IMO0932",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Incinerator, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherUlsmgo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo"
+   ]
+  },
+  {
+   "id": "IMO0936",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Other Fuel Consuming Devices, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo",
+    "consumptionOtherUlsmgo"
+   ]
+  }
+ ],
+ "consumptionOtherHfo": [
+  {
+   "id": "IMO0901",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Incinerator, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo",
+    "consumptionOtherUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0903",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Other Fuel Consuming Devices, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherUlsmgo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo"
+   ]
+  },
+  {
+   "id": "IMO0932",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Incinerator, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherUlsmgo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo"
+   ]
+  },
+  {
+   "id": "IMO0936",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Other Fuel Consuming Devices, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo",
+    "consumptionOtherUlsmgo"
+   ]
+  }
+ ],
+ "consumptionOtherLsfo": [
+  {
+   "id": "IMO0901",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Incinerator, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo",
+    "consumptionOtherUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0903",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Other Fuel Consuming Devices, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherUlsmgo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo"
+   ]
+  },
+  {
+   "id": "IMO0932",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Incinerator, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherUlsmgo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo"
+   ]
+  },
+  {
+   "id": "IMO0936",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Other Fuel Consuming Devices, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo",
+    "consumptionOtherUlsmgo"
+   ]
+  }
+ ],
+ "consumptionOtherMgo": [
+  {
+   "id": "IMO0901",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Incinerator, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo",
+    "consumptionOtherUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0903",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Other Fuel Consuming Devices, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherUlsmgo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo"
+   ]
+  },
+  {
+   "id": "IMO0932",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Incinerator, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherUlsmgo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo"
+   ]
+  },
+  {
+   "id": "IMO0936",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Other Fuel Consuming Devices, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo",
+    "consumptionOtherUlsmgo"
+   ]
+  }
+ ],
+ "consumptionOtherUlsfo": [
+  {
+   "id": "IMO0901",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Incinerator, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo",
+    "consumptionOtherUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0903",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Other Fuel Consuming Devices, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherUlsmgo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo"
+   ]
+  },
+  {
+   "id": "IMO0932",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Incinerator, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherUlsmgo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo"
+   ]
+  },
+  {
+   "id": "IMO0936",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Other Fuel Consuming Devices, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo",
+    "consumptionOtherUlsmgo"
+   ]
+  }
+ ],
+ "consumptionOtherUlsmgo": [
+  {
+   "id": "IMO0901",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Incinerator, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo",
+    "consumptionOtherUlsmgo"
+   ]
+  },
+  {
+   "id": "IMO0903",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Other Fuel Consuming Devices, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherUlsmgo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo"
+   ]
+  },
+  {
+   "id": "IMO0932",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Incinerator, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherUlsmgo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo"
+   ]
+  },
+  {
+   "id": "IMO0936",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Fuel consumed by Other Fuel Consuming Devices, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "consumptionOtherBog",
+    "consumptionOtherButane",
+    "consumptionOtherDo",
+    "consumptionOtherEthanol",
+    "consumptionOtherHfo",
+    "consumptionOtherLng",
+    "consumptionOtherLsfo",
+    "consumptionOtherMethanol",
+    "consumptionOtherMgo",
+    "consumptionOtherPropane",
+    "consumptionOtherUlsfo",
+    "consumptionOtherUlsmgo"
+   ]
+  }
+ ],
+ "dateEventUtc": [
+  {
+   "id": "IMO0063",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "-",
+   "format": "date and time",
+   "required": true,
+   "description": "The date and time the ship arrives at a specified location, ATA.",
+   "eventName": [
+    "Arrival"
+   ],
+   "externalKey": [
+    "dateEventUtc"
+   ]
+  },
+  {
+   "id": "IMO0065",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "-",
+   "format": "date and time",
+   "required": true,
+   "description": "The date and time the ship departs from a specified location, ATD.",
+   "eventName": [
+    "Departure S/By"
+   ],
+   "externalKey": [
+    "dateEventUtc"
+   ]
+  },
+  {
+   "id": "IMO0603",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "-",
+   "format": "date and time",
+   "required": false,
+   "description": "The date and time when the reporting event occurred.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "dateEventUtc"
+   ]
+  }
+ ],
+ "distanceToGo": [
+  {
+   "id": "IMO0537",
+   "unit": "nm",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "The remaining distance in nautical miles reported by the vessel to a specific destination.",
+   "eventName": [
+    "Noon at sea",
+    "R/UP"
+   ],
+   "externalKey": [
+    "distanceToGo"
+   ]
+  },
+  {
+   "id": "IMO0615",
+   "unit": "nm",
+   "type": "number",
+   "maxLength": "7",
+   "format": "-",
+   "required": false,
+   "description": "The remaining sailing distance until next port (over ground), measured in nautical miles.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "distanceToGo"
+   ]
+  }
+ ],
+ "draftAft": [
+  {
+   "id": "IMO0357",
+   "unit": "meter",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "Maximum ship present static draught in meters and centimeters.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "draftAft",
+    "draftFore",
+    "draftMid"
+   ]
+  },
+  {
+   "id": "IMO0622",
+   "unit": "meter",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "The vertical distance in metres between the waterline and the bottom of the hull, with the thickness of the hull included from aft.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "draftAft"
+   ]
+  }
+ ],
+ "draftFore": [
+  {
+   "id": "IMO0357",
+   "unit": "meter",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "Maximum ship present static draught in meters and centimeters.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "draftAft",
+    "draftFore",
+    "draftMid"
+   ]
+  },
+  {
+   "id": "IMO0621",
+   "unit": "meter",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "The vertical distance in metres between the waterline and the bottom of the hull, with the thickness of the hull included from forward.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "draftFore"
+   ]
+  }
+ ],
+ "draftMid": [
+  {
+   "id": "IMO0357",
+   "unit": "meter",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "Maximum ship present static draught in meters and centimeters.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "draftAft",
+    "draftFore",
+    "draftMid"
+   ]
+  }
+ ],
+ "etb": [
+  {
+   "id": "IMO0541",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "-",
+   "format": "date and time",
+   "required": false,
+   "description": "The date and time the ship estimates to reach the specified location in port.",
+   "eventName": [
+    "Noon at sea",
+    "R/UP"
+   ],
+   "externalKey": [
+    "etb"
+   ]
+  }
+ ],
+ "etd": [
+  {
+   "id": "IMO0066",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "-",
+   "format": "date and time",
+   "required": false,
+   "description": "The date and time the ship is estimated to depart from a specified location, ETD.",
+   "eventName": [
+    "Arrival"
+   ],
+   "externalKey": [
+    "etd"
+   ]
+  }
+ ],
+ "eventKey": [
+  {
+   "id": "IMO0597",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "50",
+   "format": "-",
+   "required": false,
+   "description": "A code representing the event which triggers the reporting (e.g. Noon Report, Arrival, Departure). Event may vary according to contract.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "eventKey"
+   ]
+  },
+  {
+   "id": "IMO0598",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "50",
+   "format": "-",
+   "required": false,
+   "description": "A code representing the type of operation being undertaken for the duration of the report (e.g. sailing, in port loading, at anchor).",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "eventKey"
+   ]
+  }
+ ],
+ "freshWaterConsumed": [
+  {
+   "id": "IMO0641",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "Fresh drinking water consumed onboard, measured in metric tons.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "freshWaterConsumed"
+   ]
+  }
+ ],
+ "freshWaterProduced": [
+  {
+   "id": "IMO0640",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "Fresh water produced onboard by running the Fresh Water Generator, measured in metric tons.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "freshWaterProduced"
+   ]
+  }
+ ],
+ "freshWaterSupplied": [
+  {
+   "id": "IMO0639",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "Fresh water bunkered onboard, measured in metric tons.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "freshWaterSupplied"
+   ]
+  }
+ ],
+ "hourSlr": [
+  {
+   "id": "IMO0600",
+   "unit": "h",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "The duration in hours since previous event report.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "hourSlr"
+   ]
+  }
+ ],
+ "isEuPort": [
+  {
+   "id": "IMO0856",
+   "unit": "-",
+   "type": "boolean",
+   "maxLength": "5",
+   "format": "-",
+   "required": false,
+   "description": "Reporting jurisdiction covering the arriving port for ship voyage. This is used to define the mandatory reporting requirements  related to ship emissions  for different voyages.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "isEuPort"
+   ]
+  },
+  {
+   "id": "IMO0857",
+   "unit": "-",
+   "type": "boolean",
+   "maxLength": "5",
+   "format": "-",
+   "required": false,
+   "description": "Reporting jurisdiction covering the departure port for the ship voyage. This is used to define the mandatory reporting requirements related to ship emissions for different voyages.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "isEuPort"
+   ]
+  }
+ ],
+ "legNo": [
+  {
+   "id": "IMO0605",
+   "unit": "-",
+   "type": "number",
+   "maxLength": "5",
+   "format": "-",
+   "required": false,
+   "description": "The identifier used to uniquely describe a leg of a voyage. The identifier can be a reference to features in another electronic dataset such as a route plan.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "legNo"
+   ]
+  }
+ ],
+ "nextPortCode": [
+  {
+   "id": "IMO0084",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "8",
+   "format": "unlocode",
+   "required": false,
+   "description": "The port immediately subsequent to the port of departure.",
+   "eventName": [
+    "Noon at sea",
+    "R/UP"
+   ],
+   "externalKey": [
+    "nextPortCode"
+   ]
+  }
+ ],
+ "nextPortEtaLtc": [
+  {
+   "id": "IMO0543",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "-",
+   "format": "date and time",
+   "required": false,
+   "description": "The date and time the ship plans to reach the specified location in port.",
+   "eventName": [
+    "Noon at sea",
+    "R/UP"
+   ],
+   "externalKey": [
+    "nextPortEtaLtc"
+   ]
+  }
+ ],
+ "nextPortEtaUtc": [
+  {
+   "id": "IMO0064",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "-",
+   "format": "date and time",
+   "required": false,
+   "description": "The date and time the ship is estimated to arrive at a specified location, ETA.",
+   "eventName": [
+    "Noon at sea",
+    "R/UP"
+   ],
+   "externalKey": [
+    "nextPortEtaUtc"
+   ]
+  }
+ ],
+ "nextPortName": [
+  {
+   "id": "IMO0085",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "8",
+   "format": "-",
+   "required": false,
+   "description": "The name and country of the port immediately subsequent to the port of departure.",
+   "eventName": [
+    "Noon at sea",
+    "R/UP"
+   ],
+   "externalKey": [
+    "nextPortName"
+   ]
+  }
+ ],
+ "portCode": [
+  {
+   "id": "IMO0013",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "8",
+   "format": "unlocode",
+   "required": false,
+   "description": "A code in the message to show whether the information is submitted for the ship arrival or departure.",
+   "eventName": [
+    "Arrival",
+    "Departure S/By"
+   ],
+   "externalKey": [
+    "portCode"
+   ]
+  },
+  {
+   "id": "IMO0075",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "8",
+   "format": "unlocode",
+   "required": false,
+   "description": "The name and country of the port immediately previous to the port of arrival.",
+   "eventName": [
+    "Departure S/By"
+   ],
+   "externalKey": [
+    "portCode"
+   ]
+  },
+  {
+   "id": "IMO0108",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "8",
+   "format": "unlocode",
+   "required": true,
+   "description": "A code representing the port where the ship arrives.",
+   "eventName": [
+    "Arrival"
+   ],
+   "externalKey": [
+    "portCode"
+   ]
+  },
+  {
+   "id": "IMO0111",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "8",
+   "format": "unlocode",
+   "required": true,
+   "description": "The code representing the port from which the ship departs.",
+   "eventName": [
+    "Departure S/By"
+   ],
+   "externalKey": [
+    "portCode"
+   ]
+  },
+  {
+   "id": "IMO0126",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "8",
+   "format": "unlocode",
+   "required": false,
+   "description": "The name and country of a previous port of call.",
+   "eventName": [
+    "Departure S/By"
+   ],
+   "externalKey": [
+    "portCode"
+   ]
+  },
+  {
+   "id": "IMO0666",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "8",
+   "format": "unlocode",
+   "required": false,
+   "description": "A code representing the port where the fuel is to be bunkered, according to a bunker delivery note.",
+   "eventName": [
+    "Bunkering"
+   ],
+   "externalKey": [
+    "portCode"
+   ]
+  }
+ ],
+ "portName": [
+  {
+   "id": "IMO0076",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "8",
+   "format": "-",
+   "required": false,
+   "description": "A code representing the port immediately previous to the port of arrival.",
+   "eventName": [
+    "Departure S/By"
+   ],
+   "externalKey": [
+    "portName"
+   ]
+  },
+  {
+   "id": "IMO0109",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "8",
+   "format": "-",
+   "required": true,
+   "description": "The name and country of the port where the ship arrives.",
+   "eventName": [
+    "Arrival"
+   ],
+   "externalKey": [
+    "portName"
+   ]
+  },
+  {
+   "id": "IMO0112",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "8",
+   "format": "-",
+   "required": true,
+   "description": "A name and country of the port from which the ship departs.",
+   "eventName": [
+    "Departure S/By"
+   ],
+   "externalKey": [
+    "portName"
+   ]
+  },
+  {
+   "id": "IMO0127",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "8",
+   "format": "-",
+   "required": false,
+   "description": "A code representing a previous port of call.",
+   "eventName": [
+    "Departure S/By"
+   ],
+   "externalKey": [
+    "portName"
+   ]
+  },
+  {
+   "id": "IMO0667",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "50",
+   "format": "-",
+   "required": false,
+   "description": "The name and country of the port where the fuel is to be bunkered, according to a bunker delivery note.",
+   "eventName": [
+    "Bunkering"
+   ],
+   "externalKey": [
+    "portName"
+   ]
+  }
+ ],
+ "positionLat": [
+  {
+   "id": "IMO0233",
+   "unit": "-",
+   "type": "-",
+   "maxLength": "10",
+   "format": "-",
+   "required": true,
+   "description": "A name, number or description used to identify a berth position. A berth position is a specific position within a berth where a vessel may be moored or anchored. (IHO Concept register).",
+   "eventName": [
+    "Arrival"
+   ],
+   "externalKey": [
+    "positionLat",
+    "positionLon"
+   ]
+  },
+  {
+   "id": "IMO0544",
+   "unit": "-",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "The latitude (geographical coordinate) of an entity.",
+   "eventName": [
+    "Arrival"
+   ],
+   "externalKey": [
+    "positionLat"
+   ]
+  },
+  {
+   "id": "IMO0601",
+   "unit": "-",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "The latitude (geographical coordinate) of the location of the ship at the time of reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "positionLat"
+   ]
+  }
+ ],
+ "positionLon": [
+  {
+   "id": "IMO0233",
+   "unit": "-",
+   "type": "-",
+   "maxLength": "10",
+   "format": "-",
+   "required": true,
+   "description": "A name, number or description used to identify a berth position. A berth position is a specific position within a berth where a vessel may be moored or anchored. (IHO Concept register).",
+   "eventName": [
+    "Arrival"
+   ],
+   "externalKey": [
+    "positionLat",
+    "positionLon"
+   ]
+  },
+  {
+   "id": "IMO0545",
+   "unit": "-",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "The longitude (geographical coordinate) of an entity.",
+   "eventName": [
+    "Arrival"
+   ],
+   "externalKey": [
+    "positionLon"
+   ]
+  },
+  {
+   "id": "IMO0602",
+   "unit": "-",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "The longitude (geographical coordinate) of the location of the ship at the time of reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "positionLon"
+   ]
+  }
+ ],
+ "relWindDirection": [
+  {
+   "id": "IMO0626",
+   "unit": "degree",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "Best estimate of the direction of wind relative to the ship, measured in degrees, made by the seafarer onboard.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "relWindDirection"
+   ]
+  }
+ ],
+ "robDo": [
+  {
+   "id": "IMO0674",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Remaining fuel onboard based on Engine Room log entries, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "robButane",
+    "robDo",
+    "robEthanol",
+    "robHfo",
+    "robLng",
+    "robLsfo",
+    "robMethanol",
+    "robMgo",
+    "robPropane",
+    "robUlsfo",
+    "robUlsmgo"
+   ]
+  }
+ ],
+ "robFreshWater": [
+  {
+   "id": "IMO0645",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "Fresh drinking water remaining onboard, measured in metric tons.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "robFreshWater"
+   ]
+  }
+ ],
+ "robGecylOil": [
+  {
+   "id": "IMO0676",
+   "unit": "l",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "The cylinder lube oil remaining onboard based on Engine Room log entries, measured in metric tons.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "robGecylOil",
+    "robMecylOil",
+    "robMelscylOil"
+   ]
+  }
+ ],
+ "robHfo": [
+  {
+   "id": "IMO0674",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Remaining fuel onboard based on Engine Room log entries, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "robButane",
+    "robDo",
+    "robEthanol",
+    "robHfo",
+    "robLng",
+    "robLsfo",
+    "robMethanol",
+    "robMgo",
+    "robPropane",
+    "robUlsfo",
+    "robUlsmgo"
+   ]
+  }
+ ],
+ "robLsfo": [
+  {
+   "id": "IMO0674",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Remaining fuel onboard based on Engine Room log entries, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "robButane",
+    "robDo",
+    "robEthanol",
+    "robHfo",
+    "robLng",
+    "robLsfo",
+    "robMethanol",
+    "robMgo",
+    "robPropane",
+    "robUlsfo",
+    "robUlsmgo"
+   ]
+  }
+ ],
+ "robMecylOil": [
+  {
+   "id": "IMO0676",
+   "unit": "l",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "The cylinder lube oil remaining onboard based on Engine Room log entries, measured in metric tons.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "robGecylOil",
+    "robMecylOil",
+    "robMelscylOil"
+   ]
+  }
+ ],
+ "robMelscylOil": [
+  {
+   "id": "IMO0676",
+   "unit": "l",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "The cylinder lube oil remaining onboard based on Engine Room log entries, measured in metric tons.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "robGecylOil",
+    "robMecylOil",
+    "robMelscylOil"
+   ]
+  }
+ ],
+ "robMgo": [
+  {
+   "id": "IMO0674",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Remaining fuel onboard based on Engine Room log entries, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "robButane",
+    "robDo",
+    "robEthanol",
+    "robHfo",
+    "robLng",
+    "robLsfo",
+    "robMethanol",
+    "robMgo",
+    "robPropane",
+    "robUlsfo",
+    "robUlsmgo"
+   ]
+  }
+ ],
+ "robUlsfo": [
+  {
+   "id": "IMO0674",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Remaining fuel onboard based on Engine Room log entries, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "robButane",
+    "robDo",
+    "robEthanol",
+    "robHfo",
+    "robLng",
+    "robLsfo",
+    "robMethanol",
+    "robMgo",
+    "robPropane",
+    "robUlsfo",
+    "robUlsmgo"
+   ]
+  }
+ ],
+ "robUlsmgo": [
+  {
+   "id": "IMO0674",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": false,
+   "description": "Remaining fuel onboard based on Engine Room log entries, measured in metric tons since last reporting.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "robButane",
+    "robDo",
+    "robEthanol",
+    "robHfo",
+    "robLng",
+    "robLsfo",
+    "robMethanol",
+    "robMgo",
+    "robPropane",
+    "robUlsfo",
+    "robUlsmgo"
+   ]
+  }
+ ],
+ "shipCourse": [
+  {
+   "id": "IMO0332",
+   "unit": "degree",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "The ship current course over ground indicated in the 360 degrees notation from true north.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "shipCourse"
+   ]
+  },
+  {
+   "id": "IMO0620",
+   "unit": "degree",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "The direction in which the ship is pointing with respect to true north, expressed in degrees.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "shipCourse"
+   ]
+  }
+ ],
+ "steamingDistanceSlr": [
+  {
+   "id": "IMO0613",
+   "unit": "nm",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "The distance traveled within the time elapsed, over ground measured in nautical miles.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "steamingDistanceSlr"
+   ]
+  }
+ ],
+ "trueWindDirection": [
+  {
+   "id": "IMO0360",
+   "unit": "degree",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "A code indicating the true direction, in tens of degrees, from which wind is blowing (of will blow).",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "trueWindDirection"
+   ]
+  },
+  {
+   "id": "IMO0627",
+   "unit": "degree",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "Best estimate of the direction of wind, measured in degrees true, made by the seafarer onboard.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "trueWindDirection"
+   ]
+  }
+ ],
+ "voyNo": [
+  {
+   "id": "IMO0191",
+   "unit": "-",
+   "type": "number",
+   "maxLength": "5",
+   "format": "-",
+   "required": true,
+   "description": "An operator-assigned reference code for the ship's voyage.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "voyNo"
+   ]
+  }
+ ],
+ "waveDirection": [
+  {
+   "id": "IMO0631",
+   "unit": "degree",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "Best estimate of the direction of sea, in degrees true, made by the seafarer onboard.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "waveDirection"
+   ]
+  }
+ ],
+ "waveHeight": [
+  {
+   "id": "IMO0632",
+   "unit": "meter",
+   "type": "number",
+   "maxLength": "6",
+   "format": "-",
+   "required": false,
+   "description": "Recorded sea height in metres as per weather provider.",
+   "eventName": [
+    "All"
+   ],
+   "externalKey": [
+    "waveHeight"
+   ]
+  }
+ ],
+ "callsign": [
+  {
+   "id": "IMO0136",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "7",
+   "format": "-",
+   "required": false,
+   "description": "The ship's identification used primarily for radio communications.",
+   "eventName": [
+    "General data"
+   ],
+   "externalKey": [
+    "callsign"
+   ]
+  }
+ ],
+ "flag": [
+  {
+   "id": "IMO0138",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "50",
+   "format": "-",
+   "required": false,
+   "description": "A code representing the nationality of the ship shown on its IMO ship's certificate.",
+   "eventName": [
+    "General data"
+   ],
+   "externalKey": [
+    "flag"
+   ]
+  }
+ ],
+ "grossTonnage": [
+  {
+   "id": "IMO0139",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": true,
+   "description": "The gross tonnage shown on the ship's International Tonnage Certificate or other document issued by the flag State or recognized organization.",
+   "eventName": [
+    "General data"
+   ],
+   "externalKey": [
+    "grossTonnage"
+   ]
+  }
+ ],
+ "imoNo": [
+  {
+   "id": "IMO0140",
+   "unit": "-",
+   "type": "number",
+   "maxLength": "7",
+   "format": "-",
+   "required": true,
+   "description": "The ship identification number shown on its IMO ship's certificate.",
+   "eventName": [
+    "General data"
+   ],
+   "externalKey": [
+    "imoNo"
+   ]
+  }
+ ],
+ "shipName": [
+  {
+   "id": "IMO0142",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "50",
+   "format": "-",
+   "required": true,
+   "description": "The ship's name shown on the IMO ship's certificates.",
+   "eventName": [
+    "General data"
+   ],
+   "externalKey": [
+    "shipName"
+   ]
+  }
+ ],
+ "netTonnage": [
+  {
+   "id": "IMO0143",
+   "unit": "mt",
+   "type": "number",
+   "maxLength": "10",
+   "format": "-",
+   "required": true,
+   "description": "The net tonnage shown on the ship's International Tonnage Certificate or other document issued by the Flag State or Recognized Organization.",
+   "eventName": [
+    "General data"
+   ],
+   "externalKey": [
+    "netTonnage"
+   ]
+  }
+ ],
+ "portOfRegistry": [
+  {
+   "id": "IMO0148",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "50",
+   "format": "-",
+   "required": false,
+   "description": "The name and country for the Port of Registry shown on the IMO ship certificate.",
+   "eventName": [
+    "General data"
+   ],
+   "externalKey": [
+    "portOfRegistry"
+   ]
+  }
+ ],
+ "subShipType": [
+  {
+   "id": "IMO0160",
+   "unit": "-",
+   "type": "-",
+   "maxLength": "50",
+   "format": "-",
+   "required": true,
+   "description": "The type of the ship.",
+   "eventName": [
+    "General data"
+   ],
+   "externalKey": [
+    "subShipType"
+   ]
+  }
+ ],
+ "mmsi": [
+  {
+   "id": "IMO0326",
+   "unit": "-",
+   "type": "-",
+   "maxLength": "9",
+   "format": "-",
+   "required": false,
+   "description": "The unique radio identification number (ship station identity).",
+   "eventName": [
+    "General data"
+   ],
+   "externalKey": [
+    "mmsi"
+   ]
+  }
+ ],
+ "masterName": [
+  {
+   "id": "IMO0580",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "50",
+   "format": "-",
+   "required": false,
+   "description": "The given name of the person in charge of the ship.",
+   "eventName": [
+    "General data"
+   ],
+   "externalKey": [
+    "masterName"
+   ]
+  },
+  {
+   "id": "IMO0760",
+   "unit": "-",
+   "type": "string",
+   "maxLength": "50",
+   "format": "-",
+   "required": false,
+   "description": "The name of the ship representative (Master or Chief Engineer) onboard the receiving vessel responsible for overseeing the",
+   "eventName": [
+    "Bunkering"
+   ],
+   "externalKey": [
+    "ceName",
+    "masterName"
+   ]
+  }
+ ]
+}

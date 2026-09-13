@@ -1,0 +1,641 @@
+{
+ "eventKey": {
+  "imo_id": "IMO0597",
+  "rule": "MOST_SPECIFIC",
+  "note": "candidates=['IMO0597', 'IMO0598']",
+  "imo_name": "Event type, coded",
+  "format": "an..4",
+  "seen": 12,
+  "gears": null
+ },
+ "dateEventUtc": {
+  "imo_id": "IMO0065",
+  "rule": "EVENT_CONTEXT",
+  "note": "eventName=Departure S/By",
+  "imo_name": "Date and time of departure - actual",
+  "format": "an..35",
+  "seen": 12,
+  "gears": null
+ },
+ "legNo": {
+  "imo_id": "IMO0605",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Voyage leg identifier",
+  "format": "an..35",
+  "seen": 12,
+  "gears": null
+ },
+ "voyNo": {
+  "imo_id": "IMO0191",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Voyage number",
+  "format": "an..17",
+  "seen": 12,
+  "gears": null
+ },
+ "hourSlr": {
+  "imo_id": "IMO0600",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Elapsed time",
+  "format": "n..16,6",
+  "seen": 12,
+  "gears": null
+ },
+ "freshWaterSupplied": {
+  "imo_id": "IMO0639",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Fresh water bunkered",
+  "format": "n..16,6",
+  "seen": 10,
+  "gears": null
+ },
+ "freshWaterProduced": {
+  "imo_id": "IMO0640",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Fresh water produced",
+  "format": "n..16,6",
+  "seen": 10,
+  "gears": null
+ },
+ "freshWaterConsumed": {
+  "imo_id": "IMO0641",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Fresh water consumed",
+  "format": "n..16,6",
+  "seen": 10,
+  "gears": null
+ },
+ "robFreshWater": {
+  "imo_id": "IMO0645",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Fresh water remaining onboard",
+  "format": "n..16,6",
+  "seen": 10,
+  "gears": null
+ },
+ "draftFore": {
+  "imo_id": "IMO0621",
+  "rule": "MOST_SPECIFIC",
+  "note": "candidates=['IMO0357', 'IMO0621']",
+  "imo_name": "Draught forward",
+  "format": "n..4,2",
+  "seen": 9,
+  "gears": null
+ },
+ "draftAft": {
+  "imo_id": "IMO0622",
+  "rule": "MOST_SPECIFIC",
+  "note": "candidates=['IMO0357', 'IMO0622']",
+  "imo_name": "Draught aft",
+  "format": "n..4,2",
+  "seen": 9,
+  "gears": null
+ },
+ "draftMid": {
+  "imo_id": "IMO0357",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Ship draught",
+  "format": "n..2,2",
+  "seen": 9,
+  "gears": null
+ },
+ "ballastQuantity": {
+  "imo_id": "IMO0452",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Total ballast water on board",
+  "format": "n..16,6",
+  "seen": 8,
+  "gears": null
+ },
+ "consumptionBlrDo": {
+  "imo_id": "IMO0673",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=MDO occurrence",
+  "imo_name": "Fuel consumed, by Auxiliary Boiler",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionBlrHfo": {
+  "imo_id": "IMO0673",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=HFO occurrence",
+  "imo_name": "Fuel consumed, by Auxiliary Boiler",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionBlrLsfo": {
+  "imo_id": "IMO0673",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=VLSFO2020 occurrence",
+  "imo_name": "Fuel consumed, by Auxiliary Boiler",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionBlrMgo": {
+  "imo_id": "IMO0673",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=MGO occurrence",
+  "imo_name": "Fuel consumed, by Auxiliary Boiler",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionBlrUlsfo": {
+  "imo_id": "IMO0673",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=ULSFO2020 occurrence",
+  "imo_name": "Fuel consumed, by Auxiliary Boiler",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionBlrUlsmgo": {
+  "imo_id": "IMO0673",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=ULSMGO2020 occurrence",
+  "imo_name": "Fuel consumed, by Auxiliary Boiler",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionGeDo": {
+  "imo_id": "IMO0893",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=MDO occurrence",
+  "imo_name": "Fuel consumed, by Auxiliary Engine",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionGeHfo": {
+  "imo_id": "IMO0893",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=HFO occurrence",
+  "imo_name": "Fuel consumed, by Auxiliary Engine",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionGeLsfo": {
+  "imo_id": "IMO0893",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=VLSFO2020 occurrence",
+  "imo_name": "Fuel consumed, by Auxiliary Engine",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionGeMgo": {
+  "imo_id": "IMO0893",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=MGO occurrence",
+  "imo_name": "Fuel consumed, by Auxiliary Engine",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionGeUlsfo": {
+  "imo_id": "IMO0893",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=ULSFO2020 occurrence",
+  "imo_name": "Fuel consumed, by Auxiliary Engine",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionGeUlsmgo": {
+  "imo_id": "IMO0893",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=ULSMGO2020 occurrence",
+  "imo_name": "Fuel consumed, by Auxiliary Engine",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionMeDo": {
+  "imo_id": "IMO0670",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=MDO occurrence",
+  "imo_name": "Fuel consumed, by Main Engine",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionMeHfo": {
+  "imo_id": "IMO0670",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=HFO occurrence",
+  "imo_name": "Fuel consumed, by Main Engine",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionMeLsfo": {
+  "imo_id": "IMO0670",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=VLSFO2020 occurrence",
+  "imo_name": "Fuel consumed, by Main Engine",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionMeMgo": {
+  "imo_id": "IMO0670",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=MGO occurrence",
+  "imo_name": "Fuel consumed, by Main Engine",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionMeUlsfo": {
+  "imo_id": "IMO0670",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=ULSFO2020 occurrence",
+  "imo_name": "Fuel consumed, by Main Engine",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionMeUlsmgo": {
+  "imo_id": "IMO0670",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=ULSMGO2020 occurrence",
+  "imo_name": "Fuel consumed, by Main Engine",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionMecylOil": {
+  "imo_id": "IMO0678",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Cylinder lube oil, consumption",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionMelscylOil": {
+  "imo_id": "IMO0678",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Cylinder lube oil, consumption",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionOtherDo": {
+  "imo_id": "IMO0903",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=MDO occurrence",
+  "imo_name": "Fuel consumed, by Other Fuel Consuming Devices",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionOtherHfo": {
+  "imo_id": "IMO0903",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=HFO occurrence",
+  "imo_name": "Fuel consumed, by Other Fuel Consuming Devices",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionOtherLsfo": {
+  "imo_id": "IMO0903",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=VLSFO2020 occurrence",
+  "imo_name": "Fuel consumed, by Other Fuel Consuming Devices",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionOtherMgo": {
+  "imo_id": "IMO0903",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=MGO occurrence",
+  "imo_name": "Fuel consumed, by Other Fuel Consuming Devices",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionOtherUlsfo": {
+  "imo_id": "IMO0903",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=ULSFO2020 occurrence",
+  "imo_name": "Fuel consumed, by Other Fuel Consuming Devices",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "consumptionOtherUlsmgo": {
+  "imo_id": "IMO0903",
+  "rule": "FUEL_TYPE_STRUCTURE",
+  "note": "IMO0654=ULSMGO2020 occurrence",
+  "imo_name": "Fuel consumed, by Other Fuel Consuming Devices",
+  "format": "n..4,1",
+  "seen": 10,
+  "gears": null
+ },
+ "portCode": {
+  "imo_id": "IMO0111",
+  "rule": "EVENT_CONTEXT",
+  "note": "eventName=Departure S/By",
+  "imo_name": "Port of departure, coded",
+  "format": "an5",
+  "seen": 4,
+  "gears": null
+ },
+ "portName": {
+  "imo_id": "IMO0112",
+  "rule": "EVENT_CONTEXT",
+  "note": "eventName=Departure S/By",
+  "imo_name": "Port of departure name",
+  "format": "an..256",
+  "seen": 4,
+  "gears": null
+ },
+ "positionLat": {
+  "imo_id": "IMO0601",
+  "rule": "MOST_SPECIFIC",
+  "note": "candidates=['IMO0233', 'IMO0544', 'IMO0601']",
+  "imo_name": "Ship position when reporting, latitude",
+  "format": "an..10",
+  "seen": 12,
+  "gears": null
+ },
+ "positionLon": {
+  "imo_id": "IMO0602",
+  "rule": "MOST_SPECIFIC",
+  "note": "candidates=['IMO0233', 'IMO0545', 'IMO0602']",
+  "imo_name": "Ship position when reporting, longitude",
+  "format": "an..11",
+  "seen": 12,
+  "gears": null
+ },
+ "isEuPort": {
+  "imo_id": null,
+  "rule": "AMBIGUOUS",
+  "note": "candidates=['IMO0856', 'IMO0857']",
+  "imo_name": null,
+  "format": null,
+  "seen": 4,
+  "gears": null
+ },
+ "robHfo": {
+  "imo_id": "IMO0674",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Fuel quantity remaining onboard",
+  "format": "n..4,1",
+  "seen": 12,
+  "gears": null
+ },
+ "robLsfo": {
+  "imo_id": "IMO0674",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Fuel quantity remaining onboard",
+  "format": "n..4,1",
+  "seen": 12,
+  "gears": null
+ },
+ "robUlsfo": {
+  "imo_id": "IMO0674",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Fuel quantity remaining onboard",
+  "format": "n..4,1",
+  "seen": 12,
+  "gears": null
+ },
+ "robDo": {
+  "imo_id": "IMO0674",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Fuel quantity remaining onboard",
+  "format": "n..4,1",
+  "seen": 12,
+  "gears": null
+ },
+ "robMgo": {
+  "imo_id": "IMO0674",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Fuel quantity remaining onboard",
+  "format": "n..4,1",
+  "seen": 12,
+  "gears": null
+ },
+ "robUlsmgo": {
+  "imo_id": "IMO0674",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Fuel quantity remaining onboard",
+  "format": "n..4,1",
+  "seen": 12,
+  "gears": null
+ },
+ "robMecylOil": {
+  "imo_id": "IMO0676",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Cylinder lube oil remaining onboard",
+  "format": "n..4,1",
+  "seen": 12,
+  "gears": null
+ },
+ "robMelscylOil": {
+  "imo_id": "IMO0676",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Cylinder lube oil remaining onboard",
+  "format": "n..4,1",
+  "seen": 12,
+  "gears": null
+ },
+ "robGecylOil": {
+  "imo_id": "IMO0676",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Cylinder lube oil remaining onboard",
+  "format": "n..4,1",
+  "seen": 12,
+  "gears": null
+ },
+ "nextPortEtaUtc": {
+  "imo_id": "IMO0064",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Date and time of arrival - estimated",
+  "format": "an..35",
+  "seen": 7,
+  "gears": null
+ },
+ "nextPortCode": {
+  "imo_id": "IMO0084",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Next port of call, coded",
+  "format": "an5",
+  "seen": 7,
+  "gears": null
+ },
+ "nextPortName": {
+  "imo_id": "IMO0085",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Next port of call name",
+  "format": "an..256",
+  "seen": 7,
+  "gears": null
+ },
+ "distanceToGo": {
+  "imo_id": "IMO0615",
+  "rule": "MOST_SPECIFIC",
+  "note": "candidates=['IMO0537', 'IMO0615']",
+  "imo_name": "Distance to next port",
+  "format": "n..4,1",
+  "seen": 8,
+  "gears": null
+ },
+ "nextPortEtaLtc": {
+  "imo_id": "IMO0543",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Date and time to location in port - planned",
+  "format": "an..35",
+  "seen": 7,
+  "gears": null
+ },
+ "shipCourse": {
+  "imo_id": "IMO0332",
+  "rule": "MOST_SPECIFIC",
+  "note": "candidates=['IMO0332', 'IMO0620']",
+  "imo_name": "Course over ground",
+  "format": "n..4,1",
+  "seen": 8,
+  "gears": null
+ },
+ "avgShipSpeedSlr": {
+  "imo_id": "IMO0333",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Speed over ground",
+  "format": "n..4,1",
+  "seen": 8,
+  "gears": null
+ },
+ "steamingDistanceSlr": {
+  "imo_id": "IMO0613",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Distance over ground",
+  "format": "n..4,1",
+  "seen": 8,
+  "gears": null
+ },
+ "avgShaftRevSlr": {
+  "imo_id": "IMO0617",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Speed propeller",
+  "format": "n..4,1",
+  "seen": 8,
+  "gears": null
+ },
+ "waveHeight": {
+  "imo_id": "IMO0632",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Sea height",
+  "format": "n..2",
+  "seen": 5,
+  "gears": null
+ },
+ "waveDirection": {
+  "imo_id": "IMO0631",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Sea direction, true",
+  "format": "n..3",
+  "seen": 5,
+  "gears": null
+ },
+ "trueWindDirection": {
+  "imo_id": "IMO0627",
+  "rule": "MOST_SPECIFIC",
+  "note": "candidates=['IMO0360', 'IMO0627']",
+  "imo_name": "Wind direction, estimated, true",
+  "format": "n..3,1",
+  "seen": 5,
+  "gears": null
+ },
+ "relWindDirection": {
+  "imo_id": "IMO0626",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Wind direction, estimated, relative",
+  "format": "n..3,1",
+  "seen": 5,
+  "gears": null
+ },
+ "beaufortScale": {
+  "imo_id": "IMO0625",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Wind force",
+  "format": "n..2",
+  "seen": 5,
+  "gears": null
+ },
+ "airTemp": {
+  "imo_id": "IMO0628",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Air temperature",
+  "format": "n..3,1",
+  "seen": 5,
+  "gears": null
+ },
+ "berthName": {
+  "imo_id": "IMO0548",
+  "rule": "MOST_SPECIFIC",
+  "note": "candidates=['IMO0548', 'IMO0758']",
+  "imo_name": "Berth, coded",
+  "format": "To be defined",
+  "seen": 1,
+  "gears": null
+ },
+ "etd": {
+  "imo_id": "IMO0066",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Date and time of departure - estimated",
+  "format": "an..35",
+  "seen": 1,
+  "gears": null
+ },
+ "etb": {
+  "imo_id": "IMO0541",
+  "rule": "CODEBOOK_1_1",
+  "note": null,
+  "imo_name": "Date and time to location in port - estimated",
+  "format": "an..35",
+  "seen": 1,
+  "gears": null
+ }
+}

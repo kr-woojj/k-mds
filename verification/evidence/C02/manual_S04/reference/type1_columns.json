@@ -1,0 +1,944 @@
+[
+ {
+  "col": "D",
+  "idx": 4,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "Voyage No.",
+  "sub": null,
+  "format": "X"
+ },
+ {
+  "col": "E",
+  "idx": 5,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "Port code (DEPARTURE)",
+  "sub": null,
+  "format": "UNLOCODE"
+ },
+ {
+  "col": "F",
+  "idx": 6,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "Departure Date (UTC)",
+  "sub": null,
+  "format": "YYYY-MM-DD"
+ },
+ {
+  "col": "G",
+  "idx": 7,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "Departure time (UTC)",
+  "sub": null,
+  "format": "HH:MM"
+ },
+ {
+  "col": "H",
+  "idx": 8,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "Cargo operation (YES/NO)",
+  "sub": null,
+  "format": "(Yes/No)"
+ },
+ {
+  "col": "I",
+  "idx": 9,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "Port code (ARRIVAL)",
+  "sub": null,
+  "format": "UNLOCODE"
+ },
+ {
+  "col": "J",
+  "idx": 10,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "Arrival Date (UTC)",
+  "sub": null,
+  "format": "YYYY-MM-DD"
+ },
+ {
+  "col": "K",
+  "idx": 11,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "Arrival time (UTC)",
+  "sub": null,
+  "format": "HH:MM"
+ },
+ {
+  "col": "L",
+  "idx": 12,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "Cargo operation (YES/NO)",
+  "sub": null,
+  "format": "(Yes/No)"
+ },
+ {
+  "col": "M",
+  "idx": 13,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "Time spent at sea (hours)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "N",
+  "idx": 14,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "Distance travelled (nm)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "O",
+  "idx": 15,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "Total idle spent time at anchorage (hours)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "P",
+  "idx": 16,
+  "group": "[MRV] MANDATORY",
+  "name": "Cargo carried",
+  "sub": "Passenger",
+  "format": "0"
+ },
+ {
+  "col": "Q",
+  "idx": 17,
+  "group": "[MRV] MANDATORY",
+  "name": null,
+  "sub": "Weight or Volume",
+  "format": "0",
+  "name_ff": "Cargo carried"
+ },
+ {
+  "col": "R",
+  "idx": 18,
+  "group": "[MRV] MANDATORY",
+  "name": "Transport Work",
+  "sub": "Passenger",
+  "format": null
+ },
+ {
+  "col": "S",
+  "idx": 19,
+  "group": "[MRV] MANDATORY",
+  "name": "Transport Work",
+  "sub": "Weight or Volume",
+  "format": null
+ },
+ {
+  "col": "T",
+  "idx": 20,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "HFO ROB at departure (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "U",
+  "idx": 21,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "HFO ROB at arrival (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "V",
+  "idx": 22,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "At Berth HFO Consumption (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "W",
+  "idx": 23,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "HFO Consumption (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "X",
+  "idx": 24,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "LFO ROB at departure (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "Y",
+  "idx": 25,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "LFO ROB at arrival (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "Z",
+  "idx": 26,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "At Berth LFO Consumption (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AA",
+  "idx": 27,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "LFO Consumption (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AB",
+  "idx": 28,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "MDO ROB at departure (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AC",
+  "idx": 29,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "MDO ROB at arrival (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AD",
+  "idx": 30,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "At Berth MDO Consumption (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AE",
+  "idx": 31,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "MDO Consumption (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AF",
+  "idx": 32,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "MGO ROB at departure (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AG",
+  "idx": 33,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "MGO ROB at arrival (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AH",
+  "idx": 34,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "At Berth MGO Consumption (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AI",
+  "idx": 35,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "MGO Consumption (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AJ",
+  "idx": 36,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "LPG (Propane) ROB at departure (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AK",
+  "idx": 37,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "LPG (Propane) ROB at arrival (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AL",
+  "idx": 38,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "At Berth LPG (Propane) Consumption (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AM",
+  "idx": 39,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "LPG (Propane) Consumption (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AN",
+  "idx": 40,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "LPG (Butane) ROB at departure (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AO",
+  "idx": 41,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "LPG (Butane) ROB at arrival (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AP",
+  "idx": 42,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "At Berth LPG(Butane) Consumption (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AQ",
+  "idx": 43,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "LPG (Butane) Consumption (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AR",
+  "idx": 44,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "Methanol ROB at departure (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AS",
+  "idx": 45,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "Methanol ROB at arrival (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AT",
+  "idx": 46,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "At Berth Methanol Consumption (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AU",
+  "idx": 47,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "Methanol Consumption (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AV",
+  "idx": 48,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "Ethanol ROB at departure (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AW",
+  "idx": 49,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "Ethanol ROB at arrival (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AX",
+  "idx": 50,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "At Berth Ethanol Consumption (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AY",
+  "idx": 51,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "Ethanol Consumption (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "AZ",
+  "idx": 52,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "LNG ROB at departure(MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "BA",
+  "idx": 53,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "LNG ROB at arrival (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "BB",
+  "idx": 54,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "At Berth LNG Consumption (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "BC",
+  "idx": 55,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "LNG Consumption (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "BD",
+  "idx": 56,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "Other ROB at departure (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "BE",
+  "idx": 57,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "Other ROB at arrival (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "BF",
+  "idx": 58,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "At Berth Other Consumption (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "BG",
+  "idx": 59,
+  "group": "[DCS, MRV] MANDATORY",
+  "name": "Other Consumption (MT)",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "BI",
+  "idx": 61,
+  "group": "[DCS, MRV] Bunkering before arrival",
+  "name": "Voyage Number",
+  "sub": null,
+  "format": null
+ },
+ {
+  "col": "BJ",
+  "idx": 62,
+  "group": "[DCS, MRV] Bunkering before arrival",
+  "name": "Received Quantity",
+  "sub": "HFO",
+  "format": "0000.00 (MT)"
+ },
+ {
+  "col": "BK",
+  "idx": 63,
+  "group": "[DCS, MRV] Bunkering before arrival",
+  "name": null,
+  "sub": "LFO",
+  "format": null,
+  "name_ff": "Received Quantity"
+ },
+ {
+  "col": "BL",
+  "idx": 64,
+  "group": "[DCS, MRV] Bunkering before arrival",
+  "name": null,
+  "sub": "MDO",
+  "format": null,
+  "name_ff": "Received Quantity"
+ },
+ {
+  "col": "BM",
+  "idx": 65,
+  "group": "[DCS, MRV] Bunkering before arrival",
+  "name": null,
+  "sub": "MGO",
+  "format": null,
+  "name_ff": "Received Quantity"
+ },
+ {
+  "col": "BN",
+  "idx": 66,
+  "group": "[DCS, MRV] Bunkering before arrival",
+  "name": null,
+  "sub": "LPG(Propane)",
+  "format": null,
+  "name_ff": "Received Quantity"
+ },
+ {
+  "col": "BO",
+  "idx": 67,
+  "group": "[DCS, MRV] Bunkering before arrival",
+  "name": null,
+  "sub": "LPG(Butane)",
+  "format": null,
+  "name_ff": "Received Quantity"
+ },
+ {
+  "col": "BP",
+  "idx": 68,
+  "group": "[DCS, MRV] Bunkering before arrival",
+  "name": null,
+  "sub": "Methanol",
+  "format": null,
+  "name_ff": "Received Quantity"
+ },
+ {
+  "col": "BQ",
+  "idx": 69,
+  "group": "[DCS, MRV] Bunkering before arrival",
+  "name": null,
+  "sub": "Ethanol",
+  "format": null,
+  "name_ff": "Received Quantity"
+ },
+ {
+  "col": "BR",
+  "idx": 70,
+  "group": "[DCS, MRV] Bunkering before arrival",
+  "name": null,
+  "sub": "LNG",
+  "format": null,
+  "name_ff": "Received Quantity"
+ },
+ {
+  "col": "BS",
+  "idx": 71,
+  "group": "[DCS, MRV] Bunkering before arrival",
+  "name": null,
+  "sub": "Other",
+  "format": null,
+  "name_ff": "Received Quantity"
+ },
+ {
+  "col": "BT",
+  "idx": 72,
+  "group": "[DCS, MRV] Bunkering after arrival",
+  "name": "Port code",
+  "sub": null,
+  "format": null
+ },
+ {
+  "col": "BU",
+  "idx": 73,
+  "group": "[DCS, MRV] Bunkering after arrival",
+  "name": "Received Quantity",
+  "sub": "HFO",
+  "format": "0000.00 (MT)"
+ },
+ {
+  "col": "BV",
+  "idx": 74,
+  "group": "[DCS, MRV] Bunkering after arrival",
+  "name": null,
+  "sub": "LFO",
+  "format": null,
+  "name_ff": "Received Quantity"
+ },
+ {
+  "col": "BW",
+  "idx": 75,
+  "group": "[DCS, MRV] Bunkering after arrival",
+  "name": null,
+  "sub": "MDO",
+  "format": null,
+  "name_ff": "Received Quantity"
+ },
+ {
+  "col": "BX",
+  "idx": 76,
+  "group": "[DCS, MRV] Bunkering after arrival",
+  "name": null,
+  "sub": "MGO",
+  "format": null,
+  "name_ff": "Received Quantity"
+ },
+ {
+  "col": "BY",
+  "idx": 77,
+  "group": "[DCS, MRV] Bunkering after arrival",
+  "name": null,
+  "sub": "LPG(Propane)",
+  "format": null,
+  "name_ff": "Received Quantity"
+ },
+ {
+  "col": "BZ",
+  "idx": 78,
+  "group": "[DCS, MRV] Bunkering after arrival",
+  "name": null,
+  "sub": "LPG(Butane)",
+  "format": null,
+  "name_ff": "Received Quantity"
+ },
+ {
+  "col": "CA",
+  "idx": 79,
+  "group": "[DCS, MRV] Bunkering after arrival",
+  "name": null,
+  "sub": "Methanol",
+  "format": null,
+  "name_ff": "Received Quantity"
+ },
+ {
+  "col": "CB",
+  "idx": 80,
+  "group": "[DCS, MRV] Bunkering after arrival",
+  "name": null,
+  "sub": "Ethanol",
+  "format": null,
+  "name_ff": "Received Quantity"
+ },
+ {
+  "col": "CC",
+  "idx": 81,
+  "group": "[DCS, MRV] Bunkering after arrival",
+  "name": null,
+  "sub": "LNG",
+  "format": null,
+  "name_ff": "Received Quantity"
+ },
+ {
+  "col": "CD",
+  "idx": 82,
+  "group": "[DCS, MRV] Bunkering after arrival",
+  "name": null,
+  "sub": "Other",
+  "format": null,
+  "name_ff": "Received Quantity"
+ },
+ {
+  "col": "CF",
+  "idx": 84,
+  "group": "[DCS, MRV] De-bunkering before arrival",
+  "name": "Voyage Number",
+  "sub": null,
+  "format": null
+ },
+ {
+  "col": "CG",
+  "idx": 85,
+  "group": "[DCS, MRV] De-bunkering before arrival",
+  "name": "De-bunkered Quantity",
+  "sub": "HFO",
+  "format": "0000.00 (MT)"
+ },
+ {
+  "col": "CH",
+  "idx": 86,
+  "group": "[DCS, MRV] De-bunkering before arrival",
+  "name": null,
+  "sub": "LFO",
+  "format": null,
+  "name_ff": "De-bunkered Quantity"
+ },
+ {
+  "col": "CI",
+  "idx": 87,
+  "group": "[DCS, MRV] De-bunkering before arrival",
+  "name": null,
+  "sub": "MDO",
+  "format": null,
+  "name_ff": "De-bunkered Quantity"
+ },
+ {
+  "col": "CJ",
+  "idx": 88,
+  "group": "[DCS, MRV] De-bunkering before arrival",
+  "name": null,
+  "sub": "MGO",
+  "format": null,
+  "name_ff": "De-bunkered Quantity"
+ },
+ {
+  "col": "CK",
+  "idx": 89,
+  "group": "[DCS, MRV] De-bunkering before arrival",
+  "name": null,
+  "sub": "LPG (Propane)",
+  "format": null,
+  "name_ff": "De-bunkered Quantity"
+ },
+ {
+  "col": "CL",
+  "idx": 90,
+  "group": "[DCS, MRV] De-bunkering before arrival",
+  "name": null,
+  "sub": "LPG (Butane)",
+  "format": null,
+  "name_ff": "De-bunkered Quantity"
+ },
+ {
+  "col": "CM",
+  "idx": 91,
+  "group": "[DCS, MRV] De-bunkering before arrival",
+  "name": null,
+  "sub": "Methanol",
+  "format": null,
+  "name_ff": "De-bunkered Quantity"
+ },
+ {
+  "col": "CN",
+  "idx": 92,
+  "group": "[DCS, MRV] De-bunkering before arrival",
+  "name": null,
+  "sub": "Ethanol",
+  "format": null,
+  "name_ff": "De-bunkered Quantity"
+ },
+ {
+  "col": "CO",
+  "idx": 93,
+  "group": "[DCS, MRV] De-bunkering before arrival",
+  "name": null,
+  "sub": "LNG",
+  "format": null,
+  "name_ff": "De-bunkered Quantity"
+ },
+ {
+  "col": "CP",
+  "idx": 94,
+  "group": "[DCS, MRV] De-bunkering before arrival",
+  "name": null,
+  "sub": "Other",
+  "format": null,
+  "name_ff": "De-bunkered Quantity"
+ },
+ {
+  "col": "CQ",
+  "idx": 95,
+  "group": "[DCS, MRV] De-bunkering after arrival",
+  "name": "Port code",
+  "sub": null,
+  "format": null
+ },
+ {
+  "col": "CR",
+  "idx": 96,
+  "group": "[DCS, MRV] De-bunkering after arrival",
+  "name": "De-bunkered Quantity",
+  "sub": "HFO",
+  "format": "0000.00 (MT)"
+ },
+ {
+  "col": "CS",
+  "idx": 97,
+  "group": "[DCS, MRV] De-bunkering after arrival",
+  "name": null,
+  "sub": "LFO",
+  "format": null,
+  "name_ff": "De-bunkered Quantity"
+ },
+ {
+  "col": "CT",
+  "idx": 98,
+  "group": "[DCS, MRV] De-bunkering after arrival",
+  "name": null,
+  "sub": "MDO",
+  "format": null,
+  "name_ff": "De-bunkered Quantity"
+ },
+ {
+  "col": "CU",
+  "idx": 99,
+  "group": "[DCS, MRV] De-bunkering after arrival",
+  "name": null,
+  "sub": "MGO",
+  "format": null,
+  "name_ff": "De-bunkered Quantity"
+ },
+ {
+  "col": "CV",
+  "idx": 100,
+  "group": "[DCS, MRV] De-bunkering after arrival",
+  "name": null,
+  "sub": "LPG (Propane)",
+  "format": null,
+  "name_ff": "De-bunkered Quantity"
+ },
+ {
+  "col": "CW",
+  "idx": 101,
+  "group": "[DCS, MRV] De-bunkering after arrival",
+  "name": null,
+  "sub": "LPG (Butane)",
+  "format": null,
+  "name_ff": "De-bunkered Quantity"
+ },
+ {
+  "col": "CX",
+  "idx": 102,
+  "group": "[DCS, MRV] De-bunkering after arrival",
+  "name": null,
+  "sub": "Methanol",
+  "format": null,
+  "name_ff": "De-bunkered Quantity"
+ },
+ {
+  "col": "CY",
+  "idx": 103,
+  "group": "[DCS, MRV] De-bunkering after arrival",
+  "name": null,
+  "sub": "Ethanol",
+  "format": null,
+  "name_ff": "De-bunkered Quantity"
+ },
+ {
+  "col": "CZ",
+  "idx": 104,
+  "group": "[DCS, MRV] De-bunkering after arrival",
+  "name": null,
+  "sub": "LNG",
+  "format": null,
+  "name_ff": "De-bunkered Quantity"
+ },
+ {
+  "col": "DA",
+  "idx": 105,
+  "group": "[DCS, MRV] De-bunkering after arrival",
+  "name": null,
+  "sub": "Other",
+  "format": null,
+  "name_ff": "De-bunkered Quantity"
+ },
+ {
+  "col": "DC",
+  "idx": 107,
+  "group": "[DCS] Correction",
+  "name": "Time spent at sea",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "DD",
+  "idx": 108,
+  "group": "[DCS] Correction",
+  "name": "Distance travelled",
+  "sub": null,
+  "format": "0"
+ },
+ {
+  "col": "DE",
+  "idx": 109,
+  "group": "[DCS] Correction",
+  "name": "Fuel consumption",
+  "sub": "HFO",
+  "format": "0000.00 (MT)"
+ },
+ {
+  "col": "DF",
+  "idx": 110,
+  "group": "[DCS] Correction",
+  "name": null,
+  "sub": "LFO",
+  "format": null,
+  "name_ff": "Fuel consumption"
+ },
+ {
+  "col": "DG",
+  "idx": 111,
+  "group": "[DCS] Correction",
+  "name": null,
+  "sub": "MDO",
+  "format": null,
+  "name_ff": "Fuel consumption"
+ },
+ {
+  "col": "DH",
+  "idx": 112,
+  "group": "[DCS] Correction",
+  "name": null,
+  "sub": "MGO",
+  "format": null,
+  "name_ff": "Fuel consumption"
+ },
+ {
+  "col": "DI",
+  "idx": 113,
+  "group": "[DCS] Correction",
+  "name": null,
+  "sub": "LPG (Propane)",
+  "format": null,
+  "name_ff": "Fuel consumption"
+ },
+ {
+  "col": "DJ",
+  "idx": 114,
+  "group": "[DCS] Correction",
+  "name": null,
+  "sub": "LPG (Butane)",
+  "format": null,
+  "name_ff": "Fuel consumption"
+ },
+ {
+  "col": "DK",
+  "idx": 115,
+  "group": "[DCS] Correction",
+  "name": null,
+  "sub": "Methanol",
+  "format": null,
+  "name_ff": "Fuel consumption"
+ },
+ {
+  "col": "DL",
+  "idx": 116,
+  "group": "[DCS] Correction",
+  "name": null,
+  "sub": "Ethanol",
+  "format": null,
+  "name_ff": "Fuel consumption"
+ },
+ {
+  "col": "DM",
+  "idx": 117,
+  "group": "[DCS] Correction",
+  "name": null,
+  "sub": "LNG",
+  "format": null,
+  "name_ff": "Fuel consumption"
+ },
+ {
+  "col": "DN",
+  "idx": 118,
+  "group": "[DCS] Correction",
+  "name": null,
+  "sub": "Other",
+  "format": null,
+  "name_ff": "Fuel consumption"
+ }
+]

@@ -1,0 +1,353 @@
+{
+ "checks": 53,
+ "findings": [
+  {
+   "row": "row1",
+   "col": "Cargo operation (DEPARTURE)",
+   "code": "MANDATORY_MISSING",
+   "severity": "FAIL",
+   "detail": "payload 에서 도출 불가"
+  },
+  {
+   "row": "row1",
+   "col": "Total idle spent time at anchorage (hours)",
+   "code": "MANDATORY_MISSING",
+   "severity": "FAIL",
+   "detail": "payload 에서 도출 불가"
+  },
+  {
+   "row": "row1",
+   "col": "Cargo carried (Passenger)",
+   "code": "MRV_MANDATORY_MISSING",
+   "severity": "FAIL",
+   "detail": "Noon/Event 페이로드에 화물량 항목 없음"
+  },
+  {
+   "row": "row1",
+   "col": "Cargo carried (Weight or Volume)",
+   "code": "MRV_MANDATORY_MISSING",
+   "severity": "FAIL",
+   "detail": "Noon/Event 페이로드에 화물량 항목 없음"
+  },
+  {
+   "row": "row1",
+   "col": "Port code (DEPARTURE)",
+   "code": "UNLOCODE_NOT_IN_TEMPLATE_LIST",
+   "severity": "WARNING",
+   "detail": "PACTB — 형식(an5)은 적합, 템플릿 UNLOCODE 시트에 미수록(템플릿 목록 갱신 필요)"
+  },
+  {
+   "row": "row1",
+   "col": "MGO",
+   "code": "MASS_BALANCE",
+   "severity": "WARNING",
+   "detail": "dep 115.98 + bunk 88.3 − cons 0.6 − arr 202.26 = 1.42 (tol ±1.0112999999999999)"
+  },
+  {
+   "row": "row1",
+   "col": "Distance travelled (nm)",
+   "code": "DISTANCE_CROSSCHECK",
+   "severity": "WARNING",
+   "detail": "Σsteaming 871.6 vs ΔdistanceToGo 969.6"
+  },
+  {
+   "row": "row1",
+   "col": "At Berth HFO Consumption (MT)",
+   "code": "AT_BERTH_ROB_DELTA_UNREPORTED",
+   "severity": "WARNING",
+   "detail": "정박 중 ROB 감소 19.07 MT 이나 이벤트 보고 소비 0 MT (CARGO_WORK 이벤트에 소비량 없음)"
+  },
+  {
+   "row": "row1",
+   "col": "At Berth MGO Consumption (MT)",
+   "code": "AT_BERTH_ROB_DELTA_UNREPORTED",
+   "severity": "WARNING",
+   "detail": "정박 중 ROB 감소 0.8 MT 이나 이벤트 보고 소비 0 MT (CARGO_WORK 이벤트에 소비량 없음)"
+  },
+  {
+   "row": "row2",
+   "col": "Port code (ARRIVAL)",
+   "code": "MANDATORY_MISSING",
+   "severity": "INCOMPLETE_LEG",
+   "detail": "레그 미완료(도착 이벤트 없음)"
+  },
+  {
+   "row": "row2",
+   "col": "Arrival Date (UTC)",
+   "code": "MANDATORY_MISSING",
+   "severity": "INCOMPLETE_LEG",
+   "detail": "레그 미완료(도착 이벤트 없음)"
+  },
+  {
+   "row": "row2",
+   "col": "Arrival time (UTC)",
+   "code": "MANDATORY_MISSING",
+   "severity": "INCOMPLETE_LEG",
+   "detail": "레그 미완료(도착 이벤트 없음)"
+  },
+  {
+   "row": "row2",
+   "col": "Cargo operation (ARRIVAL)",
+   "code": "MANDATORY_MISSING",
+   "severity": "INCOMPLETE_LEG",
+   "detail": "레그 미완료(도착 이벤트 없음)"
+  },
+  {
+   "row": "row2",
+   "col": "Time spent at sea (hours)",
+   "code": "MANDATORY_MISSING",
+   "severity": "INCOMPLETE_LEG",
+   "detail": "레그 미완료(도착 이벤트 없음)"
+  },
+  {
+   "row": "row2",
+   "col": "Total idle spent time at anchorage (hours)",
+   "code": "MANDATORY_MISSING",
+   "severity": "INCOMPLETE_LEG",
+   "detail": "레그 미완료(도착 이벤트 없음)"
+  },
+  {
+   "row": "row2",
+   "col": "Cargo carried (Passenger)",
+   "code": "MRV_MANDATORY_MISSING",
+   "severity": "FAIL",
+   "detail": "Noon/Event 페이로드에 화물량 항목 없음"
+  },
+  {
+   "row": "row2",
+   "col": "Cargo carried (Weight or Volume)",
+   "code": "MRV_MANDATORY_MISSING",
+   "severity": "FAIL",
+   "detail": "Noon/Event 페이로드에 화물량 항목 없음"
+  }
+ ],
+ "fail": 6,
+ "warning": 5,
+ "incomplete": 6,
+ "event_code_notes": {
+  "BUNKERING": "FAL50 Event type 에 Bunkering 없음 → EV28 Other event (F-12)",
+  "CARGO_WORK": "하역은 Operation type(OP11/OP15) 성격 → EV28 + OP 미지정 (F-12)",
+  "RUP": "R/UP(Rung Up) → EV10 Begin of sea passage 로 해석(추정)",
+  "DEPARTURE_SBY": "S/By(Stand-by) 시각을 ATD 로 사용(추정)"
+ },
+ "fuel_map": {
+  "Hfo": {
+   "fal50": "HFO",
+   "gears": "HFO"
+  },
+  "Lsfo": {
+   "fal50": "VLSFO2020",
+   "gears": "HFO"
+  },
+  "Ulsfo": {
+   "fal50": "ULSFO2020",
+   "gears": "HFO"
+  },
+  "Do": {
+   "fal50": "MDO",
+   "gears": "MDO"
+  },
+  "Mgo": {
+   "fal50": "MGO",
+   "gears": "MGO"
+  },
+  "Ulsmgo": {
+   "fal50": "ULSMGO2020",
+   "gears": "MGO"
+  }
+ },
+ "mapping_stats": {
+  "payload_fields": 71,
+  "mapped": 70,
+  "rules": {
+   "MOST_SPECIFIC": 9,
+   "EVENT_CONTEXT": 3,
+   "CODEBOOK_1_1": 34,
+   "FUEL_TYPE_STRUCTURE": 24,
+   "AMBIGUOUS": 1
+  }
+ },
+ "api_validation": {
+  "mandatory_fields": 52,
+  "spec_fields": 132,
+  "findings": [
+   {
+    "row": "row1",
+    "field": "DepartureCargoOperYn",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row1",
+    "field": "TotalIdleSpentTime",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row1",
+    "field": "ImoNo",
+    "code": "IMO_NO_FORMAT",
+    "severity": "FAIL",
+    "detail": "'00000009' — 'IMO decimal of the ship' 7자리 아님(테스트 선박 ID)"
+   },
+   {
+    "row": "row2",
+    "field": "ArrivalDate",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "ArrivalTime",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "ArrivalCargoOperYn",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "TimeSpentAtSea",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "TotalIdleSpentTime",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "HfoArrival",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "BerthHfoConsump",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "LfoArrival",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "BerthLfoConsump",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "MdoArrival",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "BerthMdoConsump",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "MgoArrival",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "BerthMgoConsump",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "LpgpArrival",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "BerthLpgpConsump",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "LpgbArrival",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "BerthLpgbConsump",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "MethanolArrival",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "BerthMethanolConsump",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "EthanolArrival",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "BerthEthanolConsump",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "BerthLngConsump",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "LngArrival",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "OtherArrival",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "BerthOtherConsump",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "ImoNo",
+    "code": "IMO_NO_FORMAT",
+    "severity": "FAIL",
+    "detail": "'00000009' — 'IMO decimal of the ship' 7자리 아님(테스트 선박 ID)"
+   }
+  ],
+  "fail": 29
+ }
+}

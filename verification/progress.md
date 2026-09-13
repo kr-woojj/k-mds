@@ -184,3 +184,25 @@
 - Step 4 PASS: Consumer 수신본 ≡ vessellink 원본 (sha256 동일, Noon fb23ffbd… / DAQ 04317770…). 새 finding F-14(백엔드 무인증 공개), F-15(정적 스냅샷).
 - 사용자 UI 재현 가이드: evidence/C02/manual_S03/step-04/BROWSER_TEST_GUIDE.md (Consumer UI 브라우저 기동 완료).
 - Step 4 사용자 재현 완료: Consumer UI(CONNECTOR 탭) 다운로드본 2건 sha256 = API 수신본 = vessellink 원본 (browser-hash.txt). 캡처 2건 보존. Step 4 PASS 확정(재현 1회).
+
+---
+
+## 세션 S04 — 2026-09-13
+
+### 사용자 지시
+- data/raw/KR-Systems 에 KR-GEARs Type1 Voyage Template(Rev.2.1), Sample xlsx, Nexawave API URL 배치.
+- IDS Consumer 로 받은 선박 환경규제 의무보고 데이터 → IMO Compendium 표준 매핑 → KR Systems API 데이터 리스트 변환 검증 → 보고용 PPT 1장(먼저 markdown).
+
+### 시작 루틴
+- PROGRESS/CASE_LIST: C02 partial(S03) 확인. 이번 과업 = C02 Step 7(매핑)·8(검증)·9(GEARs 변환)·11/12(입력 완전성) 로컬 수행. 시뮬레이터 smoke: S03 환경 유지(변경 없음).
+- 근거 자료: GEARs_Template_Type1_Rev.2.1.xlsm(sha256 e7acd292…, Type 1 112열/그룹 7종, UNLOCODE 시트, Setting Cf표 Rev.2.1 2024-12-24), GEARs_Sample_Type 1.xlsx(0cc937a9…, 122행 샘플), Nexawave_URL.url → https://nexawave.krs.co.kr/Api/Api (API 65종, GEARs 13종). 상세: /Api/ApiDetail?pApiId=64 "Post DCS/MRV Voyage Template" 필드 132개(필수 52), Token 헤더.
+- 도구: verification/adapters/gears_voyage_transform.py (코드북+FAL50 registry+Code list+템플릿 → 매핑표·IMO 정준 이벤트·Type1 행·API 리스트·검증 보고). 산출물 evidence/C02/manual_S04/.
+
+### S04 결과
+- 표준 매핑: 71 필드 중 70 매핑(코드북 1:1 34, 연료구조 24, 최특정 9, 컨텍스트 3, 미해결 isEuPort 1). 이벤트 코드 EV01/02/16/10, BUNKERING·CARGO_WORK→EV28. 연료 Lsfo→VLSFO2020→GEARs HFO 열(FAL50 설명 근거, D6).
+- GEARs Type1 변환: 레그 2건(레그1 PACTB→GTPRQ 완료: 124.4 h, 871.6 nm, HFO 54.96 MT, 벙커 599.97 MT; 레그2 미완료). 템플릿 검사 53건 PASS 36 / FAIL 6(필수 미도출) / WARNING 5 / 미완료 6.
+- Nexawave API: Post DCS/MRV Voyage Template 132 필드(필수 52) 확보 → 데이터 리스트 생성, 레그1 필수 50/52. 전송 미실행(Token·endpoint 미확보).
+- 판정 PARTIAL. 보고서 REPORT_GHG_GEARs_verification.md + GHG_GEARs_verification_1p.pptx. 신규 finding F-16~F-21, 결정 D6~D8.
+- 도구 결함 수정 기록: UNLOCODE 시트 파서(A열 공백) 오류로 초기 실행에서 GTPRQ 를 미수록으로 오판 → 수정 후 재실행(PACTB 만 미수록, WARNING 로 조정).
+
+세션 S04 종료 상태: NEEDS_INPUT (D6~D8, 랩오투원·GEARs 조치)

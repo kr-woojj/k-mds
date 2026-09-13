@@ -1,0 +1,341 @@
+{
+ "api": "GEARs Post DCS/MRV Voyage Template (POST v1, Nexawave pApiId=64)",
+ "auth": "Token 헤더(필수) — 미보유, 실제 전송 안 함",
+ "contract_status": "FIELD_LIST_CONFIRMED (Nexawave ApiDetail 2026-09-13, 132 fields / 52 mandatory); endpoint URL 미노출; 실제 POST 미실행(승인 필요)",
+ "assumptions": {
+  "DataVerifYear": "2026 (이벤트 연도)",
+  "VerificationTypeCode": "002 (IMO DCS) — 001(EU MRV) 병행 여부 사람 결정"
+ },
+ "vessel": {
+  "imo_no": "00000009",
+  "ship_name": "TEST_BULK_DIESEL_09"
+ },
+ "template_revision": "Type1 Rev.2.1 (2024-12-24)",
+ "rows": [
+  {
+   "DataVerifYear": "2026",
+   "ImoNo": "00000009",
+   "VerificationTypeCode": "002",
+   "VoyageNo": "1",
+   "PortCodeDep": "PACTB",
+   "DepartureDate": "2026-04-19",
+   "DepartureTime": "20:36",
+   "DepartureCargoOperYn": null,
+   "PortCodeArr": "GTPRQ",
+   "ArrivalDate": "2026-04-25",
+   "ArrivalTime": "01:00",
+   "ArrivalCargoOperYn": "Yes",
+   "TimeSpentAtSea": 124.4,
+   "DistanceTravelled": 871.6,
+   "TotalIdleSpentTime": null,
+   "CargoPassenger": null,
+   "CargoWeight": null,
+   "TransPassenger": null,
+   "TransWeight": null,
+   "HfoDepart": 298.69,
+   "HfoArrival": 841.9,
+   "BerthHfoConsump": 0,
+   "HfoConsump": 54.96,
+   "BdvHfo": 599.97,
+   "LfoDepart": 0,
+   "LfoArrival": 0,
+   "BerthLfoConsump": 0,
+   "LfoConsump": 0,
+   "BdvLfo": 0.0,
+   "MdoDepart": 0,
+   "MdoArrival": 0,
+   "BerthMdoConsump": 0,
+   "MdoConsump": 0,
+   "BdvMdo": 0.0,
+   "MgoDepart": 115.98,
+   "MgoArrival": 202.26,
+   "BerthMgoConsump": 0,
+   "MgoConsump": 0.6,
+   "BdvMgo": 88.3,
+   "LpgpDepart": 0,
+   "LpgpArrival": 0,
+   "BerthLpgpConsump": 0,
+   "LpgpConsump": 0,
+   "BdvLpgp": 0.0,
+   "LpgbDepart": 0,
+   "LpgbArrival": 0,
+   "BerthLpgbConsump": 0,
+   "LpgbConsump": 0,
+   "BdvLpgb": 0.0,
+   "MethanolDepart": 0,
+   "MethanolArrival": 0,
+   "BerthMethanolConsump": 0,
+   "MethanolConsump": 0,
+   "BdvMethanol": 0.0,
+   "EthanolDepart": 0,
+   "EthanolArrival": 0,
+   "BerthEthanolConsump": 0,
+   "EthanolConsump": 0,
+   "BdvEthanol": 0.0,
+   "LngDepart": 0,
+   "LngArrival": 0,
+   "BerthLngConsump": 0,
+   "LngConsump": 0,
+   "BdvLng": 0.0,
+   "OtherDepart": 0,
+   "OtherArrival": 0,
+   "BerthOtherConsump": 0,
+   "OtherConsump": 0,
+   "BdvOther": 0.0
+  },
+  {
+   "DataVerifYear": "2026",
+   "ImoNo": "00000009",
+   "VerificationTypeCode": "002",
+   "VoyageNo": "1",
+   "PortCodeDep": "GTPRQ",
+   "DepartureDate": "2026-04-29",
+   "DepartureTime": "12:42",
+   "DepartureCargoOperYn": "Yes",
+   "PortCodeArr": null,
+   "ArrivalDate": null,
+   "ArrivalTime": null,
+   "ArrivalCargoOperYn": null,
+   "TimeSpentAtSea": null,
+   "DistanceTravelled": 337,
+   "TotalIdleSpentTime": null,
+   "CargoPassenger": null,
+   "CargoWeight": null,
+   "TransPassenger": null,
+   "TransWeight": null,
+   "HfoDepart": 820.48,
+   "HfoArrival": null,
+   "BerthHfoConsump": null,
+   "HfoConsump": 19.52,
+   "BdvHfo": 0.0,
+   "LfoDepart": 0,
+   "LfoArrival": null,
+   "BerthLfoConsump": null,
+   "LfoConsump": 0,
+   "BdvLfo": 0.0,
+   "MdoDepart": 0,
+   "MdoArrival": null,
+   "BerthMdoConsump": null,
+   "MdoConsump": 0,
+   "BdvMdo": 0.0,
+   "MgoDepart": 201.36,
+   "MgoArrival": null,
+   "BerthMgoConsump": null,
+   "MgoConsump": 0.3,
+   "BdvMgo": 0.0,
+   "LpgpDepart": 0,
+   "LpgpArrival": null,
+   "BerthLpgpConsump": null,
+   "LpgpConsump": 0,
+   "BdvLpgp": 0.0,
+   "LpgbDepart": 0,
+   "LpgbArrival": null,
+   "BerthLpgbConsump": null,
+   "LpgbConsump": 0,
+   "BdvLpgb": 0.0,
+   "MethanolDepart": 0,
+   "MethanolArrival": null,
+   "BerthMethanolConsump": null,
+   "MethanolConsump": 0,
+   "BdvMethanol": 0.0,
+   "EthanolDepart": 0,
+   "EthanolArrival": null,
+   "BerthEthanolConsump": null,
+   "EthanolConsump": 0,
+   "BdvEthanol": 0.0,
+   "LngDepart": 0,
+   "LngArrival": null,
+   "BerthLngConsump": null,
+   "LngConsump": 0,
+   "BdvLng": 0.0,
+   "OtherDepart": 0,
+   "OtherArrival": null,
+   "BerthOtherConsump": null,
+   "OtherConsump": 0,
+   "BdvOther": 0.0
+  }
+ ],
+ "validation": {
+  "mandatory_fields": 52,
+  "spec_fields": 132,
+  "findings": [
+   {
+    "row": "row1",
+    "field": "DepartureCargoOperYn",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row1",
+    "field": "TotalIdleSpentTime",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row1",
+    "field": "ImoNo",
+    "code": "IMO_NO_FORMAT",
+    "severity": "FAIL",
+    "detail": "'00000009' — 'IMO decimal of the ship' 7자리 아님(테스트 선박 ID)"
+   },
+   {
+    "row": "row2",
+    "field": "ArrivalDate",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "ArrivalTime",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "ArrivalCargoOperYn",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "TimeSpentAtSea",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "TotalIdleSpentTime",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "HfoArrival",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "BerthHfoConsump",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "LfoArrival",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "BerthLfoConsump",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "MdoArrival",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "BerthMdoConsump",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "MgoArrival",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "BerthMgoConsump",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "LpgpArrival",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "BerthLpgpConsump",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "LpgbArrival",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "BerthLpgbConsump",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "MethanolArrival",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "BerthMethanolConsump",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "EthanolArrival",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "BerthEthanolConsump",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "BerthLngConsump",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "LngArrival",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "OtherArrival",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "BerthOtherConsump",
+    "code": "API_MANDATORY_MISSING",
+    "severity": "FAIL"
+   },
+   {
+    "row": "row2",
+    "field": "ImoNo",
+    "code": "IMO_NO_FORMAT",
+    "severity": "FAIL",
+    "detail": "'00000009' — 'IMO decimal of the ship' 7자리 아님(테스트 선박 ID)"
+   }
+  ],
+  "fail": 29
+ }
+}

@@ -128,6 +128,23 @@
             "표준 근거 미확인(standard_lookup 도구 부재; 조항은 사람 확인 후 기입)"
           ],
           "cited_in": "착수회의 유엔젤 p.11"
+        },
+        {
+          "name": "KR GEARs Type1 Voyage Template",
+          "version": "Rev.2.1 (2024-12-24), sha256 e7acd2923790cd28…",
+          "clauses": [
+            "Type 1 시트 [DCS, MRV] MANDATORY 15열 + 연료 10종×4열",
+            "Setting: Cf HFO 3.114 / LFO 3.151 / MGO,MDO 3.206"
+          ],
+          "cited_in": "data/raw/KR-Systems/"
+        },
+        {
+          "name": "KR Nexawave GEARs Post DCS/MRV Voyage Template API",
+          "version": "v1, pApiId=64 (2026-09-13 조회)",
+          "clauses": [
+            "132 fields / 52 mandatory / Token header"
+          ],
+          "cited_in": "evidence/C02/manual_S04/kr-systems-api/voyage_template_fields.json"
         }
       ],
       "data_objects": [
@@ -222,10 +239,19 @@
           ],
           "result": "Step2 CONDITIONAL_PASS, Step3 CONDITIONAL_PASS, Step4 수신 PASS, 실 payload 매핑 FAIL(F-9~F-13)",
           "notes": "외부 K-MDS API 경유. 어댑터 시험 포함."
+        },
+        {
+          "run_no": "manual_S04",
+          "timestamp": "2026-09-13",
+          "evidence_paths": [
+            "verification/evidence/C02/manual_S04/"
+          ],
+          "result": "Step 7~9·11(GEARs 변환) PARTIAL: 매핑 70/71, Type1 레그1 변환, API 필수 50/52, 템플릿 검사 53건 PASS36/FAIL6/WARN5/미완료6",
+          "notes": "adapters/gears_voyage_transform.py (코드북+FAL50 registry+Code list 규칙). Nexawave Voyage Template API 132필드 확보(pApiId=64), 전송 미실행."
         }
       ],
       "owner_confirmed_by": "우정재(연구책임자, 2026-09-12)",
-      "last_updated": "2026-09-12",
+      "last_updated": "2026-09-13",
       "blockers": [
         "P1 검증기 저장소 부재(치명)",
         "P2 FAL50 xlsx 배치·버전 확정",
@@ -374,6 +400,19 @@
             "F-15"
           ],
           "note": "Consumer 수신본 ≡ vessellink 원본(sha256)"
+        },
+        {
+          "step": "7-9,11 (real LAB021 → IMO → GEARs Type1/API)",
+          "verdict": "PARTIAL",
+          "evidence": "manual_S04/REPORT_GHG_GEARs_verification.md, gears-transform/validation-report.json",
+          "findings": [
+            "F-16 Provider 이벤트에 DCS/MRV 필수 4종(출항 화물작업·정박유휴·화물량) 부재",
+            "F-17 정박 이벤트 연료소비 미보고(ROB 감소 19.07 MT)",
+            "F-18 MGO 질량수지 +1.42 MT, 거리 교차 871.6 vs 969.6",
+            "F-19 GEARs 템플릿 UNLOCODE 시트에 PACTB 미수록",
+            "F-20 ImoNo 7자리 형식 위반(테스트 선박)",
+            "F-21 Voyage Template API endpoint URL 미노출·Token 미보유"
+          ]
         }
       ],
       "human_decisions_pending": [
@@ -381,7 +420,10 @@
         "D2 에이전트 승인 후보 집합(F-STEP7-2) 을 랩오투원 코드북 IMO ID 43개로 확장 승인 여부 (거버넌스 결정)",
         "D3 랩오투원에 코드북 1:N 매핑(42/68 필드) 해소 규칙·표준 이벤트 코드(FAL50 EV) 대응 요청 여부",
         "D4 코드북 어댑터(verification/adapters/lab021_noon_adapter.py) 를 에이전트 ingress 에 내장할지, ROC(랩오투원) 측 변환으로 둘지",
-        "D5 DAQ Logger(ISO 19848) 검증 규칙 정의 여부 — 현재 NOT_TESTED"
+        "D5 DAQ Logger(ISO 19848) 검증 규칙 정의 여부 — 현재 NOT_TESTED",
+        "D6 VLSFO/ULSFO → GEARs HFO 열 분류 승인 (FAL50 Fuel type 설명 'HFO w/ S 0.1~0.5%' 근거)",
+        "D7 VerificationTypeCode 002(IMO DCS) 단독 / 001(EU MRV) 병행",
+        "D8 gears_voyage_transform 매핑 규칙을 GHG AI Agent 후보집합·ingress 에 반영(D2·D4 연계)"
       ]
     },
     {

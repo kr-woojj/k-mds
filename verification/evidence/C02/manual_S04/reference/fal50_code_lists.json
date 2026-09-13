@@ -1,0 +1,791 @@
+{
+ "Company ISM certificate ship type": [
+  {
+   "code": "BC",
+   "name": "Bulk carrier",
+   "desc": ""
+  },
+  {
+   "code": "CH",
+   "name": "Cargo high speed craft",
+   "desc": ""
+  },
+  {
+   "code": "CT",
+   "name": "Chemical tanker",
+   "desc": ""
+  },
+  {
+   "code": "GC",
+   "name": "Gas carrier",
+   "desc": ""
+  },
+  {
+   "code": "MO",
+   "name": "Mobile offshore drilling unit",
+   "desc": ""
+  },
+  {
+   "code": "OC",
+   "name": "Other cargo ship",
+   "desc": ""
+  },
+  {
+   "code": "OT",
+   "name": "Oil tanker",
+   "desc": ""
+  },
+  {
+   "code": "PH",
+   "name": "Passenger high speed craft",
+   "desc": ""
+  },
+  {
+   "code": "PS",
+   "name": "Passenger ship",
+   "desc": ""
+  }
+ ],
+ "Event type": [
+  {
+   "code": "EV01",
+   "name": "Arrival",
+   "desc": "Arrival at berth or anchorage within port"
+  },
+  {
+   "code": "EV02",
+   "name": "Departure",
+   "desc": "Departure from berth or anchorage within port"
+  },
+  {
+   "code": "EV03",
+   "name": "Begin of off-hire",
+   "desc": ""
+  },
+  {
+   "code": "EV04",
+   "name": "End of off-hire",
+   "desc": ""
+  },
+  {
+   "code": "EV05",
+   "name": "Arrival STS",
+   "desc": "Arrival at Ship To Ship location"
+  },
+  {
+   "code": "EV06",
+   "name": "Departure STS",
+   "desc": "Departure from STS location"
+  },
+  {
+   "code": "EV07",
+   "name": "STS",
+   "desc": "Events at which STS operation took place "
+  },
+  {
+   "code": "EV08",
+   "name": "Begin canal passage",
+   "desc": ""
+  },
+  {
+   "code": "EV09",
+   "name": "End canal passage",
+   "desc": ""
+  },
+  {
+   "code": "EV10",
+   "name": "Begin of sea passage",
+   "desc": ""
+  },
+  {
+   "code": "EV11",
+   "name": "End of sea passage",
+   "desc": ""
+  },
+  {
+   "code": "EV12",
+   "name": "Begin Anchoring",
+   "desc": ""
+  },
+  {
+   "code": "EV13",
+   "name": "End Anchoring",
+   "desc": ""
+  },
+  {
+   "code": "EV14",
+   "name": "Begin Drifting",
+   "desc": ""
+  },
+  {
+   "code": "EV15",
+   "name": "End Drifting",
+   "desc": ""
+  },
+  {
+   "code": "EV16",
+   "name": "Noon (Position) - Sea passage",
+   "desc": ""
+  },
+  {
+   "code": "EV17",
+   "name": "Noon (Position) - Port",
+   "desc": ""
+  },
+  {
+   "code": "EV18",
+   "name": "Noon (Position) - River",
+   "desc": ""
+  },
+  {
+   "code": "EV19",
+   "name": "Noon (Position) - Stoppage",
+   "desc": ""
+  },
+  {
+   "code": "EV20",
+   "name": "ETA update",
+   "desc": ""
+  },
+  {
+   "code": "EV21",
+   "name": "Begin fuel change over",
+   "desc": ""
+  },
+  {
+   "code": "EV22",
+   "name": "End fuel change over",
+   "desc": ""
+  },
+  {
+   "code": "EV23",
+   "name": "Change destination (Deviation)",
+   "desc": ""
+  },
+  {
+   "code": "EV24",
+   "name": "Begin of deviation",
+   "desc": ""
+  },
+  {
+   "code": "EV25",
+   "name": "End of deviation",
+   "desc": ""
+  },
+  {
+   "code": "EV26",
+   "name": "Entering special area",
+   "desc": ""
+  },
+  {
+   "code": "EV27",
+   "name": "Leaving special area",
+   "desc": ""
+  },
+  {
+   "code": "EV28",
+   "name": "Other event",
+   "desc": ""
+  },
+  {
+   "code": "EV29",
+   "name": "Performance snapshot",
+   "desc": ""
+  }
+ ],
+ "Operation type": [
+  {
+   "code": "OP01",
+   "name": "Sailing",
+   "desc": ""
+  },
+  {
+   "code": "OP02",
+   "name": "At anchor",
+   "desc": ""
+  },
+  {
+   "code": "OP03",
+   "name": "Dynamic positioning",
+   "desc": ""
+  },
+  {
+   "code": "OP04",
+   "name": "Operating in ice",
+   "desc": ""
+  },
+  {
+   "code": "OP05",
+   "name": "Manoeuvring",
+   "desc": ""
+  },
+  {
+   "code": "OP06",
+   "name": "Waiting",
+   "desc": ""
+  },
+  {
+   "code": "OP07",
+   "name": "At sea tank cleaning",
+   "desc": ""
+  },
+  {
+   "code": "OP08",
+   "name": "At sea purging",
+   "desc": ""
+  },
+  {
+   "code": "OP09",
+   "name": "At sea gas freeing",
+   "desc": ""
+  },
+  {
+   "code": "OP10",
+   "name": "At sea discharging",
+   "desc": ""
+  },
+  {
+   "code": "OP11",
+   "name": "In port loading",
+   "desc": ""
+  },
+  {
+   "code": "OP12",
+   "name": "In port gassing up",
+   "desc": ""
+  },
+  {
+   "code": "OP13",
+   "name": "In port cooling down",
+   "desc": ""
+  },
+  {
+   "code": "OP14",
+   "name": "In port berth",
+   "desc": ""
+  },
+  {
+   "code": "OP15",
+   "name": "In port discharging",
+   "desc": ""
+  },
+  {
+   "code": "OP16",
+   "name": "Laid up",
+   "desc": ""
+  },
+  {
+   "code": "OP17",
+   "name": "Dry dock",
+   "desc": ""
+  },
+  {
+   "code": "OP18",
+   "name": "Wet dock",
+   "desc": ""
+  },
+  {
+   "code": "OP19",
+   "name": "STS loading",
+   "desc": ""
+  },
+  {
+   "code": "OP20",
+   "name": "STS discharging",
+   "desc": ""
+  },
+  {
+   "code": "OP21",
+   "name": "Drifting",
+   "desc": ""
+  },
+  {
+   "code": "OP22",
+   "name": "Deviation from plan",
+   "desc": ""
+  },
+  {
+   "code": "OP23",
+   "name": "Emergency",
+   "desc": ""
+  }
+ ],
+ "Fuel type": [
+  {
+   "code": "Ethane",
+   "name": "Ethane",
+   "desc": ""
+  },
+  {
+   "code": "Ethanol",
+   "name": "Ethanol",
+   "desc": ""
+  },
+  {
+   "code": "HFO",
+   "name": "Heavy Fuel Oil ",
+   "desc": ""
+  },
+  {
+   "code": "LBG",
+   "name": "Liquefied Biogas, Bio-LNG",
+   "desc": ""
+  },
+  {
+   "code": "LFO",
+   "name": "Light Fuel Oil ",
+   "desc": ""
+  },
+  {
+   "code": "LNG",
+   "name": "Liquefied Natural Gas",
+   "desc": ""
+  },
+  {
+   "code": "LNGBO",
+   "name": "LNG boil-off cargo used as fuel",
+   "desc": ""
+  },
+  {
+   "code": "LNGN2",
+   "name": "Deducted portion of Nitrogen from LNG Fuel",
+   "desc": ""
+  },
+  {
+   "code": "LPG",
+   "name": "Liquefied Petroleum Gas",
+   "desc": ""
+  },
+  {
+   "code": "LPGB",
+   "name": "Liquefied Petroleum Gas, Butane",
+   "desc": ""
+  },
+  {
+   "code": "LPGP",
+   "name": "Liquefied Petroleum Gas, Propane",
+   "desc": ""
+  },
+  {
+   "code": "LSHFO",
+   "name": "Low Sulfur Heavy Fuel Oil",
+   "desc": ""
+  },
+  {
+   "code": "LSLFO",
+   "name": "Low Sulfur Fuel Oil",
+   "desc": ""
+  },
+  {
+   "code": "LSMGO",
+   "name": "Low Sulfur Marine Gas Oil",
+   "desc": ""
+  },
+  {
+   "code": "MDO",
+   "name": "Marine Diesel Oil ",
+   "desc": ""
+  },
+  {
+   "code": "Methanol",
+   "name": "Methanol ",
+   "desc": ""
+  },
+  {
+   "code": "MGO",
+   "name": "Marine Gas Oil",
+   "desc": ""
+  },
+  {
+   "code": "Other",
+   "name": "Other fuels type name ",
+   "desc": ""
+  },
+  {
+   "code": "ULSFO2020",
+   "name": "HFO w/ a sulphur content of 0.1% or below",
+   "desc": ""
+  },
+  {
+   "code": "ULSLFO2020",
+   "name": "LFO w/ a sulphur content of 0.1% or below",
+   "desc": ""
+  },
+  {
+   "code": "ULSMDO2020",
+   "name": "MDO w/ a sulphur content of 0.1% or below",
+   "desc": ""
+  },
+  {
+   "code": "ULSMGO2020",
+   "name": "MGO w/ a sulphur content of 0.1% or below",
+   "desc": ""
+  },
+  {
+   "code": "VLSFO",
+   "name": "Very Low Sulphur Fuel Oil",
+   "desc": ""
+  },
+  {
+   "code": "VLSFO2020",
+   "name": "HFO w/ a sulphur content between 0.1% and 0.5%",
+   "desc": ""
+  },
+  {
+   "code": "VLSLFO2020",
+   "name": "LFO w/ a sulphur content between 0.1% and 0.5%",
+   "desc": ""
+  }
+ ],
+ "Fuel type trade name": [
+  {
+   "code": "10",
+   "name": "LFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "30",
+   "name": "LFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "60",
+   "name": "LFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "80",
+   "name": "LFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "180",
+   "name": "HFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "380",
+   "name": "HFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "500",
+   "name": "HFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "600",
+   "name": "HFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "700",
+   "name": "HFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "850",
+   "name": "HFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "10LS",
+   "name": "LFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "180LS",
+   "name": "HFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "180ULS",
+   "name": "ULSFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "280LS",
+   "name": "HFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "30LS",
+   "name": "LFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "30ULS",
+   "name": "ULSFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "380LS",
+   "name": "HFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "500LS",
+   "name": "HFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "600LS",
+   "name": "HFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "60LS",
+   "name": "LFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "60ULS",
+   "name": "ULSFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "700LS",
+   "name": "HFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "80LS",
+   "name": "LFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "80ULS",
+   "name": "ULSFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "DMA",
+   "name": "MGO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "DMA LS",
+   "name": "MGO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "DMA: 2005",
+   "name": "MGO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "DMA: 2010",
+   "name": "MGO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "DMALS",
+   "name": "MGO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "DMALS0.1",
+   "name": "MGO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "DMB",
+   "name": "MDO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "DMB LS",
+   "name": "MDO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "DMBLS",
+   "name": "MDO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "DMC",
+   "name": "MDO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "DMCLS",
+   "name": "MDO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "DMX",
+   "name": "MGO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "DMXLS",
+   "name": "MGO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "DMZ",
+   "name": "MGO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "DMZLS",
+   "name": "MGO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "ETHANE",
+   "name": "ETHANE",
+   "desc": "Sulphur content >0.1%=Yes"
+  },
+  {
+   "code": "Ethanol",
+   "name": "Ethanol",
+   "desc": "Sulphur content >0.1%=Yes"
+  },
+  {
+   "code": "HDME50",
+   "name": "ULSFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "LNG",
+   "name": "LNG",
+   "desc": "Sulphur content >0.1%=Yes"
+  },
+  {
+   "code": "LPG",
+   "name": "LPG",
+   "desc": "Sulphur content >0.1%=Yes"
+  },
+  {
+   "code": "Methanol",
+   "name": "Methanol",
+   "desc": "Sulphur content >0.1%=Yes"
+  },
+  {
+   "code": "RMD 80LS",
+   "name": "LFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "RME 180",
+   "name": "HFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "RMG 380",
+   "name": "HFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "RMG380",
+   "name": "HFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "RMG380S3.5",
+   "name": "HFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "RMK 500",
+   "name": "HFO",
+   "desc": "Sulphur content >0.1%=No"
+  },
+  {
+   "code": "RMK 700",
+   "name": "HFO",
+   "desc": "Sulphur content >0.1%=No"
+  }
+ ],
+ "Ship type MARPOL Annex VI": [
+  {
+   "code": "M01",
+   "name": "Chemical tanker",
+   "desc": "MARPOL Annex VI, Reg. 2.1.31"
+  },
+  {
+   "code": "M02",
+   "name": "Bulk carrier",
+   "desc": "MARPOL Annex VI, Reg. 2.2.5"
+  },
+  {
+   "code": "M03",
+   "name": "Combination carrier",
+   "desc": "MARPOL Annex VI, Reg. 2.2.7"
+  },
+  {
+   "code": "M04",
+   "name": "Containership",
+   "desc": "MARPOL Annex VI, Reg. 2.2.9"
+  },
+  {
+   "code": "M05",
+   "name": "Cruise passenger ship",
+   "desc": "MARPOL Annex VI, Reg. 2.2.11"
+  },
+  {
+   "code": "M06",
+   "name": "Gas carrier",
+   "desc": "MARPOL Annex VI, Reg. 2.2.14"
+  },
+  {
+   "code": "M07",
+   "name": "General cargo ship",
+   "desc": "MARPOL Annex VI, Reg. 2.2.15"
+  },
+  {
+   "code": "M08",
+   "name": "LNG carrier",
+   "desc": "MARPOL Annex VI, Reg. 2.2.16"
+  },
+  {
+   "code": "M09",
+   "name": "Passenger ship",
+   "desc": "MARPOL Annex VI, Reg. 2.2.20"
+  },
+  {
+   "code": "M10",
+   "name": "Refrigerated cargo carrier",
+   "desc": "MARPOL Annex VI, Reg. 2.2.22"
+  },
+  {
+   "code": "M11",
+   "name": "Ro-ro cargo ship",
+   "desc": "MARPOL Annex VI, Reg. 2.2.26"
+  },
+  {
+   "code": "M12",
+   "name": "Vehicle carrier",
+   "desc": "MARPOL Annex VI, Reg. 2.2.27"
+  },
+  {
+   "code": "M13",
+   "name": "Ro-ro passenger ship",
+   "desc": "MARPOL Annex VI, Reg. 2.2.28"
+  },
+  {
+   "code": "M14",
+   "name": "Tanker",
+   "desc": "MARPOL Annex VI, Reg. 2.2.29"
+  }
+ ],
+ "Performance report type": [
+  {
+   "code": "1",
+   "name": "Noon data report",
+   "desc": ""
+  },
+  {
+   "code": "2",
+   "name": "Fuel consumption report",
+   "desc": ""
+  },
+  {
+   "code": "3",
+   "name": "CII report",
+   "desc": ""
+  }
+ ]
+}

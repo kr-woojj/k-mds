@@ -1,0 +1,9413 @@
+{
+ "GEARs Post DCS/MRV Annual Template": {
+  "pApiId": 63,
+  "http_status": 200,
+  "endpoint": null,
+  "method_hint": "POST",
+  "table_rows": [
+   [
+    "Name",
+    "Value",
+    "Parameter Type",
+    "Data Type"
+   ],
+   [
+    "Token",
+    "",
+    "authorization",
+    "string"
+   ],
+   [
+    "Name",
+    "Value",
+    "Parameter Type",
+    "Data Type"
+   ],
+   [
+    "dataVerifYear",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "ImoNo",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "ReportFrDate",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "ReportToDate",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "VerificationTypeCode",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "DcsDisTravel",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DcsHourUnder",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DcsHfoCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DcsLfoCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DcsDiesGasCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DcsLpgpCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DcsLpgbCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DcsMethanolCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DcsEthanolCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DcsLngCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DcsOtherCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "GTT",
+    "",
+    "parameter",
+    "numeric"
+   ],
+   [
+    "NT",
+    "",
+    "parameter",
+    "numeric"
+   ],
+   [
+    "DWT",
+    "",
+    "parameter",
+    "numeric"
+   ],
+   [
+    "EEDI",
+    "",
+    "parameter",
+    "numeric"
+   ],
+   [
+    "EEXI",
+    "",
+    "parameter",
+    "numeric"
+   ],
+   [
+    "ICECLASS",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "MPOWER",
+    "",
+    "parameter",
+    "numeric"
+   ],
+   [
+    "APOWER",
+    "",
+    "parameter",
+    "numeric"
+   ],
+   [
+    "METHOD",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "ShipType",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "MrvTotHfoCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotBerthHfoCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotLfoCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotBerthLfoCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotMdoCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotBerthMdoCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotMgoCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotBerthMgoCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotLpgpCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotBerthLpgpCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotLpgbCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotBerthLpgbCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotMethanolCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotBerthMethanolCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotEthanolCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotBerthEthanolCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotLngCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotBerthLngCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotOtherCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotBerthOtherCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotFuelCons",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotCo2Emis",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotCo2EmisEE",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotCo2EmisEN",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotCo2EmisNE",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotCo2EmisE",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotDisTravel",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "THROUGHICENM",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotTimeSpentAtSea",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "THROUGHICEHO",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotIdleTimeAnchorage",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotTransWeight",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotFuelConsCargoVolume",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotCargoWeight",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MrvTotTransPassenger",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BioFuelList",
+    "",
+    "parameter",
+    "table"
+   ],
+   [
+    "ShipName",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "DCSShipType",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "MRVShipType",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "flagCode",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "regPortCode",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "shipOwner",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "Classification",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "DCSMethod",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "MRVMethod",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "REMARK",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "officialNo",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "signalLetter",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "EmissionSourceList",
+    "",
+    "parameter",
+    "table"
+   ],
+   [
+    "Name",
+    "Description",
+    "Required"
+   ],
+   [
+    "Token",
+    "Token",
+    "True"
+   ],
+   [
+    "Property",
+    "Code",
+    "Type",
+    "Size",
+    "Description",
+    "Sample"
+   ],
+   [
+    "dataVerifYear",
+    "",
+    "string",
+    "4",
+    "(mandatory) Year",
+    "2024"
+   ],
+   [
+    "ImoNo",
+    "",
+    "string",
+    "7",
+    "(mandatory) IMO No.",
+    "7654321"
+   ],
+   [
+    "ReportFrDate",
+    "",
+    "string",
+    "10",
+    "(mandatory) Start date (yyyy-mm-dd)",
+    "2024-01-01"
+   ],
+   [
+    "ReportToDate",
+    "",
+    "string",
+    "10",
+    "(mandatory) End date (yyyy-mm-dd)",
+    "2024-12-31"
+   ],
+   [
+    "VerificationTypeCode",
+    "",
+    "string",
+    "3",
+    "(mandatory) 001(EU MRV) or 002(IMO DCS)",
+    "002"
+   ],
+   [
+    "DcsDisTravel",
+    "",
+    "decimal",
+    "15",
+    "Distance travelled (nm)",
+    "65656.5"
+   ],
+   [
+    "DcsHourUnder",
+    "",
+    "decimal",
+    "15",
+    "Hours underway (h)",
+    "4632.5"
+   ],
+   [
+    "DcsHfoCons",
+    "",
+    "decimal",
+    "15",
+    "HFO (Cf: 3.114)",
+    "2321.01"
+   ],
+   [
+    "DcsLfoCons",
+    "",
+    "decimal",
+    "15",
+    "LFO (Cf: 3.151)",
+    ""
+   ],
+   [
+    "DcsDiesGasCons",
+    "",
+    "decimal",
+    "15",
+    "Diesel/Gas oil (Cf: 3.206)",
+    "1212.54"
+   ],
+   [
+    "DcsLpgpCons",
+    "",
+    "decimal",
+    "15",
+    "LPG (Propane) (Cf: 3.000)",
+    ""
+   ],
+   [
+    "DcsLpgbCons",
+    "",
+    "decimal",
+    "15",
+    "LPG (Butane) (Cf: 3.030)",
+    ""
+   ],
+   [
+    "DcsMethanolCons",
+    "",
+    "decimal",
+    "15",
+    "Methanol (Cf : 1.375)",
+    ""
+   ],
+   [
+    "DcsEthanolCons",
+    "",
+    "decimal",
+    "15",
+    "Ethanol (Cf : 1.913)",
+    ""
+   ],
+   [
+    "DcsLngCons",
+    "",
+    "decimal",
+    "15",
+    "LNG (Cf: 2.750)",
+    ""
+   ],
+   [
+    "DcsOtherCons",
+    "",
+    "decimal",
+    "15",
+    "Other (.........)",
+    ""
+   ],
+   [
+    "GTT",
+    "",
+    "numeric",
+    "10",
+    "(DCS mandatory only) GT",
+    "50948"
+   ],
+   [
+    "NT",
+    "",
+    "numeric",
+    "10",
+    "(DCS mandatory only) NT",
+    "5980"
+   ],
+   [
+    "DWT",
+    "",
+    "numeric",
+    "10",
+    "(DCS mandatory only) DWT",
+    "101256"
+   ],
+   [
+    "EEDI",
+    "",
+    "numeric",
+    "15",
+    "(DCS mandatory only) EEDI (if applicable)",
+    "4.6"
+   ],
+   [
+    "EEXI",
+    "",
+    "numeric",
+    "15",
+    "(DCS mandatory only) EEXI (if applicable)",
+    "4.6"
+   ],
+   [
+    "ICECLASS",
+    "",
+    "string",
+    "3",
+    "refer to ICECLASS code table",
+    "None"
+   ],
+   [
+    "MPOWER",
+    "",
+    "numeric",
+    "8",
+    "(DCS mandatory only) Power output(kW) - Main Propulsion Power",
+    "9890"
+   ],
+   [
+    "APOWER",
+    "",
+    "numeric",
+    "8",
+    "(DCS mandatory only) Power output(kW) - Auxiliary Engine(s)",
+    "1200"
+   ],
+   [
+    "METHOD",
+    "",
+    "string",
+    "1",
+    "refer to DCS SHIPTYPE code table",
+    "1"
+   ],
+   [
+    "ShipType",
+    "",
+    "string",
+    "3",
+    "refer to DCS/MRV SHIPTYPE code table",
+    "001"
+   ],
+   [
+    "MrvTotHfoCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 1. Heavy Fuel Oil (HFO)",
+    "533.25"
+   ],
+   [
+    "MrvTotBerthHfoCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 2. Heavy Fuel Oil(HFO), at berth",
+    "66.55"
+   ],
+   [
+    "MrvTotLfoCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 3. Light Fuel Oil (LFO)",
+    ""
+   ],
+   [
+    "MrvTotBerthLfoCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 4. Light Fuel Oil(LFO), at berth",
+    ""
+   ],
+   [
+    "MrvTotMdoCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 5. Marine Diesel Oil(MDO)",
+    ""
+   ],
+   [
+    "MrvTotBerthMdoCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 6. Marine Diesel Oil(MDO), at berth",
+    ""
+   ],
+   [
+    "MrvTotMgoCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 7. Marine Gas Oil(MGO)",
+    "88.56"
+   ],
+   [
+    "MrvTotBerthMgoCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 8. Marine Gas Oil(MGO), at berth",
+    "55.62"
+   ],
+   [
+    "MrvTotLpgpCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 9. LPG(Propane)",
+    ""
+   ],
+   [
+    "MrvTotBerthLpgpCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 10. LPG(Propane), at berth",
+    ""
+   ],
+   [
+    "MrvTotLpgbCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 11. LPG(Butane)",
+    ""
+   ],
+   [
+    "MrvTotBerthLpgbCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 12. LPG(Butane), at berth",
+    ""
+   ],
+   [
+    "MrvTotMethanolCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 13. Methanol",
+    ""
+   ],
+   [
+    "MrvTotBerthMethanolCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 14. Methanol, at berth",
+    ""
+   ],
+   [
+    "MrvTotEthanolCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 15. Ethanol",
+    ""
+   ],
+   [
+    "MrvTotBerthEthanolCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 16. Ethanol, at berth",
+    ""
+   ],
+   [
+    "MrvTotLngCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 17. LNG",
+    ""
+   ],
+   [
+    "MrvTotBerthLngCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 18. LNG, at berth",
+    ""
+   ],
+   [
+    "MrvTotOtherCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 19. Other",
+    ""
+   ],
+   [
+    "MrvTotBerthOtherCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 20. Other, at berth",
+    ""
+   ],
+   [
+    "MrvTotFuelCons",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 1. Total fuel consumption (Tons)",
+    "1213.35"
+   ],
+   [
+    "MrvTotCo2Emis",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 2. Total CO2 emissions (Tons)",
+    "3565.38"
+   ],
+   [
+    "MrvTotCo2EmisEE",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 3. CO2 emissions from all voyages between ports under a Member State's jurisdiction/in the United Kingdom (Tons)",
+    "0.00"
+   ],
+   [
+    "MrvTotCo2EmisEN",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 4. CO2 emissions from all voyages which departed from ports under a Member State's jurisdiction/in the United Kingdom (Tons)",
+    "3222.25"
+   ],
+   [
+    "MrvTotCo2EmisNE",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 5. CO2 emissions from all voyages to ports under a Member State's jurisdiction/in the United Kingdom (Tons)",
+    "50.55"
+   ],
+   [
+    "MrvTotCo2EmisE",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 6. CO2 emissions which occurred within ports under a Member State's jurisdiction at berth/in the United Kingdom at berth (Tons)",
+    "290.53"
+   ],
+   [
+    "MrvTotDisTravel",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 8. Regular navigation (nm):",
+    "6565.3"
+   ],
+   [
+    "THROUGHICENM",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 9. Through ice (nm):",
+    "0.00"
+   ],
+   [
+    "MrvTotTimeSpentAtSea",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 11. Regular navigation (hours)",
+    "1213.20"
+   ],
+   [
+    "THROUGHICEHO",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 12. Through ice (hours):",
+    "0.00"
+   ],
+   [
+    "MrvTotIdleTimeAnchorage",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 13. At anchorage (hours)",
+    "0.00"
+   ],
+   [
+    "MrvTotTransWeight",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 15. Total transport work(dwt carried * nm)",
+    "454622518.50"
+   ],
+   [
+    "MrvTotFuelConsCargoVolume",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 15_1. Total transport work(dwt carried*nm)",
+    "0.00"
+   ],
+   [
+    "MrvTotCargoWeight",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 15. Total transport work(m ton * nm)",
+    "0.00"
+   ],
+   [
+    "MrvTotTransPassenger",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 14. Total transport work(pax * nm)",
+    "0.00"
+   ],
+   [
+    "BioFuelList",
+    "",
+    "table",
+    "",
+    "List of other fuels",
+    "{\"FuelName\":\"bt1\", \"fuelCategory\": \"002\", \"CfFactor\":1.25,\"AtBerthConsumption\":0,\"Consumption\":137.7}"
+   ],
+   [
+    "ShipName",
+    "",
+    "string",
+    "100",
+    "(In the case of adding a new vessel) Ship Name",
+    ""
+   ],
+   [
+    "DCSShipType",
+    "",
+    "string",
+    "3",
+    "(In the case of adding a new vessel) Ship type(DCS) - refer to DCS SHIPTYPE code table",
+    ""
+   ],
+   [
+    "MRVShipType",
+    "",
+    "string",
+    "3",
+    "(In the case of adding a new vessel) Ship type(MRV) - refer to MRV SHIPTYPE code table",
+    ""
+   ],
+   [
+    "flagCode",
+    "",
+    "string",
+    "2",
+    "(In the case of adding a new vessel) Flag - refer to UNLOCODE",
+    ""
+   ],
+   [
+    "regPortCode",
+    "",
+    "string",
+    "10",
+    "(In the case of adding a new vessel) Port of Registry - refer to UNLOCODE",
+    ""
+   ],
+   [
+    "shipOwner",
+    "",
+    "string",
+    "50",
+    "(In the case of adding a new vessel) Ship Owner",
+    ""
+   ],
+   [
+    "Classification",
+    "",
+    "string",
+    "10",
+    "(In the case of adding a new vessel) Classification - refer to Classification code table",
+    ""
+   ],
+   [
+    "DCSMethod",
+    "",
+    "string",
+    "3",
+    "(In the case of adding a new vessel) DCS Method - refer to DCS Method code table",
+    ""
+   ],
+   [
+    "MRVMethod",
+    "",
+    "string",
+    "1",
+    "(In the case of adding a new vessel) MRV Method - refer to MRV Method code table",
+    ""
+   ],
+   [
+    "REMARK",
+    "",
+    "string",
+    "5000",
+    "(In the case of adding a new vessel) Remark",
+    ""
+   ],
+   [
+    "officialNo",
+    "",
+    "string",
+    "100",
+    "(In the case of adding a new vessel) Official No",
+    ""
+   ],
+   [
+    "signalLetter",
+    "",
+    "string",
+    "100",
+    "(In the case of adding a new vessel) Signal Letters",
+    ""
+   ],
+   [
+    "EmissionSourceList",
+    "",
+    "table",
+    "",
+    "Fuel Consumption by Machine",
+    "{ \"FuelType\": \"007\", \"MachineType\": \"ME\", \"MachineClass\": \"001\", \"ConsumptionAtBerth\": 150.52, \"ConsumptionAtSea\": 850.66 }"
+   ]
+  ]
+ },
+ "GEARs Post DCS/MRV Voyage Template": {
+  "pApiId": 64,
+  "http_status": 200,
+  "endpoint": null,
+  "method_hint": "POST",
+  "table_rows": [
+   [
+    "Name",
+    "Value",
+    "Parameter Type",
+    "Data Type"
+   ],
+   [
+    "Token",
+    "",
+    "authorization",
+    "string"
+   ],
+   [
+    "Name",
+    "Value",
+    "Parameter Type",
+    "Data Type"
+   ],
+   [
+    "DataVerifYear",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "ImoNo",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "VerificationTypeCode",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "VoyageNo",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "PortCodeDep",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "DepartureDate",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "DepartureTime",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "DepartureCargoOperYn",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "PortCodeArr",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "ArrivalDate",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "ArrivalTime",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "ArrivalCargoOperYn",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "TimeSpentAtSea",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DistanceTravelled",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "TotalIdleSpentTime",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "CargoPassenger",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "CargoWeight",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "TransPassenger",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "TransWeight",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "HfoDepart",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "HfoArrival",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BerthHfoConsump",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "HfoConsump",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "LfoDepart",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "LfoArrival",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BerthLfoConsump",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "LfoConsump",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MdoDepart",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MdoArrival",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BerthMdoConsump",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MdoConsump",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MgoDepart",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MgoArrival",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BerthMgoConsump",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MgoConsump",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "LpgpDepart",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "LpgpArrival",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BerthLpgpConsump",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "LpgpConsump",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "LpgbDepart",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "LpgbArrival",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BerthLpgbConsump",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "LpgbConsump",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MethanolDepart",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MethanolArrival",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BerthMethanolConsump",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MethanolConsump",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "EthanolDepart",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "EthanolArrival",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BerthEthanolConsump",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "EthanolConsump",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BerthLngConsump",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "LngConsump",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "LngDepart",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "LngArrival",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "OtherDepart",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "OtherArrival",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BerthOtherConsump",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "OtherConsump",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BdvHfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BdvLfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BdvMdo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BdvMgo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BdvLpgp",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BdvLpgb",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BdvMethanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BdvEthanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BdvLng",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BdvOther",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BbvHfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BbvLfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BbvMdo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BbvMgo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BbvLpgp",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BbvLpgb",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BbvMethanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BbvEthanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BbvLng",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BbvOther",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbdvHfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbdvLfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbdvMdo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbdvMgo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbdvLpgp",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbdvLpgb",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbdvMethanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbdvEthanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbdvLng",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbdvOther",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbbvHfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbbvLfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbbvMdo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbbvMgo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbbvLpgp",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbbvLpgb",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbbvMethanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbbvEthanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbbvLng",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbbvOther",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "CbeyTimeSpentAtSea",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "CbeyDistanceTravelled",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "HfoQuantity",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "LfoQuantity",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MdoQuantity",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MgoQuantity",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "LpgpQuantity",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "LpgbQuantity",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MethanolQuantity",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "EthanolQuantity",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "LngQuantity",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "OtherQuantity",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BioFuelList",
+    "",
+    "parameter",
+    "table"
+   ],
+   [
+    "ShipName",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "DCSShipType",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "MRVShipType",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "GT",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "NT",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DWT",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "EEDI",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "iceClass",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "MPOWER",
+    "",
+    "parameter",
+    "numeric"
+   ],
+   [
+    "APOWER",
+    "",
+    "parameter",
+    "numeric"
+   ],
+   [
+    "flagCode",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "regPortCode",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "shipOwner",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "Classification",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "DCSMethod",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "MRVMethod",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "REMARK",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "officialNo",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "signalLetter",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "EmissionSourceList",
+    "",
+    "parameter",
+    "table"
+   ],
+   [
+    "Name",
+    "Description",
+    "Required"
+   ],
+   [
+    "Token",
+    "Token",
+    "True"
+   ],
+   [
+    "Property",
+    "Code",
+    "Type",
+    "Size",
+    "Description",
+    "Sample"
+   ],
+   [
+    "DataVerifYear",
+    "",
+    "string",
+    "",
+    "(mandatory) Verification year",
+    "2024"
+   ],
+   [
+    "ImoNo",
+    "",
+    "string",
+    "",
+    "(mandatory) IMO decimal of the ship",
+    "7654321"
+   ],
+   [
+    "VerificationTypeCode",
+    "",
+    "string",
+    "",
+    "(mandatory) 001(EU MRV) or 002(IMO DCS)",
+    "001"
+   ],
+   [
+    "VoyageNo",
+    "",
+    "string",
+    "",
+    "Voyage decimal",
+    "1"
+   ],
+   [
+    "PortCodeDep",
+    "",
+    "string",
+    "",
+    "refer to UNLOCODE",
+    "KRMAS"
+   ],
+   [
+    "DepartureDate",
+    "",
+    "string",
+    "",
+    "(mandatory) Departure date (UTC) (YYYY-MM-DD)",
+    "2024-01-01"
+   ],
+   [
+    "DepartureTime",
+    "",
+    "string",
+    "",
+    "(mandatory) Departure time (UTC) (HH:MM)",
+    "22:00"
+   ],
+   [
+    "DepartureCargoOperYn",
+    "",
+    "string",
+    "",
+    "(mandatory) Departure Cargo operation (YES/NO)",
+    "Yes"
+   ],
+   [
+    "PortCodeArr",
+    "",
+    "string",
+    "",
+    "refer to UNLOCODE",
+    "SBHIR"
+   ],
+   [
+    "ArrivalDate",
+    "",
+    "string",
+    "",
+    "(mandatory) Arrival date (UTC) (YYYY-MM-DD)",
+    "2024-03-31"
+   ],
+   [
+    "ArrivalTime",
+    "",
+    "string",
+    "",
+    "(mandatory) Arrival time (UTC) (HH:MM)",
+    "16:05"
+   ],
+   [
+    "ArrivalCargoOperYn",
+    "",
+    "string",
+    "",
+    "(mandatory) Arrival Cargo operation (YES/NO)",
+    "No"
+   ],
+   [
+    "TimeSpentAtSea",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Time spent at sea (hours)",
+    ""
+   ],
+   [
+    "DistanceTravelled",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Distance travelled (nm)",
+    ""
+   ],
+   [
+    "TotalIdleSpentTime",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Total idle spent time at anchorage (hours)",
+    ""
+   ],
+   [
+    "CargoPassenger",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Cargo carried - Passenger",
+    ""
+   ],
+   [
+    "CargoWeight",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Cargo carried - Weight or Volume",
+    ""
+   ],
+   [
+    "TransPassenger",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Transport Work - Passenger",
+    ""
+   ],
+   [
+    "TransWeight",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Transport Work - Weight or Volume",
+    ""
+   ],
+   [
+    "HfoDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) HFO ROB at departure (MT)",
+    ""
+   ],
+   [
+    "HfoArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) HFO ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthHfoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth HFO Consumption (MT)",
+    ""
+   ],
+   [
+    "HfoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) HFO Consumption (MT)",
+    ""
+   ],
+   [
+    "LfoDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LFO ROB at departure (MT)",
+    ""
+   ],
+   [
+    "LfoArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LFO ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthLfoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth LFO Consumption (MT)",
+    ""
+   ],
+   [
+    "LfoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LFO Consumption (MT)",
+    ""
+   ],
+   [
+    "MdoDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) MDO ROB at departure (MT)",
+    ""
+   ],
+   [
+    "MdoArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) MDO ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthMdoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth MDO Consumption (MT)",
+    ""
+   ],
+   [
+    "MdoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) MDO Consumption (MT)",
+    ""
+   ],
+   [
+    "MgoDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) MGO ROB at departure (MT)",
+    ""
+   ],
+   [
+    "MgoArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) MGO ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthMgoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth MGO Consumption (MT)",
+    ""
+   ],
+   [
+    "MgoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) MGO Consumption (MT)",
+    ""
+   ],
+   [
+    "LpgpDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LPG (Propane) ROB at departure (MT)",
+    ""
+   ],
+   [
+    "LpgpArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LPG (Propane) ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthLpgpConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth LPG (Propane) Consumption (MT)",
+    ""
+   ],
+   [
+    "LpgpConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LPG (Propane) Consumption (MT)",
+    ""
+   ],
+   [
+    "LpgbDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LPG (Butane) ROB at departure (MT)",
+    ""
+   ],
+   [
+    "LpgbArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LPG (Butane) ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthLpgbConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth LPG(Butane) Consumption (MT)",
+    ""
+   ],
+   [
+    "LpgbConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LPG (Butane) Consumption (MT)",
+    ""
+   ],
+   [
+    "MethanolDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Methanol ROB at departure (MT)",
+    ""
+   ],
+   [
+    "MethanolArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Methanol ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthMethanolConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth Methanol Consumption (MT)",
+    ""
+   ],
+   [
+    "MethanolConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Methanol Consumption (MT)",
+    ""
+   ],
+   [
+    "EthanolDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Ethanol ROB at departure (MT)",
+    ""
+   ],
+   [
+    "EthanolArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Ethanol ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthEthanolConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth Ethanol Consumption (MT)",
+    ""
+   ],
+   [
+    "EthanolConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Ethanol Consumption (MT)",
+    ""
+   ],
+   [
+    "BerthLngConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth LNG Consumption (MT)",
+    ""
+   ],
+   [
+    "LngConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LNG Consumption (MT)",
+    ""
+   ],
+   [
+    "LngDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LNG ROB at departure(MT)",
+    ""
+   ],
+   [
+    "LngArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LNG ROB at departure(MT)",
+    ""
+   ],
+   [
+    "OtherDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Other ROB at departure (MT)",
+    ""
+   ],
+   [
+    "OtherArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Other ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthOtherConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth Other Consumption (MT)",
+    ""
+   ],
+   [
+    "OtherConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Other Consumption (MT)",
+    ""
+   ],
+   [
+    "BdvHfo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - HFO",
+    ""
+   ],
+   [
+    "BdvLfo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - LFO",
+    ""
+   ],
+   [
+    "BdvMdo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - MDO",
+    ""
+   ],
+   [
+    "BdvMgo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - MGO",
+    ""
+   ],
+   [
+    "BdvLpgp",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - LPG(Propane)",
+    ""
+   ],
+   [
+    "BdvLpgb",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - LPG(Butane)",
+    ""
+   ],
+   [
+    "BdvMethanol",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - Methanol",
+    ""
+   ],
+   [
+    "BdvEthanol",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - Ethanol",
+    ""
+   ],
+   [
+    "BdvLng",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - LNG",
+    ""
+   ],
+   [
+    "BdvOther",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - Other",
+    ""
+   ],
+   [
+    "BbvHfo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - HFO",
+    ""
+   ],
+   [
+    "BbvLfo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - LFO",
+    ""
+   ],
+   [
+    "BbvMdo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - MDO",
+    ""
+   ],
+   [
+    "BbvMgo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - MGO",
+    ""
+   ],
+   [
+    "BbvLpgp",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - LPG(Propane)",
+    ""
+   ],
+   [
+    "BbvLpgb",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - LPG(Butane)",
+    ""
+   ],
+   [
+    "BbvMethanol",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - Methanol",
+    ""
+   ],
+   [
+    "BbvEthanol",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - Ethanol",
+    ""
+   ],
+   [
+    "BbvLng",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - LNG",
+    ""
+   ],
+   [
+    "BbvOther",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - Other",
+    ""
+   ],
+   [
+    "DbdvHfo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - HFO",
+    ""
+   ],
+   [
+    "DbdvLfo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - LFO",
+    ""
+   ],
+   [
+    "DbdvMdo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - MDO",
+    ""
+   ],
+   [
+    "DbdvMgo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - MGO",
+    ""
+   ],
+   [
+    "DbdvLpgp",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - LPG(Propane)",
+    ""
+   ],
+   [
+    "DbdvLpgb",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - LPG(Butane)",
+    ""
+   ],
+   [
+    "DbdvMethanol",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - Methanol",
+    ""
+   ],
+   [
+    "DbdvEthanol",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - Ethanol",
+    ""
+   ],
+   [
+    "DbdvLng",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - LNG",
+    ""
+   ],
+   [
+    "DbdvOther",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - Other",
+    ""
+   ],
+   [
+    "DbbvHfo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - HFO",
+    ""
+   ],
+   [
+    "DbbvLfo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - LFO",
+    ""
+   ],
+   [
+    "DbbvMdo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - MDO",
+    ""
+   ],
+   [
+    "DbbvMgo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - MGO",
+    ""
+   ],
+   [
+    "DbbvLpgp",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - LPG(Propane)",
+    ""
+   ],
+   [
+    "DbbvLpgb",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - LPG(Butane)",
+    ""
+   ],
+   [
+    "DbbvMethanol",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - Methanol",
+    ""
+   ],
+   [
+    "DbbvEthanol",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - Ethanol",
+    ""
+   ],
+   [
+    "DbbvLng",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - LNG",
+    ""
+   ],
+   [
+    "DbbvOther",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - Other",
+    ""
+   ],
+   [
+    "CbeyTimeSpentAtSea",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Time spent at sea",
+    ""
+   ],
+   [
+    "CbeyDistanceTravelled",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Distance travelled",
+    ""
+   ],
+   [
+    "HfoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - HFO",
+    ""
+   ],
+   [
+    "LfoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LFO",
+    ""
+   ],
+   [
+    "MdoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - MDO",
+    ""
+   ],
+   [
+    "MgoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - MGO",
+    ""
+   ],
+   [
+    "LpgpQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LPG(Propane)",
+    ""
+   ],
+   [
+    "LpgbQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LPG(Butane)",
+    ""
+   ],
+   [
+    "MethanolQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - Methanol",
+    ""
+   ],
+   [
+    "EthanolQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - Ethanol",
+    ""
+   ],
+   [
+    "LngQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LNG",
+    ""
+   ],
+   [
+    "OtherQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - Other",
+    ""
+   ],
+   [
+    "BioFuelList",
+    "",
+    "table",
+    "",
+    "List of other fuels",
+    "{\"FuelName\":\"bt1\", \"fuelCategory\": \"002\", \"CfFactor\":1.25,\"DepartureRob\":175.0, \"ArrivalRob\":175.0,\"AtBerthConsumption\":0,\"Consumption\":137.7, \"BeforeBunkering\":0,\"BeforeDeBunkering\":0,\"AfterBunkering\":0, \"AfterDeBunkering\":0,\"Correction\":0,\"isUk\":\"N\"}"
+   ],
+   [
+    "ShipName",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) Ship Name",
+    ""
+   ],
+   [
+    "DCSShipType",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) Ship type(DCS) - refer to DCS SHIPTYPE code table",
+    ""
+   ],
+   [
+    "MRVShipType",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) Ship type(MRV) - refer to MRV SHIPTYPE code table",
+    ""
+   ],
+   [
+    "GT",
+    "",
+    "decimal",
+    "",
+    "(In the case of adding a new vessel) GT",
+    ""
+   ],
+   [
+    "NT",
+    "",
+    "decimal",
+    "",
+    "(In the case of adding a new vessel) NT",
+    ""
+   ],
+   [
+    "DWT",
+    "",
+    "decimal",
+    "",
+    "(In the case of adding a new vessel) DWT",
+    ""
+   ],
+   [
+    "EEDI",
+    "",
+    "decimal",
+    "",
+    "(In the case of adding a new vessel) EEDI",
+    ""
+   ],
+   [
+    "iceClass",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) ice class - refer to ICECLASS code table",
+    ""
+   ],
+   [
+    "MPOWER",
+    "",
+    "numeric",
+    "",
+    "(In the case of adding a new vessel) Main Propulsion Power(kW)",
+    ""
+   ],
+   [
+    "APOWER",
+    "",
+    "numeric",
+    "",
+    "(In the case of adding a new vessel) Auxiliary Engine(kW)",
+    ""
+   ],
+   [
+    "flagCode",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) Flag - refer to UNLOCODE",
+    ""
+   ],
+   [
+    "regPortCode",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) Port of Registry - refer to UNLOCODE",
+    ""
+   ],
+   [
+    "shipOwner",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) Ship Owner",
+    ""
+   ],
+   [
+    "Classification",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) Classification - refer to Classification code table",
+    ""
+   ],
+   [
+    "DCSMethod",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) DCS Method - refer to DCS Method code table",
+    ""
+   ],
+   [
+    "MRVMethod",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) MRV Method - refer to MRV Method code table",
+    ""
+   ],
+   [
+    "REMARK",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) Remark",
+    ""
+   ],
+   [
+    "officialNo",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) Official No",
+    ""
+   ],
+   [
+    "signalLetter",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) Signal Letters",
+    ""
+   ],
+   [
+    "EmissionSourceList",
+    "",
+    "table",
+    "",
+    "Fuel Consumption by Machine",
+    "{ \"FuelType\": \"007\", \"MachineType\": \"ME\", \"MachineClass\": \"001\", \"ConsumptionAtBerth\": 150.52, \"ConsumptionAtSea\": 850.66 }"
+   ]
+  ]
+ },
+ "GEARs Post DCS/MRV Daily Template": {
+  "pApiId": 65,
+  "http_status": 200,
+  "endpoint": null,
+  "method_hint": "POST",
+  "table_rows": [
+   [
+    "Name",
+    "Value",
+    "Parameter Type",
+    "Data Type"
+   ],
+   [
+    "Token",
+    "",
+    "authorization",
+    "string"
+   ],
+   [
+    "Name",
+    "Value",
+    "Parameter Type",
+    "Data Type"
+   ],
+   [
+    "DataVerifyYear",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "ImoNo",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "VerificationTypeCode",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "ReportingDate",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "ReportingTime",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "PortCodeDep",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "PortCodeArr",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "TimeSpentAtSea",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DistanceTravelled",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "Status",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "CargoPassenger",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "CargoWeight",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "TransPassenger",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "TransWeight",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BiHfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BiLfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BiMdo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BiMgo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BiLpgp",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BiLpgb",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BiMethanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BiEthanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BiLng",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BiOther",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbiHfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbiLfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbiMdo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbiMgo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbiLpgp",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbiLpgb",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbiMethanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbiEthanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbiLng",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DbiOther",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "VmRpm",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "VmMpower",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "VpLongDgree",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "VpLongMinutes",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "VpLongNorthSouth",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "VpLatDegree",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "VpLatMinutes",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "VpLatEastWest",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "VwBeaufort",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "VccPassenger",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "VccWeight",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MecHfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MecLfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MecMdo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MecMgo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MecLpgp",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MecLpgb",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MecMethanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MecEthanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MecLng",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MecOther",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "AecHfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "AecLfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "AecMdo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "AecMgo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "AecLpgp",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "AecLpgb",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "AecMethanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "AecEthanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "AecLng",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "AecOther",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BcHfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BcLfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BcMdo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BcMgo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BcLpgp",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BcLpgb",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BcMethanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BcEthanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BcLng",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BcOther",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "IggcHfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "IggcLfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "IggcMdo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "IggcMgo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "IggcLpgp",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "IggcLpgb",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "IggcMethanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "IggcEthanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "IggcLng",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "IggcOther",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "RobHfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "RobLfo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "RobMdo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "RobMgo",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "RobLpgp",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "RobLpgb",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "RobMethanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "RobEthanol",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "RobLng",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "RobOther",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "CbeyTimeSpentAtSea",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "CbeyDistanceTravelled",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "HfoQuantity",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "LfoQuantity",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MdoQuantity",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MgoQuantity",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "LpgpQuantity",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "LpgbQuantity",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "MethanolQuantity",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "EthanolQuantity",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "LngQuantity",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "OtherQuantity",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "BioFuelList",
+    "",
+    "parameter",
+    "table"
+   ],
+   [
+    "ShipName",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "DCSShipType",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "MRVShipType",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "GT",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "NT",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "DWT",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "EEDI",
+    "",
+    "parameter",
+    "decimal"
+   ],
+   [
+    "iceClass",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "MPOWER",
+    "",
+    "parameter",
+    "numeric"
+   ],
+   [
+    "APOWER",
+    "",
+    "parameter",
+    "numeric"
+   ],
+   [
+    "flagCode",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "regPortCode",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "shipOwner",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "Classification",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "DCSMethod",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "MRVMethod",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "REMARK",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "officialNo",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "signalLetter",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "EmissionSourceList",
+    "",
+    "parameter",
+    "table"
+   ],
+   [
+    "Name",
+    "Description",
+    "Required"
+   ],
+   [
+    "Token",
+    "Token",
+    "True"
+   ],
+   [
+    "Property",
+    "Code",
+    "Type",
+    "Size",
+    "Description",
+    "Sample"
+   ],
+   [
+    "DataVerifyYear",
+    "",
+    "string",
+    "",
+    "(mandatory) Verification year",
+    "2024"
+   ],
+   [
+    "ImoNo",
+    "",
+    "string",
+    "",
+    "(mandatory) IMO decimal of the ship",
+    "7654321"
+   ],
+   [
+    "VerificationTypeCode",
+    "",
+    "string",
+    "",
+    "(mandatory) 001(EU MRV) or 002(IMO DCS)",
+    "002"
+   ],
+   [
+    "ReportingDate",
+    "",
+    "string",
+    "",
+    "(mandatory) Departure Date (UTC) (YYYY-MM-DD)",
+    "2024-01-01"
+   ],
+   [
+    "ReportingTime",
+    "",
+    "string",
+    "",
+    "(mandatory) Departure time (UTC) (HH:MM)",
+    "04:30"
+   ],
+   [
+    "PortCodeDep",
+    "",
+    "string",
+    "",
+    "refer to UNLOCODE",
+    "BRPNG"
+   ],
+   [
+    "PortCodeArr",
+    "",
+    "string",
+    "",
+    "refer to UNLOCODE",
+    "ESHUV"
+   ],
+   [
+    "TimeSpentAtSea",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Time spent at sea (hours)",
+    ""
+   ],
+   [
+    "DistanceTravelled",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Distance travelled (nm)",
+    ""
+   ],
+   [
+    "Status",
+    "",
+    "string",
+    "",
+    "refer to Status code table",
+    "001"
+   ],
+   [
+    "CargoPassenger",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Cargo Carried Passenger",
+    ""
+   ],
+   [
+    "CargoWeight",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Cargo Carried Weight or Volume",
+    ""
+   ],
+   [
+    "TransPassenger",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Transport Work Passenger",
+    ""
+   ],
+   [
+    "TransWeight",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Transport Weight or Volume",
+    ""
+   ],
+   [
+    "BiHfo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - HFO",
+    ""
+   ],
+   [
+    "BiLfo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - LFO",
+    ""
+   ],
+   [
+    "BiMdo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - MDO",
+    ""
+   ],
+   [
+    "BiMgo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - MGO",
+    ""
+   ],
+   [
+    "BiLpgp",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - LPG(Propane)",
+    ""
+   ],
+   [
+    "BiLpgb",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - LPG(Butane)",
+    ""
+   ],
+   [
+    "BiMethanol",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - Methanol",
+    ""
+   ],
+   [
+    "BiEthanol",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - Ethanol",
+    ""
+   ],
+   [
+    "BiLng",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - LNG",
+    ""
+   ],
+   [
+    "BiOther",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - Other",
+    ""
+   ],
+   [
+    "DbiHfo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - HFO",
+    ""
+   ],
+   [
+    "DbiLfo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - LFO",
+    ""
+   ],
+   [
+    "DbiMdo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - MDO",
+    ""
+   ],
+   [
+    "DbiMgo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - MGO",
+    ""
+   ],
+   [
+    "DbiLpgp",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - LPG(Propane)",
+    ""
+   ],
+   [
+    "DbiLpgb",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - LPG(Butane)",
+    ""
+   ],
+   [
+    "DbiMethanol",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - Methanol",
+    ""
+   ],
+   [
+    "DbiEthanol",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - Ethanol",
+    ""
+   ],
+   [
+    "DbiLng",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - LNG",
+    ""
+   ],
+   [
+    "DbiOther",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - Other",
+    ""
+   ],
+   [
+    "VmRpm",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - RPM",
+    ""
+   ],
+   [
+    "VmMpower",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - ME POWER (kw)",
+    ""
+   ],
+   [
+    "VpLongDgree",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - POSITION - LONG. Degree",
+    ""
+   ],
+   [
+    "VpLongMinutes",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - POSITION - LONG. Minutes",
+    ""
+   ],
+   [
+    "VpLongNorthSouth",
+    "",
+    "string",
+    "",
+    "([Voyage analysis] Voluntary) ME - POSITION - LONG. North/South",
+    ""
+   ],
+   [
+    "VpLatDegree",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - POSITION - LAT. Degree",
+    ""
+   ],
+   [
+    "VpLatMinutes",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - POSITION - LAT. Minutes",
+    ""
+   ],
+   [
+    "VpLatEastWest",
+    "",
+    "string",
+    "",
+    "([Voyage analysis] Voluntary) ME - POSITION - LAT. East/West",
+    ""
+   ],
+   [
+    "VwBeaufort",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - Weather - Beaufort (0~12)",
+    ""
+   ],
+   [
+    "VccPassenger",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - [For IMO DCS only] Cargo Carried - Passenger",
+    ""
+   ],
+   [
+    "VccWeight",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - [For IMO DCS only] Cargo Carried - Weight or Volume",
+    ""
+   ],
+   [
+    "MecHfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - HFO",
+    ""
+   ],
+   [
+    "MecLfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - LFO",
+    ""
+   ],
+   [
+    "MecMdo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - MDO",
+    ""
+   ],
+   [
+    "MecMgo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - MGO",
+    ""
+   ],
+   [
+    "MecLpgp",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - LPG(Propane)",
+    ""
+   ],
+   [
+    "MecLpgb",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - LPG(Butane)",
+    ""
+   ],
+   [
+    "MecMethanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - Methanol",
+    ""
+   ],
+   [
+    "MecEthanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - Ethanol",
+    ""
+   ],
+   [
+    "MecLng",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - LNG",
+    ""
+   ],
+   [
+    "MecOther",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - Other",
+    ""
+   ],
+   [
+    "AecHfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - HFO",
+    ""
+   ],
+   [
+    "AecLfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - LFO",
+    ""
+   ],
+   [
+    "AecMdo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - MDO",
+    ""
+   ],
+   [
+    "AecMgo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - MGO",
+    ""
+   ],
+   [
+    "AecLpgp",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - LPG(Propane)",
+    ""
+   ],
+   [
+    "AecLpgb",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - LPG(Butane)",
+    ""
+   ],
+   [
+    "AecMethanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - Methanol",
+    ""
+   ],
+   [
+    "AecEthanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - Ethanol",
+    ""
+   ],
+   [
+    "AecLng",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - LNG",
+    ""
+   ],
+   [
+    "AecOther",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - Other",
+    ""
+   ],
+   [
+    "BcHfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - HFO",
+    ""
+   ],
+   [
+    "BcLfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - LFO",
+    ""
+   ],
+   [
+    "BcMdo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - MDO",
+    ""
+   ],
+   [
+    "BcMgo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - MGO",
+    ""
+   ],
+   [
+    "BcLpgp",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - LPG(Propane)",
+    ""
+   ],
+   [
+    "BcLpgb",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - LPG(Butane)",
+    ""
+   ],
+   [
+    "BcMethanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - Methanol",
+    ""
+   ],
+   [
+    "BcEthanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - Ethanol",
+    ""
+   ],
+   [
+    "BcLng",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - LNG",
+    ""
+   ],
+   [
+    "BcOther",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - Other",
+    ""
+   ],
+   [
+    "IggcHfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - HFO",
+    ""
+   ],
+   [
+    "IggcLfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - LFO",
+    ""
+   ],
+   [
+    "IggcMdo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - MDO",
+    ""
+   ],
+   [
+    "IggcMgo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - MGO",
+    ""
+   ],
+   [
+    "IggcLpgp",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - LPG(Propane)",
+    ""
+   ],
+   [
+    "IggcLpgb",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - LPG(Butane)",
+    ""
+   ],
+   [
+    "IggcMethanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - Methanol",
+    ""
+   ],
+   [
+    "IggcEthanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - Ethanol",
+    ""
+   ],
+   [
+    "IggcLng",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - LNG",
+    ""
+   ],
+   [
+    "IggcOther",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - Other",
+    ""
+   ],
+   [
+    "RobHfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - HFO",
+    ""
+   ],
+   [
+    "RobLfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - LFO",
+    ""
+   ],
+   [
+    "RobMdo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - MDO",
+    ""
+   ],
+   [
+    "RobMgo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - MGO",
+    ""
+   ],
+   [
+    "RobLpgp",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - LPG(Propane)",
+    ""
+   ],
+   [
+    "RobLpgb",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - LPG(Butane)",
+    ""
+   ],
+   [
+    "RobMethanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - Methanol",
+    ""
+   ],
+   [
+    "RobEthanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - Ethanol",
+    ""
+   ],
+   [
+    "RobLng",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - LNG",
+    ""
+   ],
+   [
+    "RobOther",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - Other",
+    ""
+   ],
+   [
+    "CbeyTimeSpentAtSea",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Time spent at sea",
+    ""
+   ],
+   [
+    "CbeyDistanceTravelled",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Distance travelled",
+    ""
+   ],
+   [
+    "HfoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - HFO",
+    ""
+   ],
+   [
+    "LfoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LFO",
+    ""
+   ],
+   [
+    "MdoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - MDO",
+    ""
+   ],
+   [
+    "MgoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - MGO",
+    ""
+   ],
+   [
+    "LpgpQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LPG(Propane)",
+    ""
+   ],
+   [
+    "LpgbQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LPG(Butane)",
+    ""
+   ],
+   [
+    "MethanolQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - Methanol",
+    ""
+   ],
+   [
+    "EthanolQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - Ethanol",
+    ""
+   ],
+   [
+    "LngQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LNG",
+    ""
+   ],
+   [
+    "OtherQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - Other",
+    ""
+   ],
+   [
+    "BioFuelList",
+    "",
+    "table",
+    "",
+    "List of other fuels",
+    "{ \"FuelName\":\"bt1\", \"fuelCategory\": \"002\",\"CfFactor\":1.25, \"Bunkering\": 175, \"DeBunkering\": 0, \"Correction\":0, \"MeConsumption\": 0, \"AeConsumption\": 0, \"BoilerConsumption\": 0, \"IggConsumption\": 0, \"Rob\": 175, \"isUk\": \"N\"}"
+   ],
+   [
+    "ShipName",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) Ship Name",
+    ""
+   ],
+   [
+    "DCSShipType",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) Ship type(DCS) - refer to DCS SHIPTYPE code table",
+    ""
+   ],
+   [
+    "MRVShipType",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) Ship type(MRV) - refer to MRV SHIPTYPE code table",
+    ""
+   ],
+   [
+    "GT",
+    "",
+    "decimal",
+    "",
+    "(In the case of adding a new vessel) GT",
+    ""
+   ],
+   [
+    "NT",
+    "",
+    "decimal",
+    "",
+    "(In the case of adding a new vessel) NT",
+    ""
+   ],
+   [
+    "DWT",
+    "",
+    "decimal",
+    "",
+    "(In the case of adding a new vessel) DWT",
+    ""
+   ],
+   [
+    "EEDI",
+    "",
+    "decimal",
+    "",
+    "(In the case of adding a new vessel) EEDI",
+    ""
+   ],
+   [
+    "iceClass",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) ice class - refer to ICECLASS code table",
+    ""
+   ],
+   [
+    "MPOWER",
+    "",
+    "numeric",
+    "",
+    "(In the case of adding a new vessel) Main Propulsion Power(kW)",
+    ""
+   ],
+   [
+    "APOWER",
+    "",
+    "numeric",
+    "",
+    "(In the case of adding a new vessel) Auxiliary Engine(kW)",
+    ""
+   ],
+   [
+    "flagCode",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) Flag - refer to UNLOCODE",
+    ""
+   ],
+   [
+    "regPortCode",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) Port of Registry - refer to UNLOCODE",
+    ""
+   ],
+   [
+    "shipOwner",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) Ship Owner",
+    ""
+   ],
+   [
+    "Classification",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) Classification - refer to Classification code table",
+    ""
+   ],
+   [
+    "DCSMethod",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) DCS Method - refer to DCS Method code table",
+    ""
+   ],
+   [
+    "MRVMethod",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) MRV Method - refer to MRV Method code table",
+    ""
+   ],
+   [
+    "REMARK",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) Remark",
+    ""
+   ],
+   [
+    "officialNo",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) Official No",
+    ""
+   ],
+   [
+    "signalLetter",
+    "",
+    "string",
+    "",
+    "(In the case of adding a new vessel) Signal Letters",
+    ""
+   ],
+   [
+    "EmissionSourceList",
+    "",
+    "table",
+    "",
+    "Fuel Consumption by Machine",
+    "{ \"FuelType\": \"007\", \"MachineType\": \"ME\", \"MachineClass\": \"004\", \"Consumption\": 150.78 }"
+   ]
+  ]
+ },
+ "GEARs Post Attachment (DCS)": {
+  "pApiId": 67,
+  "http_status": 200,
+  "endpoint": null,
+  "method_hint": "POST",
+  "table_rows": [
+   [
+    "Name",
+    "Value",
+    "Parameter Type",
+    "Data Type"
+   ],
+   [
+    "Token",
+    "",
+    "authorization",
+    "string"
+   ],
+   [
+    "IMO No.",
+    "",
+    "path",
+    "string"
+   ],
+   [
+    "Report Year",
+    "",
+    "path",
+    "string"
+   ],
+   [
+    "Name",
+    "Value",
+    "Parameter Type",
+    "Data Type"
+   ],
+   [
+    "files",
+    "",
+    "parameter",
+    "stream"
+   ],
+   [
+    "Name",
+    "Description",
+    "Required"
+   ],
+   [
+    "Token",
+    "Token",
+    "True"
+   ],
+   [
+    "IMO No.",
+    "IMO Number",
+    "True"
+   ],
+   [
+    "Report Year",
+    "Report Year",
+    "True"
+   ],
+   [
+    "Property",
+    "Code",
+    "Type",
+    "Size",
+    "Description",
+    "Sample"
+   ],
+   [
+    "files",
+    "",
+    "stream",
+    "",
+    "Proof attachments(DCS)",
+    ""
+   ]
+  ]
+ },
+ "GEARs Post Attachment (MRV)": {
+  "pApiId": 68,
+  "http_status": 200,
+  "endpoint": null,
+  "method_hint": "POST",
+  "table_rows": [
+   [
+    "Name",
+    "Value",
+    "Parameter Type",
+    "Data Type"
+   ],
+   [
+    "Token",
+    "",
+    "authorization",
+    "string"
+   ],
+   [
+    "IMO No.",
+    "",
+    "path",
+    "string"
+   ],
+   [
+    "Report Year",
+    "",
+    "path",
+    "string"
+   ],
+   [
+    "Name",
+    "Value",
+    "Parameter Type",
+    "Data Type"
+   ],
+   [
+    "files",
+    "",
+    "parameter",
+    "stream"
+   ],
+   [
+    "Name",
+    "Description",
+    "Required"
+   ],
+   [
+    "Token",
+    "Token",
+    "True"
+   ],
+   [
+    "IMO No.",
+    "IMO Number",
+    "True"
+   ],
+   [
+    "Report Year",
+    "Report Year",
+    "True"
+   ],
+   [
+    "Property",
+    "Code",
+    "Type",
+    "Size",
+    "Description",
+    "Sample"
+   ],
+   [
+    "files",
+    "",
+    "stream",
+    "",
+    "Proof attachments(DCS)",
+    ""
+   ]
+  ]
+ },
+ "Issue API Token (POST)": {
+  "pApiId": 82,
+  "http_status": 200,
+  "endpoint": null,
+  "method_hint": "POST",
+  "table_rows": [
+   [
+    "Name",
+    "Value",
+    "Parameter Type",
+    "Data Type"
+   ],
+   [
+    "Name",
+    "Value",
+    "Parameter Type",
+    "Data Type"
+   ],
+   [
+    "api_key",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "api_key_pw",
+    "",
+    "parameter",
+    "string"
+   ],
+   [
+    "Name",
+    "Description",
+    "Required"
+   ],
+   [
+    "Property",
+    "Code",
+    "Type",
+    "Size",
+    "Description",
+    "Sample"
+   ],
+   [
+    "api_key",
+    "",
+    "string",
+    "",
+    "",
+    ""
+   ],
+   [
+    "api_key_pw",
+    "",
+    "string",
+    "",
+    "",
+    ""
+   ]
+  ]
+ },
+ "GEARs Check DCS Annual Template": {
+  "pApiId": 72,
+  "http_status": 200,
+  "endpoint": null,
+  "method_hint": "POST",
+  "table_rows": [
+   [
+    "Name",
+    "Value",
+    "Parameter Type",
+    "Data Type"
+   ],
+   [
+    "Token",
+    "",
+    "authorization",
+    "string"
+   ],
+   [
+    "Report Year",
+    "",
+    "path",
+    "string"
+   ],
+   [
+    "IMO No.",
+    "",
+    "path",
+    "string"
+   ],
+   [
+    "Name",
+    "Description",
+    "Required"
+   ],
+   [
+    "Token",
+    "Token",
+    "True"
+   ],
+   [
+    "Report Year",
+    "Report Year",
+    "True"
+   ],
+   [
+    "IMO No.",
+    "IMO Number",
+    "True"
+   ],
+   [
+    "Property",
+    "Code",
+    "Type",
+    "Size",
+    "Description",
+    "Sample"
+   ],
+   [
+    "dataVerifYear",
+    "",
+    "string",
+    "4",
+    "(mandatory) Year",
+    "2024"
+   ],
+   [
+    "imoNo",
+    "",
+    "string",
+    "7",
+    "(mandatory) IMO No.",
+    "7654321"
+   ],
+   [
+    "reportFrDate",
+    "",
+    "string",
+    "10",
+    "(mandatory) Start date (yyyy-mm-dd)",
+    "2024-01-01"
+   ],
+   [
+    "reportToDate",
+    "",
+    "string",
+    "10",
+    "(mandatory) End date (yyyy-mm-dd)",
+    "2024-12-31"
+   ],
+   [
+    "dcsDisTravel",
+    "",
+    "decimal",
+    "15",
+    "Distance travelled (nm)",
+    "65656.5"
+   ],
+   [
+    "dcsHourUnder",
+    "",
+    "decimal",
+    "15",
+    "Hours underway (h)",
+    "4632.5"
+   ],
+   [
+    "dcsHfoCons",
+    "",
+    "decimal",
+    "15",
+    "HFO (Cf: 3.114)",
+    "2321.01"
+   ],
+   [
+    "dcsLfoCons",
+    "",
+    "decimal",
+    "15",
+    "LFO (Cf: 3.151)",
+    ""
+   ],
+   [
+    "dcsDiesGasCons",
+    "",
+    "decimal",
+    "15",
+    "Diesel/Gas oil (Cf: 3.206)",
+    "1212.54"
+   ],
+   [
+    "dcsLpgpCons",
+    "",
+    "decimal",
+    "15",
+    "LPG (Propane) (Cf: 3.000)",
+    ""
+   ],
+   [
+    "dcsLpgbCons",
+    "",
+    "decimal",
+    "15",
+    "LPG (Butane) (Cf: 3.030)",
+    ""
+   ],
+   [
+    "dcsMethanolCons",
+    "",
+    "decimal",
+    "15",
+    "Methanol (Cf : 1.375)",
+    ""
+   ],
+   [
+    "dcsEthanolCons",
+    "",
+    "decimal",
+    "15",
+    "Ethanol (Cf : 1.913)",
+    ""
+   ],
+   [
+    "dcsLngCons",
+    "",
+    "decimal",
+    "15",
+    "LNG (Cf: 2.750)",
+    ""
+   ],
+   [
+    "dcsOtherCons",
+    "",
+    "decimal",
+    "15",
+    "Other (.........)",
+    ""
+   ],
+   [
+    "gtt",
+    "",
+    "numeric",
+    "10",
+    "(DCS mandatory only) GT",
+    "50948"
+   ],
+   [
+    "nt",
+    "",
+    "numeric",
+    "10",
+    "(DCS mandatory only) NT",
+    "5980"
+   ],
+   [
+    "dwt",
+    "",
+    "numeric",
+    "10",
+    "(DCS mandatory only) DWT",
+    "101256"
+   ],
+   [
+    "eedi",
+    "",
+    "numeric",
+    "15",
+    "(DCS mandatory only) EEDI (if applicable)",
+    "4.6"
+   ],
+   [
+    "eexi",
+    "",
+    "numeric",
+    "15",
+    "(DCS mandatory only) EEXI (if applicable)",
+    "4.6"
+   ],
+   [
+    "iceclass",
+    "",
+    "string",
+    "3",
+    "refer to ICECLASS code table",
+    "None"
+   ],
+   [
+    "mpower",
+    "",
+    "numeric",
+    "8",
+    "(DCS mandatory only) Power output(kW) - Main Propulsion Power",
+    "9890"
+   ],
+   [
+    "apower",
+    "",
+    "numeric",
+    "8",
+    "(DCS mandatory only) Power output(kW) - Auxiliary Engine(s)",
+    "1200"
+   ],
+   [
+    "method",
+    "",
+    "string",
+    "1",
+    "refer to DCS SHIPTYPE code table",
+    "1"
+   ],
+   [
+    "shipType",
+    "",
+    "string",
+    "3",
+    "refer to DCS/MRV SHIPTYPE code table",
+    "001"
+   ],
+   [
+    "BioFuelList",
+    "",
+    "table",
+    "",
+    "List of other fuels",
+    "{\"FuelName\":\"bt1\",\"CfFactor\":1.25, \"AtBerthConsumption\":3980.81,\"Consumption\":0}"
+   ]
+  ]
+ },
+ "GEARs Check MRV Annual Template": {
+  "pApiId": 73,
+  "http_status": 200,
+  "endpoint": null,
+  "method_hint": "POST",
+  "table_rows": [
+   [
+    "Name",
+    "Value",
+    "Parameter Type",
+    "Data Type"
+   ],
+   [
+    "Token",
+    "",
+    "authorization",
+    "string"
+   ],
+   [
+    "IMO No.",
+    "",
+    "path",
+    "string"
+   ],
+   [
+    "Report Year",
+    "",
+    "path",
+    "string"
+   ],
+   [
+    "Name",
+    "Description",
+    "Required"
+   ],
+   [
+    "Token",
+    "Token",
+    "True"
+   ],
+   [
+    "IMO No.",
+    "IMO Number",
+    "True"
+   ],
+   [
+    "Report Year",
+    "Report Year",
+    "True"
+   ],
+   [
+    "Property",
+    "Code",
+    "Type",
+    "Size",
+    "Description",
+    "Sample"
+   ],
+   [
+    "dataVerifYear",
+    "",
+    "string",
+    "4",
+    "(mandatory) Year",
+    "2024"
+   ],
+   [
+    "imoNo",
+    "",
+    "string",
+    "7",
+    "(mandatory) IMO No.",
+    "7654321"
+   ],
+   [
+    "reportFrDate",
+    "",
+    "string",
+    "10",
+    "(mandatory) Start date (yyyy-mm-dd)",
+    "2024-01-01"
+   ],
+   [
+    "reportToDate",
+    "",
+    "string",
+    "10",
+    "(mandatory) End date (yyyy-mm-dd)",
+    "2024-12-31"
+   ],
+   [
+    "mrvTotHfoCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 1. Heavy Fuel Oil (HFO)",
+    "533.25"
+   ],
+   [
+    "mrvTotBerthHfoCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 2. Heavy Fuel Oil(HFO), at berth",
+    "66.55"
+   ],
+   [
+    "mrvTotLfoCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 3. Light Fuel Oil (LFO)",
+    ""
+   ],
+   [
+    "mrvTotBerthLfoCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 4. Light Fuel Oil(LFO), at berth",
+    ""
+   ],
+   [
+    "mrvTotMdoCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 5. Marine Diesel Oil(MDO)",
+    ""
+   ],
+   [
+    "mrvTotBerthMdoCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 6. Marine Diesel Oil(MDO), at berth",
+    ""
+   ],
+   [
+    "mrvTotMgoCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 7. Marine Gas Oil(MGO)",
+    "88.56"
+   ],
+   [
+    "mrvTotBerthMgoCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 8. Marine Gas Oil(MGO), at berth",
+    "55.62"
+   ],
+   [
+    "mrvTotLpgpCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 9. LPG(Propane)",
+    ""
+   ],
+   [
+    "mrvTotBerthLpgpCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 10. LPG(Propane), at berth",
+    ""
+   ],
+   [
+    "mrvTotLpgbCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 11. LPG(Butane)",
+    ""
+   ],
+   [
+    "mrvTotBerthLpgbCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 12. LPG(Butane), at berth",
+    ""
+   ],
+   [
+    "mrvTotMethanolCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 13. Methanol",
+    ""
+   ],
+   [
+    "mrvTotBerthMethanolCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 14. Methanol, at berth",
+    ""
+   ],
+   [
+    "mrvTotEthanolCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 15. Ethanol",
+    ""
+   ],
+   [
+    "mrvTotBerthEthanolCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 16. Ethanol, at berth",
+    ""
+   ],
+   [
+    "mrvTotLngCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 17. LNG",
+    ""
+   ],
+   [
+    "mrvTotBerthLngCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 18. LNG, at berth",
+    ""
+   ],
+   [
+    "mrvTotOtherCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 19. Other",
+    ""
+   ],
+   [
+    "mrvTotBerthOtherCons",
+    "",
+    "decimal",
+    "15",
+    "FUEL CONSUMPTION - 20. Other, at berth",
+    ""
+   ],
+   [
+    "mrvTotFuelCons",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 1. Total fuel consumption (Tons)",
+    "1213.35"
+   ],
+   [
+    "mrvTotCo2Emis",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 2. Total CO2 emissions (Tons)",
+    "3565.38"
+   ],
+   [
+    "mrvTotCo2EmisEE",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 3. CO2 emissions from all voyages between ports under a Member State's jurisdiction/in the United Kingdom (Tons)",
+    "0.00"
+   ],
+   [
+    "mrvTotCo2EmisEN",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 4. CO2 emissions from all voyages which departed from ports under a Member State's jurisdiction/in the United Kingdom (Tons)",
+    "3222.25"
+   ],
+   [
+    "mrvTotCo2EmisNE",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 5. CO2 emissions from all voyages to ports under a Member State's jurisdiction/in the United Kingdom (Tons)",
+    "50.55"
+   ],
+   [
+    "mrvTotCo2EmisE",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 6. CO2 emissions which occurred within ports under a Member State's jurisdiction at berth/in the United Kingdom at berth (Tons)",
+    "290.53"
+   ],
+   [
+    "mrvTotDisTravel",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 8. Regular navigation (nm):",
+    "6565.3"
+   ],
+   [
+    "throughicenm",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 9. Through ice (nm):",
+    "0.00"
+   ],
+   [
+    "mrvTotTimeSpentAtSea",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 11. Regular navigation (hours)",
+    "1213.20"
+   ],
+   [
+    "throughiceho",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 12. Through ice (hours):",
+    "0.00"
+   ],
+   [
+    "mrvTotIdleTimeAnchorage",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 13. At anchorage (hours)",
+    "0.00"
+   ],
+   [
+    "mrvTotTransWeight",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 14. Total transport work(m ton or m3 or pax*nm)",
+    "454622518.50"
+   ],
+   [
+    "mrvTotFuelConsCargoVolume",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 15_1. Total transport work(dwt carried*nm)",
+    "0.00"
+   ],
+   [
+    "mrvTotCargoWeight",
+    "",
+    "decimal",
+    "15",
+    "Parameters - 15_2. Total transport work(dwt carried*nm)",
+    "0.00"
+   ],
+   [
+    "BioFuelList",
+    "",
+    "table",
+    "",
+    "List of other fuels",
+    "{\"FuelName\":\"bt1\",\"CfFactor\":1.25, \"AtBerthConsumption\":3980.81,\"Consumption\":0}"
+   ]
+  ]
+ },
+ "GEARs Check DCS Voyage Template": {
+  "pApiId": 74,
+  "http_status": 200,
+  "endpoint": null,
+  "method_hint": "POST",
+  "table_rows": [
+   [
+    "Name",
+    "Value",
+    "Parameter Type",
+    "Data Type"
+   ],
+   [
+    "Token",
+    "",
+    "authorization",
+    "string"
+   ],
+   [
+    "IMO No.",
+    "",
+    "path",
+    "string"
+   ],
+   [
+    "Report Year",
+    "",
+    "path",
+    "string"
+   ],
+   [
+    "Name",
+    "Description",
+    "Required"
+   ],
+   [
+    "Token",
+    "Token",
+    "True"
+   ],
+   [
+    "IMO No.",
+    "IMO Number",
+    "True"
+   ],
+   [
+    "Report Year",
+    "Report Year",
+    "True"
+   ],
+   [
+    "Property",
+    "Code",
+    "Type",
+    "Size",
+    "Description",
+    "Sample"
+   ],
+   [
+    "DataVerifYear",
+    "",
+    "string",
+    "",
+    "(mandatory) Verification year",
+    "2024"
+   ],
+   [
+    "ImoNo",
+    "",
+    "string",
+    "",
+    "(mandatory) IMO decimal of the ship",
+    "7654321"
+   ],
+   [
+    "VoyageNo",
+    "",
+    "string",
+    "",
+    "Voyage decimal",
+    "1"
+   ],
+   [
+    "PortCodeDep",
+    "",
+    "string",
+    "",
+    "refer to UNLOCODE",
+    "KRMAS"
+   ],
+   [
+    "DepartureDate",
+    "",
+    "string",
+    "",
+    "(mandatory) Departure date (UTC) (YYYY-MM-DD)",
+    "2024-01-01"
+   ],
+   [
+    "DepartureTime",
+    "",
+    "string",
+    "",
+    "(mandatory) Departure time (UTC) (HH:MM)",
+    "22:00"
+   ],
+   [
+    "DepartureCargoOperYn",
+    "",
+    "string",
+    "",
+    "(mandatory) Departure Cargo operation (YES/NO)",
+    "Yes"
+   ],
+   [
+    "PortCodeArr",
+    "",
+    "string",
+    "",
+    "refer to UNLOCODE",
+    "SBHIR"
+   ],
+   [
+    "ArrivalDate",
+    "",
+    "string",
+    "",
+    "(mandatory) Arrival date (UTC) (YYYY-MM-DD)",
+    "2024-03-31"
+   ],
+   [
+    "ArrivalTime",
+    "",
+    "string",
+    "",
+    "(mandatory) Arrival time (UTC) (HH:MM)",
+    "16:05"
+   ],
+   [
+    "ArrivalCargoOperYn",
+    "",
+    "string",
+    "",
+    "(mandatory) Arrival Cargo operation (YES/NO)",
+    "No"
+   ],
+   [
+    "TimeSpentAtSea",
+    "",
+    "string",
+    "",
+    "(mandatory) Time spent at sea (hours)",
+    ""
+   ],
+   [
+    "DistanceTravelled",
+    "",
+    "string",
+    "",
+    "(mandatory) Distance travelled (nm)",
+    ""
+   ],
+   [
+    "TotalIdleSpentTime",
+    "",
+    "string",
+    "",
+    "(mandatory) Total idle spent time at anchorage (hours)",
+    ""
+   ],
+   [
+    "CargoPassenger",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Cargo carried - Passenger",
+    ""
+   ],
+   [
+    "CargoWeight",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Cargo carried - Weight or Volume",
+    ""
+   ],
+   [
+    "TransPassenger",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Transport Work - Passenger",
+    ""
+   ],
+   [
+    "TransWeight",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Transport Work - Weight or Volume",
+    ""
+   ],
+   [
+    "HfoDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) HFO ROB at departure (MT)",
+    ""
+   ],
+   [
+    "HfoArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) HFO ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthHfoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth HFO Consumption (MT)",
+    ""
+   ],
+   [
+    "HfoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) HFO Consumption (MT)",
+    ""
+   ],
+   [
+    "LfoDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LFO ROB at departure (MT)",
+    ""
+   ],
+   [
+    "LfoArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LFO ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthLfoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth LFO Consumption (MT)",
+    ""
+   ],
+   [
+    "LfoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LFO Consumption (MT)",
+    ""
+   ],
+   [
+    "MdoDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) MDO ROB at departure (MT)",
+    ""
+   ],
+   [
+    "MdoArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) MDO ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthMdoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth MDO Consumption (MT)",
+    ""
+   ],
+   [
+    "MdoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) MDO Consumption (MT)",
+    ""
+   ],
+   [
+    "MgoDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) MGO ROB at departure (MT)",
+    ""
+   ],
+   [
+    "MgoArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) MGO ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthMgoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth MGO Consumption (MT)",
+    ""
+   ],
+   [
+    "MgoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) MGO Consumption (MT)",
+    ""
+   ],
+   [
+    "LpgpDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LPG (Propane) ROB at departure (MT)",
+    ""
+   ],
+   [
+    "LpgpArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LPG (Propane) ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthLpgpConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth LPG (Propane) Consumption (MT)",
+    ""
+   ],
+   [
+    "LpgpConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LPG (Propane) Consumption (MT)",
+    ""
+   ],
+   [
+    "LpgbDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LPG (Butane) ROB at departure (MT)",
+    ""
+   ],
+   [
+    "LpgbArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LPG (Butane) ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthLpgbConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth LPG(Butane) Consumption (MT)",
+    ""
+   ],
+   [
+    "LpgbConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LPG (Butane) Consumption (MT)",
+    ""
+   ],
+   [
+    "MethanolDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Methanol ROB at departure (MT)",
+    ""
+   ],
+   [
+    "MethanolArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Methanol ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthMethanolConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth Methanol Consumption (MT)",
+    ""
+   ],
+   [
+    "MethanolConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Methanol Consumption (MT)",
+    ""
+   ],
+   [
+    "EthanolDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Ethanol ROB at departure (MT)",
+    ""
+   ],
+   [
+    "EthanolArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Ethanol ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthEthanolConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth Ethanol Consumption (MT)",
+    ""
+   ],
+   [
+    "EthanolConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Ethanol Consumption (MT)",
+    ""
+   ],
+   [
+    "BerthLngConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth LNG Consumption (MT)",
+    ""
+   ],
+   [
+    "LngConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LNG Consumption (MT)",
+    ""
+   ],
+   [
+    "LngDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LNG ROB at departure(MT)",
+    ""
+   ],
+   [
+    "LngArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LNG ROB at departure(MT)",
+    ""
+   ],
+   [
+    "OtherDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Other ROB at departure (MT)",
+    ""
+   ],
+   [
+    "OtherArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Other ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthOtherConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth Other Consumption (MT)",
+    ""
+   ],
+   [
+    "OtherConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Other Consumption (MT)",
+    ""
+   ],
+   [
+    "BdvHfo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - HFO",
+    ""
+   ],
+   [
+    "BdvLfo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - LFO",
+    ""
+   ],
+   [
+    "BdvMdo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - MDO",
+    ""
+   ],
+   [
+    "BdvMgo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - MGO",
+    ""
+   ],
+   [
+    "BdvLpgp",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - LPG(Propane)",
+    ""
+   ],
+   [
+    "BdvLpgb",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - LPG(Butane)",
+    ""
+   ],
+   [
+    "BdvMethanol",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - Methanol",
+    ""
+   ],
+   [
+    "BdvEthanol",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - Ethanol",
+    ""
+   ],
+   [
+    "BdvLng",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - LNG",
+    ""
+   ],
+   [
+    "BdvOther",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - Other",
+    ""
+   ],
+   [
+    "BbvHfo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - HFO",
+    ""
+   ],
+   [
+    "BbvLfo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - LFO",
+    ""
+   ],
+   [
+    "BbvMdo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - MDO",
+    ""
+   ],
+   [
+    "BbvMgo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - MGO",
+    ""
+   ],
+   [
+    "BbvLpgp",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - LPG(Propane)",
+    ""
+   ],
+   [
+    "BbvLpgb",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - LPG(Butane)",
+    ""
+   ],
+   [
+    "BbvMethanol",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - Methanol",
+    ""
+   ],
+   [
+    "BbvEthanol",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - Ethanol",
+    ""
+   ],
+   [
+    "BbvLng",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - LNG",
+    ""
+   ],
+   [
+    "BbvOther",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - Other",
+    ""
+   ],
+   [
+    "DbdvHfo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - HFO",
+    ""
+   ],
+   [
+    "DbdvLfo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - LFO",
+    ""
+   ],
+   [
+    "DbdvMdo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - MDO",
+    ""
+   ],
+   [
+    "DbdvMgo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - MGO",
+    ""
+   ],
+   [
+    "DbdvLpgp",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - LPG(Propane)",
+    ""
+   ],
+   [
+    "DbdvLpgb",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - LPG(Butane)",
+    ""
+   ],
+   [
+    "DbdvMethanol",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - Methanol",
+    ""
+   ],
+   [
+    "DbdvEthanol",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - Ethanol",
+    ""
+   ],
+   [
+    "DbdvLng",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - LNG",
+    ""
+   ],
+   [
+    "DbdvOther",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - Other",
+    ""
+   ],
+   [
+    "DbbvHfo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - HFO",
+    ""
+   ],
+   [
+    "DbbvLfo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - LFO",
+    ""
+   ],
+   [
+    "DbbvMdo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - MDO",
+    ""
+   ],
+   [
+    "DbbvMgo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - MGO",
+    ""
+   ],
+   [
+    "DbbvLpgp",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - LPG(Propane)",
+    ""
+   ],
+   [
+    "DbbvLpgb",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - LPG(Butane)",
+    ""
+   ],
+   [
+    "DbbvMethanol",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - Methanol",
+    ""
+   ],
+   [
+    "DbbvEthanol",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - Ethanol",
+    ""
+   ],
+   [
+    "DbbvLng",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - LNG",
+    ""
+   ],
+   [
+    "DbbvOther",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - Other",
+    ""
+   ],
+   [
+    "CbeyTimeSpentAtSea",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Time spent at sea",
+    ""
+   ],
+   [
+    "CbeyDistanceTravelled",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Distance travelled",
+    ""
+   ],
+   [
+    "HfoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - HFO",
+    ""
+   ],
+   [
+    "LfoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LFO",
+    ""
+   ],
+   [
+    "MdoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - MDO",
+    ""
+   ],
+   [
+    "MgoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - MGO",
+    ""
+   ],
+   [
+    "LpgpQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LPG(Propane)",
+    ""
+   ],
+   [
+    "LpgbQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LPG(Butane)",
+    ""
+   ],
+   [
+    "MethanolQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - Methanol",
+    ""
+   ],
+   [
+    "EthanolQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - Ethanol",
+    ""
+   ],
+   [
+    "LngQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LNG",
+    ""
+   ],
+   [
+    "OtherQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - Other",
+    ""
+   ],
+   [
+    "BioFuelList",
+    "",
+    "table",
+    "",
+    "List of other fuels",
+    "{\"fuelName\":\"TEST1\",\"cfFactor\":1.1, \"departureRob\":175.0,\"arrivalRob\":175.0, \"atBerthConsumption\":0,\"consumption\":137.7, \"beforeBunkering\":0,\"beforeDeBunkering\":0, \"afterBunkering\":0,\"afterDeBunkering\":0, \"correction\":0,\"isUk\":\"N\"}"
+   ]
+  ]
+ },
+ "GEARs Check MRV Voyage Template": {
+  "pApiId": 75,
+  "http_status": 200,
+  "endpoint": null,
+  "method_hint": "POST",
+  "table_rows": [
+   [
+    "Name",
+    "Value",
+    "Parameter Type",
+    "Data Type"
+   ],
+   [
+    "Token",
+    "",
+    "authorization",
+    "string"
+   ],
+   [
+    "IMO No.",
+    "",
+    "path",
+    "string"
+   ],
+   [
+    "Report Year",
+    "",
+    "path",
+    "string"
+   ],
+   [
+    "Name",
+    "Description",
+    "Required"
+   ],
+   [
+    "Token",
+    "Token",
+    "True"
+   ],
+   [
+    "IMO No.",
+    "IMO Number",
+    "True"
+   ],
+   [
+    "Report Year",
+    "Report Year",
+    "True"
+   ],
+   [
+    "Property",
+    "Code",
+    "Type",
+    "Size",
+    "Description",
+    "Sample"
+   ],
+   [
+    "DataVerifYear",
+    "",
+    "string",
+    "",
+    "(mandatory) Verification year",
+    "2024"
+   ],
+   [
+    "ImoNo",
+    "",
+    "string",
+    "",
+    "(mandatory) IMO decimal of the ship",
+    "7654321"
+   ],
+   [
+    "VoyageNo",
+    "",
+    "string",
+    "",
+    "Voyage decimal",
+    "1"
+   ],
+   [
+    "PortCodeDep",
+    "",
+    "string",
+    "",
+    "refer to UNLOCODE",
+    "KRMAS"
+   ],
+   [
+    "DepartureDate",
+    "",
+    "string",
+    "",
+    "(mandatory) Departure date (UTC) (YYYY-MM-DD)",
+    "2024-01-01"
+   ],
+   [
+    "DepartureTime",
+    "",
+    "string",
+    "",
+    "(mandatory) Departure time (UTC) (HH:MM)",
+    "22:00"
+   ],
+   [
+    "DepartureCargoOperYn",
+    "",
+    "string",
+    "",
+    "(mandatory) Departure Cargo operation (YES/NO)",
+    "Yes"
+   ],
+   [
+    "PortCodeArr",
+    "",
+    "string",
+    "",
+    "refer to UNLOCODE",
+    "SBHIR"
+   ],
+   [
+    "ArrivalDate",
+    "",
+    "string",
+    "",
+    "(mandatory) Arrival date (UTC) (YYYY-MM-DD)",
+    "2024-03-31"
+   ],
+   [
+    "ArrivalTime",
+    "",
+    "string",
+    "",
+    "(mandatory) Arrival time (UTC) (HH:MM)",
+    "16:05"
+   ],
+   [
+    "ArrivalCargoOperYn",
+    "",
+    "string",
+    "",
+    "(mandatory) Arrival Cargo operation (YES/NO)",
+    "No"
+   ],
+   [
+    "TimeSpentAtSea",
+    "",
+    "string",
+    "",
+    "(mandatory) Time spent at sea (hours)",
+    ""
+   ],
+   [
+    "DistanceTravelled",
+    "",
+    "string",
+    "",
+    "(mandatory) Distance travelled (nm)",
+    ""
+   ],
+   [
+    "TotalIdleSpentTime",
+    "",
+    "string",
+    "",
+    "(mandatory) Total idle spent time at anchorage (hours)",
+    ""
+   ],
+   [
+    "CargoPassenger",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Cargo carried - Passenger",
+    ""
+   ],
+   [
+    "CargoWeight",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Cargo carried - Weight or Volume",
+    ""
+   ],
+   [
+    "TransPassenger",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Transport Work - Passenger",
+    ""
+   ],
+   [
+    "TransWeight",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Transport Work - Weight or Volume",
+    ""
+   ],
+   [
+    "HfoDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) HFO ROB at departure (MT)",
+    ""
+   ],
+   [
+    "HfoArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) HFO ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthHfoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth HFO Consumption (MT)",
+    ""
+   ],
+   [
+    "HfoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) HFO Consumption (MT)",
+    ""
+   ],
+   [
+    "LfoDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LFO ROB at departure (MT)",
+    ""
+   ],
+   [
+    "LfoArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LFO ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthLfoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth LFO Consumption (MT)",
+    ""
+   ],
+   [
+    "LfoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LFO Consumption (MT)",
+    ""
+   ],
+   [
+    "MdoDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) MDO ROB at departure (MT)",
+    ""
+   ],
+   [
+    "MdoArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) MDO ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthMdoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth MDO Consumption (MT)",
+    ""
+   ],
+   [
+    "MdoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) MDO Consumption (MT)",
+    ""
+   ],
+   [
+    "MgoDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) MGO ROB at departure (MT)",
+    ""
+   ],
+   [
+    "MgoArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) MGO ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthMgoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth MGO Consumption (MT)",
+    ""
+   ],
+   [
+    "MgoConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) MGO Consumption (MT)",
+    ""
+   ],
+   [
+    "LpgpDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LPG (Propane) ROB at departure (MT)",
+    ""
+   ],
+   [
+    "LpgpArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LPG (Propane) ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthLpgpConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth LPG (Propane) Consumption (MT)",
+    ""
+   ],
+   [
+    "LpgpConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LPG (Propane) Consumption (MT)",
+    ""
+   ],
+   [
+    "LpgbDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LPG (Butane) ROB at departure (MT)",
+    ""
+   ],
+   [
+    "LpgbArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LPG (Butane) ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthLpgbConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth LPG(Butane) Consumption (MT)",
+    ""
+   ],
+   [
+    "LpgbConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LPG (Butane) Consumption (MT)",
+    ""
+   ],
+   [
+    "MethanolDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Methanol ROB at departure (MT)",
+    ""
+   ],
+   [
+    "MethanolArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Methanol ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthMethanolConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth Methanol Consumption (MT)",
+    ""
+   ],
+   [
+    "MethanolConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Methanol Consumption (MT)",
+    ""
+   ],
+   [
+    "EthanolDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Ethanol ROB at departure (MT)",
+    ""
+   ],
+   [
+    "EthanolArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Ethanol ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthEthanolConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth Ethanol Consumption (MT)",
+    ""
+   ],
+   [
+    "EthanolConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Ethanol Consumption (MT)",
+    ""
+   ],
+   [
+    "BerthLngConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth LNG Consumption (MT)",
+    ""
+   ],
+   [
+    "LngConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LNG Consumption (MT)",
+    ""
+   ],
+   [
+    "LngDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LNG ROB at departure(MT)",
+    ""
+   ],
+   [
+    "LngArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) LNG ROB at departure(MT)",
+    ""
+   ],
+   [
+    "OtherDepart",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Other ROB at departure (MT)",
+    ""
+   ],
+   [
+    "OtherArrival",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Other ROB at arrival (MT)",
+    ""
+   ],
+   [
+    "BerthOtherConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) At Berth Other Consumption (MT)",
+    ""
+   ],
+   [
+    "OtherConsump",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Other Consumption (MT)",
+    ""
+   ],
+   [
+    "BdvHfo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - HFO",
+    ""
+   ],
+   [
+    "BdvLfo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - LFO",
+    ""
+   ],
+   [
+    "BdvMdo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - MDO",
+    ""
+   ],
+   [
+    "BdvMgo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - MGO",
+    ""
+   ],
+   [
+    "BdvLpgp",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - LPG(Propane)",
+    ""
+   ],
+   [
+    "BdvLpgb",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - LPG(Butane)",
+    ""
+   ],
+   [
+    "BdvMethanol",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - Methanol",
+    ""
+   ],
+   [
+    "BdvEthanol",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - Ethanol",
+    ""
+   ],
+   [
+    "BdvLng",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - LNG",
+    ""
+   ],
+   [
+    "BdvOther",
+    "",
+    "decimal",
+    "",
+    "(Bunkering before arrival) Received Quantity - Other",
+    ""
+   ],
+   [
+    "BbvHfo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - HFO",
+    ""
+   ],
+   [
+    "BbvLfo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - LFO",
+    ""
+   ],
+   [
+    "BbvMdo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - MDO",
+    ""
+   ],
+   [
+    "BbvMgo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - MGO",
+    ""
+   ],
+   [
+    "BbvLpgp",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - LPG(Propane)",
+    ""
+   ],
+   [
+    "BbvLpgb",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - LPG(Butane)",
+    ""
+   ],
+   [
+    "BbvMethanol",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - Methanol",
+    ""
+   ],
+   [
+    "BbvEthanol",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - Ethanol",
+    ""
+   ],
+   [
+    "BbvLng",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - LNG",
+    ""
+   ],
+   [
+    "BbvOther",
+    "",
+    "decimal",
+    "",
+    "(Bunkering after arrival) Received Quantity - Other",
+    ""
+   ],
+   [
+    "DbdvHfo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - HFO",
+    ""
+   ],
+   [
+    "DbdvLfo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - LFO",
+    ""
+   ],
+   [
+    "DbdvMdo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - MDO",
+    ""
+   ],
+   [
+    "DbdvMgo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - MGO",
+    ""
+   ],
+   [
+    "DbdvLpgp",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - LPG(Propane)",
+    ""
+   ],
+   [
+    "DbdvLpgb",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - LPG(Butane)",
+    ""
+   ],
+   [
+    "DbdvMethanol",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - Methanol",
+    ""
+   ],
+   [
+    "DbdvEthanol",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - Ethanol",
+    ""
+   ],
+   [
+    "DbdvLng",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - LNG",
+    ""
+   ],
+   [
+    "DbdvOther",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering before arrival) Received Quantity - Other",
+    ""
+   ],
+   [
+    "DbbvHfo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - HFO",
+    ""
+   ],
+   [
+    "DbbvLfo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - LFO",
+    ""
+   ],
+   [
+    "DbbvMdo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - MDO",
+    ""
+   ],
+   [
+    "DbbvMgo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - MGO",
+    ""
+   ],
+   [
+    "DbbvLpgp",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - LPG(Propane)",
+    ""
+   ],
+   [
+    "DbbvLpgb",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - LPG(Butane)",
+    ""
+   ],
+   [
+    "DbbvMethanol",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - Methanol",
+    ""
+   ],
+   [
+    "DbbvEthanol",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - Ethanol",
+    ""
+   ],
+   [
+    "DbbvLng",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - LNG",
+    ""
+   ],
+   [
+    "DbbvOther",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering after arrival) Received Quantity - Other",
+    ""
+   ],
+   [
+    "CbeyTimeSpentAtSea",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Time spent at sea",
+    ""
+   ],
+   [
+    "CbeyDistanceTravelled",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Distance travelled",
+    ""
+   ],
+   [
+    "HfoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - HFO",
+    ""
+   ],
+   [
+    "LfoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LFO",
+    ""
+   ],
+   [
+    "MdoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - MDO",
+    ""
+   ],
+   [
+    "MgoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - MGO",
+    ""
+   ],
+   [
+    "LpgpQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LPG(Propane)",
+    ""
+   ],
+   [
+    "LpgbQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LPG(Butane)",
+    ""
+   ],
+   [
+    "MethanolQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - Methanol",
+    ""
+   ],
+   [
+    "EthanolQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - Ethanol",
+    ""
+   ],
+   [
+    "LngQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LNG",
+    ""
+   ],
+   [
+    "OtherQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - Other",
+    ""
+   ],
+   [
+    "BioFuelList",
+    "",
+    "table",
+    "",
+    "List of other fuels",
+    "{\"fuelName\":\"TEST1\",\"cfFactor\":1.1, \"departureRob\":175.0,\"arrivalRob\":175.0, \"atBerthConsumption\":0,\"consumption\":137.7, \"beforeBunkering\":0,\"beforeDeBunkering\":0, \"afterBunkering\":0,\"afterDeBunkering\":0, \"correction\":0,\"isUk\":\"N\"}"
+   ]
+  ]
+ },
+ "GEARs Check DCS Daily Template": {
+  "pApiId": 76,
+  "http_status": 200,
+  "endpoint": null,
+  "method_hint": "POST",
+  "table_rows": [
+   [
+    "Name",
+    "Value",
+    "Parameter Type",
+    "Data Type"
+   ],
+   [
+    "Token",
+    "",
+    "authorization",
+    "string"
+   ],
+   [
+    "IMO No.",
+    "",
+    "path",
+    "string"
+   ],
+   [
+    "Report Year",
+    "",
+    "path",
+    "string"
+   ],
+   [
+    "Name",
+    "Description",
+    "Required"
+   ],
+   [
+    "Token",
+    "Token",
+    "True"
+   ],
+   [
+    "IMO No.",
+    "IMO Number",
+    "True"
+   ],
+   [
+    "Report Year",
+    "Report Year",
+    "True"
+   ],
+   [
+    "Property",
+    "Code",
+    "Type",
+    "Size",
+    "Description",
+    "Sample"
+   ],
+   [
+    "DataVerifyYear",
+    "",
+    "string",
+    "",
+    "(mandatory) Verification year",
+    "2024"
+   ],
+   [
+    "ImoNo",
+    "",
+    "string",
+    "",
+    "(mandatory) IMO decimal of the ship",
+    "7654321"
+   ],
+   [
+    "ReportingDate",
+    "",
+    "string",
+    "",
+    "(mandatory) Departure Date (UTC) (YYYY-MM-DD)",
+    "2024-01-01"
+   ],
+   [
+    "ReportingTime",
+    "",
+    "string",
+    "",
+    "(mandatory) Departure time (UTC) (HH:MM)",
+    "04:30"
+   ],
+   [
+    "PortCodeDep",
+    "",
+    "string",
+    "",
+    "refer to UNLOCODE",
+    "BRPNG"
+   ],
+   [
+    "PortCodeArr",
+    "",
+    "string",
+    "",
+    "refer to UNLOCODE",
+    "ESHUV"
+   ],
+   [
+    "TimeSpentAtSea",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Time spent at sea (hours)",
+    ""
+   ],
+   [
+    "DistanceTravelled",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Distance travelled (nm)",
+    ""
+   ],
+   [
+    "Status",
+    "",
+    "string",
+    "",
+    "refer to Status code table",
+    "001"
+   ],
+   [
+    "CargoPassenger",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Cargo Carried Passenger",
+    ""
+   ],
+   [
+    "CargoWeight",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Cargo Carried Weight or Volume",
+    ""
+   ],
+   [
+    "TransPassenger",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Transport Work Passenger",
+    ""
+   ],
+   [
+    "TransWeight",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Transport Weight or Volume",
+    ""
+   ],
+   [
+    "BiHfo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - HFO",
+    ""
+   ],
+   [
+    "BiLfo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - LFO",
+    ""
+   ],
+   [
+    "BiMdo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - MDO",
+    ""
+   ],
+   [
+    "BiMgo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - MGO",
+    ""
+   ],
+   [
+    "BiLpgp",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - LPG(Propane)",
+    ""
+   ],
+   [
+    "BiLpgb",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - LPG(Butane)",
+    ""
+   ],
+   [
+    "BiMethanol",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - Methanol",
+    ""
+   ],
+   [
+    "BiEthanol",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - Ethanol",
+    ""
+   ],
+   [
+    "BiLng",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - LNG",
+    ""
+   ],
+   [
+    "BiOther",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - Other",
+    ""
+   ],
+   [
+    "DbiHfo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - HFO",
+    ""
+   ],
+   [
+    "DbiLfo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - LFO",
+    ""
+   ],
+   [
+    "DbiMdo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - MDO",
+    ""
+   ],
+   [
+    "DbiMgo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - MGO",
+    ""
+   ],
+   [
+    "DbiLpgp",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - LPG(Propane)",
+    ""
+   ],
+   [
+    "DbiLpgb",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - LPG(Butane)",
+    ""
+   ],
+   [
+    "DbiMethanol",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - Methanol",
+    ""
+   ],
+   [
+    "DbiEthanol",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - Ethanol",
+    ""
+   ],
+   [
+    "DbiLng",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - LNG",
+    ""
+   ],
+   [
+    "DbiOther",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - Other",
+    ""
+   ],
+   [
+    "VmRpm",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - RPM",
+    ""
+   ],
+   [
+    "VmMpower",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - ME POWER (kw)",
+    ""
+   ],
+   [
+    "VpLongDgree",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - POSITION - LONG. Degree",
+    ""
+   ],
+   [
+    "VpLongMinutes",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - POSITION - LONG. Minutes",
+    ""
+   ],
+   [
+    "VpLongNorthSouth",
+    "",
+    "string",
+    "",
+    "([Voyage analysis] Voluntary) ME - POSITION - LONG. North/South",
+    ""
+   ],
+   [
+    "VpLatDegree",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - POSITION - LAT. Degree",
+    ""
+   ],
+   [
+    "VpLatMinutes",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - POSITION - LAT. Minutes",
+    ""
+   ],
+   [
+    "VpLatEastWest",
+    "",
+    "string",
+    "",
+    "([Voyage analysis] Voluntary) ME - POSITION - LAT. East/West",
+    ""
+   ],
+   [
+    "VwBeaufort",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - Weather - Beaufort (0~12)",
+    ""
+   ],
+   [
+    "VccPassenger",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - [For IMO DCS only] Cargo Carried - Passenger",
+    ""
+   ],
+   [
+    "VccWeight",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - [For IMO DCS only] Cargo Carried - Weight or Volume",
+    ""
+   ],
+   [
+    "MecHfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - HFO",
+    ""
+   ],
+   [
+    "MecLfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - LFO",
+    ""
+   ],
+   [
+    "MecMdo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - MDO",
+    ""
+   ],
+   [
+    "MecMgo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - MGO",
+    ""
+   ],
+   [
+    "MecLpgp",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - LPG(Propane)",
+    ""
+   ],
+   [
+    "MecLpgb",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - LPG(Butane)",
+    ""
+   ],
+   [
+    "MecMethanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - Methanol",
+    ""
+   ],
+   [
+    "MecEthanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - Ethanol",
+    ""
+   ],
+   [
+    "MecLng",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - LNG",
+    ""
+   ],
+   [
+    "MecOther",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - Other",
+    ""
+   ],
+   [
+    "AecHfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - HFO",
+    ""
+   ],
+   [
+    "AecLfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - LFO",
+    ""
+   ],
+   [
+    "AecMdo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - MDO",
+    ""
+   ],
+   [
+    "AecMgo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - MGO",
+    ""
+   ],
+   [
+    "AecLpgp",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - LPG(Propane)",
+    ""
+   ],
+   [
+    "AecLpgb",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - LPG(Butane)",
+    ""
+   ],
+   [
+    "AecMethanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - Methanol",
+    ""
+   ],
+   [
+    "AecEthanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - Ethanol",
+    ""
+   ],
+   [
+    "AecLng",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - LNG",
+    ""
+   ],
+   [
+    "AecOther",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - Other",
+    ""
+   ],
+   [
+    "BcHfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - HFO",
+    ""
+   ],
+   [
+    "BcLfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - LFO",
+    ""
+   ],
+   [
+    "BcMdo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - MDO",
+    ""
+   ],
+   [
+    "BcMgo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - MGO",
+    ""
+   ],
+   [
+    "BcLpgp",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - LPG(Propane)",
+    ""
+   ],
+   [
+    "BcLpgb",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - LPG(Butane)",
+    ""
+   ],
+   [
+    "BcMethanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - Methanol",
+    ""
+   ],
+   [
+    "BcEthanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - Ethanol",
+    ""
+   ],
+   [
+    "BcLng",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - LNG",
+    ""
+   ],
+   [
+    "BcOther",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - Other",
+    ""
+   ],
+   [
+    "IggcHfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - HFO",
+    ""
+   ],
+   [
+    "IggcLfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - LFO",
+    ""
+   ],
+   [
+    "IggcMdo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - MDO",
+    ""
+   ],
+   [
+    "IggcMgo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - MGO",
+    ""
+   ],
+   [
+    "IggcLpgp",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - LPG(Propane)",
+    ""
+   ],
+   [
+    "IggcLpgb",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - LPG(Butane)",
+    ""
+   ],
+   [
+    "IggcMethanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - Methanol",
+    ""
+   ],
+   [
+    "IggcEthanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - Ethanol",
+    ""
+   ],
+   [
+    "IggcLng",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - LNG",
+    ""
+   ],
+   [
+    "IggcOther",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - Other",
+    ""
+   ],
+   [
+    "RobHfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - HFO",
+    ""
+   ],
+   [
+    "RobLfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - LFO",
+    ""
+   ],
+   [
+    "RobMdo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - MDO",
+    ""
+   ],
+   [
+    "RobMgo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - MGO",
+    ""
+   ],
+   [
+    "RobLpgp",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - LPG(Propane)",
+    ""
+   ],
+   [
+    "RobLpgb",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - LPG(Butane)",
+    ""
+   ],
+   [
+    "RobMethanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - Methanol",
+    ""
+   ],
+   [
+    "RobEthanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - Ethanol",
+    ""
+   ],
+   [
+    "RobLng",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - LNG",
+    ""
+   ],
+   [
+    "RobOther",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - Other",
+    ""
+   ],
+   [
+    "CbeyTimeSpentAtSea",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Time spent at sea",
+    ""
+   ],
+   [
+    "CbeyDistanceTravelled",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Distance travelled",
+    ""
+   ],
+   [
+    "HfoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - HFO",
+    ""
+   ],
+   [
+    "LfoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LFO",
+    ""
+   ],
+   [
+    "MdoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - MDO",
+    ""
+   ],
+   [
+    "MgoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - MGO",
+    ""
+   ],
+   [
+    "LpgpQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LPG(Propane)",
+    ""
+   ],
+   [
+    "LpgbQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LPG(Butane)",
+    ""
+   ],
+   [
+    "MethanolQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - Methanol",
+    ""
+   ],
+   [
+    "EthanolQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - Ethanol",
+    ""
+   ],
+   [
+    "LngQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LNG",
+    ""
+   ],
+   [
+    "OtherQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - Other",
+    ""
+   ],
+   [
+    "BioFuelList",
+    "",
+    "table",
+    "",
+    "List of other fuels",
+    "{ \"fuelName\": \"TEST1\", \"cfFactor\": 1.100, \"beforeBunkering\": 0, \"beforeDeBunkering\": 0, \"afterBunkering\": 0, \"afterDeBunkering\": 0, \"correction\":0, \"meConsumption\": 0, \"aeConsumption\": 0, \"boilerConsumption\": 0, \"iggConsumption\": 0, \"rob\": 0, \"isUk\": \"N\"}"
+   ]
+  ]
+ },
+ "GEARs Check MRV Daily Template": {
+  "pApiId": 77,
+  "http_status": 200,
+  "endpoint": null,
+  "method_hint": "POST",
+  "table_rows": [
+   [
+    "Name",
+    "Value",
+    "Parameter Type",
+    "Data Type"
+   ],
+   [
+    "Token",
+    "",
+    "authorization",
+    "string"
+   ],
+   [
+    "IMO No.",
+    "",
+    "path",
+    "string"
+   ],
+   [
+    "Report Year",
+    "",
+    "path",
+    "string"
+   ],
+   [
+    "Name",
+    "Description",
+    "Required"
+   ],
+   [
+    "Token",
+    "Token",
+    "True"
+   ],
+   [
+    "IMO No.",
+    "IMO Number",
+    "True"
+   ],
+   [
+    "Report Year",
+    "Report Year",
+    "True"
+   ],
+   [
+    "Property",
+    "Code",
+    "Type",
+    "Size",
+    "Description",
+    "Sample"
+   ],
+   [
+    "DataVerifyYear",
+    "",
+    "string",
+    "",
+    "(mandatory) Verification year",
+    "2024"
+   ],
+   [
+    "ImoNo",
+    "",
+    "string",
+    "",
+    "(mandatory) IMO decimal of the ship",
+    "7654321"
+   ],
+   [
+    "ReportingDate",
+    "",
+    "string",
+    "",
+    "(mandatory) Departure Date (UTC) (YYYY-MM-DD)",
+    "2024-01-01"
+   ],
+   [
+    "ReportingTime",
+    "",
+    "string",
+    "",
+    "(mandatory) Departure time (UTC) (HH:MM)",
+    "04:30"
+   ],
+   [
+    "PortCodeDep",
+    "",
+    "string",
+    "",
+    "refer to UNLOCODE",
+    "BRPNG"
+   ],
+   [
+    "PortCodeArr",
+    "",
+    "string",
+    "",
+    "refer to UNLOCODE",
+    "ESHUV"
+   ],
+   [
+    "TimeSpentAtSea",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Time spent at sea (hours)",
+    ""
+   ],
+   [
+    "DistanceTravelled",
+    "",
+    "decimal",
+    "",
+    "(mandatory) Distance travelled (nm)",
+    ""
+   ],
+   [
+    "Status",
+    "",
+    "string",
+    "",
+    "refer to Status code table",
+    "001"
+   ],
+   [
+    "CargoPassenger",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Cargo Carried Passenger",
+    ""
+   ],
+   [
+    "CargoWeight",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Cargo Carried Weight or Volume",
+    ""
+   ],
+   [
+    "TransPassenger",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Transport Work Passenger",
+    ""
+   ],
+   [
+    "TransWeight",
+    "",
+    "decimal",
+    "",
+    "(MRV mandatory only) Transport Weight or Volume",
+    ""
+   ],
+   [
+    "BiHfo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - HFO",
+    ""
+   ],
+   [
+    "BiLfo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - LFO",
+    ""
+   ],
+   [
+    "BiMdo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - MDO",
+    ""
+   ],
+   [
+    "BiMgo",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - MGO",
+    ""
+   ],
+   [
+    "BiLpgp",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - LPG(Propane)",
+    ""
+   ],
+   [
+    "BiLpgb",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - LPG(Butane)",
+    ""
+   ],
+   [
+    "BiMethanol",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - Methanol",
+    ""
+   ],
+   [
+    "BiEthanol",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - Ethanol",
+    ""
+   ],
+   [
+    "BiLng",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - LNG",
+    ""
+   ],
+   [
+    "BiOther",
+    "",
+    "decimal",
+    "",
+    "(Bunkering information) Received Quantity - Other",
+    ""
+   ],
+   [
+    "DbiHfo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - HFO",
+    ""
+   ],
+   [
+    "DbiLfo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - LFO",
+    ""
+   ],
+   [
+    "DbiMdo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - MDO",
+    ""
+   ],
+   [
+    "DbiMgo",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - MGO",
+    ""
+   ],
+   [
+    "DbiLpgp",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - LPG(Propane)",
+    ""
+   ],
+   [
+    "DbiLpgb",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - LPG(Butane)",
+    ""
+   ],
+   [
+    "DbiMethanol",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - Methanol",
+    ""
+   ],
+   [
+    "DbiEthanol",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - Ethanol",
+    ""
+   ],
+   [
+    "DbiLng",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - LNG",
+    ""
+   ],
+   [
+    "DbiOther",
+    "",
+    "decimal",
+    "",
+    "(De-bunkering information) De-bunkered Quantity - Other",
+    ""
+   ],
+   [
+    "VmRpm",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - RPM",
+    ""
+   ],
+   [
+    "VmMpower",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - ME POWER (kw)",
+    ""
+   ],
+   [
+    "VpLongDgree",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - POSITION - LONG. Degree",
+    ""
+   ],
+   [
+    "VpLongMinutes",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - POSITION - LONG. Minutes",
+    ""
+   ],
+   [
+    "VpLongNorthSouth",
+    "",
+    "string",
+    "",
+    "([Voyage analysis] Voluntary) ME - POSITION - LONG. North/South",
+    ""
+   ],
+   [
+    "VpLatDegree",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - POSITION - LAT. Degree",
+    ""
+   ],
+   [
+    "VpLatMinutes",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - POSITION - LAT. Minutes",
+    ""
+   ],
+   [
+    "VpLatEastWest",
+    "",
+    "string",
+    "",
+    "([Voyage analysis] Voluntary) ME - POSITION - LAT. East/West",
+    ""
+   ],
+   [
+    "VwBeaufort",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - Weather - Beaufort (0~12)",
+    ""
+   ],
+   [
+    "VccPassenger",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - [For IMO DCS only] Cargo Carried - Passenger",
+    ""
+   ],
+   [
+    "VccWeight",
+    "",
+    "decimal",
+    "",
+    "([Voyage analysis] Voluntary) ME - [For IMO DCS only] Cargo Carried - Weight or Volume",
+    ""
+   ],
+   [
+    "MecHfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - HFO",
+    ""
+   ],
+   [
+    "MecLfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - LFO",
+    ""
+   ],
+   [
+    "MecMdo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - MDO",
+    ""
+   ],
+   [
+    "MecMgo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - MGO",
+    ""
+   ],
+   [
+    "MecLpgp",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - LPG(Propane)",
+    ""
+   ],
+   [
+    "MecLpgb",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - LPG(Butane)",
+    ""
+   ],
+   [
+    "MecMethanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - Methanol",
+    ""
+   ],
+   [
+    "MecEthanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - Ethanol",
+    ""
+   ],
+   [
+    "MecLng",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - LNG",
+    ""
+   ],
+   [
+    "MecOther",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Main engines consumption - Other",
+    ""
+   ],
+   [
+    "AecHfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - HFO",
+    ""
+   ],
+   [
+    "AecLfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - LFO",
+    ""
+   ],
+   [
+    "AecMdo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - MDO",
+    ""
+   ],
+   [
+    "AecMgo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - MGO",
+    ""
+   ],
+   [
+    "AecLpgp",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - LPG(Propane)",
+    ""
+   ],
+   [
+    "AecLpgb",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - LPG(Butane)",
+    ""
+   ],
+   [
+    "AecMethanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - Methanol",
+    ""
+   ],
+   [
+    "AecEthanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - Ethanol",
+    ""
+   ],
+   [
+    "AecLng",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - LNG",
+    ""
+   ],
+   [
+    "AecOther",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Auxiliary engines Consumption - Other",
+    ""
+   ],
+   [
+    "BcHfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - HFO",
+    ""
+   ],
+   [
+    "BcLfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - LFO",
+    ""
+   ],
+   [
+    "BcMdo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - MDO",
+    ""
+   ],
+   [
+    "BcMgo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - MGO",
+    ""
+   ],
+   [
+    "BcLpgp",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - LPG(Propane)",
+    ""
+   ],
+   [
+    "BcLpgb",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - LPG(Butane)",
+    ""
+   ],
+   [
+    "BcMethanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - Methanol",
+    ""
+   ],
+   [
+    "BcEthanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - Ethanol",
+    ""
+   ],
+   [
+    "BcLng",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - LNG",
+    ""
+   ],
+   [
+    "BcOther",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Boilers Consumption - Other",
+    ""
+   ],
+   [
+    "IggcHfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - HFO",
+    ""
+   ],
+   [
+    "IggcLfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - LFO",
+    ""
+   ],
+   [
+    "IggcMdo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - MDO",
+    ""
+   ],
+   [
+    "IggcMgo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - MGO",
+    ""
+   ],
+   [
+    "IggcLpgp",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - LPG(Propane)",
+    ""
+   ],
+   [
+    "IggcLpgb",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - LPG(Butane)",
+    ""
+   ],
+   [
+    "IggcMethanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - Methanol",
+    ""
+   ],
+   [
+    "IggcEthanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - Ethanol",
+    ""
+   ],
+   [
+    "IggcLng",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - LNG",
+    ""
+   ],
+   [
+    "IggcOther",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 1) Inert Gas Generators Consumption - Other",
+    ""
+   ],
+   [
+    "RobHfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - HFO",
+    ""
+   ],
+   [
+    "RobLfo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - LFO",
+    ""
+   ],
+   [
+    "RobMdo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - MDO",
+    ""
+   ],
+   [
+    "RobMgo",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - MGO",
+    ""
+   ],
+   [
+    "RobLpgp",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - LPG(Propane)",
+    ""
+   ],
+   [
+    "RobLpgb",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - LPG(Butane)",
+    ""
+   ],
+   [
+    "RobMethanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - Methanol",
+    ""
+   ],
+   [
+    "RobEthanol",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - Ethanol",
+    ""
+   ],
+   [
+    "RobLng",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - LNG",
+    ""
+   ],
+   [
+    "RobOther",
+    "",
+    "decimal",
+    "",
+    "(mandatory OPTION 2) Remaining On Board (ROB) - Other",
+    ""
+   ],
+   [
+    "CbeyTimeSpentAtSea",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Time spent at sea",
+    ""
+   ],
+   [
+    "CbeyDistanceTravelled",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Distance travelled",
+    ""
+   ],
+   [
+    "HfoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - HFO",
+    ""
+   ],
+   [
+    "LfoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LFO",
+    ""
+   ],
+   [
+    "MdoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - MDO",
+    ""
+   ],
+   [
+    "MgoQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - MGO",
+    ""
+   ],
+   [
+    "LpgpQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LPG(Propane)",
+    ""
+   ],
+   [
+    "LpgbQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LPG(Butane)",
+    ""
+   ],
+   [
+    "MethanolQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - Methanol",
+    ""
+   ],
+   [
+    "EthanolQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - Ethanol",
+    ""
+   ],
+   [
+    "LngQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - LNG",
+    ""
+   ],
+   [
+    "OtherQuantity",
+    "",
+    "decimal",
+    "",
+    "(DCS Correction) Fuel consumption - Other",
+    ""
+   ],
+   [
+    "BioFuelList",
+    "",
+    "table",
+    "",
+    "List of other fuels",
+    "{ \"fuelName\": \"TEST1\", \"cfFactor\": 1.100, \"beforeBunkering\": 0, \"beforeDeBunkering\": 0, \"afterBunkering\": 0, \"afterDeBunkering\": 0, \"correction\":0, \"meConsumption\": 0, \"aeConsumption\": 0, \"boilerConsumption\": 0, \"iggConsumption\": 0, \"rob\": 0, \"isUk\": \"N\"}"
+   ]
+  ]
+ }
+}
