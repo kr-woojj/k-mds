@@ -244,7 +244,8 @@
           "run_no": "manual_S04",
           "timestamp": "2026-09-13",
           "evidence_paths": [
-            "verification/evidence/C02/manual_S04/"
+            "verification/evidence/C02/manual_S04/",
+            "verification/evidence/C02/manual_S04/GEARs_Type1_Mapping_Result_IMO00000009.xlsx"
           ],
           "result": "Step 7~9·11(GEARs 변환) PARTIAL: 매핑 70/71, Type1 레그1 변환, API 필수 50/52, 템플릿 검사 53건 PASS36/FAIL6/WARN5/미완료6",
           "notes": "adapters/gears_voyage_transform.py (코드북+FAL50 registry+Code list 규칙). Nexawave Voyage Template API 132필드 확보(pApiId=64), 전송 미실행."

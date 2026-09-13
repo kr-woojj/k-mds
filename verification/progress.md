@@ -206,3 +206,4 @@
 - 도구 결함 수정 기록: UNLOCODE 시트 파서(A열 공백) 오류로 초기 실행에서 GTPRQ 를 미수록으로 오판 → 수정 후 재실행(PACTB 만 미수록, WARNING 로 조정).
 
 세션 S04 종료 상태: NEEDS_INPUT (D6~D8, 랩오투원·GEARs 조치)
+- S04 추가: 매핑 결과물 엑셀 1부 생성 — evidence/C02/manual_S04/GEARs_Type1_Mapping_Result_IMO00000009.xlsx (Sample 레이아웃 Type 1 시트 + 근거 시트 7종). 생성기 adapters/make_gears_excel.py. 검증: 행 JSON 의 수치값 전부 시트에 반영, LPG 등 표기 차이(공백) 정규화로 해결.
