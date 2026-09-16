@@ -207,3 +207,12 @@
 
 세션 S04 종료 상태: NEEDS_INPUT (D6~D8, 랩오투원·GEARs 조치)
 - S04 추가: 매핑 결과물 엑셀 1부 생성 — evidence/C02/manual_S04/GEARs_Type1_Mapping_Result_IMO00000009.xlsx (Sample 레이아웃 Type 1 시트 + 근거 시트 7종). 생성기 adapters/make_gears_excel.py. 검증: 행 JSON 의 수치값 전부 시트에 반영, LPG 등 표기 차이(공백) 정규화로 해결.
+
+---
+
+## 세션 S05 — 2026-09-16 (3차 실증회의일)
+- 사용자 요청: IDS Provider 브라우저 기동, 라우트·브로커 리스트 점검, 가능하면 데모.
+- 수행: Provider/Consumer Connector API 로 등록 현황 점검 + 데모(Description→Contract 201 confirmed→Artifact 200, 무결성 동일). Broker 검색 500 지속. 브라우저는 Provider/Consumer UI 기동(자동 클릭 불가).
+- 신규 finding: F-22 vessellink noon 이벤트 0건(9/16), F-23 Provider Broker 미등록(Unregistered, 0 offers). RIMS 포트콜 자원 4건 신규 등록 확인(C03 참고).
+- 판정: 데모 CONDITIONAL_PASS. 증적 evidence/C02/manual_S05/demo-20260916/.
+세션 S05 종료 상태: NEEDS_INPUT (랩오투원 F-22, 유엔젤/RIMS F-23 확인)
