@@ -195,7 +195,7 @@
 
 ### 시작 루틴
 - PROGRESS/CASE_LIST: C02 partial(S03) 확인. 이번 과업 = C02 Step 7(매핑)·8(검증)·9(GEARs 변환)·11/12(입력 완전성) 로컬 수행. 시뮬레이터 smoke: S03 환경 유지(변경 없음).
-- 근거 자료: GEARs_Template_Type1_Rev.2.1.xlsm(sha256 e7acd292…, Type 1 112열/그룹 7종, UNLOCODE 시트, Setting Cf표 Rev.2.1 2024-12-24), GEARs_Sample_Type 1.xlsx(0cc937a9…, 122행 샘플), Nexawave_URL.url → https://nexawave.krs.co.kr/Api/Api (API 65종, GEARs 13종). 상세: /Api/ApiDetail?pApiId=64 "Post DCS/MRV Voyage Template" 필드 132개(필수 52), Token 헤더.
+- 근거 자료: GEARs_Template_Type1_Rev.2.1.xlsm(sha256 e7acd292…, Type 1 112열/그룹 7종, UNLOCODE 시트, Setting Cf표 Rev.2.1 2024-12-24), GEARs_Sample_Type 1.xlsx(0cc937a9…, 122행 샘플), Nexawave_URL.url → <KR-NEXAWAVE-HOST>/Api/Api (API 65종, GEARs 13종). 상세: /Api/ApiDetail?pApiId=64 "Post DCS/MRV Voyage Template" 필드 132개(필수 52), Token 헤더.
 - 도구: verification/adapters/gears_voyage_transform.py (코드북+FAL50 registry+Code list+템플릿 → 매핑표·IMO 정준 이벤트·Type1 행·API 리스트·검증 보고). 산출물 evidence/C02/manual_S04/.
 
 ### S04 결과
