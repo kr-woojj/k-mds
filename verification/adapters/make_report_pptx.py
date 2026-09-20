@@ -6,7 +6,7 @@ from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN
 from pptx.util import Inches, Pt
 
-OUT = Path(r"C:\kr-dev\k-mds\verification\evidence\C02\manual_S04\GHG_GEARs_verification_1p.pptx")
+OUT = Path(__file__).resolve().parents[2] / "verification/evidence/C02/manual_S04/GHG_GEARs_verification_1p.pptx"
 NAVY, GREY, RED, AMB, GRN = RGBColor(0x1F, 0x3A, 0x5F), RGBColor(0x59, 0x59, 0x59), RGBColor(0xC0, 0x39, 0x2B), RGBColor(0xD6, 0x8A, 0x00), RGBColor(0x2E, 0x7D, 0x32)
 
 prs = Presentation(); prs.slide_width, prs.slide_height = Inches(13.333), Inches(7.5)

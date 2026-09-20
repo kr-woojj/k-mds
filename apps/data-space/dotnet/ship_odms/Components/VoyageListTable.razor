@@ -1,0 +1,82 @@
+@using System.Collections.Generic
+@using ship_odms.Models
+
+@* VoyageListTable.jsx → Blazor *@
+@code {
+    [Parameter]
+    public List<Voyage>? Items { get; set; }
+    [Parameter]
+    public bool Loading { get; set; }
+    [Parameter]
+    public string? Error { get; set; }
+    [Parameter]
+    public EventCallback<Voyage> OnRowClick { get; set; }
+
+    // 기존 VoyageDto는 삭제, 실제 모델 사용
+
+    // public class VoyageDto ... 삭제
+}
+
+<div style="overflow-x: auto">
+    <table style="border-collapse: collapse; width: 100%; min-width: 800px; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #eee;">
+        <thead style="background: #f5f5f5">
+            <tr>
+                <th style="@th">ID</th>
+                <th style="@th">선박 ID</th>
+                <th style="@th">연차보고 ID</th>
+                <th style="@th">항해번호</th>
+                <th style="@th">서비스ID</th>
+                <th style="@th">GHG(항차)</th>
+                <th style="@th">입항 관할</th>
+                <th style="@th">출항 관할</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Items != null && Items.Count > 0)
+            {
+                foreach (var v in Items)
+                {
+                    <tr style="border-bottom: 1px solid #eee">
+                        <td style="@td">@v.Id</td>
+                        <td style="@td">@v.ShipId</td>
+                        <td style="@td">@v.YearReportId</td>
+                        <td style="@td">@v.VoyageNumber</td>
+                        <td style="@td">@v.TradeServiceId</td>
+                        <td style="@td">@v.GfiPerVoyage</td>
+                        <td style="@td">@v.InboundPortJurisdiction</td>
+                        <td style="@td">@v.OutboundPortJurisdiction</td>
+                        <td style="@td">
+                            <a href="/ships/@v.ShipId/voyages/@v.Id/port-calls" style="@linkBtn">입출항</a>
+                            <a href="/ships/@v.ShipId/voyages/@v.Id/performance-reports" style="@linkBtn;margin-left:8px">운항보고</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="8" style="text-align:center;color:#888;padding:2rem">데이터 없음</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@inject NavigationManager Navigation
+@code {
+        private void NavigateToPortCalls(Voyage v)
+        {
+            Console.WriteLine($"[DEBUG] PortCalls ShipId={v.ShipId}, VoyageId={v.Id}");
+            Navigation.NavigateTo($"/ships/{v.ShipId}/voyages/{v.Id}/port-calls", true);
+        }
+
+        private void NavigateToPerformanceReports(Voyage v)
+        {
+            Console.WriteLine($"[DEBUG] PerfReports ShipId={v.ShipId}, VoyageId={v.Id}");
+            Navigation.NavigateTo($"/ships/{v.ShipId}/voyages/{v.Id}/performance-reports", true);
+        }
+    private string th => "padding: 0.5rem 1rem; text-align: left; font-weight: bold; background: #f5f5f5; border-bottom: 2px solid #eee;";
+    private string td => "padding: 0.5rem 1rem;";
+    // JS와 동일한 스타일
+    private string linkBtn => "display:inline-block;padding:0.3em 0.8em;background:#e3e8ff;color:#2a3a8c;border-radius:4px;text-decoration:none;font-weight:500;font-size:0.95em;";
+}

@@ -1,0 +1,94 @@
+{
+  "phase": "PHASE-2_REMEDIATION",
+  "generated_at": "2026-08-24",
+  "code_commit_before": "725b988",
+  "code_commit_at_report": "725b98835a207dbd56071be13a41088e7461b15b",
+  "test_summary": "82 passed, 1 skipped (live_llm); ruff clean; mypy clean",
+  "mock_e2e": "8/8 PASS, evidence integrity ok (reports/mock-e2e-results.json)",
+  "resolutions": {
+    "DEFECT-1": {
+      "status": "RESOLVED",
+      "fix_type": "code",
+      "change": "ids_adapter.max_json_depth() 사전 스캔(≤64) + normalization._flatten depth guard(NormalizationError) + _node_profile 에서 REVIEW_REQUIRED 처리",
+      "files": [
+        "src/ghg_agent/adapters/ids_adapter.py",
+        "src/ghg_agent/domain/normalization.py",
+        "src/ghg_agent/agents/orchestrator.py"
+      ],
+      "verify": "evidence/baseline/remediation-verify/verify-out.json (DEFECT-2/1), tests/integration/test_baseline_fixes.py"
+    },
+    "DEFECT-1b": {
+      "status": "RESOLVED",
+      "fix_type": "code",
+      "change": "run() 를 try/except 로 감싸 임의 stage 예외에도 FAILED manifest 완결; idempotency 를 manifest 대신 실행 디렉터리 존재로 판정",
+      "files": [
+        "src/ghg_agent/agents/orchestrator.py"
+      ],
+      "verify": "test_baseline_fixes.py::test_stage_exception_finalizes_failed_manifest (FAILED manifest + 재시도 409)"
+    },
+    "DEFECT-2": {
+      "status": "RESOLVED",
+      "fix_type": "code",
+      "change": "ingest 에 BODY_TOO_DEEP 사전 차단 + except 절에 RecursionError 추가",
+      "files": [
+        "src/ghg_agent/adapters/ids_adapter.py"
+      ],
+      "verify": "test_baseline_fixes.py::TestDefect2IngressDepth"
+    },
+    "DEFECT-3": {
+      "status": "RESOLVED",
+      "fix_type": "code",
+      "change": "explicit 경로에서 필드명 기반 식별자는 Skill validate_mapping(PASS/WARNING) 통과 시에만 확정. 값=식별자 경우는 문서화된 계약대로 존재로 확정",
+      "files": [
+        "src/ghg_agent/domain/mapping.py"
+      ],
+      "verify": "test_baseline_fixes.py::TestDefect3ExplicitValidation"
+    },
+    "DEFECT-4": {
+      "status": "CLASSIFIED",
+      "fix_type": "diagnostic+classification",
+      "change": "권위 validator 를 약화시키지 않음(C-3/C-5/C-6). 상류 FAL50 format/codelist 불일치를 결정론 스캐너로 탐지해 reports/reference-conflicts.json 에 기록하고 REVIEW_REQUIRED 로 분류. 유일 충돌: IMO0654(Fuel type).",
+      "files": [
+        "tools/scan_reference_conflicts.py",
+        "reports/reference-conflicts.json"
+      ],
+      "verify": "test_baseline_fixes.py::TestDefect4ReferenceConflictClassification",
+      "note": "근본 해결은 상류 reference(IMO/k-mds) 정정. 본 repo 범위에서는 탐지·분류까지."
+    },
+    "DEFECT-5": {
+      "status": "RESOLVED",
+      "fix_type": "code",
+      "change": "validation 의 Skill 배치 검증을 500 청크로 분할, 청크 실패만 NOT_VERIFIED",
+      "files": [
+        "src/ghg_agent/domain/validation.py"
+      ],
+      "verify": "test_baseline_fixes.py::TestDefect5BatchChunking (not_verified_count==0)"
+    }
+  },
+  "counts": {
+    "RESOLVED": 5,
+    "CLASSIFIED": 1,
+    "OPEN": 0
+  },
+  "governance_runtime_binding": {
+    "status": "IMPLEMENTED",
+    "deliverable": "GovernanceAuthorityContext (src/ghg_agent/governance/authority.py)",
+    "authorities_bound": [
+      "ReferenceAuthority",
+      "CandidateSetAuthority",
+      "RequirednessAuthority",
+      "AuthoringAuthority",
+      "DeliveryAuthority"
+    ],
+    "enforced_flags": {
+      "candidate_mapping_eligible": true,
+      "requiredness_profile_approved": false,
+      "executable_mapping_eligible": false,
+      "actual_normalization_eligible": false,
+      "kr_gears_actual_delivery_allowed": false
+    },
+    "path_url_binding": "RuntimeBinding 하위 기능으로 편입",
+    "report": "reports/governance-binding.json",
+    "tests": "tests/integration/test_governance.py (9)"
+  }
+}

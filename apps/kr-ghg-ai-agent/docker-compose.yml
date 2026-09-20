@@ -1,0 +1,36 @@
+# Mock 구성 기본값: LLM=mock, delivery=mock, MCP=off
+# 사전 조건: 호스트에서 `uv run python tools/prepare_registry.py` 로
+#            var/registry.sqlite3 와 var/reference/ 를 생성해 둘 것.
+services:
+  ghg-agent:
+    build: .
+    ports:
+      # host 8001 → container 8000. host 8000 은 IDS Provider API 가 사용하므로
+      # KR GHG AI Agent(IDS Consumer Subscription Backend)는 8001 로 노출한다.
+      # 컨테이너 내부 리스닝 포트는 8000 유지(Dockerfile CMD/EXPOSE/healthcheck).
+      # 다른 컨테이너(IDS Provider/Connector)는 http://host.docker.internal:8001 로 콜백한다.
+      - "8001:8000"
+    extra_hosts:
+      # host.docker.internal 해석 보장(Linux 엔진 포함). Consumer Backend 콜백 주소
+      # http://host.docker.internal:8001 사용을 위해 명시.
+      - "host.docker.internal:host-gateway"
+    environment:
+      LLM_PROVIDER: mock
+      ALLOW_LIVE_LLM: "false"
+      KR_GEARS_DELIVERY_MODE: mock
+      IMO_MAPPING_SKILL_PATH: /refs/imo-compendium-mapping-validator
+      REGISTRY_DB_PATH: /app/var/registry.sqlite3
+      K_MDS_REFERENCE_PATH: /app/var/reference/code_lists.json
+      AUDIT_LOG_DIR: /app/evidence
+    volumes:
+      - ../imo-compendium-mapping-validator:/refs/imo-compendium-mapping-validator:ro
+      # var 는 read-write: validator 가 검증 시 registry DB(registry.sqlite3)에
+      # audit event 를 기록하므로 read-only 로 마운트하면 SKILL_EXECUTION_ERROR 로
+      # 전건 NOT_VERIFIED 가 된다. registry snapshot 은 생성물이라 rw 마운트가 안전하다.
+      - ./var:/app/var
+      - ./evidence:/app/evidence
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3

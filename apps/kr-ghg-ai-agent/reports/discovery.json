@@ -1,0 +1,73 @@
+{
+  "generated_at": "2026-08-20",
+  "repository_map": {
+    "governance_root": {"path": "c:/kr-dev", "commit": "9a7f564", "branch": "main", "clean": true,
+      "note": "allow-list .gitignore — 문서 7개만 추적, 하위 프로젝트 미추적"},
+    "writable_target": {"path": "c:/kr-dev/kr-ghg-ai-agent", "note": "신규 독립 프로젝트 (본 PoC)"},
+    "read_only_references": [
+      {"path": "imo-compendium-mapping-validator", "git": false, "role": "기존 Skill (재사용, 무수정)"},
+      {"path": "k-mds", "git": true, "commit": "b01816e", "role": "FAL50 원본 xlsx + 스킬 계약 참조"},
+      {"path": "kr-ai-agents", "git": true, "commit": "84a935a", "dirty": true,
+       "role": "패턴 참조 (LangGraph/MCP/LLM)", "note": "기존 dirty(notebook 수정) — 본 작업과 무관, 미변경"},
+      {"path": "data-space", "git": true, "role": "PerformanceReport(Noon) OpenAPI 참조"},
+      {"path": "IDS-testbed", "git": true, "role": "IDS consumer pull flow 참조"}
+    ]
+  },
+  "reusable_patterns_kr_ai_agents": {
+    "framework": {"finding": "LangChain 1.x create_agent + LangGraph StateGraph (실행 코드)",
+      "evidence": ["kr-ai-agents/lab/build_agent.py:16,143", "kr-ai-agents/lab/09_langgraph_workflows.ipynb"],
+      "adopted": "LangGraph StateGraph + typed Pydantic state (orchestrator)"},
+    "orchestration": {"finding": "agents-as-tools / structured-output handoff / StateGraph — 전부 hand-rolled",
+      "adopted": "StateGraph + conditional edges (결정론 파이프라인에 적합)"},
+    "llm_abstraction": {"finding": "init_chat_model 뒤 custom load_model() (select_model.py)",
+      "env": ["OPENAI_API_KEY", "OPENAI_BASE_URL", "AZURE_OPENAI_ENDPOINT", "AZURE_OPENAI_API_KEY",
+              "AZURE_OPENAI_DEPLOYMENT", "AZURE_OPENAI_API_VERSION"],
+      "adopted": "LangChainLLMClient (init_chat_model + with_structured_output, temperature 0)"},
+    "mcp": {"finding": "langchain-mcp-adapters MultiServerMCPClient (client) + FastMCP (server), stdio/streamable_http",
+      "evidence": ["kr-ai-agents/lab/build_agent.py:93-99", "kr-ai-agents/lab/tavily_server.py"],
+      "adopted": "FastMCP stdio server(tools/mcp_server.py) + MultiServerMCPClient adapter"},
+    "structured_output": {"finding": "Pydantic + response_format / with_structured_output", "adopted": true},
+    "config": {"finding": ".env + python-dotenv, pydantic-settings 미사용", "adopted": true},
+    "testing": {"finding": "pytest 부재 (ad-hoc script + notebook) — 본 PoC 는 validator/k-mds 의 pytest 패턴 채택"},
+    "tracing": {"finding": "Langfuse opt-in callback (LangSmith 미사용); 본 PoC 는 자체 JSON evidence/audit 채택"},
+    "license": "LICENSE 파일 없음 — all-rights-reserved 교육자료로 취급, 코드 복사 없음 (패턴만 재사용)"
+  },
+  "validator_discovery": {
+    "path": "c:/kr-dev/imo-compendium-mapping-validator",
+    "project_type": "uv (package=false), Python >=3.12, pydantic v2 + sqlalchemy + fastapi",
+    "entrypoints": {
+      "skill_toolkit": "app.skill.MappingToolkit — list_tools()/invoke(), 5 tools: map_dataset, validate_mapping, explain_mapping, list_candidates, compare_compendium_versions",
+      "registry_cli": "python -m app.registry import|diff",
+      "http_api": "app.api.create_app (FastAPI), docs/openapi.json (OpenAPI 3.1)"
+    },
+    "invocation_mode_chosen": "Python import adapter (validator 자체 테스트 tests/test_skill_interface.py 와 동일 사용법)",
+    "input_contract": "app/skill/schemas.py (Pydantic extra=forbid, FieldSpec/MapDatasetRequest/...)",
+    "output_contract": "envelope {ok: bool, tool, result | error{code,message}}; provenance에 compendiumVersion/llmUsed 포함",
+    "version": "0.1.0 (pyproject)",
+    "existing_tests": "71 passed (uv run pytest, 실행 확인)"
+  },
+  "kmds_reference_discovery": {
+    "reference_model": "k-mds/data/raw/FAL50/IMO Compendium.xlsx (공식 export, sheets: IMO Data Set/Structure/Business Rules/Changes/UML diagram/Code list)",
+    "source_sha256": "5d2ed626057062ab5be3082a4b13c9c38fb0c95a6d5588d4abf38508f6e688a5",
+    "version_source": "디렉터리/manifest 명칭 FAL50 (source-manifest.yaml 은 stale: status pending_source, files [])",
+    "lookup_method": "validator registry(SQLite snapshot) — 본 PoC 가 derived CSV 로 적재 (1205 elements, 2024 occurrences, issue 0)",
+    "code_lists": "Code list sheet → var/reference/code_lists.json (57 lists, 964 values; Event type 29종 EV01~EV29 포함)",
+    "derivation": "tools/prepare_registry.py DR-1~DR-4; IMO0629 business rule 합집합 통일 (유일한 core 충돌)"
+  },
+  "kr_gears_discovery": {
+    "result": "PARTIAL",
+    "verified_contract": "imo-compendium-mapping-validator/app/api/schemas.py::KrGearsReport + docs/openapi.json (검증 결과 전달 envelope)",
+    "not_found": ["GHG 제출 스키마", "field dictionary", "API endpoint", "인증 방식"],
+    "doc_only": "k-mds/AGENTS.md 의 kr-gears.yaml, transform_kr_gears_dry_run 등은 미구현 계획 — 파일 부재 확인",
+    "consequence": "변환 payload 는 PROVISIONAL, 실제 delivery 차단, 최종 REVIEW_REQUIRED"
+  },
+  "ids_consumer_discovery": {
+    "result": "NOT_FOUND (표준 envelope 없음)",
+    "closest": ["IDS-testbed DSC v6 pull flow (artifact raw bytes)", "DataspaceConnectorUI subscribe body (dataUtils.js:1409)"],
+    "consequence": "RAW_JSON_BODY / FILE_REFERENCE / UNKNOWN 분류만 수행, KNOWN_ENVELOPE 미정의"
+  },
+  "mcp_discovery": {
+    "existing_servers": "없음 (k-mds `make run-mcp` 미구현 안내 exit 2, kr-mcp-skills 빈 디렉터리)",
+    "consequence": "본 PoC 가 validator toolkit 을 runtime discovery 로 감싸는 stdio FastMCP 서버 제공 (optional 경로)"
+  }
+}

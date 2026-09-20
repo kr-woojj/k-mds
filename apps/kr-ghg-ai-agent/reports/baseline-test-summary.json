@@ -1,0 +1,60 @@
+{
+  "generated_at": "2026-08-24",
+  "code_commit": "725b98835a207dbd56071be13a41088e7461b15b",
+  "baseline_pytest_tail": [
+    "# baseline pytest — commit 725b98835a207dbd56071be13a41088e7461b15b",
+    "# date 2026-08-24, python Python 3.13.12",
+    "...............................s........................................ [100%]",
+    "71 passed, 1 skipped in 13.46s"
+  ],
+  "counts": {
+    "passed": 71,
+    "failed": 0,
+    "skipped": 1,
+    "not_run": 0,
+    "blocked": 0
+  },
+  "skipped_detail": [
+    {
+      "test": "tests/integration/test_live_llm.py",
+      "marker": "live_llm",
+      "reason": "SKIPPED_CREDENTIAL_NOT_AVAILABLE — 성공으로 계상 안 함"
+    }
+  ],
+  "prior_full_run_with_live_llm": {
+    "command": "uv run pytest -q (ALLOW_LIVE_LLM=true LIVE_LLM_ENV_FILE=kr-ai-agents/lab/.env)",
+    "result": "72 passed",
+    "passed": 72,
+    "failed": 0,
+    "skipped": 0,
+    "not_run": 0
+  },
+  "suites": {
+    "unit": {
+      "files": [
+        "test_normalization_profiling.py",
+        "test_state_and_lookup.py",
+        "test_mapper.py",
+        "test_validation_transform.py"
+      ],
+      "status": "passed"
+    },
+    "contract": {
+      "files": [
+        "test_skill_contract.py",
+        "test_llm_and_ingress_contract.py"
+      ],
+      "status": "passed"
+    },
+    "integration": {
+      "files": [
+        "test_e2e_pipeline.py",
+        "test_api.py",
+        "test_negative.py",
+        "test_mcp_real.py",
+        "test_live_llm.py"
+      ],
+      "status": "passed"
+    }
+  }
+}

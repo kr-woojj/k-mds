@@ -21,7 +21,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-AGENT = HERE.parent.parent / "kr-ghg-ai-agent"
+AGENT = HERE.parent / "apps" / "kr-ghg-ai-agent"
 CASES = HERE / "verification_cases.json"
 EVID = HERE / "evidence" / "C02"
 UV = ["uv", "run", "--project", str(AGENT)]
@@ -44,7 +44,7 @@ EXTRA_FIXTURES = ["noon_report_mandatory_missing.json"]  # tools/run_mock_e2e.py
 
 
 def prereqs() -> list[tuple[str, bool, str]]:
-    xlsx = AGENT.parent / "k-mds" / "data" / "raw" / "FAL50" / "IMO Compendium.xlsx"
+    xlsx = HERE.parent / "data" / "raw" / "FAL50" / "IMO Compendium.xlsx"
     confirmed = False
     try:
         c02 = next(c for c in json.loads(CASES.read_text("utf-8"))["cases"] if c["case_id"] == "C02")

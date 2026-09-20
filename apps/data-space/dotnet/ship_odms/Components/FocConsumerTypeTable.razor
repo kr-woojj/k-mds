@@ -1,0 +1,162 @@
+
+
+@if (Loading)
+{
+    <div class="table-skeleton">Loading...</div>
+}
+else if (!string.IsNullOrEmpty(Error))
+{
+    <div class="table-error">@Error</div>
+}
+else
+{
+    <div class="figma-table-wrapper">
+        <table class="figma-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fuel Consumption ID</th>
+                    <th>Main Engine Used</th>
+                    <th>Main Engine Consumed</th>
+                    <th>Diesel Electric Used</th>
+                    <th>Diesel Electric Consumed</th>
+                    <th>Diesel Gen Used</th>
+                    <th>Diesel Gen Consumed</th>
+                    <th>Aux Boiler Used</th>
+                    <th>Aux Boiler Consumed</th>
+                    <th>Aux Engine Used</th>
+                    <th>Aux Engine Consumed</th>
+                    <th>Cargo Cooling Used</th>
+                    <th>Cargo Cooling Consumed</th>
+                    <th>Cargo Heating Used</th>
+                    <th>Cargo Heating Consumed</th>
+                    <th>Diesel Power Packs Used</th>
+                    <th>Diesel Power Packs Consumed</th>
+                    <th>Dirty Petroleum Pump Used</th>
+                    <th>Dirty Petroleum Pump Consumed</th>
+                    <th>Discharge Pump Used</th>
+                    <th>Discharge Pump Consumed</th>
+                    <th>DP Ops Used</th>
+                    <th>DP Ops Consumed</th>
+                    <th>Electrical Power Gen Used</th>
+                    <th>Electrical Power Gen Consumed</th>
+                    <th>Incinerator Used</th>
+                    <th>Incinerator Consumed</th>
+                    <th>Inert Gas Gen Used</th>
+                    <th>Inert Gas Gen Consumed</th>
+                    <th>Other Fuel Devices Used</th>
+                    <th>Other Fuel Devices Consumed</th>
+                    <th>Reefer Containers Used</th>
+                    <th>Reefer Containers Consumed</th>
+                    <th>Shuttle Tanker Ops Used</th>
+                    <th>Shuttle Tanker Ops Consumed</th>
+                    <th>STS Ops Used</th>
+                    <th>STS Ops Consumed</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Items != null && Items.Count > 0)
+                {
+                    foreach (var f in Items)
+                    {
+                        <tr @onclick="() => OnRowClick.InvokeAsync(f)" style="cursor: @GetRowCursor()">
+                            <td>@f.Id</td>
+                            <td>@f.FuelConsumptionId</td>
+                            <td>@f.FuelUsedMainEngine</td>
+                            <td>@f.FuelConsumedMainEngine</td>
+                            <td>@f.FuelUsedDieselElectricPropulsion</td>
+                            <td>@f.FuelConsumedDieselElectricPropulsion</td>
+                            <td>@f.FuelUsedDieselGenerator</td>
+                            <td>@f.FuelConsumedDieselGenerator</td>
+                            <td>@f.FuelUsedAuxiliaryBoiler</td>
+                            <td>@f.FuelConsumedAuxiliaryBoiler</td>
+                            <td>@f.FuelUsedAuxiliaryEngine</td>
+                            <td>@f.FuelConsumedAuxiliaryEngine</td>
+                            <td>@f.FuelUsedCargoCooling</td>
+                            <td>@f.FuelConsumedCargoCooling</td>
+                            <td>@f.FuelUsedCargoHeating</td>
+                            <td>@f.FuelConsumedCargoHeating</td>
+                            <td>@f.FuelUsedDieselPowerPacks</td>
+                            <td>@f.FuelConsumedDieselPowerPacks</td>
+                            <td>@f.FuelUsedDirtyPetroleumProductsCargoPump</td>
+                            <td>@f.FuelConsumedDirtyPetroleumProductsCargoPump</td>
+                            <td>@f.FuelUsedDischargePump</td>
+                            <td>@f.FuelConsumedDischargePump</td>
+                            <td>@f.FuelUsedDpOperations</td>
+                            <td>@f.FuelConsumedDpOperations</td>
+                            <td>@f.FuelUsedElectricalPowerGeneration</td>
+                            <td>@f.FuelConsumedElectricalPowerGeneration</td>
+                            <td>@f.FuelUsedIncinerator</td>
+                            <td>@f.FuelConsumedIncinerator</td>
+                            <td>@f.FuelUsedInertGasGeneratorsGcus</td>
+                            <td>@f.FuelConsumedInertGasGeneratorsGcus</td>
+                            <td>@f.FuelUsedOtherFuelConsumingDevices</td>
+                            <td>@f.FuelConsumedOtherFuelConsumingDevices</td>
+                            <td>@f.FuelUsedReeferContainers</td>
+                            <td>@f.FuelConsumedReeferContainers</td>
+                            <td>@f.FuelUsedShuttleTankerOperations</td>
+                            <td>@f.FuelConsumedShuttleTankerOperations</td>
+                            <td>@f.FuelUsedStsOperations</td>
+                            <td>@f.FuelConsumedStsOperations</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="38" style="text-align: center; color: #888; padding: 2rem;">데이터 없음</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    public class FocConsumerTypeDto
+    {
+        public int Id { get; set; }
+        public int FuelConsumptionId { get; set; }
+        public double? FuelUsedMainEngine { get; set; }
+        public double? FuelConsumedMainEngine { get; set; }
+        public double? FuelUsedDieselElectricPropulsion { get; set; }
+        public double? FuelConsumedDieselElectricPropulsion { get; set; }
+        public double? FuelUsedDieselGenerator { get; set; }
+        public double? FuelConsumedDieselGenerator { get; set; }
+        public double? FuelUsedAuxiliaryBoiler { get; set; }
+        public double? FuelConsumedAuxiliaryBoiler { get; set; }
+        public double? FuelUsedAuxiliaryEngine { get; set; }
+        public double? FuelConsumedAuxiliaryEngine { get; set; }
+        public double? FuelUsedCargoCooling { get; set; }
+        public double? FuelConsumedCargoCooling { get; set; }
+        public double? FuelUsedCargoHeating { get; set; }
+        public double? FuelConsumedCargoHeating { get; set; }
+        public double? FuelUsedDieselPowerPacks { get; set; }
+        public double? FuelConsumedDieselPowerPacks { get; set; }
+        public double? FuelUsedDirtyPetroleumProductsCargoPump { get; set; }
+        public double? FuelConsumedDirtyPetroleumProductsCargoPump { get; set; }
+        public double? FuelUsedDischargePump { get; set; }
+        public double? FuelConsumedDischargePump { get; set; }
+        public double? FuelUsedDpOperations { get; set; }
+        public double? FuelConsumedDpOperations { get; set; }
+        public double? FuelUsedElectricalPowerGeneration { get; set; }
+        public double? FuelConsumedElectricalPowerGeneration { get; set; }
+        public double? FuelUsedIncinerator { get; set; }
+        public double? FuelConsumedIncinerator { get; set; }
+        public double? FuelUsedInertGasGeneratorsGcus { get; set; }
+        public double? FuelConsumedInertGasGeneratorsGcus { get; set; }
+        public double? FuelUsedOtherFuelConsumingDevices { get; set; }
+        public double? FuelConsumedOtherFuelConsumingDevices { get; set; }
+        public double? FuelUsedReeferContainers { get; set; }
+        public double? FuelConsumedReeferContainers { get; set; }
+        public double? FuelUsedShuttleTankerOperations { get; set; }
+        public double? FuelConsumedShuttleTankerOperations { get; set; }
+        public double? FuelUsedStsOperations { get; set; }
+        public double? FuelConsumedStsOperations { get; set; }
+    }
+
+    private string GetRowCursor() => OnRowClick.HasDelegate ? "pointer" : "default";
+    [Parameter] public List<FocConsumerTypeDto>? Items { get; set; }
+    [Parameter] public bool Loading { get; set; }
+    [Parameter] public string? Error { get; set; }
+    [Parameter] public EventCallback<FocConsumerTypeDto> OnRowClick { get; set; }
+}
+

@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-08-20",
+  "commands": [
+    {"command": "uv run pytest -q (ALLOW_LIVE_LLM=true LIVE_LLM_ENV_FILE=kr-ai-agents/lab/.env)",
+     "result": "72 passed", "passed": 72, "failed": 0, "skipped": 0, "not_run": 0},
+    {"command": "uv run pytest -q (live env 없음)",
+     "result": "71 passed, 1 skipped", "passed": 71, "failed": 0, "skipped": 1,
+     "skip_reason": "live_llm — SKIPPED_CREDENTIAL_NOT_AVAILABLE (성공으로 계상하지 않음)"},
+    {"command": "uv run ruff check src tools tests", "result": "All checks passed!"},
+    {"command": "uv run mypy src", "result": "Success: no issues found in 22 source files"},
+    {"command": "uv run python tools/run_mock_e2e.py",
+     "result": "8/8 시나리오 기대 상태 일치 + evidence 무결성 ok (reports/mock-e2e-results.json)"},
+    {"command": "cd imo-compendium-mapping-validator && uv run pytest -q",
+     "result": "71 passed (기존 validator 자체 스위트 — 무수정 확인)"},
+    {"command": "docker compose build", "result": "NOT_RUN(daemon) — Docker Desktop 미기동으로 빌드 미검증",
+     "status": "blocked"}
+  ],
+  "suites": {
+    "unit": {"files": ["test_normalization_profiling.py", "test_state_and_lookup.py", "test_mapper.py", "test_validation_transform.py"], "status": "passed"},
+    "contract": {"files": ["test_skill_contract.py", "test_llm_and_ingress_contract.py"], "status": "passed"},
+    "integration": {"files": ["test_e2e_pipeline.py", "test_api.py", "test_negative.py", "test_mcp_real.py", "test_live_llm.py"], "status": "passed"}
+  },
+  "e2e_scenarios": {
+    "E2E-1_vessel_performance": "PASS (전 필드 결정론 매핑, LLM 0회, evidence 해시 검증)",
+    "E2E-2_noon_report": "PASS (voyage 보존, provenance 완전, PROVISIONAL 명시, mock delivery 식별)",
+    "E2E-3_event_reports": "PASS (4건 구분 유지, timestamp 결정론 정렬, BUNKERING 코드 미발명→REVIEW_REQUIRED)",
+    "E2E-4_ambiguous": "PASS (확정 없음, candidate_list 보존, 사유 기록)",
+    "E2E-5_fabricated_imo": "PASS (IMO9999 형식 유효하나 IMO_ID_NOT_FOUND, 변환 차단)"
+  }
+}

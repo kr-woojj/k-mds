@@ -1,0 +1,45 @@
+@page "/ships/{ShipId:int}/voyages/{VoyageId:int}/port-calls/{PortCallId:int}/performance-reports"
+@using ship_odms.Models
+@using ship_odms.Services
+@inject ApiClient Api
+@inject NavigationManager Navigation
+
+<PageTitle>성능 보고 목록</PageTitle>
+
+<h2 style="font-size:1.5rem;margin-bottom:1.5rem;">성능 보고 목록</h2>
+
+<ApiErrorBanner ErrorMessage="@Error" />
+
+<PerformanceReportTable Items="Reports" Loading="@Loading" Error="@Error" OnRowClick="OnRowClick" />
+
+@code {
+    [Parameter] public int ShipId { get; set; }
+    [Parameter] public int VoyageId { get; set; }
+    [Parameter] public int PortCallId { get; set; }
+    private List<PerformanceReport>? Reports = null;
+    private bool Loading = true;
+    private string? Error = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            Loading = true;
+            Error = null;
+            Reports = await Api.GetAsync<List<PerformanceReport>>($"/ships/{ShipId}/voyages/{VoyageId}/port-calls/{PortCallId}/performance-reports");
+        }
+        catch (Exception ex)
+        {
+            Error = ex.Message;
+        }
+        finally
+        {
+            Loading = false;
+        }
+    }
+
+    private void OnRowClick(PerformanceReport report)
+    {
+        Navigation.NavigateTo($"/ships/{report.ShipId}/voyages/{report.VoyageId}/port-calls/{report.PortCallId}/performance-reports/{report.Id}");
+    }
+}

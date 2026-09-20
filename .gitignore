@@ -1,21 +1,33 @@
+# 비밀값·인증서
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.key
+secrets/
+# 실선·운영 데이터
+**/gears-export/
+**/ids-inbox/
+# 과제 문서 원본(대용량 PDF·hwpx, 커밋하지 않는다)
+docs/(RS-2024-00454634)*/
+# 개인 설정
+CLAUDE.local.md
+.claude/settings.local.json
 # Python
 __pycache__/
 *.py[cod]
 *.egg-info/
+.venv/
 dist/
 build/
-
-# 가상환경
-.venv/
-
 # 도구 캐시
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
-
-# 환경변수 (비밀정보는 Git에 Commit하지 않는다)
-.env
-
-# OS / Editor
+node_modules/
+*.log
+# OS / Editor / Office 잠금
 .DS_Store
 Thumbs.db
+~$*

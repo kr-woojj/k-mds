@@ -1,0 +1,108 @@
+{
+  "generated_at": "2026-08-24",
+  "code_commit": "725b98835a207dbd56071be13a41088e7461b15b",
+  "audited_runs": [
+    {
+      "correlation_id": "SYN-EV-ANC-0001",
+      "final_status": "REVIEW_REQUIRED",
+      "synthetic_data": true,
+      "skill_real_or_mock": "real",
+      "llm_provider": "mock",
+      "mcp_real_or_mock": "off",
+      "kr_gears_contract_status": "PROVISIONAL",
+      "file_count": 14,
+      "integrity_ok": true,
+      "mismatches": {}
+    },
+    {
+      "correlation_id": "SYN-EV-ARR-0001",
+      "final_status": "REVIEW_REQUIRED",
+      "synthetic_data": true,
+      "skill_real_or_mock": "real",
+      "llm_provider": "mock",
+      "mcp_real_or_mock": "off",
+      "kr_gears_contract_status": "PROVISIONAL",
+      "file_count": 14,
+      "integrity_ok": true,
+      "mismatches": {}
+    },
+    {
+      "correlation_id": "SYN-EV-BNK-0001",
+      "final_status": "REVIEW_REQUIRED",
+      "synthetic_data": true,
+      "skill_real_or_mock": "real",
+      "llm_provider": "mock",
+      "mcp_real_or_mock": "off",
+      "kr_gears_contract_status": "NOT_TRANSFORMED",
+      "file_count": 12,
+      "integrity_ok": true,
+      "mismatches": {}
+    },
+    {
+      "correlation_id": "SYN-EV-DEP-0001",
+      "final_status": "REVIEW_REQUIRED",
+      "synthetic_data": true,
+      "skill_real_or_mock": "real",
+      "llm_provider": "mock",
+      "mcp_real_or_mock": "off",
+      "kr_gears_contract_status": "PROVISIONAL",
+      "file_count": 14,
+      "integrity_ok": true,
+      "mismatches": {}
+    },
+    {
+      "correlation_id": "SYN-NOON-0001",
+      "final_status": "REVIEW_REQUIRED",
+      "synthetic_data": true,
+      "skill_real_or_mock": "real",
+      "llm_provider": "mock",
+      "mcp_real_or_mock": "off",
+      "kr_gears_contract_status": "PROVISIONAL",
+      "file_count": 14,
+      "integrity_ok": true,
+      "mismatches": {}
+    },
+    {
+      "correlation_id": "SYN-NOON-AMB-0001",
+      "final_status": "REVIEW_REQUIRED",
+      "synthetic_data": true,
+      "skill_real_or_mock": "real",
+      "llm_provider": "mock",
+      "mcp_real_or_mock": "off",
+      "kr_gears_contract_status": "NOT_TRANSFORMED",
+      "file_count": 12,
+      "integrity_ok": true,
+      "mismatches": {}
+    },
+    {
+      "correlation_id": "SYN-VP-0001",
+      "final_status": "REVIEW_REQUIRED",
+      "synthetic_data": true,
+      "skill_real_or_mock": "real",
+      "llm_provider": "mock",
+      "mcp_real_or_mock": "off",
+      "kr_gears_contract_status": "PROVISIONAL",
+      "file_count": 14,
+      "integrity_ok": true,
+      "mismatches": {}
+    },
+    {
+      "correlation_id": "SYN-VP-NEG-0001",
+      "final_status": "REVIEW_REQUIRED",
+      "synthetic_data": true,
+      "skill_real_or_mock": "real",
+      "llm_provider": "mock",
+      "mcp_real_or_mock": "off",
+      "kr_gears_contract_status": "NOT_TRANSFORMED",
+      "file_count": 12,
+      "integrity_ok": true,
+      "mismatches": {}
+    }
+  ],
+  "all_integrity_ok": true,
+  "live_llm_evidence": [
+    "evidence\\live-llm\\live-llm-20260820T083308Z.json",
+    "evidence\\live-llm\\live-llm-20260820T084014Z.json"
+  ],
+  "note": "실제 생성된 evidence 패키지의 manifest file_hashes 대조 결과. real/mock 플래그 포함."
+}

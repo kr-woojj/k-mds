@@ -1,0 +1,11 @@
+{
+  "correlation_id": "SYN-VP-NEG-0001",
+  "dataset_id": "SYN-DATASET-VP",
+  "report_type": "vessel_performance",
+  "voyage_no": "SYN-VOY-001",
+  "report_datetime": "2026-08-01T12:00:00+00:00",
+  "foc": {"value": 28.4, "unit": "tonne"},
+  "speed_through_water": {"value": "twelve point five", "unit": "psi"},
+  "frobnicator_index": 42,
+  "reference_hint": "IMO9999"
+}

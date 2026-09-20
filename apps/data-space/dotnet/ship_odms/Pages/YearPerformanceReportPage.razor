@@ -1,0 +1,43 @@
+@page "/ships/{ShipId:int}/yearly-reports"
+@using ship_odms.Models
+@using ship_odms.Services
+@inject ApiClient Api
+@inject NavigationManager Navigation
+
+<PageTitle>연차 실적 보고</PageTitle>
+
+<h2 style="font-size:1.5rem;margin-bottom:1.5rem;">연차 실적 보고</h2>
+
+<ApiErrorBanner ErrorMessage="@Error" />
+
+<YearPerformanceReportTable Items="Reports" Loading="@Loading" Error="@Error" OnRowClick="OnRowClick" />
+
+@code {
+    [Parameter] public int ShipId { get; set; }
+    private List<YearPerformanceReport>? Reports = new();
+    private bool Loading = true;
+    private string? Error = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            Loading = true;
+            Error = null;
+            Reports = await Api.GetAsync<List<YearPerformanceReport>>($"ships/{ShipId}/yearly-reports");
+        }
+        catch (Exception ex)
+        {
+            Error = ex.Message;
+        }
+        finally
+        {
+            Loading = false;
+        }
+    }
+
+    private void OnRowClick(YearPerformanceReport report)
+    {
+        Navigation.NavigateTo($"/ships/{report.ShipId}/voyages");
+    }
+}

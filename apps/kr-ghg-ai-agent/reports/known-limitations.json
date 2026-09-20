@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-08-20",
+  "limitations": [
+    {"id": "L-1", "area": "K-MDS IDS envelope", "status": "NOT_FOUND",
+     "detail": "표준 envelope 미확인 — RAW_JSON_BODY/FILE_REFERENCE/UNKNOWN 만 구분. KNOWN_ENVELOPE 경로는 실계약 확보 후 추가해야 한다."},
+    {"id": "L-2", "area": "KR GEARs 제출 계약", "status": "PROVISIONAL",
+     "detail": "verdict envelope(KrGearsReport)만 실계약. 제출 스키마/Enum/endpoint 미확인 → payload 는 contract_status=PROVISIONAL, 실delivery 차단, 최종 REVIEW_REQUIRED."},
+    {"id": "L-3", "area": "FAL50 원본 데이터 불일치", "status": "FAIL_CLOSED",
+     "detail": "IMO0654(Fuel type, coded) format n..10 vs 공식 code list 값 'HFO' 등 문자열 — DATATYPE_HARD_CONFLICT 로 fail-closed. IMO0629 는 occurrence 별 business rule 차이 → 합집합 통일(DR-2, derivation-manifest 기록)."},
+    {"id": "L-4", "area": "Event code 커버리지", "status": "REVIEW_REQUIRED",
+     "detail": "FAL50 Event type(EV01~EV29)에 BUNKERING 부재 → 해당 이벤트는 코드 발명 없이 REVIEW_REQUIRED."},
+    {"id": "L-5", "area": "단위 변환", "status": "NOT_IMPLEMENTED",
+     "detail": "canonical unit 의 권위 근거(공식 단위 사전) 미확인 → 변환하지 않음(conversion_applied=false). 단위 충돌은 skill 의 UNIT_HARD_CONFLICT 로만 검출."},
+    {"id": "L-6", "area": "source-manifest", "status": "STALE_UPSTREAM",
+     "detail": "k-mds/data/raw/FAL50/source-manifest.yaml 이 pending_source 로 stale (xlsx 는 실존). read-only 정책상 미수정 — k-mds 측 갱신 필요."},
+    {"id": "L-7", "area": "MCP", "status": "POC_SERVER",
+     "detail": "workspace 에 기존 MCP 서버 부재(k-mds run-mcp 미구현) → 본 PoC 의 stdio 서버는 참고 구현. 파이프라인의 authoritative 경로는 Python import Skill."},
+    {"id": "L-8", "area": "Docker", "status": "NOT_VERIFIED",
+     "detail": "compose/Dockerfile 제공했으나 Docker daemon 미기동으로 빌드 미검증. 로컬 러너(uvicorn + run_mock_e2e)는 검증됨."},
+    {"id": "L-9", "area": "LLM token usage", "status": "PARTIAL",
+     "detail": "with_structured_output 경로에서 provider token usage 미수집(token_usage=null). usage callback 연결은 후속 작업."},
+    {"id": "L-10", "area": "참조 repo secret", "status": "OUT_OF_SCOPE_RISK",
+     "detail": "kr-ai-agents/.env, kr-ai-agents/lab/.env, data-space/.env 에 실값 존재 + kr-ai-agents 에 .gitignore 부재, .claude/settings.local.json 에 bearer JWT 포함 — 회전/보호 필요 (본 PoC 는 미수정, 값 미출력)."}
+  ]
+}

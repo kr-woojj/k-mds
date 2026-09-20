@@ -1,0 +1,3 @@
+IMO Data Number,Data Element,Definition,Format,Code List,Business Rule,Dataset,Reference Model Path,Status,Version
+IMO0105,Test element epsilon,Test definition epsilon one,an..35,,,TEST-DATASET-A,/test/root/epsilon,active,TESTCONFLICT
+IMO0105,Test element epsilon,Test definition epsilon two,an..35,,,TEST-DATASET-B,/test/other/epsilon,active,TESTCONFLICT

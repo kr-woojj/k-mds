@@ -1,0 +1,43 @@
+@page "/ships/{ShipId:int}/voyages"
+@using ship_odms.Models
+@using ship_odms.Services
+@inject ApiClient Api
+@inject NavigationManager Navigation
+
+<PageTitle>항차 목록</PageTitle>
+
+<h2 style="font-size:1.5rem;margin-bottom:1.5rem;">항차 목록</h2>
+
+<ApiErrorBanner ErrorMessage="@Error" />
+
+<VoyageListTable Items="Voyages" Loading="@Loading" Error="@Error" OnRowClick="OnRowClick" />
+
+@code {
+    [Parameter] public int ShipId { get; set; }
+    private List<Voyage>? Voyages = new();
+    private bool Loading = true;
+    private string? Error = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            Loading = true;
+            Error = null;
+            Voyages = await Api.GetAsync<List<Voyage>>($"ships/{ShipId}/voyages");
+        }
+        catch (Exception ex)
+        {
+            Error = ex.Message;
+        }
+        finally
+        {
+            Loading = false;
+        }
+    }
+
+    private void OnRowClick(Voyage voyage)
+    {
+        Navigation.NavigateTo($"/ships/{voyage.ShipId}/voyages/{voyage.Id}/port-calls");
+    }
+}

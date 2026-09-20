@@ -1,0 +1,122 @@
+@using ship_odms.Models
+@inherits FuelConsumptionTableBase
+
+@if (Loading)
+{
+    <div class="table-skeleton">Loading...</div>
+}
+else if (!string.IsNullOrEmpty(Error))
+{
+    <div class="table-error">@Error</div>
+}
+else
+{
+    <div class="figma-table-wrapper">
+        <table class="figma-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Report ID</th>
+                    <th>Fuel Type</th>
+                    <th>Trade Name</th>
+                    <th>BDN Number</th>
+                    <th>BDN Datetime</th>
+                    <th>Bunker Received</th>
+                    <th>Mass</th>
+                    <th>Density</th>
+                    <th>Sulphur</th>
+                    <th>Viscosity</th>
+                    <th>Water</th>
+                    <th>HHV</th>
+                    <th>LFV</th>
+                    <th>Grade</th>
+                    <th>Bunker Port</th>
+                    <th>Bunker Port Name</th>
+                    <th>CO2 Emission</th>
+                    <th>Total Consumed</th>
+                    <th>ROB</th>
+                    <th>Sludge ROB</th>
+                    <th>LCV Report</th>
+                    <th>LCV</th>
+                    <th>POS Ref</th>
+                    <th>CH4 CF</th>
+                    <th>N2O CF</th>
+                    <th>Fresh Water Bunkered</th>
+                    <th>Fresh Water Produced</th>
+                    <th>Fresh Water Consumed</th>
+                    <th>Technical Water Produced</th>
+                    <th>Technical Water Consumed</th>
+                    <th>Wash Water Consumed</th>
+                    <th>Fresh Water ROB</th>
+                    <th>CLO ROB</th>
+                    <th>CLO Feed Rate</th>
+                    <th>CLO Consumption</th>
+                    <th>CLO Received</th>
+                    <th>FOC Fuel Type</th>
+                    <th>FOC Consumer Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Items != null && Items.Count > 0)
+                {
+                    foreach (var f in Items)
+                    {
+                        <tr @onclick="() => OnRowClick.InvokeAsync(f)" style="cursor: @GetRowCursor()">
+                            <td>@f.Id</td>
+                            <td>@f.ReportId</td>
+                            <td>@f.FuelType</td>
+                            <td>@f.FuelTypeTradeName</td>
+                            <td>@f.BdnNumber</td>
+                            <td>@f.BdnDatetime</td>
+                            <td>@f.FuelBunkerReceived</td>
+                            <td>@f.FuelMass</td>
+                            <td>@f.FuelDensity</td>
+                            <td>@f.FuelSulphurContent</td>
+                            <td>@f.FuelViscosity</td>
+                            <td>@f.FuelWaterContent</td>
+                            <td>@f.FuelHhv</td>
+                            <td>@f.FuelLfv</td>
+                            <td>@f.FuelGrade</td>
+                            <td>@f.FuelBunkerPort</td>
+                            <td>@f.FuelBunkerPortName</td>
+                            <td>@f.Co2Emission</td>
+                            <td>@f.TotalFuelQuantityConsumed</td>
+                            <td>@f.FuelQuantityRob</td>
+                            <td>@f.SludgeRob</td>
+                            <td>@f.FuelLcvReport</td>
+                            <td>@f.FuelLcv</td>
+                            <td>@f.FuelPosRef</td>
+                            <td>@f.Ch4Cf</td>
+                            <td>@f.N2oCf</td>
+                            <td>@f.FreshWaterBunkered</td>
+                            <td>@f.FreshWaterProduced</td>
+                            <td>@f.FreshWaterConsumed</td>
+                            <td>@f.TechnicalWaterProduced</td>
+                            <td>@f.TechnicalWaterConsumed</td>
+                            <td>@f.WashWaterConsumed</td>
+                            <td>@f.FreshWaterRob</td>
+                            <td>@f.CloRob</td>
+                            <td>@f.CloFeedRate</td>
+                            <td>@f.CloConsumption</td>
+                            <td>@f.CloReceived</td>
+                            <td>@(f.FocFuelType != null ? f.FocFuelType.Count.ToString() : "0")</td>
+                            <td>@(f.FocConsumerType != null ? f.FocConsumerType.Count.ToString() : "0")</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="38" style="text-align: center; color: #888; padding: 2rem;">데이터 없음</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    private string GetRowCursor() => OnRowClick.HasDelegate ? "pointer" : "default";
+    [Parameter] public new List<FuelConsumption>? Items { get; set; } = null;
+    [Parameter] public new bool Loading { get; set; }
+    [Parameter] public new string? Error { get; set; } = null;
+    [Parameter] public new EventCallback<FuelConsumption> OnRowClick { get; set; }
+}

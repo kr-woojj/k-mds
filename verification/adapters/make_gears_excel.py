@@ -14,10 +14,10 @@ import openpyxl
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 
-ROOT = Path(r"C:\kr-dev")
-S4 = ROOT / "k-mds/verification/evidence/C02/manual_S04"
-S3 = ROOT / "k-mds/verification/evidence/C02/manual_S03"
-TEMPLATE = ROOT / "k-mds/data/raw/KR-Systems/GEARs_Template_Type1_Rev.2.1.xlsm"
+ROOT = Path(__file__).resolve().parents[2]  # k-mds 루트
+S4 = ROOT / "verification/evidence/C02/manual_S04"
+S3 = ROOT / "verification/evidence/C02/manual_S03"
+TEMPLATE = ROOT / "data/raw/KR-Systems/GEARs_Template_Type1_Rev.2.1.xlsm"
 GT = S4 / "gears-transform"
 
 HEAD_FILL = PatternFill("solid", fgColor="1F3A5F"); SUB_FILL = PatternFill("solid", fgColor="D9E1F2"); WARN_FILL = PatternFill("solid", fgColor="FFF2CC"); FAIL_FILL = PatternFill("solid", fgColor="F8CBAD")

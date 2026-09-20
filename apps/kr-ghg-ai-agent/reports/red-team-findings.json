@@ -1,0 +1,196 @@
+{
+  "generated_at": "2026-08-24",
+  "code_commit": "725b98835a207dbd56071be13a41088e7461b15b",
+  "severity_scale": [
+    "CRITICAL",
+    "HIGH",
+    "MEDIUM",
+    "LOW"
+  ],
+  "open_findings": [
+    {
+      "id": "DEFECT-1",
+      "title": "깊은 중첩 payload → normalize_payload._flatten 의 uncaught RecursionError (fail-open 500)",
+      "severity": "HIGH",
+      "reproduced": true,
+      "component": "src/ghg_agent/domain/normalization.py (_flatten), src/ghg_agent/agents/orchestrator.py (_node_profile)",
+      "attack": "report_type=noon 으로 프로파일을 통과시키고 depth≈1500 의 중첩 필드 포함. json.loads 는 파싱에 성공하지만 순수 파이썬 재귀 _flatten 이 recursionlimit(1000) 초과.",
+      "observed": "Pipeline.run() 에서 RecursionError 가 uncaught 로 전파 (graph node 'profile'). API 경로에서는 HTTP 500 이 되고, 기대되는 fail-closed(422/REVIEW_REQUIRED)가 아님.",
+      "evidence": [
+        "evidence/baseline/probes/probe5-out.json (A_normalize_reach_run1)",
+        "evidence/baseline/probes/probe3-out.json (depth 1500 → RecursionError in _flatten)"
+      ],
+      "fix_proposal": "IngressAgent 또는 normalizer 에 최대 중첩 깊이(예: 64)와 최대 필드 수를 강제하고 초과 시 REVIEW_REQUIRED/422 로 fail-closed. _flatten 을 재귀 대신 명시적 스택(iterative)으로 변경하거나 깊이 카운터를 두어 한계 도달 시 구조화 오류 반환.",
+      "applied": false,
+      "status": "RESOLVED",
+      "remediation": {
+        "change": "ids_adapter.max_json_depth() 사전 스캔(≤64) + normalization._flatten depth guard(NormalizationError) + _node_profile 에서 REVIEW_REQUIRED 처리",
+        "files": [
+          "src/ghg_agent/adapters/ids_adapter.py",
+          "src/ghg_agent/domain/normalization.py",
+          "src/ghg_agent/agents/orchestrator.py"
+        ],
+        "verify": "evidence/baseline/remediation-verify/verify-out.json (DEFECT-2/1), tests/integration/test_baseline_fixes.py"
+      }
+    },
+    {
+      "id": "DEFECT-1b",
+      "title": "crash 시 부분 Evidence(매니페스트 없음) 잔존 → 동일 correlation_id 오염(재시도 불가)",
+      "severity": "MEDIUM",
+      "reproduced": true,
+      "component": "src/ghg_agent/agents/orchestrator.py (run/_write_evidence 순서), src/ghg_agent/evidence.py",
+      "attack": "DEFECT-1(또는 임의의 stage 예외) 발생 후 동일 correlation_id 로 재요청.",
+      "observed": "1차 실행이 raw-input.json/raw-input.sha256 만 남기고 manifest 전에 크래시. idempotency 검사는 manifest.json 존재로 판단하므로 재요청이 중복으로 인식되지 않고 EvidenceWriter 가 다시 실행 → raw-input.json 재작성에서 EvidenceError(덮어쓰기 금지) 로 또 다른 uncaught 예외. 해당 cid 는 영구적으로 완료 불가.",
+      "evidence": [
+        "evidence/baseline/probes/probe5-out.json (A_normalize_reach_retry)",
+        "evidence/baseline/crash-artifacts/PROBE-NORM-CRASH/ (raw-input.json 만 있고 manifest 없음)"
+      ],
+      "fix_proposal": "파이프라인 실행을 try/except 로 감싸 예외 시에도 실패 stage 까지의 evidence 와 final_status=FAILED manifest 를 반드시 기록(원자적 완결). idempotency 판정을 manifest 대신 디렉터리 존재 또는 상태 파일로 하고, 미완 run 은 재개/치환 정책(새 attempt 번호)으로 처리.",
+      "applied": false,
+      "status": "RESOLVED",
+      "remediation": {
+        "change": "run() 를 try/except 로 감싸 임의 stage 예외에도 FAILED manifest 완결; idempotency 를 manifest 대신 실행 디렉터리 존재로 판정",
+        "files": [
+          "src/ghg_agent/agents/orchestrator.py"
+        ],
+        "verify": "test_baseline_fixes.py::test_stage_exception_finalizes_failed_manifest (FAILED manifest + 재시도 409)"
+      }
+    },
+    {
+      "id": "DEFECT-2",
+      "title": "더 깊은 중첩 payload → ingest 의 json.loads RecursionError 가 except 절에 안 잡힘 (fail-open 500)",
+      "severity": "HIGH",
+      "reproduced": true,
+      "component": "src/ghg_agent/adapters/ids_adapter.py (ingest)",
+      "attack": "depth≈3000 의 올바른 중첩 JSON body 전송.",
+      "observed": "json.loads 가 RecursionError 를 던지는데 ingest 의 `except (UnicodeDecodeError, json.JSONDecodeError)` 는 이를 포착하지 못해 uncaught 전파. evidence 전혀 미기록, API 는 HTTP 500. BODY_NOT_JSON 으로의 fail-closed 가 아님.",
+      "evidence": [
+        "evidence/baseline/probes/probe4-out.json (A_ingest_depth3000: RecursionError, evidence_files=null)",
+        "evidence/baseline/probes/probe3-out.json (depth 3000/6000 → RecursionError in json.loads path)"
+      ],
+      "fix_proposal": "ingest 의 except 절에 RecursionError(및 광의의 ValueError) 추가하여 BODY_NOT_JSON 으로 처리. 추가로 파싱 전 body 크기와 함께 중첩 깊이 상한을 사전 검사.",
+      "applied": false,
+      "status": "RESOLVED",
+      "remediation": {
+        "change": "ingest 에 BODY_TOO_DEEP 사전 차단 + except 절에 RecursionError 추가",
+        "files": [
+          "src/ghg_agent/adapters/ids_adapter.py"
+        ],
+        "verify": "test_baseline_fixes.py::TestDefect2IngressDepth"
+      }
+    },
+    {
+      "id": "DEFECT-3",
+      "title": "필드 '이름'이 IMO형이면 값/타입 검증 없이 EXPLICIT_IDENTIFIER_VALIDATED conf=1.0 확정",
+      "severity": "MEDIUM",
+      "reproduced": true,
+      "component": "src/ghg_agent/domain/mapping.py (_map_single, explicit 경로)",
+      "attack": "필드명을 실존 IMO 번호(예: IMO0616=Speed through water, format n..4,1 numeric)로 두고 값은 문자열('not-a-number-hello').",
+      "observed": "mapper 가 registry 존재만 확인하고 method=EXPLICIT_IDENTIFIER_VALIDATED, confidence=1.0, validator_status=PASS 로 기록. 동일 (필드,값)을 Skill validate_mapping 으로 직접 검증하면 FAIL/DATATYPE_HARD_CONFLICT. 즉 explicit 경로가 Skill 타입/형식 검증을 건너뛰고 '검증됨'을 참칭.",
+      "mitigation_note": "전체 파이프라인에서는 이후 MappingValidationAgent 가 Skill batch 검증을 재실행하므로 최종 상태는 REVIEW_REQUIRED 로 fail-closed 된다(방어심층). 다만 (a) mapping-result.json evidence 가 오탐 PASS/1.0 을 기록하고, (b) /api/v1/map 엔드포인트는 검증 stage 없이 mapper 출력을 그대로 반환하므로 그 소비자에게는 오탐 확정이 노출된다.",
+      "evidence": [
+        "evidence/baseline/probes/probe6-out.json (defect_confirmed=true)",
+        "evidence/baseline/probes/probe-out.json (attack H)"
+      ],
+      "fix_proposal": "explicit 경로도 registry 존재 확인 후 Skill validate_mapping 을 호출해 PASS/WARNING 일 때만 확정하고, 그 결과 status/score 를 기록. 또는 explicit 후보를 값 기반 검증이 필요한 candidate 로 취급. EXPLICIT_IDENTIFIER_VALIDATED 의 'VALIDATED' 의미를 실제 검증과 일치시킨다.",
+      "applied": false,
+      "status": "RESOLVED",
+      "remediation": {
+        "change": "explicit 경로에서 필드명 기반 식별자는 Skill validate_mapping(PASS/WARNING) 통과 시에만 확정. 값=식별자 경우는 문서화된 계약대로 존재로 확정",
+        "files": [
+          "src/ghg_agent/domain/mapping.py"
+        ],
+        "verify": "test_baseline_fixes.py::TestDefect3ExplicitValidation"
+      }
+    },
+    {
+      "id": "DEFECT-4",
+      "title": "FAL50 coded 필드(IMO0654 Fuel type) format=numeric vs code값=alphanumeric → 유효 연료코드가 DATATYPE_HARD_CONFLICT 로 FAIL (GHG 핵심 필드 차단)",
+      "severity": "MEDIUM",
+      "reproduced": true,
+      "component": "상류 데이터(k-mds FAL50 원본) + tools/prepare_registry.py 파생 + validator datatype 규칙 상호작용",
+      "attack": "fuel_type_code 를 IMO0654 로 매핑 후 검증 (또는 valid 연료코드 'HFO').",
+      "observed": "IMO0654 format 'n..10'(숫자)인데 공식 code list 값은 'HFO','VLSFO' 등 문자열. Skill validate_mapping → FAIL/DATATYPE_HARD_CONFLICT. 연료유형은 배출량 산정의 핵심이므로 사실상 GHG 핵심 필드가 매핑 불가. (PoC 의 'valid' fixture 들은 이 때문에 fuel_type_code 를 제거해야 통과했음 — 영향 방증.)",
+      "evidence": [
+        "evidence/baseline/probes/probe-out.json (attack K)",
+        "reports/known-limitations.json (L-3)"
+      ],
+      "fix_proposal": "상류 FAL50 원본의 format/codelist 불일치를 IMO/k-mds 에 리포트. 단기적으로 registry 적재 시 code_list 가 있는 필드는 datatype 을 code(alphanumeric)로 보정하는 파생 규칙을 추가하거나, coded 필드에 대해 datatype 검사 대신 code list 값 검증을 우선하도록 검증 정책 분기. (본 단계는 미반영.)",
+      "applied": false,
+      "status": "CLASSIFIED",
+      "remediation": {
+        "change": "권위 validator 를 약화시키지 않음(C-3/C-5/C-6). 상류 FAL50 format/codelist 불일치를 결정론 스캐너로 탐지해 reports/reference-conflicts.json 에 기록하고 REVIEW_REQUIRED 로 분류. 유일 충돌: IMO0654(Fuel type).",
+        "files": [
+          "tools/scan_reference_conflicts.py",
+          "reports/reference-conflicts.json"
+        ],
+        "verify": "test_baseline_fixes.py::TestDefect4ReferenceConflictClassification"
+      }
+    },
+    {
+      "id": "DEFECT-5",
+      "title": ">500 매핑 필드 → Skill validate_mapping(max 500) INVALID_ARGUMENTS → 전건 NOT_VERIFIED (대량 정상 데이터 검증 불가)",
+      "severity": "LOW",
+      "reproduced": true,
+      "component": "src/ghg_agent/domain/validation.py (batch validate, 청크 없음)",
+      "attack": "600개 매핑 아이템을 skill validate_mapping 에 배치 전달.",
+      "observed": "envelope.ok=False, error INVALID_ARGUMENTS('mappings'). validation 은 이를 _mark_skill_unverified 로 처리 → 전건 NOT_VERIFIED → REVIEW_REQUIRED. fail-closed 이나(안전), 500개 초과 매핑을 가진 정상 데이터셋은 결코 VALIDATED 에 도달 불가.",
+      "evidence": [
+        "evidence/baseline/probes/probe2-out.json (D_batch_600: INVALID_ARGUMENTS)"
+      ],
+      "fix_proposal": "validation 의 skill 배치 호출을 500 미만 청크로 분할해 결과를 합산. 청크 실패는 해당 청크만 NOT_VERIFIED 로 표시.",
+      "applied": false,
+      "status": "RESOLVED",
+      "remediation": {
+        "change": "validation 의 Skill 배치 검증을 500 청크로 분할, 청크 실패만 NOT_VERIFIED",
+        "files": [
+          "src/ghg_agent/domain/validation.py"
+        ],
+        "verify": "test_baseline_fixes.py::TestDefect5BatchChunking (not_verified_count==0)"
+      }
+    }
+  ],
+  "defenses_confirmed_not_defects": [
+    {
+      "id": "F",
+      "check": "prompt injection 이 특정 IMO 매핑을 강제",
+      "result": "방어 유지 — UNMAPPED (강제 실패). C-6/C-5 준수.",
+      "evidence": "evidence/baseline/probes/probe-out.json (F)"
+    },
+    {
+      "id": "G",
+      "check": "ingress 경계 body(empty/whitespace/array/scalar/null)",
+      "result": "모두 UNKNOWN, 크래시 없음.",
+      "evidence": "evidence/baseline/probes/probe-out.json (G)"
+    },
+    {
+      "id": "J",
+      "check": "', coded' code list 링크 오링크",
+      "result": "결함 아님 — FAL50 에서 47건 전부 정확 이름일치 링크, 요소 간 목록명 충돌 0. probe1 의 'collision' 정의가 정상 링크를 오표기.",
+      "evidence": "evidence/baseline/probes/probe2-out.json (J_link_analysis, J_shared_list_across_elements={})"
+    },
+    {
+      "id": "C",
+      "check": "NaN/Infinity JSON body",
+      "result": "부분 이슈 — ingest 는 허용하나 파생 evidence(normalized/mapping/kr-gears)에는 누출되지 않고 strict-JSON 유지. raw-input.json 에만 원본 보존 목적의 NaN 토큰 존재. 실질 결함 아님(입력 위생 note).",
+      "evidence": "evidence/baseline/probes/probe5-out.json (C_nan_scan: files_with_nan_token=raw-input.json only)"
+    },
+    {
+      "id": "B",
+      "check": "IMO 번호 패턴 vs validator",
+      "result": "일치(^IMO\\d{4}$), registry 전건 4자리. 결함 아님."
+    }
+  ],
+  "counts": {
+    "CRITICAL": 0,
+    "HIGH": 2,
+    "MEDIUM": 3,
+    "LOW": 1
+  },
+  "status_after_remediation": {
+    "RESOLVED": 5,
+    "CLASSIFIED": 1,
+    "OPEN": 0
+  },
+  "note_after_remediation": "Phase-2 에서 OPEN HIGH(1,2) 및 1b/3/5 코드 수정, 4 는 분류. open_findings 의 status 필드가 갱신됨(더 이상 전부 OPEN 아님)."
+}

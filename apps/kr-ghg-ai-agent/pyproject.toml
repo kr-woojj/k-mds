@@ -1,0 +1,55 @@
+[project]
+name = "kr-ghg-ai-agent"
+version = "0.1.0"
+description = "GHG AI Agent PoC — K-MDS IDS ingress, IMO Compendium mapping/validation, KR GEARs transformation (provisional)"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "pydantic>=2.7",
+    "httpx>=0.27",
+    "uvicorn>=0.30",
+    # imo-compendium-mapping-validator를 Python import로 호출하기 위한 실행 의존성
+    # (validator pyproject와 동일 계열: sqlalchemy>=2.0, openpyxl>=3.1)
+    "sqlalchemy>=2.0",
+    "openpyxl>=3.1",
+    # kr-ai-agents lab에서 확인된 실행 패턴 재사용:
+    # LangGraph StateGraph(09_langgraph_workflows), init_chat_model(select_model.py),
+    # langchain-mcp-adapters MultiServerMCPClient, FastMCP stdio server
+    "langgraph>=1.0",
+    "langchain>=1.0",
+    "langchain-openai>=1.0",
+    "langchain-mcp-adapters>=0.3",
+    "mcp>=1.20",
+    "python-dotenv>=1.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+    "ruff>=0.6",
+    "mypy>=1.11",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+asyncio_mode = "auto"
+markers = [
+    "live_llm: 실제 상용 LLM 호출 테스트 (ALLOW_LIVE_LLM=true + credential 필요)",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+check_untyped_defs = true

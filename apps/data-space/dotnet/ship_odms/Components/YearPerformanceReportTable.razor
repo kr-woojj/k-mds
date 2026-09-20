@@ -1,0 +1,53 @@
+@using ship_odms.Models
+@inherits YearPerformanceReportTableBase
+
+@if (Loading)
+{
+    <div class="table-skeleton">Loading...</div>
+}
+else if (!string.IsNullOrEmpty(Error))
+{
+    <div class="table-error">@Error</div>
+}
+else
+{
+    <div style="overflow-x: auto; border-radius: 8px; box-shadow: 0 2px 8px #eee; background: #fff;">
+        <table style="border-collapse: collapse; width: 100%; min-width: 600px; background: #fff;">
+            <thead style="background: #f5f5f5;">
+                <tr>
+                    <th style="@th">ID</th>
+                    <th style="@th">선박 ID</th>
+                    <th style="@th">연간 GHG 집계</th>
+                    <th style="@th"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Items != null && Items.Count > 0)
+                {
+                    foreach (var r in Items)
+                    {
+                        <tr @onclick="() => OnRowClick.InvokeAsync(r)" style="cursor: @GetRowCursor()">
+                            <td style="@td">@r.Id</td>
+                            <td style="@td">@r.ShipId</td>
+                            <td style="@td">@r.TotalGfiAnnually</td>
+                            <td style="@td">
+                                <a href="/ships/@r.ShipId/voyages" style="@linkBtn">항해이력</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="4" style="text-align: center; color: #888; padding: 2rem;">데이터 없음</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    private string GetRowCursor() => OnRowClick.HasDelegate ? "pointer" : "default";
+    private string th = "padding:0.75rem 1rem;font-weight:600;font-size:1rem;border-bottom:2px solid #e0e0e0;background:#f5f5f5;text-align:left;";
+    private string td = "padding:0.75rem 1rem;font-size:0.98rem;background:#fff;";
+    private string linkBtn = "display:inline-block;padding:0.3em 0.8em;background:#e3e8ff;color:#2a3a8c;border-radius:4px;text-decoration:none;font-weight:500;font-size:0.95em;border:1px solid #bfcfff;";
+}

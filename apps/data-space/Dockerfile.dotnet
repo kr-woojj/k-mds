@@ -1,0 +1,14 @@
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+WORKDIR /src
+COPY dotnet/ship_odms/ ./ship_odms/
+COPY dotnet/ship_odms.slnx ./
+RUN dotnet restore ./ship_odms/ship_odms.csproj
+RUN dotnet publish ./ship_odms/ship_odms.csproj -c Release -o /app/publish --no-restore
+
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
+WORKDIR /app
+COPY --from=build /app/publish .
+ENV ASPNETCORE_URLS=http://+:8088
+ENV ApiSettings__BaseUrl=http://localhost:8088/api
+EXPOSE 8088
+ENTRYPOINT ["dotnet", "ship_odms.dll"]

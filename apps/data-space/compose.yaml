@@ -1,0 +1,35 @@
+version: '3.9'
+
+networks:
+  ship-odms:
+    name: ship-odms
+
+services:
+  ship-odms-backend:
+    container_name: ship-odms-backend
+    build:
+      context: .
+      dockerfile: Dockerfile.java
+    ports:
+      - "8088:8088"
+    environment:
+      - CODESPACE_NAME
+      - GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN
+    volumes:
+      - ./java/ship_odms/ship_odms.db:/app/ship_odms.db
+    networks:
+      - ship-odms
+
+  ship-odms-frontend:
+    container_name: ship-odms-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile.dotnet
+    ports:
+      - "3030:8088"
+    environment:
+      - ApiSettings__BaseUrl=http://ship-odms-backend:8088/api
+    depends_on:
+      - ship-odms-backend
+    networks:
+      - ship-odms

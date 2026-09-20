@@ -1,0 +1,78 @@
+@using ship_odms.Models
+@inherits CargoOnboardTableBase
+
+@if (Loading)
+{
+    <div class="table-skeleton">Loading...</div>
+}
+else if (!string.IsNullOrEmpty(Error))
+{
+    <div class="table-error">@Error</div>
+}
+else
+{
+    <div class="figma-table-wrapper">
+        <table class="figma-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Report ID</th>
+                    <th>Containers</th>
+                    <th>Full Container</th>
+                    <th>Full Reefer</th>
+                    <th>Vehicles</th>
+                    <th>Crew</th>
+                    <th>Passengers</th>
+                    <th>Chilled 20ft</th>
+                    <th>Chilled 40ft</th>
+                    <th>Frozen 20ft</th>
+                    <th>Frozen 40ft</th>
+                    <th>Goods Desc</th>
+                    <th>Gross Vol</th>
+                    <th>Gross Wt</th>
+                    <th>BL Ref</th>
+                    <th>BL Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Items != null && Items.Count > 0)
+                {
+                    foreach (var c in Items)
+                    {
+                        <tr @onclick="() => OnRowClick.InvokeAsync(c)" style="cursor: @GetRowCursor()">
+                            <td>@c.Id</td>
+                            <td>@c.ReportId</td>
+                            <td>@c.NumberContainers</td>
+                            <td>@c.NumberFullContainer</td>
+                            <td>@c.NumberFullReeferContainers</td>
+                            <td>@c.NumberVehiclesOnboard</td>
+                            <td>@c.NumberCrew</td>
+                            <td>@c.NumberPassengers</td>
+                            <td>@c.NumberChilled20ftReeferContainers</td>
+                            <td>@c.NumberChilled40ftReeferContainers</td>
+                            <td>@c.NumberFrozen20ftReeferContainers</td>
+                            <td>@c.NumberFrozen40ftReeferContainers</td>
+                            <td>@c.GoodsDescription</td>
+                            <td>@c.GrossVolume</td>
+                            <td>@c.GrossWeight</td>
+                            <td>@c.BlRefId</td>
+                            <td>@c.BlIssuedDate</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="17" style="text-align: center; color: #888; padding: 2rem;">데이터 없음</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    private string GetRowCursor() => OnRowClick.HasDelegate ? "pointer" : "default";
+        [Parameter] public new List<CargoOnboard>? Items { get; set; } = null;
+        [Parameter] public new bool Loading { get; set; }
+        [Parameter] public new string? Error { get; set; } = null;
+    [Parameter] public new EventCallback<CargoOnboard> OnRowClick { get; set; }
+}

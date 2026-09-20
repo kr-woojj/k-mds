@@ -1,0 +1,54 @@
+@using ship_odms.Models
+
+
+@if (Loading)
+{
+    <div class="table-skeleton">Loading...</div>
+}
+else if (!string.IsNullOrEmpty(Error))
+{
+    <div class="table-error">@Error</div>
+}
+else
+{
+    <div class="figma-table-wrapper">
+        <table class="figma-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>풍속</th>
+                    <th>풍향</th>
+                    <th>기온</th>
+                    <th>기압</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Items != null && Items.Count > 0)
+                {
+                    foreach (var w in Items)
+                    {
+                        <tr @onclick="() => OnRowClick.InvokeAsync(w)" style="cursor: @GetRowCursor()">
+                            <td>@w.Id</td>
+                            <td>@w.WindSpeed</td>
+                            <td>@w.WindDir</td>
+                            <td>@w.AirTemperature</td>
+                            <td>@w.AtmosphericPressure</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="5" style="text-align: center; color: #888; padding: 2rem;">데이터 없음</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    private string GetRowCursor() => OnRowClick.HasDelegate ? "pointer" : "default";
+    [Parameter] public List<WeatherDetails>? Items { get; set; } = null;
+    [Parameter] public bool Loading { get; set; }
+    [Parameter] public string? Error { get; set; } = null;
+    [Parameter] public EventCallback<WeatherDetails> OnRowClick { get; set; }
+}

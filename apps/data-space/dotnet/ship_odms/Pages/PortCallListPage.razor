@@ -1,0 +1,45 @@
+@page "/ships/{ShipId:int}/voyages/{VoyageId:int}/port-calls"
+@using ship_odms.Models
+@using ship_odms.Services
+@inject ApiClient Api
+@inject NavigationManager Navigation
+
+<PageTitle>입출항 목록</PageTitle>
+
+<h2 style="font-size:1.5rem;margin-bottom:1.5rem;">입출항 목록</h2>
+
+<ApiErrorBanner ErrorMessage="@Error" />
+
+<PortCallTable Items="PortCalls" Loading="@Loading" Error="@Error" OnRowClick="OnRowClick" />
+
+@code {
+    [Parameter] public int ShipId { get; set; }
+    [Parameter] public int VoyageId { get; set; }
+    private List<PortCall> PortCalls = new();
+    private bool Loading = true;
+        private string? Error = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            Loading = true;
+            Error = null;
+            var result = await Api.GetAsync<List<PortCall>>($"voyages/{VoyageId}/port-calls");
+            PortCalls = result ?? new List<PortCall>();
+        }
+        catch (Exception ex)
+        {
+            Error = ex.Message;
+        }
+        finally
+        {
+            Loading = false;
+        }
+    }
+
+    private void OnRowClick(PortCall portCall)
+    {
+        Navigation.NavigateTo($"/ships/{portCall.ShipId}/voyages/{portCall.VoyageId}/port-calls/{portCall.Id}/performance-reports");
+    }
+}

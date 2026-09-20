@@ -1,13 +1,16 @@
 """Repository Bootstrap 범위 Smoke Test.
 
-패키지 인식, 원본 미확보 상태(구조적 YAML 검증), Generated 폴더 보호 안내,
+패키지 인식, FAL50 원본 Manifest 정합성(sha256), Generated 폴더 보호 안내,
 경계 Local AGENTS.md 존재, Legacy 명칭 부재 등
 Bootstrap 단계에서 구현된 범위만 검증한다.
 """
 
+import hashlib
+import re
 from pathlib import Path
 from typing import Any
 
+import pytest
 import yaml
 
 import k_mds
@@ -28,34 +31,29 @@ def _load_manifest() -> dict[str, Any]:
     return data
 
 
-def _collect_keys(node: object) -> set[str]:
-    """YAML 전체 계층의 Mapping Key를 재귀 수집한다."""
-    keys: set[str] = set()
-    if isinstance(node, dict):
-        for key, value in node.items():
-            keys.add(str(key))
-            keys |= _collect_keys(value)
-    elif isinstance(node, list):
-        for item in node:
-            keys |= _collect_keys(item)
-    return keys
-
-
 def test_package_importable_with_version() -> None:
     assert k_mds.__version__ == "0.1.0"
 
 
-def test_source_manifest_is_pending_source() -> None:
+def test_source_manifest_is_approved_with_hashed_files() -> None:
+    # 2026-09-12 FAL50 원본 배치 이후: approved 상태이고 파일마다 sha256 이 있어야 한다.
     manifest = _load_manifest()
     assert manifest["standard"]["fal_version"] == "FAL50"
-    assert manifest["standard"]["status"] == "pending_source"
-    assert manifest["files"] == []
-    assert manifest["ingestion"]["status"] == "pending_source"
+    assert manifest["standard"]["status"] == "approved"
+    assert manifest["files"], "approved 인데 files 가 비어 있다"
+    for entry in manifest["files"]:
+        assert re.fullmatch(r"[0-9a-f]{64}", entry["sha256"]), entry["name"]
 
 
-def test_source_manifest_has_no_sha256_key() -> None:
-    # 공식 원본 미확보 상태에서는 어떤 계층에도 Hash Key(Placeholder 포함)가 없어야 한다.
-    assert "sha256" not in _collect_keys(_load_manifest())
+def test_source_manifest_hashes_match_files_on_disk() -> None:
+    # 원본 xlsx/pdf 는 git 에 없으므로(data/raw/ 제외) 배치된 환경에서만 검사한다.
+    manifest = _load_manifest()
+    present = [e for e in manifest["files"] if (MANIFEST_PATH.parent / e["name"]).is_file()]
+    if not present:
+        pytest.skip("FAL50 원본 파일 미배치")
+    for entry in present:
+        digest = hashlib.sha256((MANIFEST_PATH.parent / entry["name"]).read_bytes()).hexdigest()
+        assert digest == entry["sha256"], entry["name"]
 
 
 def test_generated_folders_have_do_not_edit_notice() -> None:

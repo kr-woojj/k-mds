@@ -1,0 +1,25 @@
+# 비밀정보 — 어떤 경우에도 추적하지 않는다
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+credentials*.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# 로컬 Registry DB (CLI 기본값 registry.sqlite3) — 재생성 가능
+*.sqlite3
+*.sqlite3-journal
+
+# IDE
+.vscode/
+.idea/

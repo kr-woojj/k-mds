@@ -1,0 +1,23 @@
+{
+  "_comment": "구성된 alias 사전 (C-7 3단계). 대상은 FAL50 registry에 실존하는 element 이름 또는 IMO 번호만 허용 — 대상 미존재 alias는 lookup에서 무시된다(fail-closed). 근거: data-space/openapi.yaml PerformanceReport 필드명과 FAL50 element 이름 대조.",
+  "aliases": {
+    "foc": "Total fuel quantity consumed",
+    "total_foc": "Total fuel quantity consumed",
+    "me_foc": "Fuel consumed, by Main Engine",
+    "fuel_rob": "Fuel quantity remaining onboard",
+    "fuel_remaining_on_board": "Fuel quantity remaining onboard",
+    "latitude": "Ship position when reporting, latitude",
+    "longitude": "Ship position when reporting, longitude",
+    "report_datetime": "Ship reporting date time",
+    "voyage_no": "Voyage number",
+    "voyage_id": "Voyage number",
+    "imo_no": "Ship IMO number",
+    "vessel_imo_number": "Ship IMO number",
+    "stw": "Speed through water",
+    "sog": "Speed over ground",
+    "fuel_type_code": "Fuel type, coded",
+    "event_type_code": "Event type, coded",
+    "event_timestamp": "Ship reporting date time",
+    "operation_mode": "Operation type, coded"
+  }
+}

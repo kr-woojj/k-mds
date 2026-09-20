@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-08-20",
+  "matrix": [
+    {"name": "Mock E2E (기본)", "llm": "mock", "skill": "real", "mcp": "off",
+     "kr_gears": "provisional+mock-delivery", "tests": "tests/integration/test_e2e_pipeline.py", "status": "passed"},
+    {"name": "IDS webhook + API", "llm": "mock", "skill": "real", "mcp": "off",
+     "kr_gears": "provisional+mock-delivery", "tests": "tests/integration/test_api.py", "status": "passed"},
+    {"name": "Full deterministic (LLM 금지)", "llm": "forbidden", "skill": "real", "mcp": "off",
+     "kr_gears": "-", "tests": "tests/unit/test_mapper.py::test_exact_fields_never_call_llm", "status": "passed"},
+    {"name": "Mock LLM + Mock MCP failure paths", "llm": "mock", "skill": "real/mock", "mcp": "mocked-error",
+     "kr_gears": "http-500-mock", "tests": "tests/integration/test_negative.py", "status": "passed"},
+    {"name": "Real MCP (stdio)", "llm": "-", "skill": "real (MCP 경유)", "mcp": "real stdio (FastMCP)",
+     "kr_gears": "-", "tests": "tests/integration/test_mcp_real.py", "status": "passed"},
+    {"name": "Live LLM", "llm": "real (azure_openai, deployment gpt-5.2)", "skill": "real", "mcp": "off",
+     "kr_gears": "-", "tests": "tests/integration/test_live_llm.py", "status": "passed",
+     "evidence": "evidence/live-llm/live-llm-20260820T083308Z.json"}
+  ],
+  "kr_gears_real_delivery": "NOT_EXECUTED — 실계약 미확인으로 http delivery 는 BLOCKED (테스트로 고정)"
+}

@@ -1,0 +1,101 @@
+@page "/ships/{shipId:int}/voyages/{voyageId:int}/performance-reports/{reportId:int}/weather-details"
+@using ship_odms.Models
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>기상 상세</PageTitle>
+
+<h2 style="font-size:1.5rem;margin-bottom:1.5rem;">기상 상세</h2>
+
+@if (loading)
+{
+    <p>로딩 중...</p>
+}
+else if (error != null)
+{
+    <div style="color:red">오류: @error.Message</div>
+}
+else if (weatherList != null && weatherList.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Report ID</th>
+                <th>Sea State</th>
+                <th>Wind Force</th>
+                <th>Wind Speed</th>
+                <th>Wind Dir</th>
+                <th>Wind Dir Relative</th>
+                <th>Wind Dir True</th>
+                <th>Air Temp</th>
+                <th>Atmospheric Pressure</th>
+                <th>Sea Dir Relative</th>
+                <th>Sea Dir True</th>
+                <th>Sea Height</th>
+                <th>Swell Dir Relative</th>
+                <th>Swell Dir True</th>
+                <th>Swell Height</th>
+                <th>Ocean Dir Relative</th>
+                <th>Ocean Dir True</th>
+                <th>Ocean Dir Weather Provider</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var w in weatherList)
+            {
+                <tr>
+                    <td>@w.Id</td>
+                    <td>@w.ReportId</td>
+                    <td>@w.SeaState</td>
+                    <td>@w.WindForce</td>
+                    <td>@w.WindSpeed</td>
+                    <td>@w.WindDir</td>
+                    <td>@w.WindDirRelative</td>
+                    <td>@w.WindDirTrue</td>
+                    <td>@w.AirTemperature</td>
+                    <td>@w.AtmosphericPressure</td>
+                    <td>@w.SeaDirRelative</td>
+                    <td>@w.SeaDirTrue</td>
+                    <td>@w.SeaHeight</td>
+                    <td>@w.SwellDirRelative</td>
+                    <td>@w.SwellDirTrue</td>
+                    <td>@w.SwellHeight</td>
+                    <td>@w.OceanDirRelative</td>
+                    <td>@w.OceanDirTrue</td>
+                    <td>@w.OceanDirWeatherProvider</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>데이터가 없습니다.</p>
+}
+
+@code {
+    [Parameter] public int shipId { get; set; }
+    [Parameter] public int voyageId { get; set; }
+    [Parameter] public int reportId { get; set; }
+
+    private List<WeatherDetails> weatherList = new();
+    private Exception? error;
+    private bool loading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        loading = true;
+        try
+        {
+            // Use relative path so HttpClient.BaseAddress (set from env) is respected
+            weatherList = await Http.GetFromJsonAsync<List<WeatherDetails>>($"voyages/{voyageId}/performance-reports/{reportId}/weather-details") ?? new();
+            error = null;
+        }
+        catch (Exception ex)
+        {
+            error = ex;
+        }
+        loading = false;
+    }
+}

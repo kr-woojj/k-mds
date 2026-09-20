@@ -1,0 +1,5 @@
+IMO Data Number,Data Element,Definition,Format,Code List,Business Rule,Dataset,Reference Model Path,Status,Version
+IMO0101,Test element alpha,Test definition alpha,an..35,,,TEST-DATASET-A,/test/root/alpha,active,TESTV2
+IMO0101,Test element alpha,Test definition alpha,an..35,,,TEST-DATASET-B,/test/other/alpha,active,TESTV2
+IMO0102,Test element beta,Test definition beta updated,n..3,CL-TEST-1,BR-TEST-1,TEST-DATASET-A,/test/root/beta,changed,TESTV2
+IMO0104,Test element delta,Test definition delta,an..70,CL-TEST-2,,TEST-DATASET-A,/test/root/delta,added,TESTV2

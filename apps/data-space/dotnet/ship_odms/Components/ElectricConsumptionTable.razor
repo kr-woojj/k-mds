@@ -1,0 +1,99 @@
+@using ship_odms.Models
+
+@if (Loading)
+{
+    <div class="table-skeleton">Loading...</div>
+}
+else if (!string.IsNullOrEmpty(Error))
+{
+    <div class="table-error">@Error</div>
+}
+else
+{
+    <div class="figma-table-wrapper">
+        <table class="figma-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Report ID</th>
+                    <th>Boiler</th>
+                    <th>Generator</th>
+                    <th>Offset</th>
+                    <th>Plant</th>
+                    <th>Energy Cargo Cooling</th>
+                    <th>Energy Discharge Pump</th>
+                    <th>Energy Reefer</th>
+                    <th>Onshore Power</th>
+                    <th>Zero Emissions</th>
+                    <th>Fuel Type Cargo Cooling</th>
+                    <th>Fuel Type Discharge Pump</th>
+                    <th>Fuel Type Reefer</th>
+                    <th>SFOC Cargo Cooling</th>
+                    <th>SFOC Discharge Pump</th>
+                    <th>SFOC Cargo Reefers</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Items != null && Items.Count > 0)
+                {
+                    foreach (var e in Items)
+                    {
+                        <tr @onclick="() => OnRowClick.InvokeAsync(e)" style="cursor: @GetRowCursor()">
+                            <td>@e.Id</td>
+                            <td>@e.ReportId</td>
+                            <td>@e.PowerBoiler</td>
+                            <td>@e.PowerGenerator</td>
+                            <td>@e.PowerOffset</td>
+                            <td>@e.PowerPlant</td>
+                            <td>@e.EnergyCargoCooling</td>
+                            <td>@e.EnergyDischargePump</td>
+                            <td>@e.EnergyReeferContainers</td>
+                            <td>@e.EnergyOnshorePowerSupply</td>
+                            <td>@e.EnergyZeroEmissionsTech</td>
+                            <td>@e.FuelTypeCargoCooling</td>
+                            <td>@e.FuelTypeDischargePump</td>
+                            <td>@e.FuelTypeReeferContainer</td>
+                            <td>@e.SfocCargoCooling</td>
+                            <td>@e.SfocDischargePump</td>
+                            <td>@e.SfocCargoReefers</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="17" style="text-align: center; color: #888; padding: 2rem;">데이터 없음</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    private string GetRowCursor() => OnRowClick.HasDelegate ? "pointer" : "default";
+    [Parameter] public List<ElectricConsumptionDto>? Items { get; set; } = null;
+    [Parameter] public bool Loading { get; set; }
+    [Parameter] public string? Error { get; set; } = null;
+    [Parameter] public EventCallback<ElectricConsumptionDto> OnRowClick { get; set; }
+    public class ElectricConsumptionDto
+    {
+        public int Id { get; set; }
+        [System.Text.Json.Serialization.JsonPropertyName("report_id")]
+        public int ReportId { get; set; }
+        public double? PowerBoiler { get; set; }
+        public double? PowerGenerator { get; set; }
+        public double? PowerOffset { get; set; }
+        public double? PowerPlant { get; set; }
+        public double? EnergyCargoCooling { get; set; }
+        public double? EnergyDischargePump { get; set; }
+        public double? EnergyReeferContainers { get; set; }
+        public double? EnergyOnshorePowerSupply { get; set; }
+        public double? EnergyZeroEmissionsTech { get; set; }
+        public string? FuelTypeCargoCooling { get; set; }
+        public string? FuelTypeDischargePump { get; set; }
+        public string? FuelTypeReeferContainer { get; set; }
+        public double? SfocCargoCooling { get; set; }
+        public double? SfocDischargePump { get; set; }
+        public double? SfocCargoReefers { get; set; }
+        // 필요시 추가 필드 정의
+    }
+}

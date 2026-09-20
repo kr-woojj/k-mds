@@ -1,0 +1,57 @@
+@page "/ships/{ShipId:int}/voyages/{VoyageId:int}/port-calls/{PortCallId:int}/performance-reports/{ReportId:int}"
+@using ship_odms.Models
+@using ship_odms.Services
+@inject ApiClient Api
+
+<PageTitle>성능 보고 상세</PageTitle>
+
+<h2 style="font-size:1.5rem;margin-bottom:1.5rem;">성능 보고 상세</h2>
+
+<ApiErrorBanner ErrorMessage="@Error" />
+
+
+@if (Report != null && !Loading && Error == null)
+{
+    <div class="report-detail">
+        <dl>
+            <dt>보고 ID</dt><dd>@Report.Id</dd>
+            <dt>선박 ID</dt><dd>@Report.ShipId</dd>
+            <dt>항차 ID</dt><dd>@Report.VoyageId</dd>
+            <dt>입출항 ID</dt><dd>@Report.PortCallId</dd>
+            <dt>연도</dt><dd>@Report.Year</dd>
+            <dt>보고 종류</dt><dd>@Report.ReportType</dd>
+            <dt>작성일</dt><dd>@(Report.CreatedAt != null ? Report.CreatedAt.Value.ToString("yyyy-MM-dd") : "")</dd>
+            <dt>수정일</dt><dd>@(Report.UpdatedAt != null ? Report.UpdatedAt.Value.ToString("yyyy-MM-dd") : "")</dd>
+            <dt>내용</dt><dd>@Report.Content</dd>
+            <!-- 필요시 하위 모델/필드 추가 -->
+        </dl>
+    </div>
+}
+
+@code {
+    [Parameter] public int ShipId { get; set; }
+    [Parameter] public int VoyageId { get; set; }
+    [Parameter] public int PortCallId { get; set; }
+    [Parameter] public int ReportId { get; set; }
+    private PerformanceReport? Report = null;
+    private bool Loading = true;
+    private string? Error = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            Loading = true;
+            Error = null;
+            Report = await Api.GetAsync<PerformanceReport>($"ships/{ShipId}/voyages/{VoyageId}/port-calls/{PortCallId}/performance-reports/{ReportId}");
+        }
+        catch (Exception ex)
+        {
+            Error = ex.Message;
+        }
+        finally
+        {
+            Loading = false;
+        }
+    }
+}

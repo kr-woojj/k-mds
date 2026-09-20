@@ -1,0 +1,5 @@
+IMO Data Number,Data Element,Definition,Format,Code List,Business Rule,Dataset,Reference Model Path,Status,Version
+IMO0101,Test element alpha,Test definition alpha,an..35,,,TEST-DATASET-A,/test/root/alpha,active,TESTBAD
+IMO99999,Test element bad long,Test definition bad,an..35,,,TEST-DATASET-A,/test/root/badlong,active,TESTBAD
+XMO0102,Test element bad namespace,Test definition bad,an..35,,,TEST-DATASET-A,/test/root/badns,active,TESTBAD
+IM0103,Test element bad prefix,Test definition bad,an..35,,,TEST-DATASET-A,/test/root/badprefix,active,TESTBAD

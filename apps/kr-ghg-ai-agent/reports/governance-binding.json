@@ -1,0 +1,56 @@
+{
+  "feature": "Governance Runtime Binding — GovernanceAuthorityContext",
+  "generated_at": "2026-08-24",
+  "summary": "Runtime 시점에 5개 Authority 를 바인딩하고, 이로부터 파생된 governance 플래그를 파이프라인 전 단계에서 fail-closed 로 강제한다. 경로/URL 바인딩(RuntimeBinding)은 하위 기능이다.",
+  "module": "src/ghg_agent/governance/authority.py",
+  "authorities": [
+    {"kind": "ReferenceAuthority", "current_status": "BOUND", "identifier": "FAL50",
+     "meaning": "권위 참조 모델(FAL50 registry) 승인"},
+    {"kind": "CandidateSetAuthority", "current_status": "BOUND",
+     "meaning": "매핑 후보 생성 파이프라인(결정론+Skill) 승인"},
+    {"kind": "RequirednessAuthority", "current_status": "PROVISIONAL", "identifier": "P-REQ-1",
+     "meaning": "필수성 프로파일 미승인"},
+    {"kind": "AuthoringAuthority", "current_status": "PROVISIONAL",
+     "meaning": "실제 정규화/authoring 권한 미승인"},
+    {"kind": "DeliveryAuthority", "current_status": "UNBOUND",
+     "meaning": "KR GEARs 실제 delivery 계약 미확인"}
+  ],
+  "derivation": {
+    "candidate_mapping_eligible": "reference.approved AND candidate_set.approved",
+    "requiredness_profile_approved": "requiredness.approved",
+    "actual_normalization_eligible": "authoring.approved",
+    "executable_mapping_eligible": "candidate_mapping_eligible AND requiredness_profile_approved AND actual_normalization_eligible",
+    "kr_gears_actual_delivery_allowed": "delivery.approved AND executable_mapping_eligible"
+  },
+  "enforced_flags_current_state": {
+    "candidate_mapping_eligible": true,
+    "requiredness_profile_approved": false,
+    "executable_mapping_eligible": false,
+    "actual_normalization_eligible": false,
+    "kr_gears_actual_delivery_allowed": false
+  },
+  "enforcement_points": [
+    {"flag": "candidate_mapping_eligible", "where": "orchestrator._node_profile (RECEIVED 단계)",
+     "behavior": "false 이면 정규화·매핑 미수행, REVIEW_REQUIRED(GOVERNANCE_CANDIDATE_MAPPING_BLOCKED)"},
+    {"flag": "executable_mapping_eligible", "where": "orchestrator._node_deliver",
+     "behavior": "false 이면 CONTRACT_VERIFIED 여도 DELIVERED 불가 → REVIEW_REQUIRED(GOVERNANCE_EXECUTABLE_MAPPING_BLOCKED)"},
+    {"flag": "kr_gears_actual_delivery_allowed", "where": "orchestrator._node_deliver / deliver()",
+     "behavior": "false 이면 http 실제 delivery 차단(BLOCKED, GOVERNANCE_DELIVERY_NOT_ALLOWED)"},
+    {"flag": "requiredness_profile_approved", "where": "executable_mapping_eligible 의 필수 조건",
+     "behavior": "false 이므로 어떤 실행 경로도 requiredness 를 승인된 것으로 취급하지 못함"},
+    {"flag": "actual_normalization_eligible", "where": "executable_mapping_eligible 의 필수 조건 + authoring 은 항상 PROVISIONAL 산출",
+     "behavior": "false 이므로 정규화 산출은 candidate 범위로만 취급, 권위 authoring 불가"}
+  ],
+  "runtime_binding_subfeature": {
+    "type": "RuntimeBinding",
+    "fields": ["imo_mapping_skill_path", "registry_db_path", "code_lists_path",
+               "kr_gears_delivery_mode", "kr_gears_api_url"],
+    "note": "경로/URL 은 Settings(env) 에서 주입되어 context 하위에 바인딩된다. governance 상위 통제의 부속물."
+  },
+  "observability": {
+    "api": ["GET /api/v1/governance", "GET /ready (components.governance)"],
+    "evidence": ["evidence/{cid}/governance-context.json", "manifest.json.governance_flags"]
+  },
+  "tests": "tests/integration/test_governance.py (9건 — 플래그 파생·게이트·evidence·API)",
+  "mock_e2e_confirmation": "evidence/SYN-*/manifest.json.governance_flags 가 강제값과 일치, 8/8 무결성 ok"
+}

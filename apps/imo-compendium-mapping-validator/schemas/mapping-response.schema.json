@@ -1,0 +1,284 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kr.example/imo-compendium-mapping-validator/schemas/mapping-response.schema.json",
+  "title": "MappingResponse",
+  "description": "매핑 응답 계약. 모든 IMO Data Number는 Registry 존재 재검증 게이트를 통과한 값만 허용된다 (REQ-006, REQ-007). 모든 결과는 compendiumVersion, registryRecordRef, inputHash, auditRef를 포함한다 (REQ-004, REQ-008, REQ-009, REQ-025, REQ-026). 실제 IMO 값 예시는 fixture 전용이므로 본 스키마에 포함하지 않는다 (REQ-028).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "responseVersion",
+    "compendiumVersion",
+    "inputHash",
+    "auditRef",
+    "rerankedByLlm",
+    "results"
+  ],
+  "properties": {
+    "responseVersion": {
+      "const": 1
+    },
+    "compendiumVersion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "처리에 사용된 단일 Compendium version (REQ-008)"
+    },
+    "inputHash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "요청 원본 byte의 SHA-256 (REQ-004)"
+    },
+    "auditRef": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9_-]{2,63}$",
+      "description": "Audit Log 상 이 처리의 Logical 참조 (REQ-026)"
+    },
+    "rerankedByLlm": {
+      "type": "boolean",
+      "description": "LLM 재순위화 경로 사용 여부. 재현성 경계 표시 (REQ-014, REQ-030)"
+    },
+    "results": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 500,
+      "items": {
+        "$ref": "#/$defs/fieldResult"
+      }
+    }
+  },
+  "$defs": {
+    "registryRecordRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["recordType", "recordId", "compendiumVersion"],
+      "description": "결과의 근거가 된 Registry record 참조 (REQ-009)",
+      "properties": {
+        "recordType": {
+          "type": "string",
+          "enum": [
+            "data_element",
+            "dataset_membership",
+            "alias",
+            "approved_mapping",
+            "code_list",
+            "business_rule",
+            "refmodel_occurrence"
+          ]
+        },
+        "recordId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "compendiumVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        }
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["imoDataNumber", "registryRecordRef", "confidence", "rank"],
+      "properties": {
+        "imoDataNumber": {
+          "type": "string",
+          "pattern": "^IMO[0-9]{4}$",
+          "description": "Registry에 존재함이 게이트에서 재검증된 공식 IMO Data Number만 허용 (REQ-007). XMO 등 다른 namespace 값 금지 (REQ-011)"
+        },
+        "registryRecordRef": {
+          "$ref": "#/$defs/registryRecordRef"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "결정론 점수와 재순위 결과의 합성 (REQ-015)"
+        },
+        "rank": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50
+        },
+        "matchBasis": {
+          "type": "string",
+          "enum": [
+            "exact_name",
+            "alias",
+            "approved_mapping",
+            "deterministic_search",
+            "deterministic_search_llm_reranked"
+          ],
+          "description": "매칭 근거 경로 (REQ-012, REQ-013, REQ-014, REQ-017)"
+        }
+      }
+    },
+    "xmoSuggestion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["xmoId", "namespace"],
+      "description": "IMO 매핑이 불가한 경우의 사내 코드 제안. IMO namespace와 분리 (REQ-011)",
+      "properties": {
+        "xmoId": {
+          "type": "string",
+          "pattern": "^XMO[0-9A-Z-]{1,60}$"
+        },
+        "namespace": {
+          "const": "xmo"
+        },
+        "registered": {
+          "type": "boolean",
+          "description": "xmo_code 테이블 등록 여부"
+        }
+      }
+    },
+    "normalizedField": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["normalizedName"],
+      "description": "원본과 분리된 정규화 표현 (REQ-003, REQ-027)",
+      "properties": {
+        "normalizedName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "normalizedType": {
+          "type": ["string", "null"],
+          "enum": [
+            "string",
+            "number",
+            "integer",
+            "boolean",
+            "date",
+            "datetime",
+            "array",
+            "object",
+            null
+          ],
+          "default": null
+        },
+        "normalizedUnit": {
+          "type": ["string", "null"],
+          "maxLength": 64,
+          "default": null
+        }
+      }
+    },
+    "fieldResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fieldId", "status", "normalizedField", "candidates"],
+      "properties": {
+        "fieldId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "status": {
+          "type": "string",
+          "enum": ["MATCHED", "REVIEW_REQUIRED", "NO_MATCH"],
+          "description": "결정론 임계값 정책이 결정한 상태 (REQ-015). LLM은 상태를 결정하지 않는다 (REQ-014)"
+        },
+        "match": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/candidate"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "status=MATCHED일 때만 존재하는 확정 매핑"
+        },
+        "candidates": {
+          "type": "array",
+          "maxItems": 50,
+          "items": {
+            "$ref": "#/$defs/candidate"
+          },
+          "description": "REVIEW_REQUIRED용 후보 목록. NO_MATCH이면 빈 배열"
+        },
+        "normalizedField": {
+          "$ref": "#/$defs/normalizedField"
+        },
+        "xmoSuggestion": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/xmoSuggestion"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "explanation": {
+          "type": ["string", "null"],
+          "maxLength": 4000,
+          "default": null,
+          "description": "LLM 생성 참고 설명. 판정에 사용되지 않는 참고용 텍스트 (REQ-014, threat-model 잔여위험)"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "MATCHED"
+              }
+            }
+          },
+          "then": {
+            "required": ["match"],
+            "properties": {
+              "match": {
+                "$ref": "#/$defs/candidate"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "NO_MATCH"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "match": {
+                "type": "null"
+              },
+              "candidates": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "REVIEW_REQUIRED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "match": {
+                "type": "null"
+              },
+              "candidates": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

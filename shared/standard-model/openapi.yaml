@@ -1,0 +1,1042 @@
+openapi: 3.0.1
+info:
+  title: Ship-ODMS API (IMO Compendium 기반)
+  version: 1.0.0
+  description: |
+    IMO Compendium 기반 선박 운항 데이터 관리 서비스(Ship-ODMS, Operational Data Management Service)
+    - API 우선 설계, ERD 기반 스키마, 계층적 URI, IMO ID 주석 포함
+    - PRD 및 ERD를 1:1로 반영
+
+servers:
+  - url: http://localhost:8080/api
+    description: Local development server
+
+paths:
+  /ships:
+    get:
+      summary: 등록된 선박 목록 조회
+      tags: [Ship]
+      responses:
+        '200':
+          description: 선박 목록
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ship'
+    post:
+      summary: 신규 선박 등록
+      tags: [Ship]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ship'
+      responses:
+        '201':
+          description: 생성된 선박
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ship'
+
+  /ships/{shipId}:
+    get:
+      summary: 특정 선박의 상세 정보 조회
+      tags: [Ship]
+      parameters:
+        - name: shipId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 선박 상세 정보
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ship'
+        '404':
+          description: 선박을 찾을 수 없음
+
+  /ships/{shipId}/yearly-reports:
+    get:
+      summary: 특정 선박의 연간 GHG 집계 데이터 조회
+      tags: [YearPerformanceReport]
+      parameters:
+        - name: shipId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 연차 실적 보고 목록
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/YearPerformanceReport'
+    post:
+      summary: 연차 실적 보고 생성
+      tags: [YearPerformanceReport]
+      parameters:
+        - name: shipId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/YearPerformanceReport'
+      responses:
+        '201':
+          description: 생성된 연차 실적 보고
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YearPerformanceReport'
+
+  /ships/{shipId}/voyages:
+    get:
+      summary: 선박의 항해 이력 조회
+      tags: [Voyage]
+      parameters:
+        - name: shipId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 항해 목록
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Voyage'
+    post:
+      summary: 새로운 항해 생성
+      tags: [Voyage]
+      parameters:
+        - name: shipId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Voyage'
+      responses:
+        '201':
+          description: 생성된 항해
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voyage'
+
+  /voyages/{voyageId}/port-calls:
+    post:
+      summary: 특정 항해의 입출항 기록 추가
+      tags: [PortCall]
+      parameters:
+        - name: voyageId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PortCall'
+      responses:
+        '201':
+          description: 생성된 입출항 기록
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortCall'
+
+
+  /voyages/{voyageId}/performance-reports:
+    get:
+      summary: 특정 항해의 운항 성능 보고 목록 조회
+      tags: [PerformanceReport]
+      parameters:
+        - name: voyageId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 운항 성능 보고 목록
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PerformanceReport'
+        '404':
+          description: 해당 항해를 찾을 수 없음
+        '500':
+          description: 서버 오류
+    post:
+      summary: 운항 성능 보고 생성 (중첩 객체 포함)
+      tags: [PerformanceReport]
+      parameters:
+        - name: voyageId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PerformanceReport'
+      responses:
+        '201':
+          description: 생성된 운항 성능 보고
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerformanceReport'
+        '400':
+          description: 잘못된 요청
+        '500':
+          description: 서버 오류
+
+tags:
+  - name: Ship
+    description: 선박 기준 정보
+  - name: YearPerformanceReport
+    description: 연차 실적 보고
+  - name: Voyage
+    description: 항차 정보
+  - name: PortCall
+    description: 입출항 정보
+  - name: PerformanceReport
+    description: 운항 성능 보고
+
+security:
+  - {}
+
+externalDocs:
+  description: Swagger UI 문서화
+  url: http://localhost:8080/api-docs
+
+components:
+  schemas:
+    Ship:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: "PK"
+        imo_number:
+          type: string
+          description: "IMO0140: Ship IMO number"
+        ship_name:
+          type: string
+          description: "IMO0142: Ship name"
+        ship_type:
+          type: string
+          description: "IMO0160: Ship type, coded"
+        ship_type_marpol:
+          type: string
+          description: "IMO0859: Ship type MARPOL Annex VI, coded"
+        flag_state:
+          type: string
+          description: "IMO0138: Ship flag State, coded"
+        mmsi:
+          type: string
+          description: "IMO0326: Ship MMSI number"
+        call_sign:
+          type: string
+          description: "IMO0136: Ship call sign"
+        registry_port:
+          type: string
+          description: "IMO0147: Ship registry port, coded"
+    YearPerformanceReport:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: "PK"
+        ship_id:
+          type: integer
+          description: "FK"
+        total_gfi_annually:
+          type: integer
+          description: "IMO0854: Fuel, Total GHG intensity (IMO), annually [gCO2eq/MJ]"
+    Voyage:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: "PK"
+        ship_id:
+          type: integer
+          description: "FK"
+        year_report_id:
+          type: integer
+          description: "FK"
+        voyage_number:
+          type: string
+          description: "IMO0191: Voyage number"
+        trade_service_id:
+          type: string
+          description: "IMO0536: Trade service identifier"
+        gfi_per_voyage:
+          type: number
+          format: float
+          description: "IMO0855: Fuel, GHG intensity (IMO), per voyage [gCO2eq/MJ]"
+        inbound_port_jurisdiction:
+          type: string
+          description: "IMO0856: Inbound Port jurisdiction, coded"
+        outbound_port_jurisdiction:
+          type: string
+          description: "IMO0857: Outbound Port jurisdiction, coded"
+    PortCall:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: "PK"
+        voyage_id:
+          type: integer
+          description: "FK"
+        port_arrival:
+          type: string
+          description: "IMO0108: Port of arrival, coded"
+        port_departure:
+          type: string
+          description: "IMO0111: Port of departure, coded"
+        port_ata:
+          type: string
+          description: "IMO0063: Date and time of arrival - actual"
+        port_atd:
+          type: string
+          description: "IMO0065: Date and time of departure - actual"
+    PerformanceReport:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: "PK"
+        voyage_id:
+          type: integer
+          description: "FK"
+        voyage_leg:
+          type: string
+          description: "IMO0605: Voyage leg identifier"
+        event_type:
+          type: string
+          description: "IMO0597: Event type, coded"
+        operation_type:
+          type: string
+          description: "IMO0598: Operation type, coded"
+        elapsed_time:
+          type: number
+          format: float
+          description: "IMO0600: Elapsed time"
+        report_type:
+          type: string
+          description: "IMO0879: Performance report type, coded"
+        report_datetime:
+          type: string
+          format: date-time
+          description: "IMO0603: Ship reporting date time"
+        latitude:
+          type: number
+          format: float
+          description: "IMO0601: Ship position when reporting, latitude"
+        longitude:
+          type: number
+          format: float
+          description: "IMO0602: Ship position when reporting, longitude"
+        distance_through_water:
+          type: number
+          format: float
+          description: "IMO0612: Distance through water [nm]"
+        distance_over_ground:
+          type: number
+          format: float
+          description: "IMO0613: Distance over ground [nm]"
+        distance_sailed_in_ice:
+          type: number
+          format: float
+          description: "IMO0614: Distance sailed in ice [nm]"
+        distance_to_next_port:
+          type: number
+          format: float
+          description: "IMO0615: Distance to next port [nm]"
+        laden_indicator:
+          type: boolean
+          description: "IMO0860: Laden indicator"
+        distance_excluded:
+          type: number
+          format: float
+          description: "IMO0861: Distance excluded [nm]"
+        off_hire_reasons:
+          type: string
+          description: "IMO0862: Off hire Reasons"
+        ship_draught:
+          type: number
+          format: float
+          description: "IMO0357: Ship draught"
+        draught_forward:
+          type: number
+          format: float
+          description: "IMO0621: Draught forward"
+        draught_aft:
+          type: number
+          format: float
+          description: "IMO0622: Draught aft"
+        speed_over_ground:
+          type: number
+          format: float
+          description: "IMO0333: Speed over ground"
+        speed_through_water:
+          type: number
+          format: float
+          description: "IMO0616: Speed through water"
+        speed_propeller:
+          type: number
+          format: float
+          description: "IMO0617: Speed propeller"
+        speed_projected:
+          type: number
+          format: float
+          description: "IMO0618: Speed projected"
+        speed_order:
+          type: number
+          format: float
+          description: "IMO0619: Speed order"
+        course_over_ground:
+          type: number
+          format: float
+          description: "IMO0332: Course over ground"
+        ship_true_heading:
+          type: number
+          format: float
+          description: "IMO0620: Ship true heading"
+        weather_details:
+          type: array
+          items:
+            $ref: '#/components/schemas/WeatherDetails'
+        cargo_onboard:
+          type: array
+          items:
+            $ref: '#/components/schemas/CargoOnboard'
+        electric_consumption:
+          type: array
+          items:
+            $ref: '#/components/schemas/ElectricConsumption'
+        fuel_consumption:
+          type: array
+          items:
+            $ref: '#/components/schemas/FuelConsumption'
+        measured_carbon_dioxide:
+          type: array
+          items:
+            $ref: '#/components/schemas/MeasuredCarbonDioxide'
+    WeatherDetails:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: "PK"
+        report_id:
+          type: integer
+          description: "FK"
+        sea_state:
+          type: integer
+          description: "IMO0363: State of the sea, coded"
+        wind_force:
+          type: integer
+          description: "IMO0625: Wind force"
+        wind_speed:
+          type: integer
+          description: "IMO0359: Wind speed, coded"
+        wind_dir:
+          type: integer
+          description: "IMO0360: Wind direction, coded"
+        wind_dir_relative:
+          type: number
+          format: float
+          description: "IMO0626: Wind direction, estimated, relative"
+        wind_dir_true:
+          type: number
+          format: float
+          description: "IMO0627: Wind direction, estimated, true"
+        air_temperature:
+          type: number
+          format: float
+          description: "IMO0628: Air temperature"
+        atmospheric_pressure:
+          type: integer
+          description: "IMO0629: Atmospheric pressure"
+        sea_dir_relative:
+          type: integer
+          description: "IMO0630: Sea direction, relative"
+        sea_dir_true:
+          type: integer
+          description: "IMO0631: Sea direction, true"
+        sea_height:
+          type: integer
+          description: "IMO0632: Sea height"
+        swell_dir_relative:
+          type: integer
+          description: "IMO0633: Swell direction, relative"
+        swell_dir_true:
+          type: integer
+          description: "IMO0634: Swell direction, true"
+        swell_height:
+          type: integer
+          description: "IMO0635: Swell height"
+        ocean_dir_relative:
+          type: integer
+          description: "IMO0636: Ocean current direction, relative"
+        ocean_dir_true:
+          type: integer
+          description: "IMO0637: Ocean current direction, true"
+        ocean_dir_weather_provider:
+          type: integer
+          description: "IMO0638: Ocean current direction, weather provider"
+    CargoOnboard:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: "PK"
+        report_id:
+          type: integer
+          description: "FK"
+        number_containers:
+          type: integer
+          description: "IMO0650: Total numbers of containers, TEU"
+        number_full_container:
+          type: integer
+          description: "IMO0651: Total number of full containers, TEU"
+        number_full_reefer_containers:
+          type: integer
+          description: "IMO0652: Total number of full reefer containers in use, TEU"
+        number_vehicles_onboard:
+          type: integer
+          description: "IMO0653: Total number of vehicles onboard, CEU"
+        number_crew:
+          type: integer
+          description: "IMO0086: Number of crew"
+        number_passengers:
+          type: integer
+          description: "IMO0087: Number of passengers"
+        number_chilled_20ft_reefer_containers:
+          type: integer
+          description: "IMO0864: Number of chilled 20 ft reefer containers"
+        number_chilled_40ft_reefer_containers:
+          type: integer
+          description: "IMO0865: Number of chilled 40 ft reefer containers"
+        number_frozen_20ft_reefer_containers:
+          type: integer
+          description: "IMO0866: Number of frozen 20 ft reefer containers"
+        number_frozen_40ft_reefer_containers:
+          type: integer
+          description: "IMO0867: Number of frozen 40 ft reefer containers"
+        goods_description:
+          type: string
+          description: "IMO0022: Cargo item description of goods"
+        gross_volume:
+          type: number
+          format: float
+          description: "IMO0023: Cargo item gross volume"
+        gross_weight:
+          type: number
+          format: float
+          description: "IMO0024: Cargo item gross weight"
+        bl_ref_id:
+          type: string
+          description: "IMO0734: Bill of Lading reference identifier"
+        bl_issued_date:
+          type: string
+          description: "IMO0738: Bill of Lading issued date"
+    ElectricConsumption:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: "PK"
+        report_id:
+          type: integer
+          description: "FK"
+        power_boiler:
+          type: number
+          format: float
+          description: "IMO0646: Boiler electricity consumption [kwh]"
+        power_generator:
+          type: number
+          format: float
+          description: "IMO0647: Generator production [kwh]"
+        power_offset:
+          type: number
+          format: float
+          description: "IMO0648: Offset electricity consumption [kwh]"
+        power_plant:
+          type: number
+          format: float
+          description: "IMO0649: Power consumption for plant [kwh]"
+        energy_cargo_cooling:
+          type: number
+          format: float
+          description: "IMO0868: Electrical work generated for Cargo Cooling [kwh]"
+        energy_discharge_pump:
+          type: number
+          format: float
+          description: "IMO0869: Electrical work generated for discharge pump [kwh]"
+        energy_reefer_containers:
+          type: number
+          format: float
+          description: "IMO0870: Electrical work generated for reefer containers [kwh]"
+        energy_onshore_power_supply:
+          type: number
+          format: float
+          description: "IMO0871: Electrical work received from On Shore Power Supply [kwh]"
+        energy_zero_emissions_tech:
+          type: number
+          format: float
+          description: "IMO0872: Electrical work received from zero emissions technologies [kwh]"
+        fuel_type_cargo_cooling:
+          type: integer
+          description: "IMO0873: Fuel type used for electrical work generated for cargo cooling, coded"
+        fuel_type_discharge_pump:
+          type: integer
+          description: "IMO0874: Fuel type used for electrical work generated for discharge pump, coded"
+        fuel_type_reefer_container:
+          type: integer
+          description: "IMO0875: Fuel type used for electrical work generated for reefers container, coded"
+        sfoc_cargo_cooling:
+          type: number
+          format: float
+          description: "IMO0876: Specific fuel oil consumption for electrical work generated for cargo cooling [g/kWh]"
+        sfoc_discharge_pump:
+          type: number
+          format: float
+          description: "IMO0877: Specific fuel oil consumption for electrical work generated for discharge pump [g/kWh]"
+        sfoc_cargo_reefers:
+          type: number
+          format: float
+          description: "IMO0878: Specific fuel oil consumption for electrical work generated for cargo reefers [g/kWh]"
+    FuelConsumption:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: "PK"
+        report_id:
+          type: integer
+          description: "FK"
+        fuel_type:
+          type: integer
+          description: "IMO0654: Fuel type, coded"
+        fuel_type_trade_name:
+          type: string
+          description: "IMO0680: Fuel type trade name, coded"
+        bdn_number:
+          type: string
+          description: "IMO0655: Bunker delivery note number"
+        bdn_datetime:
+          type: string
+          description: "IMO0656: Bunker delivery date time"
+        fuel_bunker_received:
+          type: number
+          format: float
+          description: "IMO0657: Fuel bunker received"
+        fuel_mass:
+          type: number
+          format: float
+          description: "IMO0658: Fuel, mass"
+        fuel_density:
+          type: integer
+          description: "IMO0659: Fuel, density"
+        fuel_sulphur_content:
+          type: integer
+          description: "IMO0660: Fuel, sulphur content"
+        fuel_viscosity:
+          type: integer
+          description: "IMO0661: Fuel, viscosity"
+        fuel_water_content:
+          type: integer
+          description: "IMO0662: Fuel, water content"
+        fuel_hhv:
+          type: integer
+          description: "IMO0663: Fuel, higher heating value"
+        fuel_lfv:
+          type: integer
+          description: "IMO0664: Fuel, lower heating value"
+        fuel_grade:
+          type: integer
+          description: "IMO0665: Fuel grade, coded"
+        fuel_bunker_port:
+          type: string
+          description: "IMO0666: Fuel bunker port, coded"
+        fuel_bunker_port_name:
+          type: string
+          description: "IMO0667: Fuel bunker port, name"
+        co2_emission:
+          type: number
+          format: float
+          description: "IMO0668: Fuel Carbon Dioxide emission [gCO2/g]"
+        total_fuel_quantity_consumed:
+          type: number
+          format: float
+          description: "IMO0669: Total fuel quantity consumed"
+        fuel_quantity_rob:
+          type: number
+          format: float
+          description: "IMO0674: Fuel quantity remaining onboard"
+        sludge_rob:
+          type: number
+          format: float
+          description: "IMO0675: Sludge remaining onboard"
+        fuel_lcv_report:
+          type: string
+          description: "IMO0880: Fuel Lower Calorific Value reporting scheme, coded"
+        fuel_lcv:
+          type: number
+          format: float
+          description: "IMO0881: Fuel, lower calorific value (LCV)"
+        fuel_pos_ref:
+          type: string
+          description: "IMO0882: Fuel, Proof of Sustainability reference"
+        ch4_cf:
+          type: number
+          format: float
+          description: "IMO0891: CH4 emission conversion factor (Methane) [gCH4/gFuel]"
+        n2o_cf:
+          type: number
+          format: float
+          description: "IMO0892: N2O emission conversion factor (Nitrous Oxide) [gN2O/gFuel]"
+        fresh_water_bunkered:
+          type: number
+          format: float
+          description: "IMO0639: Fresh water bunkered"
+        fresh_water_produced:
+          type: number
+          format: float
+          description: "IMO0640: Fresh water produced"
+        fresh_water_consumed:
+          type: number
+          format: float
+          description: "IMO0641: Fresh water consumed"
+        technical_water_produced:
+          type: number
+          format: float
+          description: "IMO0642: Technical water produced"
+        technical_water_consumed:
+          type: number
+          format: float
+          description: "IMO0643: Technical water consumed"
+        wash_water_consumed:
+          type: number
+          format: float
+          description: "IMO0644: Wash water consumed"
+        fresh_water_rob:
+          type: number
+          format: float
+          description: "IMO0645: Fresh water remaining onboard"
+        clo_rob:
+          type: number
+          format: float
+          description: "IMO0676: Cylinder lube oil remaining onboard"
+        clo_feed_rate:
+          type: number
+          format: float
+          description: "IMO0677: Cylinder lube oil, Feed Rate"
+        clo_consumption:
+          type: number
+          format: float
+          description: "IMO0678: Cylinder lube oil, consumption"
+        clo_received:
+          type: number
+          format: float
+          description: "IMO0679: Cylinder lube oil, received"
+        foc_fuel_type:
+          type: array
+          items:
+            $ref: '#/components/schemas/FocFuelType'
+        foc_consumer_type:
+          type: array
+          items:
+            $ref: '#/components/schemas/FocConsumerType'
+    FocFuelType:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: "PK"
+        fuel_consumption_id:
+          type: integer
+          description: "FK"
+        foc_main_engine:
+          type: number
+          format: float
+          description: "IMO0670: Fuel consumed, by Main Engine"
+        foc_diesel_electric_propulsion:
+          type: number
+          format: float
+          description: "IMO0671: Fuel consumed, by Diesel Electric Propulsion"
+        foc_diesel_generator:
+          type: number
+          format: float
+          description: "IMO0672: Fuel consumed, by Diesel Generator"
+        foc_auxiliary_boiler:
+          type: number
+          format: float
+          description: "IMO0673: Fuel consumed, by Auxiliary Boiler"
+        foc_auxiliary_engine:
+          type: number
+          format: float
+          description: "IMO0893: Fuel consumed, by Auxiliary Engine"
+        foc_cargo_cooling:
+          type: number
+          format: float
+          description: "IMO0894: Fuel consumed, by Cargo Cooling"
+        foc_cargo_heating:
+          type: number
+          format: float
+          description: "IMO0895: Fuel consumed, by Cargo Heating"
+        foc_diesel_power_packs:
+          type: number
+          format: float
+          description: "IMO0896: Fuel consumed, by Diesel Power Packs"
+        foc_dirty_petroleum_products_cargo_pump:
+          type: number
+          format: float
+          description: "IMO0897: Fuel consumed, by Dirty Petroleum Products Cargo Pump"
+        foc_discharge_pump:
+          type: number
+          format: float
+          description: "IMO0898: Fuel consumed, by Discharge Pump"
+        foc_dp_operations:
+          type: number
+          format: float
+          description: "IMO0899: Fuel consumed, by DP Operations"
+        foc_electrical_power_generation:
+          type: number
+          format: float
+          description: "IMO0900: Fuel consumed, by Electrical Power Generation"
+        foc_incinerator:
+          type: number
+          format: float
+          description: "IMO0901: Fuel consumed, by Incinerator"
+        foc_inert_gas_generators_gcus:
+          type: number
+          format: float
+          description: "IMO0902: Fuel consumed, by Inert gas generators / GCUs"
+        foc_other_fuel_consuming_devices:
+          type: number
+          format: float
+          description: "IMO0903: Fuel consumed, by Other Fuel Consuming Devices"
+        foc_reefer_containers:
+          type: number
+          format: float
+          description: "IMO0904: Fuel consumed, by Reefer Containers"
+        foc_shuttle_tanker_operations:
+          type: number
+          format: float
+          description: "IMO0905: Fuel consumed, by Shuttle Tanker Operations"
+        foc_sts_operations:
+          type: number
+          format: float
+          description: "IMO0906: Fuel consumed, by STS Operations"
+    FocConsumerType:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: "PK"
+        fuel_consumption_id:
+          type: integer
+          description: "FK"
+        fuel_used_main_engine:
+          type: integer
+          description: "IMO0907: Fuel used by Main Engine, coded"
+        fuel_consumed_main_engine:
+          type: number
+          format: float
+          description: "IMO0908: Fuel consumed by Main Engine, by fuel type"
+        fuel_used_diesel_electric_propulsion:
+          type: integer
+          description: "IMO0909: Fuel used by Diesel Electric Propulsion, coded"
+        fuel_consumed_diesel_electric_propulsion:
+          type: number
+          format: float
+          description: "IMO0910: Fuel consumed by Diesel Electric Propulsion, by fuel type"
+        fuel_used_diesel_generator:
+          type: integer
+          description: "IMO0911: Fuel used by Diesel Generator, coded"
+        fuel_consumed_diesel_generator:
+          type: number
+          format: float
+          description: "IMO0912: Fuel consumed by Diesel Generator, by fuel type"
+        fuel_used_auxiliary_boiler:
+          type: integer
+          description: "IMO0913: Fuel used by Auxillary Boiler, coded"
+        fuel_consumed_auxiliary_boiler:
+          type: number
+          format: float
+          description: "IMO0914: Fuel consumed by Auxiliary Boiler, by fuel type"
+        fuel_used_auxiliary_engine:
+          type: integer
+          description: "IMO0915: Fuel used by Auxillary Engine, coded"
+        fuel_consumed_auxiliary_engine:
+          type: number
+          format: float
+          description: "IMO0916: Fuel consumed by Auxiliary Engine, by fuel type"
+        fuel_used_cargo_cooling:
+          type: integer
+          description: "IMO0917: Fuel used by Cargo Cooling, coded"
+        fuel_consumed_cargo_cooling:
+          type: number
+          format: float
+          description: "IMO0918: Fuel consumed by Cargo Cooling, by fuel type"
+        fuel_used_cargo_heating:
+          type: integer
+          description: "IMO0919: Fuel used by Cargo Heating, coded"
+        fuel_consumed_cargo_heating:
+          type: number
+          format: float
+          description: "IMO0920: Fuel consumed by Cargo Heating, by fuel type"
+        fuel_used_diesel_power_packs:
+          type: integer
+          description: "IMO0921: Fuel used by Diesel Power Packs, coded"
+        fuel_consumed_diesel_power_packs:
+          type: number
+          format: float
+          description: "IMO0922: Fuel consumed by Diesel Power Packs, by fuel type"
+        fuel_used_dirty_petroleum_products_cargo_pump:
+          type: integer
+          description: "IMO0923: Fuel used by Dirty Petroleum Products Cargo Pump, coded"
+        fuel_consumed_dirty_petroleum_products_cargo_pump:
+          type: number
+          format: float
+          description: "IMO0924: Fuel consumed by Dirty Petroleum Products Cargo Pump, by fuel type"
+        fuel_used_discharge_pump:
+          type: integer
+          description: "IMO0925: Fuel used by Discharge Pump, coded"
+        fuel_consumed_discharge_pump:
+          type: number
+          format: float
+          description: "IMO0926: Fuel consumed by Discharge Pump, by fuel type"
+        fuel_used_dp_operations:
+          type: integer
+          description: "IMO0927: Fuel used by DP Operations, coded"
+        fuel_consumed_dp_operations:
+          type: number
+          format: float
+          description: "IMO0928: Fuel consumed by DP Operations, by fuel type"
+        fuel_used_electrical_power_generation:
+          type: integer
+          description: "IMO0929: Fuel used by Electrical Power Generation, coded"
+        fuel_consumed_electrical_power_generation:
+          type: number
+          format: float
+          description: "IMO0930: Fuel consumed by Electrical Power Generation, by fuel type"
+        fuel_used_incinerator:
+          type: integer
+          description: "IMO0931: Fuel used by Incinerator, coded"
+        fuel_consumed_incinerator:
+          type: number
+          format: float
+          description: "IMO0932: Fuel consumed by Incinerator, by fuel type"
+        fuel_used_inert_gas_generators_gcus:
+          type: integer
+          description: "IMO0933: Fuel used by Inert gas generators / GCUs, coded"
+        fuel_consumed_inert_gas_generators_gcus:
+          type: number
+          format: float
+          description: "IMO0934: Fuel consumed by Inert gas generators / GCUs, by fuel type"
+        fuel_used_other_fuel_consuming_devices:
+          type: integer
+          description: "IMO0935: Fuel used by Other Fuel Consuming Devices, coded"
+        fuel_consumed_other_fuel_consuming_devices:
+          type: number
+          format: float
+          description: "IMO0936: Fuel consumed by Other Fuel Consuming Devices, by fuel type"
+        fuel_used_reefer_containers:
+          type: integer
+          description: "IMO0937: Fuel used by Reefers Containers, coded"
+        fuel_consumed_reefer_containers:
+          type: number
+          format: float
+          description: "IMO0938: Fuel consumed by Reefer Containers, by fuel type"
+        fuel_used_shuttle_tanker_operations:
+          type: integer
+          description: "IMO0939: Fuel used by Shuttle Tanker Operations, coded"
+        fuel_consumed_shuttle_tanker_operations:
+          type: number
+          format: float
+          description: "IMO0940: Fuel consumed by Shuttle Tanker Operations, by fuel type"
+        fuel_used_sts_operations:
+          type: integer
+          description: "IMO0941: Fuel used by STS Operations, coded"
+        fuel_consumed_sts_operations:
+          type: number
+          format: float
+          description: "IMO0942: Fuel consumed by STS Operations, by fuel type"
+    MeasuredCarbonDioxide:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: "PK"
+        report_id:
+          type: integer
+          description: "FK"
+        total_co2eq:
+          type: number
+          format: float
+          description: "IMO0883: Total CO2, including equivalent [tCO2eq]"
+        percentage_co2_emitted_at_sea:
+          type: number
+          format: float
+          description: "IMO0884: Percentage of Total CO2 emitted at sea"
+        total_co2:
+          type: number
+          format: float
+          description: "IMO0885: Total CO2 (tank-to-wake) [tCO2]"
+        total_co2eq_captured:
+          type: number
+          format: float
+          description: "IMO0886: Total CO2 equivalent Captured [tCO2eq]"
+        total_ch4:
+          type: number
+          format: float
+          description: "IMO0887: Total CH4 [tCH4]"
+        total_ch4_to_co2:
+          type: number
+          format: float
+          description: "IMO0888: Total CH4 converted to CO2 [tCH4]"
+        total_n2o:
+          type: number
+          format: float
+          description: "IMO0889: Total N2O [tN20]"
+        total_n2o_to_co2:
+          type: number
+          format: float
+          description: "IMO0890: Total N20 converted to CO2 [tN20]"

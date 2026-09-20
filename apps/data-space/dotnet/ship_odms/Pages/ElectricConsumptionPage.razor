@@ -1,0 +1,95 @@
+@page "/ships/{shipId:int}/voyages/{voyageId:int}/performance-reports/{reportId:int}/electric-consumption"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>전력 소비 상세</PageTitle>
+
+<h2 style="font-size:1.5rem;margin-bottom:1.5rem;">전력 소비 상세</h2>
+
+@if (loading)
+{
+    <p>로딩 중...</p>
+}
+else if (error != null)
+{
+    <div style="color:red">오류: @error.Message</div>
+}
+else if (electricList != null && electricList.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Report ID</th>
+                <th>Boiler</th>
+                <th>Generator</th>
+                <th>Offset</th>
+                <th>Plant</th>
+                <th>Energy Cargo Cooling</th>
+                <th>Energy Discharge Pump</th>
+                <th>Energy Reefer</th>
+                <th>Onshore Power</th>
+                <th>Zero Emissions</th>
+                <th>Fuel Type Cargo Cooling</th>
+                <th>Fuel Type Discharge Pump</th>
+                <th>Fuel Type Reefer</th>
+                <th>SFOC Cargo Cooling</th>
+                <th>SFOC Discharge Pump</th>
+                <th>SFOC Cargo Reefers</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var e in electricList)
+            {
+                <tr>
+                    <td>@e.Id</td>
+                    <td>@e.ReportId</td>
+                    <td>@e.PowerBoiler</td>
+                    <td>@e.PowerGenerator</td>
+                    <td>@e.PowerOffset</td>
+                    <td>@e.PowerPlant</td>
+                    <td>@e.EnergyCargoCooling</td>
+                    <td>@e.EnergyDischargePump</td>
+                    <td>@e.EnergyReeferContainers</td>
+                    <td>@e.EnergyOnshorePowerSupply</td>
+                    <td>@e.EnergyZeroEmissionsTech</td>
+                    <td>@e.FuelTypeCargoCooling</td>
+                    <td>@e.FuelTypeDischargePump</td>
+                    <td>@e.FuelTypeReeferContainer</td>
+                    <td>@e.SfocCargoCooling</td>
+                    <td>@e.SfocDischargePump</td>
+                    <td>@e.SfocCargoReefers</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>데이터가 없습니다.</p>
+}
+
+@code {
+    [Parameter] public int shipId { get; set; }
+    [Parameter] public int voyageId { get; set; }
+    [Parameter] public int reportId { get; set; }
+
+    private List<Components.ElectricConsumptionTable.ElectricConsumptionDto> electricList = new();
+    private Exception? error;
+    private bool loading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        loading = true;
+        try
+        {
+            electricList = await Http.GetFromJsonAsync<List<Components.ElectricConsumptionTable.ElectricConsumptionDto>>($"voyages/{voyageId}/performance-reports/{reportId}/electric-consumption") ?? new();
+            error = null;
+        }
+        catch (Exception ex)
+        {
+            error = ex;
+        }
+        loading = false;
+    }
+}

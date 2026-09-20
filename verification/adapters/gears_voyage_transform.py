@@ -20,12 +20,12 @@ from pathlib import Path
 
 import openpyxl
 
-ROOT = Path(r"C:\kr-dev")
-CODEBOOK = ROOT / "k-mds/verification/evidence/C02/manual_S03/step-02/api/noon-code-book.txt"
-PAYLOAD = ROOT / "k-mds/verification/evidence/C02/manual_S03/step-04/payloads/Noon_Report_API__e5e3be7e7a31.json"
-REGISTRY = ROOT / "kr-ghg-ai-agent/var/registry.sqlite3"
-FAL50_XLSX = ROOT / "k-mds/data/raw/FAL50/IMO Compendium.xlsx"
-TEMPLATE = ROOT / "k-mds/data/raw/KR-Systems/GEARs_Template_Type1_Rev.2.1.xlsm"
+ROOT = Path(__file__).resolve().parents[2]  # k-mds 루트
+CODEBOOK = ROOT / "verification/evidence/C02/manual_S03/step-02/api/noon-code-book.txt"
+PAYLOAD = ROOT / "verification/evidence/C02/manual_S03/step-04/payloads/Noon_Report_API__e5e3be7e7a31.json"
+REGISTRY = ROOT / "apps/kr-ghg-ai-agent/var/registry.sqlite3"
+FAL50_XLSX = ROOT / "data/raw/FAL50/IMO Compendium.xlsx"
+TEMPLATE = ROOT / "data/raw/KR-Systems/GEARs_Template_Type1_Rev.2.1.xlsm"
 
 # ── 1. 표준 매핑 규칙 (코드북 1:N 해소) ───────────────────────────────────────────────
 # eventKey(Provider) → 코드북 eventName 컨텍스트
@@ -279,7 +279,7 @@ def validate(rows, legs, locodes, canon, code_lists):
 
 
 # ── 4. KR Systems API (GEARs Post DCS/MRV Voyage Template, Nexawave pApiId=64) 데이터 리스트 ───────────
-API_SPEC = ROOT / "k-mds/verification/evidence/C02/manual_S04/kr-systems-api/voyage_template_fields.json"
+API_SPEC = ROOT / "verification/evidence/C02/manual_S04/kr-systems-api/voyage_template_fields.json"
 API_FUEL = {"HFO": "Hfo", "LFO": "Lfo", "MDO": "Mdo", "MGO": "Mgo", "LPG (Propane)": "Lpgp", "LPG (Butane)": "Lpgb", "Methanol": "Methanol", "Ethanol": "Ethanol", "LNG": "Lng", "Other": "Other"}
 API_HEAD = {"Voyage No.": "VoyageNo", "Port code (DEPARTURE)": "PortCodeDep", "Departure Date (UTC)": "DepartureDate", "Departure time (UTC)": "DepartureTime",
             "Cargo operation (DEPARTURE)": "DepartureCargoOperYn", "Port code (ARRIVAL)": "PortCodeArr", "Arrival Date (UTC)": "ArrivalDate", "Arrival time (UTC)": "ArrivalTime",
@@ -358,4 +358,4 @@ def main(out: Path):
 
 
 if __name__ == "__main__":
-    sys.exit(main(Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "k-mds/verification/evidence/C02/manual_S04/gears-transform"))
+    sys.exit(main(Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "verification/evidence/C02/manual_S04/gears-transform"))

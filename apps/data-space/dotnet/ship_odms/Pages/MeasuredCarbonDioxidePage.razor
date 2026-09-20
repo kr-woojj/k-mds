@@ -1,0 +1,82 @@
+@using ship_odms.Models
+@page "/ships/{shipId:int}/voyages/{voyageId:int}/performance-reports/{reportId:int}/measured-carbon-dioxide"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>이산화탄소 배출 상세</PageTitle>
+
+<h2 style="font-size:1.5rem;margin-bottom:1.5rem;">이산화탄소 배출 상세</h2>
+
+@if (loading)
+{
+    <p>로딩 중...</p>
+}
+else if (error != null)
+{
+    <div style="color:red">오류: @error.Message</div>
+}
+else if (co2List != null && co2List.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Report ID</th>
+                <th>Total CO2eq</th>
+                <th>% CO2 at Sea</th>
+                <th>Total CO2</th>
+                <th>Total CO2eq Captured</th>
+                <th>Total CH4</th>
+                <th>Total CH4 to CO2</th>
+                <th>Total N2O</th>
+                <th>Total N2O to CO2</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in co2List)
+            {
+                <tr>
+                    <td>@m.Id</td>
+                    <td>@m.ReportId</td>
+                    <td>@m.TotalCo2eq</td>
+                    <td>@m.PercentageCo2EmittedAtSea</td>
+                    <td>@m.TotalCo2</td>
+                    <td>@m.TotalCo2eqCaptured</td>
+                    <td>@m.TotalCh4</td>
+                    <td>@m.TotalCh4ToCo2</td>
+                    <td>@m.TotalN2o</td>
+                    <td>@m.TotalN2oToCo2</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>데이터가 없습니다.</p>
+}
+
+@code {
+    [Parameter] public int shipId { get; set; }
+    [Parameter] public int voyageId { get; set; }
+    [Parameter] public int reportId { get; set; }
+
+    private List<MeasuredCarbonDioxide> co2List = new();
+    private Exception? error;
+    private bool loading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        loading = true;
+        try
+        {
+            co2List = await Http.GetFromJsonAsync<List<MeasuredCarbonDioxide>>($"voyages/{voyageId}/performance-reports/{reportId}/measured-carbon-dioxide") ?? new();
+            error = null;
+        }
+        catch (Exception ex)
+        {
+            error = ex;
+        }
+        loading = false;
+    }
+}

@@ -1,0 +1,6 @@
+IMO Data Number,Data Element,Definition,Format,Code List,Business Rule,Dataset,Reference Model Path,Status,Version
+IMO0201,Fuel oil consumption,Total fuel oil consumption in metric tons (t) for the voyage period,n..7,,,TEST-DS-VOYAGE,/test/voyage/fuel_oil_consumption,active,TESTMAP1
+IMO0202,Fuel oil consumption,Fuel oil consumption in metric tons (t) reported at noon,n..7,,,TEST-DS-NOON,/test/noon/fuel_oil_consumption,active,TESTMAP1
+IMO0203,Ship name,Name of the ship as registered,an..70,,,TEST-DS-SHIP,/test/ship/ship_name,active,TESTMAP1
+IMO0204,Distance travelled,Distance travelled over ground in nautical miles,n..5,,,TEST-DS-VOYAGE,/test/voyage/distance_travelled,active,TESTMAP1
+IMO0206,Time at anchorage,Time spent at anchorage in hours (h),n..4,,,TEST-DS-VOYAGE,/test/voyage/time_at_anchorage,deprecated,TESTMAP1

@@ -1,0 +1,21 @@
+{
+  "phase": "PHASE-1_BASELINE_REDTEAM",
+  "generated_at": "2026-08-24",
+  "code_commit": "725b98835a207dbd56071be13a41088e7461b15b",
+  "source_modified_during_baseline": false,
+  "methodology": "기존 구현을 무수정 실행. 별도 probe(evidence/baseline/probes/*.py)로 공격적 입력을 주입해 결함을 재현. 재현되지 않은 항목은 defect 로 계상하지 않음.",
+  "baseline_suite": {
+    "command": "uv run pytest -q",
+    "result": "71 passed, 1 skipped (live_llm)",
+    "evidence": "evidence/baseline/baseline-pytest.txt"
+  },
+  "final_state": "BASELINE_VERIFIED",
+  "provenance": {
+    "normalized_from": [
+      "evidence/baseline/baseline-findings.json",
+      "evidence/baseline/baseline-pytest.txt",
+      "evidence/baseline/probes/"
+    ],
+    "note": "reports/red-team-*.json 명칭 파일은 baseline 단계에서 생성되지 않아, 이 Phase 시작 시 실제 재현 데이터로 정규화 생성함."
+  }
+}

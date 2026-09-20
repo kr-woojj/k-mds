@@ -1,0 +1,42 @@
+@page "/"
+@using ship_odms.Models
+@using ship_odms.Services
+@inject ApiClient Api
+@inject NavigationManager Navigation
+
+<PageTitle>선박 목록</PageTitle>
+
+<h1 style="font-size:2rem;margin-bottom:1.5rem;">선박 목록</h1>
+
+<ApiErrorBanner ErrorMessage="@Error" />
+
+<ShipTable Items="Ships" Loading="@Loading" Error="@Error" OnRowClick="OnRowClick" />
+
+@code {
+    private List<Ship>? Ships = new();
+    private bool Loading = true;
+    private string? Error = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            Loading = true;
+            Error = null;
+            Ships = await Api.GetAsync<List<Ship>>("ships");
+        }
+        catch (Exception ex)
+        {
+            Error = ex.Message;
+        }
+        finally
+        {
+            Loading = false;
+        }
+    }
+
+    private void OnRowClick(Ship ship)
+    {
+        Navigation.NavigateTo($"/ships/{ship.Id}/yearly-reports");
+    }
+}

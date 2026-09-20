@@ -1,0 +1,15 @@
+@inherits ApiErrorBannerBase
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <div style="background: #ffe0e0; color: #b00020; padding: 1rem; border-radius: 4px; margin-bottom: 1rem; border: 1px solid #b00020; font-weight: bold;">
+        <span>백엔드 API 서버에 연결할 수 없습니다.</span>
+        <div style="font-size: 0.9em; margin-top: 0.5em;">@ErrorMessage</div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public Exception? Error { get; set; }
+
+    private string DisplayErrorMessage => Error != null ? (Error.Message ?? Error.ToString()) : (ErrorMessage ?? "");
+}

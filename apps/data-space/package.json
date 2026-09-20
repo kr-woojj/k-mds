@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@devlikeapro/n8n-openapi-node": "^0.1.4"
+  }
+}

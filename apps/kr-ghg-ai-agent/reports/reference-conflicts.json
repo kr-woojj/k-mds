@@ -1,0 +1,45 @@
+{
+  "generated_at": "2026-08-24",
+  "reference_model_version": "FAL50",
+  "source_sha256": null,
+  "policy": "권위 validator/reference 를 약화시키지 않는다. 아래 요소들의 매핑은 상류 reference 정정 전까지 REVIEW_REQUIRED 로 분류한다.",
+  "conflict_count": 1,
+  "conflicts": [
+    {
+      "imo_data_number": "IMO0654",
+      "element_name": "Fuel type, coded",
+      "format_spec": "n..10",
+      "code_list": "Fuel type",
+      "code_value_count": 25,
+      "non_numeric_value_examples": [
+        "Ethane",
+        "Ethanol",
+        "HFO",
+        "LBG",
+        "LFO"
+      ],
+      "classification": "REVIEW_REQUIRED",
+      "root_cause": "UPSTREAM_REFERENCE_FORMAT_CODELIST_CONFLICT",
+      "impact": "유효 코드값이 validator DATATYPE_HARD_CONFLICT 로 FAIL"
+    }
+  ],
+  "ghg_relevant": [
+    {
+      "imo_data_number": "IMO0654",
+      "element_name": "Fuel type, coded",
+      "format_spec": "n..10",
+      "code_list": "Fuel type",
+      "code_value_count": 25,
+      "non_numeric_value_examples": [
+        "Ethane",
+        "Ethanol",
+        "HFO",
+        "LBG",
+        "LFO"
+      ],
+      "classification": "REVIEW_REQUIRED",
+      "root_cause": "UPSTREAM_REFERENCE_FORMAT_CODELIST_CONFLICT",
+      "impact": "유효 코드값이 validator DATATYPE_HARD_CONFLICT 로 FAIL"
+    }
+  ]
+}

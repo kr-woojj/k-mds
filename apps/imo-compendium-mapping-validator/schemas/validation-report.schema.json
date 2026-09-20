@@ -1,0 +1,227 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kr.example/imo-compendium-mapping-validator/schemas/validation-report.schema.json",
+  "title": "ValidationReport",
+  "description": "매핑된 필드에 대한 결정론 검증 보고서 계약 (REQ-018~REQ-025). 상태 불변조건(ERROR 존재 시 FAIL, WARNING 존재 시 humanReviewRequired=true)은 Pydantic model_validator로도 강제된다 (REQ-023, REQ-031). actualValue는 데이터 분류 정책을 따른다 (REQ-024).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "reportVersion",
+    "compendiumVersion",
+    "inputHash",
+    "auditRef",
+    "overallStatus",
+    "humanReviewRequired",
+    "fieldResults"
+  ],
+  "properties": {
+    "reportVersion": {
+      "const": 1
+    },
+    "compendiumVersion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "검증에 사용된 Registry의 Compendium version (REQ-008)"
+    },
+    "inputHash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "검증 대상 요청 원본 byte의 SHA-256 (REQ-004)"
+    },
+    "auditRef": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9_-]{2,63}$",
+      "description": "Audit Log 참조 (REQ-026)"
+    },
+    "overallStatus": {
+      "type": "string",
+      "enum": ["PASS", "WARNING", "FAIL"],
+      "description": "결정론 종합 판정 (REQ-023). ERROR Finding이 하나라도 있으면 FAIL"
+    },
+    "humanReviewRequired": {
+      "type": "boolean",
+      "description": "WARNING 이상에서 true (REQ-023)"
+    },
+    "fieldResults": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 500,
+      "items": {
+        "$ref": "#/$defs/fieldValidation"
+      }
+    }
+  },
+  "$defs": {
+    "registryRecordRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["recordType", "recordId", "compendiumVersion"],
+      "properties": {
+        "recordType": {
+          "type": "string",
+          "enum": [
+            "data_element",
+            "dataset_membership",
+            "alias",
+            "approved_mapping",
+            "code_list",
+            "business_rule",
+            "refmodel_occurrence"
+          ]
+        },
+        "recordId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "compendiumVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        }
+      }
+    },
+    "checkOutcome": {
+      "type": "string",
+      "enum": ["PASS", "WARNING", "FAIL", "NOT_APPLICABLE", "UNRESOLVED"],
+      "description": "개별 검증 축의 결과. UNRESOLVED는 Registry 참조 미해소 상태 (REQ-019, REQ-021)"
+    },
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["severity", "code", "ruleId", "message", "evidenceRefs"],
+      "properties": {
+        "severity": {
+          "type": "string",
+          "enum": ["ERROR", "WARNING", "INFO"]
+        },
+        "code": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]{2,63}$",
+          "description": "Controlled Finding Code (예: 형식 미정의, 코드 목록 불일치 등 구현 시 확정)"
+        },
+        "ruleId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "적용된 결정론 규칙 식별자 (REQ-023)"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000,
+          "description": "사람용 설명. 샘플 값 원문을 포함하지 않는다 (REQ-024)"
+        },
+        "path": {
+          "type": ["string", "null"],
+          "maxLength": 1024,
+          "default": null
+        },
+        "actualValue": {
+          "type": ["string", "null"],
+          "maxLength": 512,
+          "default": null,
+          "description": "데이터 분류 정책 적용 값: public=원문, internal=마스킹, confidential=해시, secret=null (REQ-024)"
+        },
+        "expected": {
+          "type": ["string", "null"],
+          "maxLength": 512,
+          "default": null,
+          "description": "Registry 정의 기준 기대값 요약"
+        },
+        "evidenceRefs": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "items": {
+            "$ref": "#/$defs/registryRecordRef"
+          },
+          "description": "근거 Registry record. 근거 없는 Finding 금지 (REQ-009)"
+        }
+      }
+    },
+    "fieldValidation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fieldId",
+        "imoDataNumber",
+        "registryRecordRef",
+        "checks",
+        "findings"
+      ],
+      "properties": {
+        "fieldId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "imoDataNumber": {
+          "type": "string",
+          "pattern": "^IMO[0-9]{4}$",
+          "description": "검증 대상 매핑의 공식 IMO Data Number. Registry 존재 게이트 통과 값만 허용 (REQ-006, REQ-007)"
+        },
+        "registryRecordRef": {
+          "$ref": "#/$defs/registryRecordRef",
+          "description": "검증 기준이 된 Data Element record (REQ-009)"
+        },
+        "checks": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "typeCheck",
+            "formatCheck",
+            "unitCheck",
+            "codeListCheck",
+            "referenceModelCheck"
+          ],
+          "description": "5개 검증 축의 개별 결과 (REQ-018~REQ-022)",
+          "properties": {
+            "typeCheck": {
+              "$ref": "#/$defs/checkOutcome"
+            },
+            "formatCheck": {
+              "$ref": "#/$defs/checkOutcome"
+            },
+            "unitCheck": {
+              "$ref": "#/$defs/checkOutcome"
+            },
+            "codeListCheck": {
+              "$ref": "#/$defs/checkOutcome"
+            },
+            "referenceModelCheck": {
+              "$ref": "#/$defs/checkOutcome"
+            }
+          }
+        },
+        "referenceModelContext": {
+          "type": ["object", "null"],
+          "default": null,
+          "additionalProperties": false,
+          "description": "Reference Model 문맥 요약 (REQ-022). 자동 확정에 단독 사용 금지",
+          "properties": {
+            "occurrenceCount": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "multipleOccurrences": {
+              "type": "boolean"
+            },
+            "contextSignal": {
+              "type": "string",
+              "enum": ["consistent", "inconsistent", "unknown"]
+            }
+          }
+        },
+        "findings": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "$ref": "#/$defs/finding"
+          }
+        }
+      }
+    }
+  }
+}

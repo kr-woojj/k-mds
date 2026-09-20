@@ -1,0 +1,38 @@
+@page "/ships/{ShipId:int}/voyages/{VoyageId:int}/performance-reports"
+@using ship_odms.Services
+@using ship_odms.Models
+@inject ApiClient Api
+
+<PageTitle>운항 성능 보고</PageTitle>
+
+<h1 style="font-size:2rem;margin-bottom:1.5rem">운항 성능 보고</h1>
+<ApiErrorBanner ErrorMessage="@Error" />
+<PerformanceReportTable Items="Reports" Loading="@Loading" Error="@Error" ShipId="@ShipId" />
+
+@code {
+    [Parameter]
+    public int ShipId { get; set; }
+    [Parameter]
+    public int VoyageId { get; set; }
+    private List<PerformanceReport>? Reports = null;
+    private bool Loading = true;
+    private string? Error = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            Loading = true;
+            Error = null;
+            Reports = await Api.GetAsync<List<PerformanceReport>>($"voyages/{VoyageId}/performance-reports");
+        }
+        catch (Exception ex)
+        {
+            Error = ex.Message;
+        }
+        finally
+        {
+            Loading = false;
+        }
+    }
+}

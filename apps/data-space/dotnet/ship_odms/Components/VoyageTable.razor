@@ -1,0 +1,68 @@
+@using ship_odms.Models
+@inherits VoyageTableBase
+
+@if (Loading)
+{
+    <div class="table-skeleton">Loading...</div>
+}
+else if (!string.IsNullOrEmpty(Error))
+{
+    <div class="table-error">@Error</div>
+}
+else
+{
+    <div style="overflow-x: auto;">
+        <table style="border-collapse: collapse; width: 100%; min-width: 800px; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #eee;">
+            <thead style="background: #f5f5f5;">
+                <tr>
+                    <th style="@th">ID</th>
+                    <th style="@th">선박 ID</th>
+                    <th style="@th">연차보고 ID</th>
+                    <th style="@th">항차번호</th>
+                    <th style="@th">Trade Service ID</th>
+                    <th style="@th">GHG Intensity</th>
+                    <th style="@th">입항 관할</th>
+                    <th style="@th">출항 관할</th>
+                    <th style="@linkBtn"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Items != null && Items.Count > 0)
+                {
+                    @foreach (var v in Items)
+                    {
+                        <tr @onclick="() => OnRowClick.InvokeAsync(v)" style="cursor: @GetRowCursor()">
+                            <td style="@td">@v.Id</td>
+                            <td style="@td">@v.ShipId</td>
+                            <td style="@td">@v.YearReportId</td>
+                            <td style="@td">@v.VoyageNumber</td>
+                            <td style="@td">@v.TradeServiceId</td>
+                            <td style="@td">@v.GfiPerVoyage</td>
+                            <td style="@td">@v.InboundPortJurisdiction</td>
+                            <td style="@td">@v.OutboundPortJurisdiction</td>
+                            <td style="@linkBtn">
+                                <button @onclick:stopPropagation="true" @onclick="() => OnRowClick.InvokeAsync(v)">상세</button>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="9" style="text-align: center; color: #888; padding: 2rem;">데이터 없음</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    private string GetRowCursor() => OnRowClick.HasDelegate ? "pointer" : "default";
+        [Parameter] public new List<Voyage>? Items { get; set; } = null;
+        [Parameter] public new bool Loading { get; set; }
+        [Parameter] public new string? Error { get; set; } = null;
+    [Parameter] public new EventCallback<Voyage> OnRowClick { get; set; }
+
+    private string th = "padding:0.75rem 1rem;font-weight:600;font-size:1rem;border-bottom:2px solid #e0e0e0;background:#f5f5f5;text-align:left;";
+    private string td = "padding:0.75rem 1rem;font-size:0.98rem;background:#fff;";
+    private string linkBtn = "display:inline-block;padding:0.3em 0.8em;background:#e3e8ff;color:#2a3a8c;border-radius:4px;text-decoration:none;font-weight:500;font-size:0.95em;border:1px solid #bfcfff;";
+}

@@ -1,0 +1,63 @@
+@using ship_odms.Models
+
+@if (Loading)
+{
+    <div class="table-skeleton">Loading...</div>
+}
+else if (!string.IsNullOrEmpty(Error))
+{
+    <div class="table-error">@Error</div>
+}
+else
+{
+    <div class="figma-table-wrapper">
+        <table class="figma-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Report ID</th>
+                    <th>Total CO2eq</th>
+                    <th>% CO2 at Sea</th>
+                    <th>Total CO2</th>
+                    <th>Total CO2eq Captured</th>
+                    <th>Total CH4</th>
+                    <th>Total CH4 to CO2</th>
+                    <th>Total N2O</th>
+                    <th>Total N2O to CO2</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Items != null && Items.Count > 0)
+                {
+                    foreach (var m in Items)
+                    {
+                        <tr @onclick="() => OnRowClick.InvokeAsync(m)" style="cursor: @GetRowCursor()">
+                            <td>@m.Id</td>
+                            <td>@m.ReportId</td>
+                            <td>@m.TotalCo2eq</td>
+                            <td>@m.PercentageCo2EmittedAtSea</td>
+                            <td>@m.TotalCo2</td>
+                            <td>@m.TotalCo2eqCaptured</td>
+                            <td>@m.TotalCh4</td>
+                            <td>@m.TotalCh4ToCo2</td>
+                            <td>@m.TotalN2o</td>
+                            <td>@m.TotalN2oToCo2</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="10" style="text-align: center; color: #888; padding: 2rem;">데이터 없음</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    private string GetRowCursor() => OnRowClick.HasDelegate ? "pointer" : "default";
+    [Parameter] public List<MeasuredCarbonDioxide>? Items { get; set; } = null;
+    [Parameter] public bool Loading { get; set; }
+    [Parameter] public string? Error { get; set; } = null;
+    [Parameter] public EventCallback<MeasuredCarbonDioxide> OnRowClick { get; set; }
+}

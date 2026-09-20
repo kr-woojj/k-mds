@@ -1,0 +1,106 @@
+
+@if (Loading)
+{
+    <div class="table-skeleton">Loading...</div>
+}
+else if (!string.IsNullOrEmpty(Error))
+{
+    <div class="table-error">@Error</div>
+}
+else
+{
+    <div class="figma-table-wrapper">
+        <table class="figma-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fuel Consumption ID</th>
+                    <th>Main Engine</th>
+                    <th>Diesel Electric Propulsion</th>
+                    <th>Diesel Generator</th>
+                    <th>Aux Boiler</th>
+                    <th>Aux Engine</th>
+                    <th>Cargo Cooling</th>
+                    <th>Cargo Heating</th>
+                    <th>Diesel Power Packs</th>
+                    <th>Dirty Petroleum Pump</th>
+                    <th>Discharge Pump</th>
+                    <th>DP Operations</th>
+                    <th>Electrical Power Gen</th>
+                    <th>Incinerator</th>
+                    <th>Inert Gas Gen/GCUs</th>
+                    <th>Other Fuel Devices</th>
+                    <th>Reefer Containers</th>
+                    <th>Shuttle Tanker Ops</th>
+                    <th>STS Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Items != null && Items.Count > 0)
+                {
+                    foreach (var f in Items)
+                    {
+                        <tr @onclick="() => OnRowClick.InvokeAsync(f)" style="cursor: @GetRowCursor()">
+                            <td>@f.Id</td>
+                            <td>@f.FuelConsumptionId</td>
+                            <td>@f.FocMainEngine</td>
+                            <td>@f.FocDieselElectricPropulsion</td>
+                            <td>@f.FocDieselGenerator</td>
+                            <td>@f.FocAuxiliaryBoiler</td>
+                            <td>@f.FocAuxiliaryEngine</td>
+                            <td>@f.FocCargoCooling</td>
+                            <td>@f.FocCargoHeating</td>
+                            <td>@f.FocDieselPowerPacks</td>
+                            <td>@f.FocDirtyPetroleumProductsCargoPump</td>
+                            <td>@f.FocDischargePump</td>
+                            <td>@f.FocDpOperations</td>
+                            <td>@f.FocElectricalPowerGeneration</td>
+                            <td>@f.FocIncinerator</td>
+                            <td>@f.FocInertGasGeneratorsGcus</td>
+                            <td>@f.FocOtherFuelConsumingDevices</td>
+                            <td>@f.FocReeferContainers</td>
+                            <td>@f.FocShuttleTankerOperations</td>
+                            <td>@f.FocStsOperations</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="20" style="text-align: center; color: #888; padding: 2rem;">데이터 없음</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    public class FocFuelTypeDto
+    {
+        public int Id { get; set; }
+        public int FuelConsumptionId { get; set; }
+        public double? FocMainEngine { get; set; }
+        public double? FocDieselElectricPropulsion { get; set; }
+        public double? FocDieselGenerator { get; set; }
+        public double? FocAuxiliaryBoiler { get; set; }
+        public double? FocAuxiliaryEngine { get; set; }
+        public double? FocCargoCooling { get; set; }
+        public double? FocCargoHeating { get; set; }
+        public double? FocDieselPowerPacks { get; set; }
+        public double? FocDirtyPetroleumProductsCargoPump { get; set; }
+        public double? FocDischargePump { get; set; }
+        public double? FocDpOperations { get; set; }
+        public double? FocElectricalPowerGeneration { get; set; }
+        public double? FocIncinerator { get; set; }
+        public double? FocInertGasGeneratorsGcus { get; set; }
+        public double? FocOtherFuelConsumingDevices { get; set; }
+        public double? FocReeferContainers { get; set; }
+        public double? FocShuttleTankerOperations { get; set; }
+        public double? FocStsOperations { get; set; }
+    }
+
+    private string GetRowCursor() => OnRowClick.HasDelegate ? "pointer" : "default";
+    [Parameter] public List<FocFuelTypeDto>? Items { get; set; }
+    [Parameter] public bool Loading { get; set; }
+    [Parameter] public string? Error { get; set; }
+    [Parameter] public EventCallback<FocFuelTypeDto> OnRowClick { get; set; }
+}

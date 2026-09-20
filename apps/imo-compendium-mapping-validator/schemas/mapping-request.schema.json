@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kr.example/imo-compendium-mapping-validator/schemas/mapping-request.schema.json",
+  "title": "MappingRequest",
+  "description": "이기종 해사 데이터 필드를 IMO Compendium Registry와 매핑하기 위한 요청 계약. (REQ-001, REQ-002, REQ-005, REQ-008) 샘플 IMO 값은 fixture에서만 사용하며 본 스키마는 예시 값을 포함하지 않는다 (REQ-028).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["requestVersion", "compendiumVersion", "sourceType", "fields"],
+  "properties": {
+    "requestVersion": {
+      "const": 1,
+      "description": "요청 계약 버전"
+    },
+    "compendiumVersion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "매핑 대상 Registry의 Compendium version (단일 version 고정, REQ-008)"
+    },
+    "sourceType": {
+      "type": "string",
+      "enum": ["json", "json-schema", "csv-columns", "api-sample"],
+      "description": "입력 원천 형식 (REQ-001)"
+    },
+    "sourceSystem": {
+      "type": ["string", "null"],
+      "pattern": "^[A-Z][A-Z0-9_-]{2,63}$",
+      "default": null,
+      "description": "선택: 원천 시스템 Logical ID (승인 매핑 재사용 서명에 사용, REQ-017)"
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "매핑 동작 옵션",
+      "properties": {
+        "topN": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50,
+          "default": 10,
+          "description": "결정론 후보 검색 상한 (REQ-013)"
+        },
+        "rerankWithLlm": {
+          "type": "boolean",
+          "default": true,
+          "description": "LLM 재순위화 사용 여부. false면 결정론 점수만 사용 (REQ-014, REQ-016)"
+        },
+        "includeValidation": {
+          "type": "boolean",
+          "default": false,
+          "description": "매핑과 함께 검증 보고서 생성 여부 (REQ-018~REQ-023)"
+        },
+        "confidenceThresholds": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "임계값 재정의. LLM은 임계값을 우회할 수 없다 (REQ-015)",
+          "properties": {
+            "matched": {
+              "type": "number",
+              "minimum": 0.5,
+              "maximum": 1.0,
+              "default": 0.9
+            },
+            "reviewRequired": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "default": 0.4
+            }
+          }
+        }
+      }
+    },
+    "fields": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 500,
+      "description": "매핑 대상 필드 목록 (요청당 상한, REQ-005)",
+      "items": {
+        "$ref": "#/$defs/inputField"
+      }
+    }
+  },
+  "$defs": {
+    "inputField": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fieldId", "name"],
+      "properties": {
+        "fieldId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "description": "요청 내에서 고유한 필드 식별자 (응답과의 조인 키)"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "원본 필드명 또는 컬럼명 (원본 불변, REQ-003)"
+        },
+        "path": {
+          "type": ["string", "null"],
+          "maxLength": 1024,
+          "default": null,
+          "description": "선택: JSON Pointer/JSONPath 또는 CSV 위치 등 구조상 위치"
+        },
+        "description": {
+          "type": ["string", "null"],
+          "maxLength": 2000,
+          "default": null,
+          "description": "선택: 필드 설명. 신뢰되지 않는 텍스트로 취급되며 판정에 직접 사용되지 않는다 (threat-model T-02)"
+        },
+        "declaredType": {
+          "type": ["string", "null"],
+          "enum": [
+            "string",
+            "number",
+            "integer",
+            "boolean",
+            "date",
+            "datetime",
+            "array",
+            "object",
+            null
+          ],
+          "default": null,
+          "description": "선택: 원천이 선언한 데이터 타입 (REQ-018)"
+        },
+        "declaredFormat": {
+          "type": ["string", "null"],
+          "maxLength": 256,
+          "default": null,
+          "description": "선택: 원천이 선언한 형식 (REQ-019)"
+        },
+        "declaredUnit": {
+          "type": ["string", "null"],
+          "maxLength": 64,
+          "default": null,
+          "description": "선택: 원천이 선언한 단위 (REQ-020)"
+        },
+        "sampleValues": {
+          "type": "array",
+          "maxItems": 20,
+          "default": [],
+          "items": {
+            "type": ["string", "number", "integer", "boolean", "null"]
+          },
+          "description": "선택: 검증용 샘플 값. dataClassification 정책에 따라 처리된다 (REQ-024). LLM 프롬프트에는 원문 전송 금지 (threat-model T-07)"
+        },
+        "dataClassification": {
+          "type": "string",
+          "enum": ["public", "internal", "confidential", "secret"],
+          "default": "internal",
+          "description": "샘플 값의 데이터 분류. actualValue 기록 정책 결정 (REQ-024)"
+        },
+        "repeats": {
+          "type": ["boolean", "null"],
+          "default": null,
+          "description": "선택: 배열/반복 문맥 여부 (Reference Model 문맥 검증 보조, REQ-022)"
+        }
+      }
+    }
+  }
+}

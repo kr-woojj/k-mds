@@ -1,0 +1,101 @@
+@page "/ships/{shipId:int}/voyages/{voyageId:int}/performance-reports/{reportId:int}/foc-fuel-type"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>FOC Fuel Type 상세</PageTitle>
+
+<h2 style="font-size:1.5rem;margin-bottom:1.5rem;">FOC Fuel Type 상세</h2>
+
+@if (loading)
+{
+    <p>로딩 중...</p>
+}
+else if (error != null)
+{
+    <div style="color:red">오류: @error.Message</div>
+}
+else if (fuelList != null && fuelList.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>FuelConsumptionId</th>
+                <th>MainEngine</th>
+                <th>DieselElectricPropulsion</th>
+                <th>DieselGenerator</th>
+                <th>AuxBoiler</th>
+                <th>AuxEngine</th>
+                <th>CargoCooling</th>
+                <th>CargoHeating</th>
+                <th>DieselPowerPacks</th>
+                <th>DirtyPetroleumPump</th>
+                <th>DischargePump</th>
+                <th>DpOperations</th>
+                <th>ElectricalPowerGen</th>
+                <th>Incinerator</th>
+                <th>InertGasGenGcus</th>
+                <th>OtherFuelDevices</th>
+                <th>ReeferContainers</th>
+                <th>ShuttleTankerOps</th>
+                <th>StsOperations</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var f in fuelList)
+            {
+                <tr>
+                    <td>@f.Id</td>
+                    <td>@f.FuelConsumptionId</td>
+                    <td>@f.FocMainEngine</td>
+                    <td>@f.FocDieselElectricPropulsion</td>
+                    <td>@f.FocDieselGenerator</td>
+                    <td>@f.FocAuxiliaryBoiler</td>
+                    <td>@f.FocAuxiliaryEngine</td>
+                    <td>@f.FocCargoCooling</td>
+                    <td>@f.FocCargoHeating</td>
+                    <td>@f.FocDieselPowerPacks</td>
+                    <td>@f.FocDirtyPetroleumProductsCargoPump</td>
+                    <td>@f.FocDischargePump</td>
+                    <td>@f.FocDpOperations</td>
+                    <td>@f.FocElectricalPowerGeneration</td>
+                    <td>@f.FocIncinerator</td>
+                    <td>@f.FocInertGasGeneratorsGcus</td>
+                    <td>@f.FocOtherFuelConsumingDevices</td>
+                    <td>@f.FocReeferContainers</td>
+                    <td>@f.FocShuttleTankerOperations</td>
+                    <td>@f.FocStsOperations</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>데이터가 없습니다.</p>
+}
+
+@code {
+    [Parameter] public int shipId { get; set; }
+    [Parameter] public int voyageId { get; set; }
+    [Parameter] public int reportId { get; set; }
+
+    private List<ship_odms.Components.FocFuelTypeTable.FocFuelTypeDto> fuelList = new();
+    private Exception? error;
+    private bool loading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        loading = true;
+        try
+        {
+            fuelList = await Http.GetFromJsonAsync<List<ship_odms.Components.FocFuelTypeTable.FocFuelTypeDto>>($"voyages/{voyageId}/performance-reports/{reportId}/foc-fuel-type") ?? new();
+            error = null;
+        }
+        catch (Exception ex)
+        {
+            error = ex;
+        }
+        loading = false;
+    }
+}

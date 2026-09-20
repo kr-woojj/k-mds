@@ -1,0 +1,137 @@
+@page "/ships/{shipId:int}/voyages/{voyageId:int}/performance-reports/{reportId:int}/foc-consumer-type"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>FOC Consumer Type 상세</PageTitle>
+
+<h2 style="font-size:1.5rem;margin-bottom:1.5rem;">FOC Consumer Type 상세</h2>
+
+@if (loading)
+{
+    <p>로딩 중...</p>
+}
+else if (error != null)
+{
+    <div style="color:red">오류: @error.Message</div>
+}
+else if (consumerList != null && consumerList.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>FuelConsumptionId</th>
+                <th>MainEngineUsed</th>
+                <th>MainEngineConsumed</th>
+                <th>DieselElectricUsed</th>
+                <th>DieselElectricConsumed</th>
+                <th>DieselGenUsed</th>
+                <th>DieselGenConsumed</th>
+                <th>AuxBoilerUsed</th>
+                <th>AuxBoilerConsumed</th>
+                <th>AuxEngineUsed</th>
+                <th>AuxEngineConsumed</th>
+                <th>CargoCoolingUsed</th>
+                <th>CargoCoolingConsumed</th>
+                <th>CargoHeatingUsed</th>
+                <th>CargoHeatingConsumed</th>
+                <th>DieselPowerPacksUsed</th>
+                <th>DieselPowerPacksConsumed</th>
+                <th>DirtyPetroleumPumpUsed</th>
+                <th>DirtyPetroleumPumpConsumed</th>
+                <th>DischargePumpUsed</th>
+                <th>DischargePumpConsumed</th>
+                <th>DpOpsUsed</th>
+                <th>DpOpsConsumed</th>
+                <th>ElectricalPowerGenUsed</th>
+                <th>ElectricalPowerGenConsumed</th>
+                <th>IncineratorUsed</th>
+                <th>IncineratorConsumed</th>
+                <th>InertGasGenUsed</th>
+                <th>InertGasGenConsumed</th>
+                <th>OtherFuelDevicesUsed</th>
+                <th>OtherFuelDevicesConsumed</th>
+                <th>ReeferContainersUsed</th>
+                <th>ReeferContainersConsumed</th>
+                <th>ShuttleTankerOpsUsed</th>
+                <th>ShuttleTankerOpsConsumed</th>
+                <th>StsOpsUsed</th>
+                <th>StsOpsConsumed</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in consumerList)
+            {
+                <tr>
+                    <td>@c.Id</td>
+                    <td>@c.FuelConsumptionId</td>
+                    <td>@c.FuelUsedMainEngine</td>
+                    <td>@c.FuelConsumedMainEngine</td>
+                    <td>@c.FuelUsedDieselElectricPropulsion</td>
+                    <td>@c.FuelConsumedDieselElectricPropulsion</td>
+                    <td>@c.FuelUsedDieselGenerator</td>
+                    <td>@c.FuelConsumedDieselGenerator</td>
+                    <td>@c.FuelUsedAuxiliaryBoiler</td>
+                    <td>@c.FuelConsumedAuxiliaryBoiler</td>
+                    <td>@c.FuelUsedAuxiliaryEngine</td>
+                    <td>@c.FuelConsumedAuxiliaryEngine</td>
+                    <td>@c.FuelUsedCargoCooling</td>
+                    <td>@c.FuelConsumedCargoCooling</td>
+                    <td>@c.FuelUsedCargoHeating</td>
+                    <td>@c.FuelConsumedCargoHeating</td>
+                    <td>@c.FuelUsedDieselPowerPacks</td>
+                    <td>@c.FuelConsumedDieselPowerPacks</td>
+                    <td>@c.FuelUsedDirtyPetroleumProductsCargoPump</td>
+                    <td>@c.FuelConsumedDirtyPetroleumProductsCargoPump</td>
+                    <td>@c.FuelUsedDischargePump</td>
+                    <td>@c.FuelConsumedDischargePump</td>
+                    <td>@c.FuelUsedDpOperations</td>
+                    <td>@c.FuelConsumedDpOperations</td>
+                    <td>@c.FuelUsedElectricalPowerGeneration</td>
+                    <td>@c.FuelConsumedElectricalPowerGeneration</td>
+                    <td>@c.FuelUsedIncinerator</td>
+                    <td>@c.FuelConsumedIncinerator</td>
+                    <td>@c.FuelUsedInertGasGeneratorsGcus</td>
+                    <td>@c.FuelConsumedInertGasGeneratorsGcus</td>
+                    <td>@c.FuelUsedOtherFuelConsumingDevices</td>
+                    <td>@c.FuelConsumedOtherFuelConsumingDevices</td>
+                    <td>@c.FuelUsedReeferContainers</td>
+                    <td>@c.FuelConsumedReeferContainers</td>
+                    <td>@c.FuelUsedShuttleTankerOperations</td>
+                    <td>@c.FuelConsumedShuttleTankerOperations</td>
+                    <td>@c.FuelUsedStsOperations</td>
+                    <td>@c.FuelConsumedStsOperations</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>데이터가 없습니다.</p>
+}
+
+@code {
+    [Parameter] public int shipId { get; set; }
+    [Parameter] public int voyageId { get; set; }
+    [Parameter] public int reportId { get; set; }
+
+    private List<ship_odms.Components.FocConsumerTypeTable.FocConsumerTypeDto> consumerList = new();
+    private Exception? error;
+    private bool loading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        loading = true;
+        try
+        {
+            consumerList = await Http.GetFromJsonAsync<List<ship_odms.Components.FocConsumerTypeTable.FocConsumerTypeDto>>($"voyages/{voyageId}/performance-reports/{reportId}/foc-consumer-type") ?? new();
+            error = null;
+        }
+        catch (Exception ex)
+        {
+            error = ex;
+        }
+        loading = false;
+    }
+}

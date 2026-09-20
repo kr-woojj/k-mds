@@ -1,0 +1,52 @@
+{
+  "records": [
+    {
+      "IMO Data Number": "IMO0101",
+      "Data Element": "Test element alpha",
+      "Definition": "Test definition alpha",
+      "Format": "an..35",
+      "Code List": null,
+      "Business Rule": null,
+      "Dataset": "TEST-DATASET-A",
+      "Reference Model Path": "/test/root/alpha",
+      "Status": "active",
+      "Version": "TESTV1"
+    },
+    {
+      "IMO Data Number": "IMO0101",
+      "Data Element": "Test element alpha",
+      "Definition": "Test definition alpha",
+      "Format": "an..35",
+      "Code List": null,
+      "Business Rule": null,
+      "Dataset": "TEST-DATASET-B",
+      "Reference Model Path": "/test/other/alpha",
+      "Status": "active",
+      "Version": "TESTV1"
+    },
+    {
+      "IMO Data Number": "IMO0102",
+      "Data Element": "Test element beta",
+      "Definition": "Test definition beta",
+      "Format": "n..3",
+      "Code List": "CL-TEST-1",
+      "Business Rule": "BR-TEST-1",
+      "Dataset": "TEST-DATASET-A",
+      "Reference Model Path": "/test/root/beta",
+      "Status": "active",
+      "Version": "TESTV1"
+    },
+    {
+      "IMO Data Number": "IMO0103",
+      "Data Element": "Test element gamma",
+      "Definition": "Test definition gamma",
+      "Format": "an..17",
+      "Code List": null,
+      "Business Rule": null,
+      "Dataset": "TEST-DATASET-B",
+      "Reference Model Path": "/test/root/gamma",
+      "Status": "active",
+      "Version": "TESTV1"
+    }
+  ]
+}

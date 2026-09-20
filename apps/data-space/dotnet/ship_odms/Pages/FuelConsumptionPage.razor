@@ -1,0 +1,207 @@
+@page "/ships/{shipId:int}/voyages/{voyageId:int}/performance-reports/{reportId:int}/fuel-consumption"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>연료 소비 상세</PageTitle>
+
+<h2 style="font-size:1.5rem;margin-bottom:1.5rem;">연료 소비 상세</h2>
+
+@if (loading)
+{
+    <p>로딩 중...</p>
+}
+else if (error != null)
+{
+    <div style="color:red">오류: @error.Message</div>
+}
+else if (fuelList != null && fuelList.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Report ID</th>
+                <th>Fuel Type</th>
+                <th>Trade Name</th>
+                <th>BDN Number</th>
+                <th>BDN Datetime</th>
+                <th>Bunker Received</th>
+                <th>Mass</th>
+                <th>Density</th>
+                <th>Sulphur</th>
+                <th>Viscosity</th>
+                <th>Water</th>
+                <th>HHV</th>
+                <th>LFV</th>
+                <th>Grade</th>
+                <th>Bunker Port</th>
+                <th>Bunker Port Name</th>
+                <th>CO2 Emission</th>
+                <th>Total Consumed</th>
+                <th>ROB</th>
+                <th>Sludge ROB</th>
+                <th>LCV Report</th>
+                <th>LCV</th>
+                <th>POS Ref</th>
+                <th>CH4 CF</th>
+                <th>N2O CF</th>
+                <th>Fresh Water Bunkered</th>
+                <th>Fresh Water Produced</th>
+                <th>Fresh Water Consumed</th>
+                <th>Technical Water Produced</th>
+                <th>Technical Water Consumed</th>
+                <th>Wash Water Consumed</th>
+                <th>Fresh Water ROB</th>
+                <th>CLO ROB</th>
+                <th>CLO Feed Rate</th>
+                <th>CLO Consumption</th>
+                <th>CLO Received</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var f in fuelList)
+            {
+                <tr>
+                    <td>@f.Id</td>
+                    <td>@f.ReportId</td>
+                    <td>@f.FuelType</td>
+                    <td>@f.FuelTypeTradeName</td>
+                    <td>@f.BdnNumber</td>
+                    <td>@f.BdnDatetime</td>
+                    <td>@f.FuelBunkerReceived</td>
+                    <td>@f.FuelMass</td>
+                    <td>@f.FuelDensity</td>
+                    <td>@f.FuelSulphurContent</td>
+                    <td>@f.FuelViscosity</td>
+                    <td>@f.FuelWaterContent</td>
+                    <td>@f.FuelHhv</td>
+                    <td>@f.FuelLfv</td>
+                    <td>@f.FuelGrade</td>
+                    <td>@f.FuelBunkerPort</td>
+                    <td>@f.FuelBunkerPortName</td>
+                    <td>@f.Co2Emission</td>
+                    <td>@f.TotalFuelQuantityConsumed</td>
+                    <td>@f.FuelQuantityRob</td>
+                    <td>@f.SludgeRob</td>
+                    <td>@f.FuelLcvReport</td>
+                    <td>@f.FuelLcv</td>
+                    <td>@f.FuelPosRef</td>
+                    <td>@f.Ch4Cf</td>
+                    <td>@f.N2oCf</td>
+                    <td>@f.FreshWaterBunkered</td>
+                    <td>@f.FreshWaterProduced</td>
+                    <td>@f.FreshWaterConsumed</td>
+                    <td>@f.TechnicalWaterProduced</td>
+                    <td>@f.TechnicalWaterConsumed</td>
+                    <td>@f.WashWaterConsumed</td>
+                    <td>@f.FreshWaterRob</td>
+                    <td>@f.CloRob</td>
+                    <td>@f.CloFeedRate</td>
+                    <td>@f.CloConsumption</td>
+                    <td>@f.CloReceived</td>
+                </tr>
+                <tr>
+                    <td colspan="38">
+                        <div style="margin:1rem 0;">
+                            <b>연료별 소비량 (FocFuelType)</b>
+                            <FocFuelTypeTable Items="f.FocFuelType?.Select(x => new ship_odms.Components.FocFuelTypeTable.FocFuelTypeDto {
+                                Id = x.Id,
+                                FuelConsumptionId = f.Id,
+                                FocMainEngine = x.FocMainEngine,
+                                FocDieselElectricPropulsion = x.FocDieselElectricPropulsion,
+                                FocDieselGenerator = x.FocDieselGenerator,
+                                FocAuxiliaryBoiler = x.FocAuxiliaryBoiler,
+                                FocAuxiliaryEngine = x.FocAuxiliaryEngine,
+                                FocCargoCooling = x.FocCargoCooling,
+                                FocCargoHeating = x.FocCargoHeating,
+                                FocDieselPowerPacks = x.FocDieselPowerPacks,
+                                FocDirtyPetroleumProductsCargoPump = x.FocDirtyPetroleumProductsCargoPump,
+                                FocDischargePump = x.FocDischargePump,
+                                FocDpOperations = x.FocDpOperations,
+                                FocElectricalPowerGeneration = x.FocElectricalPowerGeneration,
+                                FocIncinerator = x.FocIncinerator,
+                                FocInertGasGeneratorsGcus = x.FocInertGasGeneratorsGcus,
+                                FocOtherFuelConsumingDevices = x.FocOtherFuelConsumingDevices,
+                                FocReeferContainers = x.FocReeferContainers,
+                                FocShuttleTankerOperations = x.FocShuttleTankerOperations,
+                                FocStsOperations = x.FocStsOperations
+                            }).ToList() ?? new List<ship_odms.Components.FocFuelTypeTable.FocFuelTypeDto>()" Loading="false" Error="" />
+                        </div>
+                        <div style="margin:1rem 0;">
+                            <b>소비원별 소비량 (FocConsumerType)</b>
+                            <FocConsumerTypeTable Items="f.FocConsumerType?.Select(x => new ship_odms.Components.FocConsumerTypeTable.FocConsumerTypeDto {
+                                Id = x.Id,
+                                FuelConsumptionId = f.Id,
+                                FuelUsedMainEngine = x.FuelUsedMainEngine,
+                                FuelConsumedMainEngine = x.FuelConsumedMainEngine,
+                                FuelUsedDieselElectricPropulsion = x.FuelUsedDieselElectricPropulsion,
+                                FuelConsumedDieselElectricPropulsion = x.FuelConsumedDieselElectricPropulsion,
+                                FuelUsedDieselGenerator = x.FuelUsedDieselGenerator,
+                                FuelConsumedDieselGenerator = x.FuelConsumedDieselGenerator,
+                                FuelUsedAuxiliaryBoiler = x.FuelUsedAuxiliaryBoiler,
+                                FuelConsumedAuxiliaryBoiler = x.FuelConsumedAuxiliaryBoiler,
+                                FuelUsedAuxiliaryEngine = x.FuelUsedAuxiliaryEngine,
+                                FuelConsumedAuxiliaryEngine = x.FuelConsumedAuxiliaryEngine,
+                                FuelUsedCargoCooling = x.FuelUsedCargoCooling,
+                                FuelConsumedCargoCooling = x.FuelConsumedCargoCooling,
+                                FuelUsedCargoHeating = x.FuelUsedCargoHeating,
+                                FuelConsumedCargoHeating = x.FuelConsumedCargoHeating,
+                                FuelUsedDieselPowerPacks = x.FuelUsedDieselPowerPacks,
+                                FuelConsumedDieselPowerPacks = x.FuelConsumedDieselPowerPacks,
+                                FuelUsedDirtyPetroleumProductsCargoPump = x.FuelUsedDirtyPetroleumProductsCargoPump,
+                                FuelConsumedDirtyPetroleumProductsCargoPump = x.FuelConsumedDirtyPetroleumProductsCargoPump,
+                                FuelUsedDischargePump = x.FuelUsedDischargePump,
+                                FuelConsumedDischargePump = x.FuelConsumedDischargePump,
+                                FuelUsedDpOperations = x.FuelUsedDpOperations,
+                                FuelConsumedDpOperations = x.FuelConsumedDpOperations,
+                                FuelUsedElectricalPowerGeneration = x.FuelUsedElectricalPowerGeneration,
+                                FuelConsumedElectricalPowerGeneration = x.FuelConsumedElectricalPowerGeneration,
+                                FuelUsedIncinerator = x.FuelUsedIncinerator,
+                                FuelConsumedIncinerator = x.FuelConsumedIncinerator,
+                                FuelUsedInertGasGeneratorsGcus = x.FuelUsedInertGasGeneratorsGcus,
+                                FuelConsumedInertGasGeneratorsGcus = x.FuelConsumedInertGasGeneratorsGcus,
+                                FuelUsedOtherFuelConsumingDevices = x.FuelUsedOtherFuelConsumingDevices,
+                                FuelConsumedOtherFuelConsumingDevices = x.FuelConsumedOtherFuelConsumingDevices,
+                                FuelUsedReeferContainers = x.FuelUsedReeferContainers,
+                                FuelConsumedReeferContainers = x.FuelConsumedReeferContainers,
+                                FuelUsedShuttleTankerOperations = x.FuelUsedShuttleTankerOperations,
+                                FuelConsumedShuttleTankerOperations = x.FuelConsumedShuttleTankerOperations,
+                                FuelUsedStsOperations = x.FuelUsedStsOperations,
+                                FuelConsumedStsOperations = x.FuelConsumedStsOperations
+                            }).ToList() ?? new List<ship_odms.Components.FocConsumerTypeTable.FocConsumerTypeDto>()" Loading="false" Error="" />
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>데이터가 없습니다.</p>
+}
+
+@code {
+    [Parameter] public int shipId { get; set; }
+    [Parameter] public int voyageId { get; set; }
+    [Parameter] public int reportId { get; set; }
+
+    private List<ship_odms.Models.FuelConsumption> fuelList = new();
+    private Exception? error;
+    private bool loading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        loading = true;
+        try
+        {
+            fuelList = await Http.GetFromJsonAsync<List<ship_odms.Models.FuelConsumption>>($"voyages/{voyageId}/performance-reports/{reportId}/fuel-consumption") ?? new();
+            error = null;
+        }
+        catch (Exception ex)
+        {
+            error = ex;
+        }
+        loading = false;
+    }
+}

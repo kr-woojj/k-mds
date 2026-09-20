@@ -1,0 +1,85 @@
+@page "/ships/{shipId:int}/voyages/{voyageId:int}/performance-reports/{reportId:int}/cargo-onboard"
+@using ship_odms.Models
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>적재 상세</PageTitle>
+
+<h2 style="font-size:1.5rem;margin-bottom:1.5rem;">적재 상세</h2>
+
+@if (loading)
+{
+    <p>로딩 중...</p>
+}
+else if (error != null)
+{
+    <div style="color:red">오류: @error.Message</div>
+}
+else if (cargoList != null && cargoList.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Report ID</th>
+                <th>컨테이너 수</th>
+                <th>적재중 컨테이너</th>
+                <th>냉장 컨테이너</th>
+                <th>차량</th>
+                <th>승무원</th>
+                <th>승객</th>
+                <th>총중량</th>
+                <th>BL번호</th>
+                <th>BL발행일</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in cargoList)
+            {
+                <tr>
+                    <td>@c.Id</td>
+                    <td>@c.ReportId</td>
+                    <td>@c.NumberContainers</td>
+                    <td>@c.NumberFullContainer</td>
+                    <td>@c.NumberFullReeferContainers</td>
+                    <td>@c.NumberVehiclesOnboard</td>
+                    <td>@c.NumberCrew</td>
+                    <td>@c.NumberPassengers</td>
+                    <td>@c.GrossWeight</td>
+                    <td>@c.BlRefId</td>
+                    <td>@c.BlIssuedDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>데이터가 없습니다.</p>
+}
+
+@code {
+    [Parameter] public int shipId { get; set; }
+    [Parameter] public int voyageId { get; set; }
+    [Parameter] public int reportId { get; set; }
+
+    private List<CargoOnboard> cargoList = new();
+    private Exception? error;
+    private bool loading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        loading = true;
+        try
+        {
+            cargoList = await Http.GetFromJsonAsync<List<CargoOnboard>>($"voyages/{voyageId}/performance-reports/{reportId}/cargo-onboard") ?? new();
+            error = null;
+        }
+        catch (Exception ex)
+        {
+            error = ex;
+        }
+        loading = false;
+    }
+
+}
