@@ -44,7 +44,7 @@
 ### CASE_LIST 초안 작성 (verification_cases.json, 7건, 전부 confirmed=false)
 | case_id | 대응 성능목표 | 발신→수신 | 실행 환경 |
 |---|---|---|---|
-| C01 IDS 기본 공유 절차 | #4 정합율 | 유엔젤 Provider→Broker/DAPS→Consumer 3사 | 외부(K-MDS 220.76.220.247) |
+| C01 IDS 기본 공유 절차 | #4 정합율 | 유엔젤 Provider→Broker/DAPS→Consumer 3사 | 외부(K-MDS <K-MDS-IDS-HOST>) |
 | C02 GHG 표준 스키마·정합율 | #6, #4, #1 | RIMS 시뮬레이터→ROC(코드북)→Provider→KR | 로컬 가능(스키마·샘플 미확보) |
 | C03 포트콜 JIT 이벤트 메시지 | #7 | RIMS SIM→ROC→Provider→RIMS 해운 Consumer | 외부 |
 | C04 MSW 의무보고 메시지 | #8 | 선사/대리점→Broker→KLNET | 외부 |
@@ -64,7 +64,7 @@
 - 결정: RIMS 포트콜 서비스 KPI(정시도착률≥80% 등, "예시" 표기)는 서비스 성능 지표로 판단, CASE_LIST 제외 → "범위 추가 제안"으로 분리.
 - 사람 확인 필요:
   1. 7건 pass_criteria 확정(특히 정합율 산식·분모·목표, 전송 성공률·필수필드 충족률 산식).
-  2. 외부 K-MDS(220.76.220.247) 접속 허용 여부 및 9.16 데모와의 관계.
+  2. 외부 K-MDS(<K-MDS-IDS-HOST>) 접속 허용 여부 및 9.16 데모와의 관계.
   3. C02 입력물 확보: KR JSON Schema(설계서 별첨), 랩오투원 코드북 JSON, RIMS 시뮬레이터 샘플 → DOCS_DIR 또는 data/ 배치.
   4. 표준 조항 기입(standard_lookup 도구 부재) 또는 표준 원문 파일 배치.
   5. 문서 불일치 3건 해소(코드북 161/1,369 vs 330/1,100; 표준 모델 7 vs 8그룹; 3차년도 예산).
@@ -216,3 +216,6 @@
 - 신규 finding: F-22 vessellink noon 이벤트 0건(9/16), F-23 Provider Broker 미등록(Unregistered, 0 offers). RIMS 포트콜 자원 4건 신규 등록 확인(C03 참고).
 - 판정: 데모 CONDITIONAL_PASS. 증적 evidence/C02/manual_S05/demo-20260916/.
 세션 S05 종료 상태: NEEDS_INPUT (랩오투원 F-22, 유엔젤/RIMS F-23 확인)
+
+## 증적 보관 메모 (2026-09-20)
+- 참여기관 인프라 주소(K-MDS IDS 서버 IP·포트, KR nexawave API 포털 캡처, vessellink 테스트 URL)가 든 증적 81건은 공개 저장소에서 제외하고 `verification/evidence-private/`(git 제외, 로컬 보관)로 옮겼다. 보고서의 해당 경로는 `evidence/` → `evidence-private/`로 읽는다.

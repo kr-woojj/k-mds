@@ -9,6 +9,8 @@ secrets/
 # 실선·운영 데이터
 **/gears-export/
 **/ids-inbox/
+# 참여기관 인프라 주소가 든 증적(로컬 보관)
+verification/evidence-private/
 # 과제 문서 원본(대용량 PDF·hwpx, 커밋하지 않는다)
 docs/(RS-2024-00454634)*/
 # 개인 설정

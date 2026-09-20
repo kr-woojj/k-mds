@@ -77,7 +77,7 @@
       "owner_confirmed_by": null,
       "last_updated": "2026-09-12",
       "blockers": [
-        "외부 시스템 접속 승인 필요(220.76.220.247, demo 계정)",
+        "외부 시스템 접속 승인 필요(<K-MDS-IDS-HOST>, demo 계정)",
         "9.16 3차 실증회의 'K-MDS 데이터 공유 데모'와 중복/연계 여부 결정"
       ]
     },
