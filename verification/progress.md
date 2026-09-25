@@ -219,3 +219,24 @@
 
 ## 증적 보관 메모 (2026-09-20)
 - 참여기관 인프라 주소(K-MDS IDS 서버 IP·포트, KR nexawave API 포털 캡처, vessellink 테스트 URL)가 든 증적 81건은 공개 저장소에서 제외하고 `verification/evidence-private/`(git 제외, 로컬 보관)로 옮겼다. 보고서의 해당 경로는 `evidence/` → `evidence-private/`로 읽는다.
+
+---
+
+## 세션 S09 — 2026-09-26
+- 사용자 요청: 실증 시나리오 정리 md + 데이터 흐름도 → 검토 답변 8건 수신(pm/decisions.md 2026-09-26 7줄).
+- 산출: verification/scenarios/K-MDS_실증_시나리오_v0.1.md(전체 조망, 다이어그램 5), v0.2_S-1-1.md(범위 축소 절차서 초안, 흐름도 갱신, ISO 25023 정합성 항목 후보 M1~M5, 정합율 = M4 제안, 작업 W1~W8, D1~D8 쉬운 설명).
+- 확인: data-space Ship-ODMS Java backend 로컬 :8088 가동(/api/ships 200, swagger 200) → KR GEARs 대역으로 사용. Consumer Route "Ship-ODMS API"·"GHG Agent" 등록 확인(실전송 미검증).
+- 표준 근거 미확인: ISO/IEC 25023 원본 없음 → data/raw/ISO25023 배치 요청(W1). 측정 ID·산식 인용 보류.
+- 미커밋(완료 시 일괄). 다음: 사용자 v0.2 검토·정합율(M4) 확정·D2/D4/D8 결정 → W2·W3 착수.
+
+### S09 결과 (사용자 결정 5건 반영 후)
+- W1: ISO/IEC **DIS** 25023:2014(E) 배치 확인(data/raw/ISO25000, sha256 38a6ac16…). 측정 ID 부여: M2=FCp-1-G, M3=FCr-1-G, M4=FCr-1-G(필드 단위), M1=CIn-2-G·M5=CIn-1-G(취지). 데이터품질은 25024 참조(8.4.2 NOTE). 정합율 = M4 채택.
+- W4: 에이전트에 LAB021 코드북 사전 정규화 내장(lab021_ingress.py; 이벤트 컨텍스트·연료 구조·최특정 규칙·형 정규화·결측 null), 후보집합 0.2.0-provisional 159 요소(코드북 ID 합집합), normalization 컨텍스트 키에 IMO0140/0191/0603/0063/0065 추가. ruff/mypy 0, pytest 122 passed.
+- 실 데이터 12 이벤트: 매핑 722/726(EXPLICIT 722, UNMAPPED isEuPort 4), 검증 FAIL 0(WARNING 195 PROFILE_NOT_APPLICABLE).
+- W2/W3: imo_to_shipodms.py(Ship→Voyage→PortCall→PerformanceReport 중첩 POST), consistency_check.py(3자 대조, M1~M5).
+- G-4: Ship-ODMS Java 백엔드 결함 수정 — saveReport 에서 자식 행 부모참조 설정, 목록 DTO 에 speedThroughWater·speedPropeller·speedProjected·speedOrder·courseOverGround·shipTrueHeading 추가. docker compose 재빌드.
+- W8: run_s11.py. **run_01·run_02 PASS(T2 NOT_TESTED)**: M2 0.9945 / M3 1.0 / M4 0.9854(5/342 불일치 = seaHeight 정수형 G-5) / HTTP 오류 0 / 무결성 ok / 재현성 동일. 증적 verification/evidence/C02/s11/.
+- T2(IDS 전달)는 apps/kr-ghg-ai-agent/.env 부재로 NOT_TESTED — .env.master 규약상 로컬 .env 를 두면 러너가 수행. 9/12·9/16 증적으로는 2/2 동일.
+- W5 결정: Route 는 노트북 로컬 IP(유선 우선). 진해 현장에서 검증.
+- 미결: TTA 의 25023 적용 판(DIS 2014 vs IS 2016) 확인(W7), 랩오투원 데이터 보강(W6), isEuPort 매핑 규칙(코드북 boolean vs UN/LOCODE 관할), Ship-ODMS fuelType 형(G-1)·seaHeight 형(G-5) 스키마 결정.
+세션 S09 종료 상태: DONE (S-1-1 로컬 시험 PASS, 현장 T2/T3 및 TTA 합의 대기)

@@ -55,6 +55,12 @@ public class PerformanceReportController {
                 r.getDraughtForward(),
                 r.getDraughtAft(),
                 r.getSpeedOverGround(),
+                r.getSpeedThroughWater(),
+                r.getSpeedPropeller(),
+                r.getSpeedProjected(),
+                r.getSpeedOrder(),
+                r.getCourseOverGround(),
+                r.getShipTrueHeading(),
                 // 하위 데이터 리스트 추가
                 performanceReportService.getWeatherDetailsByReportId(r.getId()),
                 performanceReportService.getCargoOnboardByReportId(r.getId()),

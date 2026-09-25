@@ -1,0 +1,7 @@
+$ uv run --project C:\kr-dev\k-mds\apps\kr-ghg-ai-agent --with pyyaml python C:\kr-dev\k-mds\verification\adapters\imo_to_shipodms.py C:\kr-dev\k-mds\verification\evidence\C02\s11\run_02\agent-evidence C:\kr-dev\k-mds\verification\evidence\C02\s11\run_02\shipodms --base http://localhost:8088
+plan: ship 00000009 voyage 1 port_calls 2 reports 12 → C:\kr-dev\k-mds\verification\evidence\C02\s11\run_02\shipodms\shipodms-plan.json
+delivered: ship id 4, voyage id 2, port_calls 2, reports 12, http errors 0
+
+[stderr]
+
+exit=0

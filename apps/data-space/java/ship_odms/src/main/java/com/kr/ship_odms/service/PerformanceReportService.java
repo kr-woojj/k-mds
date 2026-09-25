@@ -26,6 +26,19 @@ public class PerformanceReportService {
     }
 
     public PerformanceReport saveReport(PerformanceReport report) {
+        // 중첩 JSON 으로 들어온 자식 행의 부모 참조(mappedBy "report"/"fuelConsumption")를 채운다.
+        // 비워 두면 report_id 가 NULL 로 저장되어 /{reportId}/… 조회가 빈 목록을 돌려준다 (S-1-1 G-4, 2026-09-26).
+        if (report.getWeatherDetails() != null) report.getWeatherDetails().forEach(c -> c.setReport(report));
+        if (report.getCargoOnboard() != null) report.getCargoOnboard().forEach(c -> c.setReport(report));
+        if (report.getElectricConsumption() != null) report.getElectricConsumption().forEach(c -> c.setReport(report));
+        if (report.getMeasuredCarbonDioxide() != null) report.getMeasuredCarbonDioxide().forEach(c -> c.setReport(report));
+        if (report.getFuelConsumption() != null) {
+            report.getFuelConsumption().forEach(fc -> {
+                fc.setReport(report);
+                if (fc.getFocFuelType() != null) fc.getFocFuelType().forEach(x -> x.setFuelConsumption(fc));
+                if (fc.getFocConsumerType() != null) fc.getFocConsumerType().forEach(x -> x.setFuelConsumption(fc));
+            });
+        }
         return performanceReportRepository.save(report);
     }
 

@@ -49,6 +49,8 @@ class Settings:
     code_lists_path: Path = PROJECT_ROOT / "var" / "reference" / "code_lists.json"
     alias_config_path: Path = PROJECT_ROOT / "src" / "ghg_agent" / "reference" / "aliases.json"
     candidate_inventory_path: Path = PROJECT_ROOT / "var" / "candidate-inventory.json"
+    # LAB021(vessellink) Provider 코드북 — 결정 D4(2026-09-26): 코드북 사전 정규화를 에이전트 ingress 에 내장.
+    lab021_codebook_path: Path = PROJECT_ROOT / "var" / "reference" / "lab021" / "noon-code-book.json"
     skill_timeout_seconds: float = 60.0
 
     # MCP
@@ -96,6 +98,10 @@ def load_settings() -> Settings:
         candidate_inventory_path=Path(
             _env("CANDIDATE_INVENTORY_PATH")
             or str(PROJECT_ROOT / "var" / "candidate-inventory.json")
+        ),
+        lab021_codebook_path=Path(
+            _env("LAB021_CODEBOOK_PATH")
+            or str(PROJECT_ROOT / "var" / "reference" / "lab021" / "noon-code-book.json")
         ),
         skill_timeout_seconds=float(_env("SKILL_TIMEOUT_SECONDS", "60")),
         mcp_mode=_env("MCP_TRANSPORT", "off"),

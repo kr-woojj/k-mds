@@ -258,10 +258,28 @@
           ],
           "result": "CONDITIONAL_PASS: IDS 발견→계약→전송 성공·무결성 동일; Broker 미등록(F-23), Provider 데이터 이벤트 0건(F-22)",
           "notes": "3차 실증회의일 API 데모"
+        },
+        {
+          "run_no": "s11/run_01",
+          "timestamp": "2026-09-26",
+          "evidence_paths": [
+            "verification/evidence/C02/s11/run_01/"
+          ],
+          "result": "PASS (T2 NOT_TESTED): M2 0.9945, M3 1.0, M4 0.9854 ≥ 0.95",
+          "notes": "S-1-1 로컬 시험. 에이전트 LAB021 ingress(D2·D4·D8) + Ship-ODMS 전송 + 3자 정합성. ISO/IEC DIS 25023 측정 ID 부여."
+        },
+        {
+          "run_no": "s11/run_02",
+          "timestamp": "2026-09-26",
+          "evidence_paths": [
+            "verification/evidence/C02/s11/run_02/"
+          ],
+          "result": "PASS (T2 NOT_TESTED), 재현성 run_01 과 M2·M3·M4 동일",
+          "notes": ""
         }
       ],
       "owner_confirmed_by": "우정재(연구책임자, 2026-09-12)",
-      "last_updated": "2026-09-16",
+      "last_updated": "2026-09-26",
       "blockers": [
         "P1 검증기 저장소 부재(치명)",
         "P2 FAL50 xlsx 배치·버전 확정",
@@ -426,15 +444,23 @@
         }
       ],
       "human_decisions_pending": [
-        "D1 R2 문구: 'error 코드 없음' 에 KR_GEARS_CONTRACT_PROVISIONAL(에이전트의 정상 흐름 마커) 허용 여부 → 허용 시 fixture 경로 9/9 PASS",
-        "D2 에이전트 승인 후보 집합(F-STEP7-2) 을 랩오투원 코드북 IMO ID 43개로 확장 승인 여부 (거버넌스 결정)",
         "D3 랩오투원에 코드북 1:N 매핑(42/68 필드) 해소 규칙·표준 이벤트 코드(FAL50 EV) 대응 요청 여부",
-        "D4 코드북 어댑터(verification/adapters/lab021_noon_adapter.py) 를 에이전트 ingress 에 내장할지, ROC(랩오투원) 측 변환으로 둘지",
         "D5 DAQ Logger(ISO 19848) 검증 규칙 정의 여부 — 현재 NOT_TESTED",
-        "D6 VLSFO/ULSFO → GEARs HFO 열 분류 승인 (FAL50 Fuel type 설명 'HFO w/ S 0.1~0.5%' 근거)",
-        "D7 VerificationTypeCode 002(IMO DCS) 단독 / 001(EU MRV) 병행",
-        "D8 gears_voyage_transform 매핑 규칙을 GHG AI Agent 후보집합·ingress 에 반영(D2·D4 연계)"
-      ]
+        "W7 TTA 25023 적용 판(DIS 2014 vs IS 2016) 확인 및 증빙 패키지 형식 합의",
+        "G-1/G-5 Ship-ODMS 스키마 형(fuelType int32, seaHeight int) 수정 여부",
+        "isEuPort 매핑 규칙(코드북 boolean → IMO0856/0857 UN/LOCODE 관할)"
+      ],
+      "s11_scope": {
+        "decided": "2026-09-26",
+        "scenario_doc": "verification/scenarios/K-MDS_실증_시나리오_v0.2_S-1-1.md",
+        "runner": "verification/run_s11.py",
+        "consistency_measure": "M4 = FCr-1-G 필드 단위 (ISO/IEC DIS 25023:2014)",
+        "excluded": [
+          "S-2 RIMS 포트콜",
+          "S-3 KLNET MSW",
+          "BLUEONE 경유 등록"
+        ]
+      }
     },
     {
       "case_id": "C03",

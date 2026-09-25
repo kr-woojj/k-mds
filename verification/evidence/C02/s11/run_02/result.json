@@ -1,0 +1,42 @@
+{
+ "verdict": "PASS (T2 NOT_TESTED — 외부 IDS 단계는 별도 증적으로 보완)",
+ "rules": {
+  "R-M4 정합율 ≥ 0.95": true,
+  "R-M3 검증 정확성 = 1.0": true,
+  "R-M2 매핑 완결성 ≥ 0.95": true,
+  "R-T6 Ship-ODMS HTTP 오류 0": true,
+  "R-T5 에이전트 evidence 무결성": true,
+  "R-T2 IDS 전달(수행 시)": true,
+  "R-T8 재현성(직전 run 과 M2·M3·M4 동일)": true
+ },
+ "measures": {
+  "M2": 0.9945,
+  "M3": 1.0,
+  "M4": 0.9854
+ },
+ "mismatches": null,
+ "no_target_elements": [
+  "IMO0064",
+  "IMO0066",
+  "IMO0084",
+  "IMO0085",
+  "IMO0109",
+  "IMO0112",
+  "IMO0139",
+  "IMO0143",
+  "IMO0148",
+  "IMO0452",
+  "IMO0541",
+  "IMO0543",
+  "IMO0548",
+  "IMO0580",
+  "IMO0666",
+  "IMO0667"
+ ],
+ "reproducibility_vs_prev": {
+  "M2": true,
+  "M3": true,
+  "M4": true
+ },
+ "prev_run": "run_01"
+}

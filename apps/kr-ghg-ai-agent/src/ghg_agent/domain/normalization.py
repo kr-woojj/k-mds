@@ -27,10 +27,11 @@ class NormalizationError(Exception):
         self.message = message
 
 _CONTEXT_KEYS = {
-    "vessel_context": ("vessel_id", "ship_id", "imo_no", "vessel_imo_number", "ship_name"),
-    "voyage_context": ("voyage_no", "voyage_id", "voyage_number", "voyage_leg"),
+    # IMO0140/IMO0191: LAB021 사전 정규화(lab021_ingress)가 IMO 키로 바꾼 payload 의 컨텍스트 (D4, 2026-09-26)
+    "vessel_context": ("vessel_id", "ship_id", "imo_no", "vessel_imo_number", "ship_name", "IMO0140"),
+    "voyage_context": ("voyage_no", "voyage_id", "voyage_number", "voyage_leg", "IMO0191"),
 }
-_TIMESTAMP_KEYS = ("report_datetime", "event_timestamp", "timestamp", "reported_at")
+_TIMESTAMP_KEYS = ("report_datetime", "event_timestamp", "timestamp", "reported_at", "IMO0603", "IMO0063", "IMO0065")
 
 _SKIP_KEYS = {
     "report_type", "_comment",

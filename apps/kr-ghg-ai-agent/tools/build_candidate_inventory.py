@@ -39,7 +39,8 @@ SOURCE_FIXTURES = [
     ("event_arrival.json", SourceProfile.EVENT_REPORT),
 ]
 CANDIDATE_SET_ID = "kr-ghg-candidate-inventory"
-VERSION = "0.1.0-provisional"
+VERSION = "0.2.0-provisional"  # 0.2.0: LAB021 코드북 IMO ID 합집합 (결정 D2, 2026-09-26)
+LAB021_CODEBOOK = PROJECT / "var" / "reference" / "lab021" / "noon-code-book.json"
 
 
 def main() -> int:
@@ -75,8 +76,29 @@ def main() -> int:
                 ids.add(f.imo_data_number)
         used.append(name)
 
+    # D2(2026-09-26): 랩오투원 코드북(Provider 공개)의 IMO ID 를 승인 후보로 합집합. registry 실존 ID 만.
+    codebook_ids: set[str] = set()
+    codebook_meta: dict = {}
+    if LAB021_CODEBOOK.is_file():
+        raw = LAB021_CODEBOOK.read_bytes()
+        items = json.loads(raw)["data"]["items"]
+        for it in items:
+            imo = str(it.get("id", ""))
+            if imo.startswith("IMO") and ref.exists(imo):
+                codebook_ids.add(imo)
+        # 코드북 1:N 을 FAL50 'Consumption By Fuel Type' 구조로 풀 때 쓰는 요소(lab021_ingress.ENGINE_ELEMENT/IMO0654/IMO0674)
+        for imo in ("IMO0654", "IMO0670", "IMO0893", "IMO0673", "IMO0903", "IMO0674"):
+            if ref.exists(imo):
+                codebook_ids.add(imo)
+        codebook_meta = {"path": str(LAB021_CODEBOOK.relative_to(PROJECT)), "sha256": hashlib.sha256(raw).hexdigest(),
+                         "items": len(items), "imo_ids_in_registry": len(codebook_ids)}
+        ids |= codebook_ids
+        used.append("var/reference/lab021/noon-code-book.json")
+
     sorted_ids = sorted(ids)
     inventory = {
+        "lab021_codebook": codebook_meta,
+        "decision_ref": "pm/decisions.md 2026-09-26 D2·D4·D8 승인 (연구책임자)",
         "candidate_set_id": CANDIDATE_SET_ID,
         "version": VERSION,
         "status": "PROVISIONAL",

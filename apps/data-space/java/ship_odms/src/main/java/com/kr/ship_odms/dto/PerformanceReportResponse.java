@@ -33,6 +33,12 @@ public class PerformanceReportResponse {
     private Double draughtForward;
     private Double draughtAft;
     private Double speedOverGround;
+    private Double speedThroughWater;
+    private Double speedPropeller;
+    private Double speedProjected;
+    private Double speedOrder;
+    private Double courseOverGround;
+    private Double shipTrueHeading;
 
     // 하위 데이터 리스트 추가
     private List<WeatherDetails> weatherDetails;

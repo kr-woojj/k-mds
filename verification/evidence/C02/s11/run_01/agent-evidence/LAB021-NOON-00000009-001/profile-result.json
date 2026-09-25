@@ -1,0 +1,9 @@
+{
+  "classification_method": "explicit_report_type",
+  "competing_profiles": [],
+  "confidence": 1.0,
+  "deterministic_evidence": [
+    "report_type='event'"
+  ],
+  "selected_profile": "EVENT_REPORT"
+}

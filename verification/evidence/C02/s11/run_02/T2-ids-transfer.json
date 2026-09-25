@@ -1,0 +1,5 @@
+{
+ "step": "T2",
+ "verdict": "NOT_TESTED",
+ "reason": "IDS_CONNECTOR_* 자격증명 없음"
+}

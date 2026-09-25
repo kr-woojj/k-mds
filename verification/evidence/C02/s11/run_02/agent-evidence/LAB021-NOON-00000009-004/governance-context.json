@@ -1,0 +1,59 @@
+{
+  "authorities": {
+    "AuthoringAuthority": {
+      "approved": false,
+      "detail": "실제 authoring/정규화 권한 미승인 — actual_normalization_eligible=false 강제",
+      "identifier": null,
+      "status": "PROVISIONAL"
+    },
+    "CandidateSetAuthority": {
+      "approved": true,
+      "detail": "KR GHG candidate inventory 0.2.0-provisional (159 elements) load_status=BOUND",
+      "identifier": "kr-ghg-candidate-inventory",
+      "status": "BOUND"
+    },
+    "DeliveryAuthority": {
+      "approved": false,
+      "detail": "KR GEARs 실제 delivery 계약 미확인 — kr_gears_actual_delivery_allowed=false 강제",
+      "identifier": null,
+      "status": "UNBOUND"
+    },
+    "ReferenceAuthority": {
+      "approved": true,
+      "detail": "IMO Compendium FAL50 registry snapshot",
+      "identifier": "FAL50",
+      "status": "BOUND"
+    },
+    "RequirednessAuthority": {
+      "approved": false,
+      "detail": "필수성 프로파일 미승인 — requiredness_profile_approved=false 강제",
+      "identifier": "P-REQ-1",
+      "status": "PROVISIONAL"
+    }
+  },
+  "candidate_inventory": {
+    "approved": false,
+    "candidate_scope_enforcement": true,
+    "candidate_set_id": "kr-ghg-candidate-inventory",
+    "element_count": 159,
+    "load_status": "BOUND",
+    "sha256": "a9a19ff0f27aa358826f08c6e6ccbaea3b278cab37a6d83acf80204db6391a01",
+    "status": "PROVISIONAL",
+    "version": "0.2.0-provisional"
+  },
+  "candidate_scope_enforcement": true,
+  "enforced_flags": {
+    "actual_normalization_eligible": false,
+    "candidate_mapping_eligible": true,
+    "executable_mapping_eligible": false,
+    "kr_gears_actual_delivery_allowed": false,
+    "requiredness_profile_approved": false
+  },
+  "runtime_binding": {
+    "code_lists_path": "C:\\kr-dev\\k-mds\\apps\\kr-ghg-ai-agent\\var\\reference\\code_lists.json",
+    "imo_mapping_skill_path": "C:\\kr-dev\\k-mds\\apps\\imo-compendium-mapping-validator",
+    "kr_gears_api_url": null,
+    "kr_gears_delivery_mode": "mock",
+    "registry_db_path": "C:\\kr-dev\\k-mds\\apps\\kr-ghg-ai-agent\\var\\registry.sqlite3"
+  }
+}

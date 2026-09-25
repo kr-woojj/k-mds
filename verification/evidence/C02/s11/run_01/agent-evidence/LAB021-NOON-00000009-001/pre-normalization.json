@@ -1,0 +1,56 @@
+{
+  "ambiguous": {
+    "isEuPort": [
+      "IMO0856",
+      "IMO0857"
+    ],
+    "robGecylOil": "duplicate target IMO0676",
+    "robMelscylOil": "duplicate target IMO0676"
+  },
+  "codebook_path": "C:\\kr-dev\\k-mds\\apps\\kr-ghg-ai-agent\\var\\reference\\lab021\\noon-code-book.json",
+  "event_key": "BUNKERING",
+  "kept": [],
+  "kept_count": 0,
+  "mapped": {
+    "callsign": "IMO0136",
+    "dateEventUtc": "IMO0603",
+    "eventKey": "IMO0597=EV28",
+    "flag": "IMO0138",
+    "grossTonnage": "IMO0139",
+    "hourSlr": "IMO0600",
+    "imoNo": "IMO0140",
+    "legNo": "IMO0605",
+    "masterName": "IMO0580",
+    "mmsi": "IMO0326",
+    "netTonnage": "IMO0143",
+    "portCode": "IMO0666",
+    "portName": "IMO0667",
+    "portOfRegistry": "IMO0148",
+    "positionLat": "IMO0601",
+    "positionLon": "IMO0602",
+    "robDo": "rob_by_fuel_type/MDO/IMO0674",
+    "robHfo": "rob_by_fuel_type/HFO/IMO0674",
+    "robLsfo": "rob_by_fuel_type/VLSFO2020/IMO0674",
+    "robMecylOil": "IMO0676",
+    "robMgo": "rob_by_fuel_type/MGO/IMO0674",
+    "robUlsfo": "rob_by_fuel_type/ULSFO2020/IMO0674",
+    "robUlsmgo": "rob_by_fuel_type/ULSMGO2020/IMO0674",
+    "shipName": "IMO0142",
+    "subShipType": "IMO0160",
+    "voyNo": "IMO0191"
+  },
+  "mapped_count": 26,
+  "sentinel_nulled": [
+    "flag",
+    "grossTonnage",
+    "netTonnage",
+    "portOfRegistry",
+    "masterName"
+  ],
+  "type_cast": {
+    "legNo": "IMO0605: numeric→string",
+    "positionLat": "IMO0601: numeric→string",
+    "positionLon": "IMO0602: numeric→string",
+    "voyNo": "IMO0191: numeric→string"
+  }
+}

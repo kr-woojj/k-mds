@@ -1,0 +1,22 @@
+[
+  {
+    "called_at": "2026-09-25T16:47:37.694796+00:00",
+    "candidate_count": -1,
+    "correlation_id": "LAB021-NOON-00000009-006",
+    "error": null,
+    "latency_ms": 0.08,
+    "model": "mock-structured",
+    "ok": true,
+    "provider": "mock",
+    "real_call": false,
+    "redacted_input": {
+      "declared_type": "boolean",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "isEuPort",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  }
+]

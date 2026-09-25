@@ -1,0 +1,63 @@
+$ uv run --project C:\kr-dev\k-mds\apps\kr-ghg-ai-agent --with pyyaml python C:\kr-dev\k-mds\verification\adapters\consistency_check.py C:\kr-dev\k-mds\verification\evidence\C02\s11\run_01\agent-evidence C:\kr-dev\k-mds\verification\evidence\C02\s11\run_01\shipodms C:\kr-dev\k-mds\verification\evidence\C02\manual_S03\step-04\payloads\Noon_Report_API__e5e3be7e7a31.json C:\kr-dev\k-mds\verification\evidence\C02\s11\run_01\shipodms --base http://localhost:8088
+{
+ "standard": "ISO/IEC DIS 25023:2014(E) (data/raw/ISO25000)",
+ "M1": {
+  "iso_measure": "CIn-2-G Data exchange protocol conformance (취지 적용)",
+  "artifact_sha256": "fb23ffbdcb00e11d7378ea390728bf895025196713413db5758f0e674bb998b0",
+  "note": "Consumer 수신본 = 원본 여부는 run_s11 T2 단계가 기록(hash 비교). 여기서는 원본 해시만 기록."
+ },
+ "M2": {
+  "iso_measure": "FCp-1-G Functional coverage",
+  "formula": "X = 1 - A/B",
+  "A_unmapped": 4,
+  "B_source_fields": 726,
+  "X": 0.9945
+ },
+ "M3": {
+  "iso_measure": "FCr-1-G Functional correctness",
+  "formula": "X = 1 - A/B",
+  "A_validation_fail": 0,
+  "B_mapped_fields": 722,
+  "X": 1.0
+ },
+ "M4": {
+  "iso_measure": "FCr-1-G Functional correctness (필드 단위 적용) — 채택 정합율",
+  "formula": "X = 1 - A/B",
+  "A_mismatch": 5,
+  "B_fields_with_target": 342,
+  "X": 0.9854,
+  "target": 0.95
+ },
+ "M5": {
+  "iso_measure": "CIn-1-G Data exchange format conformance (취지 적용)",
+  "note": "Ship-ODMS openapi required 목록 없음 → N/A"
+ },
+ "no_target_elements": [
+  "IMO0064",
+  "IMO0066",
+  "IMO0084",
+  "IMO0085",
+  "IMO0109",
+  "IMO0112",
+  "IMO0139",
+  "IMO0143",
+  "IMO0148",
+  "IMO0452",
+  "IMO0541",
+  "IMO0543",
+  "IMO0548",
+  "IMO0580",
+  "IMO0666",
+  "IMO0667"
+ ]
+}
+mismatches: 5/342 → M4 X=0.9854 verdict=PASS
+  - {'cid': 'LAB021-NOON-00000009-003', 'imo': 'IMO0632', 'target': 'WeatherDetails.seaHeight', 'source': 0.5, 'stored': 0, 'match': False}
+  - {'cid': 'LAB021-NOON-00000009-004', 'imo': 'IMO0632', 'target': 'WeatherDetails.seaHeight', 'source': 0.5, 'stored': 0, 'match': False}
+  - {'cid': 'LAB021-NOON-00000009-005', 'imo': 'IMO0632', 'target': 'WeatherDetails.seaHeight', 'source': 0.5, 'stored': 0, 'match': False}
+  - {'cid': 'LAB021-NOON-00000009-010', 'imo': 'IMO0632', 'target': 'WeatherDetails.seaHeight', 'source': 0.8, 'stored': 0, 'match': False}
+  - {'cid': 'LAB021-NOON-00000009-011', 'imo': 'IMO0632', 'target': 'WeatherDetails.seaHeight', 'source': 0.5, 'stored': 0, 'match': False}
+
+[stderr]
+
+exit=0

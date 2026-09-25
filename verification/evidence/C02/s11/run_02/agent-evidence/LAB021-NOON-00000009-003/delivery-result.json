@@ -1,0 +1,7 @@
+{
+  "correlation_id": "LAB021-NOON-00000009-003",
+  "detail": "mock delivery — 외부 전송 없음",
+  "mode": "mock",
+  "real_call": false,
+  "status": "DELIVERED"
+}

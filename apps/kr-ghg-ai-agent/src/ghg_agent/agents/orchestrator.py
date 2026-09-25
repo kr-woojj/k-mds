@@ -37,6 +37,7 @@ from ghg_agent.domain.models import (
     ValidationVerdict,
     assert_transition,
 )
+from ghg_agent.adapters.lab021_ingress import is_lab021_record, load_codebook, normalize_lab021
 from ghg_agent.domain.normalization import NormalizationError, normalize_payload
 from ghg_agent.domain.profiling import profile_payload
 from ghg_agent.domain.validation import ValidationConfig, validate_mapping_result
@@ -60,6 +61,7 @@ class PipelineState(BaseModel):
     validation_result: ValidationResult | None = None
     transform_result: TransformResult | None = None
     delivery_result: DeliveryResult | None = None
+    pre_normalization: dict[str, Any] | None = None  # LAB021 코드북 사전 정규화 보고 (D4)
     error: str | None = None
     trace: list[dict[str, Any]] = Field(default_factory=list)
 
@@ -108,6 +110,13 @@ class Pipeline:
             state.error = f"UNSUPPORTED_BODY_TYPE:{state.ingress.body_type.value}"
             self._advance(state, RunStatus.REVIEW_REQUIRED, "DataProfilerAgent")
             return state
+        # D4(2026-09-26): LAB021(vessellink) 레코드는 Provider 코드북으로 키를 IMO ID 로 사전 정규화한다.
+        # 코드북 파일이 없으면 정규화하지 않고 그대로 진행한다(발명 금지, 결과는 PROFILE_UNKNOWN 으로 드러남).
+        codebook_path = self.settings.lab021_codebook_path
+        if is_lab021_record(state.business) and codebook_path.is_file():
+            state.business, report = normalize_lab021(state.business, load_codebook(codebook_path))
+            report["codebook_path"] = str(codebook_path)
+            state.pre_normalization = report
         result = profile_payload(state.business)
         state.profile_result = result
         if result.selected_profile == SourceProfile.UNKNOWN:
@@ -325,6 +334,8 @@ class Pipeline:
         assert state.ingress is not None
         writer.write_json("governance-context.json", self.governance.snapshot())
         writer.write_json("ingress-result.json", state.ingress.model_dump(mode="json"))
+        if state.pre_normalization is not None:
+            writer.write_json("pre-normalization.json", state.pre_normalization)
         if state.profile_result is not None:
             writer.write_json("profile-result.json", state.profile_result.model_dump(mode="json"))
         if state.fields:
