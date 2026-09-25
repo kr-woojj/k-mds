@@ -61,9 +61,9 @@ namespace ship_odms.Models
         public int? WindForce { get; set; }
         public int? WindSpeed { get; set; }
         public int? WindDir { get; set; }
-        public int? WindDirRelative { get; set; }
-        public int? WindDirTrue { get; set; }
-        public int? AirTemperature { get; set; }
+        public double? WindDirRelative { get; set; }  // 백엔드 number(double) — int? 면 32.0 역직렬화 실패
+        public double? WindDirTrue { get; set; }  // 백엔드 number(double) — int? 면 32.0 역직렬화 실패
+        public double? AirTemperature { get; set; }  // 백엔드 number(double) — int? 면 32.0 역직렬화 실패
         public double? AtmosphericPressure { get; set; }
         public int? SeaDirRelative { get; set; }
         public int? SeaDirTrue { get; set; }
