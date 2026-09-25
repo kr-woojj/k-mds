@@ -1,6 +1,6 @@
 # S-1-1 실증 자동화 (n8n + docker)
 
-구성: n8n(:5678) 워크플로 `K-MDS S-1-1 실증 자동화` → 하네스(:8090, `harness.py`) + GHG AI Agent(:8001, Gemini) + Ship-ODMS(:8088/UI :3030).
+구성: n8n(:5678) 워크플로 `K-MDS S-1-1 실증 자동화` → 하네스(:8090, `harness.py`) + GHG AI Agent(:8001, Gemini) + Ship-ODMS(:8088/UI :3031).
 
 ```
 docker compose --env-file C:/kr-dev/.env.master -f verification/automation/compose.yaml up -d --build   # 에이전트+하네스
