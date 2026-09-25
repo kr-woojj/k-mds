@@ -1,0 +1,38 @@
+[
+  {
+    "agent": "IngressAgent",
+    "at": "2026-09-25T17:35:54.727413+00:00",
+    "from": null,
+    "to": "RECEIVED"
+  },
+  {
+    "agent": "DataProfilerAgent",
+    "at": "2026-09-25T17:35:54.792011+00:00",
+    "from": "RECEIVED",
+    "to": "PROFILED"
+  },
+  {
+    "agent": "DataProfilerAgent",
+    "at": "2026-09-25T17:35:54.792400+00:00",
+    "from": "PROFILED",
+    "to": "NORMALIZED"
+  },
+  {
+    "agent": "IMOMapperAgent",
+    "at": "2026-09-25T17:35:54.793160+00:00",
+    "from": "NORMALIZED",
+    "to": "MAPPING_REQUESTED"
+  },
+  {
+    "agent": "IMOMapperAgent",
+    "at": "2026-09-25T17:36:04.044778+00:00",
+    "from": "MAPPING_REQUESTED",
+    "to": "MAPPED"
+  },
+  {
+    "agent": "MappingValidationAgent",
+    "at": "2026-09-25T17:36:04.130414+00:00",
+    "from": "MAPPED",
+    "to": "REVIEW_REQUIRED"
+  }
+]

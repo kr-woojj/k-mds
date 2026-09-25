@@ -1,0 +1,9 @@
+# S-1-1 검증 하네스 — 시험 대상(ghg-agent)과 분리된 컨테이너. k-mds 루트를 /work 로 마운트해서 쓴다.
+FROM python:3.12-slim
+RUN apt-get update && apt-get install -y --no-install-recommends git && rm -rf /var/lib/apt/lists/* \
+ && git config --global --add safe.directory '*'
+RUN pip install --no-cache-dir fastapi uvicorn httpx pyyaml python-dotenv pydantic sqlalchemy openpyxl
+WORKDIR /work/verification/automation
+ENV PYTHONPATH=/work/apps/kr-ghg-ai-agent/src PYTHONUNBUFFERED=1
+EXPOSE 8090
+CMD ["uvicorn", "harness:app", "--host", "0.0.0.0", "--port", "8090"]

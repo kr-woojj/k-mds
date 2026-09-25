@@ -1,0 +1,1226 @@
+{
+ "generated_at": "2026-09-25T17:23:00.199482+00:00",
+ "base": "http://ship-odms-backend:8088",
+ "ship": {
+  "imoNumber": "00000009",
+  "shipName": "TEST_BULK_DIESEL_09",
+  "callSign": "TBD09",
+  "mmsi": null,
+  "flagState": null,
+  "shipType": "NONE"
+ },
+ "voyage": {
+  "voyageNumber": "1"
+ },
+ "port_calls": [
+  {
+   "portDeparture": "PACTB",
+   "portAtd": "2026-04-19T20:36:00.000Z",
+   "portArrival": "GTPRQ",
+   "portAta": "2026-04-25T01:00:00.000Z"
+  },
+  {
+   "portDeparture": "GTPRQ",
+   "portAtd": "2026-04-29T12:42:00.000Z",
+   "portArrival": null,
+   "portAta": null
+  }
+ ],
+ "reports": [
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "event_key": "DEPARTURE_SBY",
+   "body": {
+    "eventType": "EV02",
+    "voyageLeg": "1",
+    "elapsedTime": 0,
+    "draughtForward": 11.55,
+    "draughtAft": 11.6,
+    "shipDraught": 11.58,
+    "latitude": "9.35",
+    "longitude": "-79.908333",
+    "distanceToNextPort": 950,
+    "reportDatetime": "2026-04-19T20:36:00.000Z",
+    "reportType": "1",
+    "fuelConsumption": [
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "MGO",
+      "fuelQuantityRob": 115.98,
+      "focFuelType": [
+       {
+        "focAuxiliaryBoiler": 0,
+        "focAuxiliaryEngine": 0,
+        "focMainEngine": 0,
+        "focOtherFuelConsumingDevices": 0
+       }
+      ]
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "VLSFO2020",
+      "fuelQuantityRob": 298.69,
+      "focFuelType": [
+       {
+        "focAuxiliaryBoiler": 0,
+        "focAuxiliaryEngine": 0,
+        "focMainEngine": 0,
+        "focOtherFuelConsumingDevices": 0
+       }
+      ]
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "_NONFUEL",
+      "freshWaterProduced": 0,
+      "cloRob": 20751,
+      "cloConsumption": 0,
+      "freshWaterConsumed": 0,
+      "freshWaterBunkered": 0,
+      "freshWaterRob": 0
+     }
+    ]
+   },
+   "provenance": {
+    "IMO0597": "PerformanceReport.eventType",
+    "IMO0605": "PerformanceReport.voyageLeg",
+    "IMO0600": "PerformanceReport.elapsedTime",
+    "IMO0621": "PerformanceReport.draughtForward",
+    "IMO0622": "PerformanceReport.draughtAft",
+    "IMO0357": "PerformanceReport.shipDraught",
+    "IMO0601": "PerformanceReport.latitude",
+    "IMO0602": "PerformanceReport.longitude",
+    "IMO0615": "PerformanceReport.distanceToNextPort",
+    "IMO0673@MGO": "FuelConsumption[MGO].focFuelType[0].focAuxiliaryBoiler",
+    "IMO0893@MGO": "FuelConsumption[MGO].focFuelType[0].focAuxiliaryEngine",
+    "IMO0670@MGO": "FuelConsumption[MGO].focFuelType[0].focMainEngine",
+    "IMO0903@MGO": "FuelConsumption[MGO].focFuelType[0].focOtherFuelConsumingDevices",
+    "IMO0674@MGO": "FuelConsumption[MGO].fuelQuantityRob",
+    "IMO0673@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focAuxiliaryBoiler",
+    "IMO0893@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focAuxiliaryEngine",
+    "IMO0670@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focMainEngine",
+    "IMO0903@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focOtherFuelConsumingDevices",
+    "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0678": "FuelConsumption[_NONFUEL].cloConsumption",
+    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+    "IMO0645": "FuelConsumption[_NONFUEL].freshWaterRob"
+   },
+   "no_target": [
+    "IMO0064",
+    "IMO0084",
+    "IMO0085",
+    "IMO0112",
+    "IMO0139",
+    "IMO0143",
+    "IMO0148",
+    "IMO0452",
+    "IMO0543",
+    "IMO0580"
+   ],
+   "skipped": [
+    {
+     "path": "/isEuPort",
+     "reason": "UNMAPPED"
+    }
+   ]
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-001",
+   "event_key": "BUNKERING",
+   "body": {
+    "eventType": "EV28",
+    "reportDatetime": "2026-04-21T14:35:00.000Z",
+    "voyageLeg": "1",
+    "elapsedTime": 7.183,
+    "latitude": "8.818333",
+    "longitude": "-79.536667",
+    "reportType": "1",
+    "fuelConsumption": [
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "MGO",
+      "fuelQuantityRob": 204.28
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "VLSFO2020",
+      "fuelQuantityRob": 898.66
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "_NONFUEL",
+      "cloRob": 20739
+     }
+    ]
+   },
+   "provenance": {
+    "IMO0597": "PerformanceReport.eventType",
+    "IMO0603": "PerformanceReport.reportDatetime",
+    "IMO0605": "PerformanceReport.voyageLeg",
+    "IMO0600": "PerformanceReport.elapsedTime",
+    "IMO0601": "PerformanceReport.latitude",
+    "IMO0602": "PerformanceReport.longitude",
+    "IMO0674@MGO": "FuelConsumption[MGO].fuelQuantityRob",
+    "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob"
+   },
+   "no_target": [
+    "IMO0139",
+    "IMO0143",
+    "IMO0148",
+    "IMO0580",
+    "IMO0666",
+    "IMO0667"
+   ],
+   "skipped": [
+    {
+     "path": "/isEuPort",
+     "reason": "UNMAPPED"
+    }
+   ]
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "event_key": "RUP",
+   "body": {
+    "eventType": "EV10",
+    "reportDatetime": "2026-04-21T17:30:00.000Z",
+    "voyageLeg": "1",
+    "elapsedTime": 0.5,
+    "courseOverGround": 178,
+    "speedOverGround": 10,
+    "distanceOverGround": 5,
+    "speedPropeller": 72,
+    "latitude": "8.701667",
+    "longitude": "-79.455",
+    "reportType": "1",
+    "fuelConsumption": [
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "MGO",
+      "fuelQuantityRob": 202.86,
+      "focFuelType": [
+       {
+        "focAuxiliaryBoiler": 0,
+        "focAuxiliaryEngine": 0,
+        "focMainEngine": 0,
+        "focOtherFuelConsumingDevices": 0
+       }
+      ]
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "VLSFO2020",
+      "fuelQuantityRob": 898.26,
+      "focFuelType": [
+       {
+        "focAuxiliaryBoiler": 0,
+        "focAuxiliaryEngine": 0.07,
+        "focMainEngine": 0.33,
+        "focOtherFuelConsumingDevices": 0
+       }
+      ]
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "_NONFUEL",
+      "freshWaterProduced": 0,
+      "cloRob": 20736,
+      "cloConsumption": 3,
+      "freshWaterConsumed": 0,
+      "freshWaterBunkered": 0,
+      "freshWaterRob": 0
+     }
+    ]
+   },
+   "provenance": {
+    "IMO0597": "PerformanceReport.eventType",
+    "IMO0603": "PerformanceReport.reportDatetime",
+    "IMO0605": "PerformanceReport.voyageLeg",
+    "IMO0600": "PerformanceReport.elapsedTime",
+    "IMO0332": "PerformanceReport.courseOverGround",
+    "IMO0333": "PerformanceReport.speedOverGround",
+    "IMO0613": "PerformanceReport.distanceOverGround",
+    "IMO0617": "PerformanceReport.speedPropeller",
+    "IMO0601": "PerformanceReport.latitude",
+    "IMO0602": "PerformanceReport.longitude",
+    "IMO0673@MGO": "FuelConsumption[MGO].focFuelType[0].focAuxiliaryBoiler",
+    "IMO0893@MGO": "FuelConsumption[MGO].focFuelType[0].focAuxiliaryEngine",
+    "IMO0670@MGO": "FuelConsumption[MGO].focFuelType[0].focMainEngine",
+    "IMO0903@MGO": "FuelConsumption[MGO].focFuelType[0].focOtherFuelConsumingDevices",
+    "IMO0674@MGO": "FuelConsumption[MGO].fuelQuantityRob",
+    "IMO0673@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focAuxiliaryBoiler",
+    "IMO0893@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focAuxiliaryEngine",
+    "IMO0670@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focMainEngine",
+    "IMO0903@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focOtherFuelConsumingDevices",
+    "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0678": "FuelConsumption[_NONFUEL].cloConsumption",
+    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+    "IMO0645": "FuelConsumption[_NONFUEL].freshWaterRob"
+   },
+   "no_target": [
+    "IMO0139",
+    "IMO0143",
+    "IMO0148",
+    "IMO0580"
+   ],
+   "skipped": []
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "event_key": "NOON_AT_SEA",
+   "body": {
+    "eventType": "EV16",
+    "reportDatetime": "2026-04-22T17:00:00.000Z",
+    "voyageLeg": "1",
+    "elapsedTime": 23.5,
+    "draughtForward": 11.55,
+    "draughtAft": 11.6,
+    "shipDraught": 11.58,
+    "courseOverGround": 301,
+    "speedOverGround": 12.042553191489361,
+    "distanceOverGround": 283,
+    "speedPropeller": 72,
+    "latitude": "7.503333",
+    "longitude": "-82.783333",
+    "distanceToNextPort": 594,
+    "reportType": "1",
+    "weatherDetails": [
+     {
+      "seaHeight": 0.5,
+      "seaDirTrue": 283,
+      "windDirTrue": 285,
+      "windDirRelative": 295,
+      "windForce": 4,
+      "airTemperature": 28
+     }
+    ],
+    "fuelConsumption": [
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "MGO",
+      "fuelQuantityRob": 202.66,
+      "focFuelType": [
+       {
+        "focAuxiliaryBoiler": 0,
+        "focAuxiliaryEngine": 0.2,
+        "focMainEngine": 0,
+        "focOtherFuelConsumingDevices": 0
+       }
+      ]
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "VLSFO2020",
+      "fuelQuantityRob": 881.13,
+      "focFuelType": [
+       {
+        "focAuxiliaryBoiler": 0,
+        "focAuxiliaryEngine": 1.47,
+        "focMainEngine": 15.66,
+        "focOtherFuelConsumingDevices": 0
+       }
+      ]
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "_NONFUEL",
+      "freshWaterProduced": 0,
+      "cloRob": 20736,
+      "cloConsumption": 0,
+      "freshWaterConsumed": 0,
+      "freshWaterBunkered": 0,
+      "freshWaterRob": 0
+     }
+    ]
+   },
+   "provenance": {
+    "IMO0597": "PerformanceReport.eventType",
+    "IMO0603": "PerformanceReport.reportDatetime",
+    "IMO0605": "PerformanceReport.voyageLeg",
+    "IMO0600": "PerformanceReport.elapsedTime",
+    "IMO0621": "PerformanceReport.draughtForward",
+    "IMO0622": "PerformanceReport.draughtAft",
+    "IMO0357": "PerformanceReport.shipDraught",
+    "IMO0332": "PerformanceReport.courseOverGround",
+    "IMO0333": "PerformanceReport.speedOverGround",
+    "IMO0613": "PerformanceReport.distanceOverGround",
+    "IMO0617": "PerformanceReport.speedPropeller",
+    "IMO0601": "PerformanceReport.latitude",
+    "IMO0602": "PerformanceReport.longitude",
+    "IMO0615": "PerformanceReport.distanceToNextPort",
+    "IMO0632": "WeatherDetails.seaHeight",
+    "IMO0631": "WeatherDetails.seaDirTrue",
+    "IMO0627": "WeatherDetails.windDirTrue",
+    "IMO0626": "WeatherDetails.windDirRelative",
+    "IMO0625": "WeatherDetails.windForce",
+    "IMO0628": "WeatherDetails.airTemperature",
+    "IMO0673@MGO": "FuelConsumption[MGO].focFuelType[0].focAuxiliaryBoiler",
+    "IMO0893@MGO": "FuelConsumption[MGO].focFuelType[0].focAuxiliaryEngine",
+    "IMO0670@MGO": "FuelConsumption[MGO].focFuelType[0].focMainEngine",
+    "IMO0903@MGO": "FuelConsumption[MGO].focFuelType[0].focOtherFuelConsumingDevices",
+    "IMO0674@MGO": "FuelConsumption[MGO].fuelQuantityRob",
+    "IMO0673@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focAuxiliaryBoiler",
+    "IMO0893@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focAuxiliaryEngine",
+    "IMO0670@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focMainEngine",
+    "IMO0903@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focOtherFuelConsumingDevices",
+    "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0678": "FuelConsumption[_NONFUEL].cloConsumption",
+    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+    "IMO0645": "FuelConsumption[_NONFUEL].freshWaterRob"
+   },
+   "no_target": [
+    "IMO0064",
+    "IMO0084",
+    "IMO0085",
+    "IMO0139",
+    "IMO0143",
+    "IMO0148",
+    "IMO0452",
+    "IMO0543",
+    "IMO0580"
+   ],
+   "skipped": []
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "event_key": "NOON_AT_SEA",
+   "body": {
+    "eventType": "EV16",
+    "reportDatetime": "2026-04-23T17:00:00.000Z",
+    "voyageLeg": "1",
+    "elapsedTime": 24,
+    "draughtForward": 11.55,
+    "draughtAft": 11.6,
+    "shipDraught": 11.58,
+    "courseOverGround": 310,
+    "speedOverGround": 11.958333333333334,
+    "distanceOverGround": 287,
+    "speedPropeller": 72,
+    "latitude": "10.44",
+    "longitude": "-86.601667",
+    "distanceToNextPort": 307,
+    "reportType": "1",
+    "weatherDetails": [
+     {
+      "seaHeight": 0.5,
+      "seaDirTrue": 350,
+      "windDirTrue": 350,
+      "windDirRelative": 20,
+      "windForce": 4,
+      "airTemperature": 30
+     }
+    ],
+    "fuelConsumption": [
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "MGO",
+      "fuelQuantityRob": 202.46,
+      "focFuelType": [
+       {
+        "focAuxiliaryBoiler": 0,
+        "focAuxiliaryEngine": 0.2,
+        "focMainEngine": 0,
+        "focOtherFuelConsumingDevices": 0
+       }
+      ]
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "VLSFO2020",
+      "fuelQuantityRob": 862.9,
+      "focFuelType": [
+       {
+        "focAuxiliaryBoiler": 0,
+        "focAuxiliaryEngine": 1.56,
+        "focMainEngine": 16.67,
+        "focOtherFuelConsumingDevices": 0
+       }
+      ]
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "_NONFUEL",
+      "freshWaterProduced": 0,
+      "cloRob": 20736,
+      "cloConsumption": 0,
+      "freshWaterConsumed": 0,
+      "freshWaterBunkered": 0,
+      "freshWaterRob": 0
+     }
+    ]
+   },
+   "provenance": {
+    "IMO0597": "PerformanceReport.eventType",
+    "IMO0603": "PerformanceReport.reportDatetime",
+    "IMO0605": "PerformanceReport.voyageLeg",
+    "IMO0600": "PerformanceReport.elapsedTime",
+    "IMO0621": "PerformanceReport.draughtForward",
+    "IMO0622": "PerformanceReport.draughtAft",
+    "IMO0357": "PerformanceReport.shipDraught",
+    "IMO0332": "PerformanceReport.courseOverGround",
+    "IMO0333": "PerformanceReport.speedOverGround",
+    "IMO0613": "PerformanceReport.distanceOverGround",
+    "IMO0617": "PerformanceReport.speedPropeller",
+    "IMO0601": "PerformanceReport.latitude",
+    "IMO0602": "PerformanceReport.longitude",
+    "IMO0615": "PerformanceReport.distanceToNextPort",
+    "IMO0632": "WeatherDetails.seaHeight",
+    "IMO0631": "WeatherDetails.seaDirTrue",
+    "IMO0627": "WeatherDetails.windDirTrue",
+    "IMO0626": "WeatherDetails.windDirRelative",
+    "IMO0625": "WeatherDetails.windForce",
+    "IMO0628": "WeatherDetails.airTemperature",
+    "IMO0673@MGO": "FuelConsumption[MGO].focFuelType[0].focAuxiliaryBoiler",
+    "IMO0893@MGO": "FuelConsumption[MGO].focFuelType[0].focAuxiliaryEngine",
+    "IMO0670@MGO": "FuelConsumption[MGO].focFuelType[0].focMainEngine",
+    "IMO0903@MGO": "FuelConsumption[MGO].focFuelType[0].focOtherFuelConsumingDevices",
+    "IMO0674@MGO": "FuelConsumption[MGO].fuelQuantityRob",
+    "IMO0673@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focAuxiliaryBoiler",
+    "IMO0893@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focAuxiliaryEngine",
+    "IMO0670@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focMainEngine",
+    "IMO0903@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focOtherFuelConsumingDevices",
+    "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0678": "FuelConsumption[_NONFUEL].cloConsumption",
+    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+    "IMO0645": "FuelConsumption[_NONFUEL].freshWaterRob"
+   },
+   "no_target": [
+    "IMO0064",
+    "IMO0084",
+    "IMO0085",
+    "IMO0139",
+    "IMO0143",
+    "IMO0148",
+    "IMO0452",
+    "IMO0543",
+    "IMO0580"
+   ],
+   "skipped": []
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "event_key": "NOON_AT_SEA",
+   "body": {
+    "eventType": "EV16",
+    "reportDatetime": "2026-04-24T17:00:00.000Z",
+    "voyageLeg": "1",
+    "elapsedTime": 24,
+    "draughtForward": 11.4,
+    "draughtAft": 11.4,
+    "shipDraught": 11.4,
+    "courseOverGround": 310,
+    "speedOverGround": 11.833333333333334,
+    "distanceOverGround": 284,
+    "speedPropeller": 72,
+    "latitude": "13.493333",
+    "longitude": "-90.293333",
+    "distanceToNextPort": 23,
+    "reportType": "1",
+    "weatherDetails": [
+     {
+      "seaHeight": 0.5,
+      "seaDirTrue": 290,
+      "windDirTrue": 290,
+      "windDirRelative": 305,
+      "windForce": 4,
+      "airTemperature": 28
+     }
+    ],
+    "fuelConsumption": [
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "MGO",
+      "fuelQuantityRob": 202.26,
+      "focFuelType": [
+       {
+        "focAuxiliaryBoiler": 0,
+        "focAuxiliaryEngine": 0.2,
+        "focMainEngine": 0,
+        "focOtherFuelConsumingDevices": 0
+       }
+      ]
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "VLSFO2020",
+      "fuelQuantityRob": 845.4,
+      "focFuelType": [
+       {
+        "focAuxiliaryBoiler": 0,
+        "focAuxiliaryEngine": 1.5,
+        "focMainEngine": 16,
+        "focOtherFuelConsumingDevices": 0
+       }
+      ]
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "_NONFUEL",
+      "freshWaterProduced": 0,
+      "cloRob": 20736,
+      "cloConsumption": 0,
+      "freshWaterConsumed": 0,
+      "freshWaterBunkered": 0,
+      "freshWaterRob": 0
+     }
+    ]
+   },
+   "provenance": {
+    "IMO0597": "PerformanceReport.eventType",
+    "IMO0603": "PerformanceReport.reportDatetime",
+    "IMO0605": "PerformanceReport.voyageLeg",
+    "IMO0600": "PerformanceReport.elapsedTime",
+    "IMO0621": "PerformanceReport.draughtForward",
+    "IMO0622": "PerformanceReport.draughtAft",
+    "IMO0357": "PerformanceReport.shipDraught",
+    "IMO0332": "PerformanceReport.courseOverGround",
+    "IMO0333": "PerformanceReport.speedOverGround",
+    "IMO0613": "PerformanceReport.distanceOverGround",
+    "IMO0617": "PerformanceReport.speedPropeller",
+    "IMO0601": "PerformanceReport.latitude",
+    "IMO0602": "PerformanceReport.longitude",
+    "IMO0615": "PerformanceReport.distanceToNextPort",
+    "IMO0632": "WeatherDetails.seaHeight",
+    "IMO0631": "WeatherDetails.seaDirTrue",
+    "IMO0627": "WeatherDetails.windDirTrue",
+    "IMO0626": "WeatherDetails.windDirRelative",
+    "IMO0625": "WeatherDetails.windForce",
+    "IMO0628": "WeatherDetails.airTemperature",
+    "IMO0673@MGO": "FuelConsumption[MGO].focFuelType[0].focAuxiliaryBoiler",
+    "IMO0893@MGO": "FuelConsumption[MGO].focFuelType[0].focAuxiliaryEngine",
+    "IMO0670@MGO": "FuelConsumption[MGO].focFuelType[0].focMainEngine",
+    "IMO0903@MGO": "FuelConsumption[MGO].focFuelType[0].focOtherFuelConsumingDevices",
+    "IMO0674@MGO": "FuelConsumption[MGO].fuelQuantityRob",
+    "IMO0673@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focAuxiliaryBoiler",
+    "IMO0893@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focAuxiliaryEngine",
+    "IMO0670@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focMainEngine",
+    "IMO0903@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focOtherFuelConsumingDevices",
+    "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0678": "FuelConsumption[_NONFUEL].cloConsumption",
+    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+    "IMO0645": "FuelConsumption[_NONFUEL].freshWaterRob"
+   },
+   "no_target": [
+    "IMO0064",
+    "IMO0084",
+    "IMO0085",
+    "IMO0139",
+    "IMO0143",
+    "IMO0148",
+    "IMO0452",
+    "IMO0543",
+    "IMO0580"
+   ],
+   "skipped": []
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "event_key": "ARRIVAL",
+   "body": {
+    "eventType": "EV01",
+    "voyageLeg": "1",
+    "elapsedTime": 4.5,
+    "draughtForward": 11.4,
+    "draughtAft": 11.4,
+    "shipDraught": 11.4,
+    "courseOverGround": 272,
+    "speedOverGround": 2.8,
+    "distanceOverGround": 12.6,
+    "speedPropeller": 23.26,
+    "latitude": "13.916667",
+    "longitude": "-90.783333",
+    "distanceToNextPort": -19.6,
+    "reportDatetime": "2026-04-25T01:00:00.000Z",
+    "reportType": "1",
+    "fuelConsumption": [
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "MGO",
+      "fuelQuantityRob": 202.26,
+      "focFuelType": [
+       {
+        "focAuxiliaryBoiler": 0,
+        "focAuxiliaryEngine": 0,
+        "focMainEngine": 0,
+        "focOtherFuelConsumingDevices": 0
+       }
+      ]
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "VLSFO2020",
+      "fuelQuantityRob": 841.9,
+      "focFuelType": [
+       {
+        "focAuxiliaryBoiler": 0.03,
+        "focAuxiliaryEngine": 0.59,
+        "focMainEngine": 1.08,
+        "focOtherFuelConsumingDevices": 0
+       }
+      ]
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "_NONFUEL",
+      "freshWaterProduced": 0,
+      "cloRob": 20726,
+      "cloConsumption": 10,
+      "freshWaterConsumed": 0,
+      "freshWaterBunkered": 0,
+      "freshWaterRob": 0
+     }
+    ]
+   },
+   "provenance": {
+    "IMO0597": "PerformanceReport.eventType",
+    "IMO0605": "PerformanceReport.voyageLeg",
+    "IMO0600": "PerformanceReport.elapsedTime",
+    "IMO0621": "PerformanceReport.draughtForward",
+    "IMO0622": "PerformanceReport.draughtAft",
+    "IMO0357": "PerformanceReport.shipDraught",
+    "IMO0332": "PerformanceReport.courseOverGround",
+    "IMO0333": "PerformanceReport.speedOverGround",
+    "IMO0613": "PerformanceReport.distanceOverGround",
+    "IMO0617": "PerformanceReport.speedPropeller",
+    "IMO0601": "PerformanceReport.latitude",
+    "IMO0602": "PerformanceReport.longitude",
+    "IMO0615": "PerformanceReport.distanceToNextPort",
+    "IMO0673@MGO": "FuelConsumption[MGO].focFuelType[0].focAuxiliaryBoiler",
+    "IMO0893@MGO": "FuelConsumption[MGO].focFuelType[0].focAuxiliaryEngine",
+    "IMO0670@MGO": "FuelConsumption[MGO].focFuelType[0].focMainEngine",
+    "IMO0903@MGO": "FuelConsumption[MGO].focFuelType[0].focOtherFuelConsumingDevices",
+    "IMO0674@MGO": "FuelConsumption[MGO].fuelQuantityRob",
+    "IMO0673@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focAuxiliaryBoiler",
+    "IMO0893@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focAuxiliaryEngine",
+    "IMO0670@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focMainEngine",
+    "IMO0903@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focOtherFuelConsumingDevices",
+    "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0678": "FuelConsumption[_NONFUEL].cloConsumption",
+    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+    "IMO0645": "FuelConsumption[_NONFUEL].freshWaterRob"
+   },
+   "no_target": [
+    "IMO0066",
+    "IMO0109",
+    "IMO0139",
+    "IMO0143",
+    "IMO0148",
+    "IMO0452",
+    "IMO0541",
+    "IMO0548",
+    "IMO0580"
+   ],
+   "skipped": [
+    {
+     "path": "/isEuPort",
+     "reason": "UNMAPPED"
+    }
+   ]
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-007",
+   "event_key": "CARGO_WORK",
+   "body": {
+    "eventType": "EV28",
+    "reportDatetime": "2026-04-29T09:50:00.000Z",
+    "voyageLeg": "1",
+    "elapsedTime": 15.833,
+    "draughtForward": 11.4,
+    "draughtAft": 11.4,
+    "shipDraught": 11.4,
+    "latitude": "13.916667",
+    "longitude": "-90.783333",
+    "reportType": "1",
+    "fuelConsumption": [
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "MGO",
+      "fuelQuantityRob": 201.46
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "VLSFO2020",
+      "fuelQuantityRob": 822.83
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "_NONFUEL",
+      "cloRob": 20726
+     }
+    ]
+   },
+   "provenance": {
+    "IMO0597": "PerformanceReport.eventType",
+    "IMO0603": "PerformanceReport.reportDatetime",
+    "IMO0605": "PerformanceReport.voyageLeg",
+    "IMO0600": "PerformanceReport.elapsedTime",
+    "IMO0621": "PerformanceReport.draughtForward",
+    "IMO0622": "PerformanceReport.draughtAft",
+    "IMO0357": "PerformanceReport.shipDraught",
+    "IMO0601": "PerformanceReport.latitude",
+    "IMO0602": "PerformanceReport.longitude",
+    "IMO0674@MGO": "FuelConsumption[MGO].fuelQuantityRob",
+    "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob"
+   },
+   "no_target": [
+    "IMO0139",
+    "IMO0143",
+    "IMO0148",
+    "IMO0580"
+   ],
+   "skipped": []
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "event_key": "DEPARTURE_SBY",
+   "body": {
+    "eventType": "EV02",
+    "voyageLeg": "2",
+    "elapsedTime": 2.867,
+    "draughtForward": 4.65,
+    "draughtAft": 7.66,
+    "shipDraught": 6.16,
+    "latitude": "13.916667",
+    "longitude": "-90.783333",
+    "distanceToNextPort": 1842.87,
+    "reportDatetime": "2026-04-29T12:42:00.000Z",
+    "reportType": "1",
+    "fuelConsumption": [
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "MGO",
+      "fuelQuantityRob": 201.36,
+      "focFuelType": [
+       {
+        "focAuxiliaryBoiler": 0,
+        "focAuxiliaryEngine": 0.1,
+        "focMainEngine": 0,
+        "focOtherFuelConsumingDevices": 0
+       }
+      ]
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "VLSFO2020",
+      "fuelQuantityRob": 820.48,
+      "focFuelType": [
+       {
+        "focAuxiliaryBoiler": 0,
+        "focAuxiliaryEngine": 0.77,
+        "focMainEngine": 1.58,
+        "focOtherFuelConsumingDevices": 0
+       }
+      ]
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "_NONFUEL",
+      "freshWaterProduced": 0,
+      "cloRob": 20726,
+      "cloConsumption": 0,
+      "freshWaterConsumed": 0,
+      "freshWaterBunkered": 0,
+      "freshWaterRob": 0
+     }
+    ]
+   },
+   "provenance": {
+    "IMO0597": "PerformanceReport.eventType",
+    "IMO0605": "PerformanceReport.voyageLeg",
+    "IMO0600": "PerformanceReport.elapsedTime",
+    "IMO0621": "PerformanceReport.draughtForward",
+    "IMO0622": "PerformanceReport.draughtAft",
+    "IMO0357": "PerformanceReport.shipDraught",
+    "IMO0601": "PerformanceReport.latitude",
+    "IMO0602": "PerformanceReport.longitude",
+    "IMO0615": "PerformanceReport.distanceToNextPort",
+    "IMO0673@MGO": "FuelConsumption[MGO].focFuelType[0].focAuxiliaryBoiler",
+    "IMO0893@MGO": "FuelConsumption[MGO].focFuelType[0].focAuxiliaryEngine",
+    "IMO0670@MGO": "FuelConsumption[MGO].focFuelType[0].focMainEngine",
+    "IMO0903@MGO": "FuelConsumption[MGO].focFuelType[0].focOtherFuelConsumingDevices",
+    "IMO0674@MGO": "FuelConsumption[MGO].fuelQuantityRob",
+    "IMO0673@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focAuxiliaryBoiler",
+    "IMO0893@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focAuxiliaryEngine",
+    "IMO0670@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focMainEngine",
+    "IMO0903@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focOtherFuelConsumingDevices",
+    "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0678": "FuelConsumption[_NONFUEL].cloConsumption",
+    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+    "IMO0645": "FuelConsumption[_NONFUEL].freshWaterRob"
+   },
+   "no_target": [
+    "IMO0064",
+    "IMO0084",
+    "IMO0085",
+    "IMO0112",
+    "IMO0139",
+    "IMO0143",
+    "IMO0148",
+    "IMO0452",
+    "IMO0543",
+    "IMO0580"
+   ],
+   "skipped": [
+    {
+     "path": "/isEuPort",
+     "reason": "UNMAPPED"
+    }
+   ]
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "event_key": "RUP",
+   "body": {
+    "eventType": "EV10",
+    "reportDatetime": "2026-04-29T13:30:00.000Z",
+    "voyageLeg": "2",
+    "elapsedTime": 0.8,
+    "courseOverGround": 160,
+    "speedOverGround": 6.25,
+    "distanceOverGround": 5,
+    "speedPropeller": 26.06,
+    "latitude": "13.851667",
+    "longitude": "-90.765",
+    "reportType": "1",
+    "fuelConsumption": [
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "MGO",
+      "fuelQuantityRob": 201.36,
+      "focFuelType": [
+       {
+        "focAuxiliaryBoiler": 0,
+        "focAuxiliaryEngine": 0,
+        "focMainEngine": 0,
+        "focOtherFuelConsumingDevices": 0
+       }
+      ]
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "VLSFO2020",
+      "fuelQuantityRob": 820.05,
+      "focFuelType": [
+       {
+        "focAuxiliaryBoiler": 0,
+        "focAuxiliaryEngine": 0.1,
+        "focMainEngine": 0.33,
+        "focOtherFuelConsumingDevices": 0
+       }
+      ]
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "_NONFUEL",
+      "freshWaterProduced": 0,
+      "cloRob": 20724,
+      "cloConsumption": 2,
+      "freshWaterConsumed": 0,
+      "freshWaterBunkered": 0,
+      "freshWaterRob": 0
+     }
+    ]
+   },
+   "provenance": {
+    "IMO0597": "PerformanceReport.eventType",
+    "IMO0603": "PerformanceReport.reportDatetime",
+    "IMO0605": "PerformanceReport.voyageLeg",
+    "IMO0600": "PerformanceReport.elapsedTime",
+    "IMO0332": "PerformanceReport.courseOverGround",
+    "IMO0333": "PerformanceReport.speedOverGround",
+    "IMO0613": "PerformanceReport.distanceOverGround",
+    "IMO0617": "PerformanceReport.speedPropeller",
+    "IMO0601": "PerformanceReport.latitude",
+    "IMO0602": "PerformanceReport.longitude",
+    "IMO0673@MGO": "FuelConsumption[MGO].focFuelType[0].focAuxiliaryBoiler",
+    "IMO0893@MGO": "FuelConsumption[MGO].focFuelType[0].focAuxiliaryEngine",
+    "IMO0670@MGO": "FuelConsumption[MGO].focFuelType[0].focMainEngine",
+    "IMO0903@MGO": "FuelConsumption[MGO].focFuelType[0].focOtherFuelConsumingDevices",
+    "IMO0674@MGO": "FuelConsumption[MGO].fuelQuantityRob",
+    "IMO0673@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focAuxiliaryBoiler",
+    "IMO0893@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focAuxiliaryEngine",
+    "IMO0670@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focMainEngine",
+    "IMO0903@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focOtherFuelConsumingDevices",
+    "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0678": "FuelConsumption[_NONFUEL].cloConsumption",
+    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+    "IMO0645": "FuelConsumption[_NONFUEL].freshWaterRob"
+   },
+   "no_target": [
+    "IMO0139",
+    "IMO0143",
+    "IMO0148",
+    "IMO0580"
+   ],
+   "skipped": []
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "event_key": "NOON_AT_SEA",
+   "body": {
+    "eventType": "EV16",
+    "reportDatetime": "2026-04-29T18:00:00.000Z",
+    "voyageLeg": "2",
+    "elapsedTime": 4.5,
+    "draughtForward": 4.65,
+    "draughtAft": 7.66,
+    "shipDraught": 6.16,
+    "courseOverGround": 155,
+    "speedOverGround": 12.222222222222221,
+    "distanceOverGround": 55,
+    "speedPropeller": 68,
+    "latitude": "13.023333",
+    "longitude": "-90.341667",
+    "distanceToNextPort": 1782.87,
+    "reportType": "1",
+    "weatherDetails": [
+     {
+      "seaHeight": 0.8,
+      "seaDirTrue": 120,
+      "windDirTrue": 120,
+      "windDirRelative": 130,
+      "windForce": 4,
+      "airTemperature": 32
+     }
+    ],
+    "fuelConsumption": [
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "MGO",
+      "fuelQuantityRob": 201.26,
+      "focFuelType": [
+       {
+        "focAuxiliaryBoiler": 0,
+        "focAuxiliaryEngine": 0.1,
+        "focMainEngine": 0,
+        "focOtherFuelConsumingDevices": 0
+       }
+      ]
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "VLSFO2020",
+      "fuelQuantityRob": 816.96,
+      "focFuelType": [
+       {
+        "focAuxiliaryBoiler": 0,
+        "focAuxiliaryEngine": 0.28,
+        "focMainEngine": 2.81,
+        "focOtherFuelConsumingDevices": 0
+       }
+      ]
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "_NONFUEL",
+      "freshWaterProduced": 0,
+      "cloRob": 20702,
+      "cloConsumption": 22,
+      "freshWaterConsumed": 0,
+      "freshWaterBunkered": 0,
+      "freshWaterRob": 0
+     }
+    ]
+   },
+   "provenance": {
+    "IMO0597": "PerformanceReport.eventType",
+    "IMO0603": "PerformanceReport.reportDatetime",
+    "IMO0605": "PerformanceReport.voyageLeg",
+    "IMO0600": "PerformanceReport.elapsedTime",
+    "IMO0621": "PerformanceReport.draughtForward",
+    "IMO0622": "PerformanceReport.draughtAft",
+    "IMO0357": "PerformanceReport.shipDraught",
+    "IMO0332": "PerformanceReport.courseOverGround",
+    "IMO0333": "PerformanceReport.speedOverGround",
+    "IMO0613": "PerformanceReport.distanceOverGround",
+    "IMO0617": "PerformanceReport.speedPropeller",
+    "IMO0601": "PerformanceReport.latitude",
+    "IMO0602": "PerformanceReport.longitude",
+    "IMO0615": "PerformanceReport.distanceToNextPort",
+    "IMO0632": "WeatherDetails.seaHeight",
+    "IMO0631": "WeatherDetails.seaDirTrue",
+    "IMO0627": "WeatherDetails.windDirTrue",
+    "IMO0626": "WeatherDetails.windDirRelative",
+    "IMO0625": "WeatherDetails.windForce",
+    "IMO0628": "WeatherDetails.airTemperature",
+    "IMO0673@MGO": "FuelConsumption[MGO].focFuelType[0].focAuxiliaryBoiler",
+    "IMO0893@MGO": "FuelConsumption[MGO].focFuelType[0].focAuxiliaryEngine",
+    "IMO0670@MGO": "FuelConsumption[MGO].focFuelType[0].focMainEngine",
+    "IMO0903@MGO": "FuelConsumption[MGO].focFuelType[0].focOtherFuelConsumingDevices",
+    "IMO0674@MGO": "FuelConsumption[MGO].fuelQuantityRob",
+    "IMO0673@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focAuxiliaryBoiler",
+    "IMO0893@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focAuxiliaryEngine",
+    "IMO0670@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focMainEngine",
+    "IMO0903@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focOtherFuelConsumingDevices",
+    "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0678": "FuelConsumption[_NONFUEL].cloConsumption",
+    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+    "IMO0645": "FuelConsumption[_NONFUEL].freshWaterRob"
+   },
+   "no_target": [
+    "IMO0064",
+    "IMO0084",
+    "IMO0085",
+    "IMO0139",
+    "IMO0143",
+    "IMO0148",
+    "IMO0452",
+    "IMO0543",
+    "IMO0580"
+   ],
+   "skipped": []
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "event_key": "NOON_AT_SEA",
+   "body": {
+    "eventType": "EV16",
+    "reportDatetime": "2026-04-30T18:00:00.000Z",
+    "voyageLeg": "2",
+    "elapsedTime": 24,
+    "draughtForward": 4.65,
+    "draughtAft": 7.66,
+    "shipDraught": 6.16,
+    "courseOverGround": 155,
+    "speedOverGround": 11.541666666666666,
+    "distanceOverGround": 277,
+    "speedPropeller": 68,
+    "latitude": "8.83",
+    "longitude": "-88.36",
+    "distanceToNextPort": 1505.87,
+    "reportType": "1",
+    "weatherDetails": [
+     {
+      "seaHeight": 0.5,
+      "seaDirTrue": 295,
+      "windDirTrue": 295,
+      "windDirRelative": 158,
+      "windForce": 3,
+      "airTemperature": 32
+     }
+    ],
+    "fuelConsumption": [
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "MGO",
+      "fuelQuantityRob": 201.06,
+      "focFuelType": [
+       {
+        "focAuxiliaryBoiler": 0,
+        "focAuxiliaryEngine": 0.2,
+        "focMainEngine": 0,
+        "focOtherFuelConsumingDevices": 0
+       }
+      ]
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "VLSFO2020",
+      "fuelQuantityRob": 800.96,
+      "focFuelType": [
+       {
+        "focAuxiliaryBoiler": 0,
+        "focAuxiliaryEngine": 1.5,
+        "focMainEngine": 14.5,
+        "focOtherFuelConsumingDevices": 0
+       }
+      ]
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "_NONFUEL",
+      "freshWaterProduced": 16,
+      "cloRob": 20587,
+      "cloConsumption": 115,
+      "freshWaterConsumed": 5,
+      "freshWaterBunkered": 0,
+      "freshWaterRob": 11
+     }
+    ]
+   },
+   "provenance": {
+    "IMO0597": "PerformanceReport.eventType",
+    "IMO0603": "PerformanceReport.reportDatetime",
+    "IMO0605": "PerformanceReport.voyageLeg",
+    "IMO0600": "PerformanceReport.elapsedTime",
+    "IMO0621": "PerformanceReport.draughtForward",
+    "IMO0622": "PerformanceReport.draughtAft",
+    "IMO0357": "PerformanceReport.shipDraught",
+    "IMO0332": "PerformanceReport.courseOverGround",
+    "IMO0333": "PerformanceReport.speedOverGround",
+    "IMO0613": "PerformanceReport.distanceOverGround",
+    "IMO0617": "PerformanceReport.speedPropeller",
+    "IMO0601": "PerformanceReport.latitude",
+    "IMO0602": "PerformanceReport.longitude",
+    "IMO0615": "PerformanceReport.distanceToNextPort",
+    "IMO0632": "WeatherDetails.seaHeight",
+    "IMO0631": "WeatherDetails.seaDirTrue",
+    "IMO0627": "WeatherDetails.windDirTrue",
+    "IMO0626": "WeatherDetails.windDirRelative",
+    "IMO0625": "WeatherDetails.windForce",
+    "IMO0628": "WeatherDetails.airTemperature",
+    "IMO0673@MGO": "FuelConsumption[MGO].focFuelType[0].focAuxiliaryBoiler",
+    "IMO0893@MGO": "FuelConsumption[MGO].focFuelType[0].focAuxiliaryEngine",
+    "IMO0670@MGO": "FuelConsumption[MGO].focFuelType[0].focMainEngine",
+    "IMO0903@MGO": "FuelConsumption[MGO].focFuelType[0].focOtherFuelConsumingDevices",
+    "IMO0674@MGO": "FuelConsumption[MGO].fuelQuantityRob",
+    "IMO0673@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focAuxiliaryBoiler",
+    "IMO0893@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focAuxiliaryEngine",
+    "IMO0670@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focMainEngine",
+    "IMO0903@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focOtherFuelConsumingDevices",
+    "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0678": "FuelConsumption[_NONFUEL].cloConsumption",
+    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+    "IMO0645": "FuelConsumption[_NONFUEL].freshWaterRob"
+   },
+   "no_target": [
+    "IMO0064",
+    "IMO0084",
+    "IMO0085",
+    "IMO0139",
+    "IMO0143",
+    "IMO0148",
+    "IMO0452",
+    "IMO0543",
+    "IMO0580"
+   ],
+   "skipped": []
+  }
+ ],
+ "gaps": {
+  "G-1": "fuelType int32 vs FAL50 code list string → fuelTypeTradeName WORKAROUND",
+  "G-2": "담수·CLO 를 _NONFUEL 행에 저장"
+ }
+}

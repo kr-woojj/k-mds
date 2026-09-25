@@ -240,3 +240,19 @@
 - W5 결정: Route 는 노트북 로컬 IP(유선 우선). 진해 현장에서 검증.
 - 미결: TTA 의 25023 적용 판(DIS 2014 vs IS 2016) 확인(W7), 랩오투원 데이터 보강(W6), isEuPort 매핑 규칙(코드북 boolean vs UN/LOCODE 관할), Ship-ODMS fuelType 형(G-1)·seaHeight 형(G-5) 스키마 결정.
 세션 S09 종료 상태: DONE (S-1-1 로컬 시험 PASS, 현장 T2/T3 및 TTA 합의 대기)
+
+---
+
+## 세션 S10 — 2026-09-26 (n8n 자동화)
+- 사용자 요청: n8n MCP 로 S-1-1 실증 자동화 구성, GHG AI Agent docker 화, LLM = Gemini(추후 Open 모델), 실행 후 오류 분석, 평가단 열람 가능한 결과 제시.
+- 구성: verification/automation/{compose.yaml, Dockerfile.harness, harness.py, README.md}. 컨테이너 kmds-ghg-agent(:8001, LLM_PROVIDER=gemini → OpenAI 호환 엔드포인트, 모델 gemini-2.5-flash, GEMINI_API_KEY 는 .env.master 에서 이름으로만 주입)·kmds-s11-harness(:8090, run_s11.py 단계 재사용, ship-odms 네트워크). n8n 워크플로 "K-MDS S-1-1 실증 자동화" (ID Pycuq2NaVtsIv3xJ, 웹훅 POST /webhook/kmds-s11, 노드 10: T0·T2 → 이벤트 분리 → T3~T5 에이전트 ingress 이벤트별 호출 → 취합 → T5 수집 → T6 → T7 → T8 → 응답).
+- 코드 수정: (a) 에이전트 결함 — build_pipeline 이 make_llm_client 를 호출하지 않아 LLM_PROVIDER 와 무관하게 항상 mock 이던 문제 수정(orchestrator.py). (b) llm/client.py 에 gemini provider(OpenAI 호환) 추가. (c) run_s11.py 를 prepare_events/summarize_agent_run 으로 분리, T2 자격증명은 env 로도 수용, git 부재 허용. 에이전트 ruff/mypy 0, pytest 122 passed.
+- 실행 결과(증적 verification/evidence/C02/s11/run_03~06, n8n 실행 3~6):
+  - run_03: 파이프라인 전 단계 완료, 하네스 보고서 생성기 결함(A_mismatch 정수 len) → n8n 실행 3 오류. 수정 후 재판정 PARTIAL.
+  - run_04: **오케스트레이터 운용 오류** — 실행 중 호스트에서 pytest 를 돌려 var/registry.sqlite3 잠금 경합 → SKILL_EXECUTION_ERROR 10건 → fail-closed 로 unmapped 증가(M2 0.9394). NOTE-interference.md 기록, 결과 미수정. 운용 규칙 README 추가.
+  - run_05·run_06(무간섭): M2 0.9945 / M3 1.0 / M4 0.9854, HTTP 오류 0, 무결성 ok, **재현성 run_05≡run_06**. Gemini 실호출 4건/run(isEuPort 후보 제안, 후보 2건, skill 검증 미통과 → UNMAPPED 유지 = 설계대로). 측정치는 mock LLM 의 run_01·02 와 동일(결정적 매핑이 지배).
+  - T2 IDS 전달: 자격증명 주입으로 실제 수행 — Consumer 아티팩트 수신 200, 274 B, events=[] → 원본(14,101 B)과 DIFFERENT(F-22 Provider 이벤트 0건 지속). 규칙 R-T2 FAIL → 종합 판정 **PARTIAL**. 나머지 6개 규칙 PASS.
+- 평가단 열람: n8n UI(http://localhost:5678, Executions 노드별 입·출력) + 보고서 http://localhost:8090/runs/run_06/report (REPORT.md 동일) + Ship-ODMS UI(:3030) + 증적 sha256.
+- 표준 근거: ISO/IEC DIS 25023:2014(E) (data/raw/ISO25000) 측정 ID 인용 유지. 그 외 표준 조항 인용 없음.
+- 미결(사람 확인 필요): 랩오투원 Provider 데이터 복원(F-22) 후 T2 PASS 재실행; W7 TTA 25023 판; G-1/G-5·isEuPort; validator SQLite busy_timeout 권고(참조 저장소 수정 승인 필요).
+세션 S10 종료 상태: DONE (자동화 가동, run_05·06 PARTIAL — 외부 F-22 만 미충족)

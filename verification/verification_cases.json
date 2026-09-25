@@ -276,6 +276,42 @@
           ],
           "result": "PASS (T2 NOT_TESTED), 재현성 run_01 과 M2·M3·M4 동일",
           "notes": ""
+        },
+        {
+          "run_no": "s11/run_03",
+          "timestamp": "2026-09-26",
+          "evidence_paths": [
+            "verification/evidence/C02/s11/run_03/"
+          ],
+          "result": "PARTIAL (T2 DIFFERENT: Provider 이벤트 0건 F-22): M2 0.9945, M3 1.0, M4 0.9854",
+          "notes": "n8n 자동화 첫 실행(실행 3). 하네스 보고서 결함으로 n8n 실행은 오류, 수정 후 재판정. LLM gemini-2.5-flash."
+        },
+        {
+          "run_no": "s11/run_04",
+          "timestamp": "2026-09-26",
+          "evidence_paths": [
+            "verification/evidence/C02/s11/run_04/"
+          ],
+          "result": "PARTIAL (오염): M2 0.9394 — 호스트 pytest 와 registry.sqlite3 잠금 경합으로 SKILL_EXECUTION_ERROR",
+          "notes": "시험 환경 운용 오류. NOTE-interference.md. 결과 미수정."
+        },
+        {
+          "run_no": "s11/run_05",
+          "timestamp": "2026-09-26",
+          "evidence_paths": [
+            "verification/evidence/C02/s11/run_05/"
+          ],
+          "result": "PARTIAL (T2 DIFFERENT 만 미충족): M2 0.9945, M3 1.0, M4 0.9854",
+          "notes": "n8n 실행 5, 무간섭. R-T8 은 직전 run_04 오염으로 false."
+        },
+        {
+          "run_no": "s11/run_06",
+          "timestamp": "2026-09-26",
+          "evidence_paths": [
+            "verification/evidence/C02/s11/run_06/"
+          ],
+          "result": "PARTIAL (T2 DIFFERENT 만 미충족): M2 0.9945, M3 1.0, M4 0.9854, 재현성 run_05 와 동일",
+          "notes": "n8n 실행 6. 보고서 http://localhost:8090/runs/run_06/report"
         }
       ],
       "owner_confirmed_by": "우정재(연구책임자, 2026-09-12)",
@@ -448,7 +484,8 @@
         "D5 DAQ Logger(ISO 19848) 검증 규칙 정의 여부 — 현재 NOT_TESTED",
         "W7 TTA 25023 적용 판(DIS 2014 vs IS 2016) 확인 및 증빙 패키지 형식 합의",
         "G-1/G-5 Ship-ODMS 스키마 형(fuelType int32, seaHeight int) 수정 여부",
-        "isEuPort 매핑 규칙(코드북 boolean → IMO0856/0857 UN/LOCODE 관할)"
+        "isEuPort 매핑 규칙(코드북 boolean → IMO0856/0857 UN/LOCODE 관할)",
+        "F-22 랩오투원 Provider 이벤트 복원 후 T2 PASS 재실행(자동화 run) — 현재 종합 PARTIAL 의 유일 원인"
       ],
       "s11_scope": {
         "decided": "2026-09-26",
@@ -459,7 +496,15 @@
           "S-2 RIMS 포트콜",
           "S-3 KLNET MSW",
           "BLUEONE 경유 등록"
-        ]
+        ],
+        "automation": {
+          "orchestrator": "n8n",
+          "workflow_id": "Pycuq2NaVtsIv3xJ",
+          "webhook": "POST /webhook/kmds-s11",
+          "stack": "verification/automation/compose.yaml",
+          "llm": "gemini-2.5-flash (OpenAI 호환)",
+          "decided": "2026-09-26"
+        }
       }
     },
     {

@@ -1,0 +1,2335 @@
+{
+  "contract_status": "PROVISIONAL",
+  "correlation_id": "S11-RUN_03-LAB021-NOON-00000009-010",
+  "payload": {
+    "contract_status": "PROVISIONAL",
+    "data_elements": [
+      {
+        "imo_data_element_name": "Date and time of arrival - estimated",
+        "imo_data_number": "IMO0064",
+        "source_field": "IMO0064",
+        "unit": null,
+        "value": "2026-05-11T16:48:00.000Z"
+      },
+      {
+        "imo_data_element_name": "Next port of call, coded",
+        "imo_data_number": "IMO0084",
+        "source_field": "IMO0084",
+        "unit": null,
+        "value": "PEPLO"
+      },
+      {
+        "imo_data_element_name": "Next port of call name",
+        "imo_data_number": "IMO0085",
+        "source_field": "IMO0085",
+        "unit": null,
+        "value": "PUNTA LOBITOS"
+      },
+      {
+        "imo_data_element_name": "Ship call sign",
+        "imo_data_number": "IMO0136",
+        "source_field": "IMO0136",
+        "unit": null,
+        "value": "TBD09"
+      },
+      {
+        "imo_data_element_name": "Ship flag State, coded",
+        "imo_data_number": "IMO0138",
+        "source_field": "IMO0138",
+        "unit": null,
+        "value": null
+      },
+      {
+        "imo_data_element_name": "Ship gross tonnage",
+        "imo_data_number": "IMO0139",
+        "source_field": "IMO0139",
+        "unit": null,
+        "value": null
+      },
+      {
+        "imo_data_element_name": "Ship IMO number",
+        "imo_data_number": "IMO0140",
+        "source_field": "IMO0140",
+        "unit": null,
+        "value": "00000009"
+      },
+      {
+        "imo_data_element_name": "Ship name",
+        "imo_data_number": "IMO0142",
+        "source_field": "IMO0142",
+        "unit": null,
+        "value": "TEST_BULK_DIESEL_09"
+      },
+      {
+        "imo_data_element_name": "Ship net tonnage",
+        "imo_data_number": "IMO0143",
+        "source_field": "IMO0143",
+        "unit": null,
+        "value": null
+      },
+      {
+        "imo_data_element_name": "Ship registry port name",
+        "imo_data_number": "IMO0148",
+        "source_field": "IMO0148",
+        "unit": null,
+        "value": null
+      },
+      {
+        "imo_data_element_name": "Ship type, coded",
+        "imo_data_number": "IMO0160",
+        "source_field": "IMO0160",
+        "unit": null,
+        "value": "NONE"
+      },
+      {
+        "imo_data_element_name": "Voyage number",
+        "imo_data_number": "IMO0191",
+        "source_field": "IMO0191",
+        "unit": null,
+        "value": "1"
+      },
+      {
+        "imo_data_element_name": "Ship MMSI number",
+        "imo_data_number": "IMO0326",
+        "source_field": "IMO0326",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Course over ground",
+        "imo_data_number": "IMO0332",
+        "source_field": "IMO0332",
+        "unit": null,
+        "value": 155
+      },
+      {
+        "imo_data_element_name": "Speed over ground",
+        "imo_data_number": "IMO0333",
+        "source_field": "IMO0333",
+        "unit": null,
+        "value": 12.222222222222221
+      },
+      {
+        "imo_data_element_name": "Ship draught",
+        "imo_data_number": "IMO0357",
+        "source_field": "IMO0357",
+        "unit": null,
+        "value": 6.16
+      },
+      {
+        "imo_data_element_name": "Total ballast water on board",
+        "imo_data_number": "IMO0452",
+        "source_field": "IMO0452",
+        "unit": null,
+        "value": 16265.7
+      },
+      {
+        "imo_data_element_name": "Date and time to location in port - planned",
+        "imo_data_number": "IMO0543",
+        "source_field": "IMO0543",
+        "unit": null,
+        "value": "2026-05-11T11:48:00.000"
+      },
+      {
+        "imo_data_element_name": "Master given name",
+        "imo_data_number": "IMO0580",
+        "source_field": "IMO0580",
+        "unit": null,
+        "value": null
+      },
+      {
+        "imo_data_element_name": "Event type, coded",
+        "imo_data_number": "IMO0597",
+        "source_field": "IMO0597",
+        "unit": null,
+        "value": "EV16"
+      },
+      {
+        "imo_data_element_name": "Elapsed time",
+        "imo_data_number": "IMO0600",
+        "source_field": "IMO0600",
+        "unit": null,
+        "value": 4.5
+      },
+      {
+        "imo_data_element_name": "Ship position when reporting, latitude",
+        "imo_data_number": "IMO0601",
+        "source_field": "IMO0601",
+        "unit": null,
+        "value": "13.023333"
+      },
+      {
+        "imo_data_element_name": "Ship position when reporting, longitude",
+        "imo_data_number": "IMO0602",
+        "source_field": "IMO0602",
+        "unit": null,
+        "value": "-90.341667"
+      },
+      {
+        "imo_data_element_name": "Ship reporting date time",
+        "imo_data_number": "IMO0603",
+        "source_field": "IMO0603",
+        "unit": null,
+        "value": "2026-04-29T18:00:00.000Z"
+      },
+      {
+        "imo_data_element_name": "Voyage leg identifier",
+        "imo_data_number": "IMO0605",
+        "source_field": "IMO0605",
+        "unit": null,
+        "value": "2"
+      },
+      {
+        "imo_data_element_name": "Distance over ground",
+        "imo_data_number": "IMO0613",
+        "source_field": "IMO0613",
+        "unit": null,
+        "value": 55
+      },
+      {
+        "imo_data_element_name": "Distance to next port",
+        "imo_data_number": "IMO0615",
+        "source_field": "IMO0615",
+        "unit": null,
+        "value": 1782.87
+      },
+      {
+        "imo_data_element_name": "Speed propeller",
+        "imo_data_number": "IMO0617",
+        "source_field": "IMO0617",
+        "unit": null,
+        "value": 68
+      },
+      {
+        "imo_data_element_name": "Draught forward",
+        "imo_data_number": "IMO0621",
+        "source_field": "IMO0621",
+        "unit": null,
+        "value": 4.65
+      },
+      {
+        "imo_data_element_name": "Draught aft",
+        "imo_data_number": "IMO0622",
+        "source_field": "IMO0622",
+        "unit": null,
+        "value": 7.66
+      },
+      {
+        "imo_data_element_name": "Wind force",
+        "imo_data_number": "IMO0625",
+        "source_field": "IMO0625",
+        "unit": null,
+        "value": 4
+      },
+      {
+        "imo_data_element_name": "Wind direction, estimated, relative",
+        "imo_data_number": "IMO0626",
+        "source_field": "IMO0626",
+        "unit": null,
+        "value": 130
+      },
+      {
+        "imo_data_element_name": "Wind direction, estimated, true",
+        "imo_data_number": "IMO0627",
+        "source_field": "IMO0627",
+        "unit": null,
+        "value": 120
+      },
+      {
+        "imo_data_element_name": "Air temperature",
+        "imo_data_number": "IMO0628",
+        "source_field": "IMO0628",
+        "unit": null,
+        "value": 32
+      },
+      {
+        "imo_data_element_name": "Sea direction, true",
+        "imo_data_number": "IMO0631",
+        "source_field": "IMO0631",
+        "unit": null,
+        "value": 120
+      },
+      {
+        "imo_data_element_name": "Sea height",
+        "imo_data_number": "IMO0632",
+        "source_field": "IMO0632",
+        "unit": null,
+        "value": 0.8
+      },
+      {
+        "imo_data_element_name": "Fresh water bunkered",
+        "imo_data_number": "IMO0639",
+        "source_field": "IMO0639",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fresh water produced",
+        "imo_data_number": "IMO0640",
+        "source_field": "IMO0640",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fresh water consumed",
+        "imo_data_number": "IMO0641",
+        "source_field": "IMO0641",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fresh water remaining onboard",
+        "imo_data_number": "IMO0645",
+        "source_field": "IMO0645",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Main Engine",
+        "imo_data_number": "IMO0670",
+        "source_field": "IMO0670",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Main Engine",
+        "imo_data_number": "IMO0670",
+        "source_field": "IMO0670",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Main Engine",
+        "imo_data_number": "IMO0670",
+        "source_field": "IMO0670",
+        "unit": null,
+        "value": 2.81
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Main Engine",
+        "imo_data_number": "IMO0670",
+        "source_field": "IMO0670",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Main Engine",
+        "imo_data_number": "IMO0670",
+        "source_field": "IMO0670",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Main Engine",
+        "imo_data_number": "IMO0670",
+        "source_field": "IMO0670",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Auxiliary Boiler",
+        "imo_data_number": "IMO0673",
+        "source_field": "IMO0673",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Auxiliary Boiler",
+        "imo_data_number": "IMO0673",
+        "source_field": "IMO0673",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Auxiliary Boiler",
+        "imo_data_number": "IMO0673",
+        "source_field": "IMO0673",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Auxiliary Boiler",
+        "imo_data_number": "IMO0673",
+        "source_field": "IMO0673",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Auxiliary Boiler",
+        "imo_data_number": "IMO0673",
+        "source_field": "IMO0673",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Auxiliary Boiler",
+        "imo_data_number": "IMO0673",
+        "source_field": "IMO0673",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel quantity remaining onboard",
+        "imo_data_number": "IMO0674",
+        "source_field": "IMO0674",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel quantity remaining onboard",
+        "imo_data_number": "IMO0674",
+        "source_field": "IMO0674",
+        "unit": null,
+        "value": 816.96
+      },
+      {
+        "imo_data_element_name": "Fuel quantity remaining onboard",
+        "imo_data_number": "IMO0674",
+        "source_field": "IMO0674",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel quantity remaining onboard",
+        "imo_data_number": "IMO0674",
+        "source_field": "IMO0674",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel quantity remaining onboard",
+        "imo_data_number": "IMO0674",
+        "source_field": "IMO0674",
+        "unit": null,
+        "value": 201.26
+      },
+      {
+        "imo_data_element_name": "Fuel quantity remaining onboard",
+        "imo_data_number": "IMO0674",
+        "source_field": "IMO0674",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Cylinder lube oil remaining onboard",
+        "imo_data_number": "IMO0676",
+        "source_field": "IMO0676",
+        "unit": null,
+        "value": 20702
+      },
+      {
+        "imo_data_element_name": "Cylinder lube oil, consumption",
+        "imo_data_number": "IMO0678",
+        "source_field": "IMO0678",
+        "unit": null,
+        "value": 22
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Auxiliary Engine",
+        "imo_data_number": "IMO0893",
+        "source_field": "IMO0893",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Auxiliary Engine",
+        "imo_data_number": "IMO0893",
+        "source_field": "IMO0893",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Auxiliary Engine",
+        "imo_data_number": "IMO0893",
+        "source_field": "IMO0893",
+        "unit": null,
+        "value": 0.28
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Auxiliary Engine",
+        "imo_data_number": "IMO0893",
+        "source_field": "IMO0893",
+        "unit": null,
+        "value": 0.1
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Auxiliary Engine",
+        "imo_data_number": "IMO0893",
+        "source_field": "IMO0893",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Auxiliary Engine",
+        "imo_data_number": "IMO0893",
+        "source_field": "IMO0893",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Other Fuel Consuming Devices",
+        "imo_data_number": "IMO0903",
+        "source_field": "IMO0903",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Other Fuel Consuming Devices",
+        "imo_data_number": "IMO0903",
+        "source_field": "IMO0903",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Other Fuel Consuming Devices",
+        "imo_data_number": "IMO0903",
+        "source_field": "IMO0903",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Other Fuel Consuming Devices",
+        "imo_data_number": "IMO0903",
+        "source_field": "IMO0903",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Other Fuel Consuming Devices",
+        "imo_data_number": "IMO0903",
+        "source_field": "IMO0903",
+        "unit": null,
+        "value": 0
+      },
+      {
+        "imo_data_element_name": "Fuel consumed, by Other Fuel Consuming Devices",
+        "imo_data_number": "IMO0903",
+        "source_field": "IMO0903",
+        "unit": null,
+        "value": 0
+      }
+    ],
+    "profile": "NOON_REPORT",
+    "reference_model_version": "FAL50",
+    "voyage": "1"
+  },
+  "profile": "NOON_REPORT",
+  "provenance": [
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0136",
+      "original_unit": null,
+      "source_path": "/IMO0136",
+      "source_value_hash": "d54ab16bdedac255",
+      "target_path": "/data_elements/IMO0136",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0138",
+      "original_unit": null,
+      "source_path": "/IMO0138",
+      "source_value_hash": "74234e98afe7498f",
+      "target_path": "/data_elements/IMO0138",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0139",
+      "original_unit": null,
+      "source_path": "/IMO0139",
+      "source_value_hash": "74234e98afe7498f",
+      "target_path": "/data_elements/IMO0139",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0140",
+      "original_unit": null,
+      "source_path": "/IMO0140",
+      "source_value_hash": "624f23d2e9f753b3",
+      "target_path": "/data_elements/IMO0140",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0142",
+      "original_unit": null,
+      "source_path": "/IMO0142",
+      "source_value_hash": "ef3db846c1d8d60c",
+      "target_path": "/data_elements/IMO0142",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0143",
+      "original_unit": null,
+      "source_path": "/IMO0143",
+      "source_value_hash": "74234e98afe7498f",
+      "target_path": "/data_elements/IMO0143",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0148",
+      "original_unit": null,
+      "source_path": "/IMO0148",
+      "source_value_hash": "74234e98afe7498f",
+      "target_path": "/data_elements/IMO0148",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0160",
+      "original_unit": null,
+      "source_path": "/IMO0160",
+      "source_value_hash": "c44e6dd700593104",
+      "target_path": "/data_elements/IMO0160",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0326",
+      "original_unit": null,
+      "source_path": "/IMO0326",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0326",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0580",
+      "original_unit": null,
+      "source_path": "/IMO0580",
+      "source_value_hash": "74234e98afe7498f",
+      "target_path": "/data_elements/IMO0580",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0597",
+      "original_unit": null,
+      "source_path": "/IMO0597",
+      "source_value_hash": "86aad4829f0541ab",
+      "target_path": "/data_elements/IMO0597",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0603",
+      "original_unit": null,
+      "source_path": "/IMO0603",
+      "source_value_hash": "a03d385d5093d0ca",
+      "target_path": "/data_elements/IMO0603",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0605",
+      "original_unit": null,
+      "source_path": "/IMO0605",
+      "source_value_hash": "cc11310c456c3690",
+      "target_path": "/data_elements/IMO0605",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0191",
+      "original_unit": null,
+      "source_path": "/IMO0191",
+      "source_value_hash": "391552c099c101b1",
+      "target_path": "/data_elements/IMO0191",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0600",
+      "original_unit": null,
+      "source_path": "/IMO0600",
+      "source_value_hash": "32209ccbf8a8e509",
+      "target_path": "/data_elements/IMO0600",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0639",
+      "original_unit": null,
+      "source_path": "/IMO0639",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0639",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0640",
+      "original_unit": null,
+      "source_path": "/IMO0640",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0640",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0641",
+      "original_unit": null,
+      "source_path": "/IMO0641",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0641",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0645",
+      "original_unit": null,
+      "source_path": "/IMO0645",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0645",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0621",
+      "original_unit": null,
+      "source_path": "/IMO0621",
+      "source_value_hash": "c949da87389698d1",
+      "target_path": "/data_elements/IMO0621",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0622",
+      "original_unit": null,
+      "source_path": "/IMO0622",
+      "source_value_hash": "9abb3c18b01d58d5",
+      "target_path": "/data_elements/IMO0622",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0357",
+      "original_unit": null,
+      "source_path": "/IMO0357",
+      "source_value_hash": "78a874be4475ef4f",
+      "target_path": "/data_elements/IMO0357",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0452",
+      "original_unit": null,
+      "source_path": "/IMO0452",
+      "source_value_hash": "f4678570a5b30f78",
+      "target_path": "/data_elements/IMO0452",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0332",
+      "original_unit": null,
+      "source_path": "/IMO0332",
+      "source_value_hash": "210e3b160c355818",
+      "target_path": "/data_elements/IMO0332",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0333",
+      "original_unit": null,
+      "source_path": "/IMO0333",
+      "source_value_hash": "1295a4c2480982f2",
+      "target_path": "/data_elements/IMO0333",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0613",
+      "original_unit": null,
+      "source_path": "/IMO0613",
+      "source_value_hash": "02d20bbd7e394ad5",
+      "target_path": "/data_elements/IMO0613",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0617",
+      "original_unit": null,
+      "source_path": "/IMO0617",
+      "source_value_hash": "a21855da08cb102d",
+      "target_path": "/data_elements/IMO0617",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0678",
+      "original_unit": null,
+      "source_path": "/IMO0678",
+      "source_value_hash": "785f3ec7eb32f30b",
+      "target_path": "/data_elements/IMO0678",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0601",
+      "original_unit": null,
+      "source_path": "/IMO0601",
+      "source_value_hash": "11dc9cdd56957175",
+      "target_path": "/data_elements/IMO0601",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0602",
+      "original_unit": null,
+      "source_path": "/IMO0602",
+      "source_value_hash": "b0ed5ba92cc92b75",
+      "target_path": "/data_elements/IMO0602",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0676",
+      "original_unit": null,
+      "source_path": "/IMO0676",
+      "source_value_hash": "7ec2aad2c1c13e0f",
+      "target_path": "/data_elements/IMO0676",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0064",
+      "original_unit": null,
+      "source_path": "/IMO0064",
+      "source_value_hash": "8ad9fa847c42cfeb",
+      "target_path": "/data_elements/IMO0064",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0084",
+      "original_unit": null,
+      "source_path": "/IMO0084",
+      "source_value_hash": "7e822d9802f7fdce",
+      "target_path": "/data_elements/IMO0084",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0085",
+      "original_unit": null,
+      "source_path": "/IMO0085",
+      "source_value_hash": "40d1ab96ed89a55b",
+      "target_path": "/data_elements/IMO0085",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0615",
+      "original_unit": null,
+      "source_path": "/IMO0615",
+      "source_value_hash": "128a4985d7913902",
+      "target_path": "/data_elements/IMO0615",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0543",
+      "original_unit": null,
+      "source_path": "/IMO0543",
+      "source_value_hash": "5700d7ff728e728e",
+      "target_path": "/data_elements/IMO0543",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0632",
+      "original_unit": null,
+      "source_path": "/IMO0632",
+      "source_value_hash": "1e9d7c27c8bbc8dd",
+      "target_path": "/data_elements/IMO0632",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0631",
+      "original_unit": null,
+      "source_path": "/IMO0631",
+      "source_value_hash": "2abaca4911e68fa9",
+      "target_path": "/data_elements/IMO0631",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0627",
+      "original_unit": null,
+      "source_path": "/IMO0627",
+      "source_value_hash": "2abaca4911e68fa9",
+      "target_path": "/data_elements/IMO0627",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0626",
+      "original_unit": null,
+      "source_path": "/IMO0626",
+      "source_value_hash": "38d66d9692ac5900",
+      "target_path": "/data_elements/IMO0626",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0625",
+      "original_unit": null,
+      "source_path": "/IMO0625",
+      "source_value_hash": "4b227777d4dd1fc6",
+      "target_path": "/data_elements/IMO0625",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0628",
+      "original_unit": null,
+      "source_path": "/IMO0628",
+      "source_value_hash": "e29c9c180c6279b0",
+      "target_path": "/data_elements/IMO0628",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0673",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/MDO/IMO0673",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0673",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0893",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/MDO/IMO0893",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0893",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0670",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/MDO/IMO0670",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0670",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0903",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/MDO/IMO0903",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0903",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0673",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/HFO/IMO0673",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0673",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0893",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/HFO/IMO0893",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0893",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0670",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/HFO/IMO0670",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0670",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0903",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/HFO/IMO0903",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0903",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0673",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/VLSFO2020/IMO0673",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0673",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0893",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/VLSFO2020/IMO0893",
+      "source_value_hash": "76a5b6c6329b03ab",
+      "target_path": "/data_elements/IMO0893",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0670",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/VLSFO2020/IMO0670",
+      "source_value_hash": "2febe0f7aaf04d70",
+      "target_path": "/data_elements/IMO0670",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0903",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/VLSFO2020/IMO0903",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0903",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0673",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/MGO/IMO0673",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0673",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0893",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/MGO/IMO0893",
+      "source_value_hash": "14be4b45f18e0d8c",
+      "target_path": "/data_elements/IMO0893",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0670",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/MGO/IMO0670",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0670",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0903",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/MGO/IMO0903",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0903",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0673",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/ULSFO2020/IMO0673",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0673",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0893",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/ULSFO2020/IMO0893",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0893",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0670",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/ULSFO2020/IMO0670",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0670",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0903",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/ULSFO2020/IMO0903",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0903",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0673",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/ULSMGO2020/IMO0673",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0673",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0893",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/ULSMGO2020/IMO0893",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0893",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0670",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/ULSMGO2020/IMO0670",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0670",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0903",
+      "original_unit": null,
+      "source_path": "/consumption_by_fuel_type/ULSMGO2020/IMO0903",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0903",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0674",
+      "original_unit": null,
+      "source_path": "/rob_by_fuel_type/HFO/IMO0674",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0674",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0674",
+      "original_unit": null,
+      "source_path": "/rob_by_fuel_type/VLSFO2020/IMO0674",
+      "source_value_hash": "34e9112b7c5d0e0d",
+      "target_path": "/data_elements/IMO0674",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0674",
+      "original_unit": null,
+      "source_path": "/rob_by_fuel_type/ULSFO2020/IMO0674",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0674",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0674",
+      "original_unit": null,
+      "source_path": "/rob_by_fuel_type/MDO/IMO0674",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0674",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0674",
+      "original_unit": null,
+      "source_path": "/rob_by_fuel_type/MGO/IMO0674",
+      "source_value_hash": "7ad81c396eaa1c69",
+      "target_path": "/data_elements/IMO0674",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    },
+    {
+      "contract_status": "PROVISIONAL",
+      "conversion_applied": false,
+      "imo_data_number": "IMO0674",
+      "original_unit": null,
+      "source_path": "/rob_by_fuel_type/ULSMGO2020/IMO0674",
+      "source_value_hash": "5feceb66ffc86f38",
+      "target_path": "/data_elements/IMO0674",
+      "target_unit": null,
+      "transformation_rule_id": "TR-NOON-1",
+      "transformation_rule_version": "0.1.0"
+    }
+  ],
+  "verdict_report": {
+    "compendium_version": "FAL50",
+    "error_code": null,
+    "error_detail": null,
+    "errors": [],
+    "mapping_job_id": "GHGPOC-S11-RUN_03-LAB021-NOON-00000009-010",
+    "payload_hash": "51b965e2c2f2ae34bea16b8dcaf92d224d120c57ae1999f2e8ef2866123f4ce2",
+    "selected_mappings": [
+      {
+        "field_id": "f0001",
+        "field_name": "IMO0136",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0136",
+        "origin": "auto",
+        "path": "/IMO0136",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0136",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0002",
+        "field_name": "IMO0138",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0138",
+        "origin": "auto",
+        "path": "/IMO0138",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0138",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0003",
+        "field_name": "IMO0139",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0139",
+        "origin": "auto",
+        "path": "/IMO0139",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0139",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0004",
+        "field_name": "IMO0140",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0140",
+        "origin": "auto",
+        "path": "/IMO0140",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0140",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0005",
+        "field_name": "IMO0142",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0142",
+        "origin": "auto",
+        "path": "/IMO0142",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0142",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0006",
+        "field_name": "IMO0143",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0143",
+        "origin": "auto",
+        "path": "/IMO0143",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0143",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0007",
+        "field_name": "IMO0148",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0148",
+        "origin": "auto",
+        "path": "/IMO0148",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0148",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0008",
+        "field_name": "IMO0160",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0160",
+        "origin": "auto",
+        "path": "/IMO0160",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0160",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0009",
+        "field_name": "IMO0326",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0326",
+        "origin": "auto",
+        "path": "/IMO0326",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0326",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0010",
+        "field_name": "IMO0580",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0580",
+        "origin": "auto",
+        "path": "/IMO0580",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0580",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0011",
+        "field_name": "IMO0597",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0597",
+        "origin": "auto",
+        "path": "/IMO0597",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0597",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0012",
+        "field_name": "IMO0603",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0603",
+        "origin": "auto",
+        "path": "/IMO0603",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0603",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0013",
+        "field_name": "IMO0605",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0605",
+        "origin": "auto",
+        "path": "/IMO0605",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0605",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0014",
+        "field_name": "IMO0191",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0191",
+        "origin": "auto",
+        "path": "/IMO0191",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0191",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0015",
+        "field_name": "IMO0600",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0600",
+        "origin": "auto",
+        "path": "/IMO0600",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0600",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0016",
+        "field_name": "IMO0639",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0639",
+        "origin": "auto",
+        "path": "/IMO0639",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0639",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0017",
+        "field_name": "IMO0640",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0640",
+        "origin": "auto",
+        "path": "/IMO0640",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0640",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0018",
+        "field_name": "IMO0641",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0641",
+        "origin": "auto",
+        "path": "/IMO0641",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0641",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0019",
+        "field_name": "IMO0645",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0645",
+        "origin": "auto",
+        "path": "/IMO0645",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0645",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0020",
+        "field_name": "IMO0621",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0621",
+        "origin": "auto",
+        "path": "/IMO0621",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0621",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0021",
+        "field_name": "IMO0622",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0622",
+        "origin": "auto",
+        "path": "/IMO0622",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0622",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0022",
+        "field_name": "IMO0357",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0357",
+        "origin": "auto",
+        "path": "/IMO0357",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0357",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0023",
+        "field_name": "IMO0452",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0452",
+        "origin": "auto",
+        "path": "/IMO0452",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0452",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0024",
+        "field_name": "IMO0332",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0332",
+        "origin": "auto",
+        "path": "/IMO0332",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0332",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0025",
+        "field_name": "IMO0333",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0333",
+        "origin": "auto",
+        "path": "/IMO0333",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0333",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0026",
+        "field_name": "IMO0613",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0613",
+        "origin": "auto",
+        "path": "/IMO0613",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0613",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0027",
+        "field_name": "IMO0617",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0617",
+        "origin": "auto",
+        "path": "/IMO0617",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0617",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0028",
+        "field_name": "IMO0678",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0678",
+        "origin": "auto",
+        "path": "/IMO0678",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0678",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0029",
+        "field_name": "IMO0601",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0601",
+        "origin": "auto",
+        "path": "/IMO0601",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0601",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0030",
+        "field_name": "IMO0602",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0602",
+        "origin": "auto",
+        "path": "/IMO0602",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0602",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0031",
+        "field_name": "IMO0676",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0676",
+        "origin": "auto",
+        "path": "/IMO0676",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0676",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0032",
+        "field_name": "IMO0064",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0064",
+        "origin": "auto",
+        "path": "/IMO0064",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0064",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0033",
+        "field_name": "IMO0084",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0084",
+        "origin": "auto",
+        "path": "/IMO0084",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0084",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0034",
+        "field_name": "IMO0085",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0085",
+        "origin": "auto",
+        "path": "/IMO0085",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0085",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0035",
+        "field_name": "IMO0615",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0615",
+        "origin": "auto",
+        "path": "/IMO0615",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0615",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0036",
+        "field_name": "IMO0543",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0543",
+        "origin": "auto",
+        "path": "/IMO0543",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0543",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0037",
+        "field_name": "IMO0632",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0632",
+        "origin": "auto",
+        "path": "/IMO0632",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0632",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0038",
+        "field_name": "IMO0631",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0631",
+        "origin": "auto",
+        "path": "/IMO0631",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0631",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0039",
+        "field_name": "IMO0627",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0627",
+        "origin": "auto",
+        "path": "/IMO0627",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0627",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0040",
+        "field_name": "IMO0626",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0626",
+        "origin": "auto",
+        "path": "/IMO0626",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0626",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0041",
+        "field_name": "IMO0625",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0625",
+        "origin": "auto",
+        "path": "/IMO0625",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0625",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0042",
+        "field_name": "IMO0628",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0628",
+        "origin": "auto",
+        "path": "/IMO0628",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0628",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0043",
+        "field_name": "IMO0673",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0673",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/MDO/IMO0673",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0673",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0044",
+        "field_name": "IMO0893",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0893",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/MDO/IMO0893",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0893",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0045",
+        "field_name": "IMO0670",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0670",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/MDO/IMO0670",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0670",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0046",
+        "field_name": "IMO0903",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0903",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/MDO/IMO0903",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0903",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0047",
+        "field_name": "IMO0673",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0673",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/HFO/IMO0673",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0673",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0048",
+        "field_name": "IMO0893",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0893",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/HFO/IMO0893",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0893",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0049",
+        "field_name": "IMO0670",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0670",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/HFO/IMO0670",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0670",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0050",
+        "field_name": "IMO0903",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0903",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/HFO/IMO0903",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0903",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0051",
+        "field_name": "IMO0673",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0673",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/VLSFO2020/IMO0673",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0673",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0052",
+        "field_name": "IMO0893",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0893",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/VLSFO2020/IMO0893",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0893",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0053",
+        "field_name": "IMO0670",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0670",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/VLSFO2020/IMO0670",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0670",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0054",
+        "field_name": "IMO0903",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0903",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/VLSFO2020/IMO0903",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0903",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0055",
+        "field_name": "IMO0673",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0673",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/MGO/IMO0673",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0673",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0056",
+        "field_name": "IMO0893",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0893",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/MGO/IMO0893",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0893",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0057",
+        "field_name": "IMO0670",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0670",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/MGO/IMO0670",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0670",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0058",
+        "field_name": "IMO0903",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0903",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/MGO/IMO0903",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0903",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0059",
+        "field_name": "IMO0673",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0673",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/ULSFO2020/IMO0673",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0673",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0060",
+        "field_name": "IMO0893",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0893",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/ULSFO2020/IMO0893",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0893",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0061",
+        "field_name": "IMO0670",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0670",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/ULSFO2020/IMO0670",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0670",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0062",
+        "field_name": "IMO0903",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0903",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/ULSFO2020/IMO0903",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0903",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0063",
+        "field_name": "IMO0673",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0673",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/ULSMGO2020/IMO0673",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0673",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0064",
+        "field_name": "IMO0893",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0893",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/ULSMGO2020/IMO0893",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0893",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0065",
+        "field_name": "IMO0670",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0670",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/ULSMGO2020/IMO0670",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0670",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0066",
+        "field_name": "IMO0903",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0903",
+        "origin": "auto",
+        "path": "/consumption_by_fuel_type/ULSMGO2020/IMO0903",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0903",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0067",
+        "field_name": "IMO0674",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0674",
+        "origin": "auto",
+        "path": "/rob_by_fuel_type/HFO/IMO0674",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0674",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0068",
+        "field_name": "IMO0674",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0674",
+        "origin": "auto",
+        "path": "/rob_by_fuel_type/VLSFO2020/IMO0674",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0674",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0069",
+        "field_name": "IMO0674",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0674",
+        "origin": "auto",
+        "path": "/rob_by_fuel_type/ULSFO2020/IMO0674",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0674",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0070",
+        "field_name": "IMO0674",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0674",
+        "origin": "auto",
+        "path": "/rob_by_fuel_type/MDO/IMO0674",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0674",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0071",
+        "field_name": "IMO0674",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0674",
+        "origin": "auto",
+        "path": "/rob_by_fuel_type/MGO/IMO0674",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0674",
+          "recordType": "data_element"
+        }
+      },
+      {
+        "field_id": "f0072",
+        "field_name": "IMO0674",
+        "final_score": 1.0,
+        "imo_data_number": "IMO0674",
+        "origin": "auto",
+        "path": "/rob_by_fuel_type/ULSMGO2020/IMO0674",
+        "registry_record_ref": {
+          "compendiumVersion": "FAL50",
+          "recordId": "IMO0674",
+          "recordType": "data_element"
+        }
+      }
+    ],
+    "source_dataset_id": "S11-RUN_03-LAB021-NOON-00000009-010",
+    "timestamp": "2026-09-25T17:22:09.450300+00:00",
+    "validation_status": "PASS"
+  },
+  "warnings": [
+    "KR GEARs 제출 스키마 미확인 — payload 는 PROVISIONAL, 실제 delivery 차단"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "body_type": "RAW_JSON_BODY",
+  "content_type": "application/json",
+  "correlation_id": "S11-RUN_03-LAB021-NOON-00000009-007",
+  "dataset_metadata": {
+    "dataset_id": "LAB021/Noon Report API"
+  },
+  "payload_bytes": 626,
+  "raw_sha256": "ae084294550d3d1c235ba219cfa3f31817ac6c93d4a37e04551c23e8451580f6",
+  "transport_metadata": {
+    "correlation_id": "S11-RUN_03-LAB021-NOON-00000009-007",
+    "dataset_id": "LAB021/Noon Report API"
+  },
+  "validation_errors": []
+}

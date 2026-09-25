@@ -1,0 +1,22 @@
+[
+  {
+    "called_at": "2026-09-25T17:21:16.804464+00:00",
+    "candidate_count": 2,
+    "correlation_id": "S11-RUN_03-LAB021-NOON-00000009-000",
+    "error": null,
+    "latency_ms": 5215.15,
+    "model": "gemini-2.5-flash",
+    "ok": true,
+    "provider": "gemini",
+    "real_call": true,
+    "redacted_input": {
+      "declared_type": "boolean",
+      "declared_unit": null,
+      "description": null,
+      "field_name": "isEuPort",
+      "reference_candidate_count": 5,
+      "report_context": "EVENT_REPORT"
+    },
+    "token_usage": null
+  }
+]

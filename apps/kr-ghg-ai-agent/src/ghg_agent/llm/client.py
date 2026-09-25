@@ -241,6 +241,20 @@ class LangChainLLMClient:
                 timeout=self.timeout_seconds,
                 max_retries=self.max_retries,
             )
+        elif self.provider == "gemini":
+            # Gemini 를 OpenAI 호환 엔드포인트로 호출한다 — 새 SDK 의존성 없음. 키는 GEMINI_API_KEY (로깅 금지).
+            # ponytail: 추후 Open 모델(vLLM/Ollama OpenAI 호환)로 바꿀 때도 endpoint/키만 바꾸면 된다.
+            import os
+
+            base = init_chat_model(
+                self.model or "gemini-2.5-flash",
+                model_provider="openai",
+                base_url=self.endpoint or "https://generativelanguage.googleapis.com/v1beta/openai/",
+                api_key=os.environ.get("GEMINI_API_KEY") or None,
+                temperature=0,
+                timeout=self.timeout_seconds,
+                max_retries=self.max_retries,
+            )
         else:
             raise ValueError(f"지원하지 않는 provider: {self.provider}")
         self._structured = base.with_structured_output(LLMCandidateBatch)
@@ -310,7 +324,7 @@ class LangChainLLMClient:
 
 
 def make_llm_client(settings) -> LLMClient:
-    if settings.llm_provider in {"openai", "azure_openai"}:
+    if settings.llm_provider in {"openai", "azure_openai", "gemini"}:
         if not settings.allow_live_llm:
             raise PermissionError("ALLOW_LIVE_LLM=false — 실제 LLM 호출이 차단되었다")
         return LangChainLLMClient(

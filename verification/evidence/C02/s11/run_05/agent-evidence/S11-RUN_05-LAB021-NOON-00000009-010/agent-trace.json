@@ -1,0 +1,56 @@
+[
+  {
+    "agent": "IngressAgent",
+    "at": "2026-09-25T17:33:28.173865+00:00",
+    "from": null,
+    "to": "RECEIVED"
+  },
+  {
+    "agent": "DataProfilerAgent",
+    "at": "2026-09-25T17:33:28.205632+00:00",
+    "from": "RECEIVED",
+    "to": "PROFILED"
+  },
+  {
+    "agent": "DataProfilerAgent",
+    "at": "2026-09-25T17:33:28.206189+00:00",
+    "from": "PROFILED",
+    "to": "NORMALIZED"
+  },
+  {
+    "agent": "IMOMapperAgent",
+    "at": "2026-09-25T17:33:28.206998+00:00",
+    "from": "NORMALIZED",
+    "to": "MAPPING_REQUESTED"
+  },
+  {
+    "agent": "IMOMapperAgent",
+    "at": "2026-09-25T17:33:32.906463+00:00",
+    "from": "MAPPING_REQUESTED",
+    "to": "MAPPED"
+  },
+  {
+    "agent": "MappingValidationAgent",
+    "at": "2026-09-25T17:33:33.005104+00:00",
+    "from": "MAPPED",
+    "to": "VALIDATED"
+  },
+  {
+    "agent": "KRGearsTransformationAgent",
+    "at": "2026-09-25T17:33:33.008075+00:00",
+    "from": "VALIDATED",
+    "to": "TRANSFORMED"
+  },
+  {
+    "agent": "DeliveryAdapter",
+    "at": "2026-09-25T17:33:33.008471+00:00",
+    "from": "TRANSFORMED",
+    "to": "DELIVERY_REQUESTED"
+  },
+  {
+    "agent": "DeliveryAdapter",
+    "at": "2026-09-25T17:33:33.008483+00:00",
+    "from": "DELIVERY_REQUESTED",
+    "to": "REVIEW_REQUIRED"
+  }
+]

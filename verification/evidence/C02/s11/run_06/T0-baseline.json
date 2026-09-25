@@ -1,0 +1,41 @@
+{
+ "step": "T0",
+ "executed_at": "2026-09-25T17:35:18.983406+00:00",
+ "python": "3.12.14",
+ "k_mds_commit": "4ee4e3847166f100bb4e575af00d799e0d9fc50a",
+ "k_mds_dirty": true,
+ "agent_commit": "(k-mds 단일 저장소)",
+ "validator_commit": "(k-mds 단일 저장소)",
+ "fal50_xlsx_sha256": "5d2ed626057062ab5be3082a4b13c9c38fb0c95a6d5588d4abf38508f6e688a5",
+ "registry_db": "/work/apps/kr-ghg-ai-agent/var/registry.sqlite3",
+ "candidate_inventory": {
+  "version": "0.2.0-provisional",
+  "element_count": 159,
+  "sha256": "a9a19ff0f27aa358826f08c6e6ccbaea3b278cab37a6d83acf80204db6391a01",
+  "load_status": "BOUND"
+ },
+ "lab021_codebook": {
+  "path": "/work/apps/kr-ghg-ai-agent/var/reference/lab021/noon-code-book.json",
+  "sha256": "993da0c15b138952e04562cffd031b4ffe0382b72a67509b5465a5a776f2a7f3"
+ },
+ "source_payload": {
+  "path": "/work/verification/evidence/C02/manual_S03/step-04/payloads/Noon_Report_API__e5e3be7e7a31.json",
+  "sha256": "fb23ffbdcb00e11d7378ea390728bf895025196713413db5758f0e674bb998b0",
+  "bytes": 14101
+ },
+ "ship_odms": {
+  "base": "http://ship-odms-backend:8088",
+  "reachable": true,
+  "info": {
+   "title": "OpenAPI definition",
+   "version": "v0"
+  }
+ },
+ "llm": {
+  "status": "READY",
+  "provider": "gemini",
+  "real": true
+ },
+ "skill": "real",
+ "mcp": "off"
+}

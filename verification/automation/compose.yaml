@@ -1,0 +1,59 @@
+# S-1-1 실증 자동화 스택: GHG AI Agent(시험 대상, Gemini) + 검증 하네스. Ship-ODMS(apps/data-space compose, 네트워크 ship-odms)와 n8n(:5678)은 별도 기동.
+#   docker compose --env-file C:/kr-dev/.env.master -f verification/automation/compose.yaml up -d --build
+# 비밀 값은 .env.master 에서 이름으로만 주입한다(GEMINI_API_KEY, IDS_CONNECTOR_*). 로그·증적에 기록하지 않는다.
+name: kmds-s11
+
+services:
+  ghg-agent:
+    build: ../../apps/kr-ghg-ai-agent
+    container_name: kmds-ghg-agent
+    ports:
+      - "8001:8000"
+    environment:
+      LLM_PROVIDER: ${LLM_PROVIDER:-gemini}
+      LLM_MODEL: ${LLM_MODEL:-gemini-2.5-flash}
+      ALLOW_LIVE_LLM: "true"
+      GEMINI_API_KEY: ${GEMINI_API_KEY:?GEMINI_API_KEY 필요 — --env-file C:/kr-dev/.env.master}
+      KR_GEARS_DELIVERY_MODE: mock
+      IMO_MAPPING_SKILL_PATH: /refs/imo-compendium-mapping-validator
+      REGISTRY_DB_PATH: /app/var/registry.sqlite3
+      K_MDS_REFERENCE_PATH: /app/var/reference/code_lists.json
+      CANDIDATE_INVENTORY_PATH: /app/var/candidate-inventory.json
+      LAB021_CODEBOOK_PATH: /app/var/reference/lab021/noon-code-book.json
+      AUDIT_LOG_DIR: /app/evidence
+    volumes:
+      - ../../apps/imo-compendium-mapping-validator:/refs/imo-compendium-mapping-validator:ro
+      - ../../apps/kr-ghg-ai-agent/var:/app/var
+      - ../../apps/kr-ghg-ai-agent/evidence:/app/evidence
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  s11-harness:
+    build:
+      context: .
+      dockerfile: Dockerfile.harness
+    container_name: kmds-s11-harness
+    ports:
+      - "8090:8090"
+    environment:
+      SHIP_ODMS_BASE: http://ship-odms-backend:8088
+      AGENT_BASE: http://ghg-agent:8000
+      AGENT_INBOX: /work/apps/kr-ghg-ai-agent/evidence
+      IDS_CONNECTOR_BASE: ${IDS_CONNECTOR_BASE:-}
+      IDS_CONNECTOR_USER: ${IDS_CONNECTOR_USER:-}
+      IDS_CONNECTOR_PASSWORD: ${IDS_CONNECTOR_PASSWORD:-}
+    volumes:
+      - ../..:/work
+    networks:
+      - default
+      - ship-odms
+    depends_on:
+      ghg-agent:
+        condition: service_healthy
+
+networks:
+  ship-odms:
+    external: true

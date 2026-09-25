@@ -1,0 +1,41 @@
+{
+  "code_commit": null,
+  "completed_at": "2026-09-25T17:32:34.537322+00:00",
+  "correlation_id": "S11-RUN_05-LAB021-NOON-00000009-001",
+  "created_at": "2026-09-25T17:32:27.583590+00:00",
+  "dirty_worktree": false,
+  "file_hashes": {
+    "agent-trace.json": "8f1af92ceeb72e1756537252cc520a799a61cfa95ffba0d73b442e12fe7a44ca",
+    "governance-context.json": "bde17cc3694e7459aebed0522b0db7162dbcfd9ffedbc50eba65263c549ffb1b",
+    "ingress-result.json": "90cbfbd73fae95bc27ba4727010fac2349d10c4f00076e2a16997e4b596cf470",
+    "llm-calls.json": "7f063904e34d30f440892f07b6fb145f5a5f970d7d58adab76d3adbbb40a0280",
+    "mapping-result.json": "43abc82898fd2dc5ec9f208265a13ca9dac9f627d608e5693c7a7da9e62a030d",
+    "mcp-calls.json": "64a7f69fdeb1267887ded9d9a39702cf68213f84ae81b89ddf8ea572221475e5",
+    "normalized-input.json": "9349db3117c07d2bfe53a2bdfa309890b1e5cc66b7f6270d97454f83c16dd1f4",
+    "pre-normalization.json": "bbdd76daf061d4a6076dc2f25a3674046ae98f95fefd7f0f47ce53b27825c647",
+    "profile-result.json": "2ec8b204baee1b2bcc4b40e925e7ad05064fe2f0a0c1dd5b68d55d7bf95d5b3f",
+    "raw-input.json": "89ecc8680a32bd383f7227b21dbc628a1b5bcf18337782156f44a75d80ee5dab",
+    "raw-input.sha256": "e65a515f83f310e9f98798afaee80a70567372140074cafa33ad2d65fbe7647e",
+    "skill-calls.json": "10f95df25f6c6aace092dd54345dcb9bab8d0f54b66d12f629bce3d3f039548e",
+    "summary.md": "0933761af53e7d57c5d6c57a2eaec84a6ea50669a94cec992c0fabd741d98104",
+    "validation-result.json": "723991ac9aeb183e0c154b2fab11a7f10cd851d7f2f98c1b6c691b30fed3b4de"
+  },
+  "final_status": "REVIEW_REQUIRED",
+  "governance_flags": {
+    "actual_normalization_eligible": false,
+    "candidate_mapping_eligible": true,
+    "executable_mapping_eligible": false,
+    "kr_gears_actual_delivery_allowed": false,
+    "requiredness_profile_approved": false
+  },
+  "kr_gears_contract_status": "NOT_TRANSFORMED",
+  "llm_model": "gemini-2.5-flash",
+  "llm_provider": "gemini",
+  "mcp_real_or_mock": "off",
+  "reference_model_version": "FAL50",
+  "run_id": "run-3bf68198",
+  "skill_real_or_mock": "real",
+  "source_type": "synthetic_fixture",
+  "synthetic_data": true,
+  "validator_version": "0.1.0"
+}

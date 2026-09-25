@@ -1,0 +1,18 @@
+{
+ "run_id": "run_05",
+ "prev_run": "run_04",
+ "source": "/work/verification/evidence/C02/manual_S03/step-04/payloads/Noon_Report_API__e5e3be7e7a31.json",
+ "source_sha256": "fb23ffbdcb00e11d7378ea390728bf895025196713413db5758f0e674bb998b0",
+ "created_at": "2026-09-25T17:32:27.477639+00:00",
+ "orchestrator": "n8n",
+ "n8n": {
+  "n8n_execution_id": "5",
+  "n8n_workflow_id": "Pycuq2NaVtsIv3xJ"
+ },
+ "llm": {
+  "status": "READY",
+  "provider": "gemini",
+  "real": true
+ },
+ "correlation_prefix": "S11-RUN_05-"
+}

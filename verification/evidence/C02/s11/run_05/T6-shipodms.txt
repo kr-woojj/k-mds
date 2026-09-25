@@ -1,0 +1,7 @@
+$ /usr/local/bin/python3.12 /work/verification/adapters/imo_to_shipodms.py /work/verification/evidence/C02/s11/run_05/agent-evidence /work/verification/evidence/C02/s11/run_05/shipodms --base http://ship-odms-backend:8088
+plan: ship 00000009 voyage 1 port_calls 2 reports 12 → /work/verification/evidence/C02/s11/run_05/shipodms/shipodms-plan.json
+delivered: ship id 4, voyage id 2, port_calls 2, reports 12, http errors 0
+
+[stderr]
+
+exit=0

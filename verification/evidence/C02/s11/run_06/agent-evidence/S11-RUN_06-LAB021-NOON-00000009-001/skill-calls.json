@@ -1,0 +1,272 @@
+[
+  {
+    "called_at": "2026-09-25T17:35:35.363512+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 49.57,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:35.413273+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 51.56,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:35.464951+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 58.94,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:35.524132+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 77.85,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:35.602131+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 61.76,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:35.664012+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 87.86,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:35.752168+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 74.32,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:35.826726+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 63.58,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:35.890682+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 73.18,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:35.964157+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 70.5,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:36.034815+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 72.66,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:36.107830+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 68.65,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:36.176718+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 69.64,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:36.246544+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 72.87,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:36.319739+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 73.96,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:36.393826+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 72.81,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:36.466755+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 81.83,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:36.548750+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 77.77,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:36.626635+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 97.95,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:36.724898+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 149.36,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "list_candidates"
+  },
+  {
+    "called_at": "2026-09-25T17:35:41.709993+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 60.46,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:41.770585+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 54.14,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:41.824872+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 35.83,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:41.860815+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 46.26,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:41.907151+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 53.09,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:41.960425+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 59.41,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:42.019944+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 59.14,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:42.079252+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 65.85,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:42.145209+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 52.87,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  },
+  {
+    "called_at": "2026-09-25T17:35:42.223218+00:00",
+    "correlation_id": "S11-RUN_06-LAB021-NOON-00000009-001",
+    "error_code": null,
+    "latency_ms": 73.99,
+    "ok": true,
+    "real_call": true,
+    "tool_name": "validate_mapping"
+  }
+]

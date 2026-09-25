@@ -34,7 +34,7 @@ def _bounded_int(name: str, default: int, floor: int, ceil: int) -> int:
 @dataclass(frozen=True)
 class Settings:
     # LLM
-    llm_provider: str = "mock"  # azure_openai | openai | mock
+    llm_provider: str = "mock"  # azure_openai | openai | gemini | mock
     llm_model: str = ""
     llm_deployment: str = ""
     llm_endpoint: str = ""

@@ -1,0 +1,213 @@
+{
+ "step": "T3-T5",
+ "events": 12,
+ "runs": [
+  {
+   "cid": "S11-RUN_06-LAB021-NOON-00000009-000",
+   "event_key": "DEPARTURE_SBY",
+   "status": "REVIEW_REQUIRED",
+   "error": "VALIDATION_WARNING; unmapped=1",
+   "fields": 65,
+   "unmapped": 1,
+   "llm_invocations": 1,
+   "validation": {
+    "PASS": 65,
+    "WARNING": 17,
+    "FAIL": 0,
+    "NOT_APPLICABLE": 1
+   },
+   "integrity_ok": true,
+   "http_status": 200
+  },
+  {
+   "cid": "S11-RUN_06-LAB021-NOON-00000009-001",
+   "event_key": "BUNKERING",
+   "status": "REVIEW_REQUIRED",
+   "error": "VALIDATION_WARNING; unmapped=1",
+   "fields": 27,
+   "unmapped": 1,
+   "llm_invocations": 1,
+   "validation": {
+    "PASS": 27,
+    "WARNING": 3,
+    "FAIL": 0,
+    "NOT_APPLICABLE": 1
+   },
+   "integrity_ok": true,
+   "http_status": 200
+  },
+  {
+   "cid": "S11-RUN_06-LAB021-NOON-00000009-002",
+   "event_key": "RUP",
+   "status": "REVIEW_REQUIRED",
+   "error": "KR_GEARS_CONTRACT_PROVISIONAL",
+   "fields": 57,
+   "unmapped": 0,
+   "llm_invocations": 0,
+   "validation": {
+    "PASS": 58,
+    "WARNING": 15,
+    "FAIL": 0,
+    "NOT_APPLICABLE": 0
+   },
+   "integrity_ok": true,
+   "http_status": 200
+  },
+  {
+   "cid": "S11-RUN_06-LAB021-NOON-00000009-003",
+   "event_key": "NOON_AT_SEA",
+   "status": "REVIEW_REQUIRED",
+   "error": "KR_GEARS_CONTRACT_PROVISIONAL",
+   "fields": 72,
+   "unmapped": 0,
+   "llm_invocations": 0,
+   "validation": {
+    "PASS": 73,
+    "WARNING": 22,
+    "FAIL": 0,
+    "NOT_APPLICABLE": 0
+   },
+   "integrity_ok": true,
+   "http_status": 200
+  },
+  {
+   "cid": "S11-RUN_06-LAB021-NOON-00000009-004",
+   "event_key": "NOON_AT_SEA",
+   "status": "REVIEW_REQUIRED",
+   "error": "KR_GEARS_CONTRACT_PROVISIONAL",
+   "fields": 72,
+   "unmapped": 0,
+   "llm_invocations": 0,
+   "validation": {
+    "PASS": 73,
+    "WARNING": 22,
+    "FAIL": 0,
+    "NOT_APPLICABLE": 0
+   },
+   "integrity_ok": true,
+   "http_status": 200
+  },
+  {
+   "cid": "S11-RUN_06-LAB021-NOON-00000009-005",
+   "event_key": "NOON_AT_SEA",
+   "status": "REVIEW_REQUIRED",
+   "error": "KR_GEARS_CONTRACT_PROVISIONAL",
+   "fields": 72,
+   "unmapped": 0,
+   "llm_invocations": 0,
+   "validation": {
+    "PASS": 73,
+    "WARNING": 22,
+    "FAIL": 0,
+    "NOT_APPLICABLE": 0
+   },
+   "integrity_ok": true,
+   "http_status": 200
+  },
+  {
+   "cid": "S11-RUN_06-LAB021-NOON-00000009-006",
+   "event_key": "ARRIVAL",
+   "status": "REVIEW_REQUIRED",
+   "error": "VALIDATION_WARNING; unmapped=1",
+   "fields": 68,
+   "unmapped": 1,
+   "llm_invocations": 1,
+   "validation": {
+    "PASS": 68,
+    "WARNING": 15,
+    "FAIL": 0,
+    "NOT_APPLICABLE": 1
+   },
+   "integrity_ok": true,
+   "http_status": 200
+  },
+  {
+   "cid": "S11-RUN_06-LAB021-NOON-00000009-007",
+   "event_key": "CARGO_WORK",
+   "status": "REVIEW_REQUIRED",
+   "error": "KR_GEARS_CONTRACT_PROVISIONAL",
+   "fields": 27,
+   "unmapped": 0,
+   "llm_invocations": 0,
+   "validation": {
+    "PASS": 28,
+    "WARNING": 3,
+    "FAIL": 0,
+    "NOT_APPLICABLE": 0
+   },
+   "integrity_ok": true,
+   "http_status": 200
+  },
+  {
+   "cid": "S11-RUN_06-LAB021-NOON-00000009-008",
+   "event_key": "DEPARTURE_SBY",
+   "status": "REVIEW_REQUIRED",
+   "error": "VALIDATION_WARNING; unmapped=1",
+   "fields": 65,
+   "unmapped": 1,
+   "llm_invocations": 1,
+   "validation": {
+    "PASS": 65,
+    "WARNING": 17,
+    "FAIL": 0,
+    "NOT_APPLICABLE": 1
+   },
+   "integrity_ok": true,
+   "http_status": 200
+  },
+  {
+   "cid": "S11-RUN_06-LAB021-NOON-00000009-009",
+   "event_key": "RUP",
+   "status": "REVIEW_REQUIRED",
+   "error": "KR_GEARS_CONTRACT_PROVISIONAL",
+   "fields": 57,
+   "unmapped": 0,
+   "llm_invocations": 0,
+   "validation": {
+    "PASS": 58,
+    "WARNING": 15,
+    "FAIL": 0,
+    "NOT_APPLICABLE": 0
+   },
+   "integrity_ok": true,
+   "http_status": 200
+  },
+  {
+   "cid": "S11-RUN_06-LAB021-NOON-00000009-010",
+   "event_key": "NOON_AT_SEA",
+   "status": "REVIEW_REQUIRED",
+   "error": "KR_GEARS_CONTRACT_PROVISIONAL",
+   "fields": 72,
+   "unmapped": 0,
+   "llm_invocations": 0,
+   "validation": {
+    "PASS": 73,
+    "WARNING": 22,
+    "FAIL": 0,
+    "NOT_APPLICABLE": 0
+   },
+   "integrity_ok": true,
+   "http_status": 200
+  },
+  {
+   "cid": "S11-RUN_06-LAB021-NOON-00000009-011",
+   "event_key": "NOON_AT_SEA",
+   "status": "REVIEW_REQUIRED",
+   "error": "KR_GEARS_CONTRACT_PROVISIONAL",
+   "fields": 72,
+   "unmapped": 0,
+   "llm_invocations": 0,
+   "validation": {
+    "PASS": 73,
+    "WARNING": 22,
+    "FAIL": 0,
+    "NOT_APPLICABLE": 0
+   },
+   "integrity_ok": true,
+   "http_status": 200
+  }
+ ],
+ "all_integrity_ok": true,
+ "http_errors": [],
+ "note": "T3 은 n8n 워크플로가 이벤트 단위로 에이전트 HTTP ingress(/api/v1/ids/events)에 투입(G-3 배치 envelope). 진해 현장 Route 검증은 W5."
+}

@@ -19,6 +19,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from ghg_agent.adapters.ids_adapter import ResourceLimits, ingest
 from ghg_agent.adapters.kr_gears import deliver, transform
+from ghg_agent.adapters.lab021_ingress import is_lab021_record, load_codebook, normalize_lab021
 from ghg_agent.adapters.skill_adapter import ImoMappingSkillAdapter
 from ghg_agent.config import PROJECT_ROOT, Settings
 from ghg_agent.domain.mapping import MapperConfig, map_fields
@@ -37,14 +38,13 @@ from ghg_agent.domain.models import (
     ValidationVerdict,
     assert_transition,
 )
-from ghg_agent.adapters.lab021_ingress import is_lab021_record, load_codebook, normalize_lab021
 from ghg_agent.domain.normalization import NormalizationError, normalize_payload
 from ghg_agent.domain.profiling import profile_payload
 from ghg_agent.domain.validation import ValidationConfig, validate_mapping_result
 from ghg_agent.evidence import EvidenceError, EvidenceWriter
 from ghg_agent.governance import GovernanceAuthorityContext, build_context
 from ghg_agent.governance.candidate_scope import load_candidate_inventory
-from ghg_agent.llm.client import LLMClient, MockLLMClient
+from ghg_agent.llm.client import LLMClient, make_llm_client
 from ghg_agent.reference.lookup import ReferenceLookup
 
 
@@ -445,7 +445,7 @@ def build_pipeline(settings: Settings, llm_client: LLMClient | None = None) -> P
         settings=settings,
         reference=reference,
         skill=skill,
-        llm_client=llm_client or MockLLMClient(),
+        llm_client=llm_client or make_llm_client(settings),  # provider=mock 이면 MockLLMClient
         governance=governance,
         candidate_scope=inventory.ids if inventory.bound else None,
         mcp_mode=settings.mcp_mode,

@@ -1,0 +1,2835 @@
+{
+ "measures": {
+  "standard": "ISO/IEC DIS 25023:2014(E) (data/raw/ISO25000)",
+  "M1": {
+   "iso_measure": "CIn-2-G Data exchange protocol conformance (취지 적용)",
+   "artifact_sha256": "fb23ffbdcb00e11d7378ea390728bf895025196713413db5758f0e674bb998b0",
+   "note": "Consumer 수신본 = 원본 여부는 run_s11 T2 단계가 기록(hash 비교). 여기서는 원본 해시만 기록."
+  },
+  "M2": {
+   "iso_measure": "FCp-1-G Functional coverage",
+   "formula": "X = 1 - A/B",
+   "A_unmapped": 4,
+   "B_source_fields": 726,
+   "X": 0.9945
+  },
+  "M3": {
+   "iso_measure": "FCr-1-G Functional correctness",
+   "formula": "X = 1 - A/B",
+   "A_validation_fail": 0,
+   "B_mapped_fields": 722,
+   "X": 1.0
+  },
+  "M4": {
+   "iso_measure": "FCr-1-G Functional correctness (필드 단위 적용) — 채택 정합율",
+   "formula": "X = 1 - A/B",
+   "A_mismatch": 5,
+   "B_fields_with_target": 342,
+   "X": 0.9854,
+   "target": 0.95
+  },
+  "M5": {
+   "iso_measure": "CIn-1-G Data exchange format conformance (취지 적용)",
+   "note": "Ship-ODMS openapi required 목록 없음 → N/A"
+  },
+  "no_target_elements": [
+   "IMO0064",
+   "IMO0066",
+   "IMO0084",
+   "IMO0085",
+   "IMO0109",
+   "IMO0112",
+   "IMO0139",
+   "IMO0143",
+   "IMO0148",
+   "IMO0452",
+   "IMO0541",
+   "IMO0543",
+   "IMO0548",
+   "IMO0580",
+   "IMO0666",
+   "IMO0667"
+  ],
+  "checks": 342,
+  "mismatches": [
+   {
+    "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+    "imo": "IMO0632",
+    "target": "WeatherDetails.seaHeight",
+    "source": 0.5,
+    "stored": 0,
+    "match": false
+   },
+   {
+    "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+    "imo": "IMO0632",
+    "target": "WeatherDetails.seaHeight",
+    "source": 0.5,
+    "stored": 0,
+    "match": false
+   },
+   {
+    "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+    "imo": "IMO0632",
+    "target": "WeatherDetails.seaHeight",
+    "source": 0.5,
+    "stored": 0,
+    "match": false
+   },
+   {
+    "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+    "imo": "IMO0632",
+    "target": "WeatherDetails.seaHeight",
+    "source": 0.8,
+    "stored": 0,
+    "match": false
+   },
+   {
+    "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+    "imo": "IMO0632",
+    "target": "WeatherDetails.seaHeight",
+    "source": 0.5,
+    "stored": 0,
+    "match": false
+   }
+  ]
+ },
+ "checks": [
+  {
+   "cid": "ship",
+   "imo": "IMO0140",
+   "target": "Ship.imoNumber",
+   "source": "00000009",
+   "stored": "00000009",
+   "match": true
+  },
+  {
+   "cid": "ship",
+   "imo": "IMO0142",
+   "target": "Ship.shipName",
+   "source": "TEST_BULK_DIESEL_09",
+   "stored": "TEST_BULK_DIESEL_09",
+   "match": true
+  },
+  {
+   "cid": "ship",
+   "imo": "IMO0136",
+   "target": "Ship.callSign",
+   "source": "TBD09",
+   "stored": "TBD09",
+   "match": true
+  },
+  {
+   "cid": "ship",
+   "imo": "IMO0160",
+   "target": "Ship.shipType",
+   "source": "NONE",
+   "stored": "NONE",
+   "match": true
+  },
+  {
+   "cid": "leg1",
+   "imo": "IMO0111",
+   "target": "PortCall.portDeparture",
+   "source": "PACTB",
+   "stored": "PACTB",
+   "match": true
+  },
+  {
+   "cid": "leg1",
+   "imo": "IMO0065",
+   "target": "PortCall.portAtd",
+   "source": "2026-04-19T20:36:00.000Z",
+   "stored": "2026-04-19T20:36:00.000Z",
+   "match": true
+  },
+  {
+   "cid": "leg1",
+   "imo": "IMO0108",
+   "target": "PortCall.portArrival",
+   "source": "GTPRQ",
+   "stored": "GTPRQ",
+   "match": true
+  },
+  {
+   "cid": "leg1",
+   "imo": "IMO0063",
+   "target": "PortCall.portAta",
+   "source": "2026-04-25T01:00:00.000Z",
+   "stored": "2026-04-25T01:00:00.000Z",
+   "match": true
+  },
+  {
+   "cid": "leg2",
+   "imo": "IMO0111",
+   "target": "PortCall.portDeparture",
+   "source": "GTPRQ",
+   "stored": "GTPRQ",
+   "match": true
+  },
+  {
+   "cid": "leg2",
+   "imo": "IMO0065",
+   "target": "PortCall.portAtd",
+   "source": "2026-04-29T12:42:00.000Z",
+   "stored": "2026-04-29T12:42:00.000Z",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0597",
+   "target": "PerformanceReport.eventType",
+   "source": "EV02",
+   "stored": "EV02",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0605",
+   "target": "PerformanceReport.voyageLeg",
+   "source": "1",
+   "stored": "1",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0600",
+   "target": "PerformanceReport.elapsedTime",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0621",
+   "target": "PerformanceReport.draughtForward",
+   "source": 11.55,
+   "stored": 11.55,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0622",
+   "target": "PerformanceReport.draughtAft",
+   "source": 11.6,
+   "stored": 11.6,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0357",
+   "target": "PerformanceReport.shipDraught",
+   "source": 11.58,
+   "stored": 11.58,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0601",
+   "target": "PerformanceReport.latitude",
+   "source": "9.35",
+   "stored": 9.35,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0602",
+   "target": "PerformanceReport.longitude",
+   "source": "-79.908333",
+   "stored": -79.908333,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0615",
+   "target": "PerformanceReport.distanceToNextPort",
+   "source": 950,
+   "stored": 950.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0673@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focAuxiliaryBoiler",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0893@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focAuxiliaryEngine",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0670@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focMainEngine",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0903@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focOtherFuelConsumingDevices",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0674@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+   "source": 298.69,
+   "stored": 298.69,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0673@MGO",
+   "target": "FuelConsumption[MGO].focAuxiliaryBoiler",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0893@MGO",
+   "target": "FuelConsumption[MGO].focAuxiliaryEngine",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0670@MGO",
+   "target": "FuelConsumption[MGO].focMainEngine",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0903@MGO",
+   "target": "FuelConsumption[MGO].focOtherFuelConsumingDevices",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0674@MGO",
+   "target": "FuelConsumption[MGO].fuelQuantityRob",
+   "source": 115.98,
+   "stored": 115.98,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0640",
+   "target": "FuelConsumption[_NONFUEL].freshWaterProduced",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0639",
+   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0676",
+   "target": "FuelConsumption[_NONFUEL].cloRob",
+   "source": 20751,
+   "stored": 20751.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0678",
+   "target": "FuelConsumption[_NONFUEL].cloConsumption",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0641",
+   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-000",
+   "imo": "IMO0645",
+   "target": "FuelConsumption[_NONFUEL].freshWaterRob",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-001",
+   "imo": "IMO0597",
+   "target": "PerformanceReport.eventType",
+   "source": "EV28",
+   "stored": "EV28",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-001",
+   "imo": "IMO0603",
+   "target": "PerformanceReport.reportDatetime",
+   "source": "2026-04-21T14:35:00.000Z",
+   "stored": "2026-04-21T14:35:00.000Z",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-001",
+   "imo": "IMO0605",
+   "target": "PerformanceReport.voyageLeg",
+   "source": "1",
+   "stored": "1",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-001",
+   "imo": "IMO0600",
+   "target": "PerformanceReport.elapsedTime",
+   "source": 7.183,
+   "stored": 7.183,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-001",
+   "imo": "IMO0601",
+   "target": "PerformanceReport.latitude",
+   "source": "8.818333",
+   "stored": 8.818333,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-001",
+   "imo": "IMO0602",
+   "target": "PerformanceReport.longitude",
+   "source": "-79.536667",
+   "stored": -79.536667,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-001",
+   "imo": "IMO0674@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+   "source": 898.66,
+   "stored": 898.66,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-001",
+   "imo": "IMO0674@MGO",
+   "target": "FuelConsumption[MGO].fuelQuantityRob",
+   "source": 204.28,
+   "stored": 204.28,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-001",
+   "imo": "IMO0676",
+   "target": "FuelConsumption[_NONFUEL].cloRob",
+   "source": 20739,
+   "stored": 20739.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0597",
+   "target": "PerformanceReport.eventType",
+   "source": "EV10",
+   "stored": "EV10",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0603",
+   "target": "PerformanceReport.reportDatetime",
+   "source": "2026-04-21T17:30:00.000Z",
+   "stored": "2026-04-21T17:30:00.000Z",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0605",
+   "target": "PerformanceReport.voyageLeg",
+   "source": "1",
+   "stored": "1",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0600",
+   "target": "PerformanceReport.elapsedTime",
+   "source": 0.5,
+   "stored": 0.5,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0332",
+   "target": "PerformanceReport.courseOverGround",
+   "source": 178,
+   "stored": 178.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0333",
+   "target": "PerformanceReport.speedOverGround",
+   "source": 10,
+   "stored": 10.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0613",
+   "target": "PerformanceReport.distanceOverGround",
+   "source": 5,
+   "stored": 5.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0617",
+   "target": "PerformanceReport.speedPropeller",
+   "source": 72,
+   "stored": 72.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0601",
+   "target": "PerformanceReport.latitude",
+   "source": "8.701667",
+   "stored": 8.701667,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0602",
+   "target": "PerformanceReport.longitude",
+   "source": "-79.455",
+   "stored": -79.455,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0673@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focAuxiliaryBoiler",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0893@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focAuxiliaryEngine",
+   "source": 0.07,
+   "stored": 0.07,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0670@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focMainEngine",
+   "source": 0.33,
+   "stored": 0.33,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0903@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focOtherFuelConsumingDevices",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0674@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+   "source": 898.26,
+   "stored": 898.26,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0673@MGO",
+   "target": "FuelConsumption[MGO].focAuxiliaryBoiler",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0893@MGO",
+   "target": "FuelConsumption[MGO].focAuxiliaryEngine",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0670@MGO",
+   "target": "FuelConsumption[MGO].focMainEngine",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0903@MGO",
+   "target": "FuelConsumption[MGO].focOtherFuelConsumingDevices",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0674@MGO",
+   "target": "FuelConsumption[MGO].fuelQuantityRob",
+   "source": 202.86,
+   "stored": 202.86,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0640",
+   "target": "FuelConsumption[_NONFUEL].freshWaterProduced",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0639",
+   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0676",
+   "target": "FuelConsumption[_NONFUEL].cloRob",
+   "source": 20736,
+   "stored": 20736.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0678",
+   "target": "FuelConsumption[_NONFUEL].cloConsumption",
+   "source": 3,
+   "stored": 3.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0641",
+   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-002",
+   "imo": "IMO0645",
+   "target": "FuelConsumption[_NONFUEL].freshWaterRob",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0597",
+   "target": "PerformanceReport.eventType",
+   "source": "EV16",
+   "stored": "EV16",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0603",
+   "target": "PerformanceReport.reportDatetime",
+   "source": "2026-04-22T17:00:00.000Z",
+   "stored": "2026-04-22T17:00:00.000Z",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0605",
+   "target": "PerformanceReport.voyageLeg",
+   "source": "1",
+   "stored": "1",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0600",
+   "target": "PerformanceReport.elapsedTime",
+   "source": 23.5,
+   "stored": 23.5,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0621",
+   "target": "PerformanceReport.draughtForward",
+   "source": 11.55,
+   "stored": 11.55,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0622",
+   "target": "PerformanceReport.draughtAft",
+   "source": 11.6,
+   "stored": 11.6,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0357",
+   "target": "PerformanceReport.shipDraught",
+   "source": 11.58,
+   "stored": 11.58,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0332",
+   "target": "PerformanceReport.courseOverGround",
+   "source": 301,
+   "stored": 301.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0333",
+   "target": "PerformanceReport.speedOverGround",
+   "source": 12.042553191489361,
+   "stored": 12.042553191489361,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0613",
+   "target": "PerformanceReport.distanceOverGround",
+   "source": 283,
+   "stored": 283.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0617",
+   "target": "PerformanceReport.speedPropeller",
+   "source": 72,
+   "stored": 72.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0601",
+   "target": "PerformanceReport.latitude",
+   "source": "7.503333",
+   "stored": 7.503333,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0602",
+   "target": "PerformanceReport.longitude",
+   "source": "-82.783333",
+   "stored": -82.783333,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0615",
+   "target": "PerformanceReport.distanceToNextPort",
+   "source": 594,
+   "stored": 594.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0632",
+   "target": "WeatherDetails.seaHeight",
+   "source": 0.5,
+   "stored": 0,
+   "match": false
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0631",
+   "target": "WeatherDetails.seaDirTrue",
+   "source": 283,
+   "stored": 283,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0627",
+   "target": "WeatherDetails.windDirTrue",
+   "source": 285,
+   "stored": 285.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0626",
+   "target": "WeatherDetails.windDirRelative",
+   "source": 295,
+   "stored": 295.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0625",
+   "target": "WeatherDetails.windForce",
+   "source": 4,
+   "stored": 4,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0628",
+   "target": "WeatherDetails.airTemperature",
+   "source": 28,
+   "stored": 28.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0673@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focAuxiliaryBoiler",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0893@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focAuxiliaryEngine",
+   "source": 1.47,
+   "stored": 1.47,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0670@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focMainEngine",
+   "source": 15.66,
+   "stored": 15.66,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0903@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focOtherFuelConsumingDevices",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0674@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+   "source": 881.13,
+   "stored": 881.13,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0673@MGO",
+   "target": "FuelConsumption[MGO].focAuxiliaryBoiler",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0893@MGO",
+   "target": "FuelConsumption[MGO].focAuxiliaryEngine",
+   "source": 0.2,
+   "stored": 0.2,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0670@MGO",
+   "target": "FuelConsumption[MGO].focMainEngine",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0903@MGO",
+   "target": "FuelConsumption[MGO].focOtherFuelConsumingDevices",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0674@MGO",
+   "target": "FuelConsumption[MGO].fuelQuantityRob",
+   "source": 202.66,
+   "stored": 202.66,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0640",
+   "target": "FuelConsumption[_NONFUEL].freshWaterProduced",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0639",
+   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0676",
+   "target": "FuelConsumption[_NONFUEL].cloRob",
+   "source": 20736,
+   "stored": 20736.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0678",
+   "target": "FuelConsumption[_NONFUEL].cloConsumption",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0641",
+   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-003",
+   "imo": "IMO0645",
+   "target": "FuelConsumption[_NONFUEL].freshWaterRob",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0597",
+   "target": "PerformanceReport.eventType",
+   "source": "EV16",
+   "stored": "EV16",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0603",
+   "target": "PerformanceReport.reportDatetime",
+   "source": "2026-04-23T17:00:00.000Z",
+   "stored": "2026-04-23T17:00:00.000Z",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0605",
+   "target": "PerformanceReport.voyageLeg",
+   "source": "1",
+   "stored": "1",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0600",
+   "target": "PerformanceReport.elapsedTime",
+   "source": 24,
+   "stored": 24.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0621",
+   "target": "PerformanceReport.draughtForward",
+   "source": 11.55,
+   "stored": 11.55,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0622",
+   "target": "PerformanceReport.draughtAft",
+   "source": 11.6,
+   "stored": 11.6,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0357",
+   "target": "PerformanceReport.shipDraught",
+   "source": 11.58,
+   "stored": 11.58,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0332",
+   "target": "PerformanceReport.courseOverGround",
+   "source": 310,
+   "stored": 310.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0333",
+   "target": "PerformanceReport.speedOverGround",
+   "source": 11.958333333333334,
+   "stored": 11.958333333333334,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0613",
+   "target": "PerformanceReport.distanceOverGround",
+   "source": 287,
+   "stored": 287.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0617",
+   "target": "PerformanceReport.speedPropeller",
+   "source": 72,
+   "stored": 72.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0601",
+   "target": "PerformanceReport.latitude",
+   "source": "10.44",
+   "stored": 10.44,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0602",
+   "target": "PerformanceReport.longitude",
+   "source": "-86.601667",
+   "stored": -86.601667,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0615",
+   "target": "PerformanceReport.distanceToNextPort",
+   "source": 307,
+   "stored": 307.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0632",
+   "target": "WeatherDetails.seaHeight",
+   "source": 0.5,
+   "stored": 0,
+   "match": false
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0631",
+   "target": "WeatherDetails.seaDirTrue",
+   "source": 350,
+   "stored": 350,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0627",
+   "target": "WeatherDetails.windDirTrue",
+   "source": 350,
+   "stored": 350.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0626",
+   "target": "WeatherDetails.windDirRelative",
+   "source": 20,
+   "stored": 20.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0625",
+   "target": "WeatherDetails.windForce",
+   "source": 4,
+   "stored": 4,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0628",
+   "target": "WeatherDetails.airTemperature",
+   "source": 30,
+   "stored": 30.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0673@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focAuxiliaryBoiler",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0893@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focAuxiliaryEngine",
+   "source": 1.56,
+   "stored": 1.56,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0670@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focMainEngine",
+   "source": 16.67,
+   "stored": 16.67,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0903@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focOtherFuelConsumingDevices",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0674@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+   "source": 862.9,
+   "stored": 862.9,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0673@MGO",
+   "target": "FuelConsumption[MGO].focAuxiliaryBoiler",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0893@MGO",
+   "target": "FuelConsumption[MGO].focAuxiliaryEngine",
+   "source": 0.2,
+   "stored": 0.2,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0670@MGO",
+   "target": "FuelConsumption[MGO].focMainEngine",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0903@MGO",
+   "target": "FuelConsumption[MGO].focOtherFuelConsumingDevices",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0674@MGO",
+   "target": "FuelConsumption[MGO].fuelQuantityRob",
+   "source": 202.46,
+   "stored": 202.46,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0640",
+   "target": "FuelConsumption[_NONFUEL].freshWaterProduced",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0639",
+   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0676",
+   "target": "FuelConsumption[_NONFUEL].cloRob",
+   "source": 20736,
+   "stored": 20736.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0678",
+   "target": "FuelConsumption[_NONFUEL].cloConsumption",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0641",
+   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-004",
+   "imo": "IMO0645",
+   "target": "FuelConsumption[_NONFUEL].freshWaterRob",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0597",
+   "target": "PerformanceReport.eventType",
+   "source": "EV16",
+   "stored": "EV16",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0603",
+   "target": "PerformanceReport.reportDatetime",
+   "source": "2026-04-24T17:00:00.000Z",
+   "stored": "2026-04-24T17:00:00.000Z",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0605",
+   "target": "PerformanceReport.voyageLeg",
+   "source": "1",
+   "stored": "1",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0600",
+   "target": "PerformanceReport.elapsedTime",
+   "source": 24,
+   "stored": 24.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0621",
+   "target": "PerformanceReport.draughtForward",
+   "source": 11.4,
+   "stored": 11.4,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0622",
+   "target": "PerformanceReport.draughtAft",
+   "source": 11.4,
+   "stored": 11.4,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0357",
+   "target": "PerformanceReport.shipDraught",
+   "source": 11.4,
+   "stored": 11.4,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0332",
+   "target": "PerformanceReport.courseOverGround",
+   "source": 310,
+   "stored": 310.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0333",
+   "target": "PerformanceReport.speedOverGround",
+   "source": 11.833333333333334,
+   "stored": 11.833333333333334,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0613",
+   "target": "PerformanceReport.distanceOverGround",
+   "source": 284,
+   "stored": 284.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0617",
+   "target": "PerformanceReport.speedPropeller",
+   "source": 72,
+   "stored": 72.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0601",
+   "target": "PerformanceReport.latitude",
+   "source": "13.493333",
+   "stored": 13.493333,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0602",
+   "target": "PerformanceReport.longitude",
+   "source": "-90.293333",
+   "stored": -90.293333,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0615",
+   "target": "PerformanceReport.distanceToNextPort",
+   "source": 23,
+   "stored": 23.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0632",
+   "target": "WeatherDetails.seaHeight",
+   "source": 0.5,
+   "stored": 0,
+   "match": false
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0631",
+   "target": "WeatherDetails.seaDirTrue",
+   "source": 290,
+   "stored": 290,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0627",
+   "target": "WeatherDetails.windDirTrue",
+   "source": 290,
+   "stored": 290.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0626",
+   "target": "WeatherDetails.windDirRelative",
+   "source": 305,
+   "stored": 305.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0625",
+   "target": "WeatherDetails.windForce",
+   "source": 4,
+   "stored": 4,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0628",
+   "target": "WeatherDetails.airTemperature",
+   "source": 28,
+   "stored": 28.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0673@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focAuxiliaryBoiler",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0893@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focAuxiliaryEngine",
+   "source": 1.5,
+   "stored": 1.5,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0670@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focMainEngine",
+   "source": 16,
+   "stored": 16.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0903@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focOtherFuelConsumingDevices",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0674@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+   "source": 845.4,
+   "stored": 845.4,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0673@MGO",
+   "target": "FuelConsumption[MGO].focAuxiliaryBoiler",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0893@MGO",
+   "target": "FuelConsumption[MGO].focAuxiliaryEngine",
+   "source": 0.2,
+   "stored": 0.2,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0670@MGO",
+   "target": "FuelConsumption[MGO].focMainEngine",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0903@MGO",
+   "target": "FuelConsumption[MGO].focOtherFuelConsumingDevices",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0674@MGO",
+   "target": "FuelConsumption[MGO].fuelQuantityRob",
+   "source": 202.26,
+   "stored": 202.26,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0640",
+   "target": "FuelConsumption[_NONFUEL].freshWaterProduced",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0639",
+   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0676",
+   "target": "FuelConsumption[_NONFUEL].cloRob",
+   "source": 20736,
+   "stored": 20736.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0678",
+   "target": "FuelConsumption[_NONFUEL].cloConsumption",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0641",
+   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-005",
+   "imo": "IMO0645",
+   "target": "FuelConsumption[_NONFUEL].freshWaterRob",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0597",
+   "target": "PerformanceReport.eventType",
+   "source": "EV01",
+   "stored": "EV01",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0605",
+   "target": "PerformanceReport.voyageLeg",
+   "source": "1",
+   "stored": "1",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0600",
+   "target": "PerformanceReport.elapsedTime",
+   "source": 4.5,
+   "stored": 4.5,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0621",
+   "target": "PerformanceReport.draughtForward",
+   "source": 11.4,
+   "stored": 11.4,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0622",
+   "target": "PerformanceReport.draughtAft",
+   "source": 11.4,
+   "stored": 11.4,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0357",
+   "target": "PerformanceReport.shipDraught",
+   "source": 11.4,
+   "stored": 11.4,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0332",
+   "target": "PerformanceReport.courseOverGround",
+   "source": 272,
+   "stored": 272.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0333",
+   "target": "PerformanceReport.speedOverGround",
+   "source": 2.8,
+   "stored": 2.8,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0613",
+   "target": "PerformanceReport.distanceOverGround",
+   "source": 12.6,
+   "stored": 12.6,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0617",
+   "target": "PerformanceReport.speedPropeller",
+   "source": 23.26,
+   "stored": 23.26,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0601",
+   "target": "PerformanceReport.latitude",
+   "source": "13.916667",
+   "stored": 13.916667,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0602",
+   "target": "PerformanceReport.longitude",
+   "source": "-90.783333",
+   "stored": -90.783333,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0615",
+   "target": "PerformanceReport.distanceToNextPort",
+   "source": -19.6,
+   "stored": -19.6,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0673@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focAuxiliaryBoiler",
+   "source": 0.03,
+   "stored": 0.03,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0893@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focAuxiliaryEngine",
+   "source": 0.59,
+   "stored": 0.59,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0670@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focMainEngine",
+   "source": 1.08,
+   "stored": 1.08,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0903@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focOtherFuelConsumingDevices",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0674@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+   "source": 841.9,
+   "stored": 841.9,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0673@MGO",
+   "target": "FuelConsumption[MGO].focAuxiliaryBoiler",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0893@MGO",
+   "target": "FuelConsumption[MGO].focAuxiliaryEngine",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0670@MGO",
+   "target": "FuelConsumption[MGO].focMainEngine",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0903@MGO",
+   "target": "FuelConsumption[MGO].focOtherFuelConsumingDevices",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0674@MGO",
+   "target": "FuelConsumption[MGO].fuelQuantityRob",
+   "source": 202.26,
+   "stored": 202.26,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0640",
+   "target": "FuelConsumption[_NONFUEL].freshWaterProduced",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0639",
+   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0676",
+   "target": "FuelConsumption[_NONFUEL].cloRob",
+   "source": 20726,
+   "stored": 20726.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0678",
+   "target": "FuelConsumption[_NONFUEL].cloConsumption",
+   "source": 10,
+   "stored": 10.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0641",
+   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-006",
+   "imo": "IMO0645",
+   "target": "FuelConsumption[_NONFUEL].freshWaterRob",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-007",
+   "imo": "IMO0597",
+   "target": "PerformanceReport.eventType",
+   "source": "EV28",
+   "stored": "EV28",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-007",
+   "imo": "IMO0603",
+   "target": "PerformanceReport.reportDatetime",
+   "source": "2026-04-29T09:50:00.000Z",
+   "stored": "2026-04-29T09:50:00.000Z",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-007",
+   "imo": "IMO0605",
+   "target": "PerformanceReport.voyageLeg",
+   "source": "1",
+   "stored": "1",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-007",
+   "imo": "IMO0600",
+   "target": "PerformanceReport.elapsedTime",
+   "source": 15.833,
+   "stored": 15.833,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-007",
+   "imo": "IMO0621",
+   "target": "PerformanceReport.draughtForward",
+   "source": 11.4,
+   "stored": 11.4,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-007",
+   "imo": "IMO0622",
+   "target": "PerformanceReport.draughtAft",
+   "source": 11.4,
+   "stored": 11.4,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-007",
+   "imo": "IMO0357",
+   "target": "PerformanceReport.shipDraught",
+   "source": 11.4,
+   "stored": 11.4,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-007",
+   "imo": "IMO0601",
+   "target": "PerformanceReport.latitude",
+   "source": "13.916667",
+   "stored": 13.916667,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-007",
+   "imo": "IMO0602",
+   "target": "PerformanceReport.longitude",
+   "source": "-90.783333",
+   "stored": -90.783333,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-007",
+   "imo": "IMO0674@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+   "source": 822.83,
+   "stored": 822.83,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-007",
+   "imo": "IMO0674@MGO",
+   "target": "FuelConsumption[MGO].fuelQuantityRob",
+   "source": 201.46,
+   "stored": 201.46,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-007",
+   "imo": "IMO0676",
+   "target": "FuelConsumption[_NONFUEL].cloRob",
+   "source": 20726,
+   "stored": 20726.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0597",
+   "target": "PerformanceReport.eventType",
+   "source": "EV02",
+   "stored": "EV02",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0605",
+   "target": "PerformanceReport.voyageLeg",
+   "source": "2",
+   "stored": "2",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0600",
+   "target": "PerformanceReport.elapsedTime",
+   "source": 2.867,
+   "stored": 2.867,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0621",
+   "target": "PerformanceReport.draughtForward",
+   "source": 4.65,
+   "stored": 4.65,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0622",
+   "target": "PerformanceReport.draughtAft",
+   "source": 7.66,
+   "stored": 7.66,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0357",
+   "target": "PerformanceReport.shipDraught",
+   "source": 6.16,
+   "stored": 6.16,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0601",
+   "target": "PerformanceReport.latitude",
+   "source": "13.916667",
+   "stored": 13.916667,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0602",
+   "target": "PerformanceReport.longitude",
+   "source": "-90.783333",
+   "stored": -90.783333,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0615",
+   "target": "PerformanceReport.distanceToNextPort",
+   "source": 1842.87,
+   "stored": 1842.87,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0673@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focAuxiliaryBoiler",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0893@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focAuxiliaryEngine",
+   "source": 0.77,
+   "stored": 0.77,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0670@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focMainEngine",
+   "source": 1.58,
+   "stored": 1.58,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0903@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focOtherFuelConsumingDevices",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0674@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+   "source": 820.48,
+   "stored": 820.48,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0673@MGO",
+   "target": "FuelConsumption[MGO].focAuxiliaryBoiler",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0893@MGO",
+   "target": "FuelConsumption[MGO].focAuxiliaryEngine",
+   "source": 0.1,
+   "stored": 0.1,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0670@MGO",
+   "target": "FuelConsumption[MGO].focMainEngine",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0903@MGO",
+   "target": "FuelConsumption[MGO].focOtherFuelConsumingDevices",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0674@MGO",
+   "target": "FuelConsumption[MGO].fuelQuantityRob",
+   "source": 201.36,
+   "stored": 201.36,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0640",
+   "target": "FuelConsumption[_NONFUEL].freshWaterProduced",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0639",
+   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0676",
+   "target": "FuelConsumption[_NONFUEL].cloRob",
+   "source": 20726,
+   "stored": 20726.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0678",
+   "target": "FuelConsumption[_NONFUEL].cloConsumption",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0641",
+   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-008",
+   "imo": "IMO0645",
+   "target": "FuelConsumption[_NONFUEL].freshWaterRob",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0597",
+   "target": "PerformanceReport.eventType",
+   "source": "EV10",
+   "stored": "EV10",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0603",
+   "target": "PerformanceReport.reportDatetime",
+   "source": "2026-04-29T13:30:00.000Z",
+   "stored": "2026-04-29T13:30:00.000Z",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0605",
+   "target": "PerformanceReport.voyageLeg",
+   "source": "2",
+   "stored": "2",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0600",
+   "target": "PerformanceReport.elapsedTime",
+   "source": 0.8,
+   "stored": 0.8,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0332",
+   "target": "PerformanceReport.courseOverGround",
+   "source": 160,
+   "stored": 160.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0333",
+   "target": "PerformanceReport.speedOverGround",
+   "source": 6.25,
+   "stored": 6.25,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0613",
+   "target": "PerformanceReport.distanceOverGround",
+   "source": 5,
+   "stored": 5.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0617",
+   "target": "PerformanceReport.speedPropeller",
+   "source": 26.06,
+   "stored": 26.06,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0601",
+   "target": "PerformanceReport.latitude",
+   "source": "13.851667",
+   "stored": 13.851667,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0602",
+   "target": "PerformanceReport.longitude",
+   "source": "-90.765",
+   "stored": -90.765,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0673@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focAuxiliaryBoiler",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0893@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focAuxiliaryEngine",
+   "source": 0.1,
+   "stored": 0.1,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0670@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focMainEngine",
+   "source": 0.33,
+   "stored": 0.33,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0903@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focOtherFuelConsumingDevices",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0674@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+   "source": 820.05,
+   "stored": 820.05,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0673@MGO",
+   "target": "FuelConsumption[MGO].focAuxiliaryBoiler",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0893@MGO",
+   "target": "FuelConsumption[MGO].focAuxiliaryEngine",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0670@MGO",
+   "target": "FuelConsumption[MGO].focMainEngine",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0903@MGO",
+   "target": "FuelConsumption[MGO].focOtherFuelConsumingDevices",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0674@MGO",
+   "target": "FuelConsumption[MGO].fuelQuantityRob",
+   "source": 201.36,
+   "stored": 201.36,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0640",
+   "target": "FuelConsumption[_NONFUEL].freshWaterProduced",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0639",
+   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0676",
+   "target": "FuelConsumption[_NONFUEL].cloRob",
+   "source": 20724,
+   "stored": 20724.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0678",
+   "target": "FuelConsumption[_NONFUEL].cloConsumption",
+   "source": 2,
+   "stored": 2.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0641",
+   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-009",
+   "imo": "IMO0645",
+   "target": "FuelConsumption[_NONFUEL].freshWaterRob",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0597",
+   "target": "PerformanceReport.eventType",
+   "source": "EV16",
+   "stored": "EV16",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0603",
+   "target": "PerformanceReport.reportDatetime",
+   "source": "2026-04-29T18:00:00.000Z",
+   "stored": "2026-04-29T18:00:00.000Z",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0605",
+   "target": "PerformanceReport.voyageLeg",
+   "source": "2",
+   "stored": "2",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0600",
+   "target": "PerformanceReport.elapsedTime",
+   "source": 4.5,
+   "stored": 4.5,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0621",
+   "target": "PerformanceReport.draughtForward",
+   "source": 4.65,
+   "stored": 4.65,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0622",
+   "target": "PerformanceReport.draughtAft",
+   "source": 7.66,
+   "stored": 7.66,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0357",
+   "target": "PerformanceReport.shipDraught",
+   "source": 6.16,
+   "stored": 6.16,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0332",
+   "target": "PerformanceReport.courseOverGround",
+   "source": 155,
+   "stored": 155.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0333",
+   "target": "PerformanceReport.speedOverGround",
+   "source": 12.222222222222221,
+   "stored": 12.222222222222221,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0613",
+   "target": "PerformanceReport.distanceOverGround",
+   "source": 55,
+   "stored": 55.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0617",
+   "target": "PerformanceReport.speedPropeller",
+   "source": 68,
+   "stored": 68.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0601",
+   "target": "PerformanceReport.latitude",
+   "source": "13.023333",
+   "stored": 13.023333,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0602",
+   "target": "PerformanceReport.longitude",
+   "source": "-90.341667",
+   "stored": -90.341667,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0615",
+   "target": "PerformanceReport.distanceToNextPort",
+   "source": 1782.87,
+   "stored": 1782.87,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0632",
+   "target": "WeatherDetails.seaHeight",
+   "source": 0.8,
+   "stored": 0,
+   "match": false
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0631",
+   "target": "WeatherDetails.seaDirTrue",
+   "source": 120,
+   "stored": 120,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0627",
+   "target": "WeatherDetails.windDirTrue",
+   "source": 120,
+   "stored": 120.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0626",
+   "target": "WeatherDetails.windDirRelative",
+   "source": 130,
+   "stored": 130.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0625",
+   "target": "WeatherDetails.windForce",
+   "source": 4,
+   "stored": 4,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0628",
+   "target": "WeatherDetails.airTemperature",
+   "source": 32,
+   "stored": 32.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0673@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focAuxiliaryBoiler",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0893@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focAuxiliaryEngine",
+   "source": 0.28,
+   "stored": 0.28,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0670@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focMainEngine",
+   "source": 2.81,
+   "stored": 2.81,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0903@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focOtherFuelConsumingDevices",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0674@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+   "source": 816.96,
+   "stored": 816.96,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0673@MGO",
+   "target": "FuelConsumption[MGO].focAuxiliaryBoiler",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0893@MGO",
+   "target": "FuelConsumption[MGO].focAuxiliaryEngine",
+   "source": 0.1,
+   "stored": 0.1,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0670@MGO",
+   "target": "FuelConsumption[MGO].focMainEngine",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0903@MGO",
+   "target": "FuelConsumption[MGO].focOtherFuelConsumingDevices",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0674@MGO",
+   "target": "FuelConsumption[MGO].fuelQuantityRob",
+   "source": 201.26,
+   "stored": 201.26,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0640",
+   "target": "FuelConsumption[_NONFUEL].freshWaterProduced",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0639",
+   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0676",
+   "target": "FuelConsumption[_NONFUEL].cloRob",
+   "source": 20702,
+   "stored": 20702.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0678",
+   "target": "FuelConsumption[_NONFUEL].cloConsumption",
+   "source": 22,
+   "stored": 22.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0641",
+   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-010",
+   "imo": "IMO0645",
+   "target": "FuelConsumption[_NONFUEL].freshWaterRob",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0597",
+   "target": "PerformanceReport.eventType",
+   "source": "EV16",
+   "stored": "EV16",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0603",
+   "target": "PerformanceReport.reportDatetime",
+   "source": "2026-04-30T18:00:00.000Z",
+   "stored": "2026-04-30T18:00:00.000Z",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0605",
+   "target": "PerformanceReport.voyageLeg",
+   "source": "2",
+   "stored": "2",
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0600",
+   "target": "PerformanceReport.elapsedTime",
+   "source": 24,
+   "stored": 24.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0621",
+   "target": "PerformanceReport.draughtForward",
+   "source": 4.65,
+   "stored": 4.65,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0622",
+   "target": "PerformanceReport.draughtAft",
+   "source": 7.66,
+   "stored": 7.66,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0357",
+   "target": "PerformanceReport.shipDraught",
+   "source": 6.16,
+   "stored": 6.16,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0332",
+   "target": "PerformanceReport.courseOverGround",
+   "source": 155,
+   "stored": 155.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0333",
+   "target": "PerformanceReport.speedOverGround",
+   "source": 11.541666666666666,
+   "stored": 11.541666666666666,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0613",
+   "target": "PerformanceReport.distanceOverGround",
+   "source": 277,
+   "stored": 277.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0617",
+   "target": "PerformanceReport.speedPropeller",
+   "source": 68,
+   "stored": 68.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0601",
+   "target": "PerformanceReport.latitude",
+   "source": "8.83",
+   "stored": 8.83,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0602",
+   "target": "PerformanceReport.longitude",
+   "source": "-88.36",
+   "stored": -88.36,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0615",
+   "target": "PerformanceReport.distanceToNextPort",
+   "source": 1505.87,
+   "stored": 1505.87,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0632",
+   "target": "WeatherDetails.seaHeight",
+   "source": 0.5,
+   "stored": 0,
+   "match": false
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0631",
+   "target": "WeatherDetails.seaDirTrue",
+   "source": 295,
+   "stored": 295,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0627",
+   "target": "WeatherDetails.windDirTrue",
+   "source": 295,
+   "stored": 295.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0626",
+   "target": "WeatherDetails.windDirRelative",
+   "source": 158,
+   "stored": 158.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0625",
+   "target": "WeatherDetails.windForce",
+   "source": 3,
+   "stored": 3,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0628",
+   "target": "WeatherDetails.airTemperature",
+   "source": 32,
+   "stored": 32.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0673@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focAuxiliaryBoiler",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0893@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focAuxiliaryEngine",
+   "source": 1.5,
+   "stored": 1.5,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0670@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focMainEngine",
+   "source": 14.5,
+   "stored": 14.5,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0903@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].focOtherFuelConsumingDevices",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0674@VLSFO2020",
+   "target": "FuelConsumption[VLSFO2020].fuelQuantityRob",
+   "source": 800.96,
+   "stored": 800.96,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0673@MGO",
+   "target": "FuelConsumption[MGO].focAuxiliaryBoiler",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0893@MGO",
+   "target": "FuelConsumption[MGO].focAuxiliaryEngine",
+   "source": 0.2,
+   "stored": 0.2,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0670@MGO",
+   "target": "FuelConsumption[MGO].focMainEngine",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0903@MGO",
+   "target": "FuelConsumption[MGO].focOtherFuelConsumingDevices",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0674@MGO",
+   "target": "FuelConsumption[MGO].fuelQuantityRob",
+   "source": 201.06,
+   "stored": 201.06,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0640",
+   "target": "FuelConsumption[_NONFUEL].freshWaterProduced",
+   "source": 16,
+   "stored": 16.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0639",
+   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0676",
+   "target": "FuelConsumption[_NONFUEL].cloRob",
+   "source": 20587,
+   "stored": 20587.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0678",
+   "target": "FuelConsumption[_NONFUEL].cloConsumption",
+   "source": 115,
+   "stored": 115.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0641",
+   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+   "source": 5,
+   "stored": 5.0,
+   "match": true
+  },
+  {
+   "cid": "S11-RUN_03-LAB021-NOON-00000009-011",
+   "imo": "IMO0645",
+   "target": "FuelConsumption[_NONFUEL].freshWaterRob",
+   "source": 11,
+   "stored": 11.0,
+   "match": true
+  }
+ ]
+}

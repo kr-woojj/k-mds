@@ -31,7 +31,10 @@ sys.path.insert(0, str(AGENT / "src"))
 
 
 def git(*a, cwd=ROOT):
-    return subprocess.run(["git", *a], cwd=cwd, capture_output=True, text=True).stdout.strip()
+    try:
+        return subprocess.run(["git", *a], cwd=cwd, capture_output=True, text=True).stdout.strip()
+    except FileNotFoundError:
+        return "(git unavailable)"
 
 
 def sha(p: Path) -> str:
@@ -46,7 +49,7 @@ def next_run_dir() -> tuple[Path, Path | None]:
     return d, (runs[-1] if runs else None)
 
 
-def t0_baseline(run: Path, source: Path, base: str) -> dict:
+def t0_baseline(run: Path, source: Path, base: str, llm: str | dict = "mock") -> dict:
     import httpx
     from ghg_agent.config import load_settings
     from ghg_agent.governance.candidate_scope import load_candidate_inventory
@@ -66,7 +69,7 @@ def t0_baseline(run: Path, source: Path, base: str) -> dict:
          "lab021_codebook": {"path": str(cb), "sha256": sha(cb) if cb.is_file() else None},
          "source_payload": {"path": str(source), "sha256": sha(source), "bytes": source.stat().st_size},
          "ship_odms": {"base": base, "reachable": odms_ok, "info": odms},
-         "llm": "mock", "skill": "real", "mcp": "off"}
+         "llm": llm, "skill": "real", "mcp": "off"}
     (run / "T0-baseline.json").write_text(json.dumps(b, ensure_ascii=False, indent=1), "utf-8")
     return b
 
@@ -74,7 +77,8 @@ def t0_baseline(run: Path, source: Path, base: str) -> dict:
 def t2_ids(run: Path, source: Path) -> dict:
     """K-MDS Consumer Connector 로 Noon Report Artifact 수신 → 원본 해시 비교. 자격증명 없으면 NOT_TESTED."""
     from dotenv import dotenv_values
-    env = dotenv_values(AGENT / ".env")
+    import os
+    env = {**dotenv_values(AGENT / ".env"), **{k: v for k, v in os.environ.items() if k.startswith("IDS_CONNECTOR_") and v}}
     if not env.get("IDS_CONNECTOR_USER") or not env.get("IDS_CONNECTOR_PASSWORD"):
         r = {"step": "T2", "verdict": "NOT_TESTED", "reason": "IDS_CONNECTOR_* 자격증명 없음"}
     else:
@@ -94,25 +98,34 @@ def t2_ids(run: Path, source: Path) -> dict:
     return r
 
 
+def prepare_events(source: Path, prefix: str = "") -> list[dict]:
+    """Provider Noon payload → 이벤트 단위 레코드(시각순). correlation_id 는 prefix 로 run 간 충돌을 피한다."""
+    payload = json.loads(source.read_text("utf-8"))["data"]
+    return [{"correlation_id": f"{prefix}LAB021-NOON-{payload['general'].get('imoNo')}-{i:03d}", "dataset_id": "LAB021/Noon Report API", **payload["general"], **e}
+            for i, e in enumerate(sorted(payload["events"], key=lambda x: x["dateEventUtc"]))]
+
+
+def summarize_agent_run(ev: Path, cid: str, event_key: str, status: str, error: str | None) -> dict:
+    from ghg_agent.evidence import verify_evidence
+    d = ev / cid
+    mr = json.loads((d / "mapping-result.json").read_text("utf-8")) if (d / "mapping-result.json").is_file() else {}
+    vr = json.loads((d / "validation-result.json").read_text("utf-8")) if (d / "validation-result.json").is_file() else {}
+    return {"cid": cid, "event_key": event_key, "status": status, "error": error,
+            "fields": len(mr.get("fields", [])), "unmapped": mr.get("metrics", {}).get("unmapped"), "llm_invocations": mr.get("metrics", {}).get("llm_invocations"),
+            "validation": {k: sum(1 for x in vr.get("items", []) if x["verdict"] == k) for k in ("PASS", "WARNING", "FAIL", "NOT_APPLICABLE")},
+            "integrity_ok": verify_evidence(d)["ok"] if d.is_dir() else False}
+
+
 def t3_t5_agent(run: Path, source: Path) -> dict:
     from dataclasses import replace
     from ghg_agent.agents.orchestrator import build_pipeline
     from ghg_agent.config import load_settings
-    from ghg_agent.evidence import verify_evidence
     ev = run / "agent-evidence"
-    payload = json.loads(source.read_text("utf-8"))["data"]
     pipe = build_pipeline(replace(load_settings(), audit_log_dir=ev))
     rows = []
-    for i, e in enumerate(sorted(payload["events"], key=lambda x: x["dateEventUtc"])):
-        rec = {"correlation_id": f"LAB021-NOON-{payload['general'].get('imoNo')}-{i:03d}", "dataset_id": "LAB021/Noon Report API", **payload["general"], **e}
+    for rec in prepare_events(source):
         st = pipe.run(json.dumps(rec, ensure_ascii=False).encode(), "application/json")
-        d = ev / st.correlation_id
-        mr = json.loads((d / "mapping-result.json").read_text("utf-8")) if (d / "mapping-result.json").is_file() else {}
-        vr = json.loads((d / "validation-result.json").read_text("utf-8")) if (d / "validation-result.json").is_file() else {}
-        rows.append({"cid": st.correlation_id, "event_key": e["eventKey"], "status": st.status.value, "error": st.error,
-                     "fields": len(mr.get("fields", [])), "unmapped": mr.get("metrics", {}).get("unmapped"), "llm_invocations": mr.get("metrics", {}).get("llm_invocations"),
-                     "validation": {k: sum(1 for x in vr.get("items", []) if x["verdict"] == k) for k in ("PASS", "WARNING", "FAIL", "NOT_APPLICABLE")},
-                     "integrity_ok": verify_evidence(d)["ok"]})
+        rows.append(summarize_agent_run(ev, st.correlation_id, rec["eventKey"], st.status.value, st.error))
     r = {"step": "T3-T5", "events": len(rows), "runs": rows, "all_integrity_ok": all(x["integrity_ok"] for x in rows),
          "note": "T3 은 Consumer Route 대신 러너가 이벤트 단위로 에이전트 파이프라인에 직접 투입(G-3 배치 envelope). 진해 현장 Route 검증은 W5."}
     (run / "T3-T5-agent.json").write_text(json.dumps(r, ensure_ascii=False, indent=1), "utf-8")
