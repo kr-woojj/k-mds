@@ -33,41 +33,7 @@ public class PerformanceReportController {
         }
         List<PerformanceReport> reports = performanceReportService.getReportsByVoyageId(voyageId);
         List<PerformanceReportResponse> dtos = reports.stream()
-            .map(r -> new PerformanceReportResponse(
-                r.getId(),
-                r.getVoyage() != null ? r.getVoyage().getId() : null,
-                r.getVoyageLeg(),
-                r.getEventType(),
-                r.getOperationType(),
-                r.getElapsedTime(),
-                r.getReportType(),
-                r.getReportDatetime(),
-                r.getLatitude(),
-                r.getLongitude(),
-                r.getDistanceThroughWater(),
-                r.getDistanceOverGround(),
-                r.getDistanceSailedInIce(),
-                r.getDistanceToNextPort(),
-                r.getLadenIndicator(),
-                r.getDistanceExcluded(),
-                r.getOffHireReasons(),
-                r.getShipDraught(),
-                r.getDraughtForward(),
-                r.getDraughtAft(),
-                r.getSpeedOverGround(),
-                r.getSpeedThroughWater(),
-                r.getSpeedPropeller(),
-                r.getSpeedProjected(),
-                r.getSpeedOrder(),
-                r.getCourseOverGround(),
-                r.getShipTrueHeading(),
-                // 하위 데이터 리스트 추가
-                performanceReportService.getWeatherDetailsByReportId(r.getId()),
-                performanceReportService.getCargoOnboardByReportId(r.getId()),
-                performanceReportService.getElectricConsumptionByReportId(r.getId()),
-                performanceReportService.getFuelConsumptionByReportId(r.getId()),
-                performanceReportService.getMeasuredCarbonDioxideByReportId(r.getId())
-            ))
+            .map(performanceReportService::toResponse)
             .toList();
         return ResponseEntity.ok(dtos);
     }

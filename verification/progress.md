@@ -264,3 +264,8 @@
 - 오류 분석: (1) Gemini 무료 티어 gemini-2.5-flash 는 모델별 일 20 요청 한도(429, quotaId GenerateRequestsPerDayPerProjectPerModel-FreeTier) — 파이프라인 4회/run + 대화 에이전트 턴당 6~7회로 소진. (2) gemini-2.5-flash-lite 는 신규 사용자 404, gemini-3.5-flash/-lite·3.7·3.8 은 503(high demand). 프로브 결과 gemini-3.6-flash·3-flash-preview·3.1-flash-lite 응답 → **gemini-3.6-flash** 로 전환(컨테이너 LLM_MODEL 오버라이드 + n8n 모델 노드), 성공. compose 기본값은 gemini-2.5-flash 유지(README 에 우회 절차). (3) 에이전트가 fetch 를 중복 호출해 빈 run 이 생기는 문제 → /tools/fetch 를 멱등화(이미 fetch 된 run_id 면 현재 상태 반환). (4) 실행 도중 사용자/평가자가 n8n UI 채팅으로 시도한 실행(14~16)이 run_09·run_10 을 생성(IDS 0건 단계에서 대기) — 증적 보존.
 - 미완 run(run_07·09·10)은 LLM 429/503 또는 대화 중단으로 fetch 단계까지만 남음. 삭제하지 않음.
 세션 S10 종료 상태: DONE (웹훅 자동화 + AI Agent 대화형 자동화 가동, run_08 PASS)
+
+### S10 추가 — Ship-ODMS 프론트엔드 점검 (사용자 요청: 전달 데이터 화면 확인)
+- 프론트엔드 호스트 포트 3030 이 langfuse-worker(127.0.0.1:3030)와 충돌해 접속 불가 → 3031 로 변경(apps/data-space compose). 화면: http://localhost:3031/ships/4/voyages/2/performance-reports (선박 4 = IMO 00000009, 보고 96건 = 12건 × 8 run 누적).
+- G-6 Ship-ODMS 프론트엔드/백엔드 결함(전달 데이터와 무관한 기존 결함, 수정): (a) Voyage.YearReportId int→int?(null 역직렬화 실패로 항차 목록 페이지 오류), (b) WeatherDetails 풍향·기온 int?→double?, (c) 백엔드에 없던 라우트 3종 추가 LegReportController — 레그(PortCall ATD~ATA) 범위 보고 목록/상세, foc-fuel-type·foc-consumer-type 평면 목록. 모델 대조 스크립트로 전 필드 형 비교(나머지 불일치는 int→double 방향이라 무해).
+

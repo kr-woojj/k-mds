@@ -1,5 +1,7 @@
 package com.kr.ship_odms.service;
 
+import com.kr.ship_odms.dto.PerformanceReportResponse;
+
 import com.kr.ship_odms.entity.*;
 import com.kr.ship_odms.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -61,5 +63,43 @@ public class PerformanceReportService {
     }
     public List<MeasuredCarbonDioxide> getMeasuredCarbonDioxideByReportId(Integer reportId) {
         return measuredCarbonDioxideRepository.findByReportId(reportId);
+    }
+
+    public PerformanceReportResponse toResponse(PerformanceReport r) {
+        return new PerformanceReportResponse(
+                r.getId(),
+                r.getVoyage() != null ? r.getVoyage().getId() : null,
+                r.getVoyageLeg(),
+                r.getEventType(),
+                r.getOperationType(),
+                r.getElapsedTime(),
+                r.getReportType(),
+                r.getReportDatetime(),
+                r.getLatitude(),
+                r.getLongitude(),
+                r.getDistanceThroughWater(),
+                r.getDistanceOverGround(),
+                r.getDistanceSailedInIce(),
+                r.getDistanceToNextPort(),
+                r.getLadenIndicator(),
+                r.getDistanceExcluded(),
+                r.getOffHireReasons(),
+                r.getShipDraught(),
+                r.getDraughtForward(),
+                r.getDraughtAft(),
+                r.getSpeedOverGround(),
+                r.getSpeedThroughWater(),
+                r.getSpeedPropeller(),
+                r.getSpeedProjected(),
+                r.getSpeedOrder(),
+                r.getCourseOverGround(),
+                r.getShipTrueHeading(),
+                // 하위 데이터 리스트 추가
+                getWeatherDetailsByReportId(r.getId()),
+                getCargoOnboardByReportId(r.getId()),
+                getElectricConsumptionByReportId(r.getId()),
+                getFuelConsumptionByReportId(r.getId()),
+                getMeasuredCarbonDioxideByReportId(r.getId())
+        );
     }
 }

@@ -26,7 +26,7 @@
         {
             Loading = true;
             Error = null;
-            Reports = await Api.GetAsync<List<PerformanceReport>>($"/ships/{ShipId}/voyages/{VoyageId}/port-calls/{PortCallId}/performance-reports");
+            Reports = await Api.GetAsync<List<PerformanceReport>>($"ships/{ShipId}/voyages/{VoyageId}/port-calls/{PortCallId}/performance-reports");
         }
         catch (Exception ex)
         {
