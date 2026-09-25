@@ -1,0 +1,12 @@
+{
+ "run_id": "run_09",
+ "prev_run": "run_08",
+ "source": null,
+ "created_at": "2026-09-25T18:03:54.423247+00:00",
+ "orchestrator": "n8n-ai-agent",
+ "llm": {
+  "status": "READY",
+  "provider": "gemini",
+  "real": true
+ }
+}

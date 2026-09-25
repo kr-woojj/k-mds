@@ -256,3 +256,11 @@
 - 표준 근거: ISO/IEC DIS 25023:2014(E) (data/raw/ISO25000) 측정 ID 인용 유지. 그 외 표준 조항 인용 없음.
 - 미결(사람 확인 필요): 랩오투원 Provider 데이터 복원(F-22) 후 T2 PASS 재실행; W7 TTA 25023 판; G-1/G-5·isEuPort; validator SQLite busy_timeout 권고(참조 저장소 수정 승인 필요).
 세션 S10 종료 상태: DONE (자동화 가동, run_05·06 PARTIAL — 외부 F-22 만 미충족)
+
+### S10 추가 — AI Agent 대화형 자동화 (n8n MCP)
+- 사용자 요청: 대화 입력 → IDS Consumer 수신 → GHG 매핑 스킬 → Ship-ODMS 입력을 AI Agent 중심으로 자동화.
+- 구성: 하네스에 도구 엔드포인트 6종 추가(/tools/fetch·map·deliver·consistency·judge·status; T3~T5 루프는 하네스가 수행). n8n 워크플로 "K-MDS GHG 데이터 AI Agent (대화형)" ID toAlr11gvHNYHvvy — Chat Trigger(공개 채팅 /webhook/kmds-ghg-agent-chat/chat) → AI Agent(Gemini, 메모리 20턴, 재시도 3회/45s) → HTTP Request Tool 6개($fromAI 로 run_id·source 전달). 시스템 프롬프트: 절차 순서, 수치는 도구 응답만 보고, Provider 0건이면 보관본 사용 여부를 사용자에게 질의, 입력 의도 있을 때만 Ship-ODMS 전송.
+- 실행: 첫 턴에서 에이전트가 fetch_ids_data 호출 → Provider 이벤트 0건(F-22) 인지 → 사용자에게 보관본 사용 질의(설계대로). 동의 턴에서 run_08 을 보관본으로 map→deliver→consistency→judge 순차 호출, **PASS (T2 NOT_TESTED)** M2 0.9945 / M3 1.0 / M4 0.9854, Ship 1·Voyage 1·PortCall 2·Report 12, LLM 4회. n8n 실행 13(18:01~18:04Z), 보고서 http://localhost:8090/runs/run_08/report.
+- 오류 분석: (1) Gemini 무료 티어 gemini-2.5-flash 는 모델별 일 20 요청 한도(429, quotaId GenerateRequestsPerDayPerProjectPerModel-FreeTier) — 파이프라인 4회/run + 대화 에이전트 턴당 6~7회로 소진. (2) gemini-2.5-flash-lite 는 신규 사용자 404, gemini-3.5-flash/-lite·3.7·3.8 은 503(high demand). 프로브 결과 gemini-3.6-flash·3-flash-preview·3.1-flash-lite 응답 → **gemini-3.6-flash** 로 전환(컨테이너 LLM_MODEL 오버라이드 + n8n 모델 노드), 성공. compose 기본값은 gemini-2.5-flash 유지(README 에 우회 절차). (3) 에이전트가 fetch 를 중복 호출해 빈 run 이 생기는 문제 → /tools/fetch 를 멱등화(이미 fetch 된 run_id 면 현재 상태 반환). (4) 실행 도중 사용자/평가자가 n8n UI 채팅으로 시도한 실행(14~16)이 run_09·run_10 을 생성(IDS 0건 단계에서 대기) — 증적 보존.
+- 미완 run(run_07·09·10)은 LLM 429/503 또는 대화 중단으로 fetch 단계까지만 남음. 삭제하지 않음.
+세션 S10 종료 상태: DONE (웹훅 자동화 + AI Agent 대화형 자동화 가동, run_08 PASS)

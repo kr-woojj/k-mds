@@ -312,6 +312,42 @@
           ],
           "result": "PARTIAL (T2 DIFFERENT 만 미충족): M2 0.9945, M3 1.0, M4 0.9854, 재현성 run_05 와 동일",
           "notes": "n8n 실행 6. 보고서 http://localhost:8090/runs/run_06/report"
+        },
+        {
+          "run_no": "s11/run_07",
+          "timestamp": "2026-09-26",
+          "evidence_paths": [
+            "verification/evidence/C02/s11/run_07/"
+          ],
+          "result": "미완(AI Agent 대화 중단): fetch(snapshot) 완료·이후 미진행 (T2 DIFFERENT)",
+          "notes": "n8n AI Agent 대화형(toAlr11gvHNYHvvy)"
+        },
+        {
+          "run_no": "s11/run_08",
+          "timestamp": "2026-09-26",
+          "evidence_paths": [
+            "verification/evidence/C02/s11/run_08/"
+          ],
+          "result": "PASS (T2 NOT_TESTED — 외부 IDS 단계는 별도 증적으로 보완): M2 0.9945, M3 1.0, M4 0.9854 (T2 NOT_TESTED)",
+          "notes": "n8n AI Agent 대화형(toAlr11gvHNYHvvy), n8n 실행 13, LLM gemini-3.6-flash"
+        },
+        {
+          "run_no": "s11/run_09",
+          "timestamp": "2026-09-26",
+          "evidence_paths": [
+            "verification/evidence/C02/s11/run_09/"
+          ],
+          "result": "미완(AI Agent 대화 중단): IDS fetch 만 수행(Provider 이벤트 0건, 보관본 동의 대기) (T2 DIFFERENT)",
+          "notes": "n8n AI Agent 대화형(toAlr11gvHNYHvvy)"
+        },
+        {
+          "run_no": "s11/run_10",
+          "timestamp": "2026-09-26",
+          "evidence_paths": [
+            "verification/evidence/C02/s11/run_10/"
+          ],
+          "result": "미완(AI Agent 대화 중단): fetch(snapshot) 완료·이후 미진행 (T2 DIFFERENT)",
+          "notes": "n8n AI Agent 대화형(toAlr11gvHNYHvvy)"
         }
       ],
       "owner_confirmed_by": "우정재(연구책임자, 2026-09-12)",
@@ -503,7 +539,9 @@
           "webhook": "POST /webhook/kmds-s11",
           "stack": "verification/automation/compose.yaml",
           "llm": "gemini-2.5-flash (OpenAI 호환)",
-          "decided": "2026-09-26"
+          "decided": "2026-09-26",
+          "ai_agent_workflow_id": "toAlr11gvHNYHvvy",
+          "llm_note": "gemini-2.5-flash 무료 티어 일 20회 한도 → 2026-09-26 gemini-3.6-flash 로 우회 실행"
         }
       }
     },

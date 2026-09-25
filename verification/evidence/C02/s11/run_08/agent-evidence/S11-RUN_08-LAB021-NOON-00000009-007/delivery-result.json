@@ -1,0 +1,7 @@
+{
+  "correlation_id": "S11-RUN_08-LAB021-NOON-00000009-007",
+  "detail": "mock delivery — 외부 전송 없음",
+  "mode": "mock",
+  "real_call": false,
+  "status": "DELIVERED"
+}

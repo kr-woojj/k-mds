@@ -1,0 +1,43 @@
+{
+  "code_commit": null,
+  "completed_at": "2026-09-25T18:02:32.037245+00:00",
+  "correlation_id": "S11-RUN_08-LAB021-NOON-00000009-005",
+  "created_at": "2026-09-25T18:02:27.110304+00:00",
+  "dirty_worktree": false,
+  "file_hashes": {
+    "agent-trace.json": "ba8e327f0ee0c8d6f0027289f99a81cdfedab4910bb199ec19161eb75be36368",
+    "delivery-result.json": "5bfb636b6b658f62ba728b69406d841fea8ce39249f75d047640b78deaefdebf",
+    "governance-context.json": "bde17cc3694e7459aebed0522b0db7162dbcfd9ffedbc50eba65263c549ffb1b",
+    "ingress-result.json": "0d3ad76aae77667f00c254c53565386f0d13232305fb93e7ee38cbb7a83fee87",
+    "kr-gears-output.json": "3a20e0dc96c7251e0f397ff1baa19289b20fb888296b6877088a18747f20192b",
+    "llm-calls.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "mapping-result.json": "114cbe19198cbb81071cc794e74c142b7510d24b747adf45f17ec818c835f0e6",
+    "mcp-calls.json": "64a7f69fdeb1267887ded9d9a39702cf68213f84ae81b89ddf8ea572221475e5",
+    "normalized-input.json": "6a970febd6b062bd761475fb3abac1ca0cba7d50a633314f1ffe33a7c552fb4b",
+    "pre-normalization.json": "81313e9f681e73d844aadc1cd6bf24bd2d97edeb53195f6e14e35c7b963bc22c",
+    "profile-result.json": "4c24fb73d13153e49468076d243c847cc98899568e3de658a1e37df3305dd551",
+    "raw-input.json": "9ab2483361e1f76a5ecdcd6937c6f0541fb965b364ec3a5e7d93e5e8a4bf7401",
+    "raw-input.sha256": "08f6d68ee37c28bef5b41b330d61f26df01c8c75c1d1927b95a4941792ee9def",
+    "skill-calls.json": "c102f875c516563381ab79f7f64c9f19fad8697ed60437ab238a0e1c9add73e1",
+    "summary.md": "6850f02674cb0d444166197e7f9ba2d567a6220fa932f5fe4c28dca2088f7703",
+    "validation-result.json": "2baf37bb03e4748d6f2510d3e5b2e7cad0bb81bd42507e95d126773604046adb"
+  },
+  "final_status": "REVIEW_REQUIRED",
+  "governance_flags": {
+    "actual_normalization_eligible": false,
+    "candidate_mapping_eligible": true,
+    "executable_mapping_eligible": false,
+    "kr_gears_actual_delivery_allowed": false,
+    "requiredness_profile_approved": false
+  },
+  "kr_gears_contract_status": "PROVISIONAL",
+  "llm_model": "gemini-3.6-flash",
+  "llm_provider": "gemini",
+  "mcp_real_or_mock": "off",
+  "reference_model_version": "FAL50",
+  "run_id": "run-b79fc06d",
+  "skill_real_or_mock": "real",
+  "source_type": "synthetic_fixture",
+  "synthetic_data": true,
+  "validator_version": "0.1.0"
+}

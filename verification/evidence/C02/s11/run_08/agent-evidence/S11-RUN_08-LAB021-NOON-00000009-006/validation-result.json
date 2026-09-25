@@ -1,0 +1,682 @@
+{
+  "correlation_id": "S11-RUN_08-LAB021-NOON-00000009-006",
+  "fail_count": 0,
+  "items": [
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0136",
+      "message": null,
+      "source_path": "/IMO0136",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0138",
+      "message": null,
+      "source_path": "/IMO0138",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0139",
+      "message": null,
+      "source_path": "/IMO0139",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0140",
+      "message": null,
+      "source_path": "/IMO0140",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0142",
+      "message": null,
+      "source_path": "/IMO0142",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0143",
+      "message": null,
+      "source_path": "/IMO0143",
+      "verdict": "PASS"
+    },
+    {
+      "check": "profile_applicability",
+      "code": "PROFILE_NOT_APPLICABLE",
+      "imo_data_number": "IMO0143",
+      "message": "['General Declaration', 'PSC Inspection History Data'] ∌ ['Just In Time Arrival', 'Noon Data Report', 'Ship Reporting Systems'] (정책 P-PROFILE-1)",
+      "source_path": "/IMO0143",
+      "verdict": "WARNING"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0148",
+      "message": null,
+      "source_path": "/IMO0148",
+      "verdict": "PASS"
+    },
+    {
+      "check": "profile_applicability",
+      "code": "PROFILE_NOT_APPLICABLE",
+      "imo_data_number": "IMO0148",
+      "message": "['General Declaration', 'Security Report', 'Stowaways', '[Fuel Oil Consumption and CII Reporting]', '[Seafarers Related Information and STCW Certificates]'] ∌ ['Just In Time Arrival', 'Noon Data Report', 'Ship Reporting Systems'] (정책 P-PROFILE-1)",
+      "source_path": "/IMO0148",
+      "verdict": "WARNING"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0160",
+      "message": null,
+      "source_path": "/IMO0160",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0326",
+      "message": null,
+      "source_path": "/IMO0326",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0580",
+      "message": null,
+      "source_path": "/IMO0580",
+      "verdict": "PASS"
+    },
+    {
+      "check": "profile_applicability",
+      "code": "PROFILE_NOT_APPLICABLE",
+      "imo_data_number": "IMO0580",
+      "message": "['Cargo Declaration', 'General Declaration', 'Maritime Declaration Health', '[Seafarers Related Information and STCW Certificates]'] ∌ ['Just In Time Arrival', 'Noon Data Report', 'Ship Reporting Systems'] (정책 P-PROFILE-1)",
+      "source_path": "/IMO0580",
+      "verdict": "WARNING"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0597",
+      "message": null,
+      "source_path": "/IMO0597",
+      "verdict": "PASS"
+    },
+    {
+      "check": "code_list_value",
+      "code": null,
+      "imo_data_number": "IMO0597",
+      "message": null,
+      "source_path": "/IMO0597",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0063",
+      "message": null,
+      "source_path": "/IMO0063",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0605",
+      "message": null,
+      "source_path": "/IMO0605",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0191",
+      "message": null,
+      "source_path": "/IMO0191",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0600",
+      "message": null,
+      "source_path": "/IMO0600",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0639",
+      "message": null,
+      "source_path": "/IMO0639",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0640",
+      "message": null,
+      "source_path": "/IMO0640",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0641",
+      "message": null,
+      "source_path": "/IMO0641",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0645",
+      "message": null,
+      "source_path": "/IMO0645",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0621",
+      "message": null,
+      "source_path": "/IMO0621",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0622",
+      "message": null,
+      "source_path": "/IMO0622",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0357",
+      "message": null,
+      "source_path": "/IMO0357",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0452",
+      "message": null,
+      "source_path": "/IMO0452",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0332",
+      "message": null,
+      "source_path": "/IMO0332",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0333",
+      "message": null,
+      "source_path": "/IMO0333",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0613",
+      "message": null,
+      "source_path": "/IMO0613",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0617",
+      "message": null,
+      "source_path": "/IMO0617",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0678",
+      "message": null,
+      "source_path": "/IMO0678",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0108",
+      "message": null,
+      "source_path": "/IMO0108",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0109",
+      "message": null,
+      "source_path": "/IMO0109",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0601",
+      "message": null,
+      "source_path": "/IMO0601",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0602",
+      "message": null,
+      "source_path": "/IMO0602",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0548",
+      "message": null,
+      "source_path": "/IMO0548",
+      "verdict": "PASS"
+    },
+    {
+      "check": "mapping_presence",
+      "code": "UNMAPPED",
+      "imo_data_number": null,
+      "message": "확정 매핑 없음 — review 대상",
+      "source_path": "/isEuPort",
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0676",
+      "message": null,
+      "source_path": "/IMO0676",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0066",
+      "message": null,
+      "source_path": "/IMO0066",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0615",
+      "message": null,
+      "source_path": "/IMO0615",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0541",
+      "message": null,
+      "source_path": "/IMO0541",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0673",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/MDO/IMO0673",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0893",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/MDO/IMO0893",
+      "verdict": "PASS"
+    },
+    {
+      "check": "profile_applicability",
+      "code": "PROFILE_NOT_APPLICABLE",
+      "imo_data_number": "IMO0893",
+      "message": "['[Fuel Oil Consumption and CII Reporting]'] ∌ ['Just In Time Arrival', 'Noon Data Report', 'Ship Reporting Systems'] (정책 P-PROFILE-1)",
+      "source_path": "/consumption_by_fuel_type/MDO/IMO0893",
+      "verdict": "WARNING"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0670",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/MDO/IMO0670",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0903",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/MDO/IMO0903",
+      "verdict": "PASS"
+    },
+    {
+      "check": "profile_applicability",
+      "code": "PROFILE_NOT_APPLICABLE",
+      "imo_data_number": "IMO0903",
+      "message": "['[Fuel Oil Consumption and CII Reporting]'] ∌ ['Just In Time Arrival', 'Noon Data Report', 'Ship Reporting Systems'] (정책 P-PROFILE-1)",
+      "source_path": "/consumption_by_fuel_type/MDO/IMO0903",
+      "verdict": "WARNING"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0673",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/HFO/IMO0673",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0893",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/HFO/IMO0893",
+      "verdict": "PASS"
+    },
+    {
+      "check": "profile_applicability",
+      "code": "PROFILE_NOT_APPLICABLE",
+      "imo_data_number": "IMO0893",
+      "message": "['[Fuel Oil Consumption and CII Reporting]'] ∌ ['Just In Time Arrival', 'Noon Data Report', 'Ship Reporting Systems'] (정책 P-PROFILE-1)",
+      "source_path": "/consumption_by_fuel_type/HFO/IMO0893",
+      "verdict": "WARNING"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0670",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/HFO/IMO0670",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0903",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/HFO/IMO0903",
+      "verdict": "PASS"
+    },
+    {
+      "check": "profile_applicability",
+      "code": "PROFILE_NOT_APPLICABLE",
+      "imo_data_number": "IMO0903",
+      "message": "['[Fuel Oil Consumption and CII Reporting]'] ∌ ['Just In Time Arrival', 'Noon Data Report', 'Ship Reporting Systems'] (정책 P-PROFILE-1)",
+      "source_path": "/consumption_by_fuel_type/HFO/IMO0903",
+      "verdict": "WARNING"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0673",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/VLSFO2020/IMO0673",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0893",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/VLSFO2020/IMO0893",
+      "verdict": "PASS"
+    },
+    {
+      "check": "profile_applicability",
+      "code": "PROFILE_NOT_APPLICABLE",
+      "imo_data_number": "IMO0893",
+      "message": "['[Fuel Oil Consumption and CII Reporting]'] ∌ ['Just In Time Arrival', 'Noon Data Report', 'Ship Reporting Systems'] (정책 P-PROFILE-1)",
+      "source_path": "/consumption_by_fuel_type/VLSFO2020/IMO0893",
+      "verdict": "WARNING"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0670",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/VLSFO2020/IMO0670",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0903",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/VLSFO2020/IMO0903",
+      "verdict": "PASS"
+    },
+    {
+      "check": "profile_applicability",
+      "code": "PROFILE_NOT_APPLICABLE",
+      "imo_data_number": "IMO0903",
+      "message": "['[Fuel Oil Consumption and CII Reporting]'] ∌ ['Just In Time Arrival', 'Noon Data Report', 'Ship Reporting Systems'] (정책 P-PROFILE-1)",
+      "source_path": "/consumption_by_fuel_type/VLSFO2020/IMO0903",
+      "verdict": "WARNING"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0673",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/MGO/IMO0673",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0893",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/MGO/IMO0893",
+      "verdict": "PASS"
+    },
+    {
+      "check": "profile_applicability",
+      "code": "PROFILE_NOT_APPLICABLE",
+      "imo_data_number": "IMO0893",
+      "message": "['[Fuel Oil Consumption and CII Reporting]'] ∌ ['Just In Time Arrival', 'Noon Data Report', 'Ship Reporting Systems'] (정책 P-PROFILE-1)",
+      "source_path": "/consumption_by_fuel_type/MGO/IMO0893",
+      "verdict": "WARNING"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0670",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/MGO/IMO0670",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0903",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/MGO/IMO0903",
+      "verdict": "PASS"
+    },
+    {
+      "check": "profile_applicability",
+      "code": "PROFILE_NOT_APPLICABLE",
+      "imo_data_number": "IMO0903",
+      "message": "['[Fuel Oil Consumption and CII Reporting]'] ∌ ['Just In Time Arrival', 'Noon Data Report', 'Ship Reporting Systems'] (정책 P-PROFILE-1)",
+      "source_path": "/consumption_by_fuel_type/MGO/IMO0903",
+      "verdict": "WARNING"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0673",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/ULSFO2020/IMO0673",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0893",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/ULSFO2020/IMO0893",
+      "verdict": "PASS"
+    },
+    {
+      "check": "profile_applicability",
+      "code": "PROFILE_NOT_APPLICABLE",
+      "imo_data_number": "IMO0893",
+      "message": "['[Fuel Oil Consumption and CII Reporting]'] ∌ ['Just In Time Arrival', 'Noon Data Report', 'Ship Reporting Systems'] (정책 P-PROFILE-1)",
+      "source_path": "/consumption_by_fuel_type/ULSFO2020/IMO0893",
+      "verdict": "WARNING"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0670",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/ULSFO2020/IMO0670",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0903",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/ULSFO2020/IMO0903",
+      "verdict": "PASS"
+    },
+    {
+      "check": "profile_applicability",
+      "code": "PROFILE_NOT_APPLICABLE",
+      "imo_data_number": "IMO0903",
+      "message": "['[Fuel Oil Consumption and CII Reporting]'] ∌ ['Just In Time Arrival', 'Noon Data Report', 'Ship Reporting Systems'] (정책 P-PROFILE-1)",
+      "source_path": "/consumption_by_fuel_type/ULSFO2020/IMO0903",
+      "verdict": "WARNING"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0673",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/ULSMGO2020/IMO0673",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0893",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/ULSMGO2020/IMO0893",
+      "verdict": "PASS"
+    },
+    {
+      "check": "profile_applicability",
+      "code": "PROFILE_NOT_APPLICABLE",
+      "imo_data_number": "IMO0893",
+      "message": "['[Fuel Oil Consumption and CII Reporting]'] ∌ ['Just In Time Arrival', 'Noon Data Report', 'Ship Reporting Systems'] (정책 P-PROFILE-1)",
+      "source_path": "/consumption_by_fuel_type/ULSMGO2020/IMO0893",
+      "verdict": "WARNING"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0670",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/ULSMGO2020/IMO0670",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0903",
+      "message": null,
+      "source_path": "/consumption_by_fuel_type/ULSMGO2020/IMO0903",
+      "verdict": "PASS"
+    },
+    {
+      "check": "profile_applicability",
+      "code": "PROFILE_NOT_APPLICABLE",
+      "imo_data_number": "IMO0903",
+      "message": "['[Fuel Oil Consumption and CII Reporting]'] ∌ ['Just In Time Arrival', 'Noon Data Report', 'Ship Reporting Systems'] (정책 P-PROFILE-1)",
+      "source_path": "/consumption_by_fuel_type/ULSMGO2020/IMO0903",
+      "verdict": "WARNING"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0674",
+      "message": null,
+      "source_path": "/rob_by_fuel_type/HFO/IMO0674",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0674",
+      "message": null,
+      "source_path": "/rob_by_fuel_type/VLSFO2020/IMO0674",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0674",
+      "message": null,
+      "source_path": "/rob_by_fuel_type/ULSFO2020/IMO0674",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0674",
+      "message": null,
+      "source_path": "/rob_by_fuel_type/MDO/IMO0674",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0674",
+      "message": null,
+      "source_path": "/rob_by_fuel_type/MGO/IMO0674",
+      "verdict": "PASS"
+    },
+    {
+      "check": "skill_registry_validation",
+      "code": null,
+      "imo_data_number": "IMO0674",
+      "message": null,
+      "source_path": "/rob_by_fuel_type/ULSMGO2020/IMO0674",
+      "verdict": "PASS"
+    }
+  ],
+  "not_verified_count": 0,
+  "overall": "WARNING",
+  "pass_count": 68,
+  "warning_count": 15
+}
