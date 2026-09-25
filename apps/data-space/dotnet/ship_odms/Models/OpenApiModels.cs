@@ -31,7 +31,7 @@ namespace ship_odms.Models
     {
         public int Id { get; set; }
         public int ShipId { get; set; }
-        public int YearReportId { get; set; }
+        public int? YearReportId { get; set; }  // 백엔드가 null 을 돌려줌(연차보고 미연결 항차) — non-nullable 이면 역직렬화 실패
         public string? VoyageNumber { get; set; } = null;
         public string? TradeServiceId { get; set; } = null;
         public double? GfiPerVoyage { get; set; } = null;
