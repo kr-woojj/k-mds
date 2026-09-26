@@ -16,4 +16,5 @@ COPY tests/fixtures ./tests/fixtures
 
 ENV PYTHONPATH=/app/src
 EXPOSE 8000
-CMD ["uv", "run", "uvicorn", "--factory", "ghg_agent.api.app:create_app", "--host", "0.0.0.0", "--port", "8000"]
+# 빌드 시 동기화된 venv 를 직접 실행한다 — `uv run` 은 기동 때마다 dev 그룹을 재동기화(네트워크 필요)하므로 오프라인 설치처(RIMS)에서 실패한다.
+CMD ["/app/.venv/bin/uvicorn", "--factory", "ghg_agent.api.app:create_app", "--host", "0.0.0.0", "--port", "8000"]

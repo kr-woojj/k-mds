@@ -234,9 +234,12 @@ class LangChainLLMClient:
                 max_retries=self.max_retries,
             )
         elif self.provider == "openai":
+            # OpenAI 또는 OpenAI 호환 오픈 모델 서버(vLLM/Ollama/LM Studio).
+            # 엔드포인트는 LLM_ENDPOINT(또는 OPENAI_BASE_URL), 키는 OPENAI_API_KEY(오픈 모델 서버는 임의 문자열).
             base = init_chat_model(
                 self.model,
                 model_provider="openai",
+                base_url=self.endpoint or None,
                 temperature=0,
                 timeout=self.timeout_seconds,
                 max_retries=self.max_retries,

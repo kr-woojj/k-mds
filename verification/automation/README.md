@@ -1,5 +1,7 @@
 # S-1-1 실증 자동화 (n8n + docker)
 
+신규 설치처(RIMS 서울 등) 설치 절차와 오픈 모델 전환은 [DEPLOY.md](DEPLOY.md). n8n 워크플로 내보내기: `n8n/*.json`.
+
 구성: n8n(:5678) 워크플로 `K-MDS S-1-1 실증 자동화` → 하네스(:8090, `harness.py`) + GHG AI Agent(:8001, Gemini) + K-MDS GHG Verifier 포털(Ship-ODMS 기반, API :8088 / UI :3031, 컨테이너 kmds-ghg-verifier-backend·frontend).
 
 ```

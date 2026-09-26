@@ -1,0 +1,306 @@
+{
+ "name": "K-MDS 실증 자동화 (GHG 의무보고 데이터 상호운용성)",
+ "nodes": [
+  {
+   "parameters": {
+    "httpMethod": "POST",
+    "path": "kmds-s11",
+    "responseMode": "responseNode",
+    "options": {}
+   },
+   "id": "trigger",
+   "name": "실행 트리거 (Webhook)",
+   "type": "n8n-nodes-base.webhook",
+   "typeVersion": 2,
+   "position": [
+    0,
+    0
+   ],
+   "webhookId": "72d55c2a-b6dc-4dc5-9e5c-8862d673cd5e",
+   "notes": "POST http://localhost:5678/webhook/kmds-s11  body(optional): {\"skip_ids\": false, \"source\": null}"
+  },
+  {
+   "parameters": {
+    "method": "POST",
+    "url": "http://host.docker.internal:8090/runs",
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={{ JSON.stringify({ skip_ids: $json.body?.skip_ids ?? false, source: $json.body?.source ?? null, n8n_execution_id: $execution.id, n8n_workflow_id: $workflow.id }) }}",
+    "options": {
+     "timeout": 180000
+    }
+   },
+   "id": "t0t2",
+   "name": "T0 baseline · T2 IDS 전달 (run 생성)",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    272,
+    0
+   ],
+   "notes": "하네스: run_NN 생성, T0 baseline(코드/데이터 해시), T2 K-MDS IDS Consumer 아티팩트 수신·원본 해시 비교(자격증명 없으면 NOT_TESTED)"
+  },
+  {
+   "parameters": {
+    "jsCode": "const r = $input.first().json;\nreturn r.events.map((e, i) => ({ json: { run_id: r.run_id, seq: i, cid: e.correlation_id, event_key: e.eventKey, agent_ingress: 'http://host.docker.internal:8001/api/v1/ids/events', record: e } }));"
+   },
+   "id": "split",
+   "name": "이벤트 분리 (시각순)",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    528,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "method": "POST",
+    "url": "={{ $json.agent_ingress }}",
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={{ JSON.stringify($json.record) }}",
+    "options": {
+     "batching": {
+      "batch": {
+       "batchSize": 1,
+       "batchInterval": 0
+      }
+     },
+     "response": {
+      "response": {
+       "fullResponse": true,
+       "neverError": true
+      }
+     },
+     "timeout": 300000
+    }
+   },
+   "id": "agent",
+   "name": "T3~T5 GHG AI Agent 매핑·검증 (이벤트별)",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    784,
+    0
+   ],
+   "notes": "에이전트 HTTP ingress(/api/v1/ids/events): profile→map(IMO Compendium, Gemini 후보 제안→skill 검증)→validate→transform. 이벤트 1건씩 순차. 200/422/409 모두 수집."
+  },
+  {
+   "parameters": {
+    "jsCode": "const src = $('이벤트 분리 (시각순)').all();\nconst res = $input.all();\nconst results = res.map((it, i) => {\n  const b = it.json.body || {};\n  return { cid: src[i].json.cid, event_key: src[i].json.event_key, http_status: it.json.statusCode, final_status: b.final_status ?? null, error: b.error ?? (b.detail ? JSON.stringify(b.detail) : null) };\n});\nreturn [{ json: { run_id: src[0].json.run_id, results, ok: results.filter(r => r.http_status === 200).length, total: results.length } }];"
+   },
+   "id": "agg",
+   "name": "이벤트 결과 취합",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    1040,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "method": "POST",
+    "url": "=http://host.docker.internal:8090/runs/{{ $json.run_id }}/collect",
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={{ JSON.stringify({ results: $json.results }) }}",
+    "options": {
+     "timeout": 120000
+    }
+   },
+   "id": "collect",
+   "name": "T5 증적 수집·무결성",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    1312,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "method": "POST",
+    "url": "=http://host.docker.internal:8090/runs/{{ $json.run_id }}/deliver",
+    "options": {
+     "timeout": 300000
+    }
+   },
+   "id": "deliver",
+   "name": "T6 Ship-ODMS 전송 (KR GEARs 대역)",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    1568,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "method": "POST",
+    "url": "=http://host.docker.internal:8090/runs/{{ $json.run_id }}/consistency",
+    "options": {
+     "timeout": 300000
+    }
+   },
+   "id": "consistency",
+   "name": "T7 정합성 확인 (ISO/IEC 25023)",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    1824,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "method": "POST",
+    "url": "=http://host.docker.internal:8090/runs/{{ $json.run_id }}/judge",
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={{ JSON.stringify({ n8n_execution_id: $execution.id }) }}",
+    "options": {
+     "timeout": 120000
+    }
+   },
+   "id": "judge",
+   "name": "T8 판정·보고서",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    2080,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "respondWith": "json",
+    "responseBody": "={{ JSON.stringify($json) }}",
+    "options": {}
+   },
+   "id": "respond",
+   "name": "결과 응답",
+   "type": "n8n-nodes-base.respondToWebhook",
+   "typeVersion": 1.1,
+   "position": [
+    2352,
+    0
+   ]
+  }
+ ],
+ "connections": {
+  "실행 트리거 (Webhook)": {
+   "main": [
+    [
+     {
+      "node": "T0 baseline · T2 IDS 전달 (run 생성)",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "T0 baseline · T2 IDS 전달 (run 생성)": {
+   "main": [
+    [
+     {
+      "node": "이벤트 분리 (시각순)",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "이벤트 분리 (시각순)": {
+   "main": [
+    [
+     {
+      "node": "T3~T5 GHG AI Agent 매핑·검증 (이벤트별)",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "T3~T5 GHG AI Agent 매핑·검증 (이벤트별)": {
+   "main": [
+    [
+     {
+      "node": "이벤트 결과 취합",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "이벤트 결과 취합": {
+   "main": [
+    [
+     {
+      "node": "T5 증적 수집·무결성",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "T5 증적 수집·무결성": {
+   "main": [
+    [
+     {
+      "node": "T6 Ship-ODMS 전송 (KR GEARs 대역)",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "T6 Ship-ODMS 전송 (KR GEARs 대역)": {
+   "main": [
+    [
+     {
+      "node": "T7 정합성 확인 (ISO/IEC 25023)",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "T7 정합성 확인 (ISO/IEC 25023)": {
+   "main": [
+    [
+     {
+      "node": "T8 판정·보고서",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "T8 판정·보고서": {
+   "main": [
+    [
+     {
+      "node": "결과 응답",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  }
+ },
+ "settings": {
+  "executionOrder": "v1",
+  "saveDataErrorExecution": "all",
+  "saveDataSuccessExecution": "all",
+  "saveManualExecutions": true,
+  "executionTimeout": 3600,
+  "binaryMode": "separate"
+ },
+ "meta": {
+  "exported_at": "2026-09-26",
+  "source_workflow_id": "Pycuq2NaVtsIv3xJ",
+  "note": "n8n 2.23 export. Import 후 Gemini/OpenAI 자격증명 연결·모델 노드 확인·활성화 필요."
+ }
+}

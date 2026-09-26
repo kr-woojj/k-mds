@@ -33,3 +33,6 @@ node_modules/
 .DS_Store
 Thumbs.db
 ~$*
+
+# PPT 렌더링 검토용 PNG
+pm/tools/pptx/_render/

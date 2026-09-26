@@ -10,10 +10,15 @@ services:
     ports:
       - "8001:8000"
     environment:
+      # LLM 선택 — 모두 env 로 바꾼다(코드 수정 불필요). 기본 gemini. 오픈 모델(vLLM/Ollama 등 OpenAI 호환)은
+      #   LLM_PROVIDER=openai LLM_MODEL=<서버 모델명> LLM_ENDPOINT=http://<host>:<port>/v1 OPENAI_API_KEY=<임의 문자열>
       LLM_PROVIDER: ${LLM_PROVIDER:-gemini}
       LLM_MODEL: ${LLM_MODEL:-gemini-2.5-flash}
+      LLM_ENDPOINT: ${LLM_ENDPOINT:-}
       ALLOW_LIVE_LLM: "true"
-      GEMINI_API_KEY: ${GEMINI_API_KEY:?GEMINI_API_KEY 필요 — --env-file C:/kr-dev/.env.master}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-}
       KR_GEARS_DELIVERY_MODE: mock
       IMO_MAPPING_SKILL_PATH: /refs/imo-compendium-mapping-validator
       REGISTRY_DB_PATH: /app/var/registry.sqlite3
