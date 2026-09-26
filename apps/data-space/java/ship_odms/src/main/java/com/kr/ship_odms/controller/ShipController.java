@@ -16,6 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ShipController {
     private final ShipRepository shipRepository;
+    private final com.kr.ship_odms.service.ShipService shipService;
 
     @GetMapping
     public List<ShipResponse> getShips() {
@@ -55,6 +56,14 @@ public class ShipController {
                 s.getCallSign(),
                 s.getRegistryPort()
             )))
+            .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
+
+    /** 선박과 하위 항차·포트콜·보고·연차보고를 함께 삭제한다. 응답: 삭제 건수. 없으면 404. */
+    @DeleteMapping("/{shipId}")
+    public ResponseEntity<java.util.Map<String, Integer>> deleteShip(@PathVariable Integer shipId) {
+        return shipService.deleteShipCascade(shipId)
+            .map(ResponseEntity::ok)
             .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 }

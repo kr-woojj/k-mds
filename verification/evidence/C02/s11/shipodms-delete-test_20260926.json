@@ -1,0 +1,136 @@
+{
+ "executed_at": "2026-09-26T01:09:17.191033+00:00",
+ "keep_imo": "00000009",
+ "before": [
+  {
+   "id": 1,
+   "imoNumber": null,
+   "shipName": null,
+   "shipType": null,
+   "shipTypeMarpol": null,
+   "flagState": null,
+   "mmsi": null,
+   "callSign": null,
+   "registryPort": null
+  },
+  {
+   "id": 2,
+   "imoNumber": "IMO1234567",
+   "shipName": "아르고1호",
+   "shipType": "컨테이너선",
+   "shipTypeMarpol": "Cargo",
+   "flagState": "한국",
+   "mmsi": "123456789",
+   "callSign": "D7GD",
+   "registryPort": "부산"
+  },
+  {
+   "id": 3,
+   "imoNumber": "IMO9876543",
+   "shipName": "부산-호치민 컨테이너선",
+   "shipType": "컨테이너선",
+   "shipTypeMarpol": "Cargo",
+   "flagState": "한국",
+   "mmsi": "987654321",
+   "callSign": "HLBS",
+   "registryPort": "부산"
+  },
+  {
+   "id": 4,
+   "imoNumber": "00000009",
+   "shipName": "TEST_BULK_DIESEL_09",
+   "shipType": "NONE",
+   "shipTypeMarpol": null,
+   "flagState": null,
+   "mmsi": null,
+   "callSign": "TBD09",
+   "registryPort": null
+  }
+ ],
+ "deletes": [
+  {
+   "ship_id": 1,
+   "imo": null,
+   "name": null,
+   "http": 200,
+   "deleted": {
+    "ship": 1,
+    "voyages": 1,
+    "port_calls": 1,
+    "performance_reports": 1,
+    "yearly_reports": 1
+   }
+  },
+  {
+   "ship_id": 2,
+   "imo": "IMO1234567",
+   "name": "아르고1호",
+   "http": 200,
+   "deleted": {
+    "ship": 1,
+    "voyages": 0,
+    "port_calls": 0,
+    "performance_reports": 0,
+    "yearly_reports": 1
+   }
+  },
+  {
+   "ship_id": 3,
+   "imo": "IMO9876543",
+   "name": "부산-호치민 컨테이너선",
+   "http": 200,
+   "deleted": {
+    "ship": 1,
+    "voyages": 0,
+    "port_calls": 0,
+    "performance_reports": 0,
+    "yearly_reports": 1
+   }
+  }
+ ],
+ "not_found_check": [
+  404,
+  null
+ ],
+ "after": [
+  {
+   "id": 4,
+   "imoNumber": "00000009",
+   "shipName": "TEST_BULK_DIESEL_09",
+   "shipType": "NONE",
+   "shipTypeMarpol": null,
+   "flagState": null,
+   "mmsi": null,
+   "callSign": "TBD09",
+   "registryPort": null
+  }
+ ],
+ "after_voyages_kept": [
+  {
+   "id": 2,
+   "shipId": 4,
+   "yearReportId": null,
+   "voyageNumber": "1",
+   "tradeServiceId": null,
+   "gfiPerVoyage": null,
+   "inboundPortJurisdiction": null,
+   "outboundPortJurisdiction": null
+  }
+ ],
+ "db_counts_after": {
+  "ship": 1,
+  "voyage": 1,
+  "port_call": 16,
+  "performance_report": 96,
+  "year_performance_report": 2,
+  "fuel_consumption": 284,
+  "foc_fuel_type": 160,
+  "weather_details": 40
+ },
+ "orphans_after": {
+  "voyage_without_ship": 0,
+  "report_without_voyage": 0,
+  "yearly_without_ship": 0,
+  "fuel_without_report": 0
+ }
+}

@@ -275,3 +275,8 @@
 - 서비스 C(대시보드): run_08 기준 총 726 / 변환 722 / 미매핑 4(isEuPort) / 전달 대조 342 중 일치 337·불일치 5(seaHeight G-5) / 대상 없음 16 / 코드북 변환 722 / 코드북 미해결 38(중복 타깃 cylOil 34, isEuPort 4). 에이전트가 표로 보고하고 dashboard_url 안내(n8n 실행 24).
 - LLM 한도: gemini-3.6-flash 도 일 20회 소진(429) → 최종 답변 턴만 실패, 도구 실행·입력은 완료. gemini-3.1-flash-lite 로 전환해 재시도. 워크플로 모델이 UI 편집으로 2.5-flash 로 되돌아간 적 있음(실행 21·23) — 편집 후 모델 확인 필요.
 
+### S10 추가 — Ship-ODMS DELETE /api/ships/{shipId} (사용자 요청 2026-09-26)
+- ShipService.deleteShipCascade(@Transactional): 항차별 PerformanceReport(자식 JPA cascade) → PortCall → Voyage → YearPerformanceReport → Ship 순 삭제, 삭제 건수 응답. 없으면 404.
+- 시험: DB 백업(ship_odms.db.bak-20260926T100641) 후 IMO 00000009 외 선박 3척 삭제(id 1: 항차 1·포트콜 1·보고 1·연차 1, id 2·3: 연차 1씩). 결과 선박 1척(00000009)만 잔존, 고아 행 0(voyage/report/yearly/fuel), 존재하지 않는 id 는 404. 증적 evidence/C02/s11/shipodms-delete-test_20260926.json.
+- 주의: 사용자 요청의 IMO '0000000' 은 시험 선박 00000009 로 해석. 표준모델(shared/standard-model/openapi.yaml)에는 DELETE 미기재 — 반영 여부 사용자 결정.
+
