@@ -280,3 +280,8 @@
 - 시험: DB 백업(ship_odms.db.bak-20260926T100641) 후 IMO 00000009 외 선박 3척 삭제(id 1: 항차 1·포트콜 1·보고 1·연차 1, id 2·3: 연차 1씩). 결과 선박 1척(00000009)만 잔존, 고아 행 0(voyage/report/yearly/fuel), 존재하지 않는 id 는 404. 증적 evidence/C02/s11/shipodms-delete-test_20260926.json.
 - 주의: 사용자 요청의 IMO '0000000' 은 시험 선박 00000009 로 해석. 표준모델(shared/standard-model/openapi.yaml)에는 DELETE 미기재 — 반영 여부 사용자 결정.
 
+### S10 추가 — 포털 이름 변경·메뉴 추가 (사용자 요청 2026-09-26)
+- data-space 컨테이너·프로젝트·네트워크 이름을 K-MDS GHG Verifier 로 변경(kmds-ghg-verifier-backend/-frontend, 네트워크 kmds-ghg-verifier, compose name kmds-ghg-verifier). 하네스 compose 의 SHIP_ODMS_BASE·external network 갱신, 스택 재기동. DB(bind mount) 유지.
+- 프론트엔드: 브랜드 K-MDS GHG Verifier(상단 바·탭 제목·lang=ko), 메뉴 순서 챗봇(/chat: n8n hosted chat iframe) → 선박 목록(/) → 대시보드(/dashboard: 하네스 매핑 증적 대시보드 iframe). iframe 주소는 Portal__ChatUrl/Portal__DashboardUrl 환경변수.
+- 에이전트 컨테이너 재기동 시 LLM_MODEL 기본값(gemini-2.5-flash, 일 한도 소진)으로 돌아가므로 gemini-3.1-flash-lite 로 다시 오버라이드.
+

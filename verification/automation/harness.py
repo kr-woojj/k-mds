@@ -169,7 +169,7 @@ def report_md(run: Path) -> str:
           f"- T0 baseline: Ship-ODMS reachable={((t0.get('ship_odms') or {}).get('reachable'))}, 후보집합 {((t0.get('candidate_inventory') or {}).get('version'))}({((t0.get('candidate_inventory') or {}).get('element_count'))})",
           f"- T2 IDS 전달: {t2.get('verdict')} {('— ' + str(t2.get('reason') or t2.get('note') or '')) if t2.get('verdict') != 'PASS' else ''}".rstrip(),
           f"- T3~T5 에이전트: 이벤트 {ag.get('events')}건, 증적 무결성 {'OK' if ag.get('all_integrity_ok') else 'NG'}, HTTP 오류 {len(ag.get('http_errors') or [])}건",
-          f"- T6 Ship-ODMS 전송: {json.dumps({k: (len(v) if isinstance(v, (list, dict)) else v) for k, v in deliv.items() if k not in ('errors', 'base')}, ensure_ascii=False)}, 오류 {len(deliv.get('errors') or [])}건 (UI http://localhost:3031)",
+          f"- T6 Ship-ODMS 전송: {json.dumps({k: (len(v) if isinstance(v, (list, dict)) else v) for k, v in deliv.items() if k not in ('errors', 'base')}, ensure_ascii=False)}, 오류 {len(deliv.get('errors') or [])}건 (포털 http://localhost:3031)",
           f"- T7 정합성: 대조 {ms.get('checks')}건 중 불일치 {(ms.get('M4') or {}).get('A_mismatch')}건, 표준모델 대상 없음 요소 {len(ms.get('no_target_elements') or [])}개",
           f"- T8 재현성(직전 run {res.get('prev_run')}): {json.dumps(res.get('reproducibility_vs_prev'), ensure_ascii=False)}", "",
           "## 이벤트별 에이전트 결과", "", "| # | correlation_id | event | HTTP | status | fields | unmapped | LLM 호출 | PASS/WARN/FAIL | 무결성 |", "|---|---|---|---|---|---|---|---|---|---|"]
@@ -202,7 +202,7 @@ def report_html(run_id: str) -> str:
     return (f"<!doctype html><meta charset='utf-8'><title>S-1-1 {run_id}</title>"
             f"<body style='font-family:ui-monospace,Consolas,monospace;max-width:1100px;margin:24px auto;padding:0 16px'>"
             f"<h2 style='color:{color}'>{html.escape(run_id)} — {html.escape(verdict)}</h2>"
-            f"<p><a href='/runs'>run 목록(JSON)</a> · <a href='/runs/{run_id}'>파일 목록(JSON)</a> · <a href='http://localhost:3031' target='_blank'>Ship-ODMS UI</a> · <a href='http://localhost:5678' target='_blank'>n8n</a></p>"
+            f"<p><a href='/runs'>run 목록(JSON)</a> · <a href='/runs/{run_id}'>파일 목록(JSON)</a> · <a href='http://localhost:3031' target='_blank'>K-MDS GHG Verifier 포털</a> · <a href='http://localhost:5678' target='_blank'>n8n</a></p>"
             f"<pre style='white-space:pre-wrap;background:#f6f8fa;padding:16px;border-radius:8px'>{html.escape(md)}</pre></body>")
 
 

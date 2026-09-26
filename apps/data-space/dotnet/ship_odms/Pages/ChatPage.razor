@@ -1,0 +1,15 @@
+@page "/chat"
+@inject IConfiguration Config
+
+<PageTitle>챗봇 — K-MDS GHG Verifier</PageTitle>
+
+<h2 style="font-size:1.5rem;margin-bottom:0.5rem;">GHG 데이터 AI Agent 챗봇</h2>
+<p style="color:#57606a;margin-bottom:1rem;">K-MDS IDS Consumer 수신 → IMO Compendium 매핑 스킬 → Ship-ODMS 입력, 선박 조회·연간 GHG 집계, 매핑 증적 대시보드를 대화로 요청합니다. (n8n AI Agent, Gemini)</p>
+
+@* ponytail: n8n hosted chat 페이지를 iframe 으로 내장(X-Frame-Options 없음 확인). 위젯 내장이 필요하면 @n8n/chat 로 교체. *@
+<iframe src="@ChatUrl" title="GHG AI Agent chat" style="width:100%;height:calc(100vh - 220px);min-height:520px;border:1px solid #d0d7de;border-radius:8px;background:#fff"></iframe>
+<p style="font-size:12px;color:#57606a;margin-top:0.5rem;">채팅 URL: <a href="@ChatUrl" target="_blank">@ChatUrl</a></p>
+
+@code {
+    private string ChatUrl => Config["Portal:ChatUrl"] ?? "http://localhost:5678/webhook/kmds-ghg-agent-chat/chat";
+}

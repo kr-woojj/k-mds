@@ -1,12 +1,13 @@
-version: '3.9'
+# K-MDS GHG Verifier (Ship-ODMS 기반 GHG 의무보고 데이터 표준모델 검증 포털) — 2026-09-26 이름 변경
+name: kmds-ghg-verifier
 
 networks:
-  ship-odms:
-    name: ship-odms
+  kmds-ghg-verifier:
+    name: kmds-ghg-verifier
 
 services:
-  ship-odms-backend:
-    container_name: ship-odms-backend
+  verifier-backend:
+    container_name: kmds-ghg-verifier-backend
     build:
       context: .
       dockerfile: Dockerfile.java
@@ -18,18 +19,21 @@ services:
     volumes:
       - ./java/ship_odms/ship_odms.db:/app/ship_odms.db
     networks:
-      - ship-odms
+      - kmds-ghg-verifier
 
-  ship-odms-frontend:
-    container_name: ship-odms-frontend
+  verifier-frontend:
+    container_name: kmds-ghg-verifier-frontend
     build:
       context: .
       dockerfile: Dockerfile.dotnet
     ports:
       - "3031:8088"   # 3030 은 langfuse-worker(127.0.0.1:3030)와 충돌 → 3031
     environment:
-      - ApiSettings__BaseUrl=http://ship-odms-backend:8088/api
+      - ApiSettings__BaseUrl=http://kmds-ghg-verifier-backend:8088/api
+      # 포털 메뉴(챗봇·대시보드)가 iframe 으로 여는 주소 — 브라우저 기준이므로 localhost
+      - Portal__ChatUrl=http://localhost:5678/webhook/kmds-ghg-agent-chat/chat
+      - Portal__DashboardUrl=http://localhost:8090/dashboard
     depends_on:
-      - ship-odms-backend
+      - verifier-backend
     networks:
-      - ship-odms
+      - kmds-ghg-verifier

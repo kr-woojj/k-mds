@@ -1,6 +1,6 @@
 # S-1-1 실증 자동화 (n8n + docker)
 
-구성: n8n(:5678) 워크플로 `K-MDS S-1-1 실증 자동화` → 하네스(:8090, `harness.py`) + GHG AI Agent(:8001, Gemini) + Ship-ODMS(:8088/UI :3031).
+구성: n8n(:5678) 워크플로 `K-MDS S-1-1 실증 자동화` → 하네스(:8090, `harness.py`) + GHG AI Agent(:8001, Gemini) + K-MDS GHG Verifier 포털(Ship-ODMS 기반, API :8088 / UI :3031, 컨테이너 kmds-ghg-verifier-backend·frontend).
 
 ```
 docker compose --env-file C:/kr-dev/.env.master -f verification/automation/compose.yaml up -d --build   # 에이전트+하네스
@@ -21,3 +21,5 @@ Gemini 할당량: 무료 티어는 모델별 일 20 요청(2026-09-26 확인, ge
 ## 추가 서비스 (2026-09-26, `services.py`)
 - **선박 조회·연간 GHG 집계**: 도구 `query_ship_data{imo}` → Ship-ODMS 저장 데이터·연차보고 조회(CII 필드는 표준모델에 없음). `compute_annual_ghg{imo, capacity_dwt?, write?}` → 중복 보고 제외 후 연료별 소비(t)·CO2(t)·거리(nm)·GFI TtW(gCO2/MJ) 계산, CF·LCV 는 MEPC.308(73) Annex 5 표(data/raw/MEPC). `write=true` 면 `YearPerformanceReport.totalGfiAnnually` 입력. 증적 `verification/evidence/C02/s11/annual/`. 가정(VLSFO→HFO 행, TtW 만)은 응답 `assumptions` 에 명시.
 - **매핑 증적 대시보드**: http://localhost:8090/dashboard?run=run_NN (Chart.js). 총 원본 필드, IMO code 변환 성공/실패, Ship-ODMS 전달 대조 성공/불일치, 대상 필드 없음, 코드북(랩오투원) 변환/미해결 항목, 이벤트별 표, M2/M3/M4. 도구 `mapping_dashboard{run_id?}` 가 같은 수치를 돌려준다. 원시 JSON: `/dashboard/data?run=`.
+
+포털(K-MDS GHG Verifier, apps/data-space compose): 메뉴 순서 챗봇(/chat, n8n hosted chat iframe) → 선박 목록(/) → 대시보드(/dashboard, 하네스 /dashboard iframe). iframe 주소는 compose 의 Portal__ChatUrl / Portal__DashboardUrl 로 바꾼다. 컨테이너·네트워크 이름 2026-09-26 변경(ship-odms-* → kmds-ghg-verifier-*), 하네스 compose 의 SHIP_ODMS_BASE·external network 도 함께 변경됨.

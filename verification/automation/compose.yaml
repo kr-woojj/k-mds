@@ -1,4 +1,4 @@
-# S-1-1 실증 자동화 스택: GHG AI Agent(시험 대상, Gemini) + 검증 하네스. Ship-ODMS(apps/data-space compose, 네트워크 ship-odms)와 n8n(:5678)은 별도 기동.
+# S-1-1 실증 자동화 스택: GHG AI Agent(시험 대상, Gemini) + 검증 하네스. K-MDS GHG Verifier(apps/data-space compose, 네트워크 kmds-ghg-verifier)와 n8n(:5678)은 별도 기동.
 #   docker compose --env-file C:/kr-dev/.env.master -f verification/automation/compose.yaml up -d --build
 # 비밀 값은 .env.master 에서 이름으로만 주입한다(GEMINI_API_KEY, IDS_CONNECTOR_*). 로그·증적에 기록하지 않는다.
 name: kmds-s11
@@ -39,7 +39,7 @@ services:
     ports:
       - "8090:8090"
     environment:
-      SHIP_ODMS_BASE: http://ship-odms-backend:8088
+      SHIP_ODMS_BASE: http://kmds-ghg-verifier-backend:8088
       AGENT_BASE: http://ghg-agent:8000
       AGENT_INBOX: /work/apps/kr-ghg-ai-agent/evidence
       IDS_CONNECTOR_BASE: ${IDS_CONNECTOR_BASE:-}
@@ -49,11 +49,11 @@ services:
       - ../..:/work
     networks:
       - default
-      - ship-odms
+      - kmds-ghg-verifier
     depends_on:
       ghg-agent:
         condition: service_healthy
 
 networks:
-  ship-odms:
+  kmds-ghg-verifier:
     external: true
