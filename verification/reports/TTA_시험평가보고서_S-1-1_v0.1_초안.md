@@ -86,10 +86,12 @@ flowchart TB
   EVAL --> N8N
   EVAL --> HN
 ```
+
 - 실선: 시험에서 실제로 수행되는 연결. 점선: 미검증(W5 Route)·미등록(F-23)·화면 내장(iframe).
 - 컨테이너 간 통신은 docker 네트워크(`kmds-ghg-verifier`, `kmds-s11_default`)로, n8n 은 `host.docker.internal` 로 하네스·에이전트에 접속한다. 비밀 값(GEMINI_API_KEY, IDS_CONNECTOR_*)은 `.env.master` 에서 이름으로만 주입한다.
 
 ### 1.5 데이터 흐름
+
 ```mermaid
 flowchart LR
   A[vessellink Noon Report API<br/>LAB021 코드북] -->|IDS Provider Artifact| B[K-MDS IDS Consumer]
