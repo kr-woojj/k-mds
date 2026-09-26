@@ -35,7 +35,61 @@
 | 검증 하네스 | 시험 단계(T0·T2·T5~T8) HTTP 도구, 판정·보고서·대시보드 | `verification/automation/harness.py`, docker `kmds-s11-harness`(:8090) | 로컬 |
 | n8n | 실증 자동화 오케스트레이터(웹훅 워크플로) 및 AI Agent 대화형 워크플로 | docker `n8n`(:5678), 인스턴스 2.23.2 | 로컬 |
 
-### 1.4 데이터 흐름
+### 1.4 시스템 구성도 (배치·연결)
+```mermaid
+flowchart TB
+  subgraph EXT["참여기관 인프라 (외부, 주소 마스킹)"]
+    VL["vessellink (랩오투원)<br/>Noon Report API · DAQ Logger API"]
+    subgraph KMDS["K-MDS 데이터 공간 (유엔젤) — Dataspace Connector 8.0.2"]
+      PRV["IDS Provider :26412<br/>Backend Connection → TRIMSSIM Provider API"]
+      BRK["Broker :26411 / DAPS"]
+      CON["IDS Consumer :26414<br/>Artifact / Route"]
+    end
+  end
+
+  subgraph LOCAL["한국선급 시험 노트북 (Docker Desktop, Windows 11)"]
+    subgraph N8N["n8n :5678 (컨테이너 n8n)"]
+      WF1["웹훅 워크플로<br/>K-MDS S-1-1 실증 자동화"]
+      WF2["AI Agent 대화형 워크플로<br/>Gemini + 도구 9종"]
+    end
+    subgraph S11["실증 스택 (compose kmds-s11)"]
+      AG["GHG AI Agent :8001<br/>kmds-ghg-agent<br/>ingress→profile→map→validate→transform"]
+      VAL["imo-compendium-mapping-validator<br/>(ro mount) + FAL50 registry.sqlite3"]
+      HN["검증 하네스 :8090<br/>kmds-s11-harness<br/>T0·T2·T5~T8, 판정·보고서·대시보드"]
+    end
+    subgraph VER["K-MDS GHG Verifier (compose kmds-ghg-verifier)"]
+      BE["표준모델 API :8088<br/>kmds-ghg-verifier-backend (Java, SQLite)"]
+      FE["포털 :3031<br/>kmds-ghg-verifier-frontend (Blazor)<br/>챗봇 · 선박 목록 · 대시보드"]
+    end
+    EV[("증적 volume<br/>verification/evidence/C02/s11/run_NN<br/>agent inbox apps/kr-ghg-ai-agent/evidence")]
+  end
+
+  EVAL["평가단 브라우저<br/>포털 3031 · n8n 5678 · 보고서/대시보드 8090"]
+
+  VL -->|HTTPS, Provider API| PRV
+  PRV -.->|등록·검색 (F-23 미등록)| BRK
+  PRV -->|IDS 계약·아티팩트 전송| CON
+  CON -->|T2 아티팩트 GET (자격증명 env)| HN
+  CON -.->|Route (W5, 진해 현장: 노트북 로컬 IP)| AG
+  WF1 -->|HTTP| HN
+  WF1 -->|T3 이벤트별 ingress| AG
+  WF2 -->|도구 호출 /tools/*| HN
+  HN -->|T3~T5 (대화형)| AG
+  AG --- VAL
+  AG --> EV
+  HN --> EV
+  HN -->|T6 POST · T7 GET| BE
+  FE -->|REST /api| BE
+  FE -.->|iframe| WF2
+  FE -.->|iframe /dashboard| HN
+  EVAL --> FE
+  EVAL --> N8N
+  EVAL --> HN
+```
+- 실선: 시험에서 실제로 수행되는 연결. 점선: 미검증(W5 Route)·미등록(F-23)·화면 내장(iframe).
+- 컨테이너 간 통신은 docker 네트워크(`kmds-ghg-verifier`, `kmds-s11_default`)로, n8n 은 `host.docker.internal` 로 하네스·에이전트에 접속한다. 비밀 값(GEMINI_API_KEY, IDS_CONNECTOR_*)은 `.env.master` 에서 이름으로만 주입한다.
+
+### 1.5 데이터 흐름
 ```mermaid
 flowchart LR
   A[vessellink Noon Report API<br/>LAB021 코드북] -->|IDS Provider Artifact| B[K-MDS IDS Consumer]

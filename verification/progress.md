@@ -285,3 +285,8 @@
 - 프론트엔드: 브랜드 K-MDS GHG Verifier(상단 바·탭 제목·lang=ko), 메뉴 순서 챗봇(/chat: n8n hosted chat iframe) → 선박 목록(/) → 대시보드(/dashboard: 하네스 매핑 증적 대시보드 iframe). iframe 주소는 Portal__ChatUrl/Portal__DashboardUrl 환경변수.
 - 에이전트 컨테이너 재기동 시 LLM_MODEL 기본값(gemini-2.5-flash, 일 한도 소진)으로 돌아가므로 gemini-3.1-flash-lite 로 다시 오버라이드.
 
+### S10 마감 — 보고서 초안·다음 일정 (2026-09-26 사용자 지시)
+- TTA 공인시험 평가보고서 초안 v0.1(사용 매뉴얼 포함) 작성: verification/reports/TTA_시험평가보고서_S-1-1_v0.1_초안.md — 시스템 구성도(§1.4 배치·연결)·데이터 흐름도(§1.5) 포함. 연구책임자 검토·승인 후 Word·PPT 변환 예정.
+- 미결 결정(W7 25023 판·증적 형식, G-1/G-5, isEuPort, LLM 키 등)은 **2026-10-01 대구 TTA(평가항목 구체화), KLNET, RIMS(오픈 모델 설치·API 노출 인프라 구성 스케줄 협의)** 후 사용자가 통보. 결정 후 **10-14 진도점검 데모 준비를 우선**하고 계속 진행.
+세션 S10 종료 상태: NEEDS_INPUT (10-01 회의 결과 대기; 로컬 자동화·포털·보고서 초안은 준비 완료)
+
