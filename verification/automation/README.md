@@ -17,3 +17,7 @@ curl -X POST http://localhost:5678/webhook/kmds-s11 -H "content-type: applicatio
 Chat Trigger(공개 채팅 http://localhost:5678/webhook/kmds-ghg-agent-chat/chat, n8n UI 에서 "Open chat") → AI Agent(Gemini 2.5 Flash, 메모리 20턴) → 도구 6개(하네스 `/tools/*`): fetch_ids_data(IDS Consumer 수신, source=ids|snapshot) → map_with_skill(에이전트 ingress 이벤트별 투입) → deliver_to_ship_odms → check_consistency → judge_and_report → get_run_status. 증적·판정은 웹훅 워크플로와 동일한 run_NN 형식(run-meta.orchestrator = n8n-ai-agent). Provider 이벤트 0건이면 에이전트가 사용자에게 보관본(2026-09-12) 사용 여부를 묻는다.
 
 Gemini 할당량: 무료 티어는 모델별 일 20 요청(2026-09-26 확인, gemini-2.5-flash 429 발생). 파이프라인은 run 당 4회, 대화 에이전트는 턴당 수 회 호출하므로 소진 시 다른 모델로 우회한다 — 컨테이너 `LLM_MODEL=gemini-3.5-flash-lite docker compose ... up -d ghg-agent`, n8n 은 "Gemini 2.5 Flash" 노드의 modelName 변경 후 재활성화(publish). gemini-2.5-flash-lite 는 신규 사용자에게 404.
+
+## 추가 서비스 (2026-09-26, `services.py`)
+- **선박 조회·연간 GHG 집계**: 도구 `query_ship_data{imo}` → Ship-ODMS 저장 데이터·연차보고 조회(CII 필드는 표준모델에 없음). `compute_annual_ghg{imo, capacity_dwt?, write?}` → 중복 보고 제외 후 연료별 소비(t)·CO2(t)·거리(nm)·GFI TtW(gCO2/MJ) 계산, CF·LCV 는 MEPC.308(73) Annex 5 표(data/raw/MEPC). `write=true` 면 `YearPerformanceReport.totalGfiAnnually` 입력. 증적 `verification/evidence/C02/s11/annual/`. 가정(VLSFO→HFO 행, TtW 만)은 응답 `assumptions` 에 명시.
+- **매핑 증적 대시보드**: http://localhost:8090/dashboard?run=run_NN (Chart.js). 총 원본 필드, IMO code 변환 성공/실패, Ship-ODMS 전달 대조 성공/불일치, 대상 필드 없음, 코드북(랩오투원) 변환/미해결 항목, 이벤트별 표, M2/M3/M4. 도구 `mapping_dashboard{run_id?}` 가 같은 수치를 돌려준다. 원시 JSON: `/dashboard/data?run=`.

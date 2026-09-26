@@ -28,6 +28,7 @@ from fastapi.responses import HTMLResponse
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 import run_s11 as s11  # noqa: E402
+import services  # noqa: E402
 
 SHIP_ODMS = os.environ.get("SHIP_ODMS_BASE", "http://localhost:8088")
 AGENT_BASE = os.environ.get("AGENT_BASE", "http://localhost:8001")
@@ -315,3 +316,45 @@ def tool_status(body: dict) -> dict:
     steps = ("T0-baseline.json", "T2-ids-transfer.json", "events.json", "T3-T5-agent.json", "T6-shipodms.txt", "T7-consistency.txt", "result.json")
     return {"run_id": run.name, "meta": rjson(run / "run-meta.json"), "steps_done": [f for f in steps if (run / f).is_file()],
             "result": rjson(run / "result.json"), "report_url": f"http://localhost:8090/runs/{run.name}/report"}
+
+
+# ---------------------------------------------------------------------------
+# 추가 서비스 (2026-09-26): 선박 조회·연간 GHG 집계, 매핑 증적 대시보드
+# ---------------------------------------------------------------------------
+ANNUAL_EVID = s11.EVID / "annual"
+
+
+@app.post("/tools/query_ship")
+def tool_query_ship(body: dict) -> dict:
+    """IMO 번호로 Ship-ODMS 저장 데이터 조회(선박·항차·보고 건수·연차보고). CII 필드는 모델에 없음을 함께 알린다."""
+    return services.ship_overview(SHIP_ODMS, str(body.get("imo", "")).strip())
+
+
+@app.post("/tools/annual_ghg")
+def tool_annual_ghg(body: dict) -> dict:
+    """연간 GHG 집계(연료별 소비·CO2·거리·GFI TtW, capacity_dwt 있으면 CII 참고값). write=true 면 YearPerformanceReport 입력."""
+    cap = body.get("capacity_dwt")
+    return services.annual_ghg(SHIP_ODMS, str(body.get("imo", "")).strip(), float(cap) if cap not in (None, "", 0, "0") else None,
+                               bool(body.get("write")), ANNUAL_EVID)
+
+
+@app.post("/tools/dashboard")
+def tool_dashboard(body: dict | None = None) -> dict:
+    """매핑 증적 대시보드 수치(총 항목·변환 성공/실패·전달 성공/불일치·코드북 변환/미해결)와 URL."""
+    body = body or {}
+    runs = sorted(s11.EVID.glob("run_[0-9][0-9]"))
+    run = run_dir(body["run_id"]) if body.get("run_id") else next((r for r in reversed(runs) if (r / "result.json").is_file()), runs[-1])
+    d = services.dashboard_data(run)
+    return {**d, "dashboard_url": f"http://localhost:8090/dashboard?run={run.name}", "events": d["events"][:3] + ([{"...": f"{len(d['events']) - 3} more"}] if len(d["events"]) > 3 else [])}
+
+
+@app.get("/dashboard/data")
+def dashboard_data(run: str | None = None) -> dict:
+    runs = sorted(s11.EVID.glob("run_[0-9][0-9]"))
+    r = run_dir(run) if run else next((x for x in reversed(runs) if (x / "result.json").is_file()), runs[-1])
+    return services.dashboard_data(r)
+
+
+@app.get("/dashboard", response_class=HTMLResponse)
+def dashboard_page() -> str:
+    return services.DASH_HTML

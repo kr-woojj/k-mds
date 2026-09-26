@@ -269,3 +269,9 @@
 - 프론트엔드 호스트 포트 3030 이 langfuse-worker(127.0.0.1:3030)와 충돌해 접속 불가 → 3031 로 변경(apps/data-space compose). 화면: http://localhost:3031/ships/4/voyages/2/performance-reports (선박 4 = IMO 00000009, 보고 96건 = 12건 × 8 run 누적).
 - G-6 Ship-ODMS 프론트엔드/백엔드 결함(전달 데이터와 무관한 기존 결함, 수정): (a) Voyage.YearReportId int→int?(null 역직렬화 실패로 항차 목록 페이지 오류), (b) WeatherDetails 풍향·기온 int?→double?, (c) 백엔드에 없던 라우트 3종 추가 LegReportController — 레그(PortCall ATD~ATA) 범위 보고 목록/상세, foc-fuel-type·foc-consumer-type 평면 목록. 모델 대조 스크립트로 전 필드 형 비교(나머지 불일치는 int→double 방향이라 무해).
 
+### S10 추가 — GHG AI Agent 서비스 2종 (사용자 요청 2026-09-26)
+- 구현: verification/automation/services.py + 하네스 도구 /tools/{query_ship, annual_ghg, dashboard}, 대시보드 페이지 /dashboard?run=run_NN. n8n AI Agent 워크플로에 도구 3개(query_ship_data, compute_annual_ghg, mapping_dashboard) 추가·시스템 프롬프트에 서비스 B/C 절차 명시.
+- 서비스 B(조회·분석): IMO 00000009 조회 → CII 는 Ship-ODMS 표준모델(openapi.yaml)에 필드 없음 → 에이전트가 '없음' 보고 후 DWT 여부를 사용자에게 질의 → 연간 집계: 중복 보고 82건 제외 14건 사용, MGO 1.0 t·VLSFO2020 76.83 t, CO2 242.455 t, 거리 1,208.6 nm, GFI(TtW) 77.43 gCO2/MJ → YearPerformanceReport id 4 입력(HTTP 201). CF·LCV 근거 MEPC.308(73) Annex 5 표 p.5(data/raw/MEPC). 가정(사람 확인 필요): VLSFO→HFO 행(CF 3.114), 장비별 FOC 합=기간 소비량, TtW 만(WtW LCA 지침 미배치), CII 는 DWT 없어 미산출. 증적 verification/evidence/C02/s11/annual/.
+- 서비스 C(대시보드): run_08 기준 총 726 / 변환 722 / 미매핑 4(isEuPort) / 전달 대조 342 중 일치 337·불일치 5(seaHeight G-5) / 대상 없음 16 / 코드북 변환 722 / 코드북 미해결 38(중복 타깃 cylOil 34, isEuPort 4). 에이전트가 표로 보고하고 dashboard_url 안내(n8n 실행 24).
+- LLM 한도: gemini-3.6-flash 도 일 20회 소진(429) → 최종 답변 턴만 실패, 도구 실행·입력은 완료. gemini-3.1-flash-lite 로 전환해 재시도. 워크플로 모델이 UI 편집으로 2.5-flash 로 되돌아간 적 있음(실행 21·23) — 편집 후 모델 확인 필요.
+
