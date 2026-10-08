@@ -13,6 +13,12 @@ secrets/
 verification/evidence-private/
 # 과제 문서 원본(대용량 PDF·hwpx, 커밋하지 않는다)
 docs/(RS-2024-00454634)*/
+# 회의 발표자료·예산·참여기관 CI 등 과제 관리 작업물 — Public 저장소에 올리지 않는다 (pm/ 의 요약 문서만 추적)
+pm/meetings/*
+!pm/meetings/.gitkeep
+pm/tools/
+pm/drafts/*
+!pm/drafts/.gitkeep
 # 개인 설정
 CLAUDE.local.md
 .claude/settings.local.json

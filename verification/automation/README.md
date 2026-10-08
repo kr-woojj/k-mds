@@ -5,7 +5,8 @@
 구성: n8n(:5678) 워크플로 `K-MDS S-1-1 실증 자동화` → 하네스(:8090, `harness.py`) + GHG AI Agent(:8001, Gemini) + K-MDS GHG Verifier 포털(Ship-ODMS 기반, API :8088 / UI :3031, 컨테이너 kmds-ghg-verifier-backend·frontend).
 
 ```
-docker compose --env-file C:/kr-dev/.env.master -f verification/automation/compose.yaml up -d --build   # 에이전트+하네스
+cp .env.example .env   # 최초 1회, 값 채움 (k-mds/.env 는 커밋되지 않는다)
+docker compose --env-file .env -f verification/automation/compose.yaml up -d --build   # 에이전트+하네스
 curl -X POST http://localhost:5678/webhook/kmds-s11 -H "content-type: application/json" -d "{\"skip_ids\": false}"
 ```
 
