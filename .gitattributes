@@ -8,3 +8,6 @@
 # generated JSON Schema는 모든 OS에서 LF로 checkout한다.
 # Windows fresh clone의 CRLF 변환으로 인한 Schema Drift False Positive를 방지한다.
 schemas/generated/*.schema.json text eol=lf
+
+# git 훅은 셸 스크립트이므로 모든 OS 에서 LF 로 checkout 한다 (CRLF 면 Linux 에서 실행되지 않는다).
+scripts/githooks/* text eol=lf

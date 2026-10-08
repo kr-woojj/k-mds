@@ -28,6 +28,19 @@ uv run python scripts/dev.py run-mcp    # 미구현 안내 후 exit 2 (= make ru
 
 `make inspect / normalize / ontology / schemas / compare` 등 데이터 파이프라인 명령은 아직 구현되지 않았으며 실행 시 안내 후 exit 1을 반환한다. 전체 명령 목록은 `make help`.
 
+### 환경변수와 비밀정보
+
+실제 값(LLM API 키, K-MDS IDS 커넥터 계정 등)은 저장소 루트의 `.env` 한 곳에 둔다. 이 파일은 `.gitignore` 에 등록되어 커밋되지 않는다.
+포크·클론한 기관은 템플릿 `.env.example` 의 `<sample: …>` 설명을 보고 `.env` 를 만든다.
+
+```bash
+cp .env.example .env                                   # 값을 채운다
+git config core.hooksPath scripts/githooks             # 커밋 전 비밀정보 검사 훅 (클론마다 한 번)
+uv run python scripts/check_secrets.py --staged        # 수동 검사. CI 는 --all 로 추적 파일 전체를 검사한다
+```
+
+`.env` 를 읽는 곳: docker compose(`--env-file .env`), `verification/run_s11.py`, 에이전트 라이브 LLM 시험. 로그·증적·커밋 메시지에 값을 적지 않는다.
+
 ## 구조
 
 폴더 구조와 각 폴더의 책임은 [AGENTS.md](AGENTS.md) §3, §4를 참조한다. `data/normalized/`, `ontology/generated/`, `schemas/generated/`는 스크립트 생성물 폴더이며 직접 수정하지 않는다.

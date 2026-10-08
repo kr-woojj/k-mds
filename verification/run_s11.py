@@ -1,7 +1,7 @@
 """S-1-1 정식 러너 — GHG 의무보고 데이터 상호운용성 (vessellink → K-MDS IDS → GHG AI Agent → data-space Ship-ODMS) T0~T8.
 
 증적: verification/evidence/C02/s11/run_NN/ (덮어쓰기 금지, 번호 증가). 판정은 consistency-report 의 측정치(M2·M3·M4)와 파일 존재로만 한다.
-외부 K-MDS 단계(T2)는 apps/kr-ghg-ai-agent/.env 의 IDS_CONNECTOR_* 가 있을 때만 실행하고, 없으면 NOT_TESTED 로 기록한다(값은 기록하지 않음).
+외부 K-MDS 단계(T2)는 k-mds/.env(또는 KMDS_ENV_FILE 로 지정한 파일)의 IDS_CONNECTOR_* 가 있을 때만 실행하고, 없으면 NOT_TESTED 로 기록한다(값은 기록하지 않음).
 
 사용:
   uv run --project apps/kr-ghg-ai-agent --with pyyaml python verification/run_s11.py --dry-run
@@ -78,7 +78,8 @@ def t2_ids(run: Path, source: Path) -> dict:
     """K-MDS Consumer Connector 로 Noon Report Artifact 수신 → 원본 해시 비교. 자격증명 없으면 NOT_TESTED."""
     from dotenv import dotenv_values
     import os
-    env = {**dotenv_values(AGENT / ".env"), **{k: v for k, v in os.environ.items() if k.startswith("IDS_CONNECTOR_") and v}}
+    env_file = Path(os.environ.get("KMDS_ENV_FILE") or ROOT / ".env")   # 값은 저장소 루트 .env 한 곳에서만 읽는다(템플릿 .env.example)
+    env = {**(dotenv_values(env_file) if env_file.is_file() else {}), **{k: v for k, v in os.environ.items() if k.startswith("IDS_CONNECTOR_") and v}}
     if not env.get("IDS_CONNECTOR_USER") or not env.get("IDS_CONNECTOR_PASSWORD"):
         r = {"step": "T2", "verdict": "NOT_TESTED", "reason": "IDS_CONNECTOR_* 자격증명 없음"}
     else:

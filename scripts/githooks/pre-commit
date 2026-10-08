@@ -1,0 +1,11 @@
+#!/bin/sh
+# k-mds pre-commit 훅: 커밋 대기 파일에서 비밀정보·내부 주소·금지 경로를 검사한다.
+# 설치(클론마다 한 번):  git config core.hooksPath scripts/githooks
+# 건너뛰기(비상시에만):  git commit --no-verify
+cd "$(git rev-parse --show-toplevel)" || exit 2
+for cmd in python python3 py; do
+  if command -v "$cmd" >/dev/null 2>&1; then
+    exec "$cmd" scripts/check_secrets.py --staged
+  fi
+done
+exec uv run python scripts/check_secrets.py --staged

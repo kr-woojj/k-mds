@@ -27,8 +27,9 @@ pytestmark = pytest.mark.live_llm
 
 
 def _load_env_file() -> None:
-    env_file = os.environ.get("LIVE_LLM_ENV_FILE")
-    if env_file and Path(env_file).is_file():
+    # 기본은 저장소 루트 k-mds/.env (템플릿 .env.example). LIVE_LLM_ENV_FILE 로 바꿀 수 있다.
+    env_file = os.environ.get("LIVE_LLM_ENV_FILE") or str(PROJECT_ROOT.parents[1] / ".env")
+    if Path(env_file).is_file():
         from dotenv import load_dotenv
 
         load_dotenv(env_file, override=False)  # 기존 env 우선

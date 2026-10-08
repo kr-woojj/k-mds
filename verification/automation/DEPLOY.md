@@ -23,7 +23,12 @@ uv run python tools/build_candidate_inventory.py   # var/candidate-inventory.jso
 ```
 
 ## 3. 환경변수 파일
-저장소 밖(예: `C:/kr-dev/.env.master` 또는 `~/kmds.env`)에 아래 이름으로 값을 둔다. 템플릿: `verification/automation/.env.example`.
+저장소 루트의 `k-mds/.env` 에 값을 둔다. 이 파일은 `.gitignore` 에 등록되어 커밋되지 않는다.
+템플릿 `k-mds/.env.example` 을 복사해 만들며, 각 항목의 `<sample: …>` 설명을 보고 값을 채운다.
+```bash
+cd k-mds && cp .env.example .env
+```
+오픈 모델로 쓸 때 바뀌는 항목:
 ```
 # 오픈 모델
 LLM_PROVIDER=openai
@@ -40,7 +45,7 @@ IDS_CONNECTOR_PASSWORD=
 ```bash
 cd k-mds
 docker compose -f apps/data-space/compose.yaml up -d --build                         # 표준모델 API :8088 + 포털 :3031
-docker compose --env-file <env파일> -f verification/automation/compose.yaml up -d --build   # 에이전트 :8001 + 하네스 :8090
+docker compose --env-file .env -f verification/automation/compose.yaml up -d --build   # 에이전트 :8001 + 하네스 :8090
 curl http://localhost:8088/api/ships      # []
 curl http://localhost:8001/ready          # "status":"READY", llm.provider "openai", real true
 curl http://localhost:8090/health         # "status":"ok"
