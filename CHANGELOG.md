@@ -27,7 +27,7 @@
   - 검증 Contract: `Evidence`, `ValidationFinding`, `SkillResult`, `ResultStatus`, `FindingSeverity`, `DataClassification`, `FINDING_VALUE_POLICY`(정책 선언만, 마스킹 미구현)
   - `model_validator`로 PASS/WARNING/FAIL 상태 불변조건, Severity 분리, Evidence 참조 무결성·중복 금지, Technical Position 미확인 Occurrence의 approved 금지 강제
   - TDD Contract Test 19건 추가 — 상태 불변조건, Evidence 무결성, camelCase 직렬화 (runtime 의존성 pydantic>=2.7)
-- `NOTICE.md`: 과제 사사(RS-2024-00454634), IMO Compendium 권리 고지, 제3자 명칭·상표 고지 및 MIT License 적용범위 명시 (2026-08-12)
+- `NOTICE.md`: 과제 사사, IMO Compendium 권리 고지, 제3자 명칭·상표 고지 및 MIT License 적용범위 명시 (2026-08-12)
 - `LICENSE.md`: MIT License, Copyright (c) 2026 Korean Register (KR) (2026-08-12)
 - Cross-platform 검증 인터페이스 `scripts/dev.py` (setup/build/validate/test/run-mcp) — Makefile, VSCode Task, CI 공용 단일 진입점 (2026-08-12)
   - `.github/workflows/ci.yml`: Python 3.11 + uv, `uv sync --locked` 후 dev.py build/validate 실행

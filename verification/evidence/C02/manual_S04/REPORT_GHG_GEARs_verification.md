@@ -1,6 +1,6 @@
 # K-MDS Use Case #3 — 선박 환경규제 의무보고 데이터 상호운용성 검증 결과
 IDS Consumer 수신 데이터 → IMO Compendium(FAL50) 표준 매핑 → KR GEARs Type1 Voyage Template / Nexawave API 데이터 리스트 변환 검증
-(과제 RS-2024-00454634 · 3차년도 · case C02 · 2026-09-13 · 작성 K-MDS Orchestrator · 검토 한국선급 연구책임자)
+(K-MDS 과제 · 3차년도 · case C02 · 2026-09-13 · 작성 K-MDS Orchestrator · 검토 한국선급 연구책임자)
 
 ## 1. 검증 경로와 대상
 ```

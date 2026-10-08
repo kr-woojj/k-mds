@@ -18,7 +18,7 @@ paths:
 
 ## 1. 프로젝트 목적
 
-이 저장소는 「스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계」 국가연구개발과제의 일환으로, 선박과 육상 밸류체인 간 국제표준 기반 데이터 공유 및 상호운용성을 확보하기 위한 Korea Maritime Data Space(k-mds)를 개발한다.
+이 저장소는 해사 데이터 표준·서비스 설계 국가연구개발과제의 일환으로, 선박과 육상 밸류체인 간 국제표준 기반 데이터 공유 및 상호운용성을 확보하기 위한 Korea Maritime Data Space(k-mds)를 개발한다.
 
 k-mds는 IMO Compendium 참조 모델을 데이터 유형별 Domain, Dataset, Component, DataElement 및 ElementOccurrence로 구조화하고, 이를 기반으로 다음 기능을 제공한다.
 

@@ -36,7 +36,7 @@ def table(x, y, w, rows, col_w, size=8.5, head=True):
 
 # 제목
 text(0.4, 0.2, 12.5, 0.5, ["K-MDS Use Case #3  선박 환경규제 의무보고 데이터 상호운용성 검증 결과 — IDS Consumer → IMO Compendium 표준 매핑 → KR GEARs Voyage Template/API"], 16, True, NAVY)
-text(0.4, 0.62, 12.5, 0.3, ["RS-2024-00454634 3차년도 · case C02 · 2026-09-13 · 입력: vessellink(랩오투원 LAB021) Noon Report API, IDS 경유 수신본 = 원본(sha256 fb23ffbd…) · 선박 IMO 00000009(시뮬레이터) 2026-04-19~30, 이벤트 12건/필드 71종"], 9, False, GREY)
+text(0.4, 0.62, 12.5, 0.3, ["K-MDS 3차년도 · case C02 · 2026-09-13 · 입력: vessellink(랩오투원 LAB021) Noon Report API, IDS 경유 수신본 = 원본(sha256 fb23ffbd…) · 선박 IMO 00000009(시뮬레이터) 2026-04-19~30, 이벤트 12건/필드 71종"], 9, False, GREY)
 # 흐름
 text(0.4, 0.95, 12.5, 0.35, ["vessellink ─Provider API─▶ K-MDS Provider Connector ─IDS(DAPS·계약)─▶ KR Consumer Connector ─▶ ① IMO Compendium(FAL50) 매핑 ─▶ ② GEARs Type1 Voyage Template ─▶ ③ Nexawave Post DCS/MRV Voyage Template API(전송 미실행)"], 9.5, False, NAVY)
 

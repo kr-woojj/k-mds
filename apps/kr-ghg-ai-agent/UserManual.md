@@ -8,7 +8,7 @@
 > - PoC 데모 운영자
 > - 한국선급(KR) 실증 담당자
 > - TTA 시험·검증 담당자
-> - KEIT 3차년도 연차보고 및 최종보고 작성자
+> - 전담기관 3차년도 연차보고 및 최종보고 작성자
 >
 > **현재 기본 통제 상태**  
 > - Candidate Mapping: 허용
@@ -33,7 +33,7 @@ Principal Software Engineer이자 실증 운영 지원 엔지니어다.
 
 목표는 K-MDS Use Case #3인 "선박 환경규제 데이터 의무보고"를
 사용자 매뉴얼 순서대로 실제 실행하고, 단계별 결과와 Evidence를 검토하여
-TTA 적합성 시험 및 KEIT 연차·최종보고에 활용 가능한 실증 패키지를 완성하는 것이다.
+TTA 적합성 시험 및 전담기관 연차·최종보고에 활용 가능한 실증 패키지를 완성하는 것이다.
 
 실증 시나리오:
 
@@ -1234,7 +1234,7 @@ kr_gears_actual_delivery_allowed: false
 
 ---
 
-# 14. KEIT 연차·최종보고 활용
+# 14. 전담기관 연차·최종보고 활용
 
 ## 14.1 성과 연결
 
@@ -1278,7 +1278,7 @@ kr_gears_actual_delivery_allowed: false
 - Validator Skill은 LLM 후보를 결정론적으로 검증한다.
 - KR GEARs Adapter는 Voyage 업무 구조로 변환한다.
 - Governance Gate는 승인되지 않은 실행과 전송을 차단한다.
-- Evidence Package는 TTA와 KEIT 검증의 재현성을 보장한다.
+- Evidence Package는 TTA와 전담기관 검증의 재현성을 보장한다.
 
 ---
 
@@ -1302,7 +1302,7 @@ kr_gears_actual_delivery_allowed: false
 - 파일 Hash 검증
 - TTA 시험 결과표 작성
 - 보고서 그림별 실제 캡처 확보
-- KEIT 보고용 요약 및 한계 문구 확정
+- 전담기관 보고용 요약 및 한계 문구 확정
 
 ---
 
