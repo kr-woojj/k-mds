@@ -31,7 +31,7 @@ services:
     environment:
       - ApiSettings__BaseUrl=http://kmds-ghg-verifier-backend:8088/api
       # 포털 메뉴(챗봇·대시보드)가 iframe 으로 여는 주소 — 브라우저 기준이므로 localhost
-      - Portal__ChatUrl=http://localhost:5678/webhook/kmds-ghg-agent-chat/chat
+      - Portal__ChatUrl=http://localhost:5678/webhook/kmds-chat-qwen-open-model/chat
       - Portal__DashboardUrl=http://localhost:8090/dashboard
     depends_on:
       - verifier-backend

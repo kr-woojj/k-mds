@@ -58,9 +58,9 @@ cp .env.example .env            # <sample: …> 설명을 보고 값을 채운�
 오픈 모델 서버가 갖춰야 하는 것:
 
 - `/v1/chat/completions` 와 `response_format: json_schema`(구조화 출력). 파이프라인(에이전트·하네스·웹훅 워크플로)은 이것만 쓴다.
-- **tool calling** 은 **대화형 AI Agent 워크플로(n8n Agent 노드)** 에만 필요하다. vLLM 은 `--enable-auto-tool-choice --tool-call-parser hermes`(Qwen3) 로 띄워야 한다. 이 플래그 없이 Agent 노드를 쓰면 서버가 `400 "auto" tool choice requires --enable-auto-tool-choice` 를 돌려준다.
+- **tool calling** 은 **대화형 AI Agent 워크플로(n8n Agent 노드)** 에만 필요하다. 서버에 tool-call 파서가 없으면(vLLM 이 `--enable-auto-tool-choice --tool-call-parser hermes` 없이 기동, `400 "auto" tool choice requires …`) 함께 뜨는 **tool-call 프록시**(`verification/automation/qwen_tool_proxy.py`, :8091)를 거친다. 프록시는 `tool_choice` 를 `none` 으로 바꿔 보내고 모델이 본문에 쓴 `<tool_call>` 블록을 OpenAI `tool_calls` 로 바꿔 준다. n8n 의 OpenAI 자격증명 Base URL 을 `http://host.docker.internal:8091/v1` 로 두면 끝이다. 사고 과정 끄기(`LLM_DISABLE_THINKING`)와 추론 강도도 프록시가 적용한다.
 
-2026-10-08 검증 결과(RIMS 테스트 서버 Qwen3.8-27B): 파이프라인 전 단계 통과, LLM 호출 4/4 성공, 호출당 중앙값 4.8초, 측정치 M2 0.9945 · M3 1.0 · M4 0.9854 로 Gemini 실행과 동일.
+2026-10-08 검증 결과(RIMS 테스트 서버 Qwen3.8-27B): 웹훅 파이프라인 전 단계 통과(LLM 4/4, 호출당 중앙값 3~5초, M2 0.9945 · M3 1.0 · M4 0.9854 로 Gemini 실행과 동일). 대화형 AI Agent 도 프록시를 거쳐 도구 6종을 호출해 보관본 기준 전 과정(run_17 PASS)을 수행했다.
 
 ## 운영 수칙
 
@@ -105,7 +105,7 @@ uv run python scripts/check_secrets.py --staged        # 수동 검사. CI 는 -
 | --- | --- |
 | `/ready` 의 `llm.real` 이 false | `ALLOW_LIVE_LLM`·키가 컨테이너에 안 들어감. `docker compose --env-file .env … up -d ghg-agent` 로 다시 띄운다 |
 | 증적 `llm-calls.json` 에 `LLM_OUTPUT_INVALID` | 모델이 JSON 구조화 출력을 못 지킴. 해당 필드는 UNMAPPED 로 남는다(허위 매핑 차단). 모델을 바꾸거나 `LLM_DISABLE_THINKING=true` 로 둔다 |
-| 챗봇이 `Error in workflow` | 오픈 모델 서버에 tool calling 파서가 없다. 위 「LLM 선택」의 vLLM 플래그 |
+| 챗봇이 `Error in workflow` / `Connection error` | 오픈 모델 서버에 tool calling 파서가 없거나(`400 tool choice requires …`) 서버 포트가 닫혔다. n8n 자격증명 Base URL 을 프록시(`http://host.docker.internal:8091/v1`)로 두고, `curl localhost:8091/health` 와 서버 `/v1/models` 응답을 확인한다 |
 | `verdict` 가 PARTIAL 이고 `R-T2 IDS 전달` 만 false | IDS Provider 에 데이터가 없거나 자격증명이 비어 있다. 보관본으로 진행된 것이며 매핑 측정치는 유효하다 |
 | Gemini 429 | 무료 할당량 소진. 오픈 모델로 전환하거나 `LLM_MODEL` 을 바꾼다 |
 

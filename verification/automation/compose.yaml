@@ -38,6 +38,26 @@ services:
       timeout: 5s
       retries: 5
 
+  # 오픈 모델 서버에 tool-call 파서가 없을 때(vLLM 400 "auto" tool choice requires …) n8n Agent 노드가 쓰는 우회 프록시.
+  # n8n 의 OpenAI 자격증명 Base URL 을 http://host.docker.internal:8091/v1 로 두면 된다. 키는 그대로 전달한다.
+  qwen-tool-proxy:
+    image: python:3.11-slim
+    container_name: kmds-qwen-tool-proxy
+    command: ["python", "/app/qwen_tool_proxy.py"]
+    ports:
+      - "8091:8091"
+    environment:
+      UPSTREAM_BASE: ${LLM_ENDPOINT:-}
+      LLM_DISABLE_THINKING: ${LLM_DISABLE_THINKING:-true}
+      LLM_REASONING_EFFORT: ${LLM_REASONING_EFFORT:-}
+    volumes:
+      - ./qwen_tool_proxy.py:/app/qwen_tool_proxy.py:ro
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://localhost:8091/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
   s11-harness:
     build:
       context: .

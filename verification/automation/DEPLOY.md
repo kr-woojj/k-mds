@@ -9,7 +9,7 @@
 | 저장소 | `git clone https://github.com/kr-woojj/k-mds.git` (main). |
 | 표준 원본 (git 미포함, 라이선스) | `data/raw/FAL50/IMO Compendium.xlsx`, `data/raw/ISO25000/ISO_IEC_DIS_25023(E)-Character_PDF_document.pdf`, `data/raw/MEPC/MEPC.308(73).pdf` — 한국선급이 별도 전달. FAL50 은 필수(registry 생성), 나머지는 보고서·부가 서비스용. |
 | 에이전트 준비물 (git 미포함) | `apps/kr-ghg-ai-agent/var/registry.sqlite3`, `var/candidate-inventory.json`, `var/reference/code_lists.json`, `var/reference/lab021/noon-code-book.json` — 아래 2단계에서 생성하거나 한국선급 전달본을 복사. |
-| 오픈 모델 서버 | OpenAI 호환 API(`/v1/chat/completions` + `response_format: json_schema` 구조화 출력). vLLM·Ollama·LM Studio 등. **tool calling 은 챗봇(n8n Agent 노드)에만 필요** — vLLM 은 `--enable-auto-tool-choice --tool-call-parser hermes`(Qwen3) 로 기동해야 한다. 검증된 구성: vLLM Qwen3.8-27B, 호출명 `qwen` (2026-10-08). |
+| 오픈 모델 서버 | OpenAI 호환 API(`/v1/chat/completions` + `response_format: json_schema` 구조화 출력). vLLM·Ollama·LM Studio 등. tool calling 은 챗봇(n8n Agent 노드)에만 필요하며, 서버에 tool-call 파서가 없어도 compose 의 **`qwen-tool-proxy`(:8091)** 가 대신 처리한다(§5). 검증된 구성: vLLM Qwen3.8-27B, 호출명 `qwen`, 파서 없음 + 프록시 (2026-10-08). |
 | n8n | 1.119 이상 권장(2.23 에서 검증). `docker run -d --name n8n -p 5678:5678 -v <dir>:/home/node/.n8n n8nio/n8n`. |
 | 포트 | 8088(표준모델 API), 3031(포털), 8001(에이전트), 8090(하네스), 5678(n8n). |
 
@@ -56,8 +56,8 @@ curl http://localhost:8090/health         # "status":"ok"
 
 ## 5. n8n 워크플로 가져오기
 1. n8n → Workflows → Import from File: `verification/automation/n8n/kmds-s11-webhook-automation.json`, `kmds-ghg-ai-agent-chat.json`.
-2. 자격증명: 챗봇 워크플로는 두 가지 본이 있다. `kmds-ghg-ai-agent-chat.json` 은 Gemini 노드, `kmds-ghg-ai-agent-chat-openmodel.json` 은 **OpenAI Chat Model 노드(오픈 모델용)** 로 저장돼 있다. 오픈 모델 본을 가져온 뒤 n8n 의 OpenAI 자격증명을 만들어 Base URL = `http://<open-model-host>:<port>/v1`, API Key = 서버가 발급한 키(검사가 없으면 임의 문자열)를 넣고, 모델 노드의 자격증명으로 지정한다. 모델명은 노드의 `model` 값(기본 `qwen`)을 서버 호출명으로 맞춘다. 오픈 모델 서버에 tool calling 파서가 없으면 이 워크플로는 `Error in workflow` 로 끝난다(§1 의 vLLM 플래그).
-3. 두 워크플로를 **활성화(Publish)**. 웹훅 경로 `kmds-s11`, 채팅 경로 `kmds-ghg-agent-chat` 는 그대로 둔다(포털 iframe 이 이 경로를 쓴다).
+2. 자격증명: 챗봇 워크플로는 두 가지 본이 있다. `kmds-ghg-ai-agent-chat.json` 은 Gemini 노드, `kmds-ghg-ai-agent-chat-openmodel.json` 은 **OpenAI Chat Model 노드(오픈 모델용)** 로 저장돼 있다. 오픈 모델 본을 가져온 뒤 n8n 의 OpenAI 자격증명을 만들어 **Base URL = `http://host.docker.internal:8091/v1`(tool-call 프록시)**, API Key = 서버가 발급한 키(검사가 없으면 임의 문자열)를 넣고, 모델 노드의 자격증명으로 지정한다. 프록시는 키를 그대로 서버에 전달한다. 서버가 tool-call 파서를 지원하면 Base URL 을 서버 주소로 바로 두어도 된다. 모델명은 노드의 `model` 값(기본 `qwen`)을 서버 호출명으로 맞춘다.
+3. 두 워크플로를 **활성화(Publish)**. 웹훅 경로 `kmds-s11` 은 그대로 둔다. 채팅 경로는 Gemini 본 `kmds-ghg-agent-chat`, 오픈 모델 본 `kmds-chat-qwen-open-model` 이며, 포털 iframe 은 `apps/data-space/compose.yaml` 의 `Portal__ChatUrl` 이 가리키는 쪽을 쓴다(기본: 오픈 모델 본).
 4. n8n 이 호스트의 하네스·에이전트에 접속하는 주소는 `http://host.docker.internal:8090`, `:8001` 이다. Linux 에서 `host.docker.internal` 이 없으면 n8n 컨테이너에 `--add-host=host.docker.internal:host-gateway` 를 준다.
 
 ## 6. 동작 확인
@@ -67,7 +67,7 @@ curl -X POST http://localhost:5678/webhook/kmds-s11 -H "content-type: applicatio
 ```
 - 보고서 `http://localhost:8090/runs/run_01/report`, 대시보드 `http://localhost:8090/dashboard`, 포털 `http://localhost:3031`.
 - 챗봇: 포털 "챗봇" 메뉴에서 "보관본으로 IDS 데이터를 매핑해서 Ship-ODMS 에 입력하고 판정까지 보고해줘".
-- 2026-10-08 오픈 모델 검증(RIMS 테스트 서버, vLLM Qwen3.8-27B, `LLM_DISABLE_THINKING=true`, `LLM_REASONING_EFFORT=low`): run_13 — 웹훅 자동화 T0~T8 완료, LLM 호출 4/4 성공(중앙값 4.8초, 최대 8.6초), M2 0.9945 · M3 1.0 · M4 0.9854 로 Gemini 실행(run_12)과 동일, 재현성 규칙 통과. 챗봇 본은 서버에 tool-call 파서가 없어 `400 tool choice requires --enable-auto-tool-choice` 로 미검증.
+- 2026-10-08 오픈 모델 검증(RIMS 테스트 서버, vLLM Qwen3.8-27B, `LLM_DISABLE_THINKING=true`, `LLM_REASONING_EFFORT=low`): run_13 — 웹훅 자동화 T0~T8 완료, LLM 호출 4/4 성공(중앙값 4.8초, 최대 8.6초), M2 0.9945 · M3 1.0 · M4 0.9854 로 Gemini 실행(run_12)과 동일, 재현성 규칙 통과. 챗봇 본은 서버에 tool-call 파서가 없어 처음엔 `400 tool choice requires --enable-auto-tool-choice` 였으나, `qwen-tool-proxy` 를 거치자 도구 6종 호출이 모두 동작했다(get_run_status 7 s, 보관본 전 과정 run_17 PASS 304 s).
 - 오픈 모델 확인: run 증적 `agent-evidence/<cid>/llm-calls.json` 의 provider 가 `openai`, model 이 지정한 모델명이면 된다. 구조화 출력(JSON schema)을 지원하지 않는 모델이면 `LLM_OUTPUT_INVALID` 경고가 남고 해당 필드는 UNMAPPED 로 유지된다(허위 매핑 차단). 측정치 M2·M3·M4 는 결정적 매핑이 지배하므로 모델과 무관하게 같아야 한다.
 
 ## 7. 운용 규칙

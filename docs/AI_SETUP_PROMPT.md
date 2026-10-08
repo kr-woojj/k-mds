@@ -34,7 +34,7 @@ D. 기동
 E. n8n
    - n8n 컨테이너가 없으면 DEPLOY.md §1 의 docker run 명령으로 띄운다(Linux 는 --add-host=host.docker.internal:host-gateway 추가).
    - verification/automation/n8n/kmds-s11-webhook-automation.json 을 가져와 활성화한다. UI 가 필요하면 나에게 그 단계만 부탁한다(컨테이너 안 n8n CLI 의 import:workflow 와 update:workflow --active=true 로도 된다).
-   - 대화형 AI Agent 워크플로(kmds-ghg-ai-agent-chat*.json)는 오픈 모델 서버가 tool calling 을 지원할 때만 가져온다(README 「LLM 선택」). 지원 여부는 /v1/chat/completions 에 tools 를 넣어 보내 400 이 아닌지로 확인한다.
+   - 대화형 AI Agent 워크플로 오픈 모델 본(kmds-ghg-ai-agent-chat-openmodel.json)도 가져온다. n8n 에 OpenAI 자격증명을 만들어 Base URL = http://host.docker.internal:8091/v1 (compose 의 tool-call 프록시), API Key = 서버 키를 넣고 모델 노드에 지정한다. curl http://localhost:8091/health 가 status ok 인지 확인한다.
 F. 실증 실행과 판정
    - curl -X POST http://localhost:5678/webhook/kmds-s11 -H "content-type: application/json" -d "{\"skip_ids\": true}" (IDS 자격증명을 넣었으면 false).
    - 응답 JSON 의 verdict, measures(M2, M3, M4), rules, report_url 을 기록한다. 기대값: M2 ≥ 0.95, M3 = 1.0, M4 ≥ 0.95. IDS 를 건너뛰면 verdict 는 PASS(T2 NOT_TESTED) 또는 PARTIAL(R-T2 만 false)이며 이는 정상이다.

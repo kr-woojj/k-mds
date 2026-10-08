@@ -55,7 +55,7 @@
         }
       },
       "id": "c53a1d61-4343-4a5e-955d-5381a125fa49",
-      "name": "Qwen3.8-27B (RIMS, OpenAI 호환)",
+      "name": "Qwen3.8-27B (RIMS, tool-proxy)",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
@@ -64,7 +64,7 @@
       ],
       "credentials": {
         "openAiApi": {
-          "name": "RIMS Qwen (OpenAI 호환)"
+          "name": "RIMS Qwen via tool proxy"
         }
       }
     },
@@ -393,7 +393,7 @@
         ]
       ]
     },
-    "Qwen3.8-27B (RIMS, OpenAI 호환)": {
+    "Qwen3.8-27B (RIMS, tool-proxy)": {
       "ai_languageModel": [
         [
           {
@@ -415,7 +415,7 @@
   },
   "meta": null,
   "nodeGroups": [],
-  "activeVersionId": "5f1d5f35-8350-47c2-a110-e6130224eb8b",
+  "activeVersionId": null,
   "versionCounter": 17,
   "tags": [],
   "versionMetadata": {
