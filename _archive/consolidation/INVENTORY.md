@@ -16,10 +16,10 @@
 | 테스트 기준선(09-20) | 574 pass / 2 fail / 3 skip → 2건 원인 분석·수정(§5) | 71 pass | 미실행 | unit+contract 47 pass |
 | 지침 파일 | CLAUDE.md, AGENTS.md(+ data/ontology/schemas/src/tests 하위 5개), .github/copilot-instructions.md, .claude/ | 없음. **SKILL.md 없음**(`app/skill/`은 Python 모듈) | .github/copilot-instructions.md, docs/custom-instructions/*/copilot-instructions.md 6개(워크숍 자료) | 없음 |
 | 비밀값 후보 | `.env.example`만(실값 없음). `*Secretariat*.pdf`는 이름 매칭 오탐 | 없음 | `./.env` | `./.env` (IDS_CONNECTOR_*, LLM 키. 내용 미열람) |
-| 10MB 초과 | docs/(RS-2024-00454634)/ 3.5GB (hwpx 136MB 등). `.gitignore`로 제외 완료 | 없음 | 없음(단, java/ 78MB, dotnet/ 21MB, complete/ 88MB는 bin/build/obj 산출물) | 없음. var/ 2.7MB(registry.sqlite3) |
+| 10MB 초과 | docs/(과제 문서 폴더)/ 3.5GB (hwpx 136MB 등). `.gitignore`로 제외 완료 | 없음 | 없음(단, java/ 78MB, dotnet/ 21MB, complete/ 88MB는 bin/build/obj 산출물) | 없음. var/ 2.7MB(registry.sqlite3) |
 | 목적지 | 루트(현 구조 유지) | `apps/imo-compendium-mapping-validator/` (권장, §3) | `apps/data-space/` | `apps/kr-ghg-ai-agent/` |
 
-k-mds `docs/` 폴더 수준 목록: `(RS-2024-00454634)…/00 공고`, `01 KEIT 접수 연구개발계획서`, `02 KEIT 협약`, `03 연구개발 1차년도(2024)`, `04 2차년도(2025)`, `05 3차년도(2026)`, `06 참고자료(IACS, IAPH, IMO Compendium, ISTS, KDATA, portcalloptimization, K-Model)`, `adr/`, `agent/`. 파일은 열지 않았다.
+k-mds `docs/` 폴더 수준 목록: `(과제 문서 폴더)/00 공고`, `01 접수 연구개발계획서`, `02 협약`, `03 연구개발 1차년도(2024)`, `04 2차년도(2025)`, `05 3차년도(2026)`, `06 참고자료(IACS, IAPH, IMO Compendium, ISTS, KDATA, portcalloptimization, K-Model)`, `adr/`, `agent/`. 파일은 열지 않았다.
 
 ## 2. 폴더 간 의존 (이동 시 깨질 수 있는 것)
 

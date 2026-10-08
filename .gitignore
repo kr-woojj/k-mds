@@ -12,13 +12,15 @@ secrets/
 # 참여기관 인프라 주소가 든 증적(로컬 보관)
 verification/evidence-private/
 # 과제 문서 원본(대용량 PDF·hwpx, 커밋하지 않는다)
-docs/(RS-2024-00454634)*/
-# 회의 발표자료·예산·참여기관 CI 등 과제 관리 작업물 — Public 저장소에 올리지 않는다 (pm/ 의 요약 문서만 추적)
-pm/meetings/*
-!pm/meetings/.gitkeep
-pm/tools/
-pm/drafts/*
-!pm/drafts/.gitkeep
+docs/(RS-*/
+# 과제 관리 자료(pm/) 전체 — 예산·지표·회의·결정 기록은 Public 저장소에 올리지 않는다. 폴더 표식(.gitkeep)만 추적
+pm/**
+!pm/**/
+!pm/**/.gitkeep
+# 과제 식별 정보·예산·컨소시엄 구성이 든 설계 문서와 과제 문서 분석(로컬 보관)
+docs/agent/pm-agent-design*.md
+verification/analysis/S01_W1_*.md
+verification/analysis/S01_W3_*.md
 # 개인 설정
 CLAUDE.local.md
 .claude/settings.local.json

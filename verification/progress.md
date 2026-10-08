@@ -1,11 +1,11 @@
 # K-MDS 3차년도 실증 검증 진행 기록 (PROGRESS_FILE)
 
-과제: (RS-2024-00454634) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계
+과제: (과제 문서 폴더)
 주관: 한국선급 / 역할: K-MDS Orchestrator (3차년도 실증 총괄)
 
 ## 불변 상수
 - PROJECT_ROOT: C:\kr-dev\k-mds
-- DOCS_DIR: C:\kr-dev\k-mds\docs\(RS-2024-00454634 ) 스마트·자율운항선박-밸류체인 간 데이터 표준개발 및 서비스 설계
+- DOCS_DIR: C:\kr-dev\k-mds\docs\(과제 문서 폴더)
 - WORK_DIR: C:\kr-dev\k-mds\verification
 - CASE_LIST: WORK_DIR\verification_cases.json
 - EVIDENCE_DIR: WORK_DIR\evidence\{case_id}\
