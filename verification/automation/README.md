@@ -19,6 +19,8 @@ curl -X POST http://localhost:5678/webhook/kmds-s11 -H "content-type: applicatio
 ## AI Agent 대화형 워크플로 (n8n ID toAlr11gvHNYHvvy)
 Chat Trigger(공개 채팅 http://localhost:5678/webhook/kmds-ghg-agent-chat/chat, n8n UI 에서 "Open chat") → AI Agent(Gemini 2.5 Flash, 메모리 20턴) → 도구 6개(하네스 `/tools/*`): fetch_ids_data(IDS Consumer 수신, source=ids|snapshot) → map_with_skill(에이전트 ingress 이벤트별 투입) → deliver_to_ship_odms → check_consistency → judge_and_report → get_run_status. 증적·판정은 웹훅 워크플로와 동일한 run_NN 형식(run-meta.orchestrator = n8n-ai-agent). Provider 이벤트 0건이면 에이전트가 사용자에게 보관본(2026-09-12) 사용 여부를 묻는다.
 
+오픈 모델 본(2026-10-08): 같은 워크플로를 복사해 Gemini 노드를 OpenAI Chat Model 노드(RIMS Qwen3.8-27B, 호출명 `qwen`)로 바꾼 `n8n/kmds-ghg-ai-agent-chat-openmodel.json` 을 두었다(채팅 경로 `kmds-chat-qwen-open-model`). Agent 노드는 tool calling 을 쓰므로 vLLM 서버가 `--enable-auto-tool-choice --tool-call-parser hermes` 로 떠 있어야 한다. 그 전에는 비활성 상태로 둔다. 웹훅 자동화 워크플로는 tool calling 을 쓰지 않아 오픈 모델로 그대로 동작한다(run_13).
+
 Gemini 할당량: 무료 티어는 모델별 일 20 요청(2026-09-26 확인, gemini-2.5-flash 429 발생). 파이프라인은 run 당 4회, 대화 에이전트는 턴당 수 회 호출하므로 소진 시 다른 모델로 우회한다 — 컨테이너 `LLM_MODEL=gemini-3.5-flash-lite docker compose ... up -d ghg-agent`, n8n 은 "Gemini 2.5 Flash" 노드의 modelName 변경 후 재활성화(publish). gemini-2.5-flash-lite 는 신규 사용자에게 404.
 
 ## 추가 서비스 (2026-09-26, `services.py`)

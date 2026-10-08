@@ -215,6 +215,8 @@ class LangChainLLMClient:
     timeout_seconds: float = 60.0
     max_retries: int = 2
     real_call: bool = True
+    disable_thinking: bool = False
+    reasoning_effort: str = ""
     call_log: list[LLMCallRecord] = field(default_factory=list)
     _structured: Any = None
 
@@ -235,7 +237,14 @@ class LangChainLLMClient:
             )
         elif self.provider == "openai":
             # OpenAI 또는 OpenAI 호환 오픈 모델 서버(vLLM/Ollama/LM Studio).
-            # 엔드포인트는 LLM_ENDPOINT(또는 OPENAI_BASE_URL), 키는 OPENAI_API_KEY(오픈 모델 서버는 임의 문자열).
+            # 엔드포인트는 LLM_ENDPOINT(또는 OPENAI_BASE_URL), 키는 OPENAI_API_KEY(서버가 발급한 키 또는 임의 문자열).
+            # Qwen3 계열(vLLM): chat_template_kwargs.enable_thinking=False 로 사고 과정을 끄고,
+            # reasoning_effort 로 추론 강도를 낮춘다(기본 xhigh 는 느리다). 둘 다 env 로 켠다.
+            extra_body: dict[str, Any] = {}
+            if self.disable_thinking:
+                extra_body["chat_template_kwargs"] = {"enable_thinking": False}
+            if self.reasoning_effort:
+                extra_body["reasoning_effort"] = self.reasoning_effort
             base = init_chat_model(
                 self.model,
                 model_provider="openai",
@@ -243,7 +252,11 @@ class LangChainLLMClient:
                 temperature=0,
                 timeout=self.timeout_seconds,
                 max_retries=self.max_retries,
+                **({"extra_body": extra_body} if extra_body else {}),
             )
+            # 오픈 모델 서버는 tool calling 보다 response_format=json_schema 지원이 안정적이다.
+            self._structured = base.with_structured_output(LLMCandidateBatch, method="json_schema")
+            return self._structured
         elif self.provider == "gemini":
             # Gemini 를 OpenAI 호환 엔드포인트로 호출한다 — 새 SDK 의존성 없음. 키는 GEMINI_API_KEY (로깅 금지).
             # ponytail: 추후 Open 모델(vLLM/Ollama OpenAI 호환)로 바꿀 때도 endpoint/키만 바꾸면 된다.
@@ -338,5 +351,7 @@ def make_llm_client(settings) -> LLMClient:
             api_version=settings.llm_api_version,
             timeout_seconds=settings.llm_timeout_seconds,
             max_retries=settings.llm_max_retries,
+            disable_thinking=settings.llm_disable_thinking,
+            reasoning_effort=settings.llm_reasoning_effort,
         )
     return MockLLMClient()

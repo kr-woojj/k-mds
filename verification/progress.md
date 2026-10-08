@@ -290,3 +290,10 @@
 - 미결 결정(W7 25023 판·증적 형식, G-1/G-5, isEuPort, LLM 키 등)은 **2026-10-01 대구 TTA(평가항목 구체화), KLNET, RIMS(오픈 모델 설치·API 노출 인프라 구성 스케줄 협의)** 후 사용자가 통보. 결정 후 **10-14 진도점검 데모 준비를 우선**하고 계속 진행.
 세션 S10 종료 상태: NEEDS_INPUT (10-01 회의 결과 대기; 로컬 자동화·포털·보고서 초안은 준비 완료)
 
+
+## 세션 S11 — 2026-10-08 (오픈 모델 전환·보안 정리)
+- 비밀 값 관리를 `k-mds/.env` 한 곳으로 통일(템플릿 `.env.example`, `<sample: …>` 설명), `scripts/check_secrets.py` + pre-commit 훅 + CI 비밀 검사, `.gitignore` 에 pm/meetings·pm/tools (PR #1).
+- RIMS 서울사무소 테스트 서버 오픈 모델(vLLM Qwen3.8-27B, 호출명 `qwen`, OpenAI 호환, 발급 키) 반영: 에이전트 `LLM_DISABLE_THINKING`·`LLM_REASONING_EFFORT` 옵션 추가, openai provider 는 구조화 출력을 `json_schema` 방식으로. 컨테이너 재빌드 후 `/ready` llm.provider=openai real=true.
+- 검증 run_13(n8n 웹훅 → 하네스 → 에이전트): T0~T8 완료, LLM 4/4 성공(중앙값 4.8 s), M2 0.9945·M3 1.0·M4 0.9854 — Gemini 실행 run_12 와 동일, 재현성 통과. 판정 PARTIAL 은 R-T2(Provider 이벤트 0건, F-22)만 false 로 이전과 같음.
+- 대화형 AI Agent 워크플로 오픈 모델 본(`n8n/kmds-ghg-ai-agent-chat-openmodel.json`)은 서버가 tool-call 파서 없이 떠 있어 `400 tool choice requires --enable-auto-tool-choice` → 비활성 보관. RIMS 에 vLLM `--enable-auto-tool-choice --tool-call-parser hermes` 요청 필요.
+- README 를 외부 사용자용으로 재작성(과제 식별 정보 제외), `docs/AI_SETUP_PROMPT.md`(AI 도구 자동 설치·검증 지시문) 추가.
