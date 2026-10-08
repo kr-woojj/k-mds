@@ -297,3 +297,5 @@
 - 검증 run_13(n8n 웹훅 → 하네스 → 에이전트): T0~T8 완료, LLM 4/4 성공(중앙값 4.8 s), M2 0.9945·M3 1.0·M4 0.9854 — Gemini 실행 run_12 와 동일, 재현성 통과. 판정 PARTIAL 은 R-T2(Provider 이벤트 0건, F-22)만 false 로 이전과 같음.
 - 대화형 AI Agent 워크플로 오픈 모델 본(`n8n/kmds-ghg-ai-agent-chat-openmodel.json`)은 서버가 tool-call 파서 없이 떠 있어 `400 tool choice requires --enable-auto-tool-choice` → 비활성 보관. RIMS 에 vLLM `--enable-auto-tool-choice --tool-call-parser hermes` 요청 필요.
 - README 를 외부 사용자용으로 재작성(과제 식별 정보 제외), `docs/AI_SETUP_PROMPT.md`(AI 도구 자동 설치·검증 지시문) 추가.
+- 2026-10-08 15:13~15:40(KST) RIMS 오픈 모델 포트가 닫혀(Connection refused) n8n 테스트가 timed out — n8n·자격증명 문제 아님(복구 직후 Simple AI Chatbot 2.6 s 응답). 복구 직후 run_14 는 T0·T2 노드가 3분을 넘겨 n8n 180 s 타임아웃(일시 현상, 이후 15 s). run_15 는 하네스 `/runs` 단독 호출로 생긴 T0·T2 전용 폴더. run_16(n8n 자동화) PARTIAL(R-T2 만 false), LLM 4/4(중앙값 3.1 s), M2·M3·M4 동일.
+- Qwen3 사고 과정은 `chat_template_kwargs.enable_thinking=false` 로만 꺼진다. 시스템 프롬프트의 `/no_think` 는 효과 없음(사고 내용이 본문에 섞임). n8n OpenAI 노드는 이 파라미터를 못 넘기므로 챗봇 지연은 서버 기본값에 좌우된다. 포털(:3031/chat)은 여전히 Gemini 워크플로(`kmds-ghg-agent-chat`)를 가리킨다 — RIMS 가 tool-call 파서를 켜면 Qwen 본으로 전환.
