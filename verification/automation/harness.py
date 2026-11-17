@@ -340,6 +340,8 @@ def tool_status(body: dict) -> dict:
 # 추가 서비스 (2026-09-26): 선박 조회·연간 GHG 집계, 매핑 증적 대시보드
 # ---------------------------------------------------------------------------
 ANNUAL_EVID = s11.EVID / "annual"
+# 시험 선박이 아닌 선박(실선·가명 실선)의 연간 집계 증적은 공개 증적 폴더에 두지 않는다(AGENTS.md: 실선 운항 데이터 git 금지).
+ANNUAL_EVID_PRIVATE = s11.HERE / "evidence-private" / "annual"
 
 
 @app.post("/tools/query_ship")
@@ -353,7 +355,8 @@ def tool_annual_ghg(body: dict) -> dict:
     """연간 GHG 집계(연료별 소비·CO2·거리·GFI TtW, capacity_dwt 있으면 CII 참고값). year(YYYY) 를 주지 않으면 가장 최근 연도. write=true 면 YearPerformanceReport 입력."""
     cap = body.get("capacity_dwt"); yr = body.get("year")
     return services.annual_ghg(SHIP_ODMS, str(body.get("imo", "")).strip(), float(cap) if cap not in (None, "", 0, "0") else None,
-                               bool(body.get("write")), ANNUAL_EVID, int(yr) if yr not in (None, "", 0, "0") else None)
+                               bool(body.get("write")),
+                               ANNUAL_EVID if str(body.get("imo", "")).strip() == s11.TEST_SHIP_IMO else ANNUAL_EVID_PRIVATE, int(yr) if yr not in (None, "", 0, "0") else None)
 
 
 @app.post("/tools/dashboard")

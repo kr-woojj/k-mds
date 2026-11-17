@@ -22,7 +22,7 @@
         0,
         0
       ],
-      "webhookId": "kmds-chat-qwen-open-model"
+      "webhookId": "kmds-chat-open-model"
     },
     {
       "parameters": {
@@ -64,7 +64,7 @@
       ],
       "credentials": {
         "openAiApi": {
-          "name": "RIMS Qwen via tool proxy"
+          "name": "RIMS open model via tool proxy"
         }
       }
     },

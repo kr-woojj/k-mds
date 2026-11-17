@@ -42,7 +42,7 @@ class Settings:
     llm_timeout_seconds: float = 60.0
     llm_max_retries: int = 2
     allow_live_llm: bool = False
-    # 오픈 모델(OpenAI 호환 서버, 예: vLLM 의 Qwen3) 전용 옵션 — 매핑은 결정론 파이프라인이 지배하므로
+    # 오픈 모델(OpenAI 호환 서버, 예: vLLM) 전용 옵션 — 매핑은 결정론 파이프라인이 지배하므로
     # 사고(thinking) 과정을 끄고 추론 강도를 낮춰 지연을 줄인다. 상용 provider 에는 전달하지 않는다.
     llm_disable_thinking: bool = False
     llm_reasoning_effort: str = ""  # low | medium | xhigh (서버 기본값은 비움)

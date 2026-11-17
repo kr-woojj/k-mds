@@ -1,8 +1,8 @@
-"""OpenAI 호환 오픈 모델 서버(vLLM Qwen3)용 tool-call 파서 우회 프록시.
+"""OpenAI 호환 오픈 모델 서버(vLLM 기반 오픈 모델)용 tool-call 파서 우회 프록시.
 
 서버가 `--enable-auto-tool-choice --tool-call-parser` 없이 떠 있으면 `tools` 가 든 요청은
 400 으로 거절된다("auto" tool choice requires …). 그러나 `tool_choice: "none"` 으로 보내면
-서버가 도구 목록을 프롬프트에 넣어 주고, 모델은 Qwen3 고유 형식으로 답한다:
+서버가 도구 목록을 프롬프트에 넣어 주고, 모델은 모델 고유 형식으로 답한다:
 
     <tool_call>
     <function=NAME>
@@ -15,7 +15,7 @@
 이 프록시는 (1) 요청의 tool_choice 를 "none" 으로 바꿔 전달하고, (2) 응답 본문의 <tool_call>
 블록을 OpenAI `tool_calls` 로 바꿔 돌려준다. n8n OpenAI Chat Model 노드·LangChain 등
 OpenAI 규약 클라이언트가 그대로 동작한다.
-덤으로 Qwen3 의 사고 과정(enable_thinking)과 추론 강도(reasoning_effort)를 env 로 고정한다.
+덤으로 모델의 사고 과정(enable_thinking)과 추론 강도(reasoning_effort)를 env 로 고정한다.
 
 표준 라이브러리만 쓴다. 비밀 값(키)은 클라이언트 Authorization 헤더를 그대로 전달하며
 기록하지 않는다.
@@ -162,7 +162,7 @@ def to_sse(resp: dict[str, Any]) -> bytes:
 
 
 class Handler(BaseHTTPRequestHandler):
-    server_version = "qwen-tool-proxy/1.0"
+    server_version = "tool-call-proxy/1.0"
 
     def log_message(self, fmt: str, *args: Any) -> None:   # 기본 로그는 경로만, 본문·헤더는 남기지 않는다
         sys.stderr.write("%s - %s\n" % (time.strftime("%H:%M:%S"), fmt % args))
@@ -210,7 +210,7 @@ class Handler(BaseHTTPRequestHandler):
 def main() -> None:
     if not UPSTREAM:
         sys.exit("UPSTREAM_BASE 가 필요하다 (예: http://<host>:<port>/v1)")
-    sys.stderr.write(f"qwen-tool-proxy :{PORT} → upstream 설정됨 | thinking off={DISABLE_THINKING} | effort={REASONING_EFFORT or '-'}\n")
+    sys.stderr.write(f"tool-call-proxy :{PORT} → upstream 설정됨 | thinking off={DISABLE_THINKING} | effort={REASONING_EFFORT or '-'}\n")
     ThreadingHTTPServer(("0.0.0.0", PORT), Handler).serve_forever()
 
 
