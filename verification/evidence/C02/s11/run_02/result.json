@@ -12,9 +12,9 @@
  "measures": {
   "M2": 0.9945,
   "M3": 1.0,
-  "M4": 0.9854
+  "M4": 0.9855
  },
- "mismatches": null,
+ "mismatches": 5,
  "no_target_elements": [
   "IMO0064",
   "IMO0066",
@@ -29,9 +29,7 @@
   "IMO0541",
   "IMO0543",
   "IMO0548",
-  "IMO0580",
-  "IMO0666",
-  "IMO0667"
+  "IMO0580"
  ],
  "reproducibility_vs_prev": {
   "M2": true,

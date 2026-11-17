@@ -1,8 +1,8 @@
 {
  "step": "T0",
- "executed_at": "2026-09-25T16:48:16.360681+00:00",
+ "executed_at": "2026-11-17T12:47:36.782110+00:00",
  "python": "3.12.12",
- "k_mds_commit": "1cc0e874071efa55d9e93b587e5fec9473b1c546",
+ "k_mds_commit": "b344bdfe54ce05451ce53faaeb5075a0b4f186cc",
  "k_mds_dirty": true,
  "agent_commit": "(k-mds 단일 저장소)",
  "validator_commit": "(k-mds 단일 저장소)",
@@ -31,7 +31,10 @@
    "version": "v0"
   }
  },
- "llm": "mock",
+ "llm": {
+  "provider": "openai",
+  "live": true
+ },
  "skill": "real",
  "mcp": "off"
 }

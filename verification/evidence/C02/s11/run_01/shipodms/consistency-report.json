@@ -24,8 +24,8 @@
    "iso_measure": "FCr-1-G Functional correctness (필드 단위 적용) — 채택 정합율",
    "formula": "X = 1 - A/B",
    "A_mismatch": 5,
-   "B_fields_with_target": 342,
-   "X": 0.9854,
+   "B_fields_with_target": 344,
+   "X": 0.9855,
    "target": 0.95
   },
   "M5": {
@@ -46,11 +46,9 @@
    "IMO0541",
    "IMO0543",
    "IMO0548",
-   "IMO0580",
-   "IMO0666",
-   "IMO0667"
+   "IMO0580"
   ],
-  "checks": 342,
+  "checks": 344,
   "mismatches": [
    {
     "cid": "LAB021-NOON-00000009-003",
@@ -329,6 +327,14 @@
   },
   {
    "cid": "LAB021-NOON-00000009-000",
+   "imo": "IMO0639",
+   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-000",
    "imo": "IMO0640",
    "target": "FuelConsumption[_NONFUEL].freshWaterProduced",
    "source": 0,
@@ -345,24 +351,8 @@
   },
   {
    "cid": "LAB021-NOON-00000009-000",
-   "imo": "IMO0641",
-   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
-   "source": 0,
-   "stored": 0.0,
-   "match": true
-  },
-  {
-   "cid": "LAB021-NOON-00000009-000",
    "imo": "IMO0678",
    "target": "FuelConsumption[_NONFUEL].cloConsumption",
-   "source": 0,
-   "stored": 0.0,
-   "match": true
-  },
-  {
-   "cid": "LAB021-NOON-00000009-000",
-   "imo": "IMO0639",
-   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
    "source": 0,
    "stored": 0.0,
    "match": true
@@ -373,6 +363,14 @@
    "target": "FuelConsumption[_NONFUEL].cloRob",
    "source": 20751,
    "stored": 20751.0,
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-000",
+   "imo": "IMO0641",
+   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+   "source": 0,
+   "stored": 0.0,
    "match": true
   },
   {
@@ -445,6 +443,22 @@
    "target": "FuelConsumption[_NONFUEL].cloRob",
    "source": 20739,
    "stored": 20739.0,
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-001",
+   "imo": "IMO0667",
+   "target": "FuelConsumption[_BUNKER].fuelBunkerPortName",
+   "source": "CRISTOBAL",
+   "stored": "CRISTOBAL",
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-001",
+   "imo": "IMO0666",
+   "target": "FuelConsumption[_BUNKER].fuelBunkerPort",
+   "source": "PACTB",
+   "stored": "PACTB",
    "match": true
   },
   {
@@ -609,6 +623,14 @@
   },
   {
    "cid": "LAB021-NOON-00000009-002",
+   "imo": "IMO0639",
+   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-002",
    "imo": "IMO0640",
    "target": "FuelConsumption[_NONFUEL].freshWaterProduced",
    "source": 0,
@@ -625,14 +647,6 @@
   },
   {
    "cid": "LAB021-NOON-00000009-002",
-   "imo": "IMO0641",
-   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
-   "source": 0,
-   "stored": 0.0,
-   "match": true
-  },
-  {
-   "cid": "LAB021-NOON-00000009-002",
    "imo": "IMO0678",
    "target": "FuelConsumption[_NONFUEL].cloConsumption",
    "source": 3,
@@ -641,18 +655,18 @@
   },
   {
    "cid": "LAB021-NOON-00000009-002",
-   "imo": "IMO0639",
-   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
-   "source": 0,
-   "stored": 0.0,
-   "match": true
-  },
-  {
-   "cid": "LAB021-NOON-00000009-002",
    "imo": "IMO0676",
    "target": "FuelConsumption[_NONFUEL].cloRob",
    "source": 20736,
    "stored": 20736.0,
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-002",
+   "imo": "IMO0641",
+   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+   "source": 0,
+   "stored": 0.0,
    "match": true
   },
   {
@@ -897,6 +911,14 @@
   },
   {
    "cid": "LAB021-NOON-00000009-003",
+   "imo": "IMO0639",
+   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-003",
    "imo": "IMO0640",
    "target": "FuelConsumption[_NONFUEL].freshWaterProduced",
    "source": 0,
@@ -913,24 +935,8 @@
   },
   {
    "cid": "LAB021-NOON-00000009-003",
-   "imo": "IMO0641",
-   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
-   "source": 0,
-   "stored": 0.0,
-   "match": true
-  },
-  {
-   "cid": "LAB021-NOON-00000009-003",
    "imo": "IMO0678",
    "target": "FuelConsumption[_NONFUEL].cloConsumption",
-   "source": 0,
-   "stored": 0.0,
-   "match": true
-  },
-  {
-   "cid": "LAB021-NOON-00000009-003",
-   "imo": "IMO0639",
-   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
    "source": 0,
    "stored": 0.0,
    "match": true
@@ -941,6 +947,14 @@
    "target": "FuelConsumption[_NONFUEL].cloRob",
    "source": 20736,
    "stored": 20736.0,
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-003",
+   "imo": "IMO0641",
+   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+   "source": 0,
+   "stored": 0.0,
    "match": true
   },
   {
@@ -1185,6 +1199,14 @@
   },
   {
    "cid": "LAB021-NOON-00000009-004",
+   "imo": "IMO0639",
+   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-004",
    "imo": "IMO0640",
    "target": "FuelConsumption[_NONFUEL].freshWaterProduced",
    "source": 0,
@@ -1201,24 +1223,8 @@
   },
   {
    "cid": "LAB021-NOON-00000009-004",
-   "imo": "IMO0641",
-   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
-   "source": 0,
-   "stored": 0.0,
-   "match": true
-  },
-  {
-   "cid": "LAB021-NOON-00000009-004",
    "imo": "IMO0678",
    "target": "FuelConsumption[_NONFUEL].cloConsumption",
-   "source": 0,
-   "stored": 0.0,
-   "match": true
-  },
-  {
-   "cid": "LAB021-NOON-00000009-004",
-   "imo": "IMO0639",
-   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
    "source": 0,
    "stored": 0.0,
    "match": true
@@ -1229,6 +1235,14 @@
    "target": "FuelConsumption[_NONFUEL].cloRob",
    "source": 20736,
    "stored": 20736.0,
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-004",
+   "imo": "IMO0641",
+   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+   "source": 0,
+   "stored": 0.0,
    "match": true
   },
   {
@@ -1473,6 +1487,14 @@
   },
   {
    "cid": "LAB021-NOON-00000009-005",
+   "imo": "IMO0639",
+   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-005",
    "imo": "IMO0640",
    "target": "FuelConsumption[_NONFUEL].freshWaterProduced",
    "source": 0,
@@ -1489,24 +1511,8 @@
   },
   {
    "cid": "LAB021-NOON-00000009-005",
-   "imo": "IMO0641",
-   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
-   "source": 0,
-   "stored": 0.0,
-   "match": true
-  },
-  {
-   "cid": "LAB021-NOON-00000009-005",
    "imo": "IMO0678",
    "target": "FuelConsumption[_NONFUEL].cloConsumption",
-   "source": 0,
-   "stored": 0.0,
-   "match": true
-  },
-  {
-   "cid": "LAB021-NOON-00000009-005",
-   "imo": "IMO0639",
-   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
    "source": 0,
    "stored": 0.0,
    "match": true
@@ -1517,6 +1523,14 @@
    "target": "FuelConsumption[_NONFUEL].cloRob",
    "source": 20736,
    "stored": 20736.0,
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-005",
+   "imo": "IMO0641",
+   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+   "source": 0,
+   "stored": 0.0,
    "match": true
   },
   {
@@ -1705,6 +1719,14 @@
   },
   {
    "cid": "LAB021-NOON-00000009-006",
+   "imo": "IMO0639",
+   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-006",
    "imo": "IMO0640",
    "target": "FuelConsumption[_NONFUEL].freshWaterProduced",
    "source": 0,
@@ -1721,14 +1743,6 @@
   },
   {
    "cid": "LAB021-NOON-00000009-006",
-   "imo": "IMO0641",
-   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
-   "source": 0,
-   "stored": 0.0,
-   "match": true
-  },
-  {
-   "cid": "LAB021-NOON-00000009-006",
    "imo": "IMO0678",
    "target": "FuelConsumption[_NONFUEL].cloConsumption",
    "source": 10,
@@ -1737,18 +1751,18 @@
   },
   {
    "cid": "LAB021-NOON-00000009-006",
-   "imo": "IMO0639",
-   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
-   "source": 0,
-   "stored": 0.0,
-   "match": true
-  },
-  {
-   "cid": "LAB021-NOON-00000009-006",
    "imo": "IMO0676",
    "target": "FuelConsumption[_NONFUEL].cloRob",
    "source": 20726,
    "stored": 20726.0,
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-006",
+   "imo": "IMO0641",
+   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+   "source": 0,
+   "stored": 0.0,
    "match": true
   },
   {
@@ -2001,6 +2015,14 @@
   },
   {
    "cid": "LAB021-NOON-00000009-008",
+   "imo": "IMO0639",
+   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-008",
    "imo": "IMO0640",
    "target": "FuelConsumption[_NONFUEL].freshWaterProduced",
    "source": 0,
@@ -2017,24 +2039,8 @@
   },
   {
    "cid": "LAB021-NOON-00000009-008",
-   "imo": "IMO0641",
-   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
-   "source": 0,
-   "stored": 0.0,
-   "match": true
-  },
-  {
-   "cid": "LAB021-NOON-00000009-008",
    "imo": "IMO0678",
    "target": "FuelConsumption[_NONFUEL].cloConsumption",
-   "source": 0,
-   "stored": 0.0,
-   "match": true
-  },
-  {
-   "cid": "LAB021-NOON-00000009-008",
-   "imo": "IMO0639",
-   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
    "source": 0,
    "stored": 0.0,
    "match": true
@@ -2045,6 +2051,14 @@
    "target": "FuelConsumption[_NONFUEL].cloRob",
    "source": 20726,
    "stored": 20726.0,
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-008",
+   "imo": "IMO0641",
+   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+   "source": 0,
+   "stored": 0.0,
    "match": true
   },
   {
@@ -2209,6 +2223,14 @@
   },
   {
    "cid": "LAB021-NOON-00000009-009",
+   "imo": "IMO0639",
+   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-009",
    "imo": "IMO0640",
    "target": "FuelConsumption[_NONFUEL].freshWaterProduced",
    "source": 0,
@@ -2225,14 +2247,6 @@
   },
   {
    "cid": "LAB021-NOON-00000009-009",
-   "imo": "IMO0641",
-   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
-   "source": 0,
-   "stored": 0.0,
-   "match": true
-  },
-  {
-   "cid": "LAB021-NOON-00000009-009",
    "imo": "IMO0678",
    "target": "FuelConsumption[_NONFUEL].cloConsumption",
    "source": 2,
@@ -2241,18 +2255,18 @@
   },
   {
    "cid": "LAB021-NOON-00000009-009",
-   "imo": "IMO0639",
-   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
-   "source": 0,
-   "stored": 0.0,
-   "match": true
-  },
-  {
-   "cid": "LAB021-NOON-00000009-009",
    "imo": "IMO0676",
    "target": "FuelConsumption[_NONFUEL].cloRob",
    "source": 20724,
    "stored": 20724.0,
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-009",
+   "imo": "IMO0641",
+   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+   "source": 0,
+   "stored": 0.0,
    "match": true
   },
   {
@@ -2497,6 +2511,14 @@
   },
   {
    "cid": "LAB021-NOON-00000009-010",
+   "imo": "IMO0639",
+   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-010",
    "imo": "IMO0640",
    "target": "FuelConsumption[_NONFUEL].freshWaterProduced",
    "source": 0,
@@ -2513,14 +2535,6 @@
   },
   {
    "cid": "LAB021-NOON-00000009-010",
-   "imo": "IMO0641",
-   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
-   "source": 0,
-   "stored": 0.0,
-   "match": true
-  },
-  {
-   "cid": "LAB021-NOON-00000009-010",
    "imo": "IMO0678",
    "target": "FuelConsumption[_NONFUEL].cloConsumption",
    "source": 22,
@@ -2529,18 +2543,18 @@
   },
   {
    "cid": "LAB021-NOON-00000009-010",
-   "imo": "IMO0639",
-   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
-   "source": 0,
-   "stored": 0.0,
-   "match": true
-  },
-  {
-   "cid": "LAB021-NOON-00000009-010",
    "imo": "IMO0676",
    "target": "FuelConsumption[_NONFUEL].cloRob",
    "source": 20702,
    "stored": 20702.0,
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-010",
+   "imo": "IMO0641",
+   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+   "source": 0,
+   "stored": 0.0,
    "match": true
   },
   {
@@ -2785,6 +2799,14 @@
   },
   {
    "cid": "LAB021-NOON-00000009-011",
+   "imo": "IMO0639",
+   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
+   "source": 0,
+   "stored": 0.0,
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-011",
    "imo": "IMO0640",
    "target": "FuelConsumption[_NONFUEL].freshWaterProduced",
    "source": 16,
@@ -2801,14 +2823,6 @@
   },
   {
    "cid": "LAB021-NOON-00000009-011",
-   "imo": "IMO0641",
-   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
-   "source": 5,
-   "stored": 5.0,
-   "match": true
-  },
-  {
-   "cid": "LAB021-NOON-00000009-011",
    "imo": "IMO0678",
    "target": "FuelConsumption[_NONFUEL].cloConsumption",
    "source": 115,
@@ -2817,18 +2831,18 @@
   },
   {
    "cid": "LAB021-NOON-00000009-011",
-   "imo": "IMO0639",
-   "target": "FuelConsumption[_NONFUEL].freshWaterBunkered",
-   "source": 0,
-   "stored": 0.0,
-   "match": true
-  },
-  {
-   "cid": "LAB021-NOON-00000009-011",
    "imo": "IMO0676",
    "target": "FuelConsumption[_NONFUEL].cloRob",
    "source": 20587,
    "stored": 20587.0,
+   "match": true
+  },
+  {
+   "cid": "LAB021-NOON-00000009-011",
+   "imo": "IMO0641",
+   "target": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+   "source": 5,
+   "stored": 5.0,
    "match": true
   }
  ]

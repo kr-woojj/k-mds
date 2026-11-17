@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-25T16:47:59.282492+00:00",
+ "generated_at": "2026-11-17T12:47:28.806066+00:00",
  "base": "http://localhost:8088",
  "ship": {
   "imoNumber": "00000009",
@@ -72,12 +72,12 @@
      {
       "fuelType": null,
       "fuelTypeTradeName": "_NONFUEL",
-      "freshWaterBunkered": 0,
-      "cloRob": 20751,
+      "freshWaterProduced": 0,
       "freshWaterRob": 0,
-      "freshWaterConsumed": 0,
       "cloConsumption": 0,
-      "freshWaterProduced": 0
+      "freshWaterConsumed": 0,
+      "cloRob": 20751,
+      "freshWaterBunkered": 0
      }
     ]
    },
@@ -101,12 +101,12 @@
     "IMO0670@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focMainEngine",
     "IMO0903@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focOtherFuelConsumingDevices",
     "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
-    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered",
-    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced",
     "IMO0645": "FuelConsumption[_NONFUEL].freshWaterRob",
-    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
     "IMO0678": "FuelConsumption[_NONFUEL].cloConsumption",
-    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced"
+    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered"
    },
    "no_target": [
     "IMO0064",
@@ -153,6 +153,12 @@
       "fuelType": null,
       "fuelTypeTradeName": "_NONFUEL",
       "cloRob": 20739
+     },
+     {
+      "fuelType": null,
+      "fuelTypeTradeName": "_BUNKER",
+      "fuelBunkerPort": "PACTB",
+      "fuelBunkerPortName": "CRISTOBAL"
      }
     ]
    },
@@ -161,6 +167,8 @@
     "IMO0603": "PerformanceReport.reportDatetime",
     "IMO0605": "PerformanceReport.voyageLeg",
     "IMO0600": "PerformanceReport.elapsedTime",
+    "IMO0666": "FuelConsumption[_BUNKER].fuelBunkerPort",
+    "IMO0667": "FuelConsumption[_BUNKER].fuelBunkerPortName",
     "IMO0601": "PerformanceReport.latitude",
     "IMO0602": "PerformanceReport.longitude",
     "IMO0674@MGO": "FuelConsumption[MGO].fuelQuantityRob",
@@ -171,9 +179,7 @@
     "IMO0139",
     "IMO0143",
     "IMO0148",
-    "IMO0580",
-    "IMO0666",
-    "IMO0667"
+    "IMO0580"
    ],
    "skipped": [
     {
@@ -227,12 +233,12 @@
      {
       "fuelType": null,
       "fuelTypeTradeName": "_NONFUEL",
-      "freshWaterBunkered": 0,
-      "cloRob": 20736,
+      "freshWaterProduced": 0,
       "freshWaterRob": 0,
-      "freshWaterConsumed": 0,
       "cloConsumption": 3,
-      "freshWaterProduced": 0
+      "freshWaterConsumed": 0,
+      "cloRob": 20736,
+      "freshWaterBunkered": 0
      }
     ]
    },
@@ -257,12 +263,12 @@
     "IMO0670@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focMainEngine",
     "IMO0903@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focOtherFuelConsumingDevices",
     "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
-    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered",
-    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced",
     "IMO0645": "FuelConsumption[_NONFUEL].freshWaterRob",
-    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
     "IMO0678": "FuelConsumption[_NONFUEL].cloConsumption",
-    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced"
+    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered"
    },
    "no_target": [
     "IMO0139",
@@ -331,12 +337,12 @@
      {
       "fuelType": null,
       "fuelTypeTradeName": "_NONFUEL",
-      "freshWaterBunkered": 0,
-      "cloRob": 20736,
+      "freshWaterProduced": 0,
       "freshWaterRob": 0,
-      "freshWaterConsumed": 0,
       "cloConsumption": 0,
-      "freshWaterProduced": 0
+      "freshWaterConsumed": 0,
+      "cloRob": 20736,
+      "freshWaterBunkered": 0
      }
     ]
    },
@@ -371,12 +377,12 @@
     "IMO0670@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focMainEngine",
     "IMO0903@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focOtherFuelConsumingDevices",
     "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
-    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered",
-    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced",
     "IMO0645": "FuelConsumption[_NONFUEL].freshWaterRob",
-    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
     "IMO0678": "FuelConsumption[_NONFUEL].cloConsumption",
-    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced"
+    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered"
    },
    "no_target": [
     "IMO0064",
@@ -450,12 +456,12 @@
      {
       "fuelType": null,
       "fuelTypeTradeName": "_NONFUEL",
-      "freshWaterBunkered": 0,
-      "cloRob": 20736,
+      "freshWaterProduced": 0,
       "freshWaterRob": 0,
-      "freshWaterConsumed": 0,
       "cloConsumption": 0,
-      "freshWaterProduced": 0
+      "freshWaterConsumed": 0,
+      "cloRob": 20736,
+      "freshWaterBunkered": 0
      }
     ]
    },
@@ -490,12 +496,12 @@
     "IMO0670@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focMainEngine",
     "IMO0903@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focOtherFuelConsumingDevices",
     "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
-    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered",
-    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced",
     "IMO0645": "FuelConsumption[_NONFUEL].freshWaterRob",
-    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
     "IMO0678": "FuelConsumption[_NONFUEL].cloConsumption",
-    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced"
+    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered"
    },
    "no_target": [
     "IMO0064",
@@ -569,12 +575,12 @@
      {
       "fuelType": null,
       "fuelTypeTradeName": "_NONFUEL",
-      "freshWaterBunkered": 0,
-      "cloRob": 20736,
+      "freshWaterProduced": 0,
       "freshWaterRob": 0,
-      "freshWaterConsumed": 0,
       "cloConsumption": 0,
-      "freshWaterProduced": 0
+      "freshWaterConsumed": 0,
+      "cloRob": 20736,
+      "freshWaterBunkered": 0
      }
     ]
    },
@@ -609,12 +615,12 @@
     "IMO0670@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focMainEngine",
     "IMO0903@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focOtherFuelConsumingDevices",
     "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
-    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered",
-    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced",
     "IMO0645": "FuelConsumption[_NONFUEL].freshWaterRob",
-    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
     "IMO0678": "FuelConsumption[_NONFUEL].cloConsumption",
-    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced"
+    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered"
    },
    "no_target": [
     "IMO0064",
@@ -678,12 +684,12 @@
      {
       "fuelType": null,
       "fuelTypeTradeName": "_NONFUEL",
-      "freshWaterBunkered": 0,
-      "cloRob": 20726,
+      "freshWaterProduced": 0,
       "freshWaterRob": 0,
-      "freshWaterConsumed": 0,
       "cloConsumption": 10,
-      "freshWaterProduced": 0
+      "freshWaterConsumed": 0,
+      "cloRob": 20726,
+      "freshWaterBunkered": 0
      }
     ]
    },
@@ -711,12 +717,12 @@
     "IMO0670@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focMainEngine",
     "IMO0903@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focOtherFuelConsumingDevices",
     "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
-    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered",
-    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced",
     "IMO0645": "FuelConsumption[_NONFUEL].freshWaterRob",
-    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
     "IMO0678": "FuelConsumption[_NONFUEL].cloConsumption",
-    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced"
+    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered"
    },
    "no_target": [
     "IMO0066",
@@ -835,12 +841,12 @@
      {
       "fuelType": null,
       "fuelTypeTradeName": "_NONFUEL",
-      "freshWaterBunkered": 0,
-      "cloRob": 20726,
+      "freshWaterProduced": 0,
       "freshWaterRob": 0,
-      "freshWaterConsumed": 0,
       "cloConsumption": 0,
-      "freshWaterProduced": 0
+      "freshWaterConsumed": 0,
+      "cloRob": 20726,
+      "freshWaterBunkered": 0
      }
     ]
    },
@@ -864,12 +870,12 @@
     "IMO0670@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focMainEngine",
     "IMO0903@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focOtherFuelConsumingDevices",
     "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
-    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered",
-    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced",
     "IMO0645": "FuelConsumption[_NONFUEL].freshWaterRob",
-    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
     "IMO0678": "FuelConsumption[_NONFUEL].cloConsumption",
-    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced"
+    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered"
    },
    "no_target": [
     "IMO0064",
@@ -935,12 +941,12 @@
      {
       "fuelType": null,
       "fuelTypeTradeName": "_NONFUEL",
-      "freshWaterBunkered": 0,
-      "cloRob": 20724,
+      "freshWaterProduced": 0,
       "freshWaterRob": 0,
-      "freshWaterConsumed": 0,
       "cloConsumption": 2,
-      "freshWaterProduced": 0
+      "freshWaterConsumed": 0,
+      "cloRob": 20724,
+      "freshWaterBunkered": 0
      }
     ]
    },
@@ -965,12 +971,12 @@
     "IMO0670@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focMainEngine",
     "IMO0903@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focOtherFuelConsumingDevices",
     "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
-    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered",
-    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced",
     "IMO0645": "FuelConsumption[_NONFUEL].freshWaterRob",
-    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
     "IMO0678": "FuelConsumption[_NONFUEL].cloConsumption",
-    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced"
+    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered"
    },
    "no_target": [
     "IMO0139",
@@ -1039,12 +1045,12 @@
      {
       "fuelType": null,
       "fuelTypeTradeName": "_NONFUEL",
-      "freshWaterBunkered": 0,
-      "cloRob": 20702,
+      "freshWaterProduced": 0,
       "freshWaterRob": 0,
-      "freshWaterConsumed": 0,
       "cloConsumption": 22,
-      "freshWaterProduced": 0
+      "freshWaterConsumed": 0,
+      "cloRob": 20702,
+      "freshWaterBunkered": 0
      }
     ]
    },
@@ -1079,12 +1085,12 @@
     "IMO0670@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focMainEngine",
     "IMO0903@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focOtherFuelConsumingDevices",
     "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
-    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered",
-    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced",
     "IMO0645": "FuelConsumption[_NONFUEL].freshWaterRob",
-    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
     "IMO0678": "FuelConsumption[_NONFUEL].cloConsumption",
-    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced"
+    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered"
    },
    "no_target": [
     "IMO0064",
@@ -1158,12 +1164,12 @@
      {
       "fuelType": null,
       "fuelTypeTradeName": "_NONFUEL",
-      "freshWaterBunkered": 0,
-      "cloRob": 20587,
+      "freshWaterProduced": 16,
       "freshWaterRob": 11,
-      "freshWaterConsumed": 5,
       "cloConsumption": 115,
-      "freshWaterProduced": 16
+      "freshWaterConsumed": 5,
+      "cloRob": 20587,
+      "freshWaterBunkered": 0
      }
     ]
    },
@@ -1198,12 +1204,12 @@
     "IMO0670@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focMainEngine",
     "IMO0903@VLSFO2020": "FuelConsumption[VLSFO2020].focFuelType[0].focOtherFuelConsumingDevices",
     "IMO0674@VLSFO2020": "FuelConsumption[VLSFO2020].fuelQuantityRob",
-    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered",
-    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced",
     "IMO0645": "FuelConsumption[_NONFUEL].freshWaterRob",
-    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
     "IMO0678": "FuelConsumption[_NONFUEL].cloConsumption",
-    "IMO0640": "FuelConsumption[_NONFUEL].freshWaterProduced"
+    "IMO0641": "FuelConsumption[_NONFUEL].freshWaterConsumed",
+    "IMO0676": "FuelConsumption[_NONFUEL].cloRob",
+    "IMO0639": "FuelConsumption[_NONFUEL].freshWaterBunkered"
    },
    "no_target": [
     "IMO0064",
@@ -1221,6 +1227,7 @@
  ],
  "gaps": {
   "G-1": "fuelType int32 vs FAL50 code list string → fuelTypeTradeName WORKAROUND",
-  "G-2": "담수·CLO 를 _NONFUEL 행에 저장"
+  "G-2": "담수·CLO 를 _NONFUEL 행에 저장",
+  "G-6": "벙커 수급 시각·항만을 _BUNKER 행에 저장(수급 연료 종류 미제공)"
  }
 }
