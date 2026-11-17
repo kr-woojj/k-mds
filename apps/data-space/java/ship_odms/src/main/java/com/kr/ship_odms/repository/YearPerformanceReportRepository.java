@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface YearPerformanceReportRepository extends JpaRepository<YearPerformanceReport, Integer> {
     List<YearPerformanceReport> findByShipId(Integer shipId);
+    List<YearPerformanceReport> findByShipIdAndReportYear(Integer shipId, Integer reportYear);
 }

@@ -39,6 +39,22 @@ app.UseHttpsRedirection();
 
 app.UseAntiforgery();
 
+// 내려받기 중계: 브라우저가 백엔드·하네스 주소를 몰라도 포털 주소로 파일을 받는다 (2026-11-17).
+var harnessUrl = (app.Configuration["Portal:HarnessUrl"] ?? "http://localhost:8090").TrimEnd('/');
+app.MapGet("/export/ships/{id:int}", async (int id, string? format, HttpClient http) =>
+{
+    var csv = format == "csv";
+    using var res = await http.GetAsync($"ships/{id}/export?format={(csv ? "csv" : "json")}");
+    if (!res.IsSuccessStatusCode) return Results.StatusCode((int)res.StatusCode);
+    return Results.File(await res.Content.ReadAsByteArrayAsync(), csv ? "application/zip" : "application/json", $"ship-{id}-export.{(csv ? "zip" : "json")}");
+});
+app.MapGet("/export/consistency/{runId:regex(^run_[0-9]+$)}", async (string runId, HttpClient http) =>
+{
+    using var res = await http.GetAsync($"{harnessUrl}/runs/{runId}/consistency.csv");
+    if (!res.IsSuccessStatusCode) return Results.StatusCode((int)res.StatusCode);
+    return Results.File(await res.Content.ReadAsByteArrayAsync(), "text/csv; charset=utf-8", $"{runId}-consistency-checks.csv");
+});
+
 app.MapStaticAssets();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();

@@ -293,10 +293,93 @@
 
 ## 세션 S11 — 2026-10-08 (오픈 모델 전환·보안 정리)
 - 비밀 값 관리를 `k-mds/.env` 한 곳으로 통일(템플릿 `.env.example`, `<sample: …>` 설명), `scripts/check_secrets.py` + pre-commit 훅 + CI 비밀 검사, `.gitignore` 에 pm/meetings·pm/tools (PR #1).
-- RIMS 서울사무소 테스트 서버 오픈 모델(vLLM Qwen3.8-27B, 호출명 `qwen`, OpenAI 호환, 발급 키) 반영: 에이전트 `LLM_DISABLE_THINKING`·`LLM_REASONING_EFFORT` 옵션 추가, openai provider 는 구조화 출력을 `json_schema` 방식으로. 컨테이너 재빌드 후 `/ready` llm.provider=openai real=true.
+- RIMS 서울사무소 테스트 서버 오픈 모델(vLLM 기반 오픈 모델, OpenAI 호환, 발급 키) 반영: 에이전트 `LLM_DISABLE_THINKING`·`LLM_REASONING_EFFORT` 옵션 추가, openai provider 는 구조화 출력을 `json_schema` 방식으로. 컨테이너 재빌드 후 `/ready` llm.provider=openai real=true.
 - 검증 run_13(n8n 웹훅 → 하네스 → 에이전트): T0~T8 완료, LLM 4/4 성공(중앙값 4.8 s), M2 0.9945·M3 1.0·M4 0.9854 — Gemini 실행 run_12 와 동일, 재현성 통과. 판정 PARTIAL 은 R-T2(Provider 이벤트 0건, F-22)만 false 로 이전과 같음.
 - 대화형 AI Agent 워크플로 오픈 모델 본(`n8n/kmds-ghg-ai-agent-chat-openmodel.json`)은 서버가 tool-call 파서 없이 떠 있어 `400 tool choice requires --enable-auto-tool-choice` → 비활성 보관. RIMS 에 vLLM `--enable-auto-tool-choice --tool-call-parser hermes` 요청 필요.
 - README 를 외부 사용자용으로 재작성(과제 식별 정보 제외), `docs/AI_SETUP_PROMPT.md`(AI 도구 자동 설치·검증 지시문) 추가.
 - 2026-10-08 15:13~15:40(KST) RIMS 오픈 모델 포트가 닫혀(Connection refused) n8n 테스트가 timed out — n8n·자격증명 문제 아님(복구 직후 Simple AI Chatbot 2.6 s 응답). 복구 직후 run_14 는 T0·T2 노드가 3분을 넘겨 n8n 180 s 타임아웃(일시 현상, 이후 15 s). run_15 는 하네스 `/runs` 단독 호출로 생긴 T0·T2 전용 폴더. run_16(n8n 자동화) PARTIAL(R-T2 만 false), LLM 4/4(중앙값 3.1 s), M2·M3·M4 동일.
-- Qwen3 사고 과정은 `chat_template_kwargs.enable_thinking=false` 로만 꺼진다. 시스템 프롬프트의 `/no_think` 는 효과 없음(사고 내용이 본문에 섞임). n8n OpenAI 노드는 이 파라미터를 못 넘기므로 챗봇 지연은 서버 기본값에 좌우된다. 포털(:3031/chat)은 여전히 Gemini 워크플로(`kmds-ghg-agent-chat`)를 가리킨다 — RIMS 가 tool-call 파서를 켜면 Qwen 본으로 전환.
-- 2026-10-08 16:00 이후: RIMS 서버 재부팅으로 포트가 두 번째로 닫혔다 복구. n8n 두 워크플로의 Qwen 설정(OpenAI 노드 v1.2, 모델 `qwen`, temperature 0, 자격증명 "RIMS Qwen (OpenAI 호환)")은 동일했음. tool-call 파서 우회: 서버에 `tool_choice=none` 으로 보내면 모델이 본문에 `<tool_call><function=…><parameter=…>` 형식으로 답하는 점을 이용해 `verification/automation/qwen_tool_proxy.py`(compose `qwen-tool-proxy`, :8091)가 이를 OpenAI `tool_calls` 로 변환. n8n 자격증명 "RIMS Qwen via tool proxy"(Base URL host.docker.internal:8091/v1) 로 오픈 모델 챗봇 활성화 → get_run_status 7 s, mapping_dashboard 5.8 s, 보관본 전 과정 run_17 PASS(304 s, orchestrator n8n-ai-agent). 포털 `Portal__ChatUrl` 을 `kmds-chat-qwen-open-model` 로 전환(:3031/chat 이 Qwen 사용).
+- 오픈 모델 사고 과정은 `chat_template_kwargs.enable_thinking=false` 로만 꺼진다. 시스템 프롬프트의 `/no_think` 는 효과 없음(사고 내용이 본문에 섞임). n8n OpenAI 노드는 이 파라미터를 못 넘기므로 챗봇 지연은 서버 기본값에 좌우된다. 포털(:3031/chat)은 여전히 Gemini 워크플로(`kmds-ghg-agent-chat`)를 가리킨다 — RIMS 가 tool-call 파서를 켜면 오픈 모델 본으로 전환.
+- 2026-10-08 16:00 이후: RIMS 서버 재부팅으로 포트가 두 번째로 닫혔다 복구. n8n 두 워크플로의 오픈 모델 설정(OpenAI 노드 v1.2, 서버 지정 모델 호출명, temperature 0, 자격증명 "RIMS 오픈 모델 (OpenAI 호환)")은 동일했음. tool-call 파서 우회: 서버에 `tool_choice=none` 으로 보내면 모델이 본문에 `<tool_call><function=…><parameter=…>` 형식으로 답하는 점을 이용해 `verification/automation/qwen_tool_proxy.py`(compose `qwen-tool-proxy`, :8091)가 이를 OpenAI `tool_calls` 로 변환. n8n 자격증명 "RIMS 오픈 모델 via tool proxy"(Base URL host.docker.internal:8091/v1) 로 오픈 모델 챗봇 활성화 → get_run_status 7 s, mapping_dashboard 5.8 s, 보관본 전 과정 run_17 PASS(304 s, orchestrator n8n-ai-agent). 포털 `Portal__ChatUrl` 을 `kmds-chat-qwen-open-model` 로 전환(:3031/chat 이 오픈 모델 사용).
+
+---
+
+## 세션 S12 — 2026-11-13 (실선 샘플 데이터 전환 준비)
+- 사용자 지시: 선주·선박관리사가 활용에 동의(2026-10-20 회신 메일, 원문은 저장소 밖 보관)한 2024년 컨테이너선 데이터를 랩오투원이 IDS Provider 에 등록(2척 중 1척) → 이 데이터를 시뮬레이션 기반 실증·시험평가(S-1-1)에 사용.
+- 대상 자원: Consumer UI 기준 "Noon Report API"(키워드 noonreport·imocompendium·maritime, 제공 기간 2026-08-03~2030-12-31), Consumer 아티팩트 `4e70da45-4f33-495d-b3a9-5c07c0383e4e`. 기존 9/12 계약 아티팩트(f508740a…)와 다른 ID.
+- 데이터 취급(AGENTS.md "실선 운항 데이터 git 금지·외부 서비스 전송 금지"): 수신본·증적은 전부 `verification/evidence-private/C02/realship/`(git 제외). LLM 은 mock(로컬 러너 기본값)으로만 실행 — Gemini·RIMS 오픈 모델 으로 실선 데이터를 보내는 것은 사용자 결정 전까지 하지 않는다. n8n·하네스 컨테이너 경로는 LLM_PROVIDER 가 실 모델이므로 실선 run 에 쓰지 않는다.
+- 러너 수정(run_s11.py): `S11_EVIDENCE_DIR`(증적 루트 변경), `IDS_NOON_ARTIFACT_ID`(수신 아티팩트 지정), T2 오류 시 detail 기록(호스트 마스킹). 기본 동작은 그대로.
+- **수신 시도 결과: BLOCKED(외부)**. 09:36 KST 신규·기존 아티팩트 모두 `ConnectError WinError 10054`(연결 강제 종료). Consumer(:26414)·Provider(:26412) 포트는 TCP 연결되나 TLS 핸드셰이크가 응답 없음(10 s 타임아웃) → 커넥터 서비스 또는 경로 문제로 추정, 자격증명·아티팩트 ID 문제 아님(기존 아티팩트도 동일). 증적 evidence-private/C02/realship/ids-inbox/probe-*/T2-ids-transfer.json.
+- 로컬 Docker 데몬 미기동(Ship-ODMS :8088 없음) — run 전에 Docker Desktop·data-space compose 기동 필요.
+- 복구 후 절차: (1) 수신본을 ids-inbox 에 보관(스냅샷, sha256 기록) → (2) `S11_EVIDENCE_DIR=verification/evidence-private/C02/realship/s11 IDS_NOON_ARTIFACT_ID=4e70da45-… … run_s11.py --run --source <스냅샷>` 2회(재현성) → (3) 이벤트 코드·연료 종류·결측이 시험 선박(00000009) 데이터와 다르면 갭은 shared/standard-model/gaps.md 에 기록.
+- 사람 확인 필요: ① IDS 커넥터 상태(RIMS/유엔젤) ② 실선 run 에 RIMS 오픈 모델 사용 허용 여부(참여기관 서버지만 KR 외부) ③ TTA 보고서·공개 저장소에는 실선 측정치(M2~M4)만 싣고 원자료·선박 식별정보는 제외하는 방침 확인 ④ 2척 모두 필요한지(랩오투원 추가 설정 가능 회신).
+세션 S12 상태: BLOCKED (IDS 커넥터 TLS 무응답)
+
+### S12 추가 — 사용자 결정 반영·IDS 재점검 (2026-11-13)
+- 결정(pm/decisions.md 2026-11-13 3줄): ① 1척으로 우선 진행 ② 실선 run 에 참여기관 오픈 모델 서버 사용 허용, 외부 공개 자료에는 특정 모델명 대신 일반 용어 ③ 공개물에는 측정치만, 원자료·식별정보 제외. 후속: 시험평가 보고서 작성, 프론트엔드 고도화(DB JSON 다운로드·CSV 변환).
+- IDS 재점검 09:45 KST: Provider API·Consumer API 포트 TLS 핸드셰이크 10 s 무응답, Consumer UI 포트도 HTTP 응답 없음(TCP 연결만 성립) → 09:36 과 동일, 지속.
+- 데모 셋업 스크립트(pm/tools/demo/demo_setup.ps1)는 에이전트 세션의 실행 권한 정책에 막혀 실행하지 못함 → 사용자가 데모_시작.cmd 로 직접 기동.
+
+### S12 추가 — 실선 샘플 데이터 S-1-1 실행 (2026-11-17)
+- IDS 서버 주소 변경(RIMS 공지) 반영: 새 주소에서 Provider API·Consumer API(TLS 응답)·Provider UI·Consumer UI(HTTP 401, 인증 요구) 모두 가동 확인(13:14 KST). 11-13 무응답의 원인 = 서버 이전. `.env` 의 IDS_CONNECTOR_BASE 는 사람이 새 주소로 갱신해야 한다(이번 run 은 환경변수로 덮어써 실행). 데모 스크립트의 IDS Consumer UI 탭도 .env 값을 따른다.
+- 수신(T2): Consumer 아티팩트 4e70da45… HTTP 200, 62,832 B, sha256 5919f133…523b. 이벤트 54건(NOON_AT_SEA 20, ARRIVAL 8, CARGO_WORK 8, DEPARTURE_SBY 8, RUP 8, BUNKERING 2), 기간 2025-12-01~2025-12-30 UTC, 이벤트당 64 필드. **주의: 지시의 "2024년" 과 달리 수신 데이터 기간은 2025년 12월** — 랩오투원 확인 필요. general 에 선장 성명 필드가 있어 원자료는 evidence-private 밖으로 내보내지 않는다.
+- 스냅샷: evidence-private/C02/realship/ids-inbox/noon-snapshot-20261117.json. 증적 루트 evidence-private/C02/realship/s11/.
+- run_01·run_02: **무효(도구 결함)** — 에이전트 증적 커밋의 디렉터리 rename 이 Windows 일시 잠금으로 PermissionError(각각 13번째·15번째 이벤트, 실패 위치가 달라 일시적). 수정: apps/kr-ghg-ai-agent evidence.py 에 rename 재시도(5회·0.5 s). 에이전트 unit·contract 47 passed. 미완 run 폴더는 삭제하지 않음.
+- **run_03·run_04: PASS** (LLM mock, T2 수행 PASS — 재수신본 ≡ 스냅샷). M2 0.9937(미매핑 21/3,317: isEuPort 18, bunkeringStopLtc 2, remark 1) / M3 1.0(FAIL 0/3,296, WARNING 864) / M4 0.9949(불일치 9/1,780: seaHeight 5·swellHeight 4, 정수형 절삭) / Ship-ODMS HTTP 오류 0(PortCall 8, Report 54) / 증적 무결성 ok / 재현성 run_03≡run_04. 에이전트 최종 상태는 54건 모두 REVIEW_REQUIRED(GEARs 계약 PROVISIONAL, 설계대로).
+- 갭 기록: shared/standard-model/gaps.md(2026-11-17 절).
+- 남은 일: ① .env 주소 갱신(사람) 후 오픈 모델 연결 경로(하네스·n8n)로 실선 run — 하네스 컨테이너에 S11_EVIDENCE_DIR·IDS_NOON_ARTIFACT_ID 전달 필요(compose 수정) ② 데이터 기간(2024 vs 2025-12) 확인 ③ 시험평가 보고서 반영(측정치만) ④ 프론트엔드 JSON 다운로드·CSV 변환(계획 먼저) ⑤ 표준모델 DB 에 실선 선박 1척 적재됨(로컬 DB, git 제외) — 데모 화면에 선명이 보이므로 공개 시연 전 표시 방침 결정.
+세션 S12 상태: DONE (실선 1척 로컬 실증 PASS, 오픈 모델 경로 run 과 보고서 반영 대기)
+
+### S12 추가 — 사용자 지시 6건 반영 (2026-11-17 오후)
+- 결정: 데이터 기간은 추후 확인. 보안 사항으로 보이는 필드는 가명 처리. `.env` 필요한 값은 자동 반영. 백엔드·프론트엔드 고도화는 제안 → 승인 후 진행.
+- `.env`: IDS_CONNECTOR_BASE 호스트를 새 주소로 교체(1줄). LLM_ENDPOINT 도 옛 호스트를 가리키지만 새 주소를 통보받지 못해 그대로 둠.
+- 미매핑 재확인(FAL50 registry): bunkeringStopLtc → IMO0656, remark → IMO0606 을 lab021_ingress.PICK 에 추가(코드북 1:N 후보 중 최특정, 근거는 코드 주석·gaps.md). isEuPort 는 참조모델에 대응 요소 없음 → 갭 확정. 자체 검사 선실패 확인 후 구현, 에이전트 unit·contract 47 passed, ruff 는 기존 12건만(신규 0), mypy 기존 1건(llm/client.py).
+- 불일치 재검증: seaHeight(IMO0632)·swellHeight(IMO0635) 는 FAL50 format `n..2` → 표준모델 DB 정수형이 참조모델과 일치. DB 수정하지 않음(Provider 소수 정밀도와 표준 형식의 갭으로 재분류, gaps.md). 실수형 전환 여부는 사용자 결정.
+- 가명 처리(run_s11.mask_payload): 시험 선박(00000009)이 아니면 general 의 shipName·imoNo·callsign·mmsi·masterName 과 이벤트의 remark·ceName·masterName 을 고정 가명으로 교체(자료형 유지), 운항 수치는 불변. 원본은 스냅샷·T2 수신본(evidence-private)에만 존재. run_08 증적 전 파일에서 실 식별값 검색 0건. 표준모델 DB 의 실선 원본 선박은 백업(ship_odms.db.bak-20261117-realship, git 제외) 후 삭제, 가명 선박으로 재적재.
+- run_05·06: 가명 MMSI 를 문자열로 넣어 IMO0326 형식 검증에 걸림(미매핑 +54, M2 0.9783) → 도구 결함, 자료형 유지로 수정. run_07: PARTIAL(재현성 규칙만 false — 직전 run 과 설정이 달라서). **run_08: PASS** (LLM mock) M2 0.9946(미매핑 18/3,317 = isEuPort 만) / M3 1.0(0/3,299) / M4 0.9949(9/1,780, 파고 정수형) / T2 PASS / HTTP 오류 0 / 무결성 ok / 재현성 run_07≡run_08.
+- **오픈 모델 run: BLOCKED(외부)** — LLM_ENDPOINT 포트가 옛 호스트·새 호스트 모두 TCP 연결 후 HTTP 무응답(20 s). 새 엔드포인트 주소 통보 필요.
+- 대기: 백엔드·프론트엔드 고도화 제안에 대한 승인.
+
+### S12 추가 — 사용자 결정 4건과 오픈 모델 재확인 (2026-11-17 저녁)
+- 결정: ① 파고·너울 저장형은 IMO Compendium 기준 우선(정수 `n..2` 유지, DB 불변 — 불일치 9건은 Provider 정밀도 갭으로 설명) ② 고도화 순서는 제안대로(B-1 → F-1 → F-2 → B-2·B-4 → F-3·F-4) ③ 프론트엔드 디자인 파일은 사용자가 올릴 예정 ④ 오픈 모델 주소를 IDS 서버 호스트(포트는 이전 그대로)로 바꿔 재확인. 백엔드·프론트엔드 작업은 위가 모두 풀린 뒤 다시 요청.
+- `.env`: LLM_ENDPOINT 호스트를 IDS 서버와 같은 새 호스트로 교체(포트·경로 불변, 1줄).
+- 재확인 결과: **여전히 BLOCKED(외부)** — 새 호스트의 오픈 모델 포트가 `/v1/models` 요청에 1회 연결 리셋(WinError 10054), 이후 3회와 TLS 시도 모두 시간 초과. 같은 호스트의 IDS Provider·Consumer API 포트는 TCP 정상. 서버 쪽에서 모델 서비스가 내려가 있거나 포트 포워딩이 빠진 것으로 추정(추정, 미확인).
+- 대기: RIMS 에 오픈 모델 서비스 포트 확인 요청(사람) → 응답 오면 가명 처리된 실선 데이터로 오픈 모델 run. 디자인 파일 업로드.
+
+### S12 추가 — 오픈 모델 실행, 백엔드·프론트엔드 고도화 (2026-11-17 밤)
+- 오픈 모델 서버 복구 확인(모델 목록 HTTP 200). 가명 처리된 실선 데이터로 오픈 모델 실행: run_09 PASS(M2 0.9946 / M3 1.0 / M4 0.9949, LLM 호출 18회 = 미매핑 `isEuPort` 18건의 후보 제안, 확정 매핑은 mock 과 동일 → run_08 과 재현성 일치). T0 baseline 에 실제 provider 를 기록하게 함(모델명·주소는 적지 않음).
+- 백엔드(표준모델 API, Java) — 표준 모델 1.1.0:
+  - B-1 `GET /api/ships/{id}/export?format=json|csv` (중첩 JSON / 표별 CSV zip, UTF-8 BOM, 수식 주입 방지).
+  - B-2 `PerformanceReport.voyageLegRemarks`(IMO0606) 추가, 전달 어댑터가 벙커 요소(IMO0656·0666·0667)를 `_BUNKER` 행으로 전달(G-6). 대상 없는 요소 19 → 15종.
+  - B-3 파고·너울은 정수 유지(결정).
+  - B-4 같은 항차·보고시각·이벤트 유형의 보고, 같은 항차·출항항·출항시각의 포트콜은 재전송 시 교체·갱신(누적 방지).
+  - 런타임 이미지(jlink)에 `jdk.unsupported` 모듈 추가 — 없으면 생성자 주입 서비스의 @Transactional 프록시 생성이 실패해 기동하지 않음.
+  - 테스트: `./gradlew test` 통과(임시 DB `build/test.db` 사용 — 실행 DB 를 건드리지 않게 기존 테스트도 수정). python·javascript 구현에는 미반영.
+- 새 백엔드로 재실행(오픈 모델, 가명 선박 삭제 후): run_10 PARTIAL(재현성 규칙만 — 대조 항목이 늘어 M4 0.9949 → 0.995), **run_11 PASS** M2 0.9946 / M3 1.0 / M4 0.995(불일치 9 = 파고·너울) / HTTP 오류 0. 두 번 보낸 뒤 DB 는 보고 54·포트콜 8 그대로(누적 없음), 비고 1건·벙커 행 2건 저장 확인.
+- 공개 시험 선박: run_21 PARTIAL(T2 404 — 이전한 IDS 서버에 예전 시험 artifact 가 없음, 재현성은 대조 항목 342 → 344 로 M4 0.9854 → 0.9855), run_22 PASS(--skip-ids, T2 NOT_TESTED). 시험 선박의 중복 보고 108건은 재전송으로 12건으로 정리됨.
+- 프론트엔드(포털, Blazor):
+  - F-1 선박 목록에 JSON·CSV 내려받기(포털이 백엔드 내보내기를 중계).
+  - F-2 `정합성 대조` 화면(run 선택, 불일치만 보기, M2·M3·M4, 대조표, CSV 내려받기). 하네스에 `GET /runs/{id}/consistency`, `/consistency.csv` 추가, T7 이 `consistency-checks.csv` 를 남김(2026-11-17 이전 run 에는 CSV 없음).
+  - F-3 KRDS 시각 언어(`design/krds.md`)와 Pretendard GOV(subset woff2 3종, OFL) 적용: `wwwroot/krds.css`, 사이드 내비게이션·표·버튼·배지·알림. 이모지 제거, 정부 식별 요소는 쓰지 않음.
+  - F-4 표 머리글에 IMO 번호·단위(openapi 에서 확인한 것만), 운항 보고 표에 비고(IMO0606) 열, 챗봇 화면 문구에서 특정 모델명 제거.
+  - 확인: `dotnet build` 오류 0, 포털 화면 2종 헤드리스 캡처, 내려받기 3종 HTTP 200.
+- 한계·남은 일: 포털의 정합성 대조 화면은 하네스의 공개 증적 폴더(시험 선박)만 본다 — 실선 run 의 대조 CSV 는 `evidence-private/…/run_NN/shipodms/consistency-checks.csv`. 선명한 화면 모드(고대비) 미구현. 데이터 기간 확인, 시험평가 보고서 반영, 커밋은 미수행.
+
+### S12 추가 — 초기화 후 재테스트, 포털 브라우저 점검과 수정 (2026-11-17 심야)
+- 초기화: 표준모델 DB 선박 0척, 공개·비공개 S-1-1 증적과 에이전트 증적을 비움. 이전 자료는 `verification/evidence-private/_reset-backup-20261117/`(git 제외)에 보관. 공개 증적의 run 번호는 run_01 부터 다시 시작(예전 run_01~23 은 백업에만 있음).
+- 재테스트(오픈 모델): 시험 선박 run_01·02 PASS(T2 NOT_TESTED, M2 0.9945 / M3 1.0 / M4 0.9855, 불일치 5), 가명 실선 run_01·02 PASS(M2 0.9946 / M3 1.0 / M4 0.995, 불일치 9). 2회차는 1회차와 측정치 동일.
+- 브라우저 점검(전 화면 로딩, 클릭 흐름, 정합성 대조, 대시보드)에서 찾아 고친 것:
+  - 대시보드가 비어 있던 원인: 스크립트 괄호 누락(커밋된 코드부터 있던 문법 오류) → 수정, run 선택·수치·차트 표시 확인.
+  - 포털이 정적 렌더링이라 행 클릭·run 선택·체크박스·"불러오는 중" 표시가 동작하지 않던 것 → 상호작용 모드(사전 렌더링 끔)로 전환. 불러오는 동안 대기 커서·입력 차단이 실제로 나타나는 것을 확인.
+  - 행 클릭 이동 주소에 선박 ID 가 비던 것(입출항·구간 보고) → 화면의 경로 값 사용.
+  - 연료 소비 상세의 가로 넘침, 값이 없는데 "공선"으로 나오던 적재상태, 빈 항목뿐이던 보고 상세 화면(표준 모델의 26개 항목으로 교체), 없는 주소 안내, 템플릿 예제 화면 삭제.
+  - 표 머리글 IMO 번호: 데이터 열 전부에 표기(하위 표 포함, openapi 설명 기준). 번호가 없는 열은 내부 ID 와 보고 연도(K-MDS 확장)뿐.
+- 연차보고 연도: `YearPerformanceReport.report_year`(K-MDS 확장, FAL50 에 대응 요소 없음) 추가. 연간 GHG 집계가 보고시각(UTC) 연도로 나눠 계산하고(미지정 시 최근 연도), 선박·연도당 한 건으로 저장. 시험 선박 2026년, 가명 실선 2025년으로 기록 확인. 챗봇 도구에 year 인자 추가.
+- 가명 실선의 연간 집계 증적이 공개 폴더에 생겨 비공개 폴더(`evidence-private/C02/realship/annual/`)로 옮김 — 하네스의 연간 집계 증적 경로는 공개 폴더 고정이므로 실선 선박으로 집계할 때 주의.
+- 공개 기록 정리(2026-11-17): 이 문서의 예전 기록에서 특정 오픈 모델 이름을 일반 용어(오픈 모델)로 바꿨다. 파일·컨테이너 이름에 들어 있는 식별자는 실제 이름과 맞아야 해서 그대로 두었다. 새 공개 증적(run_01·02)의 에이전트 manifest 24개에서 `llm_model` 값도 `open-model` 로 바꿨다(manifest 는 file_hashes 대상이 아니어서 무결성 검사 결과는 그대로).
+
+### S12 추가 — 정리 (2026-11-17 자정 무렵)
+- 모델 이름 정리 범위 확대: tool-call 프록시 파일·서비스·컨테이너(`tool_call_proxy.py`, `tool-call-proxy`, `kmds-tool-call-proxy`)와 챗봇 웹훅 경로(`kmds-chat-open-model`)를 중립 이름으로 바꾸고 README·배포 문서·주석을 정리. 실행 중인 n8n 워크플로와 포털 설정에도 적용, 챗봇 새 주소 응답 확인. 남은 것은 서버가 요구하는 모델 호출명 값과 n8n 워크플로 내부 ID, `data/raw/RIMS/` 의 원문 안내서 파일명.
+- 하네스의 연간 GHG 집계 증적: 시험 선박이 아니면 `verification/evidence-private/annual/` 에 쓴다.
+- `.env`·`.env.example` 정리 스크립트 `scripts/tidy_env.py` 추가(쓰지 않는 LLM 제공자 항목 삭제, 변수 설명 주석, 주석의 모델 이름 정리). 값은 읽거나 출력하지 않는다. 실행은 사람이 한다.
+- 불필요 파일 삭제: DB 백업 5개, 초기화 백업 폴더, IDS 수신 시험 조각, 폰트 zip, 쓰지 않는 n8n 파일, 빌드 산출물.
+- SW 등록 제출 자료 초안: `pm/sw-registration/ghg-ai-agent/`(git 제외).

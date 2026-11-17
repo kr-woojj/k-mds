@@ -19,5 +19,6 @@ public class YearPerformanceReport {
     @JoinColumn(name = "ship_id")
     private Ship ship;
 
+    private Integer reportYear;  // 보고 연도 — K-MDS 확장(FAL50 에 대응 요소 없음, 2026-11-17 추가)
     private Double totalGfiAnnually;
 }

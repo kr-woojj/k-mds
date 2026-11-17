@@ -39,6 +39,7 @@ public class PerformanceReportResponse {
     private Double speedOrder;
     private Double courseOverGround;
     private Double shipTrueHeading;
+    private String voyageLegRemarks;
 
     // 하위 데이터 리스트 추가
     private List<WeatherDetails> weatherDetails;

@@ -3,7 +3,7 @@
 
 @if (Loading)
 {
-    <div class="table-skeleton">Loading...</div>
+    <div class="table-skeleton">불러오는 중입니다.</div>
 }
 else if (!string.IsNullOrEmpty(Error))
 {
@@ -11,19 +11,19 @@ else if (!string.IsNullOrEmpty(Error))
 }
 else
 {
-    <div style="overflow-x: auto;">
-        <table style="border-collapse: collapse; width: 100%; min-width: 800px; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #eee;">
-            <thead style="background: #f5f5f5;">
+    <div class="krds-table-wrap">
+        <table>
+            <thead>
                 <tr>
-                    <th style="@th">IMO 번호</th>
-                    <th style="@th">선박명</th>
-                    <th style="@th">선박유형</th>
-                    <th style="@th">MARPOL 유형</th>
-                    <th style="@th">국적</th>
-                    <th style="@th">MMSI</th>
-                    <th style="@th">호출부호</th>
-                    <th style="@th">등록항</th>
-                    <th style="@th"></th>
+                    <th>IMO 번호<small>IMO0140</small></th>
+                    <th>선박명<small>IMO0142</small></th>
+                    <th>선박유형<small>IMO0160</small></th>
+                    <th>MARPOL 유형<small>IMO0859</small></th>
+                    <th>국적<small>IMO0138</small></th>
+                    <th>MMSI<small>IMO0326</small></th>
+                    <th>호출부호<small>IMO0136</small></th>
+                    <th>등록항<small>IMO0147</small></th>
+                    <th>조회 · 내려받기</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,24 +32,28 @@ else
                     @foreach (var ship in Items)
                     {
                         <tr @onclick="() => OnRowClick.InvokeAsync(ship)" style="cursor: @GetRowCursor()">
-                            <td style="@td">@ship.ImoNumber</td>
-                            <td style="@td">@ship.ShipName</td>
-                            <td style="@td">@ship.ShipType</td>
-                            <td style="@td">@ship.ShipTypeMarpol</td>
-                            <td style="@td">@ship.FlagState</td>
-                            <td style="@td">@ship.Mmsi</td>
-                            <td style="@td">@ship.CallSign</td>
-                            <td style="@td">@ship.RegistryPort</td>
-                            <td style="@td">
-                                <a href="/ships/@ship.Id/yearly-reports" style="@linkBtn">연차보고</a>
-                                <a href="/ships/@ship.Id/voyages" style="@linkBtn;margin-left:8px">항해이력</a>
+                            <td>@ship.ImoNumber</td>
+                            <td>@ship.ShipName</td>
+                            <td>@ship.ShipType</td>
+                            <td>@ship.ShipTypeMarpol</td>
+                            <td>@ship.FlagState</td>
+                            <td>@ship.Mmsi</td>
+                            <td>@ship.CallSign</td>
+                            <td>@ship.RegistryPort</td>
+                            <td @onclick:stopPropagation="true">
+                                <div class="krds-actions">
+                                    <a href="/ships/@ship.Id/yearly-reports" class="krds-btn krds-btn-tertiary krds-btn-xs">연차보고</a>
+                                    <a href="/ships/@ship.Id/voyages" class="krds-btn krds-btn-tertiary krds-btn-xs">항해이력</a>
+                                    <a href="/export/ships/@ship.Id?format=json" download class="krds-btn krds-btn-xs" aria-label="JSON 내려받기">JSON</a>
+                                    <a href="/export/ships/@ship.Id?format=csv" download class="krds-btn krds-btn-xs" aria-label="CSV 내려받기">CSV</a>
+                                </div>
                             </td>
                         </tr>
                     }
                 }
                 else
                 {
-                    <tr><td colspan="9" style="text-align: center; color: #888; padding: 2rem;">데이터 없음</td></tr>
+                    <tr><td colspan="9" class="krds-empty">데이터 없음</td></tr>
                 }
             </tbody>
         </table>
@@ -59,8 +63,4 @@ else
 @code {
     private string GetRowCursor() => OnRowClick.HasDelegate ? "pointer" : "default";
 
-    // 스타일 변수 (inline style)
-    private string th = "padding:0.75rem 1rem;font-weight:600;font-size:1rem;border-bottom:2px solid #e0e0e0;background:#f5f5f5;text-align:left;";
-    private string td = "padding:0.75rem 1rem;font-size:0.98rem;background:#fff;";
-    private string linkBtn = "display:inline-block;padding:0.3em 0.8em;background:#e3e8ff;color:#2a3a8c;border-radius:4px;text-decoration:none;font-weight:500;font-size:0.95em;border:1px solid #bfcfff;";
 }

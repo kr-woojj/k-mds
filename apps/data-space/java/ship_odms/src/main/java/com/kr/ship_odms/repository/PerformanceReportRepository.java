@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface PerformanceReportRepository extends JpaRepository<PerformanceReport, Integer> {
 	List<PerformanceReport> findByVoyageId(Integer voyageId);
+	List<PerformanceReport> findByVoyageIdAndReportDatetimeAndEventType(Integer voyageId, String reportDatetime, String eventType);
 }

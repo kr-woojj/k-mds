@@ -1,3 +1,4 @@
+/* 레이아웃 골격. 색·글꼴은 wwwroot/krds.css 의 토큰을 쓴다(KRDS: 평면 표면, 1px 보더 위계, 그라디언트 없음). */
 .page {
     position: relative;
     display: flex;
@@ -6,44 +7,28 @@
 
 main {
     flex: 1;
+    min-width: 0;
 }
 
 .sidebar {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    background: #fff;
+    border-bottom: 1px solid var(--krds-border);
 }
 
 .top-row {
-    background-color: #f7f7f7;
-    border-bottom: 1px solid #d6d5d5;
-    justify-content: flex-end;
-    height: 3.5rem;
+    background: #fff;
+    border-bottom: 1px solid var(--krds-border);
+    height: 56px;
     display: flex;
     align-items: center;
+    font-size: 15px;
+    color: var(--krds-fg-2);
 }
 
-    .top-row ::deep a, .top-row ::deep .btn-link {
-        white-space: nowrap;
-        margin-left: 1.5rem;
-        text-decoration: none;
-    }
-
-    .top-row ::deep a:hover, .top-row ::deep .btn-link:hover {
-        text-decoration: underline;
-    }
-
-    .top-row ::deep a:first-child {
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-@media (max-width: 640.98px) {
-    .top-row {
-        justify-content: space-between;
-    }
-
-    .top-row ::deep a, .top-row ::deep .btn-link {
-        margin-left: 0;
-    }
+article.content {
+    padding-top: 32px;
+    padding-bottom: 64px;
+    max-width: 1616px;
 }
 
 @media (min-width: 641px) {
@@ -52,10 +37,13 @@ main {
     }
 
     .sidebar {
-        width: 250px;
+        width: 240px;
+        flex: 0 0 240px;
         height: 100vh;
         position: sticky;
         top: 0;
+        border-bottom: 0;
+        border-right: 1px solid var(--krds-border);
     }
 
     .top-row {
@@ -64,27 +52,21 @@ main {
         z-index: 1;
     }
 
-    .top-row.auth ::deep a:first-child {
-        flex: 1;
-        text-align: right;
-        width: 0;
-    }
-
     .top-row, article {
-        padding-left: 2rem !important;
-        padding-right: 1.5rem !important;
+        padding-left: 32px !important;
+        padding-right: 24px !important;
     }
 }
 
 #blazor-error-ui {
     color-scheme: light only;
-    background: lightyellow;
+    background: var(--krds-danger-bg);
+    border-top: 1px solid var(--krds-danger);
     bottom: 0;
-    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
     display: none;
     left: 0;
-    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    padding: 12px 24px;
     position: fixed;
     width: 100%;
     z-index: 1000;
@@ -93,6 +75,12 @@ main {
     #blazor-error-ui .dismiss {
         cursor: pointer;
         position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
+        right: 16px;
+        top: 8px;
+        height: 32px;
+        padding: 0 12px;
+        border: 1px solid var(--krds-border);
+        border-radius: 6px;
+        background: #fff;
+        font-size: 13px;
     }

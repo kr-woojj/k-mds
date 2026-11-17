@@ -50,7 +50,7 @@ def find_ship(base: str, imo: str) -> dict | None:
 def ship_overview(base: str, imo: str) -> dict:
     ship = find_ship(base, imo)
     if not ship:
-        return {"ok": False, "imo": imo, "message": f"Ship-ODMS 에 IMO {imo} 선박이 없다. 등록된 IMO: {[s.get('imoNumber') for s in _get(base, '/ships')]}"}
+        return {"ok": False, "imo": imo, "message": f"GHG Verifier 에 IMO {imo} 선박이 없다. 등록된 IMO: {[s.get('imoNumber') for s in _get(base, '/ships')]}"}
     voyages = _get(base, f"/ships/{ship['id']}/voyages"); out_v = []
     for v in voyages:
         reps = _get(base, f"/voyages/{v['id']}/performance-reports")
@@ -60,20 +60,27 @@ def ship_overview(base: str, imo: str) -> dict:
                       "port_calls": len(_get(base, f"/voyages/{v['id']}/port-calls"))})
     yearly = _get(base, f"/ships/{ship['id']}/yearly-reports")
     return {"ok": True, "ship": ship, "voyages": out_v, "yearly_reports": yearly,
-            "cii": {"value": None, "note": "Ship-ODMS 표준모델(openapi.yaml)에는 CII 필드가 없다. 연차보고는 YearPerformanceReport.totalGfiAnnually(GFI) 뿐이며, 선박 용량(DWT/GT)도 저장되지 않아 CII 는 capacity_dwt 를 지정할 때만 참고값으로 계산한다."},
+            "cii": {"value": None, "note": "GHG Verifier 표준모델(openapi.yaml)에는 CII 필드가 없다. 연차보고는 YearPerformanceReport.totalGfiAnnually(GFI) 뿐이며, 선박 용량(DWT/GT)도 저장되지 않아 CII 는 capacity_dwt 를 지정할 때만 참고값으로 계산한다."},
             "ui": f"http://localhost:3031/ships/{ship['id']}/yearly-reports"}
 
 
-def annual_ghg(base: str, imo: str, capacity_dwt: float | None = None, write: bool = False, evidence_dir: Path | None = None) -> dict:
+def annual_ghg(base: str, imo: str, capacity_dwt: float | None = None, write: bool = False, evidence_dir: Path | None = None,
+               year: int | None = None) -> dict:
     ship = find_ship(base, imo)
     if not ship:
-        return {"ok": False, "imo": imo, "message": f"Ship-ODMS 에 IMO {imo} 선박이 없다."}
+        return {"ok": False, "imo": imo, "message": f"GHG Verifier 에 IMO {imo} 선박이 없다."}
     seen: set = set(); used: list[dict] = []; dup = 0
     for v in _get(base, f"/ships/{ship['id']}/voyages"):
         for r in _get(base, f"/voyages/{v['id']}/performance-reports"):
             key = (v["id"], r.get("reportDatetime"), r.get("eventType"))
             if key in seen: dup += 1; continue
             seen.add(key); used.append(r)
+    # 연차보고는 연도 단위다: 보고시각(UTC)의 연도로 나눈다. 연도를 주지 않으면 저장된 보고 중 가장 최근 연도를 쓴다.
+    years = sorted({str(r.get("reportDatetime") or "")[:4] for r in used} - {""})
+    if year is None and years:
+        year = int(years[-1])
+    if year is not None:
+        used = [r for r in used if str(r.get("reportDatetime") or "")[:4] == str(year)]
     fuel_t: Counter = Counter(); unknown_fuel: Counter = Counter()
     for r in used:
         for fc in r.get("fuelConsumption") or []:
@@ -90,22 +97,23 @@ def annual_ghg(base: str, imo: str, capacity_dwt: float | None = None, write: bo
     gfi_ttw = (co2_t * 1e6 / energy_mj) if energy_mj else None
     cii = (co2_t * 1e6 / (float(capacity_dwt) * distance_nm)) if capacity_dwt and distance_nm else None
     period = [min((r.get("reportDatetime") or "" for r in used), default=None), max((r.get("reportDatetime") or "" for r in used), default=None)]
-    res = {"ok": True, "imo": ship.get("imoNumber"), "ship_id": ship["id"], "ship_name": ship.get("shipName"), "period": period,
+    res = {"ok": True, "imo": ship.get("imoNumber"), "ship_id": ship["id"], "ship_name": ship.get("shipName"), "year": year, "years_available": [int(y) for y in years],
+           "year_basis": "보고시각(reportDatetime, UTC)의 연도", "period": period,
            "reports_used": len(used), "duplicates_excluded": dup, "fuel": rows, "unknown_fuel_codes": dict(unknown_fuel),
            "totals": {"fuel_t": round(sum(fuel_t.values()), 3), "co2_t": round(co2_t, 3), "energy_mj": round(energy_mj, 1), "distance_nm": round(distance_nm, 1)},
            "gfi_ttw_gco2_per_mj": round(gfi_ttw, 3) if gfi_ttw else None,
            "cii_attained_g_per_t_nm": round(cii, 4) if cii else None,
-           "cii_note": None if cii else "CII 미산출 — 선박 용량(DWT) 없음(Provider grossTonnage=-9999, Ship-ODMS 에 용량 필드 없음). capacity_dwt 를 주면 참고값 계산.",
+           "cii_note": None if cii else "CII 미산출 — 선박 용량(DWT) 없음(Provider grossTonnage=-9999, GHG Verifier 에 용량 필드 없음). capacity_dwt 를 주면 참고값 계산.",
            "cf_source": CF_SOURCE, "assumptions": ASSUMPTIONS, "written": None}
     if write and gfi_ttw:
-        same = [y for y in _get(base, f"/ships/{ship['id']}/yearly-reports") if y.get("totalGfiAnnually") is not None and abs(float(y["totalGfiAnnually"]) - round(gfi_ttw, 3)) < 1e-6]
-        if same:  # 멱등: 같은 값의 연차보고가 이미 있으면 다시 넣지 않는다(에이전트 재호출로 중복 행 생성 방지)
+        same = [y for y in _get(base, f"/ships/{ship['id']}/yearly-reports") if y.get("reportYear") == year and y.get("totalGfiAnnually") is not None and abs(float(y["totalGfiAnnually"]) - round(gfi_ttw, 3)) < 1e-6]
+        if same:  # 멱등: 같은 연도·같은 값의 연차보고가 이미 있으면 다시 넣지 않는다(에이전트 재호출로 중복 행 생성 방지)
             res["written"] = {"skipped": True, "existing_ids": [y["id"] for y in same], "field": "YearPerformanceReport.totalGfiAnnually", "ui": f"http://localhost:3031/ships/{ship['id']}/yearly-reports"}
             write = False
     if write and gfi_ttw:
-        r = httpx.post(f"{base}/api/ships/{ship['id']}/yearly-reports", json={"totalGfiAnnually": round(gfi_ttw, 3)}, timeout=30)
+        r = httpx.post(f"{base}/api/ships/{ship['id']}/yearly-reports", json={"reportYear": year, "totalGfiAnnually": round(gfi_ttw, 3)}, timeout=30)
         res["written"] = {"http": r.status_code, "body": r.json() if r.headers.get("content-type", "").startswith("application/json") else r.text[:200],
-                          "field": "YearPerformanceReport.totalGfiAnnually (GFI TtW, gCO2/MJ)", "ui": f"http://localhost:3031/ships/{ship['id']}/yearly-reports"}
+                          "field": f"YearPerformanceReport(reportYear={year}).totalGfiAnnually (GFI TtW, gCO2/MJ)", "ui": f"http://localhost:3031/ships/{ship['id']}/yearly-reports"}
     if evidence_dir:
         evidence_dir.mkdir(parents=True, exist_ok=True)
         p = evidence_dir / f"annual-ghg_{ship.get('imoNumber')}_{datetime.now(UTC).strftime('%Y%m%dT%H%M%SZ')}.json"
@@ -154,19 +162,19 @@ DASH_HTML = """<!doctype html><html lang="ko"><meta charset="utf-8"><title>K-MDS
 table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px solid #d0d7de;padding:6px 8px;text-align:left}code{background:#eef;padding:1px 4px;border-radius:4px}
 .pass{color:#1a7f37}.fail{color:#cf222e}</style>
 <body><h2>K-MDS S-1-1 매핑 증적 대시보드 <small id="run"></small></h2>
-<p>K-MDS IDS Consumer 수신 데이터 → GHG AI Agent(IMO Compendium 매핑 스킬) → Ship-ODMS 전달 결과. 수치는 run 증적(mapping-result·pre-normalization·consistency-report)에서 그대로 집계.
+<p>K-MDS IDS Consumer 수신 데이터 → GHG AI Agent(IMO Compendium 매핑 스킬) → GHG Verifier 전달 결과. 수치는 run 증적(mapping-result·pre-normalization·consistency-report)에서 그대로 집계.
  run 선택: <select id="sel"></select> · <a id="rep" target="_blank">판정 보고서</a> · <a href="/dashboard/data" id="raw" target="_blank">원시 JSON</a></p>
 <div class="cards" id="cards"></div>
 <div class="row"><div><canvas id="c1"></canvas></div><div><canvas id="c2"></canvas></div></div>
 <div class="row"><div><h3>IMO Compendium 코드화 필요·미해결 항목 (랩오투원 코드북 기준)</h3><table id="t1"><tr><th>항목</th><th>건수</th></tr></table>
-<h3>표준 매핑은 됐으나 Ship-ODMS 대상 필드 없음</h3><p id="nt"></p></div>
+<h3>표준 매핑은 됐으나 GHG Verifier 대상 필드 없음</h3><p id="nt"></p></div>
 <div><h3>이벤트별</h3><table id="t2"><tr><th>#</th><th>이벤트</th><th>필드</th><th>미매핑</th><th>코드북 변환</th><th>코드북 미해결</th><th>결측→null</th></tr></table></div></div>
 <h3>전달 불일치 (M4)</h3><table id="t3"><tr><th>보고</th><th>IMO</th><th>대상</th><th>원본</th><th>저장</th></tr></table>
 <script>
 const q=new URLSearchParams(location.search);let charts=[];
-async function load(run){const d=await (await fetch('/dashboard/data'+(run?'?run='+run:'')).json();const s=d.summary;
+async function load(run){const d=await (await fetch('/dashboard/data'+(run?'?run='+run:''))).json();const s=d.summary;
 document.getElementById('run').textContent=d.run_id+' · '+(d.verdict||'')+' · LLM '+(d.llm&&d.llm.provider||'-');document.getElementById('rep').href='/runs/'+d.run_id+'/report';document.getElementById('raw').href='/dashboard/data?run='+d.run_id;
-const cards=[['총 데이터 항목(원본 필드)',s.total_fields],['IMO code 변환 성공',s.mapped],['변환 실패(미매핑)',s.unmapped],['Ship-ODMS 전달·대조 항목',s.delivered_checked],['전달 성공(값 일치)',s.delivered_ok],['전달 불일치',s.delivered_mismatch],['대상 필드 없음(미전달)',s.no_target_in_shipodms],['코드북으로 code화한 항목',s.codebook_converted],['코드북 미해결(코드화 필요)',s.codebook_unresolved],['M2 / M3 / M4',[d.measures.M2,d.measures.M3,d.measures.M4].join(' / ')]];
+const cards=[['총 데이터 항목(원본 필드)',s.total_fields],['IMO code 변환 성공',s.mapped],['변환 실패(미매핑)',s.unmapped],['GHG Verifier 전달·대조 항목',s.delivered_checked],['전달 성공(값 일치)',s.delivered_ok],['전달 불일치',s.delivered_mismatch],['대상 필드 없음(미전달)',s.no_target_in_shipodms],['코드북으로 code화한 항목',s.codebook_converted],['코드북 미해결(코드화 필요)',s.codebook_unresolved],['M2 / M3 / M4',[d.measures.M2,d.measures.M3,d.measures.M4].join(' / ')]];
 document.getElementById('cards').innerHTML=cards.map(c=>`<div class="card"><b>${c[1]}</b><span>${c[0]}</span></div>`).join('');
 charts.forEach(c=>c.destroy());charts=[];
 charts.push(new Chart(document.getElementById('c1'),{type:'doughnut',data:{labels:['변환 성공','미매핑'],datasets:[{data:[s.mapped,s.unmapped],backgroundColor:['#1a7f37','#cf222e']}]},options:{plugins:{title:{display:true,text:'IMO Compendium code 변환 ('+s.total_fields+' 항목)'}}}}));

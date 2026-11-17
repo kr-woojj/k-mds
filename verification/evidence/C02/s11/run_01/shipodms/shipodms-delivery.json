@@ -1,6 +1,6 @@
 {
  "ship": {
-  "id": 4,
+  "id": 1,
   "imoNumber": "00000009",
   "shipName": "TEST_BULK_DIESEL_09",
   "shipType": "NONE",
@@ -11,9 +11,19 @@
   "registryPort": null
  },
  "voyage": {
-  "id": 2,
-  "shipId": 4,
-  "yearReportId": null,
+  "id": 1,
+  "ship": {
+   "id": 1,
+   "imoNumber": "00000009",
+   "shipName": "TEST_BULK_DIESEL_09",
+   "shipType": "NONE",
+   "shipTypeMarpol": null,
+   "flagState": null,
+   "mmsi": null,
+   "callSign": "TBD09",
+   "registryPort": null
+  },
+  "yearReport": null,
   "voyageNumber": "1",
   "tradeServiceId": null,
   "gfiPerVoyage": null,
@@ -22,11 +32,11 @@
  },
  "port_calls": [
   {
-   "id": 4,
+   "id": 1,
    "voyage": {
-    "id": 2,
+    "id": 1,
     "ship": {
-     "id": 4,
+     "id": 1,
      "imoNumber": "00000009",
      "shipName": "TEST_BULK_DIESEL_09",
      "shipType": "NONE",
@@ -50,11 +60,11 @@
    "portAtd": "2026-04-19T20:36:00.000Z"
   },
   {
-   "id": 5,
+   "id": 2,
    "voyage": {
-    "id": 2,
+    "id": 1,
     "ship": {
-     "id": 4,
+     "id": 1,
      "imoNumber": "00000009",
      "shipName": "TEST_BULK_DIESEL_09",
      "shipType": "NONE",
@@ -81,13 +91,13 @@
  "reports": [
   {
    "cid": "LAB021-NOON-00000009-000",
-   "report_id": 14,
+   "report_id": 1,
    "response": {
-    "id": 14,
+    "id": 1,
     "voyage": {
-     "id": 2,
+     "id": 1,
      "ship": {
-      "id": 4,
+      "id": 1,
       "imoNumber": "00000009",
       "shipName": "TEST_BULK_DIESEL_09",
       "shipType": "NONE",
@@ -130,6 +140,7 @@
     "speedOrder": null,
     "courseOverGround": null,
     "shipTrueHeading": null,
+    "voyageLegRemarks": null,
     "weatherDetails": null,
     "cargoOnboard": null,
     "electricConsumption": null,
@@ -164,7 +175,7 @@
         "focReeferContainers": null,
         "focShuttleTankerOperations": null,
         "focStsOperations": null,
-        "id": 22
+        "id": 1
        }
       ],
       "freshWaterBunkered": null,
@@ -188,7 +199,7 @@
       "fuelTypeTradeName": "MGO",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 38,
+      "id": 1,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -226,7 +237,7 @@
         "focReeferContainers": null,
         "focShuttleTankerOperations": null,
         "focStsOperations": null,
-        "id": 23
+        "id": 2
        }
       ],
       "freshWaterBunkered": null,
@@ -250,7 +261,7 @@
       "fuelTypeTradeName": "VLSFO2020",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 39,
+      "id": 2,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -290,7 +301,7 @@
       "fuelTypeTradeName": "_NONFUEL",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 40,
+      "id": 3,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -304,13 +315,13 @@
   },
   {
    "cid": "LAB021-NOON-00000009-001",
-   "report_id": 15,
+   "report_id": 2,
    "response": {
-    "id": 15,
+    "id": 2,
     "voyage": {
-     "id": 2,
+     "id": 1,
      "ship": {
-      "id": 4,
+      "id": 1,
       "imoNumber": "00000009",
       "shipName": "TEST_BULK_DIESEL_09",
       "shipType": "NONE",
@@ -353,6 +364,7 @@
     "speedOrder": null,
     "courseOverGround": null,
     "shipTrueHeading": null,
+    "voyageLegRemarks": null,
     "weatherDetails": null,
     "cargoOnboard": null,
     "electricConsumption": null,
@@ -389,7 +401,7 @@
       "fuelTypeTradeName": "MGO",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 41,
+      "id": 4,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -429,7 +441,7 @@
       "fuelTypeTradeName": "VLSFO2020",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 42,
+      "id": 5,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -469,7 +481,47 @@
       "fuelTypeTradeName": "_NONFUEL",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 43,
+      "id": 6,
+      "n2oCf": null,
+      "sludgeRob": null,
+      "technicalWaterConsumed": null,
+      "technicalWaterProduced": null,
+      "totalFuelQuantityConsumed": null,
+      "washWaterConsumed": null
+     },
+     {
+      "bdnDatetime": null,
+      "bdnNumber": null,
+      "ch4Cf": null,
+      "cloConsumption": null,
+      "cloFeedRate": null,
+      "cloReceived": null,
+      "cloRob": null,
+      "co2Emission": null,
+      "focConsumerType": null,
+      "focFuelType": null,
+      "freshWaterBunkered": null,
+      "freshWaterConsumed": null,
+      "freshWaterProduced": null,
+      "freshWaterRob": null,
+      "fuelBunkerPort": "PACTB",
+      "fuelBunkerPortName": "CRISTOBAL",
+      "fuelBunkerReceived": null,
+      "fuelDensity": null,
+      "fuelGrade": null,
+      "fuelHhv": null,
+      "fuelLcv": null,
+      "fuelLcvReport": null,
+      "fuelLfv": null,
+      "fuelMass": null,
+      "fuelPosRef": null,
+      "fuelQuantityRob": null,
+      "fuelSulphurContent": null,
+      "fuelType": null,
+      "fuelTypeTradeName": "_BUNKER",
+      "fuelViscosity": null,
+      "fuelWaterContent": null,
+      "id": 7,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -483,13 +535,13 @@
   },
   {
    "cid": "LAB021-NOON-00000009-002",
-   "report_id": 16,
+   "report_id": 3,
    "response": {
-    "id": 16,
+    "id": 3,
     "voyage": {
-     "id": 2,
+     "id": 1,
      "ship": {
-      "id": 4,
+      "id": 1,
       "imoNumber": "00000009",
       "shipName": "TEST_BULK_DIESEL_09",
       "shipType": "NONE",
@@ -532,6 +584,7 @@
     "speedOrder": null,
     "courseOverGround": 178.0,
     "shipTrueHeading": null,
+    "voyageLegRemarks": null,
     "weatherDetails": null,
     "cargoOnboard": null,
     "electricConsumption": null,
@@ -566,7 +619,7 @@
         "focReeferContainers": null,
         "focShuttleTankerOperations": null,
         "focStsOperations": null,
-        "id": 24
+        "id": 3
        }
       ],
       "freshWaterBunkered": null,
@@ -590,7 +643,7 @@
       "fuelTypeTradeName": "MGO",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 44,
+      "id": 8,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -628,7 +681,7 @@
         "focReeferContainers": null,
         "focShuttleTankerOperations": null,
         "focStsOperations": null,
-        "id": 25
+        "id": 4
        }
       ],
       "freshWaterBunkered": null,
@@ -652,7 +705,7 @@
       "fuelTypeTradeName": "VLSFO2020",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 45,
+      "id": 9,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -692,7 +745,7 @@
       "fuelTypeTradeName": "_NONFUEL",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 46,
+      "id": 10,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -706,13 +759,13 @@
   },
   {
    "cid": "LAB021-NOON-00000009-003",
-   "report_id": 17,
+   "report_id": 4,
    "response": {
-    "id": 17,
+    "id": 4,
     "voyage": {
-     "id": 2,
+     "id": 1,
      "ship": {
-      "id": 4,
+      "id": 1,
       "imoNumber": "00000009",
       "shipName": "TEST_BULK_DIESEL_09",
       "shipType": "NONE",
@@ -755,11 +808,12 @@
     "speedOrder": null,
     "courseOverGround": 301.0,
     "shipTrueHeading": null,
+    "voyageLegRemarks": null,
     "weatherDetails": [
      {
       "airTemperature": 28.0,
       "atmosphericPressure": null,
-      "id": 7,
+      "id": 1,
       "oceanDirRelative": null,
       "oceanDirTrue": null,
       "oceanDirWeatherProvider": null,
@@ -810,7 +864,7 @@
         "focReeferContainers": null,
         "focShuttleTankerOperations": null,
         "focStsOperations": null,
-        "id": 26
+        "id": 5
        }
       ],
       "freshWaterBunkered": null,
@@ -834,7 +888,7 @@
       "fuelTypeTradeName": "MGO",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 47,
+      "id": 11,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -872,7 +926,7 @@
         "focReeferContainers": null,
         "focShuttleTankerOperations": null,
         "focStsOperations": null,
-        "id": 27
+        "id": 6
        }
       ],
       "freshWaterBunkered": null,
@@ -896,7 +950,7 @@
       "fuelTypeTradeName": "VLSFO2020",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 48,
+      "id": 12,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -936,7 +990,7 @@
       "fuelTypeTradeName": "_NONFUEL",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 49,
+      "id": 13,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -950,13 +1004,13 @@
   },
   {
    "cid": "LAB021-NOON-00000009-004",
-   "report_id": 18,
+   "report_id": 5,
    "response": {
-    "id": 18,
+    "id": 5,
     "voyage": {
-     "id": 2,
+     "id": 1,
      "ship": {
-      "id": 4,
+      "id": 1,
       "imoNumber": "00000009",
       "shipName": "TEST_BULK_DIESEL_09",
       "shipType": "NONE",
@@ -999,11 +1053,12 @@
     "speedOrder": null,
     "courseOverGround": 310.0,
     "shipTrueHeading": null,
+    "voyageLegRemarks": null,
     "weatherDetails": [
      {
       "airTemperature": 30.0,
       "atmosphericPressure": null,
-      "id": 8,
+      "id": 2,
       "oceanDirRelative": null,
       "oceanDirTrue": null,
       "oceanDirWeatherProvider": null,
@@ -1054,7 +1109,7 @@
         "focReeferContainers": null,
         "focShuttleTankerOperations": null,
         "focStsOperations": null,
-        "id": 28
+        "id": 7
        }
       ],
       "freshWaterBunkered": null,
@@ -1078,7 +1133,7 @@
       "fuelTypeTradeName": "MGO",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 50,
+      "id": 14,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -1116,7 +1171,7 @@
         "focReeferContainers": null,
         "focShuttleTankerOperations": null,
         "focStsOperations": null,
-        "id": 29
+        "id": 8
        }
       ],
       "freshWaterBunkered": null,
@@ -1140,7 +1195,7 @@
       "fuelTypeTradeName": "VLSFO2020",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 51,
+      "id": 15,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -1180,7 +1235,7 @@
       "fuelTypeTradeName": "_NONFUEL",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 52,
+      "id": 16,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -1194,13 +1249,13 @@
   },
   {
    "cid": "LAB021-NOON-00000009-005",
-   "report_id": 19,
+   "report_id": 6,
    "response": {
-    "id": 19,
+    "id": 6,
     "voyage": {
-     "id": 2,
+     "id": 1,
      "ship": {
-      "id": 4,
+      "id": 1,
       "imoNumber": "00000009",
       "shipName": "TEST_BULK_DIESEL_09",
       "shipType": "NONE",
@@ -1243,11 +1298,12 @@
     "speedOrder": null,
     "courseOverGround": 310.0,
     "shipTrueHeading": null,
+    "voyageLegRemarks": null,
     "weatherDetails": [
      {
       "airTemperature": 28.0,
       "atmosphericPressure": null,
-      "id": 9,
+      "id": 3,
       "oceanDirRelative": null,
       "oceanDirTrue": null,
       "oceanDirWeatherProvider": null,
@@ -1298,7 +1354,7 @@
         "focReeferContainers": null,
         "focShuttleTankerOperations": null,
         "focStsOperations": null,
-        "id": 30
+        "id": 9
        }
       ],
       "freshWaterBunkered": null,
@@ -1322,7 +1378,7 @@
       "fuelTypeTradeName": "MGO",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 53,
+      "id": 17,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -1360,7 +1416,7 @@
         "focReeferContainers": null,
         "focShuttleTankerOperations": null,
         "focStsOperations": null,
-        "id": 31
+        "id": 10
        }
       ],
       "freshWaterBunkered": null,
@@ -1384,7 +1440,7 @@
       "fuelTypeTradeName": "VLSFO2020",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 54,
+      "id": 18,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -1424,7 +1480,7 @@
       "fuelTypeTradeName": "_NONFUEL",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 55,
+      "id": 19,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -1438,13 +1494,13 @@
   },
   {
    "cid": "LAB021-NOON-00000009-006",
-   "report_id": 20,
+   "report_id": 7,
    "response": {
-    "id": 20,
+    "id": 7,
     "voyage": {
-     "id": 2,
+     "id": 1,
      "ship": {
-      "id": 4,
+      "id": 1,
       "imoNumber": "00000009",
       "shipName": "TEST_BULK_DIESEL_09",
       "shipType": "NONE",
@@ -1487,6 +1543,7 @@
     "speedOrder": null,
     "courseOverGround": 272.0,
     "shipTrueHeading": null,
+    "voyageLegRemarks": null,
     "weatherDetails": null,
     "cargoOnboard": null,
     "electricConsumption": null,
@@ -1521,7 +1578,7 @@
         "focReeferContainers": null,
         "focShuttleTankerOperations": null,
         "focStsOperations": null,
-        "id": 32
+        "id": 11
        }
       ],
       "freshWaterBunkered": null,
@@ -1545,7 +1602,7 @@
       "fuelTypeTradeName": "MGO",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 56,
+      "id": 20,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -1583,7 +1640,7 @@
         "focReeferContainers": null,
         "focShuttleTankerOperations": null,
         "focStsOperations": null,
-        "id": 33
+        "id": 12
        }
       ],
       "freshWaterBunkered": null,
@@ -1607,7 +1664,7 @@
       "fuelTypeTradeName": "VLSFO2020",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 57,
+      "id": 21,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -1647,7 +1704,7 @@
       "fuelTypeTradeName": "_NONFUEL",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 58,
+      "id": 22,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -1661,13 +1718,13 @@
   },
   {
    "cid": "LAB021-NOON-00000009-007",
-   "report_id": 21,
+   "report_id": 8,
    "response": {
-    "id": 21,
+    "id": 8,
     "voyage": {
-     "id": 2,
+     "id": 1,
      "ship": {
-      "id": 4,
+      "id": 1,
       "imoNumber": "00000009",
       "shipName": "TEST_BULK_DIESEL_09",
       "shipType": "NONE",
@@ -1710,6 +1767,7 @@
     "speedOrder": null,
     "courseOverGround": null,
     "shipTrueHeading": null,
+    "voyageLegRemarks": null,
     "weatherDetails": null,
     "cargoOnboard": null,
     "electricConsumption": null,
@@ -1746,7 +1804,7 @@
       "fuelTypeTradeName": "MGO",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 59,
+      "id": 23,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -1786,7 +1844,7 @@
       "fuelTypeTradeName": "VLSFO2020",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 60,
+      "id": 24,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -1826,7 +1884,7 @@
       "fuelTypeTradeName": "_NONFUEL",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 61,
+      "id": 25,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -1840,13 +1898,13 @@
   },
   {
    "cid": "LAB021-NOON-00000009-008",
-   "report_id": 22,
+   "report_id": 9,
    "response": {
-    "id": 22,
+    "id": 9,
     "voyage": {
-     "id": 2,
+     "id": 1,
      "ship": {
-      "id": 4,
+      "id": 1,
       "imoNumber": "00000009",
       "shipName": "TEST_BULK_DIESEL_09",
       "shipType": "NONE",
@@ -1889,6 +1947,7 @@
     "speedOrder": null,
     "courseOverGround": null,
     "shipTrueHeading": null,
+    "voyageLegRemarks": null,
     "weatherDetails": null,
     "cargoOnboard": null,
     "electricConsumption": null,
@@ -1923,7 +1982,7 @@
         "focReeferContainers": null,
         "focShuttleTankerOperations": null,
         "focStsOperations": null,
-        "id": 34
+        "id": 13
        }
       ],
       "freshWaterBunkered": null,
@@ -1947,7 +2006,7 @@
       "fuelTypeTradeName": "MGO",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 62,
+      "id": 26,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -1985,7 +2044,7 @@
         "focReeferContainers": null,
         "focShuttleTankerOperations": null,
         "focStsOperations": null,
-        "id": 35
+        "id": 14
        }
       ],
       "freshWaterBunkered": null,
@@ -2009,7 +2068,7 @@
       "fuelTypeTradeName": "VLSFO2020",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 63,
+      "id": 27,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -2049,7 +2108,7 @@
       "fuelTypeTradeName": "_NONFUEL",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 64,
+      "id": 28,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -2063,13 +2122,13 @@
   },
   {
    "cid": "LAB021-NOON-00000009-009",
-   "report_id": 23,
+   "report_id": 10,
    "response": {
-    "id": 23,
+    "id": 10,
     "voyage": {
-     "id": 2,
+     "id": 1,
      "ship": {
-      "id": 4,
+      "id": 1,
       "imoNumber": "00000009",
       "shipName": "TEST_BULK_DIESEL_09",
       "shipType": "NONE",
@@ -2112,6 +2171,7 @@
     "speedOrder": null,
     "courseOverGround": 160.0,
     "shipTrueHeading": null,
+    "voyageLegRemarks": null,
     "weatherDetails": null,
     "cargoOnboard": null,
     "electricConsumption": null,
@@ -2146,7 +2206,7 @@
         "focReeferContainers": null,
         "focShuttleTankerOperations": null,
         "focStsOperations": null,
-        "id": 36
+        "id": 15
        }
       ],
       "freshWaterBunkered": null,
@@ -2170,7 +2230,7 @@
       "fuelTypeTradeName": "MGO",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 65,
+      "id": 29,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -2208,7 +2268,7 @@
         "focReeferContainers": null,
         "focShuttleTankerOperations": null,
         "focStsOperations": null,
-        "id": 37
+        "id": 16
        }
       ],
       "freshWaterBunkered": null,
@@ -2232,7 +2292,7 @@
       "fuelTypeTradeName": "VLSFO2020",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 66,
+      "id": 30,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -2272,7 +2332,7 @@
       "fuelTypeTradeName": "_NONFUEL",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 67,
+      "id": 31,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -2286,13 +2346,13 @@
   },
   {
    "cid": "LAB021-NOON-00000009-010",
-   "report_id": 24,
+   "report_id": 11,
    "response": {
-    "id": 24,
+    "id": 11,
     "voyage": {
-     "id": 2,
+     "id": 1,
      "ship": {
-      "id": 4,
+      "id": 1,
       "imoNumber": "00000009",
       "shipName": "TEST_BULK_DIESEL_09",
       "shipType": "NONE",
@@ -2335,11 +2395,12 @@
     "speedOrder": null,
     "courseOverGround": 155.0,
     "shipTrueHeading": null,
+    "voyageLegRemarks": null,
     "weatherDetails": [
      {
       "airTemperature": 32.0,
       "atmosphericPressure": null,
-      "id": 10,
+      "id": 4,
       "oceanDirRelative": null,
       "oceanDirTrue": null,
       "oceanDirWeatherProvider": null,
@@ -2390,7 +2451,7 @@
         "focReeferContainers": null,
         "focShuttleTankerOperations": null,
         "focStsOperations": null,
-        "id": 38
+        "id": 17
        }
       ],
       "freshWaterBunkered": null,
@@ -2414,7 +2475,7 @@
       "fuelTypeTradeName": "MGO",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 68,
+      "id": 32,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -2452,7 +2513,7 @@
         "focReeferContainers": null,
         "focShuttleTankerOperations": null,
         "focStsOperations": null,
-        "id": 39
+        "id": 18
        }
       ],
       "freshWaterBunkered": null,
@@ -2476,7 +2537,7 @@
       "fuelTypeTradeName": "VLSFO2020",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 69,
+      "id": 33,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -2516,7 +2577,7 @@
       "fuelTypeTradeName": "_NONFUEL",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 70,
+      "id": 34,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -2530,13 +2591,13 @@
   },
   {
    "cid": "LAB021-NOON-00000009-011",
-   "report_id": 25,
+   "report_id": 12,
    "response": {
-    "id": 25,
+    "id": 12,
     "voyage": {
-     "id": 2,
+     "id": 1,
      "ship": {
-      "id": 4,
+      "id": 1,
       "imoNumber": "00000009",
       "shipName": "TEST_BULK_DIESEL_09",
       "shipType": "NONE",
@@ -2579,11 +2640,12 @@
     "speedOrder": null,
     "courseOverGround": 155.0,
     "shipTrueHeading": null,
+    "voyageLegRemarks": null,
     "weatherDetails": [
      {
       "airTemperature": 32.0,
       "atmosphericPressure": null,
-      "id": 11,
+      "id": 5,
       "oceanDirRelative": null,
       "oceanDirTrue": null,
       "oceanDirWeatherProvider": null,
@@ -2634,7 +2696,7 @@
         "focReeferContainers": null,
         "focShuttleTankerOperations": null,
         "focStsOperations": null,
-        "id": 40
+        "id": 19
        }
       ],
       "freshWaterBunkered": null,
@@ -2658,7 +2720,7 @@
       "fuelTypeTradeName": "MGO",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 71,
+      "id": 35,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -2696,7 +2758,7 @@
         "focReeferContainers": null,
         "focShuttleTankerOperations": null,
         "focStsOperations": null,
-        "id": 41
+        "id": 20
        }
       ],
       "freshWaterBunkered": null,
@@ -2720,7 +2782,7 @@
       "fuelTypeTradeName": "VLSFO2020",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 72,
+      "id": 36,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -2760,7 +2822,7 @@
       "fuelTypeTradeName": "_NONFUEL",
       "fuelViscosity": null,
       "fuelWaterContent": null,
-      "id": 73,
+      "id": 37,
       "n2oCf": null,
       "sludgeRob": null,
       "technicalWaterConsumed": null,
@@ -2773,6 +2835,6 @@
    }
   }
  ],
- "calls": 16,
+ "calls": 18,
  "errors": []
 }

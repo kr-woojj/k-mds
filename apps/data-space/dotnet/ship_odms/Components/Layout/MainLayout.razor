@@ -1,13 +1,14 @@
 ﻿@inherits LayoutComponentBase
 
+<a class="krds-skip" href="#main-content">본문으로 건너뛰기</a>
 <div class="page">
     <div class="sidebar">
         <NavMenu />
     </div>
 
-    <main>
+    <main id="main-content">
         <div class="top-row px-4">
-            <span style="font-weight:600;color:#052767">K-MDS GHG Verifier</span><span style="margin-left:1rem;color:#57606a;font-size:0.9rem">GHG 의무보고 데이터 표준모델 검증 포털 (Ship-ODMS)</span>
+            <span>IMO Compendium 기준 GHG 의무보고 데이터 표준모델 (GHG Verifier)</span>
         </div>
 
         <article class="content px-4">
@@ -17,7 +18,7 @@
 </div>
 
 <div id="blazor-error-ui" data-nosnippet>
-    An unhandled error has occurred.
-    <a href="." class="reload">Reload</a>
-    <span class="dismiss">🗙</span>
+    처리 중 오류가 발생했습니다.
+    <a href="." class="reload">새로 고침</a>
+    <button type="button" class="dismiss" aria-label="닫기">닫기</button>
 </div>

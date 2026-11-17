@@ -1,0 +1,181 @@
+@page "/consistency"
+@using System.Text.Json
+@inject HttpClient Http
+@inject IConfiguration Config
+
+<PageTitle>정합성 대조 — K-MDS GHG Verifier</PageTitle>
+
+<h2 class="krds-page-title">정합성 대조</h2>
+<p class="krds-lede">실증 run 마다 Provider 원본값과 표준모델 DB 저장값을 IMO Compendium 데이터 요소 단위로 대조한 결과입니다. 대조 항목 전체를 CSV 로 내려받아 엑셀에서 다시 확인할 수 있습니다.</p>
+
+@if (error != null)
+{
+    <div class="krds-alert krds-alert-danger" role="alert">
+        <strong>대조 결과를 불러오지 못했습니다.</strong>
+        @error
+    </div>
+}
+
+<div class="krds-toolbar">
+    <div class="krds-actions">
+        <label class="krds-field">
+            실증 run
+            <select class="krds-select" value="@runId" @onchange="OnRunChanged">
+                @foreach (var r in runs)
+                {
+                    <option value="@r.RunId">@r.RunId@(r.Verdict != null ? $" · {r.Verdict.Split(' ')[0]}" : "")</option>
+                }
+            </select>
+        </label>
+        <label class="krds-check">
+            <input type="checkbox" checked="@mismatchOnly" @onchange="e => mismatchOnly = (bool)(e.Value ?? false)" />
+            불일치만 표시
+        </label>
+    </div>
+    @if (checks != null)
+    {
+        <a class="krds-btn" href="/export/consistency/@runId" download>CSV 내려받기</a>
+    }
+</div>
+
+@if (loading)
+{
+    <div class="table-skeleton">대조 결과를 불러오는 중입니다.</div>
+}
+else if (checks != null)
+{
+    <dl class="krds-stats">
+        <div class="krds-stat"><dt>대조 항목</dt><dd>@checks.Count.ToString("N0")</dd></div>
+        <div class="krds-stat"><dt>불일치</dt><dd>@mismatches.ToString("N0")</dd></div>
+        <div class="krds-stat"><dt>M4 값 정합율 (목표 0.95 이상)</dt><dd>@Measure("M4")</dd></div>
+        <div class="krds-stat"><dt>M2 표준 매핑 완결성</dt><dd>@Measure("M2")</dd></div>
+        <div class="krds-stat"><dt>M3 표준 검증 정확성</dt><dd>@Measure("M3")</dd></div>
+    </dl>
+
+    <div class="krds-table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>이벤트</th>
+                    <th>IMO 데이터 요소</th>
+                    <th>표준모델 대상 필드</th>
+                    <th>원본값<small>Provider</small></th>
+                    <th>저장값<small>표준모델 DB</small></th>
+                    <th>결과</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Shown)
+                {
+                    <tr class="@(c.Match ? null : "krds-row-mismatch")">
+                        <td>@c.Cid</td>
+                        <td>@c.Imo</td>
+                        <td>@c.Target</td>
+                        <td>@Text(c.Source)</td>
+                        <td>@Text(c.Stored)</td>
+                        <td>
+                            @if (c.Match) { <span class="krds-badge krds-badge-success">일치</span> }
+                            else { <span class="krds-badge krds-badge-danger">불일치</span> }
+                        </td>
+                    </tr>
+                }
+                @if (!Shown.Any())
+                {
+                    <tr><td colspan="6" class="krds-empty">@(mismatchOnly ? "불일치 항목이 없습니다." : "대조 항목이 없습니다.")</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    @if (!mismatchOnly && checks.Count > MaxRows)
+    {
+        <p class="krds-note">화면에는 앞 @MaxRows.ToString("N0") 건만 표시합니다. 전체 @checks.Count.ToString("N0") 건은 CSV 로 확인합니다.</p>
+    }
+}
+else if (error == null)
+{
+    <div class="krds-alert">
+        <strong>이 run 에는 정합성 대조 결과가 없습니다.</strong>
+        정합성 확인 단계(T7)까지 수행한 run 을 선택합니다.
+    </div>
+}
+
+@code {
+    // ponytail: 화면 표시는 2,000 행으로 자른다(전체는 CSV). 더 필요하면 Virtualize 로 바꾼다.
+    private const int MaxRows = 2000;
+
+    private record RunItem(string RunId, string? Verdict);
+    private record Check(string Cid, string Imo, string Target, JsonElement Source, JsonElement Stored, bool Match);
+
+    private List<RunItem> runs = new();
+    private string? runId;
+    private List<Check>? checks;
+    private JsonElement measures;
+    private int mismatches;
+    private bool mismatchOnly = true;
+    private bool loading = true;
+    private string? error;
+
+    private string Harness => (Config["Portal:HarnessUrl"] ?? "http://localhost:8090").TrimEnd('/');
+    private static readonly JsonSerializerOptions Json = new() { PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower };
+
+    private IEnumerable<Check> Shown => (checks ?? new()).Where(c => !mismatchOnly || !c.Match).Take(MaxRows);
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            runs = (await Http.GetFromJsonAsync<List<RunItem>>($"{Harness}/runs", Json) ?? new()).AsEnumerable().Reverse().ToList();
+            runId = runs.FirstOrDefault()?.RunId;
+        }
+        catch (Exception ex)
+        {
+            error = $"검증 하네스({Harness})에 연결할 수 없습니다. 하네스 컨테이너가 떠 있는지 확인합니다. ({ex.Message})";
+        }
+        await LoadAsync();
+    }
+
+    private async Task OnRunChanged(ChangeEventArgs e)
+    {
+        runId = e.Value?.ToString();
+        await LoadAsync();
+    }
+
+    private async Task LoadAsync()
+    {
+        checks = null;
+        if (runId == null) { loading = false; return; }
+        loading = true;
+        try
+        {
+            var res = await Http.GetAsync($"{Harness}/runs/{Uri.EscapeDataString(runId)}/consistency");
+            if (res.IsSuccessStatusCode)
+            {
+                using var doc = JsonDocument.Parse(await res.Content.ReadAsStringAsync());
+                measures = doc.RootElement.GetProperty("measures").Clone();
+                checks = doc.RootElement.GetProperty("checks").Deserialize<List<Check>>(Json) ?? new();
+                mismatches = checks.Count(c => !c.Match);
+                error = null;
+            }
+            else if (res.StatusCode != System.Net.HttpStatusCode.NotFound)
+            {
+                error = $"검증 하네스가 오류를 돌려주었습니다(HTTP {(int)res.StatusCode}).";
+            }
+        }
+        catch (Exception ex)
+        {
+            error = $"검증 하네스({Harness})에 연결할 수 없습니다. ({ex.Message})";
+        }
+        loading = false;
+    }
+
+    private string Measure(string key) =>
+        measures.ValueKind == JsonValueKind.Object && measures.TryGetProperty(key, out var m) && m.TryGetProperty("X", out var x) && x.ValueKind == JsonValueKind.Number
+            ? x.GetDouble().ToString("0.0000") : "-";
+
+    private static string Text(JsonElement v) => v.ValueKind switch
+    {
+        JsonValueKind.Undefined or JsonValueKind.Null => "(없음)",
+        JsonValueKind.String => v.GetString() ?? "",
+        _ => v.GetRawText(),
+    };
+}

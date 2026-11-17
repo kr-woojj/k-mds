@@ -24,6 +24,7 @@ namespace ship_odms.Models
     {
         public int Id { get; set; }
         public int ShipId { get; set; }
+        public int? ReportYear { get; set; } // 보고 연도 (K-MDS 확장)
         public double? TotalGfiAnnually { get; set; }
     }
 
@@ -273,6 +274,7 @@ namespace ship_odms.Models
         public double? SpeedOrder { get; set; }
         public double? CourseOverGround { get; set; }
         public double? ShipTrueHeading { get; set; }
+        public string? VoyageLegRemarks { get; set; } // IMO0606 (표준 모델 1.1.0)
         public List<WeatherDetails>? WeatherDetails { get; set; } = null;
         public List<CargoOnboard>? CargoOnboard { get; set; } = null;
         public List<ElectricConsumption>? ElectricConsumption { get; set; } = null;

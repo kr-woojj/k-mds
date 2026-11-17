@@ -27,7 +27,18 @@ public class PerformanceReportService {
         return performanceReportRepository.findById(reportId);
     }
 
+    /**
+     * 같은 항차·보고시각·이벤트 유형의 보고가 이미 있으면 지우고 새로 저장한다(교체). 같은 데이터를 다시 보내도 쌓이지 않는다 (2026-11-17).
+     * 보고시각이 없는 보고는 구분할 키가 없어 그대로 추가한다.
+     * ponytail: 키가 (항차, 보고시각, 이벤트 유형) 3개뿐이라 같은 시각·같은 유형의 서로 다른 보고 2건은 구분하지 못한다. 필요해지면 보고 식별자를 키에 넣는다.
+     */
+    @org.springframework.transaction.annotation.Transactional
     public PerformanceReport saveReport(PerformanceReport report) {
+        if (report.getVoyage() != null && report.getReportDatetime() != null) {
+            performanceReportRepository.deleteAll(performanceReportRepository.findByVoyageIdAndReportDatetimeAndEventType(
+                report.getVoyage().getId(), report.getReportDatetime(), report.getEventType()));
+            performanceReportRepository.flush();
+        }
         // 중첩 JSON 으로 들어온 자식 행의 부모 참조(mappedBy "report"/"fuelConsumption")를 채운다.
         // 비워 두면 report_id 가 NULL 로 저장되어 /{reportId}/… 조회가 빈 목록을 돌려준다 (S-1-1 G-4, 2026-09-26).
         if (report.getWeatherDetails() != null) report.getWeatherDetails().forEach(c -> c.setReport(report));
@@ -94,6 +105,7 @@ public class PerformanceReportService {
                 r.getSpeedOrder(),
                 r.getCourseOverGround(),
                 r.getShipTrueHeading(),
+                r.getVoyageLegRemarks(),
                 // 하위 데이터 리스트 추가
                 getWeatherDetailsByReportId(r.getId()),
                 getCargoOnboardByReportId(r.getId()),

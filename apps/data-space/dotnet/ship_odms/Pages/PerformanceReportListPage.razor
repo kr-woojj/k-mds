@@ -6,7 +6,7 @@
 
 <PageTitle>성능 보고 목록</PageTitle>
 
-<h2 style="font-size:1.5rem;margin-bottom:1.5rem;">성능 보고 목록</h2>
+<h2 class="krds-page-title">성능 보고 목록</h2>
 
 <ApiErrorBanner ErrorMessage="@Error" />
 
@@ -40,6 +40,6 @@
 
     private void OnRowClick(PerformanceReport report)
     {
-        Navigation.NavigateTo($"/ships/{report.ShipId}/voyages/{report.VoyageId}/port-calls/{report.PortCallId}/performance-reports/{report.Id}");
+        Navigation.NavigateTo($"/ships/{ShipId}/voyages/{VoyageId}/port-calls/{PortCallId}/performance-reports/{report.Id}");
     }
 }

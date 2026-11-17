@@ -1386,7 +1386,7 @@
     "error_detail": null,
     "errors": [],
     "mapping_job_id": "GHGPOC-LAB021-NOON-00000009-004",
-    "payload_hash": "273f79f52f0148c295874d740467fa1fd2177435f46acf54ef4507523288132e",
+    "payload_hash": "c1cc11a11bc9cc831c11327b1f38385c3746ac90e4570826b32591060662c5f4",
     "selected_mappings": [
       {
         "field_id": "f0001",
@@ -2326,7 +2326,7 @@
       }
     ],
     "source_dataset_id": "LAB021-NOON-00000009-004",
-    "timestamp": "2026-09-25T16:48:40.175903+00:00",
+    "timestamp": "2026-11-17T12:48:13.325981+00:00",
     "validation_status": "PASS"
   },
   "warnings": [

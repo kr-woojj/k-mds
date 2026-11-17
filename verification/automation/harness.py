@@ -9,6 +9,8 @@ n8n 이 T3~T5 (이벤트 단위 에이전트 ingress 호출) 를 오케스트레
   POST /runs/{id}/consistency     T7 정합성 확인 (adapters/consistency_check.py)
   POST /runs/{id}/judge           T8 판정 + REPORT.md
   GET  /runs, /runs/{id}, /runs/{id}/report (HTML, 평가단 열람용), /health
+  GET  /runs/{id}/consistency      T7 대조 결과(측정치 + 대조 항목 전체, 포털 정합성 화면용)
+  GET  /runs/{id}/consistency.csv  같은 대조 항목의 CSV (엑셀 대조용)
 """
 from __future__ import annotations
 
@@ -23,7 +25,7 @@ from pathlib import Path
 
 import httpx
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import HTMLResponse
+from fastapi.responses import FileResponse, HTMLResponse
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
@@ -126,6 +128,22 @@ def consistency(run_id: str) -> dict:
     rep = rjson(od / "consistency-report.json", {})
     return {"run_id": run_id, "step": "T7", "exit": rc, "measures": {k: (rep.get("measures", {}).get(k) or {}).get("X") for k in ("M1", "M2", "M3", "M4", "M5")},
             "log": (run / "T7-consistency.txt").read_text("utf-8")[-1500:]}
+
+
+@app.get("/runs/{run_id}/consistency")
+def consistency_result(run_id: str) -> dict:
+    rep = rjson(run_dir(run_id) / "shipodms" / "consistency-report.json")
+    if rep is None:
+        raise HTTPException(404, "이 run 에는 정합성 대조 결과가 없습니다(T7 미수행).")
+    return {"run_id": run_id, "measures": {k: v for k, v in rep["measures"].items() if k != "mismatches"}, "checks": rep["checks"]}
+
+
+@app.get("/runs/{run_id}/consistency.csv")
+def consistency_csv(run_id: str) -> FileResponse:
+    p = run_dir(run_id) / "shipodms" / "consistency-checks.csv"
+    if not p.is_file():
+        raise HTTPException(404, "이 run 에는 정합성 대조 CSV 가 없습니다(2026-11-17 이전 run 은 T7 을 다시 수행해야 생깁니다).")
+    return FileResponse(p, media_type="text/csv; charset=utf-8", filename=f"{run_id}-consistency-checks.csv")
 
 
 @app.post("/runs/{run_id}/judge")
@@ -322,6 +340,8 @@ def tool_status(body: dict) -> dict:
 # 추가 서비스 (2026-09-26): 선박 조회·연간 GHG 집계, 매핑 증적 대시보드
 # ---------------------------------------------------------------------------
 ANNUAL_EVID = s11.EVID / "annual"
+# 시험 선박이 아닌 선박(실선·가명 실선)의 연간 집계 증적은 공개 증적 폴더에 두지 않는다(AGENTS.md: 실선 운항 데이터 git 금지).
+ANNUAL_EVID_PRIVATE = s11.HERE / "evidence-private" / "annual"
 
 
 @app.post("/tools/query_ship")
@@ -332,10 +352,11 @@ def tool_query_ship(body: dict) -> dict:
 
 @app.post("/tools/annual_ghg")
 def tool_annual_ghg(body: dict) -> dict:
-    """연간 GHG 집계(연료별 소비·CO2·거리·GFI TtW, capacity_dwt 있으면 CII 참고값). write=true 면 YearPerformanceReport 입력."""
-    cap = body.get("capacity_dwt")
+    """연간 GHG 집계(연료별 소비·CO2·거리·GFI TtW, capacity_dwt 있으면 CII 참고값). year(YYYY) 를 주지 않으면 가장 최근 연도. write=true 면 YearPerformanceReport 입력."""
+    cap = body.get("capacity_dwt"); yr = body.get("year")
     return services.annual_ghg(SHIP_ODMS, str(body.get("imo", "")).strip(), float(cap) if cap not in (None, "", 0, "0") else None,
-                               bool(body.get("write")), ANNUAL_EVID)
+                               bool(body.get("write")),
+                               ANNUAL_EVID if str(body.get("imo", "")).strip() == s11.TEST_SHIP_IMO else ANNUAL_EVID_PRIVATE, int(yr) if yr not in (None, "", 0, "0") else None)
 
 
 @app.post("/tools/dashboard")

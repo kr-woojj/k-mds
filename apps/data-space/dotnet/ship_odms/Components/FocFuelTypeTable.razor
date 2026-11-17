@@ -1,7 +1,7 @@
 
 @if (Loading)
 {
-    <div class="table-skeleton">Loading...</div>
+    <div class="table-skeleton">불러오는 중입니다.</div>
 }
 else if (!string.IsNullOrEmpty(Error))
 {
@@ -10,29 +10,29 @@ else if (!string.IsNullOrEmpty(Error))
 else
 {
     <div class="figma-table-wrapper">
-        <table class="figma-table">
+        <table>
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Fuel Consumption ID</th>
-                    <th>Main Engine</th>
-                    <th>Diesel Electric Propulsion</th>
-                    <th>Diesel Generator</th>
-                    <th>Aux Boiler</th>
-                    <th>Aux Engine</th>
-                    <th>Cargo Cooling</th>
-                    <th>Cargo Heating</th>
-                    <th>Diesel Power Packs</th>
-                    <th>Dirty Petroleum Pump</th>
-                    <th>Discharge Pump</th>
-                    <th>DP Operations</th>
-                    <th>Electrical Power Gen</th>
-                    <th>Incinerator</th>
-                    <th>Inert Gas Gen/GCUs</th>
-                    <th>Other Fuel Devices</th>
-                    <th>Reefer Containers</th>
-                    <th>Shuttle Tanker Ops</th>
-                    <th>STS Operations</th>
+                    <th>Main Engine<small>IMO0670</small></th>
+                    <th>Diesel Electric Propulsion<small>IMO0671</small></th>
+                    <th>Diesel Generator<small>IMO0672</small></th>
+                    <th>Aux Boiler<small>IMO0673</small></th>
+                    <th>Aux Engine<small>IMO0893</small></th>
+                    <th>Cargo Cooling<small>IMO0894</small></th>
+                    <th>Cargo Heating<small>IMO0895</small></th>
+                    <th>Diesel Power Packs<small>IMO0896</small></th>
+                    <th>Dirty Petroleum Pump<small>IMO0897</small></th>
+                    <th>Discharge Pump<small>IMO0898</small></th>
+                    <th>DP Operations<small>IMO0899</small></th>
+                    <th>Electrical Power Gen<small>IMO0900</small></th>
+                    <th>Incinerator<small>IMO0901</small></th>
+                    <th>Inert Gas Gen/GCUs<small>IMO0902</small></th>
+                    <th>Other Fuel Devices<small>IMO0903</small></th>
+                    <th>Reefer Containers<small>IMO0904</small></th>
+                    <th>Shuttle Tanker Ops<small>IMO0905</small></th>
+                    <th>STS Operations<small>IMO0906</small></th>
                 </tr>
             </thead>
             <tbody>
@@ -66,7 +66,7 @@ else
                 }
                 else
                 {
-                    <tr><td colspan="20" style="text-align: center; color: #888; padding: 2rem;">데이터 없음</td></tr>
+                    <tr><td colspan="20" class="krds-empty">데이터 없음</td></tr>
                 }
             </tbody>
         </table>

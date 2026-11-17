@@ -1,14 +1,14 @@
 [
   {
-    "called_at": "2026-09-25T16:47:00.896817+00:00",
-    "candidate_count": -1,
+    "called_at": "2026-11-17T12:46:47.910476+00:00",
+    "candidate_count": 3,
     "correlation_id": "LAB021-NOON-00000009-000",
     "error": null,
-    "latency_ms": 0.14,
-    "model": "mock-structured",
+    "latency_ms": 13481.51,
+    "model": "gpt-5.2",
     "ok": true,
-    "provider": "mock",
-    "real_call": false,
+    "provider": "openai",
+    "real_call": true,
     "redacted_input": {
       "declared_type": "boolean",
       "declared_unit": null,

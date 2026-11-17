@@ -238,7 +238,7 @@ class LangChainLLMClient:
         elif self.provider == "openai":
             # OpenAI 또는 OpenAI 호환 오픈 모델 서버(vLLM/Ollama/LM Studio).
             # 엔드포인트는 LLM_ENDPOINT(또는 OPENAI_BASE_URL), 키는 OPENAI_API_KEY(서버가 발급한 키 또는 임의 문자열).
-            # Qwen3 계열(vLLM): chat_template_kwargs.enable_thinking=False 로 사고 과정을 끄고,
+            # 사고형 오픈 모델(vLLM): chat_template_kwargs.enable_thinking=False 로 사고 과정을 끄고,
             # reasoning_effort 로 추론 강도를 낮춘다(기본 xhigh 는 느리다). 둘 다 env 로 켠다.
             extra_body: dict[str, Any] = {}
             if self.disable_thinking:

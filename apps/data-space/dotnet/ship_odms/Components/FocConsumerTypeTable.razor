@@ -2,7 +2,7 @@
 
 @if (Loading)
 {
-    <div class="table-skeleton">Loading...</div>
+    <div class="table-skeleton">불러오는 중입니다.</div>
 }
 else if (!string.IsNullOrEmpty(Error))
 {
@@ -11,47 +11,47 @@ else if (!string.IsNullOrEmpty(Error))
 else
 {
     <div class="figma-table-wrapper">
-        <table class="figma-table">
+        <table>
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Fuel Consumption ID</th>
-                    <th>Main Engine Used</th>
-                    <th>Main Engine Consumed</th>
-                    <th>Diesel Electric Used</th>
-                    <th>Diesel Electric Consumed</th>
-                    <th>Diesel Gen Used</th>
-                    <th>Diesel Gen Consumed</th>
-                    <th>Aux Boiler Used</th>
-                    <th>Aux Boiler Consumed</th>
-                    <th>Aux Engine Used</th>
-                    <th>Aux Engine Consumed</th>
-                    <th>Cargo Cooling Used</th>
-                    <th>Cargo Cooling Consumed</th>
-                    <th>Cargo Heating Used</th>
-                    <th>Cargo Heating Consumed</th>
-                    <th>Diesel Power Packs Used</th>
-                    <th>Diesel Power Packs Consumed</th>
-                    <th>Dirty Petroleum Pump Used</th>
-                    <th>Dirty Petroleum Pump Consumed</th>
-                    <th>Discharge Pump Used</th>
-                    <th>Discharge Pump Consumed</th>
-                    <th>DP Ops Used</th>
-                    <th>DP Ops Consumed</th>
-                    <th>Electrical Power Gen Used</th>
-                    <th>Electrical Power Gen Consumed</th>
-                    <th>Incinerator Used</th>
-                    <th>Incinerator Consumed</th>
-                    <th>Inert Gas Gen Used</th>
-                    <th>Inert Gas Gen Consumed</th>
-                    <th>Other Fuel Devices Used</th>
-                    <th>Other Fuel Devices Consumed</th>
-                    <th>Reefer Containers Used</th>
-                    <th>Reefer Containers Consumed</th>
-                    <th>Shuttle Tanker Ops Used</th>
-                    <th>Shuttle Tanker Ops Consumed</th>
-                    <th>STS Ops Used</th>
-                    <th>STS Ops Consumed</th>
+                    <th>Main Engine Used<small>IMO0907</small></th>
+                    <th>Main Engine Consumed<small>IMO0908</small></th>
+                    <th>Diesel Electric Used<small>IMO0909</small></th>
+                    <th>Diesel Electric Consumed<small>IMO0910</small></th>
+                    <th>Diesel Gen Used<small>IMO0911</small></th>
+                    <th>Diesel Gen Consumed<small>IMO0912</small></th>
+                    <th>Aux Boiler Used<small>IMO0913</small></th>
+                    <th>Aux Boiler Consumed<small>IMO0914</small></th>
+                    <th>Aux Engine Used<small>IMO0915</small></th>
+                    <th>Aux Engine Consumed<small>IMO0916</small></th>
+                    <th>Cargo Cooling Used<small>IMO0917</small></th>
+                    <th>Cargo Cooling Consumed<small>IMO0918</small></th>
+                    <th>Cargo Heating Used<small>IMO0919</small></th>
+                    <th>Cargo Heating Consumed<small>IMO0920</small></th>
+                    <th>Diesel Power Packs Used<small>IMO0921</small></th>
+                    <th>Diesel Power Packs Consumed<small>IMO0922</small></th>
+                    <th>Dirty Petroleum Pump Used<small>IMO0923</small></th>
+                    <th>Dirty Petroleum Pump Consumed<small>IMO0924</small></th>
+                    <th>Discharge Pump Used<small>IMO0925</small></th>
+                    <th>Discharge Pump Consumed<small>IMO0926</small></th>
+                    <th>DP Ops Used<small>IMO0927</small></th>
+                    <th>DP Ops Consumed<small>IMO0928</small></th>
+                    <th>Electrical Power Gen Used<small>IMO0929</small></th>
+                    <th>Electrical Power Gen Consumed<small>IMO0930</small></th>
+                    <th>Incinerator Used<small>IMO0931</small></th>
+                    <th>Incinerator Consumed<small>IMO0932</small></th>
+                    <th>Inert Gas Gen Used<small>IMO0933</small></th>
+                    <th>Inert Gas Gen Consumed<small>IMO0934</small></th>
+                    <th>Other Fuel Devices Used<small>IMO0935</small></th>
+                    <th>Other Fuel Devices Consumed<small>IMO0936</small></th>
+                    <th>Reefer Containers Used<small>IMO0937</small></th>
+                    <th>Reefer Containers Consumed<small>IMO0938</small></th>
+                    <th>Shuttle Tanker Ops Used<small>IMO0939</small></th>
+                    <th>Shuttle Tanker Ops Consumed<small>IMO0940</small></th>
+                    <th>STS Ops Used<small>IMO0941</small></th>
+                    <th>STS Ops Consumed<small>IMO0942</small></th>
                 </tr>
             </thead>
             <tbody>
@@ -103,7 +103,7 @@ else
                 }
                 else
                 {
-                    <tr><td colspan="38" style="text-align: center; color: #888; padding: 2rem;">데이터 없음</td></tr>
+                    <tr><td colspan="38" class="krds-empty">데이터 없음</td></tr>
                 }
             </tbody>
         </table>

@@ -1,0 +1,184 @@
+/*
+ * K-MDS GHG Verifier 화면 스타일 — KRDS(전자정부 디자인 시스템) 시각 언어 적용 (2026-11-17).
+ * 근거: k-mds/design/krds.md 의 색·타이포·간격·라운드 토큰과 컴포넌트 규격(table, button, badge, alert, side-navigation).
+ * 빌려 온 것은 시각 언어뿐이다. 정부 식별 요소(공식 배너·정부 상징·워드마크)는 쓰지 않는다(비정부 서비스).
+ * bootstrap.min.css·app.css 뒤에 불러와 덮어쓴다.
+ */
+
+/* Pretendard GOV 1.3.9 (SIL OFL 1.1, fonts/LICENSE.txt). 한글 subset woff2 3종만 싣는다. */
+@font-face { font-family: 'Pretendard GOV'; font-weight: 400; font-display: swap; src: local('Pretendard GOV Regular'), url(fonts/PretendardGOV-Regular.subset.woff2) format('woff2'); }
+@font-face { font-family: 'Pretendard GOV'; font-weight: 500; font-display: swap; src: local('Pretendard GOV Medium'), url(fonts/PretendardGOV-Medium.subset.woff2) format('woff2'); }
+@font-face { font-family: 'Pretendard GOV'; font-weight: 700; font-display: swap; src: local('Pretendard GOV Bold'), url(fonts/PretendardGOV-Bold.subset.woff2) format('woff2'); }
+
+:root {
+    --krds-gray-5: #FAFAFA; --krds-gray-10: #F4F5F6; --krds-gray-20: #E6E8EA; --krds-gray-30: #CDD1D5;
+    --krds-gray-50: #8A949E; --krds-gray-60: #6D7882; --krds-gray-80: #464C53; --krds-gray-100: #131416;
+    --krds-primary-5: #F7FAFF; --krds-primary-10: #ECF2FE; --krds-primary-50: #256EF4; --krds-primary-60: #0B50D0; --krds-primary-70: #063A74;
+    --krds-secondary-10: #EEF2F7; --krds-secondary-70: #052B57;
+    --krds-info: #0B78CB; --krds-success: #1F7A47; --krds-warning: #C26900; --krds-danger: #D6322F;
+    --krds-danger-bg: #FCE9E9; --krds-success-bg: #E8F3EC; --krds-warning-bg: #FBF0E0;
+    --krds-fg-1: var(--krds-gray-100); --krds-fg-2: var(--krds-gray-80); --krds-fg-3: var(--krds-gray-60); --krds-fg-4: var(--krds-gray-50);
+    --krds-border: var(--krds-gray-30);
+    --krds-radius-xs: 4px; --krds-radius-s: 6px; --krds-radius-m: 8px;
+    --krds-font: "Pretendard GOV", "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+}
+
+html, body {
+    font-family: var(--krds-font);
+    font-size: 17px;            /* body-m */
+    line-height: 1.55;
+    letter-spacing: 0;
+    color: var(--krds-fg-1);
+    background: #fff;
+}
+
+/* 포커스는 항상 보이게: 2px primary-50, 2px 오프셋 */
+:focus-visible, .btn:focus, .btn:active:focus, h1:focus {
+    outline: 2px solid var(--krds-primary-50) !important;
+    outline-offset: 2px;
+    box-shadow: none !important;
+}
+
+a { color: var(--krds-primary-60); text-underline-offset: 3px; }
+a:hover { color: var(--krds-primary-70); }
+
+.krds-skip {
+    position: absolute; left: 8px; top: -48px; z-index: 2000;
+    padding: 8px 16px; border-radius: var(--krds-radius-xs);
+    background: var(--krds-primary-50); color: #fff; font-weight: 700; text-decoration: none;
+}
+.krds-skip:focus { top: 8px; color: #fff; }
+
+/* ── 제목 ── 본문은 H2 이하로 운영한다 */
+article.content h1, article.content h2, .krds-page-title {
+    font-size: 24px;            /* heading-m */
+    line-height: 1.3;
+    font-weight: 700;
+    margin: 0 0 24px;
+    color: var(--krds-fg-1);
+}
+.krds-lede { font-size: 15px; color: var(--krds-fg-2); margin: -12px 0 24px; max-width: 72ch; }
+.krds-note { font-size: 13px; color: var(--krds-fg-3); margin-top: 8px; }
+
+/* ── 표 ── 머리글 48px·하단 1px secondary-70, 행 40px·1px gray-20, 상태는 인라인 배지 */
+.krds-table-wrap, article.content div[style*="overflow-x"] { overflow-x: auto; }
+article.content table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-top: 2px solid var(--krds-fg-1);
+    font-size: 15px;            /* body-s */
+    font-variant-numeric: tabular-nums;
+}
+article.content thead { background: var(--krds-gray-10); }
+article.content th {
+    height: 48px; padding: 0 12px;
+    text-align: left; font-weight: 700; white-space: nowrap;
+    color: var(--krds-fg-1);
+    border-bottom: 1px solid var(--krds-secondary-70);
+}
+article.content td {
+    height: 40px; padding: 8px 12px;
+    border-bottom: 1px solid var(--krds-gray-20);
+    color: var(--krds-fg-1);
+    vertical-align: middle;
+}
+article.content tbody tr:hover td { background: var(--krds-primary-5); }
+article.content th small { display: block; font-weight: 400; font-size: 13px; color: var(--krds-fg-3); }
+.krds-empty { text-align: center; color: var(--krds-fg-3); padding: 40px 12px !important; }
+.krds-num { text-align: right !important; }
+tr.krds-row-mismatch td { background: var(--krds-danger-bg); }
+
+/* ── 버튼 ── S 40px / 15px / radius 6px. hover 는 한 단계 어둡게, transform 없음 */
+.krds-btn, .btn-primary {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    height: 40px; padding: 0 16px;
+    border-radius: var(--krds-radius-s);
+    border: 1px solid var(--krds-primary-50);
+    background: var(--krds-primary-50); color: #fff;
+    font-family: inherit; font-size: 15px; font-weight: 700; line-height: 1;
+    text-decoration: none; white-space: nowrap; cursor: pointer;
+    transition: background-color 150ms ease-out, border-color 150ms ease-out;
+}
+.krds-btn:hover, .btn-primary:hover { background: var(--krds-primary-60); border-color: var(--krds-primary-60); color: #fff; }
+.krds-btn:active { background: var(--krds-primary-70); border-color: var(--krds-primary-70); }
+.krds-btn-tertiary { background: #fff; color: var(--krds-fg-1); border-color: var(--krds-border); }
+.krds-btn-tertiary:hover { background: var(--krds-gray-10); color: var(--krds-fg-1); border-color: var(--krds-gray-60); }
+.krds-btn-tertiary:active { background: var(--krds-gray-20); border-color: var(--krds-gray-60); }
+.krds-btn-xs { height: 32px; padding: 0 12px; font-size: 13px; }
+.krds-btn[disabled], .krds-btn[aria-disabled="true"] { background: var(--krds-gray-10); border-color: var(--krds-gray-10); color: var(--krds-fg-4); cursor: not-allowed; }
+.krds-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.krds-toolbar { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center; justify-content: space-between; margin: 0 0 16px; }
+
+/* ── 배지 ── radius 4px, 13px bold */
+.krds-badge {
+    display: inline-block; padding: 2px 8px; border-radius: var(--krds-radius-xs);
+    font-size: 13px; font-weight: 700; line-height: 1.5; white-space: nowrap;
+    border: 1px solid var(--krds-border); color: var(--krds-fg-2); background: #fff;
+}
+.krds-badge-success { border-color: var(--krds-success); color: var(--krds-success); background: var(--krds-success-bg); }
+.krds-badge-warning { border-color: var(--krds-warning); color: #8A4B00; background: var(--krds-warning-bg); }
+.krds-badge-danger { border-color: var(--krds-danger); color: #A61F1D; background: var(--krds-danger-bg); }
+.krds-badge-primary { border-color: var(--krds-primary-50); color: var(--krds-primary-60); }
+
+/* ── 알림 ── 1px 동색 보더 + 파스텔 배경, 원인과 다음 단계를 함께 적는다 */
+.krds-alert {
+    padding: 14px 16px; margin: 0 0 16px;
+    border-radius: var(--krds-radius-m);
+    border: 1px solid var(--krds-info); background: #EAF4FB; color: var(--krds-fg-1);
+    font-size: 15px;
+}
+.krds-alert strong { display: block; }
+.krds-alert-danger, .table-error { border: 1px solid var(--krds-danger); background: var(--krds-danger-bg); }
+.table-error { padding: 14px 16px; border-radius: var(--krds-radius-m); font-size: 15px; }
+.table-skeleton { padding: 40px; text-align: center; color: var(--krds-fg-3); background: var(--krds-gray-10); border-radius: var(--krds-radius-m); }
+
+/* ── 요약 카드 ── card-default: 흰 표면 + 1px 보더, 그림자 없음 */
+.krds-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 0 0 24px; }
+.krds-stat { border: 1px solid var(--krds-border); border-radius: var(--krds-radius-m); padding: 16px 20px; background: #fff; }
+.krds-stat dt { font-size: 13px; color: var(--krds-fg-2); font-weight: 400; }
+.krds-stat dd { font-size: 24px; font-weight: 700; margin: 4px 0 0; font-variant-numeric: tabular-nums; }
+.krds-stat dd small { font-size: 13px; font-weight: 400; color: var(--krds-fg-3); margin-left: 6px; }
+
+/* ── 입력 ── 높이 40px(데스크톱 S), radius 6px */
+.krds-select, .krds-input {
+    height: 40px; padding: 0 12px; min-width: 180px;
+    border: 1px solid var(--krds-border); border-radius: var(--krds-radius-s);
+    background: #fff; color: var(--krds-fg-1); font-family: inherit; font-size: 15px;
+}
+.krds-select:hover, .krds-input:hover { border-color: var(--krds-fg-3); }
+.krds-field { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; color: var(--krds-fg-2); }
+.krds-check { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; cursor: pointer; }
+.krds-check input { width: 20px; height: 20px; accent-color: var(--krds-primary-50); }
+
+.krds-frame { width: 100%; border: 1px solid var(--krds-border); border-radius: var(--krds-radius-m); background: #fff; }
+
+/* ── 사이드 내비게이션 ── 240px, 1px 우측 보더, 활성: primary-10 배경 + primary-60 글자 + 3px 좌측 보더 */
+.krds-brand { padding: 24px 20px 16px; border-bottom: 1px solid var(--krds-gray-20); }
+.krds-brand a { display: block; font-weight: 700; font-size: 19px; line-height: 1.3; color: var(--krds-primary-70); text-decoration: none; }
+.krds-brand span { display: block; font-size: 13px; color: var(--krds-fg-3); margin-top: 4px; }
+.krds-sidenav { display: flex; flex-direction: column; padding: 12px 0; }
+.krds-sidenav a {
+    display: block; padding: 12px 20px 12px 17px;
+    border-left: 3px solid transparent;
+    color: var(--krds-fg-1); font-size: 17px; text-decoration: none;
+    transition: background-color 150ms ease-out;
+}
+.krds-sidenav a:hover { background: var(--krds-gray-10); color: var(--krds-fg-1); }
+.krds-sidenav a.active { background: var(--krds-primary-10); color: var(--krds-primary-60); border-left-color: var(--krds-primary-50); font-weight: 700; }
+
+@media (max-width: 640px) {
+    html, body { font-size: 16px; }
+    .krds-sidenav { flex-direction: row; overflow-x: auto; padding: 0; }
+    .krds-sidenav a { border-left: 0; border-bottom: 3px solid transparent; padding: 12px 16px; white-space: nowrap; }
+    .krds-sidenav a.active { border-bottom-color: var(--krds-primary-50); }
+}
+
+/* ── 처리 중 ── 화면에 불러오는 중 표시(.table-skeleton)가 있는 동안 대기 커서를 보이고 마우스 입력을 막는다.
+   ponytail: CSS 만으로 처리(:has). 키보드 입력은 막지 않는다 — 필요해지면 처리 중에 main 에 inert 를 건다. */
+html:has(.table-skeleton) { cursor: wait; }
+html:has(.table-skeleton) body { pointer-events: none; }
+
+/* 상세(항목-값) 표: 왼쪽 머리글 열 */
+article.content table.krds-detail { max-width: 880px; }
+article.content table.krds-detail th { width: 46%; height: 40px; background: var(--krds-gray-10); border-bottom: 1px solid var(--krds-gray-20); white-space: normal; }

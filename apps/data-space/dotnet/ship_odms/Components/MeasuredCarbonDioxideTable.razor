@@ -2,7 +2,7 @@
 
 @if (Loading)
 {
-    <div class="table-skeleton">Loading...</div>
+    <div class="table-skeleton">불러오는 중입니다.</div>
 }
 else if (!string.IsNullOrEmpty(Error))
 {
@@ -11,19 +11,19 @@ else if (!string.IsNullOrEmpty(Error))
 else
 {
     <div class="figma-table-wrapper">
-        <table class="figma-table">
+        <table>
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Report ID</th>
-                    <th>Total CO2eq</th>
-                    <th>% CO2 at Sea</th>
-                    <th>Total CO2</th>
-                    <th>Total CO2eq Captured</th>
-                    <th>Total CH4</th>
-                    <th>Total CH4 to CO2</th>
-                    <th>Total N2O</th>
-                    <th>Total N2O to CO2</th>
+                    <th>Total CO2eq<small>IMO0883 · tCO2eq</small></th>
+                    <th>% CO2 at Sea<small>IMO0884</small></th>
+                    <th>Total CO2<small>IMO0885 · tCO2</small></th>
+                    <th>Total CO2eq Captured<small>IMO0886 · tCO2eq</small></th>
+                    <th>Total CH4<small>IMO0887 · tCH4</small></th>
+                    <th>Total CH4 to CO2<small>IMO0888 · tCH4</small></th>
+                    <th>Total N2O<small>IMO0889 · tN20</small></th>
+                    <th>Total N2O to CO2<small>IMO0890 · tN20</small></th>
                 </tr>
             </thead>
             <tbody>
@@ -47,7 +47,7 @@ else
                 }
                 else
                 {
-                    <tr><td colspan="10" style="text-align: center; color: #888; padding: 2rem;">데이터 없음</td></tr>
+                    <tr><td colspan="10" class="krds-empty">데이터 없음</td></tr>
                 }
             </tbody>
         </table>

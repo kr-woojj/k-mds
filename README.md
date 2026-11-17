@@ -3,7 +3,7 @@
 Korea Maritime Data Space — IMO Compendium on Facilitation and Electronic Business 참조모델 기반 해사 데이터 상호운용 플랫폼.
 
 선박이 보내는 운항·연료·배출 보고 데이터를 **IMO Compendium 데이터 번호로 매핑·검증**하고, 표준모델 데이터베이스(Ship-ODMS)에 적재한 뒤 **정합성(ISO/IEC 25023 기준 측정치)을 자동 판정**한다.
-LLM 은 후보 제안에만 쓰이고 최종 판정은 결정론 검증기가 한다. 상용 모델(Gemini 등)과 **오픈 모델(OpenAI 호환 서버, vLLM 의 Qwen3 등)** 을 환경변수만으로 바꿔 쓸 수 있다.
+LLM 은 후보 제안에만 쓰이고 최종 판정은 결정론 검증기가 한다. 상용 모델(Gemini 등)과 **오픈 모델(OpenAI 호환 서버, vLLM 의 오픈 모델 등)** 을 환경변수만으로 바꿔 쓸 수 있다.
 
 ## 구성
 
@@ -52,15 +52,15 @@ cp .env.example .env            # <sample: …> 설명을 보고 값을 채운�
 | 구성 | 환경변수 | 비고 |
 | --- | --- | --- |
 | Gemini | `LLM_PROVIDER=gemini`, `GEMINI_API_KEY` | 무료 티어는 모델별 일 요청 한도가 있어 실증에는 부족할 수 있다 |
-| 오픈 모델 (OpenAI 호환) | `LLM_PROVIDER=openai`, `LLM_MODEL`, `LLM_ENDPOINT=http://<host>:<port>/v1`, `OPENAI_API_KEY` | vLLM · Ollama · LM Studio. **검증된 구성: vLLM 의 Qwen3.8-27B(호출명 `qwen`)**, `LLM_DISABLE_THINKING=true`, `LLM_REASONING_EFFORT=low` |
+| 오픈 모델 (OpenAI 호환) | `LLM_PROVIDER=openai`, `LLM_MODEL`, `LLM_ENDPOINT=http://<host>:<port>/v1`, `OPENAI_API_KEY` | vLLM · Ollama · LM Studio. **검증된 구성: vLLM 의 오픈 모델**, `LLM_DISABLE_THINKING=true`, `LLM_REASONING_EFFORT=low` |
 | OpenAI / Azure OpenAI | `OPENAI_API_KEY` 또는 `AZURE_OPENAI_*` | 선택 |
 
 오픈 모델 서버가 갖춰야 하는 것:
 
 - `/v1/chat/completions` 와 `response_format: json_schema`(구조화 출력). 파이프라인(에이전트·하네스·웹훅 워크플로)은 이것만 쓴다.
-- **tool calling** 은 **대화형 AI Agent 워크플로(n8n Agent 노드)** 에만 필요하다. 서버에 tool-call 파서가 없으면(vLLM 이 `--enable-auto-tool-choice --tool-call-parser hermes` 없이 기동, `400 "auto" tool choice requires …`) 함께 뜨는 **tool-call 프록시**(`verification/automation/qwen_tool_proxy.py`, :8091)를 거친다. 프록시는 `tool_choice` 를 `none` 으로 바꿔 보내고 모델이 본문에 쓴 `<tool_call>` 블록을 OpenAI `tool_calls` 로 바꿔 준다. n8n 의 OpenAI 자격증명 Base URL 을 `http://host.docker.internal:8091/v1` 로 두면 끝이다. 사고 과정 끄기(`LLM_DISABLE_THINKING`)와 추론 강도도 프록시가 적용한다.
+- **tool calling** 은 **대화형 AI Agent 워크플로(n8n Agent 노드)** 에만 필요하다. 서버에 tool-call 파서가 없으면(vLLM 이 `--enable-auto-tool-choice --tool-call-parser hermes` 없이 기동, `400 "auto" tool choice requires …`) 함께 뜨는 **tool-call 프록시**(`verification/automation/tool_call_proxy.py`, :8091)를 거친다. 프록시는 `tool_choice` 를 `none` 으로 바꿔 보내고 모델이 본문에 쓴 `<tool_call>` 블록을 OpenAI `tool_calls` 로 바꿔 준다. n8n 의 OpenAI 자격증명 Base URL 을 `http://host.docker.internal:8091/v1` 로 두면 끝이다. 사고 과정 끄기(`LLM_DISABLE_THINKING`)와 추론 강도도 프록시가 적용한다.
 
-2026-10-08 검증 결과(RIMS 테스트 서버 Qwen3.8-27B): 웹훅 파이프라인 전 단계 통과(LLM 4/4, 호출당 중앙값 3~5초, M2 0.9945 · M3 1.0 · M4 0.9854 로 Gemini 실행과 동일). 대화형 AI Agent 도 프록시를 거쳐 도구 6종을 호출해 보관본 기준 전 과정(run_17 PASS)을 수행했다.
+2026-10-08 검증 결과(RIMS 테스트 서버의 오픈 모델): 웹훅 파이프라인 전 단계 통과(LLM 4/4, 호출당 중앙값 3~5초, M2 0.9945 · M3 1.0 · M4 0.9854 로 Gemini 실행과 동일). 대화형 AI Agent 도 프록시를 거쳐 도구 6종을 호출해 보관본 기준 전 과정(run_17 PASS)을 수행했다.
 
 ## 운영 수칙
 

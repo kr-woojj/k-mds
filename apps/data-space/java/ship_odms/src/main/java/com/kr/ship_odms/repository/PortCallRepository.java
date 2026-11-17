@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PortCallRepository extends JpaRepository<PortCall, Integer> {
 	java.util.List<PortCall> findByVoyageId(Integer voyageId);
+	java.util.List<PortCall> findByVoyageIdAndPortDepartureAndPortAtd(Integer voyageId, String portDeparture, String portAtd);
 }

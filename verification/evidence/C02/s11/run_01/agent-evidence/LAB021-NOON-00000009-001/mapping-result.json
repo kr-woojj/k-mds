@@ -341,6 +341,27 @@
           "reason": "skill list_candidates",
           "source": "skill",
           "validator_status": "NOT_VERIFIED"
+        },
+        {
+          "confidence": 0.9,
+          "imo_data_number": "IMO0144",
+          "reason": "Represents the specific location within a port, which is the primary context for determining if a port is in the EU.",
+          "source": "llm",
+          "validator_status": "FAIL"
+        },
+        {
+          "confidence": 0.85,
+          "imo_data_number": "IMO0856",
+          "reason": "Represents the jurisdiction of the inbound port, which directly determines EU status for arriving vessels.",
+          "source": "llm",
+          "validator_status": "FAIL"
+        },
+        {
+          "confidence": 0.85,
+          "imo_data_number": "IMO0857",
+          "reason": "Represents the jurisdiction of the outbound port, which determines EU status for departing vessels.",
+          "source": "llm",
+          "validator_status": "FAIL"
         }
       ],
       "confidence": null,
@@ -476,9 +497,9 @@
     "exact_mapped": 26,
     "fabricated_candidate_rejections": 0,
     "llm_invocations": 1,
-    "llm_suggested": 0,
+    "llm_suggested": 3,
     "llm_suggested_and_validated": 0,
-    "skill_invocations": 27,
+    "skill_invocations": 30,
     "skill_rule_mapped": 0,
     "total_source_fields": 27,
     "unmapped": 1

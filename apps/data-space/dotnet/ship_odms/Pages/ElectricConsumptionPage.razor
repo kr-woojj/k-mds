@@ -4,38 +4,39 @@
 
 <PageTitle>전력 소비 상세</PageTitle>
 
-<h2 style="font-size:1.5rem;margin-bottom:1.5rem;">전력 소비 상세</h2>
+<h2 class="krds-page-title">전력 소비 상세</h2>
 
 @if (loading)
 {
-    <p>로딩 중...</p>
+    <div class="table-skeleton">불러오는 중입니다.</div>
 }
 else if (error != null)
 {
-    <div style="color:red">오류: @error.Message</div>
+    <div class="krds-alert krds-alert-danger">오류: @error.Message</div>
 }
 else if (electricList != null && electricList.Count > 0)
 {
-    <table class="table">
+    <div class="krds-table-wrap">
+    <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Report ID</th>
-                <th>Boiler</th>
-                <th>Generator</th>
-                <th>Offset</th>
-                <th>Plant</th>
-                <th>Energy Cargo Cooling</th>
-                <th>Energy Discharge Pump</th>
-                <th>Energy Reefer</th>
-                <th>Onshore Power</th>
-                <th>Zero Emissions</th>
-                <th>Fuel Type Cargo Cooling</th>
-                <th>Fuel Type Discharge Pump</th>
-                <th>Fuel Type Reefer</th>
-                <th>SFOC Cargo Cooling</th>
-                <th>SFOC Discharge Pump</th>
-                <th>SFOC Cargo Reefers</th>
+                <th>Boiler<small>IMO0646 · kwh</small></th>
+                <th>Generator<small>IMO0647 · kwh</small></th>
+                <th>Offset<small>IMO0648 · kwh</small></th>
+                <th>Plant<small>IMO0649 · kwh</small></th>
+                <th>Energy Cargo Cooling<small>IMO0868 · kwh</small></th>
+                <th>Energy Discharge Pump<small>IMO0869 · kwh</small></th>
+                <th>Energy Reefer<small>IMO0870 · kwh</small></th>
+                <th>Onshore Power<small>IMO0871 · kwh</small></th>
+                <th>Zero Emissions<small>IMO0872 · kwh</small></th>
+                <th>Fuel Type Cargo Cooling<small>IMO0873</small></th>
+                <th>Fuel Type Discharge Pump<small>IMO0874</small></th>
+                <th>Fuel Type Reefer<small>IMO0875</small></th>
+                <th>SFOC Cargo Cooling<small>IMO0876 · g/kWh</small></th>
+                <th>SFOC Discharge Pump<small>IMO0877 · g/kWh</small></th>
+                <th>SFOC Cargo Reefers<small>IMO0878 · g/kWh</small></th>
             </tr>
         </thead>
         <tbody>
@@ -63,10 +64,11 @@ else if (electricList != null && electricList.Count > 0)
             }
         </tbody>
     </table>
+    </div>
 }
 else
 {
-    <p>데이터가 없습니다.</p>
+    <div class="krds-alert">이 보고에는 해당 데이터가 없습니다.</div>
 }
 
 @code {

@@ -3,7 +3,7 @@
 
 @if (Loading)
 {
-    <div class="table-skeleton">Loading...</div>
+    <div class="table-skeleton">불러오는 중입니다.</div>
 }
 else if (!string.IsNullOrEmpty(Error))
 {
@@ -12,46 +12,46 @@ else if (!string.IsNullOrEmpty(Error))
 else
 {
     <div class="figma-table-wrapper">
-        <table class="figma-table">
+        <table>
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Report ID</th>
-                    <th>Fuel Type</th>
-                    <th>Trade Name</th>
-                    <th>BDN Number</th>
-                    <th>BDN Datetime</th>
-                    <th>Bunker Received</th>
-                    <th>Mass</th>
-                    <th>Density</th>
-                    <th>Sulphur</th>
-                    <th>Viscosity</th>
-                    <th>Water</th>
-                    <th>HHV</th>
-                    <th>LFV</th>
-                    <th>Grade</th>
-                    <th>Bunker Port</th>
-                    <th>Bunker Port Name</th>
-                    <th>CO2 Emission</th>
-                    <th>Total Consumed</th>
-                    <th>ROB</th>
-                    <th>Sludge ROB</th>
-                    <th>LCV Report</th>
-                    <th>LCV</th>
-                    <th>POS Ref</th>
-                    <th>CH4 CF</th>
-                    <th>N2O CF</th>
-                    <th>Fresh Water Bunkered</th>
-                    <th>Fresh Water Produced</th>
-                    <th>Fresh Water Consumed</th>
-                    <th>Technical Water Produced</th>
-                    <th>Technical Water Consumed</th>
-                    <th>Wash Water Consumed</th>
-                    <th>Fresh Water ROB</th>
-                    <th>CLO ROB</th>
-                    <th>CLO Feed Rate</th>
-                    <th>CLO Consumption</th>
-                    <th>CLO Received</th>
+                    <th>Fuel Type<small>IMO0654</small></th>
+                    <th>Trade Name<small>IMO0680</small></th>
+                    <th>BDN Number<small>IMO0655</small></th>
+                    <th>BDN Datetime<small>IMO0656</small></th>
+                    <th>Bunker Received<small>IMO0657</small></th>
+                    <th>Mass<small>IMO0658</small></th>
+                    <th>Density<small>IMO0659</small></th>
+                    <th>Sulphur<small>IMO0660</small></th>
+                    <th>Viscosity<small>IMO0661</small></th>
+                    <th>Water<small>IMO0662</small></th>
+                    <th>HHV<small>IMO0663</small></th>
+                    <th>LFV<small>IMO0664</small></th>
+                    <th>Grade<small>IMO0665</small></th>
+                    <th>Bunker Port<small>IMO0666</small></th>
+                    <th>Bunker Port Name<small>IMO0667</small></th>
+                    <th>CO2 Emission<small>IMO0668 · gCO2/g</small></th>
+                    <th>Total Consumed<small>IMO0669</small></th>
+                    <th>ROB<small>IMO0674</small></th>
+                    <th>Sludge ROB<small>IMO0675</small></th>
+                    <th>LCV Report<small>IMO0880</small></th>
+                    <th>LCV<small>IMO0881</small></th>
+                    <th>POS Ref<small>IMO0882</small></th>
+                    <th>CH4 CF<small>IMO0891 · gCH4/gFuel</small></th>
+                    <th>N2O CF<small>IMO0892 · gN2O/gFuel</small></th>
+                    <th>Fresh Water Bunkered<small>IMO0639</small></th>
+                    <th>Fresh Water Produced<small>IMO0640</small></th>
+                    <th>Fresh Water Consumed<small>IMO0641</small></th>
+                    <th>Technical Water Produced<small>IMO0642</small></th>
+                    <th>Technical Water Consumed<small>IMO0643</small></th>
+                    <th>Wash Water Consumed<small>IMO0644</small></th>
+                    <th>Fresh Water ROB<small>IMO0645</small></th>
+                    <th>CLO ROB<small>IMO0676</small></th>
+                    <th>CLO Feed Rate<small>IMO0677</small></th>
+                    <th>CLO Consumption<small>IMO0678</small></th>
+                    <th>CLO Received<small>IMO0679</small></th>
                     <th>FOC Fuel Type</th>
                     <th>FOC Consumer Type</th>
                 </tr>
@@ -106,7 +106,7 @@ else
                 }
                 else
                 {
-                    <tr><td colspan="38" style="text-align: center; color: #888; padding: 2rem;">데이터 없음</td></tr>
+                    <tr><td colspan="38" class="krds-empty">데이터 없음</td></tr>
                 }
             </tbody>
         </table>

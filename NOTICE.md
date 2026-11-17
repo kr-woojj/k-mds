@@ -54,3 +54,14 @@ owned by the International Maritime Organization, the International
 Organization for Standardization, or any other third party.
 
 This NOTICE.md does not grant a license to any third-party material.
+
+## Bundled Fonts
+
+`apps/data-space/dotnet/ship_odms/wwwroot/fonts/` contains three subset web font
+files of Pretendard GOV 1.3.9 (Copyright (c) 2021 Kil Hyung-jin, with Reserved
+Font Name Pretendard GOV), licensed under the SIL Open Font License, Version 1.1.
+The license text is included as `LICENSE.txt` in the same folder. The MIT License
+of this repository does not apply to these font files.
+
+The portal's visual style follows the KRDS (Korea government Reusable Design
+System) design language. No government identifier, emblem, or wordmark is used.

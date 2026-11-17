@@ -39,6 +39,11 @@ public class PortCallController {
         if (voyageOpt.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
+        // 같은 항차·출항항·출항시각의 포트콜이 이미 있으면 그 행을 갱신한다(재전송 누적 방지, 2026-11-17).
+        if (portCall.getId() == null && portCall.getPortAtd() != null) {
+            portCallRepository.findByVoyageIdAndPortDepartureAndPortAtd(voyageId, portCall.getPortDeparture(), portCall.getPortAtd())
+                .stream().findFirst().ifPresent(existing -> portCall.setId(existing.getId()));
+        }
         portCall.setVoyage(voyageOpt.get());
         PortCall saved = portCallRepository.save(portCall);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);

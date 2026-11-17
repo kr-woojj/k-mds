@@ -5,26 +5,57 @@
 
 <PageTitle>성능 보고 상세</PageTitle>
 
-<h2 style="font-size:1.5rem;margin-bottom:1.5rem;">성능 보고 상세</h2>
+<h2 class="krds-page-title">성능 보고 상세</h2>
 
 <ApiErrorBanner ErrorMessage="@Error" />
 
-
-@if (Report != null && !Loading && Error == null)
+@if (Loading)
 {
-    <div class="report-detail">
-        <dl>
-            <dt>보고 ID</dt><dd>@Report.Id</dd>
-            <dt>선박 ID</dt><dd>@Report.ShipId</dd>
-            <dt>항차 ID</dt><dd>@Report.VoyageId</dd>
-            <dt>입출항 ID</dt><dd>@Report.PortCallId</dd>
-            <dt>연도</dt><dd>@Report.Year</dd>
-            <dt>보고 종류</dt><dd>@Report.ReportType</dd>
-            <dt>작성일</dt><dd>@(Report.CreatedAt != null ? Report.CreatedAt.Value.ToString("yyyy-MM-dd") : "")</dd>
-            <dt>수정일</dt><dd>@(Report.UpdatedAt != null ? Report.UpdatedAt.Value.ToString("yyyy-MM-dd") : "")</dd>
-            <dt>내용</dt><dd>@Report.Content</dd>
-            <!-- 필요시 하위 모델/필드 추가 -->
-        </dl>
+    <div class="table-skeleton">불러오는 중입니다.</div>
+}
+else if (Report != null && Error == null)
+{
+    <div class="krds-toolbar">
+        <span class="krds-field">보고 ID @Report.Id · 항차 ID @Report.VoyageId</span>
+        <div class="krds-actions">
+            @foreach (var (label, path, count) in SubLinks())
+            {
+                <a class="krds-btn krds-btn-tertiary krds-btn-xs" href="/ships/@ShipId/voyages/@VoyageId/performance-reports/@ReportId/@path">@label @count 건</a>
+            }
+        </div>
+    </div>
+    @* 항목 이름과 IMO 번호는 shared/standard-model/openapi.yaml 의 PerformanceReport 설명에서 가져왔다 *@
+    <div class="krds-table-wrap">
+        <table class="krds-detail">
+            <tbody>
+                <tr><th scope="row">Voyage leg identifier<small>IMO0605</small></th><td>@Report.VoyageLeg</td></tr>
+                <tr><th scope="row">Event type, coded<small>IMO0597</small></th><td>@Report.EventType</td></tr>
+                <tr><th scope="row">Operation type, coded<small>IMO0598</small></th><td>@Report.OperationType</td></tr>
+                <tr><th scope="row">Elapsed time<small>IMO0600</small></th><td>@Report.ElapsedTime</td></tr>
+                <tr><th scope="row">Performance report type, coded<small>IMO0879</small></th><td>@Report.ReportType</td></tr>
+                <tr><th scope="row">Ship reporting date time<small>IMO0603</small></th><td>@Report.ReportDatetime</td></tr>
+                <tr><th scope="row">Ship position when reporting, latitude<small>IMO0601</small></th><td>@Report.Latitude</td></tr>
+                <tr><th scope="row">Ship position when reporting, longitude<small>IMO0602</small></th><td>@Report.Longitude</td></tr>
+                <tr><th scope="row">Distance through water [nm]<small>IMO0612</small></th><td>@Report.DistanceThroughWater</td></tr>
+                <tr><th scope="row">Distance over ground [nm]<small>IMO0613</small></th><td>@Report.DistanceOverGround</td></tr>
+                <tr><th scope="row">Distance sailed in ice [nm]<small>IMO0614</small></th><td>@Report.DistanceSailedInIce</td></tr>
+                <tr><th scope="row">Distance to next port [nm]<small>IMO0615</small></th><td>@Report.DistanceToNextPort</td></tr>
+                <tr><th scope="row">Laden indicator<small>IMO0860</small></th><td>@Report.LadenIndicator</td></tr>
+                <tr><th scope="row">Distance excluded [nm]<small>IMO0861</small></th><td>@Report.DistanceExcluded</td></tr>
+                <tr><th scope="row">Off hire Reasons<small>IMO0862</small></th><td>@Report.OffHireReasons</td></tr>
+                <tr><th scope="row">Ship draught<small>IMO0357</small></th><td>@Report.ShipDraught</td></tr>
+                <tr><th scope="row">Draught forward<small>IMO0621</small></th><td>@Report.DraughtForward</td></tr>
+                <tr><th scope="row">Draught aft<small>IMO0622</small></th><td>@Report.DraughtAft</td></tr>
+                <tr><th scope="row">Speed over ground<small>IMO0333</small></th><td>@Report.SpeedOverGround</td></tr>
+                <tr><th scope="row">Speed through water<small>IMO0616</small></th><td>@Report.SpeedThroughWater</td></tr>
+                <tr><th scope="row">Speed propeller<small>IMO0617</small></th><td>@Report.SpeedPropeller</td></tr>
+                <tr><th scope="row">Speed projected<small>IMO0618</small></th><td>@Report.SpeedProjected</td></tr>
+                <tr><th scope="row">Speed order<small>IMO0619</small></th><td>@Report.SpeedOrder</td></tr>
+                <tr><th scope="row">Course over ground<small>IMO0332</small></th><td>@Report.CourseOverGround</td></tr>
+                <tr><th scope="row">Ship true heading<small>IMO0620</small></th><td>@Report.ShipTrueHeading</td></tr>
+                <tr><th scope="row">Voyage leg remarks<small>IMO0606</small></th><td>@Report.VoyageLegRemarks</td></tr>
+            </tbody>
+        </table>
     </div>
 }
 
@@ -41,8 +72,6 @@
     {
         try
         {
-            Loading = true;
-            Error = null;
             Report = await Api.GetAsync<PerformanceReport>($"ships/{ShipId}/voyages/{VoyageId}/port-calls/{PortCallId}/performance-reports/{ReportId}");
         }
         catch (Exception ex)
@@ -53,5 +82,15 @@
         {
             Loading = false;
         }
+    }
+
+    private IEnumerable<(string Label, string Path, int Count)> SubLinks()
+    {
+        if (Report == null) yield break;
+        if (Report.WeatherDetails?.Count > 0) yield return ("기상", "weather-details", Report.WeatherDetails.Count);
+        if (Report.CargoOnboard?.Count > 0) yield return ("적재", "cargo-onboard", Report.CargoOnboard.Count);
+        if (Report.ElectricConsumption?.Count > 0) yield return ("전력", "electric-consumption", Report.ElectricConsumption.Count);
+        if (Report.FuelConsumption?.Count > 0) yield return ("연료", "fuel-consumption", Report.FuelConsumption.Count);
+        if (Report.MeasuredCarbonDioxide?.Count > 0) yield return ("CO2", "measured-carbon-dioxide", Report.MeasuredCarbonDioxide.Count);
     }
 }

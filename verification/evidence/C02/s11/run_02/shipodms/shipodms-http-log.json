@@ -7,39 +7,6 @@
   "response": [
    {
     "id": 1,
-    "imoNumber": null,
-    "shipName": null,
-    "shipType": null,
-    "shipTypeMarpol": null,
-    "flagState": null,
-    "mmsi": null,
-    "callSign": null,
-    "registryPort": null
-   },
-   {
-    "id": 2,
-    "imoNumber": "IMO1234567",
-    "shipName": "아르고1호",
-    "shipType": "컨테이너선",
-    "shipTypeMarpol": "Cargo",
-    "flagState": "한국",
-    "mmsi": "123456789",
-    "callSign": "D7GD",
-    "registryPort": "부산"
-   },
-   {
-    "id": 3,
-    "imoNumber": "IMO9876543",
-    "shipName": "부산-호치민 컨테이너선",
-    "shipType": "컨테이너선",
-    "shipTypeMarpol": "Cargo",
-    "flagState": "한국",
-    "mmsi": "987654321",
-    "callSign": "HLBS",
-    "registryPort": "부산"
-   },
-   {
-    "id": 4,
     "imoNumber": "00000009",
     "shipName": "TEST_BULK_DIESEL_09",
     "shipType": "NONE",
@@ -53,13 +20,13 @@
  },
  {
   "method": "GET",
-  "url": "/api/ships/4/voyages",
+  "url": "/api/ships/1/voyages",
   "status": 200,
   "request": null,
   "response": [
    {
-    "id": 2,
-    "shipId": 4,
+    "id": 1,
+    "shipId": 1,
     "yearReportId": null,
     "voyageNumber": "1",
     "tradeServiceId": null,
@@ -71,7 +38,7 @@
  },
  {
   "method": "POST",
-  "url": "/api/voyages/2/port-calls",
+  "url": "/api/voyages/1/port-calls",
   "status": 201,
   "request": {
    "portDeparture": "PACTB",
@@ -80,11 +47,11 @@
    "portAta": "2026-04-25T01:00:00.000Z"
   },
   "response": {
-   "id": 6,
+   "id": 1,
    "voyage": {
-    "id": 2,
+    "id": 1,
     "ship": {
-     "id": 4,
+     "id": 1,
      "imoNumber": "00000009",
      "shipName": "TEST_BULK_DIESEL_09",
      "shipType": "NONE",
@@ -110,7 +77,7 @@
  },
  {
   "method": "POST",
-  "url": "/api/voyages/2/port-calls",
+  "url": "/api/voyages/1/port-calls",
   "status": 201,
   "request": {
    "portDeparture": "GTPRQ",
@@ -119,11 +86,11 @@
    "portAta": null
   },
   "response": {
-   "id": 7,
+   "id": 2,
    "voyage": {
-    "id": 2,
+    "id": 1,
     "ship": {
-     "id": 4,
+     "id": 1,
      "imoNumber": "00000009",
      "shipName": "TEST_BULK_DIESEL_09",
      "shipType": "NONE",
@@ -149,7 +116,7 @@
  },
  {
   "method": "POST",
-  "url": "/api/voyages/2/performance-reports",
+  "url": "/api/voyages/1/performance-reports",
   "status": 201,
   "request": {
    "eventType": "EV02",
@@ -193,21 +160,21 @@
     {
      "fuelType": null,
      "fuelTypeTradeName": "_NONFUEL",
-     "freshWaterConsumed": 0,
-     "cloConsumption": 0,
-     "freshWaterRob": 0,
-     "freshWaterProduced": 0,
      "freshWaterBunkered": 0,
-     "cloRob": 20751
+     "freshWaterConsumed": 0,
+     "freshWaterProduced": 0,
+     "freshWaterRob": 0,
+     "cloRob": 20751,
+     "cloConsumption": 0
     }
    ]
   },
   "response": {
-   "id": 26,
+   "id": 13,
    "voyage": {
-    "id": 2,
+    "id": 1,
     "ship": {
-     "id": 4,
+     "id": 1,
      "imoNumber": "00000009",
      "shipName": "TEST_BULK_DIESEL_09",
      "shipType": "NONE",
@@ -250,6 +217,7 @@
    "speedOrder": null,
    "courseOverGround": null,
    "shipTrueHeading": null,
+   "voyageLegRemarks": null,
    "weatherDetails": null,
    "cargoOnboard": null,
    "electricConsumption": null,
@@ -284,7 +252,7 @@
        "focReeferContainers": null,
        "focShuttleTankerOperations": null,
        "focStsOperations": null,
-       "id": 42
+       "id": 21
       }
      ],
      "freshWaterBunkered": null,
@@ -308,7 +276,7 @@
      "fuelTypeTradeName": "MGO",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 74,
+     "id": 38,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -346,7 +314,7 @@
        "focReeferContainers": null,
        "focShuttleTankerOperations": null,
        "focStsOperations": null,
-       "id": 43
+       "id": 22
       }
      ],
      "freshWaterBunkered": null,
@@ -370,7 +338,7 @@
      "fuelTypeTradeName": "VLSFO2020",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 75,
+     "id": 39,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -410,7 +378,7 @@
      "fuelTypeTradeName": "_NONFUEL",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 76,
+     "id": 40,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -424,7 +392,7 @@
  },
  {
   "method": "POST",
-  "url": "/api/voyages/2/performance-reports",
+  "url": "/api/voyages/1/performance-reports",
   "status": 201,
   "request": {
    "eventType": "EV28",
@@ -449,15 +417,21 @@
      "fuelType": null,
      "fuelTypeTradeName": "_NONFUEL",
      "cloRob": 20739
+    },
+    {
+     "fuelType": null,
+     "fuelTypeTradeName": "_BUNKER",
+     "fuelBunkerPort": "PACTB",
+     "fuelBunkerPortName": "CRISTOBAL"
     }
    ]
   },
   "response": {
-   "id": 27,
+   "id": 14,
    "voyage": {
-    "id": 2,
+    "id": 1,
     "ship": {
-     "id": 4,
+     "id": 1,
      "imoNumber": "00000009",
      "shipName": "TEST_BULK_DIESEL_09",
      "shipType": "NONE",
@@ -500,6 +474,7 @@
    "speedOrder": null,
    "courseOverGround": null,
    "shipTrueHeading": null,
+   "voyageLegRemarks": null,
    "weatherDetails": null,
    "cargoOnboard": null,
    "electricConsumption": null,
@@ -536,7 +511,7 @@
      "fuelTypeTradeName": "MGO",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 77,
+     "id": 41,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -576,7 +551,7 @@
      "fuelTypeTradeName": "VLSFO2020",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 78,
+     "id": 42,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -616,7 +591,47 @@
      "fuelTypeTradeName": "_NONFUEL",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 79,
+     "id": 43,
+     "n2oCf": null,
+     "sludgeRob": null,
+     "technicalWaterConsumed": null,
+     "technicalWaterProduced": null,
+     "totalFuelQuantityConsumed": null,
+     "washWaterConsumed": null
+    },
+    {
+     "bdnDatetime": null,
+     "bdnNumber": null,
+     "ch4Cf": null,
+     "cloConsumption": null,
+     "cloFeedRate": null,
+     "cloReceived": null,
+     "cloRob": null,
+     "co2Emission": null,
+     "focConsumerType": null,
+     "focFuelType": null,
+     "freshWaterBunkered": null,
+     "freshWaterConsumed": null,
+     "freshWaterProduced": null,
+     "freshWaterRob": null,
+     "fuelBunkerPort": "PACTB",
+     "fuelBunkerPortName": "CRISTOBAL",
+     "fuelBunkerReceived": null,
+     "fuelDensity": null,
+     "fuelGrade": null,
+     "fuelHhv": null,
+     "fuelLcv": null,
+     "fuelLcvReport": null,
+     "fuelLfv": null,
+     "fuelMass": null,
+     "fuelPosRef": null,
+     "fuelQuantityRob": null,
+     "fuelSulphurContent": null,
+     "fuelType": null,
+     "fuelTypeTradeName": "_BUNKER",
+     "fuelViscosity": null,
+     "fuelWaterContent": null,
+     "id": 44,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -630,7 +645,7 @@
  },
  {
   "method": "POST",
-  "url": "/api/voyages/2/performance-reports",
+  "url": "/api/voyages/1/performance-reports",
   "status": 201,
   "request": {
    "eventType": "EV10",
@@ -674,21 +689,21 @@
     {
      "fuelType": null,
      "fuelTypeTradeName": "_NONFUEL",
-     "freshWaterConsumed": 0,
-     "cloConsumption": 3,
-     "freshWaterRob": 0,
-     "freshWaterProduced": 0,
      "freshWaterBunkered": 0,
-     "cloRob": 20736
+     "freshWaterConsumed": 0,
+     "freshWaterProduced": 0,
+     "freshWaterRob": 0,
+     "cloRob": 20736,
+     "cloConsumption": 3
     }
    ]
   },
   "response": {
-   "id": 28,
+   "id": 15,
    "voyage": {
-    "id": 2,
+    "id": 1,
     "ship": {
-     "id": 4,
+     "id": 1,
      "imoNumber": "00000009",
      "shipName": "TEST_BULK_DIESEL_09",
      "shipType": "NONE",
@@ -731,6 +746,7 @@
    "speedOrder": null,
    "courseOverGround": 178.0,
    "shipTrueHeading": null,
+   "voyageLegRemarks": null,
    "weatherDetails": null,
    "cargoOnboard": null,
    "electricConsumption": null,
@@ -765,7 +781,7 @@
        "focReeferContainers": null,
        "focShuttleTankerOperations": null,
        "focStsOperations": null,
-       "id": 44
+       "id": 23
       }
      ],
      "freshWaterBunkered": null,
@@ -789,7 +805,7 @@
      "fuelTypeTradeName": "MGO",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 80,
+     "id": 45,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -827,7 +843,7 @@
        "focReeferContainers": null,
        "focShuttleTankerOperations": null,
        "focStsOperations": null,
-       "id": 45
+       "id": 24
       }
      ],
      "freshWaterBunkered": null,
@@ -851,7 +867,7 @@
      "fuelTypeTradeName": "VLSFO2020",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 81,
+     "id": 46,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -891,7 +907,7 @@
      "fuelTypeTradeName": "_NONFUEL",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 82,
+     "id": 47,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -905,7 +921,7 @@
  },
  {
   "method": "POST",
-  "url": "/api/voyages/2/performance-reports",
+  "url": "/api/voyages/1/performance-reports",
   "status": 201,
   "request": {
    "eventType": "EV16",
@@ -963,21 +979,21 @@
     {
      "fuelType": null,
      "fuelTypeTradeName": "_NONFUEL",
-     "freshWaterConsumed": 0,
-     "cloConsumption": 0,
-     "freshWaterRob": 0,
-     "freshWaterProduced": 0,
      "freshWaterBunkered": 0,
-     "cloRob": 20736
+     "freshWaterConsumed": 0,
+     "freshWaterProduced": 0,
+     "freshWaterRob": 0,
+     "cloRob": 20736,
+     "cloConsumption": 0
     }
    ]
   },
   "response": {
-   "id": 29,
+   "id": 16,
    "voyage": {
-    "id": 2,
+    "id": 1,
     "ship": {
-     "id": 4,
+     "id": 1,
      "imoNumber": "00000009",
      "shipName": "TEST_BULK_DIESEL_09",
      "shipType": "NONE",
@@ -1020,11 +1036,12 @@
    "speedOrder": null,
    "courseOverGround": 301.0,
    "shipTrueHeading": null,
+   "voyageLegRemarks": null,
    "weatherDetails": [
     {
      "airTemperature": 28.0,
      "atmosphericPressure": null,
-     "id": 12,
+     "id": 6,
      "oceanDirRelative": null,
      "oceanDirTrue": null,
      "oceanDirWeatherProvider": null,
@@ -1075,7 +1092,7 @@
        "focReeferContainers": null,
        "focShuttleTankerOperations": null,
        "focStsOperations": null,
-       "id": 46
+       "id": 25
       }
      ],
      "freshWaterBunkered": null,
@@ -1099,7 +1116,7 @@
      "fuelTypeTradeName": "MGO",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 83,
+     "id": 48,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -1137,7 +1154,7 @@
        "focReeferContainers": null,
        "focShuttleTankerOperations": null,
        "focStsOperations": null,
-       "id": 47
+       "id": 26
       }
      ],
      "freshWaterBunkered": null,
@@ -1161,7 +1178,7 @@
      "fuelTypeTradeName": "VLSFO2020",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 84,
+     "id": 49,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -1201,7 +1218,7 @@
      "fuelTypeTradeName": "_NONFUEL",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 85,
+     "id": 50,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -1215,7 +1232,7 @@
  },
  {
   "method": "POST",
-  "url": "/api/voyages/2/performance-reports",
+  "url": "/api/voyages/1/performance-reports",
   "status": 201,
   "request": {
    "eventType": "EV16",
@@ -1273,21 +1290,21 @@
     {
      "fuelType": null,
      "fuelTypeTradeName": "_NONFUEL",
-     "freshWaterConsumed": 0,
-     "cloConsumption": 0,
-     "freshWaterRob": 0,
-     "freshWaterProduced": 0,
      "freshWaterBunkered": 0,
-     "cloRob": 20736
+     "freshWaterConsumed": 0,
+     "freshWaterProduced": 0,
+     "freshWaterRob": 0,
+     "cloRob": 20736,
+     "cloConsumption": 0
     }
    ]
   },
   "response": {
-   "id": 30,
+   "id": 17,
    "voyage": {
-    "id": 2,
+    "id": 1,
     "ship": {
-     "id": 4,
+     "id": 1,
      "imoNumber": "00000009",
      "shipName": "TEST_BULK_DIESEL_09",
      "shipType": "NONE",
@@ -1330,11 +1347,12 @@
    "speedOrder": null,
    "courseOverGround": 310.0,
    "shipTrueHeading": null,
+   "voyageLegRemarks": null,
    "weatherDetails": [
     {
      "airTemperature": 30.0,
      "atmosphericPressure": null,
-     "id": 13,
+     "id": 7,
      "oceanDirRelative": null,
      "oceanDirTrue": null,
      "oceanDirWeatherProvider": null,
@@ -1385,7 +1403,7 @@
        "focReeferContainers": null,
        "focShuttleTankerOperations": null,
        "focStsOperations": null,
-       "id": 48
+       "id": 27
       }
      ],
      "freshWaterBunkered": null,
@@ -1409,7 +1427,7 @@
      "fuelTypeTradeName": "MGO",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 86,
+     "id": 51,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -1447,7 +1465,7 @@
        "focReeferContainers": null,
        "focShuttleTankerOperations": null,
        "focStsOperations": null,
-       "id": 49
+       "id": 28
       }
      ],
      "freshWaterBunkered": null,
@@ -1471,7 +1489,7 @@
      "fuelTypeTradeName": "VLSFO2020",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 87,
+     "id": 52,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -1511,7 +1529,7 @@
      "fuelTypeTradeName": "_NONFUEL",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 88,
+     "id": 53,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -1525,7 +1543,7 @@
  },
  {
   "method": "POST",
-  "url": "/api/voyages/2/performance-reports",
+  "url": "/api/voyages/1/performance-reports",
   "status": 201,
   "request": {
    "eventType": "EV16",
@@ -1583,21 +1601,21 @@
     {
      "fuelType": null,
      "fuelTypeTradeName": "_NONFUEL",
-     "freshWaterConsumed": 0,
-     "cloConsumption": 0,
-     "freshWaterRob": 0,
-     "freshWaterProduced": 0,
      "freshWaterBunkered": 0,
-     "cloRob": 20736
+     "freshWaterConsumed": 0,
+     "freshWaterProduced": 0,
+     "freshWaterRob": 0,
+     "cloRob": 20736,
+     "cloConsumption": 0
     }
    ]
   },
   "response": {
-   "id": 31,
+   "id": 18,
    "voyage": {
-    "id": 2,
+    "id": 1,
     "ship": {
-     "id": 4,
+     "id": 1,
      "imoNumber": "00000009",
      "shipName": "TEST_BULK_DIESEL_09",
      "shipType": "NONE",
@@ -1640,11 +1658,12 @@
    "speedOrder": null,
    "courseOverGround": 310.0,
    "shipTrueHeading": null,
+   "voyageLegRemarks": null,
    "weatherDetails": [
     {
      "airTemperature": 28.0,
      "atmosphericPressure": null,
-     "id": 14,
+     "id": 8,
      "oceanDirRelative": null,
      "oceanDirTrue": null,
      "oceanDirWeatherProvider": null,
@@ -1695,7 +1714,7 @@
        "focReeferContainers": null,
        "focShuttleTankerOperations": null,
        "focStsOperations": null,
-       "id": 50
+       "id": 29
       }
      ],
      "freshWaterBunkered": null,
@@ -1719,7 +1738,7 @@
      "fuelTypeTradeName": "MGO",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 89,
+     "id": 54,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -1757,7 +1776,7 @@
        "focReeferContainers": null,
        "focShuttleTankerOperations": null,
        "focStsOperations": null,
-       "id": 51
+       "id": 30
       }
      ],
      "freshWaterBunkered": null,
@@ -1781,7 +1800,7 @@
      "fuelTypeTradeName": "VLSFO2020",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 90,
+     "id": 55,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -1821,7 +1840,7 @@
      "fuelTypeTradeName": "_NONFUEL",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 91,
+     "id": 56,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -1835,7 +1854,7 @@
  },
  {
   "method": "POST",
-  "url": "/api/voyages/2/performance-reports",
+  "url": "/api/voyages/1/performance-reports",
   "status": 201,
   "request": {
    "eventType": "EV01",
@@ -1883,21 +1902,21 @@
     {
      "fuelType": null,
      "fuelTypeTradeName": "_NONFUEL",
-     "freshWaterConsumed": 0,
-     "cloConsumption": 10,
-     "freshWaterRob": 0,
-     "freshWaterProduced": 0,
      "freshWaterBunkered": 0,
-     "cloRob": 20726
+     "freshWaterConsumed": 0,
+     "freshWaterProduced": 0,
+     "freshWaterRob": 0,
+     "cloRob": 20726,
+     "cloConsumption": 10
     }
    ]
   },
   "response": {
-   "id": 32,
+   "id": 19,
    "voyage": {
-    "id": 2,
+    "id": 1,
     "ship": {
-     "id": 4,
+     "id": 1,
      "imoNumber": "00000009",
      "shipName": "TEST_BULK_DIESEL_09",
      "shipType": "NONE",
@@ -1940,6 +1959,7 @@
    "speedOrder": null,
    "courseOverGround": 272.0,
    "shipTrueHeading": null,
+   "voyageLegRemarks": null,
    "weatherDetails": null,
    "cargoOnboard": null,
    "electricConsumption": null,
@@ -1974,7 +1994,7 @@
        "focReeferContainers": null,
        "focShuttleTankerOperations": null,
        "focStsOperations": null,
-       "id": 52
+       "id": 31
       }
      ],
      "freshWaterBunkered": null,
@@ -1998,7 +2018,7 @@
      "fuelTypeTradeName": "MGO",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 92,
+     "id": 57,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -2036,7 +2056,7 @@
        "focReeferContainers": null,
        "focShuttleTankerOperations": null,
        "focStsOperations": null,
-       "id": 53
+       "id": 32
       }
      ],
      "freshWaterBunkered": null,
@@ -2060,7 +2080,7 @@
      "fuelTypeTradeName": "VLSFO2020",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 93,
+     "id": 58,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -2100,7 +2120,7 @@
      "fuelTypeTradeName": "_NONFUEL",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 94,
+     "id": 59,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -2114,7 +2134,7 @@
  },
  {
   "method": "POST",
-  "url": "/api/voyages/2/performance-reports",
+  "url": "/api/voyages/1/performance-reports",
   "status": 201,
   "request": {
    "eventType": "EV28",
@@ -2146,11 +2166,11 @@
    ]
   },
   "response": {
-   "id": 33,
+   "id": 20,
    "voyage": {
-    "id": 2,
+    "id": 1,
     "ship": {
-     "id": 4,
+     "id": 1,
      "imoNumber": "00000009",
      "shipName": "TEST_BULK_DIESEL_09",
      "shipType": "NONE",
@@ -2193,6 +2213,7 @@
    "speedOrder": null,
    "courseOverGround": null,
    "shipTrueHeading": null,
+   "voyageLegRemarks": null,
    "weatherDetails": null,
    "cargoOnboard": null,
    "electricConsumption": null,
@@ -2229,7 +2250,7 @@
      "fuelTypeTradeName": "MGO",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 95,
+     "id": 60,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -2269,7 +2290,7 @@
      "fuelTypeTradeName": "VLSFO2020",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 96,
+     "id": 61,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -2309,7 +2330,7 @@
      "fuelTypeTradeName": "_NONFUEL",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 97,
+     "id": 62,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -2323,7 +2344,7 @@
  },
  {
   "method": "POST",
-  "url": "/api/voyages/2/performance-reports",
+  "url": "/api/voyages/1/performance-reports",
   "status": 201,
   "request": {
    "eventType": "EV02",
@@ -2367,21 +2388,21 @@
     {
      "fuelType": null,
      "fuelTypeTradeName": "_NONFUEL",
-     "freshWaterConsumed": 0,
-     "cloConsumption": 0,
-     "freshWaterRob": 0,
-     "freshWaterProduced": 0,
      "freshWaterBunkered": 0,
-     "cloRob": 20726
+     "freshWaterConsumed": 0,
+     "freshWaterProduced": 0,
+     "freshWaterRob": 0,
+     "cloRob": 20726,
+     "cloConsumption": 0
     }
    ]
   },
   "response": {
-   "id": 34,
+   "id": 21,
    "voyage": {
-    "id": 2,
+    "id": 1,
     "ship": {
-     "id": 4,
+     "id": 1,
      "imoNumber": "00000009",
      "shipName": "TEST_BULK_DIESEL_09",
      "shipType": "NONE",
@@ -2424,6 +2445,7 @@
    "speedOrder": null,
    "courseOverGround": null,
    "shipTrueHeading": null,
+   "voyageLegRemarks": null,
    "weatherDetails": null,
    "cargoOnboard": null,
    "electricConsumption": null,
@@ -2458,7 +2480,7 @@
        "focReeferContainers": null,
        "focShuttleTankerOperations": null,
        "focStsOperations": null,
-       "id": 54
+       "id": 33
       }
      ],
      "freshWaterBunkered": null,
@@ -2482,7 +2504,7 @@
      "fuelTypeTradeName": "MGO",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 98,
+     "id": 63,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -2520,7 +2542,7 @@
        "focReeferContainers": null,
        "focShuttleTankerOperations": null,
        "focStsOperations": null,
-       "id": 55
+       "id": 34
       }
      ],
      "freshWaterBunkered": null,
@@ -2544,7 +2566,7 @@
      "fuelTypeTradeName": "VLSFO2020",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 99,
+     "id": 64,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -2584,7 +2606,7 @@
      "fuelTypeTradeName": "_NONFUEL",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 100,
+     "id": 65,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -2598,7 +2620,7 @@
  },
  {
   "method": "POST",
-  "url": "/api/voyages/2/performance-reports",
+  "url": "/api/voyages/1/performance-reports",
   "status": 201,
   "request": {
    "eventType": "EV10",
@@ -2642,21 +2664,21 @@
     {
      "fuelType": null,
      "fuelTypeTradeName": "_NONFUEL",
-     "freshWaterConsumed": 0,
-     "cloConsumption": 2,
-     "freshWaterRob": 0,
-     "freshWaterProduced": 0,
      "freshWaterBunkered": 0,
-     "cloRob": 20724
+     "freshWaterConsumed": 0,
+     "freshWaterProduced": 0,
+     "freshWaterRob": 0,
+     "cloRob": 20724,
+     "cloConsumption": 2
     }
    ]
   },
   "response": {
-   "id": 35,
+   "id": 22,
    "voyage": {
-    "id": 2,
+    "id": 1,
     "ship": {
-     "id": 4,
+     "id": 1,
      "imoNumber": "00000009",
      "shipName": "TEST_BULK_DIESEL_09",
      "shipType": "NONE",
@@ -2699,6 +2721,7 @@
    "speedOrder": null,
    "courseOverGround": 160.0,
    "shipTrueHeading": null,
+   "voyageLegRemarks": null,
    "weatherDetails": null,
    "cargoOnboard": null,
    "electricConsumption": null,
@@ -2733,7 +2756,7 @@
        "focReeferContainers": null,
        "focShuttleTankerOperations": null,
        "focStsOperations": null,
-       "id": 56
+       "id": 35
       }
      ],
      "freshWaterBunkered": null,
@@ -2757,7 +2780,7 @@
      "fuelTypeTradeName": "MGO",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 101,
+     "id": 66,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -2795,7 +2818,7 @@
        "focReeferContainers": null,
        "focShuttleTankerOperations": null,
        "focStsOperations": null,
-       "id": 57
+       "id": 36
       }
      ],
      "freshWaterBunkered": null,
@@ -2819,7 +2842,7 @@
      "fuelTypeTradeName": "VLSFO2020",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 102,
+     "id": 67,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -2859,7 +2882,7 @@
      "fuelTypeTradeName": "_NONFUEL",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 103,
+     "id": 68,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -2873,7 +2896,7 @@
  },
  {
   "method": "POST",
-  "url": "/api/voyages/2/performance-reports",
+  "url": "/api/voyages/1/performance-reports",
   "status": 201,
   "request": {
    "eventType": "EV16",
@@ -2931,21 +2954,21 @@
     {
      "fuelType": null,
      "fuelTypeTradeName": "_NONFUEL",
-     "freshWaterConsumed": 0,
-     "cloConsumption": 22,
-     "freshWaterRob": 0,
-     "freshWaterProduced": 0,
      "freshWaterBunkered": 0,
-     "cloRob": 20702
+     "freshWaterConsumed": 0,
+     "freshWaterProduced": 0,
+     "freshWaterRob": 0,
+     "cloRob": 20702,
+     "cloConsumption": 22
     }
    ]
   },
   "response": {
-   "id": 36,
+   "id": 23,
    "voyage": {
-    "id": 2,
+    "id": 1,
     "ship": {
-     "id": 4,
+     "id": 1,
      "imoNumber": "00000009",
      "shipName": "TEST_BULK_DIESEL_09",
      "shipType": "NONE",
@@ -2988,11 +3011,12 @@
    "speedOrder": null,
    "courseOverGround": 155.0,
    "shipTrueHeading": null,
+   "voyageLegRemarks": null,
    "weatherDetails": [
     {
      "airTemperature": 32.0,
      "atmosphericPressure": null,
-     "id": 15,
+     "id": 9,
      "oceanDirRelative": null,
      "oceanDirTrue": null,
      "oceanDirWeatherProvider": null,
@@ -3043,7 +3067,7 @@
        "focReeferContainers": null,
        "focShuttleTankerOperations": null,
        "focStsOperations": null,
-       "id": 58
+       "id": 37
       }
      ],
      "freshWaterBunkered": null,
@@ -3067,7 +3091,7 @@
      "fuelTypeTradeName": "MGO",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 104,
+     "id": 69,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -3105,7 +3129,7 @@
        "focReeferContainers": null,
        "focShuttleTankerOperations": null,
        "focStsOperations": null,
-       "id": 59
+       "id": 38
       }
      ],
      "freshWaterBunkered": null,
@@ -3129,7 +3153,7 @@
      "fuelTypeTradeName": "VLSFO2020",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 105,
+     "id": 70,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -3169,7 +3193,7 @@
      "fuelTypeTradeName": "_NONFUEL",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 106,
+     "id": 71,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -3183,7 +3207,7 @@
  },
  {
   "method": "POST",
-  "url": "/api/voyages/2/performance-reports",
+  "url": "/api/voyages/1/performance-reports",
   "status": 201,
   "request": {
    "eventType": "EV16",
@@ -3241,21 +3265,21 @@
     {
      "fuelType": null,
      "fuelTypeTradeName": "_NONFUEL",
-     "freshWaterConsumed": 5,
-     "cloConsumption": 115,
-     "freshWaterRob": 11,
-     "freshWaterProduced": 16,
      "freshWaterBunkered": 0,
-     "cloRob": 20587
+     "freshWaterConsumed": 5,
+     "freshWaterProduced": 16,
+     "freshWaterRob": 11,
+     "cloRob": 20587,
+     "cloConsumption": 115
     }
    ]
   },
   "response": {
-   "id": 37,
+   "id": 24,
    "voyage": {
-    "id": 2,
+    "id": 1,
     "ship": {
-     "id": 4,
+     "id": 1,
      "imoNumber": "00000009",
      "shipName": "TEST_BULK_DIESEL_09",
      "shipType": "NONE",
@@ -3298,11 +3322,12 @@
    "speedOrder": null,
    "courseOverGround": 155.0,
    "shipTrueHeading": null,
+   "voyageLegRemarks": null,
    "weatherDetails": [
     {
      "airTemperature": 32.0,
      "atmosphericPressure": null,
-     "id": 16,
+     "id": 10,
      "oceanDirRelative": null,
      "oceanDirTrue": null,
      "oceanDirWeatherProvider": null,
@@ -3353,7 +3378,7 @@
        "focReeferContainers": null,
        "focShuttleTankerOperations": null,
        "focStsOperations": null,
-       "id": 60
+       "id": 39
       }
      ],
      "freshWaterBunkered": null,
@@ -3377,7 +3402,7 @@
      "fuelTypeTradeName": "MGO",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 107,
+     "id": 72,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -3415,7 +3440,7 @@
        "focReeferContainers": null,
        "focShuttleTankerOperations": null,
        "focStsOperations": null,
-       "id": 61
+       "id": 40
       }
      ],
      "freshWaterBunkered": null,
@@ -3439,7 +3464,7 @@
      "fuelTypeTradeName": "VLSFO2020",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 108,
+     "id": 73,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,
@@ -3479,7 +3504,7 @@
      "fuelTypeTradeName": "_NONFUEL",
      "fuelViscosity": null,
      "fuelWaterContent": null,
-     "id": 109,
+     "id": 74,
      "n2oCf": null,
      "sludgeRob": null,
      "technicalWaterConsumed": null,

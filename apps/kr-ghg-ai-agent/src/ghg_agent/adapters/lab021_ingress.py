@@ -31,6 +31,12 @@ PICK: dict[str, Any] = {
     "portCode": {"Arrival": "IMO0108", "Departure S/By": "IMO0111", "Bunkering": "IMO0666"},
     "portName": {"Arrival": "IMO0109", "Departure S/By": "IMO0112", "Bunkering": "IMO0667"},
     "dateEventUtc": {"Arrival": "IMO0063", "Departure S/By": "IMO0065"},
+    # 2026-11-17 FAL50 registry 재확인(사람 검토 대상):
+    # - bunkeringStopLtc: IMO0656 'Bunker delivery date time'(정의: "the time when all fuel has been received") 채택.
+    #   다른 후보 IMO0757 은 BDN 발행일(문서 날짜)이라 수급 종료 시각과 다르다. 값은 현지시각(오프셋 없음) 그대로 둔다.
+    # - remark: IMO0606 'Voyage leg remarks'(Noon Data Report 의 Performance Report 하위) 채택.
+    #   IMO0604 는 항차 단위, IMO0358 은 기상, IMO0196·IMO0764 는 다른 서식(General Declaration·Letter of protest) 소속.
+    "bunkeringStopLtc": "IMO0656", "remark": "IMO0606",
 }
 ENGINE_ELEMENT = {"Me": "IMO0670", "Ge": "IMO0893", "Blr": "IMO0673", "Other": "IMO0903"}
 FUEL_CODE = {"Hfo": "HFO", "Lsfo": "VLSFO2020", "Ulsfo": "ULSFO2020", "Do": "MDO", "Mgo": "MGO", "Ulsmgo": "ULSMGO2020"}
@@ -146,6 +152,15 @@ def _selftest() -> None:
     assert "IMO0654" not in out["consumption_by_fuel_type"]["VLSFO2020"]
     assert out["grossTonnage"] is None and "grossTonnage" in rep["sentinel_nulled"] and "foo" in rep["kept"]
     assert out["IMO0191"] == "1" and rep["type_cast"]["voyNo"].startswith("IMO0191")
+    # 1:N 코드북 키의 최특정 선택 (2026-11-17 실선 데이터에서 미매핑으로 남았던 2종)
+    cb2: dict[str, list[dict[str, Any]]] = {
+        "bunkeringStopLtc": [{"id": i, "eventName": ["Bunkering"]} for i in ("IMO0656", "IMO0757")],
+        "remark": [{"id": i, "eventName": ["All"]} for i in ("IMO0358", "IMO0604", "IMO0606")],
+    }
+    rec2 = {"eventKey": "BUNKERING", "dateEventUtc": "2026-01-01T00:00:00.000Z", "voyNo": 1,
+            "bunkeringStopLtc": "2026-01-01T09:00:00.000", "remark": "x"}
+    out2, rep2 = normalize_lab021(rec2, cb2)
+    assert out2["IMO0656"] == "2026-01-01T09:00:00.000" and out2["IMO0606"] == "x" and not rep2["ambiguous"]
     print("selftest ok")
 
 
