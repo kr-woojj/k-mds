@@ -3,7 +3,7 @@
 
 @if (Loading)
 {
-    <div class="table-skeleton">Loading...</div>
+    <div class="table-skeleton">불러오는 중입니다.</div>
 }
 else if (!string.IsNullOrEmpty(Error))
 {
@@ -12,26 +12,26 @@ else if (!string.IsNullOrEmpty(Error))
 else
 {
     <div class="figma-table-wrapper">
-        <table class="figma-table">
+        <table>
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Report ID</th>
-                    <th>Containers</th>
-                    <th>Full Container</th>
-                    <th>Full Reefer</th>
-                    <th>Vehicles</th>
-                    <th>Crew</th>
-                    <th>Passengers</th>
-                    <th>Chilled 20ft</th>
-                    <th>Chilled 40ft</th>
-                    <th>Frozen 20ft</th>
-                    <th>Frozen 40ft</th>
-                    <th>Goods Desc</th>
-                    <th>Gross Vol</th>
-                    <th>Gross Wt</th>
-                    <th>BL Ref</th>
-                    <th>BL Date</th>
+                    <th>Containers<small>IMO0650</small></th>
+                    <th>Full Container<small>IMO0651</small></th>
+                    <th>Full Reefer<small>IMO0652</small></th>
+                    <th>Vehicles<small>IMO0653</small></th>
+                    <th>Crew<small>IMO0086</small></th>
+                    <th>Passengers<small>IMO0087</small></th>
+                    <th>Chilled 20ft<small>IMO0864</small></th>
+                    <th>Chilled 40ft<small>IMO0865</small></th>
+                    <th>Frozen 20ft<small>IMO0866</small></th>
+                    <th>Frozen 40ft<small>IMO0867</small></th>
+                    <th>Goods Desc<small>IMO0022</small></th>
+                    <th>Gross Vol<small>IMO0023</small></th>
+                    <th>Gross Wt<small>IMO0024</small></th>
+                    <th>BL Ref<small>IMO0734</small></th>
+                    <th>BL Date<small>IMO0738</small></th>
                 </tr>
             </thead>
             <tbody>
@@ -62,7 +62,7 @@ else
                 }
                 else
                 {
-                    <tr><td colspan="17" style="text-align: center; color: #888; padding: 2rem;">데이터 없음</td></tr>
+                    <tr><td colspan="17" class="krds-empty">데이터 없음</td></tr>
                 }
             </tbody>
         </table>

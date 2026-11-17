@@ -9,26 +9,23 @@
     <ResourcePreloader />
     <link rel="stylesheet" href="@Assets["lib/bootstrap/dist/css/bootstrap.min.css"]" />
     <link rel="stylesheet" href="@Assets["app.css"]" />
+    <link rel="stylesheet" href="@Assets["krds.css"]" />
     <link rel="stylesheet" href="@Assets["ship_odms.styles.css"]" />
     <ImportMap />
     <link rel="icon" type="image/png" href="favicon.png" />
     <title>K-MDS GHG Verifier</title>
-    <HeadOutlet />
+    <HeadOutlet @rendermode="Interactive" />
 </head>
 
 <body>
-    <Router AppAssembly="@typeof(App).Assembly">
-        <Found Context="routeData">
-            <RouteView RouteData="@routeData" DefaultLayout="typeof(ship_odms.Components.Layout.MainLayout)" />
-        </Found>
-        <NotFound>
-            <LayoutView Layout="typeof(ship_odms.Components.Layout.MainLayout)">
-                <p>페이지를 찾을 수 없습니다.</p>
-            </LayoutView>
-        </NotFound>
-    </Router>
+    <Routes @rendermode="Interactive" />
     <ReconnectModal />
     <script src="@Assets["_framework/blazor.web.js"]"></script>
 </body>
 
 </html>
+
+@code {
+    // 사전 렌더링을 끈다: 데이터를 한 번만 불러오고, 불러오는 동안 "불러오는 중" 표시(대기 커서·입력 차단)가 실제로 보인다.
+    private static readonly IComponentRenderMode Interactive = new InteractiveServerRenderMode(prerender: false);
+}

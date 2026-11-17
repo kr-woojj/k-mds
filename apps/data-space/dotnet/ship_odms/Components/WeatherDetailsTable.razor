@@ -3,7 +3,7 @@
 
 @if (Loading)
 {
-    <div class="table-skeleton">Loading...</div>
+    <div class="table-skeleton">불러오는 중입니다.</div>
 }
 else if (!string.IsNullOrEmpty(Error))
 {
@@ -12,14 +12,14 @@ else if (!string.IsNullOrEmpty(Error))
 else
 {
     <div class="figma-table-wrapper">
-        <table class="figma-table">
+        <table>
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>풍속</th>
-                    <th>풍향</th>
-                    <th>기온</th>
-                    <th>기압</th>
+                    <th>풍속<small>IMO0359</small></th>
+                    <th>풍향<small>IMO0360</small></th>
+                    <th>기온<small>IMO0628</small></th>
+                    <th>기압<small>IMO0629</small></th>
                 </tr>
             </thead>
             <tbody>
@@ -38,7 +38,7 @@ else
                 }
                 else
                 {
-                    <tr><td colspan="5" style="text-align: center; color: #888; padding: 2rem;">데이터 없음</td></tr>
+                    <tr><td colspan="5" class="krds-empty">데이터 없음</td></tr>
                 }
             </tbody>
         </table>

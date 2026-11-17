@@ -5,31 +5,32 @@
 
 <PageTitle>이산화탄소 배출 상세</PageTitle>
 
-<h2 style="font-size:1.5rem;margin-bottom:1.5rem;">이산화탄소 배출 상세</h2>
+<h2 class="krds-page-title">이산화탄소 배출 상세</h2>
 
 @if (loading)
 {
-    <p>로딩 중...</p>
+    <div class="table-skeleton">불러오는 중입니다.</div>
 }
 else if (error != null)
 {
-    <div style="color:red">오류: @error.Message</div>
+    <div class="krds-alert krds-alert-danger">오류: @error.Message</div>
 }
 else if (co2List != null && co2List.Count > 0)
 {
-    <table class="table">
+    <div class="krds-table-wrap">
+    <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Report ID</th>
-                <th>Total CO2eq</th>
-                <th>% CO2 at Sea</th>
-                <th>Total CO2</th>
-                <th>Total CO2eq Captured</th>
-                <th>Total CH4</th>
-                <th>Total CH4 to CO2</th>
-                <th>Total N2O</th>
-                <th>Total N2O to CO2</th>
+                <th>Total CO2eq<small>IMO0883 · tCO2eq</small></th>
+                <th>% CO2 at Sea<small>IMO0884</small></th>
+                <th>Total CO2<small>IMO0885 · tCO2</small></th>
+                <th>Total CO2eq Captured<small>IMO0886 · tCO2eq</small></th>
+                <th>Total CH4<small>IMO0887 · tCH4</small></th>
+                <th>Total CH4 to CO2<small>IMO0888 · tCH4</small></th>
+                <th>Total N2O<small>IMO0889 · tN20</small></th>
+                <th>Total N2O to CO2<small>IMO0890 · tN20</small></th>
             </tr>
         </thead>
         <tbody>
@@ -50,10 +51,11 @@ else if (co2List != null && co2List.Count > 0)
             }
         </tbody>
     </table>
+    </div>
 }
 else
 {
-    <p>데이터가 없습니다.</p>
+    <div class="krds-alert">이 보고에는 해당 데이터가 없습니다.</div>
 }
 
 @code {

@@ -6,7 +6,7 @@
 
 <PageTitle>입출항 목록</PageTitle>
 
-<h2 style="font-size:1.5rem;margin-bottom:1.5rem;">입출항 목록</h2>
+<h2 class="krds-page-title">입출항 목록</h2>
 
 <ApiErrorBanner ErrorMessage="@Error" />
 
@@ -40,6 +40,6 @@
 
     private void OnRowClick(PortCall portCall)
     {
-        Navigation.NavigateTo($"/ships/{portCall.ShipId}/voyages/{portCall.VoyageId}/port-calls/{portCall.Id}/performance-reports");
+        Navigation.NavigateTo($"/ships/{ShipId}/voyages/{VoyageId}/port-calls/{portCall.Id}/performance-reports");
     }
 }

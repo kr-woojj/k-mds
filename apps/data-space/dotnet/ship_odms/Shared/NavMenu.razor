@@ -1,14 +1,11 @@
-@* 주요 도메인 네비게이션 — 세로 사이드바, 순서: 챗봇 → 선박 목록 → 대시보드 (2026-09-26 사용자 지정) *@
-<div style="padding:1rem 1rem 0.5rem;">
-    <NavLink href="/" Match="NavLinkMatch.All" style="display:block;font-weight:700;font-size:1.1rem;line-height:1.3;text-decoration:none;color:#fff;">K-MDS GHG Verifier</NavLink>
-    <div style="font-size:0.75rem;color:rgba(255,255,255,0.65);margin-top:0.25rem;">GHG 의무보고 데이터 표준모델 검증 포털</div>
+@* 주요 도메인 네비게이션 — 세로 사이드바, 순서: 챗봇 → 선박 목록 → 정합성 대조 → 대시보드. 스타일은 wwwroot/krds.css (.krds-sidenav) *@
+<div class="krds-brand">
+    <NavLink href="/" Match="NavLinkMatch.All">K-MDS GHG Verifier</NavLink>
+    <span>GHG 의무보고 데이터 표준모델 검증 포털</span>
 </div>
-<nav class="nav-menu" style="display:flex;flex-direction:column;gap:0.25rem;padding:0.5rem;">
-    <NavLink href="/chat" class="nav-link" style="display:block;padding:0.6rem 1rem;border-radius:6px;color:#fff;text-decoration:none;font-weight:500;">💬 챗봇</NavLink>
-    <NavLink href="/" Match="NavLinkMatch.All" class="nav-link" style="display:block;padding:0.6rem 1rem;border-radius:6px;color:#fff;text-decoration:none;font-weight:500;">🚢 선박 목록</NavLink>
-    <NavLink href="/dashboard" class="nav-link" style="display:block;padding:0.6rem 1rem;border-radius:6px;color:#fff;text-decoration:none;font-weight:500;">📊 대시보드</NavLink>
+<nav class="krds-sidenav" aria-label="주 메뉴">
+    <NavLink href="/chat">챗봇</NavLink>
+    <NavLink href="/" Match="NavLinkMatch.All">선박 목록</NavLink>
+    <NavLink href="/consistency">정합성 대조</NavLink>
+    <NavLink href="/dashboard">대시보드</NavLink>
 </nav>
-<style>
-    .nav-menu .nav-link:hover { background: rgba(255,255,255,0.12); }
-    .nav-menu .nav-link.active { background: rgba(255,255,255,0.25); }
-</style>
