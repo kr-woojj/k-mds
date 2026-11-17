@@ -27,6 +27,7 @@ public class YearPerformanceReportController {
             .map(r -> new YearPerformanceReportResponse(
                 r.getId(),
                 r.getShip() != null ? r.getShip().getId() : null,
+                r.getReportYear(),
                 r.getTotalGfiAnnually()
             ))
             .toList();
@@ -37,6 +38,11 @@ public class YearPerformanceReportController {
         Optional<Ship> shipOpt = shipRepository.findById(shipId);
         if (shipOpt.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        // 선박·연도당 연차보고는 한 건: 같은 연도의 보고가 이미 있으면 그 행을 갱신한다 (2026-11-17).
+        if (report.getId() == null && report.getReportYear() != null) {
+            yearPerformanceReportRepository.findByShipIdAndReportYear(shipId, report.getReportYear())
+                .stream().findFirst().ifPresent(existing -> report.setId(existing.getId()));
         }
         report.setShip(shipOpt.get());
         YearPerformanceReport saved = yearPerformanceReportRepository.save(report);

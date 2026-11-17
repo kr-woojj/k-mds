@@ -7,7 +7,7 @@ RUN ./gradlew build --no-daemon
 # ---- JRE Extract Stage ----
 FROM mcr.microsoft.com/openjdk/jdk:21-ubuntu AS jre-extract
 RUN jlink \
-    --add-modules java.base,java.sql,java.logging,java.desktop,java.naming,java.management,java.security.jgss,java.instrument,java.compiler \
+    --add-modules java.base,java.sql,java.logging,java.desktop,java.naming,java.management,java.security.jgss,java.instrument,java.compiler,jdk.unsupported \
     --output /javaruntime \
     --strip-debug --compress=2 --no-header-files --no-man-pages
 

@@ -44,6 +44,7 @@ public class PerformanceReport {
     private Double speedOrder;
     private Double courseOverGround;
     private Double shipTrueHeading;
+    private String voyageLegRemarks;  // IMO0606 Voyage leg remarks (2026-11-17 추가)
 
     @OneToMany(mappedBy = "report", cascade = CascadeType.ALL, orphanRemoval = true)
     private java.util.List<WeatherDetails> weatherDetails;

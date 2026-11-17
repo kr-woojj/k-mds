@@ -8,5 +8,6 @@ import lombok.Data;
 public class YearPerformanceReportResponse {
     private Integer id;
     private Integer shipId;
+    private Integer reportYear;
     private Double totalGfiAnnually;
 }
