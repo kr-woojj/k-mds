@@ -13,6 +13,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
 import json
 import re
@@ -23,7 +24,7 @@ from pathlib import Path
 import httpx
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from imo_to_shipodms import NONFUEL, camel, imo_field_map, load_run  # noqa: E402
+from imo_to_shipodms import BUNKER, NONFUEL, camel, imo_field_map, load_run  # noqa: E402
 
 ISO = "ISO/IEC DIS 25023:2014(E) (data/raw/ISO25000)"
 
@@ -105,6 +106,10 @@ def main() -> int:
         for imo in NONFUEL & set(run["elements"]):
             t = fmap.get(imo)
             if t: add(cid, imo, f"FuelConsumption[_NONFUEL].{t[1]}", run["elements"][imo], nf.get(t[1]))
+        bk = rows.get("_BUNKER", {})
+        for imo in BUNKER & set(run["elements"]):
+            t = fmap.get(imo)
+            if t: add(cid, imo, f"FuelConsumption[_BUNKER].{t[1]}", run["elements"][imo], bk.get(t[1]))
     m4_B = len(checks); m4_A = sum(1 for x in checks if not x["match"])
     # ── M1 (IDS 전달) ──
     orig = a.original.read_bytes(); h = hashlib.sha256(orig).hexdigest()
@@ -120,6 +125,10 @@ def main() -> int:
         "checks": len(checks), "mismatches": [x for x in checks if not x["match"]],
     }
     (a.out_dir / "consistency-report.json").write_text(json.dumps({"measures": measures, "checks": checks}, ensure_ascii=False, indent=1, default=str), "utf-8")
+    # 엑셀 대조용: 대조 항목 전체를 CSV 로도 남긴다(UTF-8 BOM). 열: 이벤트, IMO 요소, 표준모델 대상 필드, 원본값, 저장값, 일치 여부.
+    with (a.out_dir / "consistency-checks.csv").open("w", encoding="utf-8-sig", newline="") as f:
+        w = csv.writer(f); w.writerow(["cid", "imo", "target", "source", "stored", "match"])
+        w.writerows([x["cid"], x["imo"], x["target"], x["source"], x["stored"], "Y" if x["match"] else "N"] for x in checks)
     verdict = "PASS" if measures["M4"]["X"] is not None and measures["M4"]["X"] >= 0.95 else "FAIL"
     print(json.dumps({k: v for k, v in measures.items() if k not in ("checks", "mismatches")}, ensure_ascii=False, indent=1))
     print(f"mismatches: {m4_A}/{m4_B} → M4 X={measures['M4']['X']} verdict={verdict}")

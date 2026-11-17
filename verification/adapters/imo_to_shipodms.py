@@ -8,6 +8,8 @@
 - G-1 Ship-ODMS FuelConsumption.fuelType 은 int32, FAL50 'Fuel type' code list 는 문자열(HFO, VLSFO2020…) → fuelType 은 null, 연료 식별은
   fuelTypeTradeName(IMO0680, an..10)에 FAL50 코드를 넣어 유지 [WORKAROUND 표시].
 - G-2 담수·실린더유(IMO0639~0641, 0645, 0676, 0678)는 스키마상 FuelConsumption 하위 → 연료와 무관하므로 fuelTypeTradeName="_NONFUEL" 행에 저장.
+- G-6 벙커 수급 요소(IMO0656 수급 종료 시각, IMO0666·0667 수급항)는 스키마상 FuelConsumption 하위인데 Provider 벙커링 이벤트에
+  수급 연료 종류가 없다 → 연료 행에 붙이지 않고 fuelTypeTradeName="_BUNKER" 행에 저장 [WORKAROUND 표시, 2026-11-17].
 - 대상 필드가 없는 IMO 요소(다음항 ETA·코드·명, 밸러스트, 선석, ETD/ETB, GT/NT, 등록항, 선장명 등)는 전송하지 않고 목록으로 남긴다.
 
 사용: uv run --project apps/kr-ghg-ai-agent python verification/adapters/imo_to_shipodms.py <agent_evidence_dir> <out_dir> [--base http://localhost:8088] [--dry-run]
@@ -27,6 +29,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 OPENAPI = ROOT / "shared/standard-model/openapi.yaml"
 NONFUEL = {"IMO0639", "IMO0640", "IMO0641", "IMO0645", "IMO0676", "IMO0678"}
+BUNKER = {"IMO0656", "IMO0666", "IMO0667"}  # G-6
 FUEL_ROW_ELEMENTS = {"IMO0674", "IMO0670", "IMO0893", "IMO0673", "IMO0903"}  # rob + 장비별 소비(FocFuelType)
 
 
@@ -75,7 +78,7 @@ def load_run(d: Path) -> dict:
 
 def build_report(ev: dict, fmap: dict[str, tuple[str, str]]) -> tuple[dict, dict, list[str]]:
     """(performanceReport body, provenance{IMO: target}, no_target[IMO])."""
-    body: dict = {}; weather: dict = {}; prov: dict = {}; no_target: list[str] = []
+    body: dict = {}; weather: dict = {}; bunker: dict = {}; prov: dict = {}; no_target: list[str] = []
     for imo, v in ev["elements"].items():
         if imo in NONFUEL or imo in ("IMO0140", "IMO0142", "IMO0136", "IMO0326", "IMO0138", "IMO0160", "IMO0191",
                                      "IMO0108", "IMO0111", "IMO0063", "IMO0065"):
@@ -84,7 +87,9 @@ def build_report(ev: dict, fmap: dict[str, tuple[str, str]]) -> tuple[dict, dict
         if not t:
             no_target.append(imo); continue
         schema, field = t
-        if schema == "PerformanceReport":
+        if imo in BUNKER:
+            bunker[field] = v; prov[imo] = f"FuelConsumption[_BUNKER].{field}"
+        elif schema == "PerformanceReport":
             body[field] = v; prov[imo] = f"PerformanceReport.{field}"
         elif schema == "WeatherDetails":
             weather[field] = v; prov[imo] = f"WeatherDetails.{field}"
@@ -114,6 +119,8 @@ def build_report(ev: dict, fmap: dict[str, tuple[str, str]]) -> tuple[dict, dict
         if t: nonfuel[t[1]] = ev["elements"][imo]; prov[imo] = f"FuelConsumption[_NONFUEL].{t[1]}"
     if nonfuel:
         rows.append({"fuelType": None, "fuelTypeTradeName": "_NONFUEL", **nonfuel})  # G-2
+    if bunker:
+        rows.append({"fuelType": None, "fuelTypeTradeName": "_BUNKER", **bunker})  # G-6
     if rows:
         body["fuelConsumption"] = rows
     return body, prov, sorted(set(no_target))
@@ -148,7 +155,7 @@ def main() -> int:
         body, prov, no_target = build_report(r, fmap)
         reports.append({"cid": r["cid"], "event_key": r["event_key"], "body": body, "provenance": prov, "no_target": no_target, "skipped": r["skipped"]})
     plan = {"generated_at": datetime.now(UTC).isoformat(), "base": a.base, "ship": ship, "voyage": voyage, "port_calls": legs, "reports": reports,
-            "gaps": {"G-1": "fuelType int32 vs FAL50 code list string → fuelTypeTradeName WORKAROUND", "G-2": "담수·CLO 를 _NONFUEL 행에 저장"}}
+            "gaps": {"G-1": "fuelType int32 vs FAL50 code list string → fuelTypeTradeName WORKAROUND", "G-2": "담수·CLO 를 _NONFUEL 행에 저장", "G-6": "벙커 수급 시각·항만을 _BUNKER 행에 저장(수급 연료 종류 미제공)"}}
     (a.out_dir / "shipodms-plan.json").write_text(json.dumps(plan, ensure_ascii=False, indent=1), "utf-8")
     print(f"plan: ship {ship['imoNumber']} voyage {voyage['voyageNumber']} port_calls {len(legs)} reports {len(reports)} → {a.out_dir/'shipodms-plan.json'}")
     if a.dry_run:

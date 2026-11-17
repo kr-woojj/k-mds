@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import platform
 import subprocess
 import sys
@@ -24,7 +25,8 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 AGENT = ROOT / "apps" / "kr-ghg-ai-agent"
 VALIDATOR = ROOT / "apps" / "imo-compendium-mapping-validator"
-EVID = HERE / "evidence" / "C02" / "s11"
+# 실선 데이터 run 은 S11_EVIDENCE_DIR 로 git 제외 폴더(verification/evidence-private/…)를 지정한다(AGENTS.md: 실선 운항 데이터 git 금지).
+EVID = Path(os.environ.get("S11_EVIDENCE_DIR") or HERE / "evidence" / "C02" / "s11")
 DEFAULT_SOURCE = HERE / "evidence/C02/manual_S03/step-04/payloads/Noon_Report_API__e5e3be7e7a31.json"
 UV = ["uv", "run", "--project", str(AGENT), "--with", "pyyaml", "python"]
 sys.path.insert(0, str(AGENT / "src"))
@@ -69,7 +71,8 @@ def t0_baseline(run: Path, source: Path, base: str, llm: str | dict = "mock") ->
          "lab021_codebook": {"path": str(cb), "sha256": sha(cb) if cb.is_file() else None},
          "source_payload": {"path": str(source), "sha256": sha(source), "bytes": source.stat().st_size},
          "ship_odms": {"base": base, "reachable": odms_ok, "info": odms},
-         "llm": llm, "skill": "real", "mcp": "off"}
+         # 로컬 runner 는 에이전트 설정에서 실제 provider 를 읽어 적는다(모델명·주소는 적지 않는다).
+         "llm": llm if llm != "mock" else {"provider": s.llm_provider, "live": s.allow_live_llm}, "skill": "real", "mcp": "off"}
     (run / "T0-baseline.json").write_text(json.dumps(b, ensure_ascii=False, indent=1), "utf-8")
     return b
 
@@ -85,7 +88,8 @@ def t2_ids(run: Path, source: Path) -> dict:
     else:
         import httpx
         cons = "https://" + (env.get("IDS_CONNECTOR_BASE", "").split("//")[-1].rsplit(":", 1)[0]) + ":26414"
-        aid = "f508740a-e585-45d7-a5a5-e5e3be7e7a31"  # Noon Report API artifact (Consumer, 9/12 계약)
+        # 기본: Noon Report API artifact (Consumer, 9/12 계약). 다른 계약의 아티팩트는 IDS_NOON_ARTIFACT_ID 로 지정.
+        aid = env.get("IDS_NOON_ARTIFACT_ID") or os.environ.get("IDS_NOON_ARTIFACT_ID") or "f508740a-e585-45d7-a5a5-e5e3be7e7a31"
         try:
             resp = httpx.get(f"{cons}/api/artifacts/{aid}/data", params={"download": "true"}, auth=(env["IDS_CONNECTOR_USER"], env["IDS_CONNECTOR_PASSWORD"]), verify=False, timeout=60)
             got = hashlib.sha256(resp.content).hexdigest()
@@ -94,14 +98,32 @@ def t2_ids(run: Path, source: Path) -> dict:
                  "identical_to_source": got == sha(source), "verdict": "PASS" if got == sha(source) else "DIFFERENT",
                  "note": "다르면 Provider 스냅샷이 바뀐 것(F-22 참조). 시험은 --source 본으로 계속 진행."}
         except Exception as e:  # noqa: BLE001
-            r = {"step": "T2", "verdict": "ERROR", "error": type(e).__name__}
+            r = {"step": "T2", "verdict": "ERROR", "error": type(e).__name__, "detail": str(e)[:200].replace(cons.split("//")[-1].rsplit(":", 1)[0], "<K-MDS-IDS-HOST>")}
     (run / "T2-ids-transfer.json").write_text(json.dumps(r, ensure_ascii=False, indent=1), "utf-8")
     return r
 
 
+TEST_SHIP_IMO = "00000009"  # vessellink 시험 선박(합성). 그 외는 실선으로 보고 식별·개인 정보를 가린다.
+MASK_GENERAL = {"shipName": "MASKED SHIP 01", "imoNo": "00000001", "callsign": "MASK01", "mmsi": "100000001", "masterName": "MASKED"}
+MASK_EVENT = {"remark": "MASKED", "ceName": "MASKED", "masterName": "MASKED"}  # 자유 기술·성명 필드
+
+
+def mask_payload(payload: dict) -> dict:
+    """실선 payload 의 선박 식별정보·성명·자유 기술을 고정 가명으로 바꾼다(사용자 지시 2026-11-17). 운항 수치는 건드리지 않는다.
+    원본(스냅샷, T2 수신본)은 git 제외 폴더에만 두고, 에이전트 증적·표준모델 DB·화면에는 가명만 흘러간다.
+    # ponytail: 선박 1척 전제의 고정 가명. 2척 이상이면 원 IMO번호별 일련번호로 바꾼다."""
+    if str(payload["general"].get("imoNo")) == TEST_SHIP_IMO:
+        return payload
+    def m(table: dict, k: str, v):  # 가명은 원래 자료형을 유지한다(숫자 MMSI 를 문자열로 바꾸면 형식 검증에서 미매핑이 된다)
+        return type(v)(table[k]) if k in table and isinstance(v, (str, int, float)) and v != "" else v
+    g = {k: m(MASK_GENERAL, k, v) for k, v in payload["general"].items()}
+    ev = [{k: m(MASK_EVENT, k, v) for k, v in e.items()} for e in payload["events"]]
+    return {**payload, "general": g, "events": ev}
+
+
 def prepare_events(source: Path, prefix: str = "") -> list[dict]:
     """Provider Noon payload → 이벤트 단위 레코드(시각순). correlation_id 는 prefix 로 run 간 충돌을 피한다."""
-    payload = json.loads(source.read_text("utf-8"))["data"]
+    payload = mask_payload(json.loads(source.read_text("utf-8"))["data"])
     return [{"correlation_id": f"{prefix}LAB021-NOON-{payload['general'].get('imoNo')}-{i:03d}", "dataset_id": "LAB021/Noon Report API", **payload["general"], **e}
             for i, e in enumerate(sorted(payload["events"], key=lambda x: x["dateEventUtc"]))]
 
