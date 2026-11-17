@@ -50,6 +50,7 @@ DESC = {
     "KR_GEARS_API_URL": "검증 시스템 API 주소(PoC 에서는 쓰지 않는다)",
     "SHIP_ODMS_BASE": "표준모델 API(GHG Verifier 백엔드) 주소",
     "AGENT_BASE": "GHG AI Agent 주소(하네스가 호출)",
+    "K_MDS_LOG_LEVEL": "로그 수준: DEBUG | INFO | WARNING | ERROR",
     "AGENT_INBOX": "하네스가 읽는 에이전트 증적 폴더",
 }
 KEY = re.compile(r"^\s*(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)\s*=")
