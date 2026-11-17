@@ -1,30 +1,56 @@
-# S-1-1 실증 자동화 (n8n + docker)
+# 실증 자동화 (n8n + docker)
 
-신규 설치처(RIMS 서울 등) 설치 절차와 오픈 모델 전환은 [DEPLOY.md](DEPLOY.md). n8n 워크플로 내보내기: `n8n/*.json`.
+설치 절차는 [DEPLOY.md](DEPLOY.md)에 있다. 여기서는 구성과 동작을 설명한다.
 
-구성: n8n(:5678) 워크플로 `K-MDS S-1-1 실증 자동화` → 하네스(:8090, `harness.py`) + GHG AI Agent(:8001, Gemini) + K-MDS GHG Verifier 포털(Ship-ODMS 기반, API :8088 / UI :3031, 컨테이너 kmds-ghg-verifier-backend·frontend).
+## 구성
 
-```
-cp .env.example .env   # 최초 1회, 값 채움 (k-mds/.env 는 커밋되지 않는다)
-docker compose --env-file .env -f verification/automation/compose.yaml up -d --build   # 에이전트+하네스
+| 구성요소 | 주소 | 역할 |
+| --- | --- | --- |
+| n8n 워크플로 (`n8n/*.json`) | :5678 | 웹훅 자동화와 대화형 AI Agent |
+| 하네스 (`harness.py`, `services.py`) | :8090 | 단계 실행, 증적, 판정, 대시보드, 챗봇 도구 |
+| GHG AI Agent | :8001 | 매핑·검증(시험 대상) |
+| tool-call 프록시 (`tool_call_proxy.py`) | :8091 | tool calling 을 지원하지 않는 모델 서버용 변환 |
+| K-MDS GHG Verifier (`apps/data-space`) | :8088 / :3031 | 표준모델 API 와 포털 |
+
+## 실행
+
+```bash
+docker compose --env-file .env -f verification/automation/compose.yaml up -d --build
 curl -X POST http://localhost:5678/webhook/kmds-s11 -H "content-type: application/json" -d "{\"skip_ids\": false}"
 ```
 
-- 실행 로그: n8n UI Executions (노드별 입·출력), 결과 보고서: http://localhost:8090/runs/run_NN/report, 증적: `verification/evidence/C02/s11/run_NN/`.
-- 단계: T0·T2(하네스) → T3~T5(n8n 이 이벤트별 에이전트 ingress 호출) → T5 증적 수집 → T6 전송 → T7 정합성 → T8 판정(`result.json`, `REPORT.md`).
-- LLM 교체: compose 의 `LLM_PROVIDER`/`LLM_MODEL`(+`LLM_ENDPOINT`) 만 변경 (OpenAI 호환 엔드포인트).
+단계: T0 기준선 → T2 IDS 수신 → T3~T5 에이전트 매핑·검증 → T6 표준모델 전달 → T7 정합성 대조 → T8 판정.
 
-운용 규칙: 실행 중에는 호스트에서 에이전트 테스트·스크립트(`uv run pytest` 등)를 돌리지 않는다 — `var/registry.sqlite3` 를 컨테이너와 공유하므로 잠금 경합으로 skill 검증이 실패(fail-closed → unmapped 증가)한다. run_04 NOTE-interference.md 참조.
+| 결과 | 위치 |
+| --- | --- |
+| 증적 | `verification/evidence/C02/s11/run_NN/` (`result.json`, `REPORT.md`, 대조 CSV 포함) |
+| 판정 보고서 | `http://localhost:8090/runs/run_NN/report` |
+| 대시보드 | `http://localhost:8090/dashboard?run=run_NN` (원시 JSON: `/dashboard/data?run=`) |
+| 정합성 대조 | `GET /runs/run_NN/consistency`, `/consistency.csv` (포털의 정합성 대조 화면이 읽는다) |
+| 실행 로그 | n8n UI 의 Executions |
 
-## AI Agent 대화형 워크플로 (n8n ID toAlr11gvHNYHvvy)
-Chat Trigger(공개 채팅 http://localhost:5678/webhook/kmds-ghg-agent-chat/chat, n8n UI 에서 "Open chat") → AI Agent(Gemini 2.5 Flash, 메모리 20턴) → 도구 6개(하네스 `/tools/*`): fetch_ids_data(IDS Consumer 수신, source=ids|snapshot) → map_with_skill(에이전트 ingress 이벤트별 투입) → deliver_to_ship_odms → check_consistency → judge_and_report → get_run_status. 증적·판정은 웹훅 워크플로와 동일한 run_NN 형식(run-meta.orchestrator = n8n-ai-agent). Provider 이벤트 0건이면 에이전트가 사용자에게 보관본(2026-09-12) 사용 여부를 묻는다.
+호스트에서 n8n 없이 돌리려면 `verification/run_s11.py --run` 을 쓴다. 실선 데이터는 `S11_EVIDENCE_DIR` 로 `verification/evidence-private/` 아래를 지정한다.
 
-오픈 모델 본(2026-10-08): 같은 워크플로를 복사해 Gemini 노드를 OpenAI Chat Model 노드(RIMS 오픈 모델)로 바꾼 `n8n/kmds-ghg-ai-agent-chat-openmodel.json` 을 두었다(채팅 경로 `kmds-chat-open-model`, 포털 iframe 기본값). Agent 노드는 tool calling 을 쓰는데 RIMS 서버에는 tool-call 파서가 없으므로, 자격증명 Base URL 을 compose 의 `tool-call-proxy`(`http://host.docker.internal:8091/v1`, `tool_call_proxy.py`)로 둔다. 프록시가 `tool_choice=none` 으로 보내고 본문의 `<tool_call>` 블록을 OpenAI `tool_calls` 로 바꾸며, 사고 과정도 끈다(`/no_think` 프롬프트는 효과 없음). 검증: 도구 호출 7 s, 보관본 전 과정 run_17 PASS(304 s). 웹훅 자동화 워크플로는 tool calling 을 쓰지 않아 서버 직결로 동작한다(run_13·run_16).
+## 대화형 AI Agent
 
-Gemini 할당량: 무료 티어는 모델별 일 20 요청(2026-09-26 확인, gemini-2.5-flash 429 발생). 파이프라인은 run 당 4회, 대화 에이전트는 턴당 수 회 호출하므로 소진 시 다른 모델로 우회한다 — 컨테이너 `LLM_MODEL=gemini-3.5-flash-lite docker compose ... up -d ghg-agent`, n8n 은 "Gemini 2.5 Flash" 노드의 modelName 변경 후 재활성화(publish). gemini-2.5-flash-lite 는 신규 사용자에게 404.
+채팅 주소는 `http://localhost:5678/webhook/kmds-chat-open-model/chat` 이고 포털의 챗봇 메뉴가 이 주소를 연다.
+에이전트는 하네스의 도구(`/tools/*`)를 호출한다.
 
-## 추가 서비스 (2026-09-26, `services.py`)
-- **선박 조회·연간 GHG 집계**: 도구 `query_ship_data{imo}` → Ship-ODMS 저장 데이터·연차보고 조회(CII 필드는 표준모델에 없음). `compute_annual_ghg{imo, capacity_dwt?, write?}` → 중복 보고 제외 후 연료별 소비(t)·CO2(t)·거리(nm)·GFI TtW(gCO2/MJ) 계산, CF·LCV 는 MEPC.308(73) Annex 5 표(data/raw/MEPC). `write=true` 면 `YearPerformanceReport.totalGfiAnnually` 입력. 증적 `verification/evidence/C02/s11/annual/`. 가정(VLSFO→HFO 행, TtW 만)은 응답 `assumptions` 에 명시.
-- **매핑 증적 대시보드**: http://localhost:8090/dashboard?run=run_NN (Chart.js). 총 원본 필드, IMO code 변환 성공/실패, Ship-ODMS 전달 대조 성공/불일치, 대상 필드 없음, 코드북(랩오투원) 변환/미해결 항목, 이벤트별 표, M2/M3/M4. 도구 `mapping_dashboard{run_id?}` 가 같은 수치를 돌려준다. 원시 JSON: `/dashboard/data?run=`.
+| 도구 | 하는 일 |
+| --- | --- |
+| `fetch_ids_data` | IDS Consumer 로 데이터를 받아 새 run 을 연다(`source`: ids 또는 snapshot) |
+| `map_with_skill` | 이벤트별로 에이전트에 넣어 매핑·검증한다 |
+| `deliver_to_ship_odms` | 표준모델 API 로 전달한다 |
+| `check_consistency`, `judge_and_report`, `get_run_status` | 정합성 대조, 판정, 상태 조회 |
+| `query_ship_data` | IMO 번호로 저장 데이터와 연차보고를 조회한다 |
+| `compute_annual_ghg` | 연도별 연료 소비·CO2·거리·GFI 를 계산한다. `write=true` 면 연차보고에 저장한다 |
+| `mapping_dashboard` | 대시보드와 같은 수치를 돌려준다 |
 
-포털(K-MDS GHG Verifier, apps/data-space compose): 메뉴 순서 챗봇(/chat, n8n hosted chat iframe) → 선박 목록(/) → 대시보드(/dashboard, 하네스 /dashboard iframe). iframe 주소는 compose 의 Portal__ChatUrl / Portal__DashboardUrl 로 바꾼다. 컨테이너·네트워크 이름 2026-09-26 변경(ship-odms-* → kmds-ghg-verifier-*), 하네스 compose 의 SHIP_ODMS_BASE·external network 도 함께 변경됨.
+- Provider 이벤트가 0건이면 에이전트가 보관본 사용 여부를 묻는다.
+- 연간 집계의 CF·LCV 는 MEPC.308(73) 표를 쓰고, 가정은 응답의 `assumptions` 에 적힌다. 연도를 주지 않으면 가장 최근 연도로 계산한다.
+- 연간 집계 증적은 시험 선박이면 `evidence/C02/s11/annual/`, 그 외 선박이면 `evidence-private/annual/` 에 쓴다.
+- 모델 서버가 tool calling 을 지원하지 않으면 n8n 자격증명의 Base URL 을 프록시(`http://host.docker.internal:8091/v1`)로 둔다. 웹훅 자동화는 tool calling 을 쓰지 않는다.
+
+## 운용 규칙
+
+컨테이너 실행 중에는 호스트에서 에이전트 테스트를 돌리지 않는다. `var/registry.sqlite3` 를 컨테이너와 함께 쓰므로 잠금 경합이 나면 검증이 실패하고 미매핑이 늘어난다.

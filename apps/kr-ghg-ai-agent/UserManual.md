@@ -1,6 +1,8 @@
 # K-MDS Use Case #3 선박 환경규제 데이터 의무보고
 ## GHG AI Agent PoC 실증 수행 마스터 지시문 및 사용자 매뉴얼
 
+> 이 문서는 PoC 실증 수행 지시문이다(검증 케이스가 절 번호로 인용하므로 그대로 둔다). 설치·실행·사용 방법은 [USER_GUIDE.md](USER_GUIDE.md)를 본다.
+
 > **문서 용도**  
 > 이 문서는 `D:\kr-dev\kr-ghg-ai-agent`를 VSCode로 열고 Claude Code에 전달하여, K-MDS Use Case #3 PoC 실증을 보고서 순서대로 수행하고 결과를 검토·보완하기 위한 Markdown 기반 실행 지시문이다.
 >
