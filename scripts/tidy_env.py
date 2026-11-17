@@ -53,6 +53,9 @@ DESC = {
     "AGENT_INBOX": "하네스가 읽는 에이전트 증적 폴더",
 }
 KEY = re.compile(r"^\s*(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)\s*=")
+# 주석·예시 값에 남은 특정 모델 이름과 옛 프록시 이름을 일반 용어로 바꾼다(변수 값은 건드리지 않는다: 주석 줄에만 적용).
+SCRUB = [(re.compile(r"의 Qwen[0-9.]*-?[0-9A-Za-z]* \(vLLM, 호출명 qwen, "), " (vLLM, "), (re.compile(r"Qwen[0-9.]* 등 사고\(thinking\) 모델"), "사고(thinking)형 모델"),
+         (re.compile(r"\. 예 qwen>"), ">"), (re.compile(r"qwen-tool-proxy"), "tool-call-proxy"), (re.compile(r"Qwen[0-9.]*(-[0-9A-Za-z]+)?"), "오픈 모델")]
 
 
 def tidy(path: Path) -> tuple[int, int, int]:
@@ -60,7 +63,12 @@ def tidy(path: Path) -> tuple[int, int, int]:
     removed = described = unknown = 0
     for line in path.read_text("utf-8").splitlines():
         m = KEY.match(line)
-        if not m:
+        if not m or line.lstrip().startswith("#"):
+            if line.lstrip().startswith("#"):
+                for pat, rep in SCRUB:
+                    line = pat.sub(rep, line)
+            if m and UNUSED_LLM.search(m.group(1)):
+                continue  # 주석 처리된 예시 항목이라도 쓰지 않는 제공자 것은 지운다
             out.append(line)
             continue
         name = m.group(1)

@@ -376,3 +376,10 @@
 - 연차보고 연도: `YearPerformanceReport.report_year`(K-MDS 확장, FAL50 에 대응 요소 없음) 추가. 연간 GHG 집계가 보고시각(UTC) 연도로 나눠 계산하고(미지정 시 최근 연도), 선박·연도당 한 건으로 저장. 시험 선박 2026년, 가명 실선 2025년으로 기록 확인. 챗봇 도구에 year 인자 추가.
 - 가명 실선의 연간 집계 증적이 공개 폴더에 생겨 비공개 폴더(`evidence-private/C02/realship/annual/`)로 옮김 — 하네스의 연간 집계 증적 경로는 공개 폴더 고정이므로 실선 선박으로 집계할 때 주의.
 - 공개 기록 정리(2026-11-17): 이 문서의 예전 기록에서 특정 오픈 모델 이름을 일반 용어(오픈 모델)로 바꿨다. 파일·컨테이너 이름에 들어 있는 식별자는 실제 이름과 맞아야 해서 그대로 두었다. 새 공개 증적(run_01·02)의 에이전트 manifest 24개에서 `llm_model` 값도 `open-model` 로 바꿨다(manifest 는 file_hashes 대상이 아니어서 무결성 검사 결과는 그대로).
+
+### S12 추가 — 정리 (2026-11-17 자정 무렵)
+- 모델 이름 정리 범위 확대: tool-call 프록시 파일·서비스·컨테이너(`tool_call_proxy.py`, `tool-call-proxy`, `kmds-tool-call-proxy`)와 챗봇 웹훅 경로(`kmds-chat-open-model`)를 중립 이름으로 바꾸고 README·배포 문서·주석을 정리. 실행 중인 n8n 워크플로와 포털 설정에도 적용, 챗봇 새 주소 응답 확인. 남은 것은 서버가 요구하는 모델 호출명 값과 n8n 워크플로 내부 ID, `data/raw/RIMS/` 의 원문 안내서 파일명.
+- 하네스의 연간 GHG 집계 증적: 시험 선박이 아니면 `verification/evidence-private/annual/` 에 쓴다.
+- `.env`·`.env.example` 정리 스크립트 `scripts/tidy_env.py` 추가(쓰지 않는 LLM 제공자 항목 삭제, 변수 설명 주석, 주석의 모델 이름 정리). 값은 읽거나 출력하지 않는다. 실행은 사람이 한다.
+- 불필요 파일 삭제: DB 백업 5개, 초기화 백업 폴더, IDS 수신 시험 조각, 폰트 zip, 쓰지 않는 n8n 파일, 빌드 산출물.
+- SW 등록 제출 자료 초안: `pm/sw-registration/ghg-ai-agent/`(git 제외).
