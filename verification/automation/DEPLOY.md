@@ -1,77 +1,79 @@
-# K-MDS S-1-1 실증 스택 설치 가이드 (RIMS 서울 사무소 등 신규 설치처용)
+# 실증 스택 설치 가이드
 
-목표: 저장소를 받아 **LLM 설정(오픈 모델 엔드포인트)만 바꾸면** 실증 자동화·포털·챗봇이 그대로 동작하게 한다. 소스 수정 없이 환경변수와 n8n 가져오기만으로 끝난다.
+저장소를 받아 환경변수와 n8n 가져오기만으로 실증 자동화·포털·챗봇을 띄우는 절차다. 소스 수정은 없다.
 
 ## 1. 준비물
-| 항목 | 요구 |
-|---|---|
-| OS / 런타임 | Windows 11 또는 Linux, Docker Desktop(또는 docker + compose v2). 이미지 빌드 시 인터넷 필요(pip/uv/NuGet/Maven). |
-| 저장소 | `git clone https://github.com/kr-woojj/k-mds.git` (main). |
-| 표준 원본 (git 미포함, 라이선스) | `data/raw/FAL50/IMO Compendium.xlsx`, `data/raw/ISO25000/ISO_IEC_DIS_25023(E)-Character_PDF_document.pdf`, `data/raw/MEPC/MEPC.308(73).pdf` — 한국선급이 별도 전달. FAL50 은 필수(registry 생성), 나머지는 보고서·부가 서비스용. |
-| 에이전트 준비물 (git 미포함) | `apps/kr-ghg-ai-agent/var/registry.sqlite3`, `var/candidate-inventory.json`, `var/reference/code_lists.json`, `var/reference/lab021/noon-code-book.json` — 아래 2단계에서 생성하거나 한국선급 전달본을 복사. |
-| 오픈 모델 서버 | OpenAI 호환 API(`/v1/chat/completions` + `response_format: json_schema` 구조화 출력). vLLM·Ollama·LM Studio 등. tool calling 은 챗봇(n8n Agent 노드)에만 필요하며, 서버에 tool-call 파서가 없어도 compose 의 **`tool-call-proxy`(:8091)** 가 대신 처리한다(§5). 검증된 구성: vLLM 기반 오픈 모델, 파서 없음 + 프록시 (2026-10-08). |
-| n8n | 1.119 이상 권장(2.23 에서 검증). `docker run -d --name n8n -p 5678:5678 -v <dir>:/home/node/.n8n n8nio/n8n`. |
-| 포트 | 8088(표준모델 API), 3031(포털), 8001(에이전트), 8090(하네스), 5678(n8n). |
 
-## 2. 에이전트 준비물 생성 (전달본이 없을 때)
+| 항목 | 내용 |
+| --- | --- |
+| 런타임 | Windows 11 또는 Linux, Docker(compose v2). 이미지 빌드에 인터넷이 필요하다 |
+| 저장소 | `git clone https://github.com/kr-woojj/k-mds.git` |
+| 표준 원본 (저장소에 없음) | `data/raw/FAL50/IMO Compendium.xlsx`(필수), `data/raw/ISO25000/`, `data/raw/MEPC/`(보고서·연간 집계용). 한국선급이 따로 전달한다 |
+| 에이전트 준비물 (저장소에 없음) | `apps/kr-ghg-ai-agent/var/` 의 `registry.sqlite3`, `candidate-inventory.json`, `reference/code_lists.json`, `reference/lab021/noon-code-book.json`. 2절에서 만들거나 전달본을 복사한다 |
+| 오픈 모델 서버 (선택) | OpenAI 호환 API 와 구조화 출력(`response_format: json_schema`). tool calling 은 챗봇에만 필요하고, 서버가 지원하지 않으면 tool-call 프록시(:8091)가 대신한다 |
+| n8n | 1.119 이상(2.23 에서 검증). `docker run -d --name n8n -p 5678:5678 -v <dir>:/home/node/.n8n n8nio/n8n` |
+| 포트 | 8088(표준모델 API), 3031(포털), 8001(에이전트), 8090(하네스), 8091(프록시), 5678(n8n) |
+
+## 2. 에이전트 준비물 생성
+
+전달본이 없을 때만 실행한다.
+
 ```bash
 cd apps/kr-ghg-ai-agent
 uv sync
-uv run python tools/prepare_registry.py            # data/raw/FAL50 → var/registry.sqlite3, var/reference/code_lists.json
-uv run python tools/build_candidate_inventory.py   # var/candidate-inventory.json (0.2.0-provisional, 159 요소)
-# var/reference/lab021/noon-code-book.json 은 vessellink 코드북(공개 GET) — 한국선급 전달본 사용 또는 README 의 URL 로 재수집
+uv run python tools/prepare_registry.py            # registry.sqlite3, reference/code_lists.json
+uv run python tools/build_candidate_inventory.py   # candidate-inventory.json
 ```
 
-## 3. 환경변수 파일
-저장소 루트의 `k-mds/.env` 에 값을 둔다. 이 파일은 `.gitignore` 에 등록되어 커밋되지 않는다.
-템플릿 `k-mds/.env.example` 을 복사해 만들며, 각 항목의 `<sample: …>` 설명을 보고 값을 채운다.
+제공자 코드북(`reference/lab021/noon-code-book.json`)은 한국선급 전달본을 쓴다.
+
+## 3. 환경변수
+
 ```bash
-cd k-mds && cp .env.example .env
+cp .env.example .env
 ```
-오픈 모델로 쓸 때 바뀌는 항목:
-```
-# 오픈 모델 (예: RIMS 테스트 서버, vLLM)
-LLM_PROVIDER=openai
-LLM_MODEL=<서버의 API 호출용 모델명>
-LLM_ENDPOINT=http://<open-model-host>:<port>/v1
-OPENAI_API_KEY=<서버 운영 기관이 발급한 키, 키 검사가 없으면 local>
-LLM_DISABLE_THINKING=true      # 사고(thinking) 모델은 끈다 — 매핑 지연 ↓
-LLM_REASONING_EFFORT=low
-# (선택) K-MDS IDS Consumer — 없으면 T2 는 NOT_TESTED 로 기록되고 보관본으로 진행
-IDS_CONNECTOR_BASE=
-IDS_CONNECTOR_USER=
-IDS_CONNECTOR_PASSWORD=
-```
+
+변수 설명은 `.env.example` 에 있다. 기본은 `LLM_PROVIDER=mock` 이며, 오픈 모델을 쓰려면 `LLM_PROVIDER=openai` 와 `LLM_MODEL`, `LLM_ENDPOINT`, `OPENAI_API_KEY` 를 채운다.
+IDS 커넥터 항목을 비우면 수신 단계(T2)는 NOT_TESTED 로 기록되고 보관본으로 진행한다.
 
 ## 4. 기동
+
 ```bash
-cd k-mds
-docker compose -f apps/data-space/compose.yaml up -d --build                         # 표준모델 API :8088 + 포털 :3031
-docker compose --env-file .env -f verification/automation/compose.yaml up -d --build   # 에이전트 :8001 + 하네스 :8090
+docker compose -f apps/data-space/compose.yaml up -d --build
+docker compose --env-file .env -f verification/automation/compose.yaml up -d --build
 curl http://localhost:8088/api/ships      # []
-curl http://localhost:8001/ready          # "status":"READY", llm.provider "openai", real true
+curl http://localhost:8001/ready          # "status":"READY", llm.provider 가 .env 설정과 같다
 curl http://localhost:8090/health         # "status":"ok"
 ```
-포털 챗봇·대시보드 iframe 주소(브라우저 기준)를 다른 호스트로 바꾸려면 `apps/data-space/compose.yaml` 의 `Portal__ChatUrl`, `Portal__DashboardUrl` 를 수정한다.
 
-## 5. n8n 워크플로 가져오기
-1. n8n → Workflows → Import from File: `verification/automation/n8n/kmds-s11-webhook-automation.json`, `kmds-ghg-ai-agent-chat.json`.
-2. 자격증명: 챗봇 워크플로는 두 가지 본이 있다. `kmds-ghg-ai-agent-chat.json` 은 Gemini 노드, `kmds-ghg-ai-agent-chat-openmodel.json` 은 **OpenAI Chat Model 노드(오픈 모델용)** 로 저장돼 있다. 오픈 모델 본을 가져온 뒤 n8n 의 OpenAI 자격증명을 만들어 **Base URL = `http://host.docker.internal:8091/v1`(tool-call 프록시)**, API Key = 서버가 발급한 키(검사가 없으면 임의 문자열)를 넣고, 모델 노드의 자격증명으로 지정한다. 프록시는 키를 그대로 서버에 전달한다. 서버가 tool-call 파서를 지원하면 Base URL 을 서버 주소로 바로 두어도 된다. 모델명은 노드의 `model` 값(기본 `qwen`)을 서버 호출명으로 맞춘다.
-3. 두 워크플로를 **활성화(Publish)**. 웹훅 경로 `kmds-s11` 은 그대로 둔다. 채팅 경로는 Gemini 본 `kmds-ghg-agent-chat`, 오픈 모델 본 `kmds-chat-open-model` 이며, 포털 iframe 은 `apps/data-space/compose.yaml` 의 `Portal__ChatUrl` 이 가리키는 쪽을 쓴다(기본: 오픈 모델 본).
-4. n8n 이 호스트의 하네스·에이전트에 접속하는 주소는 `http://host.docker.internal:8090`, `:8001` 이다. Linux 에서 `host.docker.internal` 이 없으면 n8n 컨테이너에 `--add-host=host.docker.internal:host-gateway` 를 준다.
+포털이 여는 챗봇·대시보드 주소를 바꾸려면 `apps/data-space/compose.yaml` 의 `Portal__ChatUrl`, `Portal__DashboardUrl` 을 고친다.
+
+## 5. n8n 워크플로
+
+1. n8n → Workflows → Import from File 로 `verification/automation/n8n/` 의 두 파일을 가져온다.
+   - `kmds-s11-webhook-automation.json`: 웹훅 자동화
+   - `kmds-ghg-ai-agent-chat-openmodel.json`: 대화형 AI Agent(챗봇)
+2. 챗봇용 OpenAI 자격증명을 만들어 모델 노드에 지정한다.
+   - Base URL: `http://host.docker.internal:8091/v1` (tool-call 프록시). 서버가 tool calling 을 지원하면 서버 주소를 직접 써도 된다
+   - API Key: 서버가 발급한 키(검사가 없으면 임의 문자열)
+   - 모델 노드의 `model` 값을 서버의 모델 호출명으로 맞춘다
+3. 두 워크플로를 활성화(Publish)한다. 웹훅 경로는 `kmds-s11`, 채팅 경로는 `kmds-chat-open-model` 이다.
+4. n8n 은 하네스와 에이전트를 `http://host.docker.internal:8090`, `:8001` 로 부른다. Linux 에서 이 이름이 없으면 n8n 컨테이너에 `--add-host=host.docker.internal:host-gateway` 를 준다.
 
 ## 6. 동작 확인
+
 ```bash
 curl -X POST http://localhost:5678/webhook/kmds-s11 -H "content-type: application/json" -d "{\"skip_ids\": true}"
-# → verdict "PASS (T2 NOT_TESTED …)", measures M2 0.9945 / M3 1.0 / M4 0.9854 (2026-09-12 보관본 12 이벤트 기준)
 ```
-- 보고서 `http://localhost:8090/runs/run_01/report`, 대시보드 `http://localhost:8090/dashboard`, 포털 `http://localhost:3031`.
-- 챗봇: 포털 "챗봇" 메뉴에서 "보관본으로 IDS 데이터를 매핑해서 Ship-ODMS 에 입력하고 판정까지 보고해줘".
-- 2026-10-08 오픈 모델 검증(RIMS 테스트 서버, vLLM 기반 오픈 모델, `LLM_DISABLE_THINKING=true`, `LLM_REASONING_EFFORT=low`): run_13 — 웹훅 자동화 T0~T8 완료, LLM 호출 4/4 성공(중앙값 4.8초, 최대 8.6초), M2 0.9945 · M3 1.0 · M4 0.9854 로 Gemini 실행(run_12)과 동일, 재현성 규칙 통과. 챗봇 본은 서버에 tool-call 파서가 없어 처음엔 `400 tool choice requires --enable-auto-tool-choice` 였으나, `tool-call-proxy` 를 거치자 도구 6종 호출이 모두 동작했다(get_run_status 7 s, 보관본 전 과정 run_17 PASS 304 s).
-- 오픈 모델 확인: run 증적 `agent-evidence/<cid>/llm-calls.json` 의 provider 가 `openai`, model 이 지정한 모델명이면 된다. 구조화 출력(JSON schema)을 지원하지 않는 모델이면 `LLM_OUTPUT_INVALID` 경고가 남고 해당 필드는 UNMAPPED 로 유지된다(허위 매핑 차단). 측정치 M2·M3·M4 는 결정적 매핑이 지배하므로 모델과 무관하게 같아야 한다.
+
+- 기대 결과(보관본 12 이벤트): `verdict` 가 `PASS (T2 NOT_TESTED …)`, M2 0.9945 / M3 1.0 / M4 0.9855. 측정치는 결정론 매핑이 정하므로 모델이 달라도 같아야 한다.
+- 화면: 포털 <http://localhost:3031>, 판정 보고서 `http://localhost:8090/runs/run_NN/report`, 대시보드 <http://localhost:8090/dashboard>.
+- 챗봇: 포털의 챗봇 메뉴에서 "보관본으로 IDS 데이터를 매핑해서 GHG Verifier 에 입력하고 판정까지 보고해줘".
+- 오픈 모델 확인: 증적 `agent-evidence/<cid>/llm-calls.json` 의 provider 가 `openai` 이면 된다. `LLM_OUTPUT_INVALID` 가 있으면 모델이 구조화 출력을 지키지 못한 것이며, 해당 필드는 미매핑으로 남는다.
 
 ## 7. 운용 규칙
-- 실행 중 호스트에서 `apps/kr-ghg-ai-agent` 테스트·스크립트를 돌리지 않는다(registry SQLite 잠금 경합).
-- 증적 `verification/evidence/C02/s11/run_NN/` 은 덮어쓰지 않는다. 참여기관 인프라 주소가 든 증적은 저장소에 올리지 않는다.
-- 비밀 값(API 키, IDS 자격증명)은 env 파일에만 두고 로그·증적·커밋에 남기지 않는다.
-- 데이터 초기화: `DELETE http://localhost:8088/api/ships/{id}` (하위 데이터 연쇄 삭제). 실행 전 `apps/data-space/java/ship_odms/ship_odms.db` 백업.
+
+- 컨테이너 실행 중에는 호스트에서 `apps/kr-ghg-ai-agent` 의 테스트를 돌리지 않는다(registry SQLite 잠금 경합).
+- 증적 `verification/evidence/C02/s11/run_NN/` 은 덮어쓰지 않는다. 실선 데이터와 참여기관 인프라 주소가 든 증적은 저장소에 올리지 않는다.
+- 비밀 값은 `.env` 에만 두고 로그·증적·커밋에 남기지 않는다.
+- 데이터 초기화: `DELETE http://localhost:8088/api/ships/{id}` (하위 데이터까지 삭제). 실행 전에 `apps/data-space/java/ship_odms/ship_odms.db` 를 백업한다.

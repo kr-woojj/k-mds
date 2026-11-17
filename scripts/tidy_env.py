@@ -1,4 +1,6 @@
-"""`.env` 와 `.env.example` 정리: 쓰지 않는 LLM 제공자 키 항목을 지우고, 변수마다 설명 주석을 붙인다.
+"""`.env` 와 `.env.example` 정리.
+
+쓰지 않는 LLM 제공자 키 항목을 지우고, 변수마다 설명 주석을 붙인다.
 
 값은 읽지도 출력하지도 않는다(줄 단위로 변수 이름만 본다). 여러 번 돌려도 결과가 같다.
 사용: python scripts/tidy_env.py [파일 ...]   (기본: .env .env.example)
@@ -9,14 +11,18 @@ import re
 import sys
 from pathlib import Path
 
-# 현재 구성(오픈 모델, OpenAI 호환)에서 쓰지 않는 LLM 제공자 전용 항목. OPENAI_* 는 오픈 모델 연결에 쓰므로 남긴다.
-UNUSED_LLM = re.compile(r"^(GEMINI|GOOGLE|AZURE_OPENAI|ANTHROPIC|CLAUDE|COHERE|MISTRAL|GROQ|TOGETHER|PERPLEXITY|XAI|DEEPSEEK|UPSTAGE|HUGGINGFACE|HF)_"
-                        r"|^OPENAI_DEPLOYMENT$|^LLM_DEPLOYMENT$|^LLM_API_VERSION$")
+# 현재 구성(오픈 모델, OpenAI 호환)에서 쓰지 않는 LLM 제공자 전용 항목.
+# OPENAI_* 는 오픈 모델 연결에 쓰므로 남긴다.
+UNUSED_LLM = re.compile(
+    r"^(GEMINI|GOOGLE|AZURE_OPENAI|ANTHROPIC|CLAUDE|COHERE|MISTRAL|GROQ|TOGETHER"
+    r"|PERPLEXITY|XAI|DEEPSEEK|UPSTAGE|HUGGINGFACE|HF)_"
+    r"|^OPENAI_DEPLOYMENT$|^LLM_DEPLOYMENT$|^LLM_API_VERSION$"
+)
 
 DESC = {
-    "LLM_PROVIDER": "언어 모델 연결 방식: mock(외부 호출 없음) | openai(OpenAI 호환 서버, 오픈 모델)",
+    "LLM_PROVIDER": "언어 모델 연결 방식: mock(외부 호출 없음) | openai(OpenAI 호환 서버)",
     "LLM_MODEL": "서버가 요구하는 모델 호출명",
-    "LLM_ENDPOINT": "언어 모델 서버 주소 (예: http://<host>:<port>/v1). tool-call 프록시의 상위 주소로도 쓴다",
+    "LLM_ENDPOINT": "언어 모델 서버 주소(http://<host>:<port>/v1). tool-call 프록시의 상위 주소",
     "LLM_DISABLE_THINKING": "true 면 모델의 사고 과정 출력을 끈다(응답이 빨라진다)",
     "LLM_REASONING_EFFORT": "추론 강도: low | medium | xhigh. 비우면 서버 기본값",
     "LLM_TIMEOUT_SECONDS": "언어 모델 호출 제한 시간(초)",
@@ -32,7 +38,7 @@ DESC = {
     "IDS_CONNECTOR_USER": "IDS Consumer 커넥터 계정",
     "IDS_CONNECTOR_PASSWORD": "IDS Consumer 커넥터 비밀번호",
     "IDS_NOON_ARTIFACT_ID": "수신할 Noon Report artifact ID. 비우면 시험용 기본 artifact",
-    "S11_EVIDENCE_DIR": "S-1-1 증적 저장 폴더. 실선 데이터는 verification/evidence-private/ 아래를 지정한다",
+    "S11_EVIDENCE_DIR": "S-1-1 증적 저장 폴더. 실선 데이터는 evidence-private 아래를 지정한다",
     "KMDS_ENV_FILE": "run_s11 이 읽을 환경 파일 경로(기본: 저장소 루트 .env)",
     "IMO_API_KEY": "매핑 검증 서비스(imo-compendium-mapping-validator) API 키",
     "IMO_MAPPING_SKILL_PATH": "매핑 검증 도구 폴더 경로(기본: 형제 폴더)",
@@ -53,9 +59,14 @@ DESC = {
     "AGENT_INBOX": "하네스가 읽는 에이전트 증적 폴더",
 }
 KEY = re.compile(r"^\s*(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)\s*=")
-# 주석·예시 값에 남은 특정 모델 이름과 옛 프록시 이름을 일반 용어로 바꾼다(변수 값은 건드리지 않는다: 주석 줄에만 적용).
-SCRUB = [(re.compile(r"의 Qwen[0-9.]*-?[0-9A-Za-z]* \(vLLM, 호출명 qwen, "), " (vLLM, "), (re.compile(r"Qwen[0-9.]* 등 사고\(thinking\) 모델"), "사고(thinking)형 모델"),
-         (re.compile(r"\. 예 qwen>"), ">"), (re.compile(r"qwen-tool-proxy"), "tool-call-proxy"), (re.compile(r"Qwen[0-9.]*(-[0-9A-Za-z]+)?"), "오픈 모델")]
+# 주석에 남은 특정 모델 이름과 옛 프록시 이름을 일반 용어로 바꾼다(주석 줄에만 적용, 값은 불변).
+SCRUB = [
+    (re.compile(r"의 Qwen[0-9.]*-?[0-9A-Za-z]* \(vLLM, 호출명 qwen, "), " (vLLM, "),
+    (re.compile(r"Qwen[0-9.]* 등 사고\(thinking\) 모델"), "사고(thinking)형 모델"),
+    (re.compile(r"\. 예 qwen>"), ">"),
+    (re.compile(r"qwen-tool-proxy"), "tool-call-proxy"),
+    (re.compile(r"Qwen[0-9.]*(-[0-9A-Za-z]+)?"), "오픈 모델"),
+]
 
 
 def tidy(path: Path) -> tuple[int, int, int]:
@@ -74,8 +85,9 @@ def tidy(path: Path) -> tuple[int, int, int]:
         name = m.group(1)
         if UNUSED_LLM.search(name):
             removed += 1
-            while out and out[-1].lstrip().startswith("#") and name.split("_")[0].lower() in out[-1].lower():
-                out.pop()  # 그 항목만 설명하던 바로 위 주석도 함께 지운다
+            prefix = name.split("_")[0].lower()  # 그 항목만 설명하던 바로 위 주석도 함께 지운다
+            while out and out[-1].lstrip().startswith("#") and prefix in out[-1].lower():
+                out.pop()
             continue
         desc = DESC.get(name)
         if desc is None:
