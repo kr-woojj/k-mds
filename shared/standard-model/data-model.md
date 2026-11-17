@@ -21,6 +21,7 @@ erDiagram
     YEAR_PERFORMANCE_REPORT {
         int id PK
         int ship_id FK
+        int report_year "K-MDS 확장: 보고 연도 (IMO 번호 없음)"
         int total_gfi_annually "IMO0854: Fuel, Total GHG intensity (IMO), annually [gCO2eq/MJ]"
     }
 
@@ -90,6 +91,7 @@ erDiagram
         float speed_order "IMO0619: Speed order"
         float course_over_ground "IMO0332: Course over ground"
         float ship_true_heading "IMO0620: Ship true heading"
+        string voyage_leg_remarks "IMO0606: Voyage leg remarks"
     }
 
     %% =========================================================
