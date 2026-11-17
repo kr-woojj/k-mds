@@ -15,6 +15,7 @@ import json
 import os
 import shutil
 import subprocess
+import time
 import uuid
 from datetime import UTC, datetime
 from pathlib import Path
@@ -161,7 +162,17 @@ class EvidenceWriter:
             # 최종 디렉터리 노출은 여기 atomic rename 에서만 발생.
             if self.final_dir.exists():
                 raise EvidenceError("final directory already exists (race)")
-            os.replace(self.staging_dir, self.final_dir)
+            # Windows: 방금 쓴 파일을 백신·인덱서가 잠깐 잡으면 디렉터리 rename 이 PermissionError 로 실패한다
+            # (이벤트 54건 run 에서 재현, 2026-11-17).
+            # ponytail: 고정 5회·0.5 s 재시도. 그래도 실패하면 기존대로 quarantine.
+            for attempt in range(5):
+                try:
+                    os.replace(self.staging_dir, self.final_dir)
+                    break
+                except PermissionError:
+                    if attempt == 4:
+                        raise
+                    time.sleep(0.5)
             self._committed = True
             return self.final_dir / "manifest.json"
         except Exception as error:  # noqa: BLE001 — 모든 커밋 실패를 controlled 로 변환
