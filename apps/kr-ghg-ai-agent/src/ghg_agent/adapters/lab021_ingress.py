@@ -23,11 +23,25 @@ from pathlib import Path
 from typing import Any
 
 LAB021_MARKERS = {"eventKey", "dateEventUtc", "hourSlr", "voyNo"}  # 4개 중 3개 이상이면 LAB021 Noon 레코드
-EVENT_CTX = {"ARRIVAL": "Arrival", "DEPARTURE_SBY": "Departure S/By", "NOON_AT_SEA": "Noon at sea", "RUP": "R/UP", "BUNKERING": "Bunkering"}
-EVENT_CODE = {"ARRIVAL": "EV01", "DEPARTURE_SBY": "EV02", "NOON_AT_SEA": "EV16", "RUP": "EV10", "BUNKERING": "EV28", "CARGO_WORK": "EV28"}
+EVENT_CTX = {
+    "ARRIVAL": "Arrival",
+    "DEPARTURE_SBY": "Departure S/By",
+    "NOON_AT_SEA": "Noon at sea",
+    "RUP": "R/UP",
+    "BUNKERING": "Bunkering",
+}
+EVENT_CODE = {
+    "ARRIVAL": "EV01",
+    "DEPARTURE_SBY": "EV02",
+    "NOON_AT_SEA": "EV16",
+    "RUP": "EV10",
+    "BUNKERING": "EV28",
+    "CARGO_WORK": "EV28",
+}
 PICK: dict[str, Any] = {
-    "draftFore": "IMO0621", "draftAft": "IMO0622", "draftMid": "IMO0357", "shipCourse": "IMO0332", "trueWindDirection": "IMO0627",
-    "masterName": "IMO0580", "berthName": "IMO0548", "distanceToGo": "IMO0615", "positionLat": "IMO0601", "positionLon": "IMO0602",
+    "draftFore": "IMO0621", "draftAft": "IMO0622", "draftMid": "IMO0357", "shipCourse": "IMO0332",
+    "trueWindDirection": "IMO0627", "masterName": "IMO0580", "berthName": "IMO0548", "distanceToGo": "IMO0615",
+    "positionLat": "IMO0601", "positionLon": "IMO0602",
     "portCode": {"Arrival": "IMO0108", "Departure S/By": "IMO0111", "Bunkering": "IMO0666"},
     "portName": {"Arrival": "IMO0109", "Departure S/By": "IMO0112", "Bunkering": "IMO0667"},
     "dateEventUtc": {"Arrival": "IMO0063", "Departure S/By": "IMO0065"},
@@ -44,7 +58,8 @@ CONS_RE = re.compile(r"^consumption(Me|Ge|Blr|Other)(Hfo|Lsfo|Ulsfo|Do|Mgo|Ulsmg
 ROB_RE = re.compile(r"^rob(Hfo|Lsfo|Ulsfo|Do|Mgo|Ulsmgo)$")
 SENTINELS = (-9999, -9999.0, "-9999", "")
 IMO_ID = re.compile(r"^IMO\d{4}$")
-# FAL50 registry format 이 'an..'(문자열)인데 Provider 가 숫자로 보내는 요소 (IMO0191 an..17, IMO0605 an..35, IMO0601 an..10, IMO0602 an..11)
+# FAL50 registry format 이 'an..'(문자열)인데 Provider 가 숫자로 보내는 요소
+# (IMO0191 an..17, IMO0605 an..35, IMO0601 an..10, IMO0602 an..11)
 STR_TYPED = {"IMO0191", "IMO0605", "IMO0601", "IMO0602"}
 
 
@@ -89,8 +104,9 @@ def normalize_lab021(
                 out[key] = value
                 report["kept"].append(key)
             continue
-        # 연료 구조: FAL50 'Consumption By Fuel Type'(IMO0654 연료코드 + 장비별 요소). 연료코드는 경로(dict key)로만 둔다 —
-        # registry 의 IMO0654 format(n..10) 과 공식 code list 값(HFO 등 문자열)이 충돌해(known-limitation L-3) leaf 로 두면 항상 FAIL.
+        # 연료 구조: FAL50 'Consumption By Fuel Type'(IMO0654 연료코드 + 장비별 요소).
+        # 연료코드는 경로(dict key)로만 둔다 — registry 의 IMO0654 format(n..10) 과 공식 code list 값(HFO 등 문자열)이
+        # 충돌해(known-limitation L-3) leaf 로 두면 항상 FAIL.
         m = CONS_RE.match(key)
         if m:
             fc = FUEL_CODE[m.group(2)]
@@ -135,20 +151,32 @@ def normalize_lab021(
         out["consumption_by_fuel_type"] = fuel_cons
     if fuel_rob:
         out["rob_by_fuel_type"] = fuel_rob
-    # 컨텍스트(vessel/voyage/timestamp)는 normalization._CONTEXT_KEYS/_TIMESTAMP_KEYS 가 IMO 키를 직접 읽는다 — 중복 필드 만들지 않음.
+    # 컨텍스트(vessel/voyage/timestamp)는 normalization._CONTEXT_KEYS/_TIMESTAMP_KEYS 가 IMO 키를 직접 읽는다
+    # — 중복 필드 만들지 않음.
     report["mapped_count"] = len(report["mapped"])
     report["kept_count"] = len(report["kept"])
     return out, report
 
 
 def _selftest() -> None:
-    cb: dict[str, list[dict[str, Any]]] = {"portCode": [{"id": "IMO0108", "eventName": ["Arrival"]}, {"id": "IMO0111", "eventName": ["Departure S/By"]}], "voyNo": [{"id": "IMO0191"}], "hourSlr": [{"id": "IMO0600"}]}
-    rec = {"eventKey": "DEPARTURE_SBY", "dateEventUtc": "2026-04-19T20:36:00.000Z", "voyNo": 1, "hourSlr": 0, "portCode": "PACTB",
-           "consumptionMeLsfo": 0.33, "robLsfo": 898.26, "grossTonnage": -9999.0, "foo": 1}
+    cb: dict[str, list[dict[str, Any]]] = {
+        "portCode": [
+            {"id": "IMO0108", "eventName": ["Arrival"]},
+            {"id": "IMO0111", "eventName": ["Departure S/By"]},
+        ],
+        "voyNo": [{"id": "IMO0191"}],
+        "hourSlr": [{"id": "IMO0600"}],
+    }
+    rec = {
+        "eventKey": "DEPARTURE_SBY", "dateEventUtc": "2026-04-19T20:36:00.000Z", "voyNo": 1, "hourSlr": 0,
+        "portCode": "PACTB", "consumptionMeLsfo": 0.33, "robLsfo": 898.26, "grossTonnage": -9999.0, "foo": 1,
+    }
     assert is_lab021_record(rec)
     out, rep = normalize_lab021(rec, cb)
-    assert out["IMO0597"] == "EV02" and out["IMO0111"] == "PACTB" and out["IMO0065"].startswith("2026") and out["IMO0191"] == "1"
-    assert out["consumption_by_fuel_type"]["VLSFO2020"]["IMO0670"] == 0.33 and out["rob_by_fuel_type"]["VLSFO2020"]["IMO0674"] == 898.26
+    assert out["IMO0597"] == "EV02" and out["IMO0111"] == "PACTB"
+    assert out["IMO0065"].startswith("2026") and out["IMO0191"] == "1"
+    assert out["consumption_by_fuel_type"]["VLSFO2020"]["IMO0670"] == 0.33
+    assert out["rob_by_fuel_type"]["VLSFO2020"]["IMO0674"] == 898.26
     assert "IMO0654" not in out["consumption_by_fuel_type"]["VLSFO2020"]
     assert out["grossTonnage"] is None and "grossTonnage" in rep["sentinel_nulled"] and "foo" in rep["kept"]
     assert out["IMO0191"] == "1" and rep["type_cast"]["voyNo"].startswith("IMO0191")

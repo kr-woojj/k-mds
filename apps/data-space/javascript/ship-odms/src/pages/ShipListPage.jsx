@@ -10,7 +10,6 @@ export default function ShipListPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
     apiRequest('/ships')
       .then(data => {
         setShips(data || []);

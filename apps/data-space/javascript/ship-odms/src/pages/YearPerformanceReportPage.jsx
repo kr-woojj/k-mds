@@ -7,11 +7,11 @@ import Loading from '../components/Loading';
 export default function YearPerformanceReportPage({ shipId }) {
   const [reports, setReports] = useState([]);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // 마지막으로 불러오기를 마친 shipId. 현재 shipId와 다르면 로딩 중이다.
+  const [loadedKey, setLoadedKey] = useState(null);
 
   useEffect(() => {
     if (!shipId) return;
-    setLoading(true);
     apiRequest(`/ships/${shipId}/yearly-reports`)
       .then(data => {
         setReports(data || []);
@@ -21,8 +21,10 @@ export default function YearPerformanceReportPage({ shipId }) {
         setError(err);
         setReports([]);
       })
-      .finally(() => setLoading(false));
+      .finally(() => setLoadedKey(shipId));
   }, [shipId]);
+
+  const loading = loadedKey !== shipId;
 
   return (
     <div style={{ maxWidth: 900, margin: '2rem auto', padding: '1rem' }}>

@@ -245,6 +245,7 @@ class LangChainLLMClient:
                 extra_body["chat_template_kwargs"] = {"enable_thinking": False}
             if self.reasoning_effort:
                 extra_body["reasoning_effort"] = self.reasoning_effort
+            extra_kwargs: dict[str, Any] = {"extra_body": extra_body} if extra_body else {}
             base = init_chat_model(
                 self.model,
                 model_provider="openai",
@@ -252,7 +253,7 @@ class LangChainLLMClient:
                 temperature=0,
                 timeout=self.timeout_seconds,
                 max_retries=self.max_retries,
-                **({"extra_body": extra_body} if extra_body else {}),
+                **extra_kwargs,
             )
             # 오픈 모델 서버는 tool calling 보다 response_format=json_schema 지원이 안정적이다.
             self._structured = base.with_structured_output(LLMCandidateBatch, method="json_schema")
