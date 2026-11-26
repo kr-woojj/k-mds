@@ -86,7 +86,8 @@ def main() -> int:
             imo = str(it.get("id", ""))
             if imo.startswith("IMO") and ref.exists(imo):
                 codebook_ids.add(imo)
-        # 코드북 1:N 을 FAL50 'Consumption By Fuel Type' 구조로 풀 때 쓰는 요소(lab021_ingress.ENGINE_ELEMENT/IMO0654/IMO0674)
+        # 코드북 1:N 을 FAL50 'Consumption By Fuel Type' 구조로 풀 때 쓰는 요소
+        # (lab021_ingress.ENGINE_ELEMENT/IMO0654/IMO0674)
         for imo in ("IMO0654", "IMO0670", "IMO0893", "IMO0673", "IMO0903", "IMO0674"):
             if ref.exists(imo):
                 codebook_ids.add(imo)
