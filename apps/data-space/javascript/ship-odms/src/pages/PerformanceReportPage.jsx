@@ -7,11 +7,11 @@ import Loading from '../components/Loading';
 export default function PerformanceReportPage({ voyageId }) {
   const [reports, setReports] = useState([]);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // 마지막으로 불러오기를 마친 voyageId. 현재 voyageId와 다르면 로딩 중이다.
+  const [loadedKey, setLoadedKey] = useState(null);
 
   useEffect(() => {
     if (!voyageId) return;
-    setLoading(true);
     apiRequest(`/voyages/${voyageId}/performance-reports`)
       .then(data => {
         setReports(data || []);
@@ -21,8 +21,10 @@ export default function PerformanceReportPage({ voyageId }) {
         setError(err);
         setReports([]);
       })
-      .finally(() => setLoading(false));
+      .finally(() => setLoadedKey(voyageId));
   }, [voyageId]);
+
+  const loading = loadedKey !== voyageId;
 
   return (
     <div style={{ maxWidth: 1400, margin: '2rem auto', padding: '1rem' }}>
